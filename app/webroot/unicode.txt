@@ -1,0 +1,917 @@
+Compelling example of Unicode usage for business applications
+
+8/15/2002
+
+Compelling example of Unicode usage for business applications
+ 
+
+(Created by Tex Texin)
+I18nGuy Home page
+
+This page was last updated 2002-08-15.
+
+This page demonstrates the use of the Unicode Character Standard to store names and
+places from anywhere in the world, in any language. Unicode is therefore the best
+choice for a database character set for companies that do business internationally.
+Unicode is also useful for creating multilingual documents, or simply to print forms
+(mailing labels, tickets, invoices) that might address customers of any ethnicity by their
+native name, anywhere in the world. (Also see: Benefits of Unicode.)
+Look at the third and fourth columns in the table below. These are the birthplaces and
+native names of celebrities (actors, singers, sports figures, etc.). Only Unicode can be
+used to produce this list, store the names in a database, or address mail to everyone on
+the list. The first two columns tell you the English transliteration of the name and
+location.
+ Displaying this page 
+This page displays well with IE 5.5+, Mozilla 1.1b, Netscape 6.2, Opera 6.
+This page is encoded in UTF-8 and some characters may require fonts that are not
+installed on your system. If the display does not seem correct to you, click here for
+information on displaying this encoding and required fonts and display details.
+ Data file for this table 
+A version of this table is available as a comma-separated, UTF-8 text file. This, and
+other examples, including examples for Supplementary Plane characters can be found
+in the navigation table in the "Introduction to the Unicode examples for business usage".
+ Useful related links 
+• Introduction to the Unicode examples for business usage,
+• Submitting additional examples,
+• Other web pages with Unicode examples,
+• Information on online transliteration of text from this page,
+• Solutions for problems displaying Unicode,
+• Notes on Braille used on this page,
+• Ethiopic fonts,
+• Inuktitut font,
+• James Kass' Code2000 font zip file,
+• Licensing and downloading Microsoft's "Arial Unicode MS" font (click continue if you get a Yahoo ad
+page first).
+The table now has 78 entries!
+
+Tex Texin http://www.I18nGuy.com
+
+Page 1 of 6
+
+Compelling example of Unicode usage for business applications
+
+8/15/2002
+
+The names below are actual celebrities in their home countries. See
+how many you recognize.
+Example Unicode Data
+Origin
+
+Name
+
+Origin
+
+Name
+
+(in English)
+
+(English transliteration)
+
+(in native language)
+
+(in native language)
+
+Armenia
+
+Aram Khachatryan
+(composer)
+
+Australia
+
+Nicole Kidman (actress)
+
+Austria
+
+Հայաստան
+
+Արամ Խաչատրյան
+
+Australia
+
+Nicole Kidman
+
+Johann Strauss
+(The "waltz king")
+
+Österreich
+
+Johann Strauß
+
+Azerbaijan
+(Latin Script)
+
+Vagif Samadoghlu
+(author)
+
+Azərbaycan
+
+Vaqif Səmədoğlu
+
+Azerbaijan
+(Cyrillic Script)
+
+Vagif Samadoghlu
+(author)
+
+Азәрбајҹан
+
+Вагиф Сәмәдоғлу
+
+Azerbaijan
+(Latin script)
+
+Heydar Aliyev
+(president)
+
+Azərbaycan
+
+Heydər Əliyev
+
+Azerbaijan
+(Cyrillic script)
+
+Heydar Aliyev
+(president)
+
+Азәрбајҹан
+
+Һејдәр Әлијев
+
+Belgium
+(Flemish)
+
+Rene Magritte (painter)
+
+België
+
+René Magritte
+
+Belgium
+(French)
+
+Rene Magritte (painter)
+
+Belgique
+
+René Magritte
+
+Belgium
+(German)
+
+Rene Magritte (painter)
+
+Belgien
+
+René Magritte
+
+Bhutan
+
+Gonpo Dorji (film actor)
+
+འབྲུག་ཡུལ།
+
+མགོན་པོ་རྡོ་རྗེ།
+
+Cambodia
+(Khmer)
+
+Venerable
+PreahBuddhaghosachar
+Chuon Nath
+
+ប្រទេសកម្ពុជា
+
+ព្រះពុទ្ឋឃោសាចារ្យជួនណាត
+
+Canada
+
+Celine Dion (singer)
+
+Canada
+
+Céline Dion
+
+Canada Nunavut
+(Inuktitut
+language)
+
+Susan Aglukark (singer)
+
+ᓄᓇᕗᒻᒥᐅᑦ
+
+ᓱᓴᓐ ᐊᒡᓗᒃᑲᖅ
+
+Southeast USA
+(Cherokee
+Nation)
+
+Sequoyah (invented
+syllabary)
+
+ᏣᎳᎩ
+
+People's Rep. of
+China
+
+ZHANG Ziyi (actress)
+
+中国
+
+章子怡
+
+People's Rep. of
+China
+
+WONG Faye (singer)
+
+中国
+
+王菲
+
+Tex Texin http://www.I18nGuy.com
+
+(Tsalagi)
+
+ᏍᏏᏉᏯ
+
+Page 2 of 6
+
+Compelling example of Unicode usage for business applications
+Česko
+
+8/15/2002
+
+(Czech Republic)
+
+Antonin Dvorak
+(composer)
+
+Denmark
+
+Soren Hauch-Fausboll
+
+Danmark
+
+Søren Hauch-Fausbøll
+
+Denmark
+
+Soren Kierkegaard
+(theologian 1813-1855)
+
+Danmark
+
+Søren Kierkegård
+
+Egypt
+(Masr)
+
+Abdel Halim Hafez
+(singer)
+
+‫ﻣﺼﺮ‬
+
+‫ﻋﺒﺪاﻟﺤﻠﻴﻢ ﺣﺎﻓﻆ‬
+
+Egypt
+(Masr)
+
+Om Kolthoum (singer)
+
+‫ﻣﺼﺮ‬
+
+‫أم آﻠﺜﻮم‬
+
+Eritrea
+
+Berhane Zeray
+
+Ethiopia
+
+Haile Gebreselassie
+(Fastest man)
+
+Finland
+
+Czechia
+
+Antonín Dvořák
+
+(Česká republika)
+
+ኤርትራ
+
+ብርሃነ ዘርኣይ
+
+ኢትዮጵያ
+
+ኃይሌ ገብረሥላሴ
+
+Mika Hakkinen
+(Formula 1 driver)
+
+Suomi
+
+Mika Häkkinen
+
+France
+
+Gerard Depardieu
+(actor)
+
+France
+
+Gérard Depardieu
+
+France
+
+Jean Reno (actor)
+
+France
+
+Jean Réno
+
+France
+
+Camille Saint-Saens
+(composer)
+
+France
+
+Camille Saint-Saëns
+
+France
+
+Mylene Demongeot
+(actress)
+
+France
+
+Mylène Demongeot
+
+France
+
+Francois Truffaut
+(film director)
+
+France
+
+François Truffaut
+
+France
+(Braille)
+
+Louis Braille
+
+⠋⠗⠁⠝⠉⠑
+
+⠇⠕⠥⠊⠎⠀
+⠃⠗⠁⠊⠇⠇⠑
+
+Georgia
+
+Eduard Shevardnadze
+
+საქართველო
+
+ედუარდ შევარდნაძე
+
+Germany
+
+Rudi Voeller
+(soccer coach)
+
+Deutschland
+
+Rudi Völler
+
+Germany
+
+Walter Schultheiss
+(Actor)
+
+Deutschland
+
+Walter Schultheiß
+
+Greece
+(Hellas)
+
+George Dalaras
+(Giorgos Dalaras)
+
+Ελλάς
+
+Γιώργος Νταλάρας
+
+Hungary
+
+Andras Suto (author)
+
+Magyarország
+
+András Sütő
+
+Iceland
+
+Bjork Gudmundsdottir
+(singer)
+
+Ísland
+
+Björk Guðmundsdóttir
+
+India
+(Hindi)
+
+Madhuri Dixit (movie
+star)
+
+भारत
+
+माधुरी दीि
+
+Iran
+(Persian/Farsi)
+
+Mohsen Makhmalbaf
+(writer/director)
+
+Tex Texin http://www.I18nGuy.com
+
+‫ایﺮان‬
+
+‫ﻣﺤﺴﻦ ﻣﺨﻤﻠﺒﺎف‬
+
+Page 3 of 6
+
+Compelling example of Unicode usage for business applications
+
+8/15/2002
+
+Ireland
+(Eire)
+
+Sinead O’Connor
+(singer)
+
+Israel
+
+Yehoram Gaon
+(singer, actor)
+
+Italy
+
+Fabrizio DeAndre
+(poet, singer)
+
+Italia
+
+Fabrizio De André
+
+Japan
+
+KUBOTA Toshinobu
+(singer)
+
+日本
+
+久保田    利伸
+
+Japan
+(kanji+hiragana)
+
+HAYASHIBARA
+Megumi
+(voice actress)
+
+日本
+
+林原 めぐみ
+
+Japan
+(kanji)
+
+MIYAZAKI Hayao
+(animated-film director)
+
+日本
+
+宮崎 駿
+
+Japan
+(kanji)
+
+MORI Ogai (author)
+
+日本
+
+森鷗外
+
+Japan
+(katakana)
+
+Tex Texin
+(te-ku-su ・ te-ku-sa-n)
+
+日本
+
+テクス・テクサン
+
+Democratic
+People's Rep. of
+Korea
+(N. Korea)
+
+LEE Sol-Hee (actress)
+
+Rep. of Korea
+(S. Korea)
+
+AHN Sung-Gi (actor)
+
+대한민국
+
+안성기
+
+Rep. of Korea
+(S. Korea)
+
+SHIM Eun-Ha (actress)
+
+대한민국
+
+심은하
+
+Republic of
+Malta
+
+Trevor Zahra (author)
+
+Repubblika ta' Malta
+
+Trevor Żahra
+
+Norway
+
+Tor Age Bringsvaerd
+(author)
+
+Norge
+(bokmål)
+
+Tor Åge Bringsværd
+
+Norway
+
+Herbjorn Sorebo
+(author)
+
+Noreg
+(nynorsk)
+
+Herbjørn Sørebø
+
+Pakistan
+(Urdu)
+
+Nusrat Fatah Ali Khan
+(singer)
+
+Peru
+
+Nicomedes Santa Cruz
+(singer)
+
+Poland
+
+Lech Walesa
+
+Portugal
+
+Amalia Rodrigues
+(singer)
+
+Puerto Rico
+
+Olga Tanon
+(singer, merenguera)
+
+Ancient Rome
+
+Publius Cornelius Scipio
+Africanus
+(general & politician, 236-183
+B.C.)
+
+Tex Texin http://www.I18nGuy.com
+
+Éire
+
+Sinéad O’Connor
+
+‫ישראל‬
+
+조선 민주주의 인민
+공화국
+
+‫ﭘﺎکﺴﺘﺎن‬
+
+‫יהורם גאון‬
+
+이설희
+
+‫ﻧﺼﺮت ﻓﺘﺢ ﻋﻠﯽ ﺥﺎن‬
+
+Perú
+
+Nicómedes Santa Cruz
+
+Polska
+
+Lech Wałęsa
+
+Portugal
+
+Amália Rodrigues
+
+Puerto Rico
+
+Olga Tañón
+
+Rōma
+
+Pūblius Cornēlius Scīpiō
+Africānus
+
+Page 4 of 6
+
+Compelling example of Unicode usage for business applications
+
+8/15/2002
+
+Russia
+
+Mikhail Gorbachev
+
+Россия
+
+Михаил Горбачёв
+
+Russia
+
+Boris Grebenshchikov
+(musician)
+
+Россия
+
+Борис Гребенщиков
+
+Russia
+(Yiddish, Hebrew
+Script)
+
+Sholom Aleichem
+(Author)
+
+Samiland
+(Sami language)
+
+Nils Aslak Valkeapaa
+(singer)
+
+Slovakia
+
+Ludovit Stur
+
+Slovenia
+
+Frane "Jezek" Milcinski
+(actor, singer)
+
+Sweden
+
+Bjorn Borg
+(Tennis player)
+
+Syracuse
+(Sicily)
+
+Archimedes
+(physicist c. 287-212 BC)
+
+Tajikistan
+(Arabic script)
+
+Sadriddin Aini (poet)
+
+Tajikistan
+(Cyrillic script)
+
+Sadriddin Aini (poet)
+
+Tamil Nadu
+
+Sivaji Ganesan (actor)
+
+Rep. of China
+
+‫רוסלאַנד‬
+
+‫שלום עליכם‬
+Áillohaš
+
+Sápmi
+
+(aka Nils Aslak Valkeapää)
+
+Slovensko
+
+Ľudovít Štúr
+
+Slovenija
+
+Frane Milčinski - Ježek
+
+Sverige
+
+Björn Borg
+
+Συρακούσα
+
+Ἀρχιμήδης
+
+‫ﺕﺎﺟﻴﻜﺴﺘﺎن‬
+
+‫ﺹﺪر اﻟﺪیﻦ ﻋﻴﻨﻲ‬
+
+Тоҷикистон
+
+Садриддин Айнӣ
+
+தழ் நா
+
+வா கேனசன்
+
+Hsu Chi (actress)
+
+臺灣
+
+舒淇
+
+Rep. of China
+
+Ang Lee (movie
+director)
+
+臺灣
+
+李安
+
+Thailand
+
+Thongchai McIntai
+
+ประเทศไทย
+
+ธงไชย แม็คอินไตย
+
+U.S.A.
+
+Brad Pitt (actor)
+
+U.S.A.
+
+Brad Pitt
+
+Uzbekistan
+(Cyrillic script)
+
+Solizhon Sharipov
+(cosmonaut)
+
+Ўзбекистон
+
+Солижон Шарипов
+
+Uzbekistan
+(Latin script)
+
+Ali Sher ibn Ghiyas adDin Nava'i (poet)
+
+O'zbekiston
+
+Alisher ibn G'iyosiddin
+Navoiy
+
+Viet Nam
+
+Trinh Cong Son
+(singer/composer)
+
+Việt Nam
+
+Trịnh Công Sơn
+
+Yugoslavia
+(Latin script)
+
+Djordje Balasevic
+(singer)
+
+Jugoslavija
+
+Đorđe Balašević
+
+Yugoslavia
+(Cyrillic script)
+
+Djordje Balasevic
+(singer)
+
+Југославија
+
+Ђорђе Балашевић
+
+ Contributors 
+The following people contributed to the entries in the table:
+Sajjad Raza Abidi,
+Magda Danish,
+
+Mike Ayers,
+Jacline Deridder,
+
+Edward Cherlin,
+Donald Figge,
+
+Juuichiketajin,
+
+Nigel Kerr,
+
+Lars Kristan,
+
+Tex Texin http://www.I18nGuy.com
+
+Marco Cimarosti,
+Chris Fynn,
+Akekarat
+Lekpornprasert
+(เอกรัตน เล็กพร
+ประเสริฐ),
+
+Frank da Cruz,
+Mikael Hjerpe,
+Gavin Nesbitt,
+
+Page 5 of 6
+
+Compelling example of Unicode usage for business applications
+David Perry,
+
+Toby Phipps,
+
+Audun Lona,
+
+Yaap Raaf,
+
+Herman Ranes,
+
+Graham Rhind,
+
+Jungshik Shin,
+
+Thierry Sourbier,
+
+Otto Stolz,
+
+Maurice Bauhahn,
+Radovan Garabík,
+
+James Do,
+Philipp Reichmuth,
+
+Deborah Goldsmith,
+Andrew Dunbar,
+
+Roozbeh Pournader
+(‫)روزﺏﻪ ﭘﻮرﻧﺎدر‬,
+Ken Robinson,
+Marie-Anne de
+Warren,
+Michael Kaplan,
+Steven R. Loomis,
+
+8/15/2002
+Chris Pratley,
+Jony Rosenne,
+Daniel Yacob,
+Muthu Nedumaran,
+Tex Texin
+
+Top of page
+
+Tex Texin http://www.I18nGuy.com
+
+Page 6 of 6
+
+
