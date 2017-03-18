@@ -116,7 +116,7 @@ class Datarectification extends AppModel {
      * @param boolean $ajax
      * @param integer $id
      */
-    public function checkAndAddSubstances(&$chemicals,$ajax,$id)
+    public function checkAndAddSubstances(&$chemicals,$ajax,$id=null)
     {
         $Substance=ClassRegistry::init('Substance');
         $Identifier=ClassRegistry::init('Identifier');

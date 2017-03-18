@@ -53,10 +53,8 @@
 <?php } else { ?>
 <div class="row">
     <div class="col-md-12 text-justify">
-        <h2>Welcome to ChemExtractor! <span class="label label-danger">Beta</span></h2>
-        <p>ChemExtractor is an online system for taking text out of PDF files and identifying it relative to chemical property data.  Rather than use natural language processing (NLP), the system employs the concepts of rules and rulesets.  In a sense, the ruleset allows identification of the data by processing it as a human does.  A human can look at data and disect line by line what it is from the layout and the symbols/headers on the page.  If a computer is given a set of rules about where data should be be found and what the data looks like (usually identified by a regex expression) then it can process text, ignoring some things and capturing others.</p>
-        <p>To make such a system work the ruleset has to be designend by a human.  Starting with a generic set of rules (i.e. if the second chunk of text on this line looks like "^\d{2,6}-\d{2}-\d$" - regex for a CAS Registry Number) the user can build a ruleset that fits the data structure. Flexibility is afforded where data can be chunked based on n or more same characters (e.g. space).  In this way the knowledge about the locations of the data and domain knowledge about the what each peice of data is are encoded in the ruleset.</p>
-        <p>Current development focusses on; a complete formal specification for this process, identification of places where scripts written to implement the processing of the rulesets contain knowledge of the data structure (i.e. it is not encoded in the ruleset as it should), and design and coding on a visual tool to develop a ruleset.</p>
+        <h2>Welcome to ChemConverter! <span class="label label-danger">Beta</span></h2>
+        <p>ChemConverter is a project to take scientific data from any source and convert it to the SciData framework format.</p>
         <p>If you would like more information about this project please contact <a href="mailto:schalk@unf.edu">Stuart Chalk</a></p>
     </div>
 </div>
