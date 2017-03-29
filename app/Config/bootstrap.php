@@ -69,7 +69,7 @@ Configure::write('Session', [
  */
 
 Inflector::rules('plural', ['irregular' => ['dataseries'=>'dataseries','rdf'=>'rdf','admin'=>'admin','ref'=>'refs','migrations_deleted'=>'migrations_deleted']]);
-
+Inflector::rules('plural', ['uninflected' => ['apparatus'=>'apparatus']]);
 /**
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
  * Uncomment one of the lines below, as you need. Make sure you read the documentation on CakePlugin to use more

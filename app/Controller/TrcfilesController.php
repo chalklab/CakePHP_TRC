@@ -30,7 +30,7 @@ class TrcfilesController extends AppController
             // Grab the chemical info
             $compds=$trc['Compound'];
             if(!isset($trc['Compound'][0])) {
-                // Make a singel compound into an array
+                // Make a single compound into an array
                 $trc['Compound']=['0'=>$trc['Compound']];
             }
             foreach($compds as $comp) {
