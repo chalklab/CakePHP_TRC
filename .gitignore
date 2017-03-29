@@ -47,3 +47,4 @@ app/webroot/js/flot/examples/gauge/
 app/webroot/temp/
 lib/.DS_Store
 lib/Cake/.DS_Store
+tatum/*
