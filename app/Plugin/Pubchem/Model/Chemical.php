@@ -11,7 +11,7 @@ Configure::load('Pubchem.pugrest', 'default');
 class Chemical extends AppModel
 {
 
-    public $path="http://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/";
+    public $path="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/";
 
     public $useTable = false;
 
@@ -31,12 +31,11 @@ class Chemical extends AppModel
             if($type=="inchi") {
                 $url=$this->path.$type.'/cids/JSON'; // value is in post data
             } else {
-                $url=$this->path.$type.'/'.rawurlencode($value).'/cids/JSON';
+                $url=$this->path.$type.'/'.$value.'/cids/JSON';
             }
         } else {
             return false;
         }
-        //echo $url;
         if($type=="inchi") {
             $json=$HttpSocket->post($url,['inchi'=>$value]); // requires post
         } else {
@@ -44,7 +43,7 @@ class Chemical extends AppModel
         }
         $cid=json_decode($json,true);
         //echo "<h3>".$value."</h3>";
-        //debug($cid);
+        //debug($cid);exit;
         if(isset($cid['Fault'])) {
             return false;
         } else {
@@ -58,7 +57,7 @@ class Chemical extends AppModel
      * http://pubchem.ncbi.nlm.nih.gov/pug_rest/PUG_REST.html#_Toc409516770
      * @param $props
      * @param $cid
-     * @return array
+     * @return mixed
      */
     public function property($props,$cid) {
         $HttpSocket = new HttpSocket();
@@ -108,4 +107,28 @@ class Chemical extends AppModel
         $props="MolecularFormula,MolecularWeight,CanonicalSMILES,InChI,InChIKey,IUPACName";
         return $this->property($props,$cid);
     }
+
+    /**
+     * Get CAS # from synonyms
+     * @param $name
+     * @return mixed
+     */
+    public function getcas($name) {
+        $cid=$this->cid("name",$name);
+        $url=$this->path.'cid/'.$cid.'/synonyms/JSON';
+        $HttpSocket = new HttpSocket();
+        $json=$HttpSocket->get($url);
+        $meta=json_decode($json['body'],true);
+        //debug($meta);exit;
+        if(isset($meta['InformationList'])) {
+            $syns=$meta['InformationList']['Information'][0]['Synonym'];
+            foreach($syns as $syn) {
+                if(preg_match('/[0-9]{2,7}-[0-9]{2}-[0-9]/i',$syn)) {
+                    return $syn;
+                }
+            }
+        }
+        return false;
+    }
+
 }

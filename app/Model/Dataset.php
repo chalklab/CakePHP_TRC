@@ -21,6 +21,14 @@ class Dataset extends AppModel
         'Annotation'=> [
             'foreignKey' => 'dataset_id',
             'dependent' => true
+        ],
+        'Trcsampleprop'=> [
+            'foreignKey' => 'dataset_id',
+            'dependent' => true
+        ],
+        'Trcreactionprop'=> [
+            'foreignKey' => 'dataset_id',
+            'dependent' => true
         ]
     ];
 
@@ -33,22 +41,21 @@ class Dataset extends AppModel
      */
     public function qudt($unit) {
         if($unit=="MHz") {
-            $unit="MegaHertz";
+            $unit="qudt:MegaHz";
         } elseif($unit=="s") {
-            $unit="Second";
+            $unit="qudt:SEC";
         } elseif($unit=="Hz") {
-            $unit="Hertz";
+            $unit="qudt:Hz";
         } elseif($unit=="nm") {
-            $unit="Nanometer";
+            $unit="qudt:NanoM";
         } elseif($unit=="°C"||$unit=="&deg;C") {
-            $unit="DegreeCelcius";
+            $unit="qudt:DegC";
         }  elseif($unit=="mm<sup>2</sup> s<sup>-1</sup>") {
-            $unit="CentiStokes";
+            $unit="qudt:CentiSTOKES";
         } elseif($unit=="Pa s") {
-            $unit="Poiseuille";
-
+            $unit="qudt:POISEUILLE";
         }
-        return "qudt:".$unit;
+        return $unit;
     }
 
 }

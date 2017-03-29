@@ -72,14 +72,14 @@ class Reference extends AppModel
                     if (is_array($title)) {
                         $citation['title'] = "HTML in title";
                     } else {
-                        $citation['title'] = $title;
+                        $citation['title'] = trim($title);
                     }
                 } else {
                     $title = $meta['journal_article']['titles']['title'];
                     if (is_array($title)) {
                         $citation['title'] = "HTML in title";
                     } else {
-                        $citation['title'] = $title;
+                        $citation['title'] = trim($title);
                     }
                 }
             } else {
@@ -181,7 +181,7 @@ class Reference extends AppModel
             if(isset($t['volume']))         { $return['volume']=$t['volume']; }
             if(isset($t['issue']))          { $return['issue']=$t['issue']; }
             if(isset($t['page']))           { list($return['startpage'],$return['endpage'])=explode("-",$t['page']); }
-            if(isset($t['title'][0]))       { $return['title']=$t['title'][0]; }
+            if(isset($t['title'][0]))       { $return['title']=trim($t['title'][0]); }
             if(isset($t['URL']))            { $return['url']=$t['URL']; }
             if(isset($t['publisher']))      { $return['publisher']=$t['publisher']; }
             if(isset($t['DOI']))            { $return['doi']=$t['DOI']; }
@@ -275,10 +275,14 @@ class Reference extends AppModel
      */
     public function addbydoi($doi)
     {
-        $cite=$this->crossref(['doi'=>str_replace("http://dx.doi.org/","",$doi)]);
-        $this->create();
-        $ref=$this->save(["Reference"=>$cite]);
-        $this->clear();
-        return $ref;
+        $doi=str_replace("http://dx.doi.org/","",$doi);
+        $ref=$this->find('first',['conditions'=>['url'=>'http://dx.doi.org/'.$doi],'recursive'=>-1]);
+        if(empty($ref)) {
+            $cite=$this->crossref(['doi'=>$doi]);
+            $this->create();
+            $ref=$this->save(["Reference"=>$cite]);
+            $this->clear();
+        }
+        return $ref['Reference'];
     }
 }
