@@ -18,11 +18,7 @@ class Publication extends AppModel
             'dependent' => true
         ]
     ];
-
-    public $hasAndBelongsToMany = ['Property'];
-
+    
     public $virtualFields=['citation'=>'CONCAT("\'",Publication.series," - ",Publication.title," (",Publication.volume,")\', ",Publication.authors,", ",Publication.year," ISBN: ",Publication.isbn)'];
-
-    public $belongsTo=['Ruleset'];
 
 }

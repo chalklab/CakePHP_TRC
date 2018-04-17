@@ -15,7 +15,7 @@ class PropertiesController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('xml');
+        $this->Auth->allow();
     }
 
     /**
@@ -175,4 +175,11 @@ class PropertiesController extends AppController
         exit;
     }
 
+    public function test()
+	{
+		$prop['propstr']='Mole fraction 1';
+		$propid=$this->Property->getfield('id','%"'.trim($prop['propstr']).'"%','field like');
+		debug($propid);exit;
+		
+	}
 }

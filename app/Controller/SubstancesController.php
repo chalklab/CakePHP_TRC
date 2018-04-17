@@ -52,7 +52,11 @@ class SubstancesController extends AppController
                 ]
             ]
         ];
-        $data=$this->Substance->find('first',['conditions'=>['Substance.id'=>$id],'contain'=>$contain]);
+        if(is_numeric($id)) {
+			$data=$this->Substance->find('first',['conditions'=>['Substance.id'=>$id],'contain'=>$contain]);
+		} else {
+			$data=$this->Substance->find('first',['conditions'=>['Substance.name'=>$id],'contain'=>$contain]);
+		}
         if($debug) { debug($data);exit; }
         $this->set('data',$data);
     }

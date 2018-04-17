@@ -5,10 +5,10 @@ App::uses('HttpSocket', 'Network/Http');
 Configure::load('Pubchem.pugrest', 'default');
 
 /**
- * Class Chemical
- * Chemical model
+ * Class Compound
+ * Compound model
  */
-class Chemical extends AppModel
+class Compound extends AppModel
 {
 
     public $path="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/";
@@ -31,7 +31,7 @@ class Chemical extends AppModel
             if($type=="inchi") {
                 $url=$this->path.$type.'/cids/JSON'; // value is in post data
             } else {
-                $url=$this->path.$type.'/'.$value.'/cids/JSON';
+                $url=$this->path.$type.'/'.str_replace(' ','%20',$value).'/cids/JSON';
             }
         } else {
             return false;
@@ -41,10 +41,9 @@ class Chemical extends AppModel
         } else {
             $json=$HttpSocket->get($url);
         }
-        $cid=json_decode($json,true);
-        //echo "<h3>".$value."</h3>";
-        //debug($cid);exit;
-        if(isset($cid['Fault'])) {
+		$cid=json_decode($json,true);
+		
+		if(isset($cid['Fault'])) {
             return false;
         } else {
             return $cid['IdentifierList']['CID'][0];
@@ -116,19 +115,35 @@ class Chemical extends AppModel
     public function getcas($name) {
         $cid=$this->cid("name",$name);
         $url=$this->path.'cid/'.$cid.'/synonyms/JSON';
-        $HttpSocket = new HttpSocket();
+		$HttpSocket = new HttpSocket();
         $json=$HttpSocket->get($url);
-        $meta=json_decode($json['body'],true);
-        //debug($meta);exit;
+		$meta=json_decode($json['body'],true);
+		$cas=[];
         if(isset($meta['InformationList'])) {
             $syns=$meta['InformationList']['Information'][0]['Synonym'];
             foreach($syns as $syn) {
                 if(preg_match('/[0-9]{2,7}-[0-9]{2}-[0-9]/i',$syn)) {
-                    return $syn;
+                    $cas[]=$syn;
                 }
             }
         }
-        return false;
+        if(!empty($cas)) {
+        	if(count($cas)==1) {
+				return $cas[0];
+			} else {
+				// if multiple cas #'s the shortest string is the most likely the general one
+                asort($cas);
+				$lengths=array_map('strlen',$cas);
+				$min=min($lengths);
+				foreach ($cas as $str) {
+					if(strlen($str)==$min) {
+						return $str;
+					}
+				}
+			}
+		} else {
+			return false;
+		}
     }
 
 }

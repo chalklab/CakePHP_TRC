@@ -10,7 +10,7 @@ App::uses('File', 'Utility');
 class ReferencesController extends AppController
 {
 
-	public $uses=['Reference','Crossref','Phaseone','File','Dataset','Refcode'];
+	public $uses=['Reference','Crossref','Phaseone','File','Dataset','Refcode','DataSystem','Property'];
 
 	/**
 	 * beforeFilter function
@@ -20,7 +20,29 @@ class ReferencesController extends AppController
 		parent::beforeFilter();
 		$this->Auth->allow();
 	}
-
+	
+	public function index($term=null)
+	{
+		$query="SELECT distinct t1.id,t1.title,t3.name FROM `references` t1 left join data_systems t2 on t1.id=t2.reference_id left join properties t3 on t2.property_id=t3.id";
+		if(is_null($term)) {
+			$results=$this->Reference->query($query);
+		} else {
+            $results=$this->Reference->query($query." where t1.title like '%".$term."%'");
+		}
+		//debug($results);exit;
+		$data=[];
+		foreach($results as $result) {
+		    $prop=$result['t3']['name'];
+		    $refid=$result['t1']['id'];
+		    $title=$result['t1']['title'];
+		    if(!in_array($prop,$data)) {
+		        $data[$prop]=[];
+            }
+            $data[$prop][]=[$refid=>$title];
+        }
+		$this->set('data',$data);
+	}
+	
     /**
      * View a reference
      * @param $id
@@ -150,7 +172,7 @@ class ReferencesController extends AppController
                         $this->Refcode->save(['Refcode' => $refcode]);
                         $this->Refcode->clear();
                     }
-                    echo 'Springer citation number '.$refcode['code']." ingested (reference ".$refcode['reference_id'].")<br />";
+                    echo 'TRC citation number '.$refcode['code']." ingested (reference ".$refcode['reference_id'].")<br />";
                 } else {
                     echo $refcode['code']." already exists in DB<br />";
                 }
@@ -398,4 +420,4 @@ class ReferencesController extends AppController
         exit;
     }
 
-}
+ }

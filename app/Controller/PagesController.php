@@ -35,7 +35,7 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array('Equation');
+	public $uses = ['Publication','Files','Dataseries','Dataset','Data'];
 
     function beforeFilter()
     {
@@ -43,12 +43,12 @@ class PagesController extends AppController {
     }
 
     /**
- * Displays a view
- *
- * @return void
- * @throws NotFoundException When the view file could not be found
- *	or MissingViewException in debug mode.
- */
+ 	* Displays a view
+ 	*
+ 	* @return void
+ 	* @throws NotFoundException When the view file could not be found
+ 	*	or MissingViewException in debug mode.
+ 	*/
 	public function display() {
 		$path = func_get_args();
 
@@ -72,22 +72,19 @@ class PagesController extends AppController {
 		/**
          * requests total counts.
          */
-        $pubcount=$this->requestAction('/publications/totalfiles');
+        $pubcount=$this->Publication->find('count');
         $this->set('pubcount',$pubcount);
 
-        $textfilecount=$this->requestAction('/textfiles/totalfiles');
-        $this->set('textfilecount',$textfilecount);
-
-        $filecount=$this->requestAction('/files/totalfiles');
+        $filecount=$this->Files->find('count');
         $this->set('filecount',$filecount);
 
-        $dataseriescount=$this->requestAction('/dataseries/totalfiles');
+        $dataseriescount=$this->Dataseries->find('count');
         $this->set('dataseriescount',$dataseriescount);
 
-        $datasetcount=$this->requestAction('/datasets/totalfiles');
+        $datasetcount=$this->Dataset->find('count');
         $this->set('datasetcount',$datasetcount);
 
-        $datacount=$this->requestAction('/data/totalfiles');
+        $datacount=$this->Data->find('count');
         $this->set('datacount',$datacount);
 
         try {
@@ -98,7 +95,5 @@ class PagesController extends AppController {
 			}
 			throw new NotFoundException();
 		}
-
-
 	}
 }

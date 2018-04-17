@@ -28,7 +28,7 @@ Cache::config('default', array('engine' => 'File'));
 // Session timeout
 Configure::write('Session', [
     'defaults' => 'php',
-    'cookie' => 'springer',
+    'cookie' => 'trc',
     'timeout' => 2160, // 36 hours
     'ini' => ['session.gc_maxlifetime' => 129600] // 36 hours
 ]);
@@ -69,7 +69,7 @@ Configure::write('Session', [
  */
 
 Inflector::rules('plural', ['irregular' => ['dataseries'=>'dataseries','rdf'=>'rdf','admin'=>'admin','ref'=>'refs','migrations_deleted'=>'migrations_deleted']]);
-Inflector::rules('plural', ['uninflected' => ['apparatus'=>'apparatus']]);
+Inflector::rules('plural', ['uninflected' => ['apparatus'=>'apparatus','srddata'=>'srddata']]);
 /**
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
  * Uncomment one of the lines below, as you need. Make sure you read the documentation on CakePlugin to use more

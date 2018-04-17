@@ -11,7 +11,16 @@ class ReportsController extends AppController
     public $uses=['Report'];
 
     /**
-     * List the properties
+     * beforeFilter function
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow();
+    }
+
+    /**
+     * List the reports
      */
     public function index()
     {

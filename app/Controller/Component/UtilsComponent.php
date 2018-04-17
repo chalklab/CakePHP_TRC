@@ -53,9 +53,9 @@ class UtilsComponent extends Component {
 
         if(is_array($id)) {
             $idstr=implode(",",$id);
-            $cmd='/usr/local/bin/mysqldump --opt --compact --user=springer --password=springer springer '.$table.'  --where="id in ('.$idstr.')"';
+            $cmd='/usr/local/bin/mysqldump --opt --compact --user=springer --password=springer trc '.$table.'  --where="id in ('.$idstr.')"';
         } else {
-            $cmd='/usr/local/bin/mysqldump --opt --compact --user=springer --password=springer springer '.$table.'  --where="id='.$id.'"';
+            $cmd='/usr/local/bin/mysqldump --opt --compact --user=springer --password=springer trc '.$table.'  --where="id='.$id.'"';
         }
         exec($cmd,$output,$return);
         if($return==0) {

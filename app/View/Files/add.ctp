@@ -2,7 +2,7 @@
     $(document).ready(function() {
         $('.pub').on('change', function(){
             var pubid = $(this).find("option:selected").val();
-            var url = "https://chalk.coas.unf.edu/springer/publications/view/" + pubid;
+            var url = "https://chalk.coas.unf.edu/trc/publications/view/" + pubid;
             if(pubid!="") {
                 $.getJSON(url).done(function(data) {
                     var set=data[0].Ruleset;

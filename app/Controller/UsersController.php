@@ -13,32 +13,24 @@ class UsersController extends AppController {
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('login','register','logout','webhook');
+        $this->Auth->allow();
     }
-
-    /**
-     * User login
-     */
-    public function login()
-    {
-        if($this->request->is('post')) {
-            $passwordTest = $this->User->find('first',['conditions'=>['Username'=>$this->request['data']['User']['username']],'recursive'=>1]);
-            $passwordHasher = new SimplePasswordHasher();
-            //used to convert a simple SHA1 password into the newer blowfish password
-            if($passwordHasher->check($this->request['data']['User']['password'],$passwordTest['User']['password'])){
-                $passwordTest['User']['password'] = $this->request['data']['User']['password'];
-                $this->User->save($passwordTest);
-                echo "Saving USer";
-            }
-            if($this->Auth->login()) {
-                $this->Flash->set('Welcome, '. $this->Auth->user('username'));
-                return $this->redirect($this->Auth->redirectUrl());
-            } else {
-                $this->Flash->set('Invalid username or password, try again.');
-            }
-        }
-    }
-
+	
+	/**
+	 * User login
+	 */
+	public function login()
+	{
+		if($this->request->is('post')) {
+			if($this->Auth->login()) {
+				$this->Flash->set('Welcome!');
+				return $this->redirect($this->Auth->redirectUrl());
+			} else {
+				$this->Flash->set('Invalid username or password, try again.');
+			}
+		}
+	}
+	
     /**
      * User logout
      */

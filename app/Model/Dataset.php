@@ -22,17 +22,17 @@ class Dataset extends AppModel
             'foreignKey' => 'dataset_id',
             'dependent' => true
         ],
-        'Trcsampleprop'=> [
+        'Sampleprop'=> [
             'foreignKey' => 'dataset_id',
             'dependent' => true
         ],
-        'Trcreactionprop'=> [
+        'Reactionprop'=> [
             'foreignKey' => 'dataset_id',
             'dependent' => true
         ]
     ];
 
-    public $belongsTo = ['Propertytype','System','Reference','File','Report','TextFile'];
+    public $belongsTo = ['System','Reference','File'];
 
     /**
      * Create qudt unit

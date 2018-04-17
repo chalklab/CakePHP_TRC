@@ -45,7 +45,7 @@ $codes=$data['Refcode'];
             <div class="panel-heading">
                 <h2 class="panel-title">Data
                     <?php if(!empty($related)) {
-                        $js='window.location.replace("/springer/datasets/view/"+this.options[this.selectedIndex].value)';
+                        $js='window.location.replace("/trc/datasets/view/"+this.options[this.selectedIndex].value)';
                         echo $this->Form->input('related',['type'=>'select', 'style'=>'width: 163px;margin-top: -3px;','dir'=>'rtl','options'=>$related,'class'=>'pull-right','label'=>false,'div'=>false,'empty'=>'Related Datasets','onchange'=>$js]);
                     }
                     ?>

@@ -9,7 +9,7 @@
             var selected = rule.find("option:selected").val();
             if(selected!="") {
                 // Get rule info (template and snippets)
-                var url = "https://chalk.coas.unf.edu/springer/rules/view/" + selected;
+                var url = "https://chalk.coas.unf.edu/trc/rules/view/" + selected;
                 $.getJSON(url).done(function(data) {
                     var tmpl = data[0].Ruletemplate;
                     var tregx = tmpl.regex;

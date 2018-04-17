@@ -7,7 +7,7 @@ App::uses('File', 'Utility');
 App::uses('PhpReader', 'Configure');
 
 Configure::config('default', new PhpReader());
-Configure::load('springer','default');
+Configure::load('trc','default');
 
 /**
  * Application Controller
@@ -37,6 +37,8 @@ class AppController extends Controller {
                                 ]
                             ]
                         ];
-    public $helpers = ['Form','Html','Session','Time'];
-
+    public $helpers = ['Form','Html','Session','Time','Flash'];
+	
+	public $actsAs = ['Containable'];
+	
 }

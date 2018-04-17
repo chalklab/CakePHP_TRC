@@ -2,7 +2,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('.template').on('change', function(){
-            var tmplurl = "https://chalk.coas.unf.edu/springer/ruletemplates/view/"
+            var tmplurl = "https://chalk.coas.unf.edu/trc/ruletemplates/view/"
             var selected = $(this).find("option:selected").val();
             if(selected!="") {
                 // Get template
@@ -50,7 +50,7 @@
         });
 
         $('.snip').on('change', function(){
-            var snipurl = "https://chalk.coas.unf.edu/springer/rulesnippets/view/";
+            var snipurl = "https://chalk.coas.unf.edu/trc/rulesnippets/view/";
             var snip = $(this);
             var selected = snip.find("option:selected").val();
             console.log('rulesnippet id:' + selected);
@@ -143,7 +143,7 @@
         });
 
         $('.prop').on('change', function() {
-            var uniturl = "https://chalk.coas.unf.edu/springer/properties/getunit/";
+            var uniturl = "https://chalk.coas.unf.edu/trc/properties/getunit/";
             var prop = $(this);
             var selected = prop.find("option:selected").val();
             var pos = prop.attr('data-pos');

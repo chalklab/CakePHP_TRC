@@ -7,7 +7,9 @@
 class Reference extends AppModel
 {
 
-    public $hasMany = ['Dataset','Refcode'];
+    public $hasMany=['Dataset','Refcode'];
+    
+    public $belongsTo=['Journal'];
 
     public $virtualFields=['citation'=>'CONCAT("\'",Reference.title,"\' ",Reference.authors,", ",Reference.journal," ",Reference.year," ",Reference.volume,"(",Reference.issue,") ",Reference.startpage,"-",Reference.endpage)'];
 
@@ -82,6 +84,9 @@ class Reference extends AppModel
                         $citation['title'] = trim($title);
                     }
                 }
+	
+				$citation['title']=str_replace("\n",'',$citation['title']);
+				$citation['title']=preg_replace('/\s+/',' ',$citation['title']);
             } else {
                 $citation['title'] = "No title from CrossRef";
             }
@@ -272,13 +277,27 @@ class Reference extends AppModel
      * Add reference to DB based on its DOI
      * @param $doi
      * @return array
+	 * @throws
      */
     public function addbydoi($doi)
     {
-        $doi=str_replace("http://dx.doi.org/","",$doi);
+        $Journal=ClassRegistry::init('Journal');
+        $doi=str_replace(["http://dx.doi.org/","https://doi.org/"],"",$doi);
         $ref=$this->find('first',['conditions'=>['url'=>'http://dx.doi.org/'.$doi],'recursive'=>-1]);
         if(empty($ref)) {
             $cite=$this->crossref(['doi'=>$doi]);
+            // Add journal_id
+            $jid=$Journal->getfield('id',$cite['journal']);
+            if($jid) {
+                $cite['journal_id']=$jid;
+            } else {
+                $jid=$Journal->getfield('id',$cite['journal'],'name');
+                if($jid) {
+                    $cite['journal_id']=$jid;
+                } else {
+                    $cite['journal_id']=0;
+                }
+            }
             $this->create();
             $ref=$this->save(["Reference"=>$cite]);
             $this->clear();

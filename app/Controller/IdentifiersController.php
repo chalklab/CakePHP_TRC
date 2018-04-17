@@ -38,4 +38,25 @@ class IdentifiersController extends AppController
         echo count($subs)."<br />";exit;
     }
 
+    
+    public function classy()
+	{
+		$key='LVTYICIALWPMFW-UHFFFAOYSA-N';
+		$json=file_get_contents('http://classyfire.wishartlab.com/entities/'.$key.'.json');
+		$classy=json_decode($json,true);
+		$kingdom=$classy['kingdom']['name'];
+		if($kingdom=='Inorganic compounds') {
+			$superclass=$classy['superclass']['name'];
+			if($superclass=='Homogeneous metal compounds') {
+				// elements!
+				$type='element';$subtype='';
+			} else {
+				$type='compound';$subtype='inorganic compound';
+			}
+			
+		} elseif($kingdom=='Organic compounds') {
+			$type='compound';$subtype='organic compound';
+		}
+		debug($kingdom);exit;
+	}
 }

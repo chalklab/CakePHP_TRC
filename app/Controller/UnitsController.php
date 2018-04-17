@@ -15,7 +15,7 @@ class UnitsController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('xml');
+        $this->Auth->allow();
     }
 
     /**
@@ -45,5 +45,9 @@ class UnitsController extends AppController
         echo "<m><id>".$meta['Unit']['id']."</id><label>".$meta['Unit']['label']."</label></m>";
         exit;
     }
-
+	
+	public function qudtunits() {
+		$qudt=$this->Unit->find('list',['fields'=>['qudt','symbol'],'recursive'=>-1]);
+		return $qudt;
+	}
 }

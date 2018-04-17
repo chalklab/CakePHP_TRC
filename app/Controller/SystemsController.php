@@ -26,14 +26,16 @@ class SystemsController extends AppController {
     {
         $contain=[
             'Substance',
-            'Dataset'=>['conditions'=>['Dataset.propertytype_id'=>5],
-                'Propertytype','Reference','Dataseries'=>['Datapoint'=>['Condition'=>['Unit'],'Data'=>['Unit'],'Setting'=>['Unit']]]
+            'Dataset'=>[
+                'Propertytype','Reference','Dataseries'=>[
+                    'Datapoint'=>[
+                        'Condition'=>['Unit'],'Data'=>['Unit'],'Setting'=>['Unit']]]
             ]
-
         ];
         $temp=$this->System->find('first',['conditions'=>['System.id'=>$id],'contain'=>$contain]);
         $data=[];
         $sets=$temp['Dataset'];
+        debug($sets);exit;
         foreach($sets as $set) {
             $ref=$set['Reference']['doi'];
             foreach($set['Dataseries'] as $ser) {

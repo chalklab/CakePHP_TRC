@@ -1,160 +1,175 @@
 <?php
-//pr($data);exit;
-if(!isset($data)) { $data=[]; }
-$file=$data['File'];
-$pub=$data['Publication'];
-$tfiles=$data['TextFile'];
-$tfile="";
-$sets=$data['Dataset'];
-$ptype=$data['Propertytype'];
-$rset=$data['Ruleset'];
+$sci=$data['scidata'];unset($data['scidata']);
+$meth=$sci['methodology'];unset($data['@context']);
+$sys=$sci['system'];
+$sets=$sci['dataset'];
+$srcs=$data['sources'];unset($data['sources']);
+$rtgs=$data['rights'];unset($data['rights']);
+$ref=$srcs[0];
+$tml=$srcs[1];
+
+// organize sys facets so they are easy to find
+$facets=[];
+foreach($sys['facets'] as $facet) {
+    $idx=$facet['@id'];unset($facet['@id']);
+    $facets[$idx]=$facet;
+}
+// gets QUDT units->symbols
+$units=$this->requestAction('/units/qudtunits');
+//pr($sets);exit;
 ?>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#rulesetid').on('change', function() {
-            var rset=$(this).val();
-            var fileid=$('#fileid').val();
-            $.ajax({
-                    method: "POST",
-                    url: '/springer/files/updatefield/' + fileid,
-                    data: { field: "ruleset_id", value: rset }
-                }
-            ).done(function (response) {
-                if(!response) {
-                    alert("Ruleset change failed");
-                }
-                return false;
-            });
+        $('.dataset').on('click', function() {
+            var setid=$(this).attr('id');
+            $('.sets').hide();
+            $('#' + setid + 'div').show();
+            return false
         });
-        $('#resolution').on('change', function() {
-            var dpi=$(this).val();
-            var fileid=$('#fileid').val();
-            $.ajax({
-                    method: "POST",
-                    url: '/springer/files/updatefield/' + fileid,
-                    data: { field: "resolution", value: dpi }
-                }
-            ).done(function (response) {
-                return true;
-            });
-
-            // Change gettext url
-            var get=$('#gettext');
-            var ghref=get.attr('href');
-            get.attr('href',ghref + '/' + dpi);
-            // Change regextest url
-            var reg=$('#regextest');
-            var rhref=reg.attr('href');
-            reg.attr('href',rhref + '/' + dpi);
-            return false;
+        $('.dataseries').on('click', function() {
+            var serid=$(this).attr('id');
+            var temp=serid.split("_");
+            var setidx=temp[0].replace("ser","");
+            $('.sers' + setidx).hide();
+            $('#' + serid + 'div').show();
+            return false
         });
     });
 </script>
-<?php if($file['filetype']=='pdf') { ?>
 <div class="row">
-    <div class="col-sm-12">
-        <div class="panel panel-default">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Uploaded File - <?php echo $file['title']; ?></h3>
+                <h2 class="panel-title"><?php echo $data['title']; ?></h2>
             </div>
-            <div class="panel-body">
-                <div class="col-sm-10">
-                    Publication: <?php echo $pub['title'].' ('.$this->Html->link('View',"/publications/view/".$pub['id']).') ('.$this->Html->link('MassProcess',"/textfiles/massprocess/".$pub['id']).')'; ?><br />
-                    File Size: <?php echo $file['filesize']; ?> bytes<br />
-                    PDF Version: <?php echo $file['pdf_version']; ?><br />
-                    Total Systems: <?php echo $file['num_systems']; ?><br />
-                    <?php
-                    echo $this->Form->input('fileid',['type'=>'hidden','value'=>$data['File']['id']]);
-                    $rsets=$this->requestAction('/rulesets/index');
-                    echo $this->Form->input('rulesetid',['type'=>'select','label'=>false,'options'=>$rsets,'selected'=>$rset['id'],'empty'=>'Choose...']);
-                    ?>
-                </div>
-                <div class="col-sm-2">
-                    <?php
-                    $rezs=['72'=>'72dpi','100'=>'100dpi','120'=>'120dpi','140'=>'140dpi','160'=>'160dpi','180'=>'180dpi','200'=>'200dpi','250'=>'250dpi','300'=>'300dpi','400'=>'400dpi','500'=>'500dpi','600'=>'600dpi'];
-                    echo $this->Form->input('resolution',['type'=>'select','options'=>$rezs,'selected'=>$file['resolution'],'label'=>'Resolution&nbsp;']);
-                    echo $this->Html->link("Download Text File","/files/gettext/".$file['id'],['id'=>'gettext','class'=>'btn btn-success btn-sm btn-block']);
-                    echo $this->Html->link("Test Regex","/files/testregex/".$file['id'],['id'=>'regextest','class'=>'btn btn-success btn-sm btn-block']);
-                    if($this->Session->read('Auth.User.type')=="admin"||$this->Session->read('Auth.User.type')=="superadmin") {
-                        if(count($tfiles)>0) {
-                            echo $this->Html->link("Clean File","/files/clean/".$file['id'],['class'=>'btn btn-warning btn-sm btn-block','id'=>'ruleset']);
-                        } elseif(count($tfiles)==0) {
-                            if(empty($rset['id'])) { $state=" disabled"; } else { $state=""; }
-                            echo $this->Html->link("Convert File","/textfiles/add/".$file['id'],['class'=>'btn btn-info btn-sm btn-block'.$state]);
-                        }
-                    }
-                    ?>
-                </div>
+            <div class="panel-body" style="font-size: 16px;">
+				<?php echo $this->Html->image('jsonld.png',['width'=>'100','url'=>'/files/view/'.str_replace('trc:file:','',$data['pid']).'/jsonld','alt'=>'Output as JSON-LD','class'=>'img-responsive pull-right']); ?>
+                <ul>
+                    <li><?php echo "Data from ThermoML File: ".$this->Html->link($tml["url"],$tml["url"],["target"=>"_blank"]); ?></li>
+                    <li><?php echo "Description: ".$data['description']; ?></li>
+                    <li><?php echo "Publisher: ".$data['publisher']; ?></li>
+                </ul>
+				<?php
+				// Display the citation
+				echo "<h4>Reference</h4>";
+				echo $this->Html->link($ref["citation"],$ref["url"],["target"=>"_blank"]);
+				?>
             </div>
         </div>
     </div>
 </div>
-<?php } elseif($file['filetype']=='xml') { ?>
-    <div class="col-sm-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Uploaded File - <?php echo $file['title']; ?></h3>
-            </div>
-            <div class="panel-body">
-                <div class="col-sm-10">
-                    Publication: <?php echo $pub['title'].' ('.$this->Html->link('View',"/publications/view/".$pub['id']).') ('.$this->Html->link('MassProcess',"/textfiles/massprocess/".$pub['id']).')'; ?><br />
-                    File Size: <?php echo $file['filesize']; ?> bytes<br />
-                    Total Systems: <?php echo $file['num_systems']; ?><br />
-                    <?php
-                    echo $this->Form->input('xslt',['type'=>'hidden','value'=>$file['id']]);
-                    // Get the XSLT files currently uploaded to the VM
-                    $dir = new Folder(WWW_ROOT.'files/xslt');
-                    $xslts = $dir->find('.*\.xsl');
-                    $xsltid=array_search($file['xslt'],$xslts);
-                    echo $this->Form->input('xslt',['type'=>'select','label'=>false,'options'=>$xslts,'selected'=>$xsltid,'empty'=>'Choose...']);
-                    ?>
-                </div>
-                <div class="col-sm-2">
-                    <?php
-                    echo $this->Html->link("Download XML File","/files/getxml/".$file['id'],['id'=>'getxml','class'=>'btn btn-success btn-sm btn-block']);
-                    echo $this->Html->link("Download JSON File","/files/getjson/".$file['id'],['id'=>'getjson','class'=>'btn btn-success btn-sm btn-block']);
-                    echo $this->Html->link("Test XSLT","/files/testxslt/".$file['id'],['id'=>'xslttest','class'=>'btn btn-success btn-sm btn-block']);
-                    if($this->Session->read('Auth.User.type')=="admin"||$this->Session->read('Auth.User.type')=="superadmin") {
-                        if(count($tfiles)>0) {
-                            echo $this->Html->link("Clean File","/files/clean/".$file['id'],['class'=>'btn btn-warning btn-sm btn-block','id'=>'ruleset']);
-                        } elseif(count($tfiles)==0) {
-                            if(empty($file['xslt'])) { $state=" disabled"; } else { $state=""; }
-                            echo $this->Html->link("Convert File","/textfiles/add/".$file['id'],['class'=>'btn btn-info btn-sm btn-block'.$state]);
-                        }
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php } ?>
 <div class="row">
-    <div class="col-sm-6">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3 class="panel-title">Text Files (<?php echo count($tfiles); ?>)</h3>
-            </div>
-            <div class="list-group" style="max-height: 400px;overflow-y:scroll;">
-                <?php
-                foreach($tfiles as $tfile) {
-                    echo $this->Html->link("• ".$tfile['title'],'/textfiles/view/'.$tfile['id'],['class'=>'list-group-item']);
-                }
-                ?>
-            </div>
+    <div class="col-md-12">
+        <div class="btn-group btn-group-justified" role="group" aria-label="Datasets">
+            <?php foreach($sets as $idx=>$set) { ?>
+                <div class="btn-group" role="group">
+                    <button id="set<?php echo $idx; ?>" type="button" class="btn btn-default btn-sm dataset">Dataset <?php echo ($idx+1); ?></button>
+                </div>
+            <?php } ?>
         </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Datasets (<?php echo count($sets); ?>)</h3>
-            </div>
-            <div class="list-group" style="max-height: 400px;overflow-y:scroll;">
+        <?php foreach($sets as $setidx=>$set) { ?>
+            <div id="set<?php echo $setidx; ?>div" class="sets panel panel-primary" style="display: <?php echo ($setidx==0) ? "inline" : "none"; ?>;">
                 <?php
-                foreach($sets as $set) {
-                    echo $this->Html->link("• ".$set['title'],'/datasets/view/'.$set['id'],['class'=>'list-group-item']);
+                $system=$facets[$set['system']];
+                $cons=$system['constituents'];
+                $compds=[];
+                foreach ($cons as $con) {
+                    $compdnum=str_replace(["compound","/"],"",$con);
+                    $chm=$facets['chemical/'.$compdnum.'/'];
+                    $compds[$compdnum]=array_merge($facets[$con],['chemical'=>$chm]);
                 }
+                ksort($compds);
                 ?>
+                <div class="panel-body">
+                    <div class="col-sm-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h2 class="panel-title"><?php echo ucfirst($system['name']); ?></h2>
+                            </div>
+                            <div class="panel-body" style="font-size: 16px;">
+								<?php
+								echo "Phase: ".$system['phase'];$idx=0;
+								foreach($compds as $sub) {
+									$chem=[];$pw=4;$idx++;
+									(isset($sub['name'])) ? $chem['name']=$sub['name'] : $chem['name']="Unknown compound";
+									(isset($sub['inchi'])) ? $chem['inchi']=$sub['inchi'] : $chem['inchi']="";
+									(isset($sub['inchikey'])) ? $chem['inchikey']=$sub['inchikey'] : $chem['inchikey']="";
+									(isset($sub['casrn'])) ? $chem['casrn']=$sub['casrn'] : $chem['casrn']="";
+									//debug($chem);
+									$opts=['index'=>$setidx."_".$idx,'fontsize'=>14,'height'=>$pw*50,'system'=>true]+$chem;
+									echo $this->element('molecule',$opts);
+								}
+								?>
+							</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="Dataseries">
+							<?php foreach($set['dataseries'] as $seridx=>$ser) { ?>
+                                <div class="btn-group" role="group">
+                                    <button id="ser<?php echo $setidx."_".$seridx; ?>" type="button" class="btn btn-default btn-sm dataseries">Dataseries <?php echo ($seridx+1); ?></button>
+                                </div>
+							<?php } ?>
+                        </div>
+                        <?php foreach($set['dataseries'] as $seridx=>$ser) { ?>
+                            <div id="ser<?php echo $setidx."_".$seridx; ?>div" class="sers<?php echo $setidx; ?> panel panel-success" style="display: <?php echo ($seridx==0) ? "inline" : "none"; ?>;">
+                                <h4>Conditions</h4>
+                                <?php
+                                $conds=$ser['conditions'];
+                                foreach($conds as $condstr) {
+                                    list($c,$cidx,$v,$vidx)=explode("/",$condstr);
+                                    $conid=$c."/".$cidx."/";$valid=$v."/".$vidx."/";
+                                    $cond=$facets[$conid];$value=$unit=$unitref=null;
+                                    foreach($cond['value'] as $val) {
+                                        if($val['@id']==$valid) {
+                                            $value=$val['number'];
+                                            if(isset($val['unit'])) { $unit=$val['unit']; }
+											if(isset($val['unitref'])) { $unitref=$val['unitref']; }
+											break;
+                                        }
+                                    }
+                                    // get symbol for QUDT unit
+                                    if(!is_null($unitref)) { $unit=$units[str_replace("qudt:","",$unitref)]; }
+                                    echo $cond['property'].": ".$value." ".$unit."<br />";
+                                }
+                                $points=$ser['datapoints'];
+                                // count columns needed
+                                $ccnt=count($points[0]['conditions']);$dcnt=0;
+                                if(isset($points[0]['value']["@id"])) {
+									$dcnt=1;
+                                } else {
+                                    $dcnt=count($points[0]['value']);
+                                }
+                                $cols=$ccnt+$dcnt;
+							    debug($points);
+                                ?>
+                                <table class="table table-condensed table-striped">
+                                    <tr>
+                                        <?php
+                                        foreach($points[0]['conditions'] as $conid) {
+                                            echo "<th>".$facets[$conid]['property']."<th>";
+                                        }
+										if(!isset($points[0]['value'][0])) {
+											$points[0]['value'][0]=$points[0]['value'];
+										}
+										foreach($points[0]['value'] as $data) {
+                                        
+                                        }
+										$dcnt=1;
+
+										?>
+                                    </tr>
+                                    <?php
+                                    foreach($points as $pnt) {
+                                    
+                                    }
+                                    ?>
+                                </table>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
             </div>
-        </div>
+        <?php } ?>
     </div>
 </div>

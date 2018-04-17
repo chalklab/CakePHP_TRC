@@ -7,7 +7,16 @@
 class DatarectificationController extends AppController {
 
     public $uses=['Annotation','Datarectification','Dataset','Report','File','Property','Equation',
-        'TextFile','Activity','Reference','QuantitiesUnit','Parameter','Propertytype'];
+        'TextFile','Activity','Reference','QuantitiesUnit'];
+
+    /**
+     * function beforeFilter
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow();
+    }
 
     /**
      * Ingest data from textfile
@@ -53,13 +62,12 @@ class DatarectificationController extends AppController {
                 }
             }
 
-            // Get file, publication, and propertyType information for this textfile
-            $c=['File'=>['Publication','Propertytype'=>['Property','Variable','Parameter','SuppParameter']]];
+            // Get file, publication information for this textfile
+            $c=['File'=>['Publication']];
             $fpp = $this->TextFile->find('first', ['conditions' => ['TextFile.id' => $id], 'order' =>['TextFile.id DESC'], 'recursive' => 3, 'contain' => $c]);
             $file = $fpp['File'];
             $pub = $fpp['File']['Publication'];
-            $ptype = $fpp['File']['Propertytype'];
-
+            
             // Check for data
             if(!isset($data['data'])) {
                 $message='There is no data! (drcont: '.__LINE__.')';
@@ -255,22 +263,6 @@ class DatarectificationController extends AppController {
                 $dataseriesArray[$i]['publication_id'] = $pub['id'];
                 $dataseriesArray[$i]['publication_title'] = $pub['title'];
                 $dataseriesArray[$i]['file_id'] = $file['id'];
-                if (!empty($ptype['id'])) {
-                    $dataseriesArray[$i]['propertytype_id'] = $ptype['id'];
-                } else {
-                    $dataseriesArray[$i]['propertytype_id'] = [];
-                }
-                $dataseriesArray[$i]['propertytype_id'] = $ptype['id'];
-                if (!empty($ptype['Property']['type'])) {
-                    $dataseriesArray[$i]['type'] = json_decode($ptype['Property']['type']);
-                } else {
-                    $dataseriesArray[$i]['type'] = [];
-                }
-                if (!empty($ptype['Property']['id'])) {
-                    $dataseriesArray[$i]['property_id'] = $ptype['Property']['id'];
-                } else {
-                    $dataseriesArray[$i]['property_id'] = "";
-                }
                 $lines = $ref['lines'];
                 sort($lines);
                 $addtolines = [];
@@ -545,7 +537,7 @@ class DatarectificationController extends AppController {
             }
 
             // report: publication_id, title, file_code, page, comment
-            // dataset: title, report_id, file_id, system_id, propertytype_id, reference_id, comments
+            // dataset: title, report_id, file_id, system_id, reference_id, comments
             // dataseries: dataset_id, type
             // datapoints: dataseries_id, dataset_id (needed?), row_index
             // data/conditions:  dataset_id (needed?), dataseries_id (needed?), datapoint_id, property_id, datatype,
@@ -572,11 +564,11 @@ class DatarectificationController extends AppController {
                 }
                 // Save equations if present
                 if(!empty($dataInput['equations'])) {
-                    $this->Datarectification->addEquations($dataInput, $ptype, $ajax);
+                    $this->Datarectification->addEquations($dataInput, $ajax);
                 }
                 // Save points if present
                 if(!empty($dataInput['points'])) {
-                    $this->Datarectification->addDataAndConditions($dataInput, $ptype, $ajax);
+                    $this->Datarectification->addDataAndConditions($dataInput, $ajax);
                 }
             }
 

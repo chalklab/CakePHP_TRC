@@ -5,7 +5,8 @@
  */
 class DatasetsController extends AppController
 {
-    public $uses=['Dataset','Publication','Report','Quantity','Dataseries','Parameter','Variable','Substance','File','Reference'];
+    public $uses=['Dataset','Journal','Report','Quantity','Dataseries','Parameter','Variable','Substance',
+		'File','Reference','Unit'];
 
     /**
      * beforeFilter function
@@ -13,7 +14,7 @@ class DatasetsController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('totalfiles','scidata');
+        $this->Auth->allow();
     }
 
     /**
@@ -25,50 +26,32 @@ class DatasetsController extends AppController
     {
         $c=['Annotation',
             'Dataseries'=>[
-                'Condition'=>['Unit', 'Property'],
+                'Condition'=>['Unit', 'Property', 'Annotation'],
                 'Setting'=>['Unit', 'Property'],
                 'Datapoint'=>[
                     'Annotation',
                     'Condition'=>['Unit', 'Property'],
-                    'Data'=>['Unit', 'Property'],
-                    'Setting'=>['Unit', 'Property'],
+                    'Data'=>['Unit', 'Property','Sampleprop'],
+					'Setting'=>['Unit', 'Property'],
                     'SupplementalData'=>['Metadata', 'Unit', 'Property']
                 ],
-                'Equation'=> ['fields'=>['title'],
-                    'Eqntype'=>['fields'=>['name','latex']],
-                    'Eqnvar'=>['fields'=>['code','max','min'],'order'=>['index'],
-                        'Unit'=>['fields'=>['name','symbol']],
-                        'Property'=>['fields'=>['name','symbol','definition']]],
-                    'Eqnterm'=>['fields'=>['code','type','value','error'],'order'=>['index'],
-                        'Unit'=>['fields'=>['name','symbol']],
-                        'Property'=>['fields'=>['name','symbol','definition']]],
-                    'Annotation'=>['fields'=>['type','text']],
-                    'Setting'=>['fields'=>['number','error','accuracy','exponent','text'],
-                        'Unit'=>['fields'=>['name','symbol']],
-                        'Property'=>['fields'=>['name','symbol','definition']]
-                    ],
-                    'SupplementalData'=>['fields'=>['number','error','accuracy','exponent','text'],
-                        'Unit'=>['fields'=>['name','symbol']],
-                        'Property'=>['fields'=>['name','symbol','definition']]
-                    ]
-                ],
-                'Annotation'
+				'Annotation'
             ],
-            'Propertytype'=> [
-                'Variable'=>['Property'],
-                'Parameter'=>['Property']
-            ],
-            'System'=>['Substance'=>['Identifier'=>['fields'=>['type','value']]]],
-            'Report'=>['fields'=>['title','file_code']],
-            'File'=>['Publication'],
-            'Reference',
-            'TextFile'=>['fields'=>['id','title']]
+			'File'=>['Chemical'=>['fields'=>['formula','orgnum','source','substance_id']]],
+			'Reactionprop',
+			'Reference'=>['Journal'],
+        	'Sampleprop',
+            'System'=>[
+            	'Substance'=>[
+            		'Identifier'=>['fields'=>['type','value']]
+				]
+			]
         ];
         $dump=$this->Dataset->find('first',['conditions'=>['Dataset.id'=>$id],'contain'=>$c,'recursive'=>-1]);
         $this->set('dump',$dump);
-        $tfid=$dump['Dataset']['text_file_id'];
-        // Get a list of datsets that come from the same textfile
-        $related=$this->Dataset->find('list',['conditions'=>['Dataset.text_file_id'=>$tfid,'NOT'=>['Dataset.id'=>$id]],'recursive'=>1]);
+        $fid=$dump['Dataset']['file_id'];
+        // Get a list of datsets that come from the same file
+        $related=$this->Dataset->find('list',['conditions'=>['Dataset.file_id'=>$fid,'NOT'=>['Dataset.id'=>$id]],'recursive'=>1]);
         $this->set('related',$related);
         $this->set('dsid',$id);
         if($this->request->is('ajax')) {
@@ -83,7 +66,7 @@ class DatasetsController extends AppController
     public function index()
     {
         $c=['File'=>['fields'=>['id','title'],'order'=>['title'],'Dataset'=>['fields'=>['id','title'],'order'=>'title']]];
-        $data=$this->Publication->find('all',['fields'=>['id','title'],'order'=>['title'],'contain'=>$c,'recursive'=>1]);
+        $data=$this->Journal->find('all',['fields'=>['id','name'],'order'=>['name'],'contain'=>$c,'recursive'=>1]);
         $this->set('data',$data);
     }
 
@@ -118,6 +101,7 @@ class DatasetsController extends AppController
         // Note: there is an issue with the retrival of substances under system if id is not requested as a field
         // This is a bug in CakePHP as it works without id if its at the top level...
         $contains=[
+        	'Annotation',
             'Dataseries'=>[
                 'Condition'=>['Unit',
                     'Property'=>['fields'=>['name'],
@@ -140,40 +124,33 @@ class DatasetsController extends AppController
                             'Quantity'=>['fields'=>['name']]]]],
                 'Annotation'
             ],
-            'Propertytype'=> [
-                'Variable'=>['Property'=>['fields'=>['name'],
-                                'Quantity'=>['fields'=>['name']]]],
-                'Parameter'=>['Property'=>['fields'=>['name'],
-                                'Quantity'=>['fields'=>['name']]]]
+			'File',
+			'Reactionprop',
+			'Reference'=>['Journal'],
+			'Sampleprop',
+            'System'=>[
+                'Substance'=>[
+                	'fields'=>['name','formula','molweight','type'],
+                    'Identifier'=>['fields'=>['type','value'],'conditions'=>['type'=>['inchi','inchikey','iupacname']]],
+					'Chemical'=>['fields'=>['orgnum','name','source','purity']]]
             ],
-            'System'=>['fields'=>['id','name','description','type'],
-                'Substance'=>['fields'=>['name','formula','molweight'],
-                    'Identifier'=>['fields'=>['type','value'],'conditions'=>['type'=>['inchi','inchikey','iupacname']]]]
-            ],
-            'Report',
-            'File'=>['Publication'],
-            'Reference'
-
         ];
         $data=$this->Dataset->find('first',['conditions'=>['Dataset.id'=>$id],'contain'=>$contains,'recursive'=>-1]);
         //debug($data);exit;
-
-        $rpt=$data['Report'];
-        $ptype=$data['Propertytype'];
         $set=$data['Dataset'];
         $file=$data['File'];
-        $pub=$file['Publication'];
-        $ref=$data['Reference'];
+		$ref=$data['Reference'];
+		$jnl=$ref['Journal'];
         $ser=$data['Dataseries'];
         $sys=$data['System'];
-        //debug($ser);exit;
+		//debug($ser);exit;
 
         // Other systems -> related
-        $othersys=$this->Dataset->find('list',['fields'=>['id'],'conditions'=>['system_id'=>$sys['id'],'propertytype_id'=>$ptype['id'],'NOT'=>['Dataset.id'=>$id]]]);
+        $othersys=$this->Dataset->find('list',['fields'=>['id'],'conditions'=>['system_id'=>$sys['id'],'file_id'=>$file['id'],'NOT'=>['Dataset.id'=>$id]]]);
         //debug($othersys);exit;
 
         // Base
-        $base="https://chalk.coas.unf.edu/springer/datasets/scidata/".$id."/";
+        $base="https://chalk.coas.unf.edu/trc/datasets/scidata/".$id."/";
 
         // Build the PHP array that will then be converted to JSON
         $json['@context']=['https://stuchalk.github.io/scidata/contexts/scidata.jsonld',
@@ -186,8 +163,8 @@ class DatasetsController extends AppController
 
         // Main metadata
         $json['@id']="";
-        $json['uid']="springer:dataset:".$id;
-        $json['title']=$rpt['title'];
+        $json['uid']="trc:dataset:".$id;
+        $json['title']=$ref['title'];
         $json['author']=[];
         if($ref['authors']!=null) {
             if(stristr($ref['authors'],'[{')) {
@@ -197,16 +174,17 @@ class DatasetsController extends AppController
             }
             $acount=1;
             foreach ($authors as $au) {
-                $json['author'][]=['@id'=>'author/'.$acount,'@type'=>'dc:creator','name'=>$au];
+            	$name=$au['firstname']." ".$au['lastname'];
+                $json['author'][]=['@id'=>'author/'.$acount.'/','@type'=>'dc:creator','name'=>$name];
                 $acount++;
             }
         }
-        $json['description']=$rpt['title'];
-        $json['publisher']='Springer Nature';
+		$json['description']="Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/";
+		$json['publisher']=$jnl['publisher'];
         $json['startdate']=$set['updated'];
-        $json['permalink']="http://chalk.coas.unf.edu/springer/datasets/view/".$id;
+        $json['permalink']="https://chalk.coas.unf.edu/trc/datasets/view/".$id;
         foreach($othersys as $os) {
-            $json['related'][]="http://chalk.coas.unf.edu/springer/datasets/view/".$os;
+            $json['related'][]="https://chalk.coas.unf.edu/trc/datasets/view/".$os;
         }
         $json['toc']=['@id'=>'toc','@type'=>'dc:tableOfContents','sections'=>[]];
 
@@ -262,7 +240,7 @@ class DatasetsController extends AppController
                         if (!is_null($s['number'])) {
                             $v['number'] = $s['number'];
                             if (isset($s['Unit']['symbol']) && !empty($s['Unit']['symbol'])) {
-                                $v['unitref'] = $this->Dataset->qudt($s['Unit']['symbol']);
+                                $v['unitref'] = $this->Unit->qudt($s['Unit']['symbol']);
                             }
                         } else {
                             $v['text'] = $s['text'];
@@ -281,8 +259,8 @@ class DatasetsController extends AppController
         // System
         $sysj=[];
         if(is_array($sys)&&!empty($sys)||is_array($conds)&&!empty($conds)) {
-            $json['toc']['sections'][]="system";
-            $sysj['@id']='system';
+			$sysj['@id']='system/';
+			$json['toc']['sections'][]=$sysj['@id'];
             $sysj['@type']='sci:system';
             $sysj['discipline']='chemistry';
             $sysj['subdiscipline']='physical chemistry';
@@ -290,7 +268,8 @@ class DatasetsController extends AppController
         }
 
         // System sections
-        // Mixture/Substance
+        // Mixture/Substance/Chemical
+		//debug($sys);exit;
         $type='';
         if(is_array($sys)&&!empty($sys)) {
             // System
@@ -299,11 +278,13 @@ class DatasetsController extends AppController
             } else {
                 $type = "mixture";
             }
-            $sid = $type . "/1";
+            $sid = "substance/1/";
             $json['toc']['sections'][] = $sid;
             $mixj['@id'] = $sid;
-            $mixj['@type'] = "sci:" . $type;
-            $opts = ['name', 'description', 'type'];
+            $mixj['@type'] = "sci:".$type;
+			$mixj['composition']=$sys['composition'];
+			$mixj['phase']=$sys['phase'];
+			$opts = ['name', 'description', 'type'];
             foreach ($opts as $opt) {
                 if (isset($sys[$opt]) && $sys[$opt] != "") {
                     $mixj[$opt] = $sys[$opt];
@@ -312,19 +293,20 @@ class DatasetsController extends AppController
             if (isset($sys['Substance'])) {
                 for ($j = 0; $j < count($sys['Substance']); $j++) {
                     // Components
-                    $subj['@id'] = $sid . "/component/" . ($j + 1);
+					unset($subj);
+					$subj['@id'] = $sid."/component/".($j + 1)."/";
                     $subj['@type'] = "sci:chemical";
-                    $subj['source'] = "compound/" . ($j + 1);
+                    $subj['source'] = "chemical/".($j + 2).'/';
                     $mixj['components'][] = $subj;
-                    // Chemicals
-                    $sub = $sys['Substance'][$j];
-                    $chmj['@id'] = "compound/" . ($j + 1);
-                    $json['toc']['sections'][] = $chmj['@id'];
-                    $chmj['@type'] = "sci:compound";
+                    // Substances
+                    unset($subj);$sub = $sys['Substance'][$j];
+                    $subj['@id'] = "substance/".($j + 2).'/';
+                    $json['toc']['sections'][] = $subj['@id'];
+					$subj['@type'] = "sci:".$sub['type'];
                     $opts = ['name', 'formula', 'molweight'];
                     foreach ($opts as $opt) {
                         if (isset($sub[$opt]) && $sub[$opt] != "") {
-                            $chmj[$opt] = $sub[$opt];
+							$subj[$opt] = $sub[$opt];
                         }
                     }
                     if (isset($sub['Identifier'])) {
@@ -332,22 +314,63 @@ class DatasetsController extends AppController
                         foreach ($sub['Identifier'] as $idn) {
                             foreach ($opts as $opt) {
                                 if ($idn['type'] == $opt) {
-                                    $chmj[$opt] = $idn['value'];
+									$subj[$opt] = $idn['value'];
                                 }
                             }
                         }
                     }
-                    $sysj['facets'][] = $chmj;
-                }
+                    $sysj['facets'][] = $subj;
+                    // Chemicals
+					$chem=$sub['Chemical'];
+					$chmj['@id'] = "chemical/".($j + 2).'/';
+					$json['toc']['sections'][] = $chmj['@id'];
+					$chmj['@type'] = "sci:chemical";
+					$chmj['source'] = "substance/".($j + 2).'/';
+					$chmj['acquired'] = $chem['source'];
+					if(!is_null($chem['purity'])) {
+						$purj['@id'] = "purity/";
+						$purj['@type'] = "sci:purity";
+						$purity=json_decode($chem['purity'],true);
+						foreach($purity as $step) {
+							$stepsj[$step['step']]['@id'] = "step/".$step['step'].'/';
+							$stepsj[$step['step']]['@type'] = "sci:value";
+							$stepsj[$step['step']]['part'] = $step['type'];
+							if(!is_null($step['analmeth'])) {
+								$stepsj[$step['step']]['analysis']=$step['analmeth'];
+							}
+							if(!is_null($step['purimeth'])) {
+								$stepsj[$step['step']]['purification']=$step['purimeth'];
+							} else {
+								$stepsj[$step['step']]['purification']=null;
+							}
+			
+							if(!is_null($step['purity'])) {
+								$stepsj[$step['step']]['number']=$step['purity'];
+							}
+							if(!is_null($step['puritysf'])) {
+								$stepsj[$step['step']]['sigfigs']=$step['puritysf'];
+							}
+							if(!is_null($step['purityunit_id'])) {
+								$qudtid=$this->Unit->getfield('qudt',$step['purityunit_id']);
+								$stepsj[$step['step']]['unitref']='qudt:'.$qudtid;
+							}
+							$purj['steps']=$stepsj;
+						}
+						$chmj['purity']=$purj;
+					}
+					$sysj['facets'][] = $chmj;
+				}
             }
-            $sysj['facets'][] = $mixj;
+			$mixj['@id'] = $sid;
+	
+			$sysj['facets'][] = $mixj;
         }
         // Conditions
         if(is_array($conds)&&!empty($conds)) {
             foreach($conds as $cid=>$cond) {
                 //debug($cond);exit;
                 $v=$vs=$condj = [];
-                $condj['@id'] = "condition/".($cid + 1);
+                $condj['@id'] = "condition/".($cid + 1)."/";
                 $json['toc']['sections'][] = $condj['@id'];
                 $condj['@type'] = "sci:condition";
                 $condj['quantity'] = strtolower($cond[0]['Property']['Quantity']['name']);
@@ -355,50 +378,89 @@ class DatasetsController extends AppController
                 foreach ($cond as $cidx => $c) {
                     if(!in_array($c['number'],$vs)) {
                         $vs[]=$c['number'];
-                        $v['@id'] = "condition/" . ($cid + 1) . "/value/".(array_search($c['number'],$vs)+1);
+                        $v['@id'] = "condition/" . ($cid + 1) . "/value/".(array_search($c['number'],$vs)+1).'/';
                         $v['@type'] = "sci:value";
                         if (!is_null($c['number'])) {
                             $v['number'] = $c['number'];
                             if (isset($c['Unit']['symbol']) && !empty($c['Unit']['symbol'])) {
-                                $v['unitref'] = $this->Dataset->qudt($c['Unit']['symbol']);
+                                $v['unitref'] = $this->Unit->qudt($c['Unit']['symbol']);
                             }
                         } else {
                             $v['text'] = $c['text'];
                         }
                         $condj['value'][] = $v;
                     }
-                    $conds[$cid][$cidx]['clink'][]="condition/".($cid+1)."/value/".(array_search($c['number'],$vs)+1);
+                    $conds[$cid][$cidx]['clink']="condition/".($cid+1)."/value/".(array_search($c['number'],$vs)+1).'/';
                 }
                 $sysj['facets'][] = $condj;
             }
         }
-        $json['scidata']['system']=$sysj;
-
+        
+		//debug($ser);exit;
+		$cid++;
+		// Dataseries conditions
+		if(!is_null($ser[0]['Condition'])) {
+			foreach($ser[0]['Condition'] as $scidx=>$scond) {
+				$scondj=[];$cid++;
+				$scondj['@id'] = "condition/".$cid."/";
+				$json['toc']['sections'][] = $scondj['@id'];
+				$scondj['@type'] = "sci:seriescondition";
+				$scondj['quantity'] = strtolower($scond['Property']['Quantity']['name']);
+				$scondj['property'] = $scond['Property']['name'];
+				$v['@id'] = "condition/".$cid."/value/1/";
+				$v['@type'] = "sci:value";
+				if (!is_null($scond['number'])) {
+					$v['number'] = $scond['number'];
+					if (isset($scond['Unit']['symbol']) && !empty($scond['Unit']['symbol'])) {
+						$v['unitref'] = $this->Unit->qudt($scond['Unit']['symbol']);
+					}
+				} else {
+					$v['text'] = $scond['text'];
+				}
+				$scondj['value'][] = $v;
+				$ser[0]['Condition'][$scidx]['sclink']=$v['@id'];
+			}
+			$sysj['facets'][] = $scondj;
+		}
+		$json['scidata']['system']=$sysj;
+		
+		//debug($conds);exit;
+        
         // Data
         $resj=[];
         if(is_array($datas)&&!empty($datas)) {
-            $json['toc']['sections'][] = "dataset";
-            $resj['@id'] = 'dataset';
-            $resj['@type'] = 'sci:dataset';
-            $resj['source'] = 'measurement/1';
-            $resj['scope'] = $type . '/1';
-            $resj['datagroup'] = [];
+			$resj['@id']='dataset/';
+			$json['toc']['sections'][]=$resj['@id'];
+            $resj['@type']='sci:dataset';
+            $resj['source']='measurement/1/';
+            $resj['scope']= $type.'/1/';
+            $resj['datagroup']=[];
             // Group
             foreach($datas as $did=>$data) {
-                $grpj['@id']='datagroup/'.($did+1);
+                $grpj['@id']='datagroup/'.($did+1).'/';
                 $json['toc']['sections'][] = $grpj['@id'];
                 $grpj['@type'] = 'sci:datagroup';
                 $grpj['quantity']=strtolower($data[0]['Property']['Quantity']['name']);
                 $grpj['property']=$data[0]['Property']['name'];
                 foreach($data as $d=>$dtm) {
                     $dtmj=[];
-                    $dtmj['@id'] = 'datagroup/'.($did+1).'/datapoint/'.($d+1);
+                    $dtmj['@id'] = 'datagroup/'.($did+1).'/datapoint/'.($d+1).'/';
                     $dtmj['@type'] = 'sci:datapoint';
-                    $dtmj['conditions']=$conds[$did][$d]['clink'];
+					if(!empty($conds)) {
+						$dtmj['conditions']=[];
+						foreach ($conds as $cond) {
+							$dtmj['conditions'][]=$cond[$d]['clink'];
+						}
+					}
+					if(!is_null($ser[0]['Condition'])) {
+						foreach($ser[0]['Condition'] as $scidx=>$scond) {
+							$dtmj['conditions'][]=$scond['sclink'];
+						}
+					}
                     if(!empty($setts)) {
-                        $dtmj['settings']=$setts[$did][$d]['slink'];
-                    } else {
-                        $dtmj['settings']=[];
+						foreach ($setts as $sett) {
+							$dtmj['settings'][] = $sett[$d]['slink'];
+						}
                     }
                     // Value
                     $v=[];
@@ -408,13 +470,13 @@ class DatasetsController extends AppController
                             $unit=$this->Dataset->qudt($dtm['Unit']['symbol']);
                         }
                         if($dtm['datatype']=="datum") {
-                            $v['@id']=$dtmj['@id']."/value";
+                            $v['@id']=$dtmj['@id']."value/";
                             $v['@type']="sci:value";
                             $v['number']=$dtm['number'];
                             if($unit!="") { $v['unitref']=$unit; }
                             $dtmj['value']=$v;
                         } else {
-                            $v['@id']=$dtmj['@id']."/valuearray";
+                            $v['@id']=$dtmj['@id']."valuearray/";
                             $v['@type']="sci:valuearray";
                             $v['numberarray']=json_decode($dtm['number'],true);
                             if($unit!="") { $v['unitref']=$unit; }
@@ -442,31 +504,39 @@ class DatasetsController extends AppController
         if(isset($ref['url'])&&$ref['url']!=null) {
             $paper['url']=$ref['url'];
         }
-        // Springer Publication
-        $volume=['@id'=>'reference/2','@type'=>'dc:source'];
-        $volume['citation'] = $pub['citation'];
-        if(isset($pub['doi'])&&$pub['doi']!=null) {
-            $volume['url']="http://dx.doi.org/".$pub['doi'];
-        }
-        if(isset($pub['url'])&&$pub['url']!=null) {
-            $volume['url']=$pub['url'];
-        }
-        if(isset($pub['eisbn'])&&$pub['eisbn']!=null) {
-            $volume['eisbn'] = $pub['eisbn'];
-        }
+        // On TRC ThermoML site
+        $trc=['@id'=>'reference/2','@type'=>'dc:source'];
+		$trc['citation'] = "Original data file from NIST TRC Archive at http://www.trc.nist.gov/ThermoML/";
+		$trc['url']="http://www.trc.nist.gov/ThermoML/".$ref['doi'];
+        
         $json['references'][]=$paper;
-        $json['references'][]=$volume;
+        $json['references'][]=$trc;
 
         // Rights
         $json['rights']=['@id'=>'rights','@type'=>'dc:rights'];
-        $json['rights']['holder']='Springer Nature/Nature Publishing Group, San Francisco, CA 94104';
+        $json['rights']['holder']=$jnl['publisher'];
         $json['rights']['license']='http://creativecommons.org/publicdomain/zero/1.0/';
         //debug($json);exit;
 
         // OK turn it back into JSON-LD
-        header("Content-Type: application/ld+json");
-        if($down=="download") { header('Content-Disposition: attachment; filename="'.$id.'.jsonld"'); }
+        header("Content-Type: application/json");
+        if($down=="download") { header('Content-Disposition: attachment; filename="'.$id.'.json"'); }
         echo json_encode($json,JSON_UNESCAPED_UNICODE);exit;
 
     }
+	
+	/**
+	 * Delete a dataset (and all data underneath)
+	 * @param $id
+	 */
+	public function delete($id)
+	{
+		if($this->Dataset->delete($id)) {
+			$this->Flash->deleted('Dataset '.$id.' deleted!');
+		} else {
+			$this->Flash->deleted('Dataset '.$id.' could not be deleted!');
+		}
+		$this->redirect('/files/index');
+	}
+	
 }

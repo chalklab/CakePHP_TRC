@@ -6,5 +6,5 @@
  */
 class DataSystem extends AppModel
 {
-    public $belongsTo = ['Dataset'];
+    public $belongsTo = ['Dataset','Reference','Property'];
 }

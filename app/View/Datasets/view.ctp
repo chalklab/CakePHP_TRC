@@ -1,50 +1,73 @@
 <?php
 // Incoming variables data and dsid
 //if($this->Session->read('Auth.User.type') == 'superadmin') { pr($dump);exit; }
-$rep=$dump['Report'];
 $sys=$dump['System'];
 $set=$dump['Dataset'];
 $ref=$dump['Reference'];
 $anns=$dump['Annotation'];
 $file=$dump['File'];
-$tfile=$dump['TextFile'];
-$ptype=$dump['Propertytype'];
+$chems=$file['Chemical'];
+$sprops=$dump['Sampleprop'];
+$rprops=$dump['Reactionprop'];
 $sers=$dump['Dataseries'];
 $ser=$dump['Dataseries'][0];
+//debug($dump);exit;
 //if($this->Session->read('Auth.User.type') == 'superadmin') { pr($sers);exit; }
 ?>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h2 class="panel-title"><?php echo $set['title']; ?></h2>
+                    <h2 class="panel-title"><?php echo $ref['title']; ?></h2>
                 </div>
                 <div class="panel-body" style="font-size: 16px;">
                     <?php echo $this->Html->image('jsonld.png',['width'=>'100','url'=>'/datasets/scidata/'.$dsid,'alt'=>'Output as JSON-LD','class'=>'img-responsive pull-right']); ?>
                     <ul>
-                        <li><?php echo "Publication: ".$this->Html->link($file['Publication']['title'],"/publications/view/".$file['Publication']['id']); ?></li>
-                        <li><?php echo "PDF File: ".$this->Html->link($file['title'],"/files/view/".$file['id'],['target'=>'_blank']); ?></li>
-                        <li><?php echo "Text File: ".$this->Html->link($tfile['title'],"/textfiles/view/".$tfile['id'],['target'=>'_blank']); ?></li>
-                        <li><?php echo "Property Type: ".$ptype['code']; ?></li>
-                        <li><?php echo "Phase: ".ucfirst($ptype['states']).": ".$ptype['phases']." (".$ptype['num_components']." components)"; ?></li>
-                        <?php if($ptype['method'] !="") {
-                            //echo "<li>Method: ".$ptype['method']."</li>";
+                        <li><?php echo "Journal: ".$this->Html->link($ref['Journal']['name'],"/journals/view/".$ref['Journal']['id']); ?></li>
+                        <li><?php echo "File: ".$this->Html->link($file['filename'],"/files/view/".$file['id'],['target'=>'_blank']); ?></li>
+                        <?php if(!is_null($sprops)) {
+                            if(count($sprops)==1) {
+						        ?>
+                                <li><?php echo "Sample Property: " . $sprops[0]['property_name']; ?></li>
+                                <li><?php echo "Methology: " . $sprops[0]['method_name']; ?></li>
+                                <li><?php echo "Phase: " . $sprops[0]['phase']; ?></li>
+						    <?php
+						    } else {
+                                ?>
+                                <li>Properties
+                                    <ul>
+                                    <?php
+                                    if(isset($sprops)) {
+										foreach($sprops as $sprop) {
+											echo "<li>".$sprop['property_name']." by ".$sprop['method_name']." (Phase: ".$sprop['phase'].")"."</li>";
+										}
+									}
+									if(isset($rprops)) {
+										foreach($rprops as $rprop) {
+											echo "<li>".$rprop['property_name']." by ".$rprop['method_name']."</li>";
+										}
+									}
+									?>
+                                    </ul>
+                                </li>
+							<?php
+                            }
                         } ?>
-                        <?php if(!empty($rep['file_code'])) { ?>
-                            <li>
-                                <?php echo "File Number: ".$this->Html->link((isset($rep['file_code'])?$rep['file_code']:"N/A"),"/files/view/".$file['id']);?>
-                            </li>
-                        <?php } ?>
                         <li>Substances:
                             <?php
+                            //debug($chems);
                             if(count($sys['Substance'])>1) {
-                                foreach($sys['Substance'] as $i=>$substance) {
-                                    foreach($anns as $ann) {
-                                        if($ann['substance_id']==$substance['id']) {
-                                            $a=$ann['text'];
-                                        }
-                                    }
-                                    $f=str_replace(" ","",$substance['formula']);$n=$substance['name'];
+								echo "<ul>";
+								foreach($sys['Substance'] as $i=>$substance) {
+									$a="";
+									if(!is_null($anns)) {
+										foreach($anns as $ann) {
+											if($ann['substance_id']==$substance['id']) {
+												$a=$ann['text'].": ";
+											}
+										}
+									}
+                                    $f=str_replace(" ","",$substance['formula']);$n=ucfirst($substance['name']);
                                     foreach($substance['Identifier'] as $ident) {
                                         if($ident['type']=="casrn") {
                                             $cas=$ident['value'];break;
@@ -52,10 +75,22 @@ $ser=$dump['Dataseries'][0];
                                             $cas="CAS# not known";
                                         }
                                     }
-                                    echo "<br />";
-                                    echo $a.": ".$this->Html->link($n." ".$f." (".$cas.")","/substances/view/".$substance['id']);
+                                    $sid=$substance['id'];
+                                    foreach($chems as $chem) {
+                                        if($chem['substance_id']==$sid) {
+                                            $num=$chem['orgnum'];
+                                            $src=$chem['source'];
+                                            break;
+                                        }
+                                    }
+                                    if(is_null($src)) {
+										echo "<li>".$this->Html->link($num.". ".$n." ".$f." (".$cas.")","/substances/view/".$substance['id'])."</li>";
+									} else {
+										echo "<li>".$this->Html->link($num.". ".$n." ".$f." (".$cas.") - ".$src,"/substances/view/".$substance['id'])."</li>";
+									}
                                 }
-                            } else {
+								echo "</ul>";
+							} else {
                                 $substance=$sys['Substance'][0];
                                 $f=str_replace(" ","",$substance['formula']);$n=$substance['name'];
                                 foreach($substance['Identifier'] as $ident) {
@@ -67,6 +102,7 @@ $ser=$dump['Dataseries'][0];
                                 }
                                 echo $this->Html->link($n." ".$f." (".$cas.")","/substances/view/".$substance['id']);
                             }
+                            
                             ?>
                         </li>
                     </ul>
@@ -120,187 +156,84 @@ foreach($sers as $ser) {
         // No data!
     }
 }
-//debug($eqns);
-
+$sprops=[];
+foreach($dump['Sampleprop'] as $sprop) {
+    $sprops[$sprop['propnum']]=$sprop['phase'];
+}
 ?>
 <?php
-if(!empty($eqns)) {
-    $eqntypes=[];
-    foreach($eqns as $ser) {
-        if(isset($ser['Equation'])) {
-            $eqn=$ser['Equation'];
-            $eqntypes[$eqn['eqntype_id']][]=$eqn;
-        }
-    }
-    foreach($eqntypes as $type=>$eqns) {
+// Reaction
+if(!empty($rprops)) { ?>
+	<div class="row">
+	<?php
+	$dscount=count($dpts);
+	if($dscount==1||$dscount==2) {
+		$width=8;$offset=2;
+	} elseif($dscount==3) {
+		$width=10;$offset=1;
+	} else {
+		$width=12;$offset=0;
+	}
+	?>
+	<?php
+    foreach($rprops as $rprop) {
+        $title=$rprop['type'];
+        $rxn=json_decode($rprop['reaction'],true);
         ?>
-        <div class="row">
-            <?php
-            //debug($eqns[0]);
-            $layout=[];
-            foreach($eqns as $eqn) {
-                $terms=$eqn['Eqnterm'];$vars=$eqn['Eqnvar'];$anns=$eqn['Annotation'];$sups=$eqn['SupplementalData'];$setts=$eqn['Setting'];
-                foreach($terms as $term) {
-                    if($term['Unit']['symbol']=='') {
-                        $header=$term['Property']['symbol'];
-                    } else {
-                        $header=$term['Property']['symbol'].' ('.$term['Unit']['symbol'].')';
+        <div class="col-md-<?php echo $width; ?> col-md-offset-<?php echo $offset; ?>">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h2 class="panel-title"><?php echo $title; ?></h2>
+                </div>
+                <div class="panel-body text-center" style="font-size: 20px;">
+                    <?php
+                    $rs=$ps=$chms=[];
+                    foreach($chems as $chm) {
+                        $chms[$chm['orgnum']]=$chm['formula'];
                     }
-                    $layout[$term['code']]=['type'=>'term','id'=>$term['code'],'header'=>$header,'title'=>$term['Property']['name']];
-                }
-                foreach($vars as $var) {
-                    if($var['Unit']['symbol']=='') {
-                        $header=$var['Property']['symbol'];
-                    } else {
-                        $header=$var['Property']['symbol'].' ('.$var['Unit']['symbol'].')';
+                    foreach($rxn as $com) {
+                        $c=[];
+						$c['s']=abs($com['stoichcoef']);
+						if(stristr($com['phase'],'crystal')) {
+                            $c['p']='(s)';
+                        } elseif(stristr($com['phase'],'liquid')||stristr($com['phase'],'solution')||stristr($com['phase'],'glass')||stristr($com['phase'],'fluid')) {
+							$c['p']='(l)';
+						} elseif(stristr($com['phase'],'gas')||stristr($com['phase'],'air')) {
+							$c['p']='(g)';
+						}
+						$c['f']=$chms[$com['orgnum']];
+                        if($com['stoichcoef']>0) {
+							$ps[]=$c;
+                        } else {
+							$rs[]=$c;
+						}
                     }
-                    $layout[$var['code']]=['type'=>'var','id'=>$var['code'],'header'=>$header,'title'=>$var['Property']['name']];
-                }
-                foreach($anns as $ann) {
-                    $layout[$ann['type']]=['type'=>'ann','id'=>$ann['type'],'header'=>ucfirst($ann['type']),'title'=>''];
-                }
-                foreach($sups as $sup) {
-                    if($sup['Unit']['symbol']=='') {
-                        $header=$sup['Property']['symbol'];
-                    } else {
-                        $header=$sup['Property']['symbol'].' ('.$sup['Unit']['symbol'].')';
+                    foreach($rs as $i=>$r) {
+                        if($r['s']>1) { echo $r['s']; }
+                        echo preg_replace('/([0-9]+)/i','<sub>$1</sub>',$r['f']);
+                        echo $r['p'];
+                        if($i<(count($rs)-1 )) { echo " + "; }
                     }
-                    $layout[$sup['property_id']]=['type'=>'sup','id'=>$sup['property_id'],'header'=>$header,'title'=>$sup['Property']['name']];
-                }
-                foreach($setts as $sett) {
-                    if($sett['Unit']['symbol']=='') {
-                        $header=$sett['Property']['symbol'];
-                    } else {
-                        $header=$sett['Property']['symbol'].' ('.$sett['Unit']['symbol'].')';
-                    }
-                    $layout[$sett['property_id']]=['type'=>'sett','id'=>$sett['property_id'],'header'=>$header,'title'=>$sett['Property']['name']];
-                }}
-            $totcount=count($layout);
-            if($totcount==1||$totcount==2) {
-                $width=6;$offset=3;
-            } elseif($totcount==3) {
-                $width=8;$offset=2;
-            } elseif($totcount==4) {
-                $width=10;$offset=1;
-            } else {
-                $width=12;$offset=0;
-            }
-            //if($this->Session->read('Auth.User.type') == 'superadmin') { debug($layout);exit; }
-            ?>
-            <div class="col-md-12">
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h2 class="panel-title" style="padding-bottom: 10px;">
-                            <?php echo $eqn['title']; ?>
-                            <?php
-                            if(!empty($related)&&empty($dpts)) {
-                                $js='window.location.replace("/springer/datasets/view/"+this.options[this.selectedIndex].value)';
-                                echo $this->Form->input('related',['type'=>'select', 'style'=>'width: 163px;margin-top: -3px;','dir'=>'rtl','options'=>$related,'class'=>'pull-right','label'=>false,'div'=>false,'empty'=>'Related Datasets','onchange'=>$js]);
-                            }
-                            ?>
-                            <span class="pull-right">
-                                <?php echo "**".$eqns[0]['Eqntype']['latex']."**&nbsp;&nbsp;"; ?>
-                            </span>
-                        </h2>
-                    </div>
-                    <div class="panel-body" style="font-size: 16px;">
-                        <table class="table table-condensed table-striped">
-                            <tr>
-                                <?php
-                                foreach($layout as $column) {
-                                    echo "<td title='".$column['title']."'><b>".$column['header']."</b></td>";
-                                }
-                                ?>
-                            </tr>
-                            <?php foreach($eqns as $eqn) { ?>
-                                <?php //eif($this->Session->read('Auth.User.type') == 'superadmin') { debug($eqn);exit; } ?>
-                                <tr>
-                                <?php
-                                foreach($layout as $column) {
-                                    $content='';
-                                    if($column['type']=='term') {
-                                        foreach($eqn['Eqnterm'] as $term) {
-                                            if($term['code']==$column['id']) {
-                                                $content=$term['value'];
-                                                break;
-                                            }
-                                        }
-                                    } elseif($column['type']=='var') {
-                                        foreach($eqn['Eqnvar'] as $var) {
-                                            if($var['code']==$column['id']) {
-                                                if(is_numeric($var['min'])&&is_numeric($var['min'])) {
-                                                    $content=$var['min'].'/'.$var['max'];
-                                                } else {
-                                                    $content=$var['min'].' '.$var['max'];
-                                                }
-                                                break;
-                                            }
-                                        }
-                                    } elseif($column['type']=='ann') {
-                                        foreach($eqn['Annotation'] as $ann) {
-                                            if($ann['type']==$column['id']) {
-                                                $content=$ann['text'];
-                                                break;
-                                            }
-                                        }
-                                    } elseif($column['type']=='sup') {
-                                        foreach($eqn['SupplementalData'] as $sup) {
-                                            if($sup['property_id']==$column['id']) {
-                                                if(!is_null($sup['number'])) {
-                                                    if($sup['number']>=1&&$sup['number']<10) {
-                                                        $content=number_format($sup['number'],$sup['accuracy']-1);
-                                                    } elseif($sup['number']>=10&&$sup['number']<100) {
-                                                        $content=number_format($sup['number'],$sup['accuracy']-2);
-                                                    } elseif($sup['number']>=100&&$sup['number']<1000) {
-                                                        $content=number_format($sup['number'],$sup['accuracy']-3);
-                                                    } elseif($sup['number']>=1000&&$sup['number']<10000) {
-                                                        $content=number_format($sup['number'],$sup['accuracy']-4);
-                                                    } else {
-                                                        $content=number_format($sup['number'],abs($sup['exponent'])+$sup['accuracy']-1);
-                                                    }
-                                                 } elseif(!is_null($sup['text'])) {
-                                                    $content=$sup['text'];
-                                                }
-                                                break;
-                                            }
-                                        }
-                                    } elseif($column['type']=='sett') {
-                                        foreach($eqn['Setting'] as $sett) {
-                                            if($sett['property_id']==$column['id']) {
-                                                if(!is_null($sett['number'])) {
-                                                    if($sett['number']>=1&&$sett['number']<10) {
-                                                        $content=number_format($sett['number'],$sett['accuracy']-1);
-                                                    } elseif($sett['number']>=10&&$sett['number']<100) {
-                                                        $content=number_format($sett['number'],$sett['accuracy']-2);
-                                                    } elseif($sett['number']>=100&&$sett['number']<1000) {
-                                                        $content=number_format($sett['number'],$sett['accuracy']-3);
-                                                    } elseif($sett['number']>=1000&&$sett['number']<10000) {
-                                                        $content=number_format($sett['number'],$sett['accuracy']-4);
-                                                    } else {
-                                                        $content=number_format($sett['number'],abs($sett['exponent'])+$sett['accuracy']-1);
-                                                    }
-                                                } elseif(!is_null($sett['text'])) {
-                                                    $content=$sett['text'];
-                                                }
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    echo '<td>'.$content.'</td>';
-                                }
-                                ?>
-                            </tr>
-                            <?php } ?>
-                        </table>
-                    </div>
+                    echo " &rarr; ";
+					foreach($ps as $i=>$p) {
+						if($p['s']>1) { echo $p['s']; }
+						echo preg_replace('/([0-9]+)/i','<sub>$1</sub>',$p['f']);
+						echo $p['p'];
+						if($i<(count($ps)-1 )) { echo " + "; }
+					}
+					?>
                 </div>
             </div>
         </div>
         <?php
     }
+    ?>
+    </div>
+    <?php
 }
 ?>
 <?php
+// Datapoints
 if(!empty($dpts)) { ?>
     <div class="row">
         <?php
@@ -319,7 +252,7 @@ if(!empty($dpts)) { ?>
                     <h2 class="panel-title">Data
                         <?php
                         if(!empty($related)) {
-                            $js='window.location.replace("/springer/datasets/view/"+this.options[this.selectedIndex].value)';
+                            $js='window.location.replace("/trc/datasets/view/"+this.options[this.selectedIndex].value)';
                             echo $this->Form->input('related',['type'=>'select', 'style'=>'width: 163px;margin-top: -3px;','dir'=>'rtl','options'=>$related,'class'=>'pull-right','label'=>false,'div'=>false,'empty'=>'Related Datasets','onchange'=>$js]);
                         }
                         ?>
@@ -346,12 +279,12 @@ if(!empty($dpts)) { ?>
                                 echo "<td colspan='$columns'>";
                                 echo $series['Condition'][$i]['Property']['symbol'] . " = ";
                                 if (isset($_GET['numDisplay'])&&$_GET['numDisplay']=="exp") {
-                                    echo  $series['Condition'][$i]['number'];
+                                    echo $series['Condition'][$i]['number'];
                                     if((float)$series['Condition'][$i]['error']!==0.0){
                                         echo " ± ".$series['Condition'][$i]['error'];
                                     }
                                 } else{
-                                    echo  ((float)$series['Condition'][$i]['number']);
+                                    echo ((float)$series['Condition'][$i]['number']);
                                     if((float)$series['Condition'][$i]['error']!==0.0){
                                         echo " ± ".((float)$series['Condition'][$i]['error']);
                                     }
@@ -361,7 +294,13 @@ if(!empty($dpts)) { ?>
                                 } else {
                                     pr($series['Condition']);
                                 }
-                                echo "</td>";
+								if(isset($series['Condition'][$i]['Annotation'])) {
+                                    //pr($series['Condition'][$i]['Annotation']);
+                                    if(!empty($series['Condition'][$i]['Annotation'])) {
+										echo " ".$series['Condition'][$i]['Annotation']['text'];
+									}
+                                }
+								echo "</td>";
                             }
                             echo "</tr>";
                         }
@@ -425,9 +364,21 @@ if(!empty($dpts)) { ?>
                                     echo "</th>";
                                 }
                                 foreach ($dpts[$i]['Datapoint'][0]['Data'] as $data) {
-                                    echo "<th title=\"".$data['Property']['name']."\">" . $data['Property']['symbol'];
+                                    $sprop=$data['Sampleprop'];
+                                    if($sprop['phase']) {
+                                        $title=$data['Property']['name'].' ('.$sprop['phase'].')';
+                                        $phase=' ('.$sprop['phase'].')';
+                                    } else {
+										$title=$data['Property']['name'];
+										$phase='';
+                                    }
+                                    echo "<th title=\"".$title."\">" . $data['Property']['symbol'];
                                     if($data['Unit']['symbol']) {
                                         echo " (".$data['Unit']['symbol'].")"; // print unit if not unitless
+                                    }
+                                    echo $phase;
+									if(isset($data['Annotation'])) {
+                                        pr($data['Annotation']);
                                     }
                                     echo "</th>";
                                 }

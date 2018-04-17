@@ -9,6 +9,15 @@ class RulesnippetsController extends AppController
     public $uses=['Rulesnippet','Metadata','Property','Unit'];
 
     /**
+     * beforeFilter function
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow();
+    }
+
+    /**
      * Get an list of the currently defined rule snippets
      */
     public function index()

@@ -13,6 +13,8 @@ class Substance extends AppModel {
         ]
     ];
 
+    public $hasOne=['Chemical'];
+    
     public $hasAndBelongsToMany = ['System'];
 
     public $virtualFields=['first' => 'UPPER(SUBSTR(Substance.name,1,1))'];
@@ -24,7 +26,7 @@ class Substance extends AppModel {
      */
     public function meta($c,$show=false)
     {
-        $Chemical=ClassRegistry::init('Pubchem.Chemical'); //load the Pubchem model
+        $Chemical=ClassRegistry::init('Pubchem.Compound'); //load the Pubchem model
         $Rdf=ClassRegistry::init('Chemspider.Rdf'); //load the Chemspider model
         $Substance=ClassRegistry::init('Substance'); //load the Substance model
         $Identifier=ClassRegistry::init('Identifier');//load the Identifier model
@@ -33,7 +35,7 @@ class Substance extends AppModel {
         $cid=$Chemical->cid('name',$i[0]['value']);
         if ($cid) {
             // Add the PubChem ID
-            $test=$Identifier->find('first',['conditions'=>['substance_id'=>$s['id'],'type'=>'pubchemId']]);
+            $test=$Identifier->find('first',['conditions'=>['substance_id'=>$s['id'],'type'=>'pubchemId'],'recursive'=>-1]);
             if(empty($test)) {
                 $Identifier->add(['substance_id'=>$s['id'],'type'=>'pubchemId','value'=>$cid]);
             }
@@ -58,7 +60,7 @@ class Substance extends AppModel {
                     }
                 } else {
                     // Check to see if the value has already been added
-                    $test=$Identifier->find('first',['conditions'=>['substance_id'=>$s['id'],'type'=>$t]]);
+                    $test=$Identifier->find('first',['conditions'=>['substance_id'=>$s['id'],'type'=>$t],'recursive'=>-1]);
                     if(empty($test)) {
                         $meta=$Chemical->property($p,$cid);
                         if(isset($meta[$p])) {
@@ -91,7 +93,7 @@ class Substance extends AppModel {
                         $Substance->save(['id'=>$s['id'],$t=>$meta[$p]]);
                         $Substance->clear();
                     } else {
-                        $test=$Identifier->find('first',['conditions'=>['substance_id'=>$s['id'],'type'=>$t]]);
+                        $test=$Identifier->find('first',['conditions'=>['substance_id'=>$s['id'],'type'=>$t],'recursive'=>-1]);
                         if(empty($test)) {
                             $Identifier->add(['substance_id'=>$s['id'],'type'=>$t,'value'=>$meta[$p]]);
                         }
@@ -108,7 +110,7 @@ class Substance extends AppModel {
             echo "<h3>Cleanup</h3>";
             echo "<ul>";
         }
-        $pcid=$Identifier->find('list',['fields'=>['substance_id','value'],'conditions'=>['substance_id'=>$s['id'],'type'=>'pubchemId']]);
+        $pcid=$Identifier->find('list',['fields'=>['substance_id','value'],'conditions'=>['substance_id'=>$s['id'],'type'=>'pubchemId'],'recursive'=>-1]);
         // Use Inchikey to find PubChemId
         if(empty($pcid)) {
             $cid=$Chemical->cid('name',$meta['inchikey']);
@@ -144,8 +146,6 @@ class Substance extends AppModel {
         if($show) {
             echo "</ul>";
         }
-
         return;
     }
-
 }

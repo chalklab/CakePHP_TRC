@@ -14,7 +14,7 @@ class MetadataController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('xml');
+        $this->Auth->allow();
     }
 
 }

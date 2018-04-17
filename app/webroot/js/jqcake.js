@@ -40,7 +40,7 @@ function getSnippet(id)
 
 function getTemplate(id)
 {
-	var url = "https://chalk.coas.unf.edu/springer/ruletemplates/view/" + id;
+	var url = "https://chalk.coas.unf.edu/trc/ruletemplates/view/" + id;
 	$.getJSON(url,function(data) {
 		return data;
 	});
@@ -54,7 +54,7 @@ function ajacks(path,cback)
 	$.ajax({
 		dataType: "json",
 		type: "GET",
-		url: "https://chalk.coas.unf.edu/springer/" + path,
+		url: "https://chalk.coas.unf.edu/trc/" + path,
 		cache: false,
 		success:function(data) {
 			//alert(JSON.stringify(data));

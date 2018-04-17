@@ -120,9 +120,9 @@ class Datarectification extends AppModel {
     {
         $Substance=ClassRegistry::init('Substance');
         $Identifier=ClassRegistry::init('Identifier');
-        foreach ($chemicals as &$chemical) {
+		foreach ($chemicals as &$chemical) {
 
-            if(isset($chemical['othernames'])) {
+        	 if(isset($chemical['othernames'])) {
                 foreach($chemical['othernames'] as $part) {
                     if(substr($chemical['name'],-1)=="-") {
                         $chemical['name'].=$part;
@@ -149,7 +149,7 @@ class Datarectification extends AppModel {
                 $sid=$Substance->id;
                 $Substance->clear();
 
-                // Create and save the CAS identifier
+                // Create and save the CAS identifier(s)
                 $Identifier->create();
                 $identInfo=['Identifier'=>['type'=>'casrn','value'=>$chemical['casrn'],'substance_id'=>$sid]];
                 if(!$Identifier->save($identInfo)) {
@@ -174,7 +174,38 @@ class Datarectification extends AppModel {
                 $chemical['id']=$ident[0]['Substance']['id']; // We already have it in the database save id by reference
             }
 
-            // Add other names if the are available
+            // Update the substance table with info on the shubstance from classyfire
+			// URL format http://classyfire.wishartlab.com/entities/LVTYICIALWPMFW-UHFFFAOYSA-N.json
+			$key=$Identifier->getfield('value',['substance_id'=>$chemical['id'],'type'=>'inchikey']);
+			$headers=get_headers('http://classyfire.wishartlab.com/entities/'.$key.'.json');
+			if(stristr($headers[0],'OK')) {
+				$json=file_get_contents('http://classyfire.wishartlab.com/entities/'.$key.'.json');
+				$classy=json_decode($json,true);
+				if(!empty($classy)) {
+					$kingdom=$classy['kingdom']['name'];
+					$type=null;$subtype=null;
+					if($kingdom=='Inorganic compounds') {
+						$superclass=$classy['superclass']['name'];
+						if($superclass=='Homogeneous metal compounds') {
+							$type='element';$subtype='';// elements!
+						} else {
+							$type='compound';$subtype='inorganic compound';
+						}
+					} elseif($kingdom=='Organic compounds') {
+						$type='compound';$subtype='organic compound';
+					}
+				} else {
+					$type='compound';$subtype='not found on classyfire';
+				}
+			} else {
+				$type='compound';$subtype='organic compound*';
+			}
+			$Substance->id=$chemical['id'];
+			$Substance->saveField('type',$type);
+			$Substance->saveField('subtype',$subtype);
+			$Substance->clear();
+			
+			// Add other names if the are available
             if(isset($chemical['othernames'])) {
                 $ident2=$Identifier->find('first',['conditions' => ['Identifier.type'=>'othername','substance_id'=>$chemical['id']]]);
                 if(empty($ident2)) {
@@ -558,11 +589,10 @@ class Datarectification extends AppModel {
     /**
      * Add equation data
      * @param $data
-     * @param $propertyType
      * @param $ajax
      * @return mixed
      */
-    public function addEquations(&$data,$propertyType,$ajax)
+    public function addEquations(&$data,$ajax)
     {
         // Load models
         $Dataseries=ClassRegistry::init('Dataseries');
@@ -705,11 +735,10 @@ class Datarectification extends AppModel {
     /**
      * Add data and conditions
      * @param $data
-     * @param $propertyType
      * @param $ajax
      * @return boolean
      */
-    public function addDataAndConditions(&$data,$propertyType,$ajax)
+    public function addDataAndConditions(&$data,$ajax)
     {
         // Load models
         $Dataseries=ClassRegistry::init('Dataseries');

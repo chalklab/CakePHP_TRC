@@ -4,7 +4,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                 <span class="sr-only">Toggle navigation</span>
             </button>
-            <a class="navbar-brand" href="<?php echo $this->Html->url('/'); ?>"><b>ChemConverter</b></a>
+            <a class="navbar-brand" href="<?php echo $this->Html->url('/'); ?>"><b>ThermoMLConverter</b></a>
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <?php if ($this->Session->read('Auth.User')) { ?>
@@ -60,7 +60,7 @@
                         if($this->Session->read('Auth.User')) {
                             echo $this->Session->read('Auth.User.fullname');
                         } else {
-                            echo "My ChemConverter";
+                            echo "My ThermoML";
                         }
                         ?>
                         <span class="caret"></span></a>

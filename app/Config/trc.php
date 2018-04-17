@@ -2,7 +2,7 @@
 // Store all project configuration parameters here
 
 $config['server']="https://chalk.coas.unf.edu";
-$config['path']="/springer";
+$config['path']="/trc";
 $config['filepath']="files/pdf/";
 $config['textfilepath']="files/text/";
 $config['xmlfilepath']="files/xml/";
@@ -39,3 +39,19 @@ $config['scidata']['selectlist']=['condition'=>'Condition data',
     'to_be_set'=>'(Set as part of rule)'
     ];
 $config['scidata']['list']=array_keys($config['scidata']['selectlist']);
+
+$config['journal']['abbrevs']=[
+    'Thermochim. Acta'=>'tca',
+    'J. Chem. Thermodyn.'=>'jct',
+    'Int. J. Thermophys.'=>'ijt',
+    'J. Chem. Eng. Data'=>'jced',
+    'Fluid Phase Equilib.'=>'fpe'
+];
+// Jmol configuration parameters
+$config['jmol']['j2spath']="/js/jsmol/j2s";
+$config['jmol']['color']="#E0E0E0";
+$config['jmol']['height']=190;
+$config['jmol']['width']=190;
+
+// Online data repository settings
+$config['cir']['url']="https://cactus.nci.nih.gov/chemical/structure/<id>/file?format=sdf&get3d=True";

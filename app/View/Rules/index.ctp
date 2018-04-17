@@ -4,8 +4,8 @@ if(!isset($rules)) { $rules=[]; }
 ?>
 <h1>Rules
     <a href="add" class="btn btn-success btn-sm pull-right">Add Rule</a>
-    <a href="/springer/ruletemplates/add" class="btn btn-default btn-sm pull-right">Add Rule Template</a>
-    <a href="/springer/rulesnippets/add" class="btn btn-info btn-sm pull-right">Add Rule Snippet</a>
+    <a href="/trc/ruletemplates/add" class="btn btn-default btn-sm pull-right">Add Rule Template</a>
+    <a href="/trc/rulesnippets/add" class="btn btn-info btn-sm pull-right">Add Rule Snippet</a>
 </h1>
 <div class="col-lg-12" style="max-height: 650px;overflow-y:scroll;">
 <div class="table-responsive">

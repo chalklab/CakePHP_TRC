@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class ChemicalsController for the PubChem Plugin
+ * Class CompoundsController for the PubChem Plugin
  */
-class ChemicalsController extends AppController
+class CompoundsController extends AppController
 {
 
     /**

@@ -9,6 +9,13 @@ class Condition extends AppModel
 
     public $belongsTo = ['Dataseries','Datapoint','Property','Unit'];
 
+    public $hasOne = [
+    	'Annotation'=> [
+			'foreignKey' => 'condition_id',
+			'dependent' => true
+		]
+	];
+    
     /**
      * Function to create rows in conditions_systems table
      * @param $s

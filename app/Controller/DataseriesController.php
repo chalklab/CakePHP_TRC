@@ -11,7 +11,7 @@ class DataseriesController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('totalfiles');
+        $this->Auth->allow();
     }
 
     /**

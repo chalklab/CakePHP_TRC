@@ -9,6 +9,15 @@ class RuletemplatesController extends AppController
     public $uses=['Ruletemplate'];
 
     /**
+     * beforeFilter function
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow();
+    }
+
+    /**
      * Add ruletemplate
      */
     public function add()
