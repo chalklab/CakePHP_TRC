@@ -20,7 +20,7 @@ class ReferencesController extends AppController
 		parent::beforeFilter();
 		$this->Auth->allow();
 	}
-	
+
 	public function index($term=null)
 	{
 		$query="SELECT distinct t1.id,t1.title,t3.name FROM `references` t1 left join data_systems t2 on t1.id=t2.reference_id left join properties t3 on t2.property_id=t3.id";
@@ -42,7 +42,7 @@ class ReferencesController extends AppController
         }
 		$this->set('data',$data);
 	}
-	
+
     /**
      * View a reference
      * @param $id
@@ -299,6 +299,7 @@ class ReferencesController extends AppController
 	/**
      * Get fielded data from the http://freecite.library.brown.edu service
 	 * @param $fileID
+	 * @throws
 	 */
 	public function extract($fileID){
         if(isset($fileID)) {
@@ -315,11 +316,11 @@ class ReferencesController extends AppController
                 ]); //get the file of interest
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
                 $pdfToTextPath = Configure::read("pdftotextPath.windows"); //save path to the pdftotext for the server
-            }elseif (PHP_OS=="Linux") {
+            } elseif (PHP_OS=="Linux") {
                 $pdfToTextPath=Configure::read("pdftotextPath.linux");
-            }elseif (PHP_OS=="FreeBSD") {
+            } elseif (PHP_OS=="FreeBSD") {
                 $pdfToTextPath=Configure::read("pdftotextPath.freebsd");
-            }else{
+            } else {
                 $pdfToTextPath=Configure::read("pdftotextPath.mac");
             }
             $fileToExtract=WWW_ROOT.'files'.DS.'pdf'.DS.$file['File']['publication_id'].DS.$file['File']['filename'];// find the path to the file name
@@ -420,4 +421,52 @@ class ReferencesController extends AppController
         exit;
     }
 
+    public function auconvert()
+	{
+		$refs=$this->Reference->find('list',['fields'=>['id','authors'],'conditions'=>['aulist'=>null],'order'=>'id']);
+		//debug($refs);exit;
+		foreach($refs as $refid=>$authors) {
+			$aus=json_decode($authors,true);
+			$aulist="";
+			foreach($aus as $idx=>$au) {
+				if($idx!=0) {
+					$aulist.="; ";
+				}
+				if(substr_count($au['firstname'],'\u')>1) {
+					continue 2;
+				}
+				$fname=$this->ucode($au['firstname']);
+				if(substr_count($au['lastname'],'\u')>1) {
+					continue 2;
+				}
+				$lname=$this->ucode($au['lastname']);
+				$aulist.=$lname.", ";
+				$inits="";
+				if(stristr($fname,"-")) {
+					$chunks=explode('-',$fname);
+					foreach($chunks as $chunk) {
+						$aulist.=mb_substr($chunk, 0, 1,'UTF-8').'.';
+					}
+				} elseif(stristr($fname," ")) {
+					$chunks=explode(' ',$fname);
+					foreach($chunks as $chunk) {
+						$aulist.=mb_substr($chunk, 0, 1,'UTF-8').'.';
+					}
+				} else {
+					$aulist.=$fname[0].'.';
+				}
+			}
+			$this->Reference->id=$refid;
+			$this->Reference->saveField('aulist',$aulist);
+			$this->Reference->clear();
+			echo $refid." -> ".$aulist."<br/>";
+		}
+		exit;
+	}
+
+	private function ucode($string)
+	{
+		$string = preg_replace('/\\\\u([0-9a-f]{4})/', '&#x$1;', $string);
+		return html_entity_decode($string, ENT_COMPAT, 'UTF-8');
+	}
  }

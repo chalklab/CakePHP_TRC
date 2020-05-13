@@ -8,7 +8,7 @@ class Datapoint extends AppModel
 {
 
     /**
-     * Link annotations, conditions, data, setting, and supplementalData as dependent so they get deleted when the datapoint does
+     * Link annotations, conditions, data, and setting as dependent so they get deleted when the datapoint does
      * @var array
      */
     public $hasMany = [
@@ -25,10 +25,6 @@ class Datapoint extends AppModel
             'dependent' => true,
         ],
         'Setting'=> [
-            'foreignKey' => 'datapoint_id',
-            'dependent' => true,
-        ],
-        'SupplementalData'=> [
             'foreignKey' => 'datapoint_id',
             'dependent' => true,
         ]];

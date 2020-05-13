@@ -7,126 +7,191 @@
 class Scidata extends AppModel
 {
 
-    public $useTable=false;
+	public $useTable=false;
 
-    public $path=null;
-    public $context="https://stuchalk.github.io/scidata/contexts/scidata.jsonld";
-    public $aliases=[
-        'sci'=>'http://stuchalk.github.io/scidata/ontology/scidata.owl#',
-        'dc'=>'http://purl.org/dc/terms/',
-        'qudt'=>'http://www.qudt.org/qudt/owl/1.0.0/unit.owl#',
-        'xsd'=>'http://www.w3.org/2001/XMLSchema#'];
+	public $path=null;
+	public $contexts=["https://stuchalk.github.io/scidata/contexts/scidata.jsonld"];
+	public $nspaces=[
+		'sci'=>'https://stuchalk.github.io/scidata/ontology/scidata.owl#',
+		'dc'=>'http://purl.org/dc/terms/',
+		'qudt'=>'http://www.qudt.org/qudt/owl/1.0.0/unit.owl#',
+		'xsd'=>'http://www.w3.org/2001/XMLSchema#'];
+	public $id=null;
 	public $pid=null;
 	public $base=null;
-    public $meta=null;
-    public $authors=null;
-    public $related=null;
+	public $meta=null;
+	public $authors=null;
+	public $related=null;
+	public $keywords=null;
 	public $startdate=null;
 	public $permalink=null;
 	public $toc=null;
-    public $discipline=null;
-    public $subdiscipline=null;
+	public $ids=null;
+	public $report=null;
+	public $discipline=null;
+	public $subdiscipline=null;
 	public $facets=null;
 	public $aspects=null;
-    public $data=null;
-    private $cpds=[];
-    private $syss=[];
-    private $chms=[];
-    private $sets=[];
-    private $sers=[];
-    private $pnts=[];
-    private $cnds=[];
-    private $scnds=[];
-    private $sttgs=[];
-    public $sources=null;
-    public $rights=null;
-    public $errors=null;
-    public $output=null;
+	public $data=null;
+	public $dataseries=null;
+	public $datagroup=null;
+	public $datapoint=null;
+	private $cpds=[];
+	private $syss=[];
+	private $chms=[];
+	private $sets=[];
+	private $sers=[];
+	private $pnts=[];
+	private $cnds=[];
+	private $scnds=[];
+	private $sttgs=[];
+	public $sources=null;
+	public $rights=null;
+	public $errors=null;
+	public $output=null;
+	public $ontlinks=null;
+	public $intlinks=null;
+	public $sysrows=null;
 
+	/**
+	 * Class Constructor
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$output=[];
+		$output['@context']=[];
+		$output['@id']="";
+		$graph=[];
+		$graph['@id']="graph/";
+		$graph['pid']="";
+		$graph['title']="";
+		$graph['authors']=[];
+		$graph['description']="";
+		$graph['publisher']="";
+		$graph['startdate']="";
+		$graph['permalink']="";
+		$graph['keywords']=[];
+		$graph['related']=[];
+		$graph['toc']=[];
+		$graph['ids']=[];
+		$graph['report']=[];
+		$graph['scidata']=[];
+		$graph['sources']=[];
+		$graph['rights']=[];
+		$output['@graph']=$graph;
 
-    /**
-     * Class Constructor
-     * @param array|bool|int|string $file
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $output=[];
-        $output['@context']=[];
-        $output['@id']="";
-        $output['pid']="";
-        $output['title']="";
-        $output['authors']=[];
-        $output['description']="";
-        $output['publisher']="";
-        $output['startdate']="";
-        $output['permalink']="";
-        $output['related']=[];
-        $output['toc']=[];
-        $output['scidata']=[];
-        $output['sources']=[];
-        $output['rights']=[];
+		$this->output=$output;
+	}
 
-        $this->output=$output;
-    }
+	// Getters
 
+	/**
+	 * Get path
+	 */
+	public function path() {
+		if(is_null($this->path)) {
+			return false;
+		} else {
+			return $this->path;
+		}
+	}
 
-    // Getters
+	/**
+	 * Get base
+	 */
+	public function base() {
+		if(is_null($this->base)) {
+			return false;
+		} else {
+			return $this->base;
+		}
+	}
 
-    /**
-     * Get path
-     */
-    public function path() {
-        if(is_null($this->path)) {
-            return false;
-        } else {
-            return $this->path;
-        }
-    }
+	/**
+	 * Get meta
+	 * @return mixed
+	 */
+	public function meta() {
+		if(is_null($this->meta)) {
+			return false;
+		} else {
+			return $this->meta;
+		}
+	}
 
-    /**
-     * Get base
-     */
-    public function base() {
-        if(is_null($this->base)) {
-            return false;
-        } else {
-            return $this->base;
-        }
-    }
+	/**
+	 * Get facets
+	 * @return mixed
+	 */
+	public function getfacets() {
+		if(is_null($this->facets)) {
+			return false;
+		} else {
+			return $this->facets;
+		}
+	}
 
-    /**
-     * Get meta
-     * @return mixed
-     */
-    public function meta() {
-        if(is_null($this->meta)) {
-            return false;
-        } else {
-            return $this->meta;
-        }}
+	// Setters
 
-    // Setters
+	/**
+	 * Set the contexts
+	 * @param $value
+	 * @return bool
+	 */
+	public function setcontexts($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("contexts","array",$value,'merge');
+		}
+	}
 
-    /**
-     * Set the path
-     * @param $value
-     * @return bool
-     */
-    public function setpath($value=null) {
+	/**
+	 * Set the nspaces
+	 * @param $value
+	 * @return bool
+	 */
+	public function setnspaces($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("nspaces","array",$value,'merge');
+		}
+	}
+
+	/**
+	 * Set the id
+	 * @param $value
+	 * @return bool
+	 */
+	public function setid($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("id","string",$value);
+		}
+	}
+
+	/**
+	 * Set the path
+	 * @param $value
+	 * @return bool
+	 */
+	public function setpath($value=null) {
 		if($value==null) {
 			return false;
 		} else {
 			return $this->setter("path","string",$value);
 		}
-    }
+	}
 
-    /**
-     * Set the base
-     * @param $value
-     * @return bool
-     */
-    public function setbase($value=null) {
+	/**
+	 * Set the base
+	 * @param $value
+	 * @return bool
+	 */
+	public function setbase($value=null) {
 		if($value==null) {
 			return false;
 		} else {
@@ -136,21 +201,21 @@ class Scidata extends AppModel
 				return $this->setter("base","string",$this->path.$value);
 			}
 		}
-    }
+	}
 
-    /**
-     * Set the meta
-     * @param $value
-     * @return bool
-     */
-    public function setmeta($value=null) {
+	/**
+	 * Set the meta
+	 * @param $value
+	 * @return bool
+	 */
+	public function setmeta($value=null) {
 		if($value==null) {
 			return false;
 		} else {
 			return $this->setter("meta","array",$value);
 		}
-    }
-	
+	}
+
 	/**
 	 * Set the pid
 	 * @param $value
@@ -163,7 +228,59 @@ class Scidata extends AppModel
 			return $this->setter("pid","string",$value);
 		}
 	}
-	
+
+	/**
+	 * Set the related array
+	 * @param $value
+	 * @return bool
+	 */
+	public function setrelated($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("related","array",$value);
+		}
+	}
+
+	/**
+	 * Set the keywords array
+	 * @param $value
+	 * @return bool
+	 */
+	public function setkeywords($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("keywords","array",$value);
+		}
+	}
+
+	/**
+	 * Set the toc array
+	 * @param $value
+	 * @return bool
+	 */
+	public function settoc($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("toc","array",$value);
+		}
+	}
+
+	/**
+	 * Set the report array
+	 * @param $value
+	 * @return bool
+	 */
+	public function setreport($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("report","array",$value);
+		}
+	}
+
 	/**
 	 * Set authors
 	 * @param null $value
@@ -189,7 +306,7 @@ class Scidata extends AppModel
 			return $this->setter("authors","array",$authors);
 		}
 	}
-	
+
 	/**
 	 * Set the startdate
 	 * @param $value
@@ -202,7 +319,7 @@ class Scidata extends AppModel
 			return $this->setter("startdate","string",$value);
 		}
 	}
-	
+
 	/**
 	 * Set the permalink
 	 * @param $value
@@ -219,7 +336,7 @@ class Scidata extends AppModel
 			}
 		}
 	}
-	
+
 	/**
 	 * Set the discipline
 	 * @param $value
@@ -232,7 +349,7 @@ class Scidata extends AppModel
 			return $this->setter("discipline","string",$value);
 		}
 	}
-	
+
 	/**
 	 * Set the subdiscipline
 	 * @param $value
@@ -245,7 +362,7 @@ class Scidata extends AppModel
 			return $this->setter("subdiscipline","string",$value);
 		}
 	}
-	
+
 	/**
 	 * Set the aspects
 	 * @param null $value
@@ -259,7 +376,7 @@ class Scidata extends AppModel
 			return $this->setter("aspects","array",$value);
 		}
 	}
-	
+
 	/**
 	 * Set the facets
 	 * @param null $value
@@ -270,12 +387,27 @@ class Scidata extends AppModel
 		if($value==null) {
 			return false;
 		} else {
+
 			return $this->setter("facets","array",$value);
 		}
 	}
-	
+
 	/**
-	 * Set the facets
+	 * Set the sysrows (for a document with multiple systems, the rows of data that are for each system)
+	 * @param null $value
+	 * @return bool
+	 */
+	public function setsysrows($value=null)
+	{
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("sysrows","array",$value);
+		}
+	}
+
+	/**
+	 * Set the data
 	 * @param null $value
 	 * @return bool
 	 */
@@ -287,7 +419,50 @@ class Scidata extends AppModel
 			return $this->setter("data","array",$value);
 		}
 	}
-	
+
+	/**
+	 * Set a dataseries
+	 * @param null $value
+	 * @return bool
+	 */
+	public function setdataseries($value=null)
+	{
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("dataseries","array",$value);
+		}
+	}
+
+	/**
+	 * Set a datagroup
+	 * @param null $value
+	 * @return bool
+	 */
+	public function setdatagroup($value=null)
+	{
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("datagroup","array",$value);
+		}
+	}
+
+	/**
+	 * Set a datapoint
+	 * @param null $value
+	 * @param string $mode (append|replace|clear)
+	 * @return bool
+	 */
+	public function setdatapoint($value=null,$mode='append')
+	{
+		if($value==null||!is_array($value)) {
+			return false;
+		} else {
+			return $this->setter("datapoint","array",$value,$mode);
+		}
+	}
+
 	/**
 	 * Set the sources
 	 * @param $value
@@ -300,7 +475,7 @@ class Scidata extends AppModel
 			return $this->setter("sources","array",$value);
 		}
 	}
-	
+
 	/**
 	 * Set the rights
 	 * @param $value
@@ -313,15 +488,42 @@ class Scidata extends AppModel
 			return $this->setter("rights","array",$value);
 		}
 	}
-	
+
+	/**
+	 * Set the ontology links
+	 * @param $value
+	 * @return bool
+	 */
+	public function setontlinks($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("ontlinks","array",$value);
+		}
+	}
+
+	/**
+	 * Set the internal links
+	 * @param $value
+	 * @return bool
+	 */
+	public function setintlinks($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("intlinks","array",$value);
+		}
+	}
+
 	/**
 	 * Generic setter method
 	 * @param $prop
 	 * @param $type
 	 * @param $value
+	 * @param string $mode (append|replace|clear)
 	 * @return bool
 	 */
-	private function setter($prop,$type,$value) {
+	private function setter($prop,$type,$value,$mode='replace') {
 		// check datatype
 		if($type=="array") {
 			if(!is_array($value)) {
@@ -332,8 +534,37 @@ class Scidata extends AppModel
 				return false;
 			}
 		}
+		//debug($this->$prop);debug($prop);debug($value);debug($mode);exit;
 		// set property
-		$this->$prop=$value;
+		$current=$this->$prop;
+		if($mode=='append') {
+			if($type=='array') {
+				if(empty($current)) {
+					$this->$prop=['1'=>$value];
+				} else {
+					$lastkey=max(array_keys($current));
+					$this->$prop=$current+[($lastkey+1)=>$value];
+				}
+			} elseif($type=="string") {
+				$this->$prop=$current.$value;
+			}
+		} elseif($mode=='merge') {
+			// merges the value an existing array
+			if(empty($current)) {
+				$this->$prop=['1'=>$value];
+			} else {
+				if(is_array($current)&&is_array($value)) {
+					$this->$prop=array_merge($current,$value);
+				} elseif(is_array($current)&&!is_array($value)) {
+					$current[]=$value;
+				}
+			}
+		} elseif($mode=='replace') {
+			$this->$prop=$value;
+		} elseif($mode=='clear') {
+			$this->$prop=null;
+		}
+
 		// check property set
 		if($this->$prop==$value) {
 			return true;
@@ -341,47 +572,87 @@ class Scidata extends AppModel
 			return false;
 		}
 	}
-	
-    // Methods
 
-    /**
-     * create output and return
-     * @return array
-     */
-    public function asarray()
-    {
-        $output=$this->output;
-        $output['@context']=[
-			$this->context,
-			$this->aliases,
-        	['@base'=>$this->base]];
-        
-        // base
-        if(!is_null($this->pid)) {
-			$output["pid"]=$this->pid;
+	// Methods
+
+	/**
+	 * create output and return
+	 * @return mixed
+	 */
+	public function asarray()
+	{
+		$ppty=ClassRegistry::init('Property');
+		$olinks=$this->ontlinks;
+		$output=$this->output;
+		$graph=$output["@graph"];
+		$output['@context']=array_merge(
+			$this->contexts,[
+			$this->nspaces,
+			['@base'=>$this->base]]);
+
+		// id
+		if(!is_null($this->id)) {
+			$output["@id"]=$this->id;
 		} else {
-        	unset($output["pid"]);
+			unset($output["@id"]);
 		}
-		
+
+		// base
+		if(!is_null($this->pid)) {
+			$graph["pid"]=$this->pid;
+		} else {
+			unset($output["pid"]);
+		}
+
 		// meta
 		if(!is_null($this->meta)) {
-            if(isset($this->meta['title'])) 		{ $output['title']=$this->meta['title']; }
-            if(isset($this->meta['description'])) 	{ $output['description']=$this->meta['description']; }
-            if(isset($this->meta['publisher'])) 	{ $output['publisher']=$this->meta['publisher']; }
-        }
-        
-        // authors
+			if(isset($this->meta['title'])) 		{ $graph['title']=$this->meta['title']; }
+			if(isset($this->meta['description'])) 	{ $graph['description']=$this->meta['description']; }
+			if(isset($this->meta['publisher'])) 	{ $graph['publisher']=$this->meta['publisher']; }
+		} else {
+			unset($output["meta"]);
+		}
+
+		// related
+		if(!is_null($this->related)) {
+			$graph["related"]=$this->related;
+		} else {
+			unset($output["related"]);
+		}
+
+		// keywords
+		if(!is_null($this->keywords)) {
+			$graph["keywords"]=$this->keywords;
+		} else {
+			unset($output["keywords"]);
+		}
+
+		// toc
+		if(!is_null($this->toc)) {
+			$graph["toc"]=$this->toc;
+		} else {
+			unset($output["toc"]);
+		}
+
+		// report
+		if(!is_null($this->report)) {
+			$graph["report"]=$this->report;
+		} else {
+			unset($output["report"]);
+		}
+
+		// authors
 		if(!is_null($this->authors)) {
 			foreach ($this->authors as $idx=>$au) {
-				$output['authors'][]=['@id'=>'author/'.($idx+1).'/','@type'=>'dc:creator','name'=>$au];
+				$graph['authors'][]=['@id'=>'author/'.($idx+1).'/','@type'=>'dc:creator','name'=>$au];
 			}
 		} else {
 			unset($output["authors"]);
 		}
-		
+
 		// startdate
 		if(!is_null($this->startdate)) {
-        	$date=$this->startdate;
+			$date=$this->startdate;
 			// work out format and convert to UTC
 			if(!stristr($date,"T")) {
 				if(is_numeric($date)) {
@@ -390,148 +661,872 @@ class Scidata extends AppModel
 					$date=date(DATE_ATOM,strtotime($date));
 				}
 			}
-			$output["startdate"]=$date;
+			$graph["startdate"]=$date;
 		} else {
 			unset($output["startdate"]);
 		}
-		
+
 		// permalink
 		if(!is_null($this->permalink)) {
 			$output["permalink"]=$this->permalink;
 		} else {
 			unset($output["permalink"]);
 		}
-		
-		// scidata
-	
+
 		// SciData
-		$sci=[];
+		$sci=[];$rels=[];
+
 		$sci['@id']="scidata";
 		$sci['@type']="sci:scientificData";
+		$graph['toc'][]=$sci['@type'];
 		$sci['discipline']=$this->discipline;
 		$sci['subdiscipline']=$this->subdiscipline;
-		$sci['methodology']=[];
-		$sci['system']=[];
-		$sci['dataset']=[];
-	
+		if(!empty($this->aspects)) { $sci['methodology']=[]; }
+		if(!empty($this->facets)) { $sci['system']=[]; }
+		if(!empty($this->dataseries)||!empty($this->datagroup)||!empty($this->datapoint)) { $sci['dataset']=[]; }
+
 		// methodology
-		$meth=[];
-		$meth['@id']='methodology/';
-		$meth['@type']='sci:methodology';
-		$meth['aspects']=[];
-		foreach($this->aspects as $type=>$aspgrp) {
-			foreach($aspgrp as $idx=>$aspect) {
-				$asp=[];$ns="";
+		if(!empty($this->aspects)) {
+			$meth=[];
+			$meth['@id']='methodology/';
+			$meth['@type']='sci:methodology';
+			$meth['aspects']=[];
+			$rels['methodology']=[];
+			foreach($this->aspects as $type=>$aspgrp) {
+				foreach($aspgrp as $idx=>$aspect) {
+					$asp=[];$ns="";
+					if(stristr($type,":")) {
+						list($ns,$type)=explode(":",$type);
+						$ns.=":";
+					}
+					$asp["@id"]=$type."/".$idx.'/';
+					$asp["@type"]=$ns.$type;
+					$meth['aspects'][]=array_merge($asp,$aspect);
+					// add to toc
+					$graph['toc'][]=$asp['@type'];
+					// add methodology links
+					$rels['methodology'][$type][$idx]=$asp['@id'];
+				}
+			}
+			$sci['methodology']=$meth;
+		}
+
+		// system
+		if(!empty($this->facets)) {
+			$sys=[];
+			$sys['@id']='system/';
+			$sys['@type']='sci:system';
+			$sys['facets']=[];$condrels=[];
+			$rels['system']=[];
+			foreach($this->facets as $type=>$facgrp) {
+				$fac=[];$ns="";
 				if(stristr($type,":")) {
 					list($ns,$type)=explode(":",$type);
 					$ns.=":";
 				}
-				$asp["@id"]=$type."/".$idx.'/';
-				$asp["@type"]=$ns.$type;
-				$meth['aspects'][]=array_merge($asp,$aspect);
-			}
-		}
-		$sci['methodology']=$meth;
-		
-		// system
-		$sys=[];
-		$sys['@id']='system/';
-		$sys['@type']='sci:system';
-		$sys['facets']=[];
-		foreach($this->facets as $type=>$facgrp) {
-			$fac=[];$ns="";
-			if(stristr($type,":")) {
-				list($ns,$type)=explode(":",$type);
-				$ns.=":";
-			}
-			foreach($facgrp as $idx=>$facet) {
-				$fac["@id"]=$type."/".$idx.'/';
-				$fac["@type"]=$ns.$type;
-				foreach($facet as $label=>$items) {
-					if(is_array($items)) {
-						foreach($items as $idx=>$item) {
-							if(is_array($item)) {
-								$id=$label.'/'.($idx+1).'/';
-								$itype='sci:'.$label;
-								$item=["@id"=>$id,"@type"=>$itype]+$item;
-								$items[$idx]=$item;
+				foreach($facgrp as $idx=>$facet) {
+					$fac["@id"]=$type."/".$idx.'/';
+					$fac["@type"]=$ns.$type;
+					if($type=='condition') {
+						$facet=$this->makedata($facet,$type,$idx,$condrels,$graph);
+					} else {
+						foreach($facet as $label=>$items) {
+							if(substr($label,-1)=='s') {
+								$sublabel=substr($label,0,-1);
+							} else {
+								$sublabel=$label;
+							}
+							if(is_array($items)) {
+								foreach($items as $idx=>$item) {
+									if(is_array($item)) {
+										$id=$sublabel.'/'.($idx+1).'/';
+										$itype='sci:'.$sublabel;
+										$item=["@id"=>$id,"@type"=>$itype]+$item;
+										$items[$idx]=$item;
+									}
+								}
+								$facet[$label]=$items;
 							}
 						}
-						$facet[$label]=$items;
 					}
+					$sys['facets'][]=array_merge($fac,$facet);
+					// add to toc
+					$graph['toc'][]=$fac['@type'];
+					// add to condition relative links
+					$condrels['system'][$type][$idx]=$fac['@id'];
 				}
-				$sys['facets'][]=array_merge($fac,$facet);
+			}
+			$sci['system']=$sys;
+		}
+
+		// dataset
+		$set=[];
+		if(!empty($this->dataseries)||!empty($this->datagroup)||!empty($this->datapoint)) {
+			$set["@id"]='dataset/1/';
+			$set["@type"]='sci:dataset';
+			if(!empty($this->datapoint)) {
+				// start the point total count at the # of individual datapoints
+				$pnttot=count($this->datapoint);
+			}  else {
+				$pnttot=0;
+			}
+			$sertot=0;$grptot=0;$serrels=[];$grprels=[];
+
+			// dataseries
+			if(!empty($this->dataseries)) {
+				// add dataseries
+				$points=[];
+				foreach($this->dataseries as $seridx=>$series) {
+					$sertot++;$serrels[$seridx]=[];
+					if(!isset($series['points'])) {
+						// generate an index of points
+						if(isset($series['ids'])) {
+							$points=array_keys($series['ids']);
+						} else {
+							$ckeys=$dkeys=$vkeys=$skeys=[];
+							if(!empty($group['cons'])) {
+								foreach($group['cons'] as $prop=>$pnts) {
+									$ckeys=array_merge($ckeys,array_keys($pnts));
+								}
+							}
+							if(!empty($group['data'])) {
+								foreach($group['data'] as $prop=>$pnts) {
+									$dkeys = array_merge($dkeys, array_keys($pnts));
+								}
+							}
+							if(!empty($group['drvs'])) {
+								foreach($group['drvs'] as $prop=>$pnts) {
+									$vkeys = array_merge($vkeys, array_keys($pnts));
+								}
+							}
+							if(!empty($group['sups'])) {
+								foreach($group['sups'] as $prop=>$pnts) {
+									$skeys = array_merge($skeys, array_keys($pnts));
+								}
+							}
+							$points=array_merge($ckeys,$dkeys,$vkeys,$skeys);
+						}
+					}
+					$ser["@id"]='dataseries/'.$seridx.'/';
+					$ser["@type"]="sci:dataseries";
+					$ser['title']=$series['title'];
+					if(!empty($series['system'])) {
+						$ser['system']=$series['system'];
+					} else {
+						$ser['system']="no system?";
+					}
+					if(!empty($series['anns']['column'])) {
+						$ser['annotations']=$series['anns']['column'];
+					}
+					$ser['datapoints']=[];
+					foreach($points as $p) {
+						$pnttot++;
+						// array of datapoints
+						$dpnt=[];
+						$dpntid='datapoint/'.$pnttot.'/';
+						if(isset($series['ids'][$p])) {
+							$dpnt['id']=$series['ids'][$p];
+						}
+						if(isset($condrels['condition'][$seridx])) {
+							$dpnt['conditions']=[];
+							foreach($condrels['condition'][$seridx] as $cond) {
+								$dpnt['conditions'][]=$cond[$p];
+							}
+						}
+						$dpnt['values']=[];
+						if(!empty($series['data'])) {
+							foreach($series['data'] as $prop=>$pnts) {
+								// add data columns
+								if(!empty($pnts[$p])) {
+									$val=[];$dtype='exptdata';
+									$val['type']=$dtype;
+									if(!empty($pnts[$p]['property'])) {
+										$val['property']=$pnts[$p]['property'];
+									} else {
+										$pmeta=$ppty->find('first',['conditions'=>['datafield like'=>"%'".$prop."'%"],'contain'=>['Quantity'=>'Unit'],'recursive'=>-1]);
+										$val['property']=$pmeta['Property']['name'];
+									}
+									if(!empty($olinks[$dtype][$prop])) {
+										$val['propertyref']=$olinks[$dtype][$prop];
+									}
+									if(!empty($pnts[$p]['propertyref'])) {
+										$val['propertyref']=$pnts[$p]['propertyref'];
+									}
+									if(!empty($val['propertyref'])) {
+										$graph['ids'][]=$val['propertyref'];
+									}
+									if(!empty($series['anns']['rows'][$prop][$p])) {
+										$val['annotation']=$series['anns']['rows'][$prop][$p];
+									}
+									if(!empty($pnts[$p]['equality'])) {
+										$val['equality']=$pnts[$p]['equality'];
+									}
+									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
+										$val['value'] = $pnts[$p]['value'];
+									}
+									$val['text']=$pnts[$p]['text'];
+									if(!empty($pnts[$p]['sf'])) {
+										$val['sf'] = $pnts[$p]['sf'];
+									}
+									if(!empty($pnts[$p]['unit'])) {
+										$val['unit']=$pnts[$p]['unit'];
+									}
+									if(!empty($pnts[$p]['error'])) {
+										$val['error']=$pnts[$p]['error'];
+									}
+									if(!empty($pnts[$p]['note'])) {
+										$val['note']=$pnts[$p]['note'];
+									}
+									$dpnt['values'][]=$val;
+								}
+							}
+						}
+						if(!empty($series['sups'])) {
+							foreach($series['sups'] as $prop=>$pnts) {
+								// add supp columns
+								if(!empty($pnts[$p])) {
+									$val=[];$dtype='suppdata';
+									$val['type']=$dtype;
+									if(!empty($pnts[$p]['property'])) {
+										$val['property']=$pnts[$p]['property'];
+									} else {
+										$pmeta=$ppty->find('first',['conditions'=>['datafield like'=>"%'".$prop."'%"],'contain'=>['Quantity'=>'Unit'],'recursive'=>-1]);
+										$val['property']=$pmeta['Property']['name'];
+									}
+									if(!empty($olinks[$dtype][$prop])) {
+										$val['propertyref']=$olinks[$dtype][$prop];
+									}
+									if(!empty($pnts[$p]['propertyref'])) {
+										$val['propertyref']=$pnts[$p]['propertyref'];
+									}
+									if(!empty($val['propertyref'])) {
+										$graph['ids'][]=$val['propertyref'];
+									}
+									if(!empty($series['anns']['rows'][$prop][$p])) {
+										$val['annotation']=$series['anns']['rows'][$prop][$p];
+									}
+									if(!empty($pnts[$p]['equality'])) {
+										$val['equality']=$pnts[$p]['equality'];
+									}
+									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
+										$val['value'] = $pnts[$p]['value'];
+									}
+									$val['text']=$pnts[$p]['text'];
+									if(!empty($pnts[$p]['max'])) {
+										$val['max']=$pnts[$p]['max'];
+									}
+									if(!empty($pnts[$p]['sf'])) {
+										$val['sf'] = $pnts[$p]['sf'];
+									}
+									if(!empty($pnts[$p]['unit'])) {
+										$val['unit']=$pnts[$p]['unit'];
+									}
+									if(!empty($pnts[$p]['error'])) {
+										$val['error']=$pnts[$p]['error'];
+									}
+									if(!empty($pnts[$p]['note'])) {
+										$val['note']=$pnts[$p]['note'];
+									}
+									$dpnt['values'][]=$val;
+								}
+							}
+						}
+						if(!empty($series['drvs'])) {
+							foreach($series['drvs'] as $prop=>$pnts) {
+								// add supp columns
+								if(!empty($pnts[$p])) {
+									$val=[];$dtype='deriveddata';
+									$val['type']=$dtype;
+									if(!empty($pnts[$p]['property'])) {
+										$val['property']=$pnts[$p]['property'];
+									} else {
+										$pmeta=$ppty->find('first',['conditions'=>['datafield like'=>"%'".$prop."'%"],'contain'=>['Quantity'=>'Unit'],'recursive'=>-1]);
+										$val['property']=$pmeta['Property']['name'];
+									}
+									if(!empty($olinks[$dtype][$prop])) {
+										$val['propertyref']=$olinks[$dtype][$prop];
+									}
+									if(!empty($pnts[$p]['propertyref'])) {
+										$val['propertyref']=$pnts[$p]['propertyref'];
+									}
+									if(!empty($val['propertyref'])) {
+										$graph['ids'][]=$val['propertyref'];
+									}
+									if(!empty($series['anns']['rows'][$prop][$p])) {
+										$val['annotation']=$series['anns']['rows'][$prop][$p];
+									}
+									if(!empty($pnts[$p]['equality'])) {
+										$val['equality']=$pnts[$p]['equality'];
+									}
+									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
+										$val['value'] = $pnts[$p]['value'];
+									}
+									$val['text']=$pnts[$p]['text'];
+									if(!empty($pnts[$p]['max'])) {
+										$val['max']=$pnts[$p]['max'];
+									}
+									if(!empty($pnts[$p]['sf'])) {
+										$val['sf'] = $pnts[$p]['sf'];
+									}
+									if(!empty($pnts[$p]['unit'])) {
+										$val['unit']=$pnts[$p]['unit'];
+									}
+									if(!empty($pnts[$p]['error'])) {
+										$val['error']=$pnts[$p]['error'];
+									}
+									if(!empty($pnts[$p]['note'])) {
+										$val['note']=$pnts[$p]['note'];
+									}
+									$dpnt['values'][]=$val;
+								}
+							}
+						}
+						if(!empty($series['anns']['general'])) {
+							foreach ($series['anns']['general'] as $field => $pnts) {
+								// add anns columns
+								$val=[];
+								$val['type']='annotation';
+								$val['text']=$pnts[$p];
+								if(!empty($pnts[$p]['note'])) {
+									$val['note']=$pnts[$p]['note'];
+								}
+								$dpnt['values'][]=$val;
+							}
+						}
+						$this->setdatapoint($dpnt);
+						$ser['datapoints'][]=$dpntid;
+					}
+					$set['dataseries'][]=$ser;
+				}
+			}
+
+			// datagroups
+			if(!empty($this->datagroup)) {
+				// add datagroup
+				foreach($this->datagroup as $grpidx=>$group) {
+					$grptot++;$grprels[$grpidx]=[];$points=[];
+					if(!isset($group['points'])) {
+						// generate an index of points
+						if(isset($group['ids'])) {
+							$points=array_keys($group['ids']);
+						} else {
+							$ckeys=$dkeys=$vkeys=$skeys=[];
+							if(!empty($group['cons'])) {
+								foreach($group['cons'] as $prop=>$pnts) {
+									$ckeys=array_merge($ckeys,array_keys($pnts));
+								}
+							}
+							if(!empty($group['data'])) {
+								foreach($group['data'] as $prop=>$pnts) {
+									$dkeys = array_merge($dkeys, array_keys($pnts));
+								}
+							}
+							if(!empty($group['drvs'])) {
+								foreach($group['drvs'] as $prop=>$pnts) {
+									$vkeys = array_merge($vkeys, array_keys($pnts));
+								}
+							}
+							if(!empty($group['sups'])) {
+								foreach($group['sups'] as $prop=>$pnts) {
+									$skeys = array_merge($skeys, array_keys($pnts));
+								}
+							}
+							$points=array_merge($ckeys,$dkeys,$vkeys,$skeys);
+						}
+					} else {
+						$points=$group['points'];
+					}
+					$grp["@id"]='datagroup/'.$grpidx.'/';
+					$grp["@type"]="sci:datagroup";
+					$grp['title']=$group['title'];
+					if(!empty($group['anns']['column'])) {
+						$grp['annotations']=$group['anns']['column'];
+					}
+					$grp['datapoints']=[];
+					foreach($points as $p) {
+						$pnttot++;
+						// array of datapoints
+						$dpnt=[];
+						$dpntid='datapoint/'.$pnttot.'/';
+						if(isset($series['ids'][$p])) {
+							$dpnt['id']=$group['ids'][$p];
+						}
+						if(isset($condrels['condition'][$grpidx])) {
+							$dpnt['conditions']=[];
+							foreach($condrels['condition'][$grpidx] as $cond) {
+								$dpnt['conditions'][]=$cond[$p];
+							}
+						}
+						$dpnt['values']=[];
+						if(!empty($group['data'])) {
+							foreach($group['data'] as $prop=>$pnts) {
+								// add data columns
+								if(!empty($pnts[$p])) {
+									$val=[];$dtype='exptdata';
+									$val['type']=$dtype;
+									if(!empty($pnts[$p]['property'])) {
+										$val['property']=$pnts[$p]['property'];
+									} else {
+										$pmeta=$ppty->find('first',['conditions'=>['datafield like'=>"%'".$prop."'%"],'contain'=>['Quantity'=>'Unit'],'recursive'=>-1]);
+										$val['property']=$pmeta['Property']['name'];
+									}
+									if(!empty($olinks[$dtype][$prop])) {
+										$val['propertyref']=$olinks[$dtype][$prop];
+									}
+									if(!empty($pnts[$p]['propertyref'])) {
+										$val['propertyref']=$pnts[$p]['propertyref'];
+									}
+									if(!empty($val['propertyref'])) {
+										$graph['ids'][]=$val['propertyref'];
+									}
+									if(!empty($series['anns']['rows'][$prop][$p])) {
+										$val['annotation']=$series['anns']['rows'][$prop][$p];
+									}
+									if(!empty($pnts[$p]['equality'])) {
+										$val['equality']=$pnts[$p]['equality'];
+									}
+									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
+										$val['value'] = $pnts[$p]['value'];
+									}
+									$val['text']=$pnts[$p]['text'];
+									if(!empty($pnts[$p]['sf'])) {
+										$val['sf'] = $pnts[$p]['sf'];
+									}
+									if(!empty($pnts[$p]['unit'])) {
+										$val['unit']=$pnts[$p]['unit'];
+									}
+									if(!empty($pnts[$p]['error'])) {
+										$val['error']=$pnts[$p]['error'];
+									}
+									if(!empty($pnts[$p]['note'])) {
+										$val['note']=$pnts[$p]['note'];
+									}
+									$dpnt['values'][]=$val;
+								}
+							}
+						}
+						if(!empty($group['sups'])) {
+							foreach($group['sups'] as $prop=>$pnts) {
+								// add supp columns
+								if(!empty($pnts[$p])) {
+									$val=[];$dtype='suppdata';
+									$val['type']=$dtype;
+									if(!empty($pnts[$p]['property'])) {
+										$val['property']=$pnts[$p]['property'];
+									} else {
+										$pmeta=$ppty->find('first',['conditions'=>['datafield like'=>"%'".$prop."'%"],'contain'=>['Quantity'=>'Unit'],'recursive'=>-1]);
+										$val['property']=$pmeta['Property']['name'];
+									}
+									if(!empty($olinks[$dtype][$prop])) {
+										$val['propertyref']=$olinks[$dtype][$prop];
+									}
+									if(!empty($pnts[$p]['propertyref'])) {
+										$val['propertyref']=$pnts[$p]['propertyref'];
+									}
+									if(!empty($val['propertyref'])) {
+										$graph['ids'][]=$val['propertyref'];
+									}
+									if(!empty($series['anns']['rows'][$prop][$p])) {
+										$val['annotation']=$series['anns']['rows'][$prop][$p];
+									}
+									if(!empty($pnts[$p]['equality'])) {
+										$val['equality']=$pnts[$p]['equality'];
+									}
+									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
+										$val['value'] = $pnts[$p]['value'];
+									}
+									$val['text']=$pnts[$p]['text'];
+									if(!empty($pnts[$p]['max'])) {
+										$val['max']=$pnts[$p]['max'];
+									}
+									if(!empty($pnts[$p]['sf'])) {
+										$val['sf'] = $pnts[$p]['sf'];
+									}
+									if(!empty($pnts[$p]['unit'])) {
+										$val['unit']=$pnts[$p]['unit'];
+									}
+									if(!empty($pnts[$p]['error'])) {
+										$val['error']=$pnts[$p]['error'];
+									}
+									if(!empty($pnts[$p]['note'])) {
+										$val['note']=$pnts[$p]['note'];
+									}
+									$dpnt['values'][]=$val;
+								}
+							}
+						}
+						if(!empty($group['drvs'])) {
+							//debug($group['drvs']);
+							foreach($group['drvs'] as $prop=>$pnts) {
+								// add derived data columns
+								if(!empty($pnts[$p])) {
+									$val=[];$dtype='deriveddata';
+									$val['type']=$dtype;
+									if(!empty($pnts[$p]['property'])) {
+										$val['property']=$pnts[$p]['property'];
+									} else {
+										$pmeta=$ppty->find('first',['conditions'=>['datafield like'=>"%'".$prop."'%"],'contain'=>['Quantity'=>'Unit'],'recursive'=>-1]);
+										$val['property']=$pmeta['Property']['name'];
+									}
+									if(!empty($olinks[$dtype][$prop])) {
+										$val['propertyref']=$olinks[$dtype][$prop];
+									}
+									if(!empty($pnts[$p]['propertyref'])) {
+										$val['propertyref']=$pnts[$p]['propertyref'];
+									}
+									if(!empty($val['propertyref'])) {
+										$graph['ids'][]=$val['propertyref'];
+									}
+									if(!empty($series['anns']['rows'][$prop][$p])) {
+										$val['annotation']=$series['anns']['rows'][$prop][$p];
+									}
+									if(!empty($pnts[$p]['equality'])) {
+										$val['equality']=$pnts[$p]['equality'];
+									}
+									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
+										$val['value'] = $pnts[$p]['value'];
+									}
+									$val['text']=$pnts[$p]['text'];
+									if(!empty($pnts[$p]['max'])) {
+										$val['max']=$pnts[$p]['max'];
+									}
+									if(!empty($pnts[$p]['sf'])) {
+										$val['sf'] = $pnts[$p]['sf'];
+									}
+									if(!empty($pnts[$p]['unit'])) {
+										$val['unit']=$pnts[$p]['unit'];
+									}
+									if(!empty($pnts[$p]['error'])) {
+										$val['error']=$pnts[$p]['error'];
+									}
+									if(!empty($pnts[$p]['note'])) {
+										$val['note']=$pnts[$p]['note'];
+									}
+									$dpnt['values'][]=$val;
+								}
+							}
+						}
+						if(!empty($group['anns']['general'])) {
+							foreach($group['anns']['general'] as $field => $pnts) {
+								// add anns columns
+								$val=[];
+								$val['type']='annotation';
+								$val['text']=$pnts[$p];
+								if(!empty($pnts[$p]['note'])) {
+									$val['note']=$pnts[$p]['note'];
+								}
+								$dpnt['values'][]=$val;
+							}
+						}
+						$this->setdatapoint($dpnt);
+						$grp['datapoints'][]=$dpntid;
+					}
+					$set['datagroup'][]=$grp;
+				}
+			}
+
+			// datapoints
+			$sysrows=$this->sysrows;
+			if(!empty($this->datapoint)) {
+				// add datapoints
+				foreach($this->datapoint as $pidx=>$pnt) {
+					$dpnt=[];
+					$dpnt["@id"]='datapoint/'.$pidx.'/';
+					$dpnt["@type"]="sci:datapoint";  // TODO add datatype: exptdata etc...
+					if(isset($pnt['id'])) {
+						$dpnt['id']=$pnt['id'];
+					}
+					if(isset($pnt['conditions'])) {
+						$dpnt['conditions']=$pnt['conditions'];
+					}
+					if(isset($sysrows)) {
+						$dpnt['system']=$sysrows[$pidx];
+					}
+					if(count($pnt['values'])==1) {
+						$pnt=$pnt['values'][0];
+						if(isset($pnt['quantity'])) {
+							$dpnt['quantity']=$pnt['quantity'];
+						}
+						if(isset($pnt['property'])) {
+							$dpnt['property']=$pnt['property'];
+						}
+						if(isset($pnt['propertyref'])) {
+							$dpnt['propertyref']=$pnt['propertyref'];
+						}
+						if(isset($pnt['annotation'])) {
+							$dpnt['annotation']=$pnt['annotation'];
+						}
+						if(isset($pnt['value'])) {
+							$val=[];
+							$val["@id"]=$dpnt["@id"].'value/';
+							$val["@type"]="sci:numericValue";
+							if(is_float($pnt['value'])) {
+								$val['datatype']='float';
+							} else {
+								$val['datatype']='integer';
+							}
+							if(isset($pnt['equality'])) {
+								$val['equality']=$pnt['equality'];
+							}
+							if(!empty($pnt['max'])) {
+								$val['min']=$pnt['text']; // using the string as it is safer in JSON
+								$val['max']=$pnt['max'];
+							} else {
+								$val['number']=$pnt['text']; // using the string as it is safer in JSON
+							}
+							if(!empty($pnt['sf'])) {
+								$val['sigfigs']=$pnt['sf'];
+							}
+							if(!empty($pnt['unit'])) {
+								$val['unit']=$pnt['unit'];
+							}
+							if(!empty($pnt['error'])) {
+								$val['error']=$pnt['error'];
+							}
+							if(!empty($pnt['note'])) {
+								$val['note']=$pnt['note'];
+							}
+							$dpnt['numericvalue']=$val;
+						} elseif(isset($pnt['text'])) {
+							$val=[];
+							$val["@id"]=$dpnt["@id"].'value/';
+							$val["@type"]="sci:textValue";
+							$val['text']=$pnt['text'];
+							$data['textstring']=$val;
+						}
+					} else {
+						$dpnt['data']=[];
+						foreach($pnt['values'] as $didx=>$datum) {
+							$data=[];
+							$data["@id"]=$dpnt["@id"].'datum/'.($didx+1).'/';
+							$data["@type"]="sci:".$datum['type'];
+							if(isset($datum['quantity'])) {
+								$data['quantity']=$datum['quantity'];
+							}
+							if(isset($datum['property'])) {
+								$data['property']=$datum['property'];
+							}
+							if(isset($datum['propertyref'])) {
+								$data['propertyref']=$datum['propertyref'];
+							}
+							if(isset($datum['annotation'])) {
+								$data['annotation']=$datum['annotation'];
+							}
+							if(isset($datum['value'])) {
+								$val=[];
+								$val["@id"]=$data["@id"].'value/';
+								$val["@type"]="sci:numericValue";
+								if(is_float($datum['value'])) {
+									$val['datatype']='float';
+								} else {
+									$val['datatype']='integer';
+								}
+								if(isset($datum['equality'])) {
+									$val['equality']=$datum['equality'];
+								}
+								if(!empty($datum['max'])) {
+									$val['min']=$datum['text'];
+									$val['max']=$datum['max'];
+								} else {
+									$val['number']=$datum['text'];
+								}
+								if(!empty($datum['sf'])) {
+									$val['sigfigs']=$datum['sf'];
+								}
+								if(!empty($datum['unit'])) {
+									$val['unit']=$datum['unit'];
+								}
+								if(!empty($datum['error'])) {
+									$val['error']=$datum['error'];
+								}
+								if(!empty($datum['note'])) {
+									$val['note']=$datum['note'];
+								}
+								$data['numericvalue']=$val;
+							} elseif(isset($datum['text'])) {
+								$val=[];
+								$val["@id"]=$data["@id"].'value/';
+								$val["@type"]="sci:textValue";
+								$val['text']=$datum['text'];
+								if(!empty($datum['note'])) {
+									$val['note']=$datum['note'];
+								}
+								$data['textstring']=$val;
+							}
+							$dpnt['data'][]=$data;
+						}
+					}
+					$set['datapoint'][]=$dpnt;
+				}
 			}
 		}
-		$sci['system']=$sys;
-		
-		// data
-		// foreach dataset...
-		$datasets=$this->data;
-		$sertot=0;$pnttot=0;
-		foreach($datasets['dataset'] as $setidx=>$set) {
-			$set=["@id"=>'dataset/'.($setidx+1).'/',"@type"=>"sci:dataset"]+$set;
-			foreach($set['dataseries'] as $seridx=>$ser) {
-				$ser=["@id"=>'dataseries/'.($sertot+$seridx+1).'/',"@type"=>"sci:dataseries"]+$ser;
-				foreach($ser['datapoints'] as $pntidx=>$pnt) {
-					$pnt=["@id"=>'datapoint/'.($pnttot+$pntidx+1).'/',"@type"=>"sci:datapoint"]+$pnt;
-					$pnt['value']=["@id"=>'value/'.($pnttot+$pntidx+1).'/',"@type"=>"sci:value"]+$pnt['value'];
-					$ser['datapoints'][$pntidx]=$pnt;
-				}
-				$set['dataseries'][$seridx]=$ser;
-				$pnttot=count($ser['datapoints'])+$pnttot;
-			}
-			$sertot=count($set['dataseries'])+$sertot;
-			$sci['dataset'][$setidx]=$set;
-		}
-		
-		$output['scidata']=$sci;
-		
+		$sci['dataset']=$set;
+
+		$graph['scidata']=$sci;
+
 		// sources
-		if(!is_null($this->sources)) {
-        	$srcs=[];
-        	if(isset($this->sources['citation'])) {
-				$srcs[]=$this->sources;
-			} else {
+		if(!empty($this->sources)) {
+			$srcs=[];
+			if(!empty($this->sources[0])) {
 				$srcs=$this->sources;
+			} else {
+				$srcs[]=$this->sources;
 			}
 			foreach($srcs as $idx=>$src) {
 				$source=[];
 				$source["@id"]='source/'.($idx+1).'/';
 				$source["@type"]="sci:source";
-				if(isset($src['journal']))  { $source["journal"]=$src['journal']; }
-				if(isset($src['citation'])) { $source["citation"]=$src['citation']; }
-				if(isset($src['url'])) 		{ $source["url"]=$src['url']; }
-				if(isset($src['type'])) 	{ $source["type"]=$src['type']; }
-				$output["sources"][]=$source;
+				$graph['toc'][]=$source['@type'];
+				if(!empty($src['journal']))		{ $source["journal"]=$src['journal']; }
+				if(!empty($src['citation']))	{ $source["citation"]=$src['citation']; }
+				if(!empty($src['doi'])) 		{ $source["doi"]=$src['doi']; }
+				if(!empty($src['url'])) 		{ $source["url"]=$src['url']; }
+				if(!empty($src['type'])) 		{ $source["type"]=$src['type']; }
+				$graph["sources"][]=$source;
 			}
 		} else {
 			unset($output["sources"]);
 		}
-	
+
 		// rights
-		if(!is_null($this->rights)) {
-        	$rights=[];
-			$rights["@id"]='rights/1/';
-			$rights["@type"]="sci:rights";
-			$output["rights"]=array_merge($rights,$this->rights);
+		if(!empty($this->rights)) {
+			$rs=[];
+			if(!empty($this->rights[0])) {
+				$rs=$this->rights;
+			} else {
+				$rs[0]=$this->rights;
+			}
+			foreach($rs as $idx=>$r) {
+				$right=[];
+				$right["@id"]='rights/'.($idx+1).'/';
+				$right["@type"]="sci:rights";
+				$graph['toc'][]=$right['@type'];
+				$right=array_merge($right,$r);
+				$graph["rights"][]=$right;
+			}
 		} else {
 			unset($output["rights"]);
 		}
-	
-	
-		$this->output=$output;
-        return $this->output;
-    }
 
-    /**
-     * create output and return as json
-     * @return string
-     */
-    public function asjsonld()
-    {
-        $output=$this->asarray();
-        return json_encode($output,JSON_UNESCAPED_UNICODE);
-    }
+		// dedup and order ids
+		$graph['ids']=array_unique($graph['ids']);
+		sort($graph['ids']);
+		// add the graph data
+		$output["@graph"]=$graph;
+
+		// remove empty array elements
+		foreach($output as $key=>$part) {
+			if(empty($output[$key])) {
+				unset($output[$key]);
+			}
+			if($key=="@graph") {
+				foreach($output["@graph"] as $key2=>$part2) {
+					if(empty($output["@graph"][$key2])) {
+						unset($output["@graph"][$key2]);
+					}
+				}
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * create output and return as json
+	 * @return string
+	 */
+	public function asjsonld()
+	{
+		$output=$this->asarray();
+		return json_encode($output,JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
+	}
+
+	/**
+	 * private function to create data structure for conditions, data, and supplemental data
+	 * @param array $facet
+	 * @param string $type
+	 * @param int $idx
+	 * @param array $olinks
+	 * @param array $condrels
+	 * @param array $graph
+	 * @return array
+	 */
+	private function makedata($facet,$type,$idx,&$condrels,&$graph) {
+		//debug($facet);exit;
+		$prop=$facet['property'];
+		$unit=$facet['unit'];
+		$vals=$facet['value'];
+		$errs=null;
+		if(isset($facet['errors'])) {
+			$errs=$facet['errors'];
+		}
+		$output=[];
+		if($type=='condition') {
+			$output['property']=$prop;
+			if(isset($facet['propertyref'])) {
+				$output['propertyref']=$facet['propertyref'];
+			}
+			if(isset($facet['propid'])) {
+				$output['propertyref']=$facet['propid'];
+			}
+			if(!empty($output['propertyref'])) {
+				$graph['ids'][]=$output['propertyref'];
+			}
+			if(is_array($vals)) {
+				$output['valuearray']=[];$vidx=1;
+				foreach($vals as $temp) {
+					$val=$temp['meta'];
+					$tabrows=$temp['rows'];
+					$value=[];
+					$value['@id']='condition/'.$idx.'/value/'.$vidx.'/';
+					$value['@type']='sci:numericValue';
+					if(is_float($val['value'])) {
+						$value['datatype']='float';
+					} elseif(is_int($val['value'])) {
+						$value['datatype']='integer';
+					}
+					$value['sigfigs']=$val['sf'];
+					$value['number']=$val['scinot'];
+					if($val['unit']!='') {
+						$value['unit']=$val['unit'];
+					} elseif(!is_null($unit)) {
+						$value['unit']=$unit;
+					}
+					if(!empty($errs)) {
+						$value['error']=$errs['val'];
+						if(!is_null($errs['note'])) { $value['errnote']=$errs['note']; }
+					} elseif($val['error']!='') {
+						$value['error']=$val['error'];
+					}
+					$output['valuearray'][]=$value;
+					foreach($tabrows as $tabrow) {
+						list($table,$row)=explode(':',$tabrow);
+						$condrels[$type][$table][$prop][$row]=$value['@id'];
+					}
+					$vidx++;
+				}
+			} else {
+				$output['value']=[];
+				$value=[];$val=$vals;
+				$value['@id']='condition/'.$idx.'/value/';
+				$value['@type']='sci:numericValue';
+				if(is_float($vals)) {
+					$value['datatype']='float';
+				} elseif(is_int($vals)) {
+					$value['datatype']='integer';
+				}
+				$value['number']=$val;
+				if(!is_null($unit)) {
+					$value['unit']=$unit;
+				}
+				if(!empty($errs)) {
+					$value['error']=$errs['val'];
+					if(!is_null($errs['note'])) { $value['note']=$errs['note']; }
+				}
+				$output['value']=$value;
+				$condrels[$type][$idx][$prop]=[$value['@id']=>$val];
+			}
+		}
+		return $output;
+	}
 
 }

@@ -7,10 +7,8 @@
 class Unit extends AppModel
 {
 
-	public $hasAndBelongsToMany = ['Quantity','Parameter','Variable'];
+	public $hasAndBelongsToMany = ['Quantity'];
 
-    public $hasMany=['Rulesnippet'];
-	
 	public function getfield($field,$find,$type="id")
 	{
 		$j=$this->find('first',['conditions'=>[$type=>$find],'recursive'=>-1]);
@@ -20,11 +18,11 @@ class Unit extends AppModel
 			return false;
 		}
 	}
-	
-	
+
+
 	/**
 	 * retrieve qudt unit from symbol
-	 * @param $unit
+	 * @param $symbol
 	 * @return string
 	 */
 	public function qudt($symbol)

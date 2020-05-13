@@ -10,11 +10,15 @@ class Substance extends AppModel {
         'Identifier'=> [
             'foreignKey' => 'substance_id',
             'dependent' => true
-        ]
+        ],
+		'Substances_system'=> [
+			'foreignKey' => 'substance_id',
+			'dependent' => true
+		]
     ];
 
     public $hasOne=['Chemical'];
-    
+
     public $hasAndBelongsToMany = ['System'];
 
     public $virtualFields=['first' => 'UPPER(SUBSTR(Substance.name,1,1))'];

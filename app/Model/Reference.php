@@ -7,11 +7,14 @@
 class Reference extends AppModel
 {
 
-    public $hasMany=['Dataset','Refcode'];
-    
+    public $hasMany=['Dataset'];
+
     public $belongsTo=['Journal'];
 
-    public $virtualFields=['citation'=>'CONCAT("\'",Reference.title,"\' ",Reference.authors,", ",Reference.journal," ",Reference.year," ",Reference.volume,"(",Reference.issue,") ",Reference.startpage,"-",Reference.endpage)'];
+    public $virtualFields=[
+        'citation'=>'CONCAT("\'",Reference.title,"\' ",Reference.aulist,", ",Reference.journal," ",Reference.year," ",Reference.volume,"(",Reference.issue,") ",Reference.startpage,"-",Reference.endpage)',
+        'bib'=>'CONCAT(Reference.aulist,", ",Reference.journal," ",Reference.year," ",Reference.volume,"(",Reference.issue,") ",Reference.startpage,"-",Reference.endpage)'
+    ];
 
     /**
      * Get papers via Crossrefs OpenURL API
@@ -84,7 +87,7 @@ class Reference extends AppModel
                         $citation['title'] = trim($title);
                     }
                 }
-	
+
 				$citation['title']=str_replace("\n",'',$citation['title']);
 				$citation['title']=preg_replace('/\s+/',' ',$citation['title']);
             } else {

@@ -320,7 +320,7 @@ class DatarectificationController extends AppController {
                 // Add the equation data if they are present
                 $dataseriesArray[$i]['equations']=[];
                 if(isset($data['eqnterms'])&&!empty($data['eqnterms'])) {
-                    $anns=$data['annotations'];$sups=$data['suppdata'];
+                    $anns=$data['annotations'];
                     $terms=$data['eqnterms'];$vars=$data['eqnvariables'];$limits=$data['eqnvariablelimits'];
                     $ops=$data['eqnoperators'];$props=$data['eqnprops'];$propunits=$data['eqnpropunits'];
 
@@ -422,22 +422,6 @@ class DatarectificationController extends AppController {
                             }
                         }
                     }
-                    $eqns['sups'] = [];
-                    if(!empty($sups)) {
-                        foreach($sups as $s=>$sup) {
-                            if(in_array($sup['location']['line'],$lines)) {
-                                foreach($serieslines as $ser=>$serline) {
-                                    if($sup['location']['line']>=$serline) {
-                                        $series=$ser;
-                                    }
-                                }
-                                $limit['series']=$series;
-                                $eqns['sups'][]=$sup;
-                                unset($data['suppdata'][$s]); // Remove so not added with data points
-                            }
-                        }
-                    }
-
                     if(!empty($eqns['terms'])) {
                         // Create array of lines with equation data (based on the prescence of terms)
                         $eqnlines=[];

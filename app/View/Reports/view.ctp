@@ -1,28 +1,40 @@
 <?php //pr($data); ?>
 <?php
 $rep = $data['Report'];
-$pub = $data['Publication'];
 $set = $data['Dataset'];
-$ref = $set['Reference'];
-$sys = $set['System'];
+$ref = $data['Reference'];
+$sys = $data['System'];
 ?>
+</script>
+<style type="text/css">
+    .showReports:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    span {
+        color: green;
+    }
+</style>
+
+</style>
 
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-15">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h2 class="panel-title"><?php echo $rep['title']; ?></h2>
+                <h2 class="panel-title"><?php echo "Report"; ?></h2>
             </div>
             <div class="panel-body">
                 <ul>
-                    <li><?php echo "Publication: ".$this->Html->link($pub['title'],"/publications/view/".$pub['id']); ?></li>
+                    <li><?php echo $this->Html->link($rep['title'],"/journals/view/".$rep['id']); ?></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-15">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h2 class="panel-title">System</h2>
@@ -36,7 +48,7 @@ $sys = $set['System'];
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-15">
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <h2 class="panel-title">Data</h2>
@@ -50,7 +62,7 @@ $sys = $set['System'];
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-15">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h2 class="panel-title">Reference</h2>
@@ -62,8 +74,8 @@ $sys = $set['System'];
                     $a=json_decode($aus,true);
                     echo "<b>";
                     $cnt=count($a);
-                    foreach($a as $i=>$au) {
-                        echo implode(" ",$au);
+                    foreach($a as $i=>$aus) {
+                        echo implode(" ",$aus);
                         if($i==$cnt-1) {
                             echo "; ";
                         } elseif($i==$cnt-2) {

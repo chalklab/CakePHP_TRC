@@ -20,25 +20,32 @@ Configure::load('trc','default');
  */
 class AppController extends Controller {
 
-    public $components = ['Utils','Email','RequestHandler','Session','Flash',
-                            'Auth' => [
-                                'loginRedirect' => [
-                                    'controller' => 'pages',
-                                    'action' => 'display',
-                                    'home'],
-                                'logoutRedirect' => [
-                                    'controller' => 'pages',
-                                    'action' => 'display',
-                                    'home'],
-                                'authenticate' => [
-                                    'Form' => [
-                                        'passwordHasher' => 'Blowfish'
-                                    ]
-                                ]
-                            ]
-                        ];
+    public $components = [
+    	'Utils',
+		'Email',
+		'RequestHandler',
+		'Session',
+		'Flash',
+		'Auth' => [
+			'loginRedirect' => [
+				'controller' => 'pages',
+				'action' => 'display',
+				'home'],
+			'logoutRedirect' => [
+				'controller' => 'pages',
+				'action' => 'display',
+				'home'],
+			'authenticate' => [
+				'Form' => [
+					'passwordHasher' => 'Blowfish'
+				]
+			]
+		]
+	];
+    
     public $helpers = ['Form','Html','Session','Time','Flash'];
 	
 	public $actsAs = ['Containable'];
+
 	
 }

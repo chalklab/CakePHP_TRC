@@ -1,66 +1,49 @@
 <?php
-pr($data);exit;
 $system=$data['System'];
-$substance=$data['Substance'];
+$sets=$data['Dataset'];
+$subs=$data['Substance'];
 //$dataset=$data['Dataset'];
 ?>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-xs-12 col-md-3">
         <h2>System</h2>
         <ul>
             <li><?php echo "Name: ".$system['name']; ?></li>
-            <li><?php echo "Description: ".$system['description']; ?></li>
-            <li><?php echo "Type: ".$system['type']; ?></li>
+            <li><?php echo "Phase: ".$system['phase']; ?></li>
+            <li><?php echo "Composition: ".$system['composition']; ?></li>
         </ul>
     </div>
-    <div class="col-md-6">
+    <div class="col-xs-12 col-md-9">
         <h2>Substances</h2>
-        <ul>
-            <?php
-            foreach ($substance as $sub) {
-                echo "<li>".$this->Html->link($sub['name'],'/substances/view/'.$sub['id'])."</li>";
-            }
+        <?php
+        foreach ($subs as $idx=>$sub) {
             ?>
-        </ul>
+            <div class="col-xs-12 col-md-4">
+                <?php
+                echo "<h4>".$this->Html->link($sub['name'],'/substances/view/'.$sub['id'])."</h4>";
+                $chem=[];
+                (isset($sub['name'])) ? $chem['name']=$sub['name'] : $chem['name']="Unknown compound";
+                (isset($sub['Identifier'][0]['value'])) ? $chem['inchi']=$sub['Identifier'][0]['value'] : $chem['inchi']="";
+                (isset($sub['Identifier'][1]['value'])) ? $chem['inchikey']=$sub['Identifier'][1]['value'] : $chem['inchikey']="";
+                (isset($sub['casrn'])) ? $chem['casrn']=$sub['casrn'] : $chem['casrn']="";
+                echo $this->element('molecule',['index'=>$idx,'fontsize'=>14,'height'=>200,'width'=>200, 'named'=>false]+$chem);
+                ?>
+            </div>
+        <?php } ?>
     </div>
 </div>
-<h2>Data Set</h2>
-<div class="container">
-     <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Refractive Index</th>
-            <th>Temperature (&#8451)</th>
-            <th>Wavelength (nm)</th>
-            <th>Reference</th>
-        </tr>
-        </thead>
-         <tbody>
-         <?php
-         foreach($data['Data'] as $set) {
-             echo "<tr>";
-             echo "<td>".(float)$set['data']['n'];
-             if (isset($set['data']['u']))
-                 echo $set['data']['u'];
-             echo "</td>";
-             echo "<td>";
-             if($set['condition']['n']){
-                 echo (float)$set['condition']['n'];
-             }else{
-                 echo "-";
-             }
-             echo "</td>";
-             echo "<td>".(float)$set['setting']['n'];
-             echo "</td>";
-             echo "<td>";
-             echo $this->Html->link($set['ref'],'http://dx.doi.org/'.$set['ref']);
-             echo "</td>";
-             echo "</tr>";}
-        ?>
-        </tbody>
-</table>
-
-<p>&nbsp;</p>
-
-
-
+<div class="panel-group" style="padding-top: 20px;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Data Sets</h4>
+        </div>
+        <div class="list-group">
+            <?php
+            foreach($sets as $set) {
+                $prop=$set['Sampleprop'][0]['property_name'];
+                echo $this->Html->link($prop,'/datasets/view/'.$set['id'],["title"=>$prop,"class"=>"list-group-item"]);
+            }
+            ?>
+        </div>
+    </div>
+</div>

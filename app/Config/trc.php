@@ -35,7 +35,6 @@ $config['scidata']['selectlist']=['condition'=>'Condition data',
     'series'=>'Series identifier',
     'seriescond'=>'Series condition data',
     'setting'=>'Series setting data',
-    'suppdata'=>'Supplmental/derived data',
     'to_be_set'=>'(Set as part of rule)'
     ];
 $config['scidata']['list']=array_keys($config['scidata']['selectlist']);

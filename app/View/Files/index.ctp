@@ -10,7 +10,7 @@ $i=1;$size=3;
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i; ?>">
-                            <?php echo $year; ?>
+                            <?php echo $year." (".count($files).")"; ?>
                         </a>
                     </h4>
                 </div>

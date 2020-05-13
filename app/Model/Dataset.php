@@ -29,6 +29,10 @@ class Dataset extends AppModel
         'Reactionprop'=> [
             'foreignKey' => 'dataset_id',
             'dependent' => true
+        ],
+        'Chemical'=> [
+            'foreignKey'=> 'orgnum','source',
+            'dependent' => true
         ]
     ];
 

@@ -6,23 +6,53 @@
  */
 class FilesController extends AppController
 {
-	
+
 	public $uses = ['File', 'Error', 'Chemical', 'Sampleprop', 'Identifier', 'Datarectification',
 		'System', 'Dataset', 'Condition', 'Dataseries', 'Datapoint', 'Data', 'Reference',
 		'Reactionprop', 'Pubchem.Compound', 'Substance', 'SubstancesSystem', 'Crossref.Api',
 		'Journal', 'Property', 'Unit', 'Annotation', 'Scidata'];
-	
+
+	public $c = [
+		'Chemical' => [
+			'Substance'],
+		'Reference',
+		'Dataset' => [
+			'Dataseries' => [
+				'Condition' => ['Unit',
+					'Property' => ['fields' => ['name'],
+						'Quantity' => ['fields' => ['name']]]],
+				'Datapoint' => [
+					'Condition' => ['Unit',
+						'Property' => ['fields' => ['name'],
+							'Quantity' => ['fields' => ['name']]]],
+					'Data' => ['Unit',
+						'Property' => ['fields' => ['name'],
+							'Quantity' => ['fields' => ['name']]]]
+				]
+			],
+			'Sampleprop',
+			'Reactionprop',
+			'System' => [
+				'Substance' => ['fields' => ['name', 'casrn', 'formula', 'molweight', 'type'],
+					'Identifier' => ['fields' => ['type', 'value'], 'conditions' => ['type' => ['inchi', 'inchikey', 'iupacname']]]
+				]
+			]
+		]
+	];
+
 	/**
 	 * function beforeFilter
 	 */
 	public function beforeFilter()
 	{
 		parent::beforeFilter();
-		$this->Auth->allow('index');
+		$this->Auth->allow('index','view');
 	}
-	
+
+	// CRUD operations
+
 	/**
-	 * Show a list of ThermoML files
+	 * show a list of ThermoML files
 	 */
 	public function index()
 	{
@@ -30,11 +60,57 @@ class FilesController extends AppController
 		$data = $this->File->find('list',['fields'=>$f,'order'=>$o,'recursive' => -1]);
 		$this->set('data', $data);
 	}
-	
+
 	/**
-	 * Get current ThermoML files...
+	 * view general information about a TRC XML file
+	 * @param int $id
+	 * @param string $format
 	 */
-	public function load()
+	public function view($id,$format="html")
+	{
+		$data = $this->File->find('first', ['conditions' => ['File.id' => $id], 'contain' => $this->c, 'recursive' => -1]);
+		//debug($data);exit;
+		$file = $data['File'];
+		$ref = $data['Reference'];
+		$chems = $data['Chemical'];
+		$sets = $data['Dataset'];
+		$this->set('ref',$ref);
+		$this->set('sets',$sets);
+		//debug($sets);exit;
+	}
+
+	/**
+	 * delete a file (and all data derived from it)
+	 * @param $id
+	 * @param $return
+	 * @return
+	 */
+	public function delete($id,$return=null)
+	{
+		if($this->File->delete($id)) {
+			$this->Flash->deleted('File '.$id.' deleted!');
+			if($return==null) {
+				$this->redirect('/files/index');
+			} else {
+				return 1;
+			}
+		} else {
+			$this->Flash->deleted('File '.$id.' could not be deleted!');
+			if($return==null) {
+				$this->redirect('/files/index');
+			} else {
+				return 0;
+			}
+		}
+
+	}
+
+	// file ingestion, checking and testing
+
+	/**
+	 * Adds ThermoML files to the database to roganize them...
+	 */
+	public function loadfiles()
 	{
 		$path = WWW_ROOT . 'files' . DS . 'trc';
 		$maindir = new Folder($path);
@@ -42,7 +118,7 @@ class FilesController extends AppController
 		foreach ($files[1] as $file) {
 			$xml = simplexml_load_file($file);
 			$trc = json_decode(json_encode($xml), true);
-			
+
 			// Grab the chemical info
 			$compds = $trc['Compound'];
 			if (!isset($trc['Compound'][0])) {
@@ -67,19 +143,19 @@ class FilesController extends AppController
 				} else {
 					$sid = 0;
 				}
-				
+
 				$data = ['Chemical' => ['name' => $name, 'formula' => $formula, 'substance_id' => $sid, 'purity' => $purity, 'puritysf' => $puritysf]];
 				$this->Chemical->create();
 				$this->Chemical->save($data);
 				debug($comp);
 				exit;
 			}
-			
+
 			// Get the properties
-			
+
 			// Grab the data
 			//debug($trc);exit;
-			
+
 			// Grab the general info
 			if (isset($trc['Citation']['sDOI'])) {
 				$url = 'http://dx.doi.org/' . $trc['Citation']['sDOI'];
@@ -169,7 +245,7 @@ class FilesController extends AppController
 		}
 		exit;
 	}
-	
+
 	/**
 	 * Add TRC data
 	 * @param $max
@@ -180,7 +256,7 @@ class FilesController extends AppController
 		$path = WWW_ROOT . 'files' . DS . 'trc'. DS . 'jced';
 		$maindir = new Folder($path);
 		$files = $maindir->find('.*\.xml',true);
-		//debug($files);
+		debug($files);
 		if ($test) {
 			$files[1] = [
 				0 => WWW_ROOT . 'files/trc/jced/acs.jced.5b00619.xml',
@@ -195,6 +271,7 @@ class FilesController extends AppController
 			$file=WWW_ROOT .'files/trc/jced/'.$file;
 			$xml = simplexml_load_file($file);$count++;$errors = [];
 			$trc = json_decode(json_encode($xml), true);
+
 			// Get doi
 			$doi = null;
 			if (isset($trc['Citation']['sDOI'])) {
@@ -310,7 +387,7 @@ class FilesController extends AppController
 									$pur['puritysf'] = null;
 									$pur['purityunit_id'] = null;
 								}
-								
+
 								if (isset($p['eAnalMeth'])) {
 									if (is_array($p['eAnalMeth'])) {
 										$pur['analmeth'] = $p['eAnalMeth'];
@@ -380,11 +457,11 @@ class FilesController extends AppController
 							}
 						}
 					}
-					
+
 					$subs[] = $sub;
 					$chems[] = $chem;
 				}
-				
+
 				// Add file and link compounds
 				$temp = explode('/', $file);
 				$filename = end($temp);
@@ -460,7 +537,7 @@ class FilesController extends AppController
 					debug($errors);
 					continue;
 				}
-				
+
 				// Property data
 				if (isset($trc['PureOrMixtureData'])) {
 					$datasets = $trc['PureOrMixtureData'];
@@ -468,7 +545,7 @@ class FilesController extends AppController
 						$datasets = [0 => $datasets];
 					}
 					foreach ($datasets as $setidx => $set) {
-						
+
 						// Components
 						$coms = $set['Component'];
 						if (!isset($coms[0])) {
@@ -491,7 +568,7 @@ class FilesController extends AppController
 								$phase[] = $set['PhaseID']['ePhase'];
 							}
 						}
-						
+
 						// Add system
 						sort($cids); // sort lowest first
 						if (count($cids) == 1) {
@@ -500,14 +577,14 @@ class FilesController extends AppController
 							$idstr = implode(":", $cids);
 						}
 						$sysid = $this->getsysid($idstr, $cnames);
-						
+
 						// Create dataset
 						$temp = ['Dataset' => ['title' => 'Dataset ' . ($setidx + 1) . ' in paper ' . $doi, 'file_id' => $fid,
 							'system_id' => $sysid, 'reference_id' => $refid, 'phase' => json_encode($phase)]];
 						$this->Dataset->create();
 						$this->Dataset->save($temp);
 						$dsid = $this->Dataset->id;
-						
+
 						// Get the properties
 						$props = $set['Property'];
 						$proparray = [];
@@ -610,10 +687,10 @@ class FilesController extends AppController
 							// Padding the string as the ids do not come zerofill from the code above...
 							$proparray[$propnum] = str_pad($propid, 5, '0', STR_PAD_LEFT) . ":" . str_pad(str_pad($unitid, 5, '0', STR_PAD_LEFT), 5, '0');
 						}
-						
+
 						// Update the system based on phase data
 						$this->getsysid($idstr, $cnames, $phasearray);
-						
+
 						// Series conditions (saved for later to add to series)
 						$sconds = [];
 						if (isset($set['Constraint'])) {
@@ -638,7 +715,7 @@ class FilesController extends AppController
 									}
 									debug($propname);exit;
 								}
-								
+
 								// Get sci notation data for value
 								$e = $this->exponentialGen($number);
 								// create data to save - series_id placeholder for later
@@ -647,7 +724,7 @@ class FilesController extends AppController
 									'accuracy' => $sf, 'significand' => $e['significand'], 'exponent' => $e['exponent']]];
 							}
 						}
-						
+
 						// Check data for series
 						$vals = [];
 						$digits = [];
@@ -694,7 +771,7 @@ class FilesController extends AppController
 						} else {
 							$scondnum = null;
 						}
-						
+
 						// Conditions
 						if (isset($set['Variable'])) {
 							$conds = $set['Variable'];
@@ -774,7 +851,7 @@ class FilesController extends AppController
 						} else {
 							$condarray = [];
 						}
-						
+
 						// Create series and add series conditions
 						$serids = [];
 						if (is_null($scondnum)) {
@@ -844,7 +921,7 @@ class FilesController extends AppController
 										debug($propstr);exit;
 									}
 								}
-								
+
 								// Get sci notation data for value
 								$e = $this->exponentialGen($scondval);
 								$scond = ['Condition' => ['property_id' => $propid, 'dataseries_id' => $serids[$scidx],
@@ -865,7 +942,7 @@ class FilesController extends AppController
 								}
 							}
 						}
-						
+
 						foreach ($serids as $scidx => $serid) {
 							// Grab the data
 							$data = $set['NumValues'];
@@ -885,7 +962,7 @@ class FilesController extends AppController
 								$this->Datapoint->create();
 								$this->Datapoint->save($temp);
 								$pntid = $this->Datapoint->id;
-								
+
 								// Add conditions
 								if (isset($datum['VariableValue'])) {
 									$conds = $datum['VariableValue'];
@@ -994,7 +1071,7 @@ class FilesController extends AppController
 						}
 					}
 				}
-				
+
 				// Reaction data
 				if (isset($trc['ReactionData'])) {
 					$datasets = $trc['ReactionData'];
@@ -1024,7 +1101,7 @@ class FilesController extends AppController
 							$temp = ['orgnum' => $orgnum, 'number' => $number, 'stoichcoef' => $coef, 'phase' => $phase];
 							$reaction[] = $temp;
 						}
-						
+
 						// Add system
 						sort($cids);
 						if (count($cids) == 1) {
@@ -1033,20 +1110,20 @@ class FilesController extends AppController
 							$idstr = implode(":", $cids);
 						}
 						$sysid = $this->getsysid($idstr, $cnames);
-						
+
 						// Create dataset
 						$temp = ['Dataset' => ['title' => 'Dataset ' . ($setidx + 1) . ' in paper ' . $doi, 'file_id' => $fid,
 							'system_id' => $sysid, 'reference_id' => $refid, 'phase' => json_encode($phase)]];
 						$this->Dataset->create();
 						$this->Dataset->save($temp);
 						$dsid = $this->Dataset->id;
-						
+
 						// Create dataseries
 						$temp = ['Dataseries' => ['dataset_id' => $dsid, 'type' => 'independent set']];
 						$this->Dataseries->create();
 						$this->Dataseries->save($temp);
 						$serid = $this->Dataseries->id;
-						
+
 						// Get the properties
 						$type = $set['eReactionType'];
 						$props = $set['Property'];
@@ -1129,7 +1206,7 @@ class FilesController extends AppController
 							//$propid=0;
 							$proparray[$number] = $propid . ":" . $unitid;
 						}
-						
+
 						// Series conditions
 						if (isset($set['Constraint'])) {
 							$serconds = $set['Constraint'];
@@ -1147,7 +1224,7 @@ class FilesController extends AppController
 								$this->Condition->save($temp);
 							}
 						}
-						
+
 						// Grab the data
 						$data = $set['NumValues'];
 						if (!isset($data[0])) {
@@ -1159,7 +1236,7 @@ class FilesController extends AppController
 							$this->Datapoint->create();
 							$this->Datapoint->save($temp);
 							$pntid = $this->Datapoint->id;
-							
+
 							// Add conditions
 							foreach ($condarray as $cond) {
 								$cond['Condition']['datapoint_id'] = $pntid;
@@ -1167,7 +1244,7 @@ class FilesController extends AppController
 								$this->Condition->save($cond);
 								$this->Condition->clear();
 							}
-							
+
 							// Add data
 							$edata = $datum['PropertyValue'];
 							if (!isset($edata[0])) {
@@ -1196,7 +1273,7 @@ class FilesController extends AppController
 						}
 					}
 				}
-				
+
 				// Add datapoint stats to files table
 				$c = ['Dataset' => ['Dataseries' => ['Datapoint' => ['Data']]]];
 				$data = $this->File->find('first', ['conditions' => ['File.id' => $fid], 'contain' => $c, 'recursive' => -1]);
@@ -1226,7 +1303,34 @@ class FilesController extends AppController
 		}
 		exit;
 	}
-	
+
+	/**
+	 * check entries added to the database
+	 */
+	public function check()
+	{
+		$path = WWW_ROOT . 'files' . DS . 'trc'. DS . 'jced'. DS . 'aadone';
+		$maindir = new Folder($path);
+		$files = $maindir->find('.*\.xml',true);
+		// check files in aadone...
+		echo "Files in aadone<br/>";
+		foreach ($files as $file) {
+			if(!$this->File->find('first',['conditions'=>['filename'=>$file],'recursive'=>-1])) {
+				echo 'Filename '.$file.' not found!<br/>';
+			}
+		}
+		// check entries in files DB
+		$done=$this->File->find('list',['fields'=>['id','filename']]);
+		echo "Files in database<br/>";
+		foreach($done as $filename) {
+			if(!in_array($filename,$files)) {
+				echo 'Filename '.$filename.' not found!<br/>';
+			}
+		}
+		exit;
+		debug($files);exit;
+	}
+
 	/**
 	 * Test function
 	 */
@@ -1238,9 +1342,9 @@ class FilesController extends AppController
 		debug($search);
 		exit;
 	}
-	
+
 	/**
-	 * Get the refs for the TRC files
+	 * Get the refs for the TRC files using call to the Crossref API
 	 */
 	public function getrefs()
 	{
@@ -1253,7 +1357,32 @@ class FilesController extends AppController
 		}
 		exit;
 	}
-	
+
+	/**
+	 * get a list of the most recently added files
+	 * @param integer $l
+	 * @return mixed
+	 */
+	public function recent($l=6)
+	{
+		$data=$this->File->find('list',['fields'=>['id','title'],'order'=>['updated'=>'desc'],'limit'=>$l]);
+		$this->set('data',$data);
+		if($this->request->params['requested']) { return $data; }
+	}
+
+	/**
+	 * count the number of files
+	 * @return mixed
+	 */
+	public function totalfiles()
+	{
+		$data=$this->File->find('count');
+
+		echo $data;exit;
+	}
+
+	// private functions called by the functions above (not exposed)
+
 	/**
 	 * Get the property and unit
 	 * @param $ctype
@@ -1286,7 +1415,7 @@ class FilesController extends AppController
 		}
 		return $propname . ":" . $unitid;
 	}
-	
+
 	/**
 	 * Get the unit
 	 * @param $str
@@ -1342,10 +1471,10 @@ class FilesController extends AppController
 		} else {
 			$unitid = 17;
 		}
-		
+
 		return $unitid;
 	}
-	
+
 	/**
 	 * Get the systemid
 	 * @param $idstr
@@ -1434,7 +1563,7 @@ class FilesController extends AppController
 					$type = 'compound';
 					$subtype = 'organic compound*';
 				}
-				
+
 				$temp = ['System' => ['name' => $name, 'phase' => $phase, 'type' => $type, 'subtype' => $subtype, 'composition' => $comp, 'identifier' => $idstr]];
 			}
 			$this->System->create();
@@ -1474,7 +1603,7 @@ class FilesController extends AppController
 		}
 		return $sysid;
 	}
-	
+
 	/**
 	 * Generates a exponential number removing any zeros at the end not needed
 	 * @param $string
@@ -1545,55 +1674,33 @@ class FilesController extends AppController
 				}
 			}
 		}
-		
+
 		return $return;
 	}
-	
+
+	// temporary/used functions
+
 	/**
 	 * View file (in scidata format)
 	 * @param int $id
 	 * @param string $format
 	 */
-	public function view($id,$format="html")
+	public function view2($id,$format="html")
 	{
-		$c = ['Chemical' => [
-			'Substance'],
-			'Reference',
-			'Dataset' => [
-				'Dataseries' => [
-					'Condition' => ['Unit',
-						'Property' => ['fields' => ['name'],
-							'Quantity' => ['fields' => ['name']]]],
-					'Datapoint' => [
-						'Condition' => ['Unit',
-							'Property' => ['fields' => ['name'],
-								'Quantity' => ['fields' => ['name']]]],
-						'Data' => ['Unit',
-							'Property' => ['fields' => ['name'],
-								'Quantity' => ['fields' => ['name']]]]
-					]
-				],
-				'Sampleprop',
-				'Reactionprop',
-				'System' => [
-					'Substance' => ['fields' => ['name', 'casrn', 'formula', 'molweight', 'type'],
-						'Identifier' => ['fields' => ['type', 'value'], 'conditions' => ['type' => ['inchi', 'inchikey', 'iupacname']]]
-					]
-				]
-			]
-		];
-		$data = $this->File->find('first', ['conditions' => ['File.id' => $id], 'contain' => $c, 'recursive' => -1]);
+		$data = $this->File->find('first', ['conditions' => ['File.id' => $id], 'contain' => $this->c, 'recursive' => -1]);
+		//debug($data);exit;
+		$raw = $data;
 		$file = $data['File'];
 		$ref = $data['Reference'];
 		$chems = $data['Chemical'];
 		$sets = $data['Dataset'];
+
 		// Main metadata
-		
 		$trc = new $this->Scidata;
 		$trc->setpath("https://chalk.coas.unf.edu/trc/");
 		$trc->setbase("files/scidata/" . $id . "/");
 		$trc->setpid("trc:file:" . $id);
-		
+
 		$meta = [];
 		$meta['title'] = $file['title'];
 		$meta['description'] = "Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/";
@@ -1605,32 +1712,32 @@ class FilesController extends AppController
 			$meta['publisher'] = 'ACS Publications';
 		}
 		$trc->setmeta($meta);
-		
+
 		// authors
 		$trc->setauthors($ref['authors']);
-		
+
 		// startdate
 		$trc->setstartdate($file['date']);
-		
+
 		// permalink
 		$trc->setpermalink("files/view/" . $id);
-		
+
 		// discipline
 		$trc->setdiscipline("chemistry");
-		
+
 		// subdiscipline
 		$trc->setsubdiscipline("physical chemistry");
-		
+
 		// related
 		//$trc->setrelated();
-		
+
 		// setup variables for code below
 		$measidx = $sysidx = $chmidx = $subidx = 0;
 		$aspects = $facets = $datasets = [];
 		$meths = $syss = $subs = $chms = [];
 		$methunq = $sysunq = $subunq = $chmunq = [];
 		$syslinks=[];
-		
+
 		// chemical facets
 		// $subs => [chem orgnum] => sub id
 		foreach ($chems as $chem) {
@@ -1710,16 +1817,16 @@ class FilesController extends AppController
 				$chms[$chmidx] = $chmunq[$chem['name']];
 			}
 		}
-		
+
 		// iterate over each dataset as data, systems, methodology all related
 		foreach ($sets as $setidx => $set) {
-			
+
 			// split out data
 			$sers = $set['Dataseries'];
 			$sprops = $set['Sampleprop'];
 			$rprops = $set['Reactionprop'];
 			$sys = $set['System'];
-			
+
 			// methodology aspects
 			// $meths => [dataset idx][sampleprop idx][method idx]
 			if (!empty($sprops)) {
@@ -1757,7 +1864,7 @@ class FilesController extends AppController
 					}
 				}
 			}
-			
+
 			// system facets
 			// substances
 			if (!array_key_exists($sys['name'], $sysunq)) {
@@ -1776,7 +1883,7 @@ class FilesController extends AppController
 				if (!is_null($sys['composition'])) {
 					$systmp['composition'] = $sys['composition'];
 				}
-				
+
 				// constituent...
 				$rsubs = array_flip($subs);
 				if (count($sys['Substance']) == 1) {
@@ -1787,7 +1894,7 @@ class FilesController extends AppController
 						$systmp['constituents'][] = 'compound/' . $rsubs[$const['id']] . '/';
 					}
 				}
-				
+
 				$facets['sci:chemicalsystem'][$sysidx] = $systmp;
 				$sysunq[$sys['name']] = $sysidx;
 				$syss[$setidx] = $sysidx;
@@ -1795,18 +1902,18 @@ class FilesController extends AppController
 				// link to existing system
 				$syss[$setidx] = $sysunq[$sys['name']];
 			}
-			
+
 			// group dataset data for subsequent processing
 			$datasets[$setidx] = $sers;
-			
+
 			// ad syslink
 			$syslinks[$setidx]='chemicalsystem/'.$sysidx.'/';
 		}
-		
+
 		$conds = $sers = $datas = [];
 		$condsj = $sersj = $datasj = [];
 		$condunq = $scondlinks = $condlinks = $condmap = [];
-		
+
 		// create unique conditions array
 		foreach ($datasets as $setidx => $series) {
 			foreach ($series as $seridx => $ser) {
@@ -1825,8 +1932,9 @@ class FilesController extends AppController
 					}
 				}
 			}
-			
+
 		}
+
 		// sort condition values and create condition map
 		$mapidx = 1;
 		foreach ($condunq as $i => $prop) {
@@ -1834,7 +1942,7 @@ class FilesController extends AppController
 			$mapidx++;
 			sort($condunq[$i]);
 		}
-		
+
 		// get conditions (series and regular)
 		foreach ($datasets as $setidx => $series) {
 			foreach ($series as $seridx => $ser) {
@@ -1867,7 +1975,7 @@ class FilesController extends AppController
 				} else {
 					$scondlinks[$setidx][$seridx] = null;
 				}
-				
+
 				foreach ($ser['Datapoint'] as $pntidx => $point) {
 					if(!empty($point['Condition'])) {
 						foreach ($point['Condition'] as $condidx => $cond) {
@@ -1898,14 +2006,14 @@ class FilesController extends AppController
 					} else {
 						$condlinks[$setidx][$seridx][$pntidx] = null;
 					}
-					
+
 					foreach ($point['Data'] as $datidx => $datum) {
 						$datas[$setidx][$seridx][$pntidx][$datidx] = $datum;
 					}
 				}
 			}
 		}
-		
+
 		// sort conditions
 		foreach ($conds as $i => $prop) {
 			sort($conds[$i]['value']);
@@ -1914,7 +2022,7 @@ class FilesController extends AppController
 		foreach ($conds as $propid => $values) {
 			$facets['sci:condition'][$condmap[$propid]] = $values;
 		}
-		
+
 		// get data
 		foreach ($datas as $setidx => $dataset) {
 			$datums['dataset'][$setidx] = [];
@@ -1950,16 +2058,20 @@ class FilesController extends AppController
 				}
 			}
 		}
-		
+
 		// aspects
 		$trc->setaspects($aspects);
-		
+
 		// facets
 		$trc->setfacets($facets);
-		
+
+
+		$data=$trc->asarray();
+		debug($data);exit;
+
 		// facets
 		$trc->setdata($datums);
-		
+
 		// sources
 		$sources = [];
 		// Original Paper
@@ -2001,25 +2113,26 @@ class FilesController extends AppController
 		$thermoml['type'] = 'dataset';
 		$sources[] = $thermoml;
 		$trc->setsources($sources);
-		
+
 		// rights
 		$rights = [];
 		$rights['holder'] = 'NIST - TRC Group, Boulder CO';
 		$rights['license'] = 'http://creativecommons.org/publicdomain/zero/1.0/';
 		$rights['url'] = 'https://trc.nist.gov/ThermoML/';
 		$trc->setrights($rights);
-		
+
 		if($format=="jsonld") {
 			header("Content-Type: application/ld+json");
 			echo $trc->asjsonld();exit;
 		} else {
 			$data=$trc->asarray();
 			//debug($data);exit;
+			$this->set("raw",$raw);
 			$this->set("data",$data);
 		}
 	}
 
-    /**
+	/**
      * **Deprecated - See view** Generate SciData
      * @param $id
      * @param $down
@@ -2043,10 +2156,6 @@ class FilesController extends AppController
                         'Property'=>['fields'=>['name'],
                             'Quantity'=>['fields'=>['name']]]],
                     'Setting'=>['Unit',
-                        'Property'=>['fields'=>['name'],
-                            'Quantity'=>['fields'=>['name']]]],
-                    'SupplementalData'=>['Unit',
-                        'Metadata'=>['fields'=>['name']],
                         'Property'=>['fields'=>['name'],
                             'Quantity'=>['fields'=>['name']]]]],
                 'Annotation'
@@ -2117,8 +2226,8 @@ class FilesController extends AppController
         }
         $json['toc']=['@id'=>'toc','@type'=>'dc:tableOfContents','sections'=>[]];
 
-        // Process data series to split out conditions, settings, and supplemental data
-        $datas=$conds=$setts=$supps=[];
+        // Process data series to split out conditions, and settings
+        $datas=$conds=$setts=[];
         foreach($ser[0]['Datapoint'] as $p=>$point) {
             foreach($point['Data'] as $d=>$dval) {
                 $datas[$d][$p]=$dval;
@@ -2129,11 +2238,7 @@ class FilesController extends AppController
             foreach($point['Setting'] as $s=>$sval) {
                 $setts[$s][$p]=$sval;
             }
-            foreach($point['SupplementalData'] as $u=>$uval) {
-                $supps[$u][$p]=$uval;
-            }
         }
-        //debug($datas);debug($conds);debug($setts);debug($supps);exit;
 
         // SciData
         $setj['@id']="scidata";
@@ -2325,7 +2430,7 @@ class FilesController extends AppController
                             $v['@type']="sci:valuearray";
                             $v['numberarray']=json_decode($dtm['number'],true);
                             if($unit!="") { $v['unitref']=$unit; }
-                            $dtmj['valuearray']=$v;
+                            $dtmj['value']=$v;
                         }
                     }
                     $grpj['datapoint'][]=$dtmj;
@@ -2375,42 +2480,5 @@ class FilesController extends AppController
         echo json_encode($json,JSON_UNESCAPED_UNICODE);exit;
 
     }
-	
-	/**
-	 * Count all the files
-	 * @return mixed
-	 */
-	public function totalfiles()
-	{
-		$data=$this->File->find('count');
-		
-		echo $data;exit;
-	}
-	
-	/**
-	 * Delete a file (and all data underneath)
-	 * @param $id
-     * @param $return
-	 * @return
-	 */
-	public function delete($id,$return=null)
-	{
-		if($this->File->delete($id)) {
-			$this->Flash->deleted('File '.$id.' deleted!');
-			if($return==null) {
-				$this->redirect('/files/index');
-			} else {
-				return 1;
-			}
-		} else {
-			$this->Flash->deleted('File '.$id.' could not be deleted!');
-			if($return==null) {
-				$this->redirect('/files/index');
-			} else {
-				return 0;
-			}
-		}
-		
-	}
-	
+
 }

@@ -24,16 +24,6 @@ class DataseriesController extends AppController
     }
 
     /**
-     * Count all the dataseries
-     * @return mixed
-     */
-    public function totalfiles()
-    {
-        $data=$this->Dataseries->find('count');
-        return $data;
-    }
-
-    /**
      * Delete a dataseries
      * @param integer $id
      * @return mixed
@@ -43,5 +33,21 @@ class DataseriesController extends AppController
         $this->Dataseries->delete($id);
         return $this->redirect('/files/index');
     }
+    /**
+     * View a list of the Dataseries
+     */
+    public function index()
+    {
+        $data=$this->Dataseries->find('list',['fields'=>['id','dataset_id'],'order'=>['id'], "limit"=>50]);
+        $this->set('data',$data);
 
+        $propCount=[];
+        foreach ($data as $id => $prop) {
+            {
+                $propCount[$id]= $this->Dataseries->find('list',array('fields'=>['id']));
+            }
+
+        }
+        $this->set('propCount',$propCount);
+    }
 }

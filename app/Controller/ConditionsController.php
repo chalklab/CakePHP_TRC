@@ -17,6 +17,20 @@ class ConditionsController extends AppController
     }
 
     /**
+     * Index
+     */
+    public function index(){
+        $data=$this->conditions->find('list', ['fields'=>['id','property_name','number','unit_id'],'order'=>['property_name']]);
+        $this->set('data',$data);
+
+        $propCount=[];
+        foreach ($data as $id => $prop) {
+            $propCount[$id] = $this->Units->find('list', ['fields'=>['unit_id']]);
+        }
+        $this->set('propCount',$propCount);
+    }
+
+    /**
      * Add new condition
      */
     public function add()
@@ -41,7 +55,7 @@ class ConditionsController extends AppController
      */
     public function view($id,$uid)
     {
-        $c=['Datapoint'=>['fields'=>['id','dataseries_id'],
+        $c=['Datapoint'=>['fields'=>['id'],
             'Dataseries'=>[
                 'Dataset'=>[
                     'System'
@@ -51,10 +65,11 @@ class ConditionsController extends AppController
             'Property',
             "Unit"
         ];
-        $data=$this->Condition->find('all',['conditions'=>['Condition.property_id'=>$id,'Condition.unit_id'=>$uid],'contain'=>$c,'recursive'=>-1]);
+        $cond=['Condition.property_id'=>$id,'Condition.unit_id'=>$uid];
+        $data=$this->Condition->find('all',['conditions'=>$cond,'contain'=>$c,'recursive'=>-1]);
         $sets=[];
         foreach($data as $datum) {
-            $dsid=$datum['Datapoint']['Dataseries']['Dataset']['id'];
+            $dsid=$datum['Datapoint']['Dataset']['id'];
             $sets[$dsid]=$dsid;
         }
         $this->set('data',$sets);

@@ -1,24 +1,31 @@
-<?php //pr($data);exit; ?>
+<?php //pr($data); ?>
 <h2>Reports</h2>
-<?php foreach($data as $pub=>$reps) { ?>
-    <div class="col-sm-6">
-        <div class="panel panel-info">
+
+<div class="row">
+    <div class="col-sm-12 col-sm-offset-1">
+        <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $pub; ?><span class="badge pull-right text-success"><?php echo count($reps); ?></span></h3>
+                <h2 class="panel-title">Reports</h2>
             </div>
-            <div class="list-group" style="max-height: 200px;overflow-y:scroll;">
-                <?php
-                foreach($reps as $id=>$title) {
-                    echo "<li class='list-group-item'>".$this->Html->link(str_replace($pub.": ","",$title), '/reports/view/'.$id);
-                    if ($this->Session->read('Auth.User.type') == 'admin') { ?>
-                        <span class="badge pull-right text-info">
-                            <?php echo $this->Html->link("<span class='glyphicon glyphicon-remove' style='color: #fff;'></span>", '/reports/delete/'.$id,['escape'=>false]) ?>
-                        </span>
-                    <?php }
-                    echo "</li>";
-                }
-                ?>
+            <div class='list-group'>
+                <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+
+                                </h4>
+                            </div>
+                                <div class="panel-body">
+                                    <?php foreach ($data as $id => $title) {
+                                        echo $this->Html->link($title." (".$id.")",'/Reports/view/'.$id,['class'=>'list-group-item']);
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
             </div>
         </div>
     </div>
-<?php } ?>
+</div>

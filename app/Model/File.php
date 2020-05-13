@@ -16,12 +16,14 @@ class File extends AppModel
             'dependent' => true],
 		'Dataset'=> [
 		    'foreignKey' => 'file_id',
-		    'dependent' => true
-	    ]
+		    'dependent' => true],
+
     ];
 
-    public $belongsTo = ['Reference'];
-	
+    public $belongsTo = ['Journal','Reference'];
+
+    //public $virtualFields=['titlecount'=>"concat(File.title,' (',File.datapoints,')'"];
+
 	/**
 	 * General function to add a new file
 	 * @param array $data

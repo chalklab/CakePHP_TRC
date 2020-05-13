@@ -8,7 +8,7 @@
 
 class SystemsController extends AppController {
 
-    public $uses=['System','SubstancesSystem'];
+    public $uses=['System','SubstancesSystem','File'];
 
     /**
      * beforeFilter function
@@ -25,41 +25,16 @@ class SystemsController extends AppController {
     public function view($id)
     {
         $contain=[
-            'Substance',
+            'Substance'=>['Identifier'],
             'Dataset'=>[
-                'Propertytype','Reference','Dataseries'=>[
+                'Reference',
+                'Dataseries'=>[
                     'Datapoint'=>[
-                        'Condition'=>['Unit'],'Data'=>['Unit'],'Setting'=>['Unit']]]
+                        'Condition'=>['Unit'],'Data'=>['Unit'],'Setting'=>['Unit']]],
+                'Sampleprop'
             ]
         ];
-        $temp=$this->System->find('first',['conditions'=>['System.id'=>$id],'contain'=>$contain]);
-        $data=[];
-        $sets=$temp['Dataset'];
-        debug($sets);exit;
-        foreach($sets as $set) {
-            $ref=$set['Reference']['doi'];
-            foreach($set['Dataseries'] as $ser) {
-                foreach($ser['Datapoint'] as $point) {
-                    foreach($point['Condition'] as $cond) {
-                        $cnum=$cond['number'];
-                        $cunit=$cond['Unit']['symbol'];
-                    }
-                    foreach($point['Data'] as $dpoint) {
-                        $dnum=$dpoint['number'];
-                        $dunit=$dpoint['Unit']['symbol'];
-                    }
-                    foreach($point['Setting'] as $spoint) {
-                        $snum=$spoint['number'];
-                        $sunit=$spoint['Unit']['symbol'];
-                    }
-                    $data['Data'][]=['ref'=>$ref,'condition'=>['n'=>$cnum,'u'=>$cunit],
-                                'data'=>['n'=>$dnum,'u'=>$dunit],'setting'=>['n'=>$snum,'u'=>$sunit]];
-                }
-            }
-        }
-        $data['System']=$temp['System'];
-        $data['Substance']=$temp['Substance'];
-        //debug($data);exit;
+        $data=$this->System->find('first',['conditions'=>['System.id'=>$id],'contain'=>$contain]);
         $this->set('data',$data);
     }
 

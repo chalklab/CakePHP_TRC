@@ -22,7 +22,7 @@
 	echo $this->Html->script('jqcake');
 	echo $this->Html->script('bootstrap.min');
 	echo $this->Html->script('jsmol/JSmol.min.nojq');
-	echo $this->Html->script('https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML',['async'=>true]);
+	//echo $this->Html->script('https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML',['async'=>true]);
     echo $this->fetch('meta');
 	echo $this->fetch('css');
 	echo $this->fetch('script');

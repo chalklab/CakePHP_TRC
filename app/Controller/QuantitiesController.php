@@ -23,7 +23,7 @@ class QuantitiesController extends AppController
      */
     public function index()
     {
-        $data=$this->Quantity->find('list',['fields'=>['Quantity.id','base'],'order'=>['base']]);
+        $data=$this->Quantity->find('list',['fields'=>['Quantity.id','name'],'order'=>['name']]);
         //echo "<pre>";print_r($data);echo "</pre>";exit;
         $this->set('data',$data);
     }

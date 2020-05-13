@@ -145,17 +145,6 @@ $codes=$data['Refcode'];
                                 }
                                 echo "</th>";
                             }
-                            foreach ($dump['Dataseries'][$i]['Datapoint'][0]['SupplementalData'] as $suppdata) {
-                                if(!is_null($suppdata['text'])&&!empty($suppdata['Metadata'])) {
-                                    echo "<th title=\"".$suppdata['Metadata']['description']."\">" . $suppdata['Metadata']['name']." ";
-                                } else {
-                                    echo "<th title=\"".$suppdata['Property']['name']."\">".$suppdata['Property']['symbol'];
-                                    if($suppdata['Unit']['symbol'] ) {
-                                        echo " (".$suppdata['Unit']['symbol'].")";
-                                    }
-                                }
-                                echo "</th>";
-                            }
                             foreach ($dump['Dataseries'][$i]['Datapoint'][0]['Annotation'] as $ann) {
                                 echo "<th>";
                                 if(!is_null($ann['text'])) {
@@ -268,29 +257,6 @@ $codes=$data['Refcode'];
                                         }
                                         echo "</td>";
                                     }
-                                }
-                                foreach ($series['Datapoint'][$i]['SupplementalData'] as $suppdata) {
-                                    echo "<td>";
-                                    if (!is_null($suppdata['text'])&&!empty($suppdata['Metadata'])) {
-                                        echo $suppdata['text'];
-                                    } else {
-                                        if (isset($_GET['numDisplay'])&&$_GET['numDisplay']=="exp") { //if exponential is requested
-                                            if($suppdata['number']!==null) {
-                                                echo $suppdata['number']; //if we didn't request exponential then convert to float and display
-                                            }
-                                            if((float)$suppdata['error']!==0.0) { //if the error is not 0.0
-                                                echo " ± " . $suppdata['error']; //print error
-                                            }
-                                        } else {
-                                            if($suppdata['number']!==null) {
-                                                echo ((float)$suppdata['number']); //if we didn't request exponential then convert to float and display
-                                            }
-                                            if((float)$suppdata['error']!==0.0) { //if the error is not 0.0
-                                                echo " ± " . ((float)$suppdata['error']);//print error
-                                            }
-                                        }
-                                    }
-                                    echo "</td>";
                                 }
                                 foreach ($series['Datapoint'][$i]['Annotation'] as $ann) {
                                     echo "<td>";

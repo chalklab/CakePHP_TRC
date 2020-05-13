@@ -26,11 +26,14 @@ class Compound extends AppModel
     public function cid($type="name",$value="")
     {
         $HttpSocket = new HttpSocket();
-        $nss=Configure::read('compound.namespaces');
+		if($type=="cas") { $type="name"; }
+		$nss=Configure::read('compound.namespaces');
         if(in_array($type,$nss)) {
             if($type=="inchi") {
                 $url=$this->path.$type.'/cids/JSON'; // value is in post data
-            } else {
+			} elseif($type=="formula") {
+				$url=$this->path.'fastformula/'.rawurlencode($value).'/cids/JSON';
+			} else {
                 $url=$this->path.$type.'/'.str_replace(' ','%20',$value).'/cids/JSON';
             }
         } else {
@@ -61,16 +64,27 @@ class Compound extends AppModel
     public function property($props,$cid) {
         $HttpSocket = new HttpSocket();
         $ps=Configure::read('compound.props');
-        if(in_array($props,$ps)) {
-            if($props=='synonyms') {
-                $url=$this->path.'cid/'.rawurlencode($cid).'/synonyms/JSON';
-            } else {
-                $url=$this->path.'cid/'.rawurlencode($cid).'/property/'.$props.'/JSON';
-            }
-        } else {
-            return false;
-        }
-        //echo $url."<br />";
+		if(stristr($props,",")) {
+			$props2=explode(",",$props);
+			foreach($props2 as $idx=>$prop) {
+				if(!in_array($prop,$ps)) {
+					unset($props2[$idx]);
+				}
+			}
+			$props=implode(',',$props2);
+			$url=$this->path.'cid/'.rawurlencode($cid).'/property/'.$props.'/JSON';
+		} else {
+			if (in_array($props, $ps)) {
+				if ($props == 'synonyms') {
+					$url = $this->path . 'cid/' . rawurlencode($cid) . '/synonyms/JSON';
+				} else {
+					$url = $this->path . 'cid/' . rawurlencode($cid) . '/property/' . $props . '/JSON';
+				}
+			} else {
+				return [];
+			}
+		}
+		//echo $url."<br />";
         $json=$HttpSocket->get($url);
         $meta=json_decode($json['body'],true);
         if(isset($meta['Fault'])) {
@@ -94,14 +108,13 @@ class Compound extends AppModel
     public function check($name,$cas="")
     {
         // Get CID if exists by checking name then CAS
-        $cid=$this->cid($name);
+        $cid=$this->cid("name",$name);
         if($cid==false) {
-            $cid=$this->cid($cas);
+            $cid=$this->cid("cas",$cas);
             if($cid==false) {
                 return false;
             }
         }
-        //echo $cid;exit;
         // Get property data
         $props="MolecularFormula,MolecularWeight,CanonicalSMILES,InChI,InChIKey,IUPACName";
         return $this->property($props,$cid);

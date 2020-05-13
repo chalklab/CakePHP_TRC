@@ -22,15 +22,21 @@ class DataController extends AppController
         $data=$this->Data->find('first',['conditions'=>['Data.id'=>$id],'recursive'=>5]);
         $this->set('Data',$data);
     }
-
     /**
-     * Total files
-     * @return mixed
+     * View a list of the Data
      */
-    public function totalfiles()
+    public function index()
     {
-        $data=$this->Data->find('count');
-        return $data;
-    }
+        $data=$this->Data->find('list',['fields'=>['id','datapoint_id'],'order'=>['id'], "limit"=>20]);
+        $this->set('data',$data);
 
+        $propCount=[];
+        foreach ($data as $id => $prop) {
+            {
+                $propCount[$id]= $this->Data->find('list',array('fields'=>['id']));
+            }
+
+        }
+        $this->set('propCount',$propCount);
+    }
 }

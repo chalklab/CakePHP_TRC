@@ -12,7 +12,7 @@ class Report extends AppModel
             'dependent' => true]
     ];
 
-    public $belongsTo = ['Publication'];
+    public $belongsTo = ['System','Reference'];
 
     /**
      * Returns DB data so that it can be used to generate scidata json
@@ -24,7 +24,7 @@ class Report extends AppModel
         // Note: there is an issue with the retrival of susbtances under system if id is not requested as a field
         // This is a bug in CakePHP as it works without id if its at the top level...
         $contain=[
-            'Publication'=>['fields'=>['id','title'],
+            'Report'=>['fields'=>['id','title'],
                 'Propertygroup'=>['fields'=>['id','description']]],
             'Dataset'=>[
                 'File'=>['fields'=>['filename','url','num_systems']],
@@ -35,9 +35,6 @@ class Report extends AppModel
                         'Property'=>['fields'=>['name']],
                         'Unit'=>['fields'=>['name']]],
                     'Variable'=>['fields'=>['identifier','symbol'],
-                        'Property'=>['fields'=>['name']],
-                        'Unit'=>['fields'=>['name']]],
-                    'SuppParameter'=>['fields'=>['identifier','symbol'],
                         'Property'=>['fields'=>['name']],
                         'Unit'=>['fields'=>['name']]]],
                 'System'=>['fields'=>['id','name','description','type'],
@@ -57,8 +54,8 @@ class Report extends AppModel
                         'Setting'=>['fields'=>['datatype','text','number','error'],
                             'Property'=>['fields'=>['name']],
                             'Unit'=>['fields'=>['name','symbol']]]]]]];
-        //$joins=[['table'=>'propertygroups_publications','alias'=>'PropertygroupsPublication','type'=>'left','conditions'=>['Publication.id = PropertygroupsPublication.publication_id']],
-        //       ['table'=>'propertygroups','alias'=>'Propertygroup','type'=>'left','conditions'=>['PropertygroupsPublication.propertygroup_id = Propertygroup.id']]];,'joins'=>$joins
+        //$joins=[['table'=>'propertygroups_Reports','alias'=>'PropertygroupsReport','type'=>'left','conditions'=>['Report.id = PropertygroupsReport.report_id']],
+        //       ['table'=>'propertygroups','alias'=>'Propertygroup','type'=>'left','conditions'=>['PropertygroupsJournal.propertygroup_id = Propertygroup.id']]];,'joins'=>$joins
 
         $data=$this->find('first',['conditions'=>['Report.id'=>$id],'contain'=>$contain]);
         return $data;

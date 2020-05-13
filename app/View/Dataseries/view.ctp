@@ -118,4 +118,3 @@ $ref=$Dataseries['Dataset']['Reference'];
         $this->Html->link($ref["title"],'http://dx.doi.org/'.$ref['doi'])."<i>"." ".$ref['journal']."</i>".". "."<b>".$ref['year']."</b>".", ".$ref['volume'].", ".$ref['startpage']." - ".$ref['endpage'];
     ?>
     </ul>
-

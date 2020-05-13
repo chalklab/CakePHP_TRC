@@ -2,9 +2,8 @@
 
 /**
  * Class IdentifiersController
- * Actions related to dealing with units
+ * Actions related to dealing with compound identifiers
  * @author Stuart Chalk <schalk@unf.edu>
- *
  */
 class IdentifiersController extends AppController
 {
@@ -37,26 +36,21 @@ class IdentifiersController extends AppController
         }
         echo count($subs)."<br />";exit;
     }
+    /**
+     * View a list of the Identifiers
+     */
+    public function index()
+    {
+        $data=$this->Identifier->find('list',['fields'=>['id','type','value'],'order'=>['id'], "limit"=>50]);
+        $this->set('data',$data);
 
-    
-    public function classy()
-	{
-		$key='LVTYICIALWPMFW-UHFFFAOYSA-N';
-		$json=file_get_contents('http://classyfire.wishartlab.com/entities/'.$key.'.json');
-		$classy=json_decode($json,true);
-		$kingdom=$classy['kingdom']['name'];
-		if($kingdom=='Inorganic compounds') {
-			$superclass=$classy['superclass']['name'];
-			if($superclass=='Homogeneous metal compounds') {
-				// elements!
-				$type='element';$subtype='';
-			} else {
-				$type='compound';$subtype='inorganic compound';
-			}
-			
-		} elseif($kingdom=='Organic compounds') {
-			$type='compound';$subtype='organic compound';
-		}
-		debug($kingdom);exit;
-	}
+        $propCount=[];
+        foreach ($data as $id => $prop) {
+            {
+                $propCount[$id]= $this->Substance->find('list',array('fields'=>['id']));
+            }
+
+        }
+        $this->set('propCount',$propCount);
+    }
 }

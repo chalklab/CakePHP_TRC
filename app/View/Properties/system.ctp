@@ -4,7 +4,7 @@ $dat=$data['Data'];
 pr($data);
 ?>
 <h2><?php echo $sys['name']; ?></h2>
-<p>Description: <?php echo $sys['description'];?></p>
+<p>Phase: <?php echo $sys['phase'];?></p>
 <p>Type: <?php echo $sys['type'];?></p>
 <div class="col-md-12">
 	<div class="panel panel-primary">
@@ -18,7 +18,6 @@ pr($data);
 					<th>Conditions</th>
 					<th>Data</th>
 					<th>Settings</th>
-					<th>Supplemental Data</th>
 					<th>References</th>
 				</tr>
 				</thead>

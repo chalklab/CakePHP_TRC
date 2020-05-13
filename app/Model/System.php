@@ -7,9 +7,9 @@
 class System extends AppModel
 {
     // Links to special join table directly between data and systems
-    public $hasAndBelongsToMany = ['Substance','Data'];
+    public $hasAndBelongsToMany = ['Substance','Data','File'];
 
-    public $hasMany = ['Dataset'];
+    public $hasMany = ['Dataset','Condition'];
 
     public $virtualFields=['first' => 'UPPER(SUBSTR(System.name,1,1))'];
 }

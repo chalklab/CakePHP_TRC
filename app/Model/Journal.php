@@ -8,7 +8,7 @@ class Journal extends AppModel
 {
 	
 	public $hasMany = ['Reference','File'];
-	
+
 	/**
 	 * General function to add a new file
 	 * @param array $data

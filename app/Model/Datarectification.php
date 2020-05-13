@@ -15,7 +15,7 @@ class Datarectification extends AppModel {
      */
     public function getEquations($lines,$addtolines,$eqndata,$serieslines)
     {
-        $anns=$eqndata['anns'];$sups=$eqndata['sups'];
+        $anns=$eqndata['anns'];
         $terms=$eqndata['terms'];$vars=$eqndata['vars'];$limits=$eqndata['limits'];
         $ops=$eqndata['ops'];$props=$eqndata['props'];$units=$eqndata['units'];
         $eqns=[];$series=null;
@@ -99,12 +99,6 @@ class Datarectification extends AppModel {
                         $eqns[$dataline]['anns'][]=$ann;
                     }
                 }
-                foreach($sups as $sup) {
-                    if($sup['location']['line']==$line) {
-                        unset($sup['location']);
-                        $eqns[$dataline]['sups'][]=$sup;
-                    }
-                }
             }
         }
         return $eqns;
@@ -177,32 +171,13 @@ class Datarectification extends AppModel {
             // Update the substance table with info on the shubstance from classyfire
 			// URL format http://classyfire.wishartlab.com/entities/LVTYICIALWPMFW-UHFFFAOYSA-N.json
 			$key=$Identifier->getfield('value',['substance_id'=>$chemical['id'],'type'=>'inchikey']);
-			$headers=get_headers('http://classyfire.wishartlab.com/entities/'.$key.'.json');
-			if(stristr($headers[0],'OK')) {
-				$json=file_get_contents('http://classyfire.wishartlab.com/entities/'.$key.'.json');
-				$classy=json_decode($json,true);
-				if(!empty($classy)) {
-					$kingdom=$classy['kingdom']['name'];
-					$type=null;$subtype=null;
-					if($kingdom=='Inorganic compounds') {
-						$superclass=$classy['superclass']['name'];
-						if($superclass=='Homogeneous metal compounds') {
-							$type='element';$subtype='';// elements!
-						} else {
-							$type='compound';$subtype='inorganic compound';
-						}
-					} elseif($kingdom=='Organic compounds') {
-						$type='compound';$subtype='organic compound';
-					}
-				} else {
-					$type='compound';$subtype='not found on classyfire';
-				}
-			} else {
-				$type='compound';$subtype='organic compound*';
+			$classes=$Identifier->classy($key);
+            if(!$classes) {
+            	$classes=["type"=>"not found","subtype"=>"not found"];
 			}
 			$Substance->id=$chemical['id'];
-			$Substance->saveField('type',$type);
-			$Substance->saveField('subtype',$subtype);
+			$Substance->saveField('type',$classes["type"]);
+			$Substance->saveField('subtype',$classes["subtype"]);
 			$Substance->clear();
 			
 			// Add other names if the are available
@@ -597,7 +572,6 @@ class Datarectification extends AppModel {
         // Load models
         $Dataseries=ClassRegistry::init('Dataseries');
         $Annotation=ClassRegistry::init('Annotation');
-        $SuppData=ClassRegistry::init('SupplementalData');
         $Set=ClassRegistry::init('Dataset');
         $Equation=ClassRegistry::init('Equation');
         $Eqnops=ClassRegistry::init('Eqnops');
@@ -694,34 +668,6 @@ class Datarectification extends AppModel {
                     $Annotation->clear();
                 }
             }
-            if(!empty($eqn['sups'])) {
-                foreach($eqn['sups'] as $sup) {
-                    if($sup['value']!='') {
-                        $value=$sup['value'];
-                        if(is_numeric($value)) {
-                            if(is_array($value)) {
-                                $e=$this->exponentialGen($value[0]);
-                                $stype="array";
-                            } else {
-                                $e=$this->exponentialGen($value);
-                                $stype="datum";
-                            }
-                            ($sup['datatype']=="integer") ? $exact=1 : $exact=0;
-                            (isset($sup['error'])) ? $error=$sup['error'] : $error=$e['error'];
-                            $suppArray=['SupplementalData'=>['equation_id'=>$eqn['equation_id'],'property_id'=>$sup['property'],'dataformat'=>$stype,
-                                'number'=>$e['scinot'],'significand'=>$e['significand'],'exponent'=>$e['exponent'],'error'=>$error,
-                                'metadata_id'=>$sup['metadata'],'error_type'=>'absolute','unit_id'=>$sup['unit'],'accuracy'=>$e['dp'],'exact'=>$exact]];
-                        } elseif($sup['datatype']=="string"||is_string($value)) {
-                            $suppArray=['SupplementalData'=>['equation_id'=>$eqn['equation_id'],'property_id'=>$sup['property'],'unit_id'=>$sup['unit'],
-                                'metadata_id'=>$sup['metadata'], 'datatype'=>$sup['datatype'],'dataformat'=>'datum','text'=>$value]];
-                        }
-                        $SuppData->create();
-                        $SuppData->save($suppArray);
-                        $eqn['suppdata_id'][] = $SuppData->id;
-                        $SuppData->clear();
-                    }
-                }
-            }
 
             // Add reference to equation in data_systems table
             $DataSys->create();
@@ -747,7 +693,6 @@ class Datarectification extends AppModel {
         $Annotation=ClassRegistry::init('Annotation');
         $Setting=ClassRegistry::init('Setting');
         $Data=ClassRegistry::init('Data');
-        $SuppData=ClassRegistry::init('SupplementalData');
         $errors=ClassRegistry::init('Error');
         $Set=ClassRegistry::init('Dataset');
         $DataSys=ClassRegistry::init('DataSystem');
@@ -894,8 +839,8 @@ class Datarectification extends AppModel {
                 $datum['datapoint_id']=$Datapoint->id;
                 $Datapoint->clear();
 
-                // Now add the data, condition(s), supplementaldata, annotations
-                // data/conditions/suppdata:  dataset_id (needed?), dataseries_id (needed?), datapoint_id, property_id, datatype,
+                // Now add the data, condition(s), annotations
+                // data/conditions:  dataset_id (needed?), dataseries_id (needed?), datapoint_id, property_id, datatype,
                 //                   number (remove?), significand, exponent, error, error_type, unit_id, accuracy, exact, text
                 // annotations: datapoint_id, text, comment?
 
@@ -1013,45 +958,7 @@ class Datarectification extends AppModel {
                     $DataSys->save(['DataSystem'=>['dataset_id'=>$data['dataset_id'],'data_id'=>$data['data'][$didx],'system_id'=>$sysid]]);
                     $DataSys->clear();
                 }
-
-                // Supplemental Data
-                if(isset($datum['suppdata'])&&!empty($datum['suppdata'])) {
-                    foreach($datum['suppdata'] as $sidx=>$s) {
-                        $value=$s['value'];
-                        if(is_array($s['value'])) {
-                            $stype="array";
-                        } else {
-                            $stype="datum";
-                        }
-                        if(is_numeric($value)) {
-                            if(is_array($s['value'])) {
-                                $e=$this->exponentialGen($value[0]);
-                            } else {
-                                $e=$this->exponentialGen($value);
-                            }
-                            ($s['datatype']=="integer") ? $exact=1 : $exact=0;
-                            if(isset($datum['errors'][$eindex])&&$datum['errors'][$eindex]['label']==$s['label']) {
-                                $error=$datum['errors'][$eindex]['value'];$eindex++;
-                            } elseif(isset($datum['errors'][$eindex])&&$datum['errors'][$eindex]['label']!=$s['label']) {
-                                $com='Error set ('.$datum['errors'][$eindex]['value'].') but labels dont match';
-                                $error=$e['error'];
-                            } else {
-                                $error=$e['error'];
-                            }
-                            $suppArray=['SupplementalData'=>['datapoint_id'=>$datum['datapoint_id'],'property_id'=>$s['property'],'dataformat'=>$stype,
-                                'number'=>$e['scinot'],'significand'=>$e['significand'],'exponent'=>$e['exponent'],'error'=>$error,
-                                'error_type'=>'absolute','unit_id'=>$s['unit'],'accuracy'=>$e['dp'],'exact'=>$exact]];
-                        } elseif($s['datatype']=="string"||is_string($value)) {
-                            $suppArray=['SupplementalData'=>['datapoint_id'=>$datum['datapoint_id'],'property_id'=>$s['property'],'unit_id'=>$s['unit'],
-                                'metadata_id'=>$s['metadata'], 'datatype'=>$s['datatype'],'dataformat'=>$stype,'text'=>$value]];
-                        }
-                        $SuppData->create();
-                        $SuppData->save($suppArray);
-                        $data['suppdata'][$sidx]=$SuppData->id;
-                        $SuppData->clear();
-                    }
-                }
-
+                
                 // Annotations
                 if(isset($datum['annotations'])&&!empty($datum['annotations'])) {
                     foreach ($datum['annotations'] as $aidx => $a) {
@@ -1187,16 +1094,6 @@ class Datarectification extends AppModel {
                 }
             }
 
-            // Add the suppdata
-            $points[$line]['suppdata'] = [];
-            foreach($data['suppdata'] as $s=>$supp) {
-                if($supp['location']['line']==$line) {
-                    unset($supp['location']); // Not needed any more...
-                    $points[$line]['series']=$series;
-                    $points[$line]['suppdata'][]=$supp;
-                }
-            }
-
             // Add the annotations
             $points[$line]['annotations'] = [];
             foreach($data['annotations'] as $a=>$ann) {
@@ -1212,7 +1109,7 @@ class Datarectification extends AppModel {
         // Remove any points that are empty
         $lastpointline=0;
         foreach($points as $p=>$point) {
-            if(empty($point['conditions'])&&empty($point['data'])&&empty($point['errors'])&&empty($point['suppdata'])&&empty($point['annotations'])) {
+            if(empty($point['conditions'])&&empty($point['data'])&&empty($point['errors'])&&empty($point['annotations'])) {
                 unset($points[$p]);
             } elseif(!empty($point['annotations'])&&empty($point['data'])&&$lastpointline!=0) {
                 $lastanns=$points[$lastpointline]['annotations'];
@@ -1225,7 +1122,7 @@ class Datarectification extends AppModel {
                         }
                     }
                 }
-                if(empty($points[$p]['conditions'])&&empty($points[$p]['data'])&&empty($points[$p]['errors'])&&empty($points[$p]['suppdata'])&&empty($points[$p]['annotations'])) {
+                if(empty($points[$p]['conditions'])&&empty($points[$p]['data'])&&empty($points[$p]['errors'])&&empty($points[$p]['annotations'])) {
                     unset($points[$p]);
                 }
             } elseif(!empty($point['annotations'])&&!empty($point['data'])) {
@@ -1273,13 +1170,6 @@ class Datarectification extends AppModel {
                     if($exptdata['location']['line']==$sline) {
                         $smap[$sline]='d';
                         $smapstr.='d';
-                        continue 2;
-                    }
-                }
-                foreach($data['suppdata'] as $supp) {
-                    if($supp['location']['line']==$sline) {
-                        $smap[$sline]='s';
-                        $smapstr.='s';
                         continue 2;
                     }
                 }
@@ -1337,7 +1227,7 @@ class Datarectification extends AppModel {
             }
 
 
-            $conds=$exptdata=$anns=$supps=[];
+            $conds=$exptdata=$anns=[];
             foreach($data['conditions'] as $cond) {
                 // Get all the conditions for this ref
                 if(in_array($cond['location']['line'],$slines)) {
@@ -1352,13 +1242,6 @@ class Datarectification extends AppModel {
                     $exptdata[]=$datum;
                 }
             }
-            foreach($data['suppdata'] as $supp) {
-                // Get all the conditions for this ref
-                if (in_array($supp['location']['line'],$slines)) {
-                    unset($supp['location']);
-                    $supps[] = $supp;
-                }
-            }
             foreach($data['annotations'] as $ann) {
                 // Get all the conditions for this ref
                 if(in_array($ann['location']['line'],$slines)) {
@@ -1369,7 +1252,7 @@ class Datarectification extends AppModel {
             //debug($slines);debug($conds);
             // Aggregate points (could use conds or exptdata in foreach)
             foreach($conds as $idx=>$cond) {
-                $point=['conditions'=>[],'data'=>[],'suppdata'=>[],'annotations'=>[]];
+                $point=['conditions'=>[],'data'=>[],'annotations'=>[]];
                 if($cond['value']!=""&&isset($exptdata[$idx])) {
                     $point['conditions'][]=$cond;
                     if(!empty($conds2)) {
@@ -1377,9 +1260,6 @@ class Datarectification extends AppModel {
                     }
                     $point['data'][]=$exptdata[$idx];
                     $point['series']=$serid;
-                    if(isset($supps[$idx])) {
-                        $point['suppdata'][]=$supps[$idx];
-                    }
                     if(isset($anns[$idx])) {
                         $point['annotations'][]=$anns[$idx];
                     }
@@ -1572,27 +1452,5 @@ class Datarectification extends AppModel {
                 }
             }
         }
-        if(isset($properties['SuppParameter'])) {
-            foreach ($properties['SuppParameter'] as $prop) {
-                if ($key == $prop['parameter_num']) {
-                    $return['type'] = $prop['identifier'];
-                    if (count($prop['Unit']) === 1) {
-                        $return['unit'] = $prop['Unit'][0]['id'];
-                        $return['property'] = $prop['property_id'];
-                        return $return;
-                    } elseif (count($prop['Unit']) > 1) {
-                        $found = false;
-                        foreach ($prop['Unit'] as $unit) {
-                            if ($unit['ParametersUnit']['header'] == $value) {
-                                $return['unit'] = $unit['id'];
-                                $return['property'] = $prop['property_id'];
-                                return $return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
-
 }

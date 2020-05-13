@@ -50,4 +50,10 @@ class UnitsController extends AppController
 		$qudt=$this->Unit->find('list',['fields'=>['qudt','symbol'],'recursive'=>-1]);
 		return $qudt;
 	}
+    public function view($id)
+    {
+        $data=$this->Unit->find('first',['conditions'=>['Unit.id'=>$id],'recursive'=>3]);
+        echo "<pre>";print_r($data);echo "</pre>";exit;
+        $this->set('data',$data);
+    }
 }

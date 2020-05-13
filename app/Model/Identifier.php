@@ -48,7 +48,12 @@ class Identifier extends AppModel {
             return false;
         }
     }
-
+	
+	/**
+	 * Find compound by CASRN on CIR
+	 * @param $name
+	 * @return bool|mixed
+	 */
     public function getcircas($name)
 	{
 		$syns=$this->cir("cas",$name);
@@ -84,11 +89,61 @@ class Identifier extends AppModel {
 		}
 	}
 	
+	/**
+	 * Get the value of an identifier field
+	 * @param $field
+	 * @param $cond
+	 * @return bool
+	 */
 	public function getfield($field,$cond)
 	{
 		$j=$this->find('first',['conditions'=>$cond,'recursive'=>-1]);
 		if(!empty($j)) {
 			return $j['Identifier'][$field];
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Function to get the kingdom($type) and superclass($subtype)
+	 * of a compound from ClassyFire based on InChIKey
+	 * @param $key
+	 * @return array|bool
+	 */
+	public function classy($key)
+	{
+		if(preg_match('/[A-Z]{14}-[A-Z]{10}-[A-Z,0-9]/',$key)) {
+			$type=$subtype="";
+			$path='http://classyfire.wishartlab.com/entities/';
+			$headers=get_headers($path.$key.'.json');
+			if(stristr($headers[0],'OK')) {
+				$json=file_get_contents($path.$key.'.json');
+				$classy=json_decode($json,true);
+				if(!empty($classy)) {
+					$kingdom=$classy['kingdom']['name'];
+					$type=null;$subtype=null;
+					if($kingdom=='Inorganic compounds') {
+						$superclass=$classy['superclass']['name'];
+						if($superclass=='Homogeneous metal compounds') {
+							$type='element';$subtype='';// elements!
+						} else {
+							$type='compound';$subtype='inorganic compound';
+						}
+					} elseif($kingdom=='Organic compounds') {
+						$type='compound';$subtype='organic compound';
+					}
+				} else {
+					$type='compound';$subtype='not found on classyfire';
+				}
+			} else {
+				$type='compound';$subtype='organic compound*';
+			}
+			if($type==""&&$subtype=="") {
+				return false;
+			} else {
+				return ['type'=>$type,"subtype"=>$subtype];
+			}
 		} else {
 			return false;
 		}
