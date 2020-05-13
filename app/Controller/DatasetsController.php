@@ -699,7 +699,7 @@ class DatasetsController extends AppController
         //debug($ser);exit;
         $cid++;
         // Dataseries conditions
-        if(!is_null($ser[0]['Condition'])) {
+		if(!is_null($ser[0]['Condition'])) {
             foreach($ser[0]['Condition'] as $scidx=>$scond) {
                 $scondj=[];$cid++;
                 $scondj['@id'] = "condition/".$cid."/";
