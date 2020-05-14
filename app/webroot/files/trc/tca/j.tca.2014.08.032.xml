@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Neacsu, A.[Ana]</sAuthor>
+		<sAuthor>Gheorghe, D.[Daniela]</sAuthor>
+		<sAuthor>Contineanu, I.[Iulia]</sAuthor>
+		<sAuthor>Tanasescu, S.[Speranta]</sAuthor>
+		<sAuthor>Perisanu, S.[Stefan]</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2014</yrPubYr>
+		<dateCit>2014-11-28</dateCit>
+		<sTitle>A thermochemical study of serine stereoisomers</sTitle>
+		<sKeyword>Serine</sKeyword>
+		<sKeyword>Combustion</sKeyword>
+		<sKeyword>Formation enthalpy</sKeyword>
+		<sKeyword>DSC</sKeyword>
+		<sKeyword>Group additivity</sKeyword>
+		<sDOI>10.1016/j.tca.2014.08.032</sDOI>
+		<sVol>595</sVol>
+		<sPage>1-5</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>L-serine</sCommonName>
+		<sFormulaMolec>C3H7NO3</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<ePurifMethod>Dried in a desiccator</ePurifMethod>
+				<ePurifMethod>Dried by oven heating</ePurifMethod>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>D-serine</sCommonName>
+		<sFormulaMolec>C3H7NO3</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<ePurifMethod>Dried in a desiccator</ePurifMethod>
+				<ePurifMethod>Dried by oven heating</ePurifMethod>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>DL-serine</sCommonName>
+		<sFormulaMolec>C3H7NO3</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<ePurifMethod>Dried in a desiccator</ePurifMethod>
+				<ePurifMethod>Dried by oven heating</ePurifMethod>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>carbon dioxide</sCommonName>
+		<sFormulaMolec>CO2</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>nitrogen</sCommonName>
+		<sFormulaMolec>N2</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>7</nOrgNum>
+		</RegNum>
+		<sCommonName>oxygen</sCommonName>
+		<sFormulaMolec>O2</sFormulaMolec>
+	</Compound>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>3</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>0.5</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>3.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			<nStoichiometricCoef>-3.25</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/28/2014</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar internal energy of reaction at constant volume, kJ/mol</ePropName>
+						<sMethodName>Static bomb calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-1443.2</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>1.05</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-1.72816148483941</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>3</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>0.5</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>3.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			<nStoichiometricCoef>-3.25</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/28/2014</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar internal energy of reaction at constant volume, kJ/mol</ePropName>
+						<sMethodName>Static bomb calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-1442.3</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>1.15</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-1.72708377881367</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>3</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>0.5</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>3.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			<nStoichiometricCoef>-3.25</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/28/2014</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar internal energy of reaction at constant volume, kJ/mol</ePropName>
+						<sMethodName>Static bomb calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-1435.7</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>.6</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-1.71918060129154</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2010</yrYrPub>
+			<sAuthor1>zai</sAuthor1>
+			<sAuthor2>eme</sAuthor2>
+			<nAuthorn>0</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Zaitsau, D. H.[Dzmitry H.]</sAuthor>
+		<sAuthor>Emel'yanenko, V. N.[Vladimir N.]</sAuthor>
+		<sAuthor>Verevkin, S. P.[Sergey P.]</sAuthor>
+		<sAuthor>Heintz, A.[Andreas]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2010</yrPubYr>
+		<dateCit>2010-12-27</dateCit>
+		<sTitle>Sulfur-Containing Ionic Liquids. Rotating-Bomb Combustion Calorimetry and First-Principles Calculations for 1-Ethyl-3-methylimidazolium Thiocyanate</sTitle>
+		<sAbstract>.The standard molar enthalpy of formation, ?fHmdeg (l), of the ionic liquid 1-ethyl-3-methylimidazolium thiocyanate has been determined at T = 298.15 K by means of rotating-bomb combustion calorimetry. The enthalpy of formation of this ionic liquid in the gaseous phase, ?fHmdeg (g), was obtained using the value ?fHmdeg (l) and the enthalpy of vaporization of 1-ethyl-3-methylimidazolium thiocyanate available from the literature. First-principles calculations of the ionic pair of the ionic liquid 1-ethyl-3-methylimidazolium thiocyanate have been performed using the G3MP2 theory. Close agreement of the molar enthalpy of formation, ?fHmdeg (g), from experiment and from the high-level first-principles method G3MP2 allows us to conclude that this method seems to be suitable for calculation of the thermodynamic properties of sulfur-containing ionic liquids in the gaseous phase.</sAbstract>
+		<sDOI>10.1021/je1009366</sDOI>
+		<sVol>55</sVol>
+		<sPage>5896-5899</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>1-ethyl-3-methylimidazolium thiocyanate</sCommonName>
+		<sFormulaMolec>C7H11N3S</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99</nUnknownPerCent>
+				<nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<nWaterMassPerCent>.06403</nWaterMassPerCent>
+				<nWaterMassPerCentDigits>4</nWaterMassPerCentDigits>
+				<eAnalMeth>Karl Fischer titration</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>oxygen</sCommonName>
+		<sFormulaMolec>O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>carbon dioxide</sCommonName>
+		<sFormulaMolec>CO2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>di-o-phenylene disulfide</sCommonName>
+		<sFormulaMolec>C12H8S2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>sulfuric acid</sCommonName>
+		<sFormulaMolec>H2O4S</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>7</nOrgNum>
+		</RegNum>
+		<sCommonName>nitrogen</sCommonName>
+		<sFormulaMolec>N2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>2</nStoichiometricCoef>
+			<ePhase>Solution 1</ePhase>
+			<eCompositionRepresentation>Amount ratio of solvent to participant</eCompositionRepresentation>
+			<nNumericalComposition>115</nNumericalComposition>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>12</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>2</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+			<nStoichiometricCoef>-17</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>PAA</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>9/16/2010</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<eMethodName>Rotating bomb calorimetry</eMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+				<ePhase>Solution 1</ePhase>
+			</Solvent>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-.1546326936</nPropValue>
+				<nPropDigits>7</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>.000010626</nPropRepeatValue>
+				<nRepetitions>7</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-9.878474053726E-06</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Solution 1</ePhase>
+			<eCompositionRepresentation>Amount ratio of solvent to participant</eCompositionRepresentation>
+			<nNumericalComposition>115</nNumericalComposition>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>7</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1.5</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+			<nStoichiometricCoef>4.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+			<nStoichiometricCoef>-11.25</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>9/17/2010</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<eMethodName>Rotating bomb calorimetry</eMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+				<ePhase>Solution 1</ePhase>
+			</Solvent>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-29392.2</nPropValue>
+				<nPropDigits>6</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>5.1</nPropRepeatValue>
+				<nRepetitions>4</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-1.87767591912352</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

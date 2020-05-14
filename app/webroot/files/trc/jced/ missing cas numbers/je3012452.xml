@@ -1,0 +1,1798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML
+	http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2013</yrYrPub>
+			<sAuthor1>gut</sAuthor1>
+			<sAuthor2>rat</sAuthor2>
+			<nAuthorn>0</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Gutterman, A.[Alexis]</sAuthor>
+		<sAuthor>Rath, N.[Nigam]</sAuthor>
+		<sAuthor>Chickos, J.[James]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2013</yrPubYr>
+		<dateCit>2013-06-17</dateCit>
+		<sTitle>Validation of the Vaporization Enthalpies of Some Simple Aliphatic Amides and Their Use in the Evaluation of the Vaporization Enthalpy of Valpromide and Valnoctamide</sTitle>
+		<sAbstract>The vaporization enthalpy of valpromide and both diasteriomers of valnoctamide have been evaluated by correlation gas chromatography as has the fusion and sublimation enthalpy of valpromide. Values of [(18.6 +- 1.8), (83.6 +- 2.5), and (102.2 +- 3.1)] kJ*mol 1 at T/K = 298.15 have been evaluated for the fusion, vaporization, and sublimation enthalpies of valpromide (2-ethylpentanamide), respectively, and [(82.3 +- 2.5) and (82.7 +- 2.5)] kJ*mol 1 have been obtained for the vaporization enthalpy of valnoctamide ((2SR,3SR) and (2SR,3RS) 2-ethyl-3-methylpentanamide), respectively. The vaporization enthalpies have been determined using sublimation and fusion enthalpies from the literature of a series of primary amides. Also evaluated in this process were group values of 102 J*mol 1*K 1 and 47.1 kJ*mol 1 for the estimation of the heat capacity and vaporization enthalpy of a liquid primary amide (R-CONH2). The fusion enthalpies of 2-methylpropanamide, hexanamide, heptanamide, and 2-ethylpentanamide have been measured by differential scanning calorimetry (DSC) and the values compared to existing literature values where available; the following fusion enthalpies were measured (kJ*mol 1, Tfus/K): (19.9 +- 0.1, 401.6 +- 0.4); (16.8 +- 0.3, 372.4 +- 1.4); (16.2 +- 0.2, 368.6 +- 0.5); (22.5 +- 0.6, 398.2 +- 0.1), respectively. Solid solid phase transitions (kJ*mol 1, Ttrs/K) were also observed for hexanamide (5.1 +- 0.1, 306.1 +- 0.2), heptanamide (7.5 +- 0.3, 319 +- 0.8; 3.4 +- 0.1, 356.1 +- 0.2), and valpromide (1.75 +- 0.2, 360.6 +- 0.4). The crystal structure and powder pattern of heptanamide are also reported.</sAbstract>
+		<sDOI>10.1021/je3012452</sDOI>
+		<sVol>58</sVol>
+		<sPage>749-757</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<nPubChemID>71113</nPubChemID>
+		<sCommonName>di-n-propylacetamide</sCommonName>
+		<sFormulaMolec>C8H17NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>97</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<nPubChemID>12015994</nPubChemID>
+		<sCommonName>(2S,3S)-2-ethyl-3-methylpentanamide</sCommonName>
+		<sFormulaMolec>C8H17NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<nPubChemID>10313196</nPubChemID>
+		<sCommonName>(2R,3S)-2-ethyl-3-methylpentanamide</sCommonName>
+		<sFormulaMolec>C8H17NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<nPubChemID>25271745</nPubChemID>
+		<sCommonName>(2S,3R)-2-ethyl-3-methylpentanamide</sCommonName>
+		<sFormulaMolec>C8H17NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<nPubChemID>36689722</nPubChemID>
+		<sCommonName>(2R,3R)-2-ethyl-3-methylpentanamide</sCommonName>
+		<sFormulaMolec>C8H17NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<nPubChemID>6578</nPubChemID>
+		<sCommonName>propionamide</sCommonName>
+		<sFormulaMolec>C3H7NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>7</nOrgNum>
+		</RegNum>
+		<nPubChemID>10927</nPubChemID>
+		<sCommonName>butyramide</sCommonName>
+		<sFormulaMolec>C4H9NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>8</nOrgNum>
+		</RegNum>
+		<nPubChemID>12298</nPubChemID>
+		<sCommonName>pentanamide</sCommonName>
+		<sFormulaMolec>C5H11NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>97</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>9</nOrgNum>
+		</RegNum>
+		<nPubChemID>2331</nPubChemID>
+		<sCommonName>benzoic acid amide</sCommonName>
+		<sFormulaMolec>C7H7NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>10</nOrgNum>
+		</RegNum>
+		<nPubChemID>68424</nPubChemID>
+		<sCommonName>isobutyramide</sCommonName>
+		<sFormulaMolec>C4H9NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>11</nOrgNum>
+		</RegNum>
+		<nPubChemID>12332</nPubChemID>
+		<sCommonName>hexanamide</sCommonName>
+		<sFormulaMolec>C6H13NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>12</nOrgNum>
+		</RegNum>
+		<nPubChemID>136449</nPubChemID>
+		<sCommonName>heptanamide</sCommonName>
+		<sFormulaMolec>C7H15NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.8</nPurityMass>
+				<nPurityMassDigits>3</nPurityMassDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Normal melting temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>398.2</nPropValue>
+				<nPropDigits>4</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.1</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>360.6</nPropValue>
+				<nPropDigits>4</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.4</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>1.75</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.2</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>22.5</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.6</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>83.6</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.5</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>82.4</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.5</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>82.8</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.5</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>82.8</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.5</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>82.4</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.5</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>68.7</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.4</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>72.3</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.5</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>75.9</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>3.3</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>9</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>84.4</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>3.6</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Normal melting temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>401.6</nPropValue>
+				<nPropDigits>4</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.4</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>19.9</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.1</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>70.8</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>3</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>11</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Normal melting temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>372.4</nPropValue>
+				<nPropDigits>4</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>1.4</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>11</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>306.1</nPropValue>
+				<nPropDigits>4</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.2</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>11</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>5.1</nPropValue>
+				<nPropDigits>2</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.1</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>11</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>16.8</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.3</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>11</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>79.6</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>3.4</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>12</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Normal melting temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>368.6</nPropValue>
+				<nPropDigits>4</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.5</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>12</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>356.1</nPropValue>
+				<nPropDigits>4</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.2</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>12</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 3</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 3</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>319</nPropValue>
+				<nPropDigits>4</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.8</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>12</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 3</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 3</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>7.5</nPropValue>
+				<nPropDigits>2</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.3</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>12</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>3.4</nPropValue>
+				<nPropDigits>2</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.1</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>12</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>16.2</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.2</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>12</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>1/16/2013</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<eMethodName>Correlation gas chromatography</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+			<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+			<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.15</nVarValue>
+				<nVarDigits>5</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>82.4</nPropValue>
+				<nPropDigits>3</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>5.7</nStdUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

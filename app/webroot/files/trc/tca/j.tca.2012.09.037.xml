@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Robert D. Chirico (U. S. Department of Commerce) -->
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2012</yrYrPub>
+			<sAuthor1>jac</sAuthor1>
+			<sAuthor2>gup</sAuthor2>
+			<nAuthorn>0</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Jacob, K. T.</sAuthor>
+		<sAuthor>Gupta, P.[Preeti]</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2012</yrPubYr>
+		<dateCit>2012-11-14</dateCit>
+		<sTitle>Thermodynamic behavior of polyvalent solutes in solid silver: System Ag Sb</sTitle>
+		<sKeyword>Chemical potential of Sb</sKeyword>
+		<sKeyword>Thermodynamics of Ag Sb alloys</sKeyword>
+		<sKeyword>Thermodynamic factor</sKeyword>
+		<sKeyword>Solute solute repulsion</sKeyword>
+		<sKeyword>Electron atom (e/a) ratio</sKeyword>
+		<sKeyword>Systematics of Ag X alloys</sKeyword>
+		<sDOI>10.1016/j.tca.2012.09.037</sDOI>
+		<sVol>549</sVol>
+		<sPage>179-85</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>silver element</sCommonName>
+		<sFormulaMolec>Ag</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.99</nUnknownPerCent>
+				<nUnknownPerCentDigits>4</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>antimony</sCommonName>
+		<sFormulaMolec>Sb</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.99</nUnknownPerCent>
+				<nUnknownPerCentDigits>4</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/14/2012</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ActivityFugacityOsmoticProp>
+						<ePropName>Activity coefficient</ePropName>
+						<sMethodName>(Electrochemical) cell potential</sMethodName>
+					</ActivityFugacityOsmoticProp>
+				</PropertyGroup>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<eStandardState>Pure liquid solute</eStandardState>
+		</Property>
+		<PhaseID>
+			<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<eTemperature>Temperature, K</eTemperature>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>975</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101.325</nConstraintValue>
+			<nConstrDigits>6</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Mole fraction</eComponentComposition>
+				</VariableType>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Crystal</eVarPhase>
+			</VarPhaseID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.01</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.1395</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.02</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.1515</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.03</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.1808</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.04</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.226</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.05</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.3002</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.06</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.3879</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.07</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.5123</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

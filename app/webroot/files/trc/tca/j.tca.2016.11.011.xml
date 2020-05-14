@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Righetti, M. C.[Maria Cristina]</sAuthor>
+		<sAuthor>Tombari, E.[Elpidio]</sAuthor>
+		<sAuthor>Johari, G. P.</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2017</yrPubYr>
+		<dateCit>2017-03-07</dateCit>
+		<sTitle>Endothermic features on heating of glasses show that the second glass to liquid transition of water was phenomenologically-mistaken</sTitle>
+		<sKeyword>Glass transition</sKeyword>
+		<sKeyword>Water</sKeyword>
+		<sKeyword>Polymer</sKeyword>
+		<sKeyword>Glass phenomenology</sKeyword>
+		<sDOI>10.1016/j.tca.2016.11.011</sDOI>
+		<sVol>647</sVol>
+		<sPage>101-110</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>acetaminophen</sCommonName>
+		<sFormulaMolec>C8H9NO2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99</nUnknownPerCent>
+				<nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>Nifedipine</sCommonName>
+		<sFormulaMolec>C17H18N2O6</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99</nUnknownPerCent>
+				<nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>levoglucosan</sCommonName>
+		<sFormulaMolec>C6H10O5</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99</nUnknownPerCent>
+				<nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>3/7/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Glass</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Glass</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>297</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>3/7/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Glass</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Glass</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>294.8</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>3/7/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Glass</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Glass</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>317.6</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>3/7/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Glass</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Glass</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>315.4</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>3/7/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Glass</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Glass</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>248.4</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>3/7/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Glass</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Glass</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>246.6</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

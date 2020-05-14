@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Rosa, F.[Frederic]</sAuthor>
+		<sAuthor>Negrier, P.[Philippe]</sAuthor>
+		<sAuthor>Corvis, Y.[Yohann]</sAuthor>
+		<sAuthor>Espeau, P.[Philippe]</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2016</yrPubYr>
+		<dateCit>2016-08-29</dateCit>
+		<sTitle>Crystal structure determination and thermal behavior upon melting of p-synephrine</sTitle>
+		<sKeyword>Enantiomer</sKeyword>
+		<sKeyword>X-ray powder diffraction</sKeyword>
+		<sKeyword>Crystal structure</sKeyword>
+		<sKeyword>Thermal analysis</sKeyword>
+		<sKeyword>Melting point</sKeyword>
+		<sDOI>10.1016/j.tca.2016.03.010</sDOI>
+		<sVol>632</sVol>
+		<sPage>18-22</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>synephrine</sCommonName>
+		<sFormulaMolec>C9H13NO2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<nWaterMassPerCent>0.07</nWaterMassPerCent>
+				<nWaterMassPerCentDigits>1</nWaterMassPerCentDigits>
+				<eAnalMeth>Karl Fischer titration</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/29/2016</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Normal melting temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>472.95</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>1.30000000000001</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/29/2016</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<sMethodName>DSC</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>57</nPropValue>
+				<nPropDigits>2</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>3</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/29/2016</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<VolumetricProp>
+						<ePropName>Mass density, kg/m3</ePropName>
+						<sMethodName>X-ray diffraction</sMethodName>
+					</VolumetricProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101.325</nConstraintValue>
+			<nConstrDigits>6</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>294</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>1256</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>1</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

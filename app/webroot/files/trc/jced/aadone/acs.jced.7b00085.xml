@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Emel'yanenko, V. N.[Vladimir N.]</sAuthor>
+		<sAuthor>Zaitsau, D. H.[Dzmitry H.]</sAuthor>
+		<sAuthor>Verevkin, S. P.[Sergey P.]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2017</yrPubYr>
+		<dateCit>2017-10-03</dateCit>
+		<sTitle>Thermochemical Properties of Xanthine and Hypoxanthine Revisited</sTitle>
+		<sAbstract>The standard molar enthalpies of formation of xanthine and hypoxanthine were measured by using high-precision combustion calorimetry. The standard molar enthalpies of sublimation of these compounds at 298.15 K were derived by the quartz-crystal microbalance technique. Limited thermodynamic data available in the literature are compared with our new experimental data. In addition, we use the G4 method to calculate the molar enthalpies of formation of xanthine and hypoxanthine in the gas phase. There is good agreement between the evaluated experimental data and the quantum-chemical calculations.</sAbstract>
+		<sDOI>10.1021/acs.jced.7b00085</sDOI>
+		<sVol>62</sVol>
+		<sPage>2606-2609</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>xanthine</sCommonName>
+		<sFormulaMolec>C5H4N4O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.5</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<ePurifMethod>Sublimation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<nPurityMass>99.99</nPurityMass>
+				<nPurityMassDigits>4</nPurityMassDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>hypoxanthine</sCommonName>
+		<sFormulaMolec>C5H4N4O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.0</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<ePurifMethod>Sublimation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<nPurityMass>99.99</nPurityMass>
+				<nPurityMassDigits>4</nPurityMassDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>carbon dioxide</sCommonName>
+		<sFormulaMolec>CO2</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>nitrogen</sCommonName>
+		<sFormulaMolec>N2</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>oxygen</sCommonName>
+		<sFormulaMolec>O2</sFormulaMolec>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>EP</sCompiler>
+		<sContributor>EP</sContributor>
+		<dateDateAdded>6/15/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<sMethodName>Derived by Second law</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>421</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>172.4</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>EP</sCompiler>
+		<sContributor>EP</sContributor>
+		<dateDateAdded>6/15/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+						<sMethodName>Derived by Second law</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>411</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>160.3</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>5</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>2</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>2</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
+			<nStoichiometricCoef>-5</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>EP</sCompiler>
+		<sContributor>EP</sContributor>
+		<dateDateAdded>6/30/2017</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<sMethodName>Static bomb calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-14183.4</nPropValue>
+				<nPropDigits>6</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>9.2</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-.952826893104745</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>5</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>2</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>2</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
+			<nStoichiometricCoef>-5.5</nStoichiometricCoef>
+			<ePhase>Ideal gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>EP</sCompiler>
+		<sContributor>EP</sContributor>
+		<dateDateAdded>6/30/2017</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<sMethodName>Static bomb calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-17864.9</nPropValue>
+				<nPropDigits>6</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>4.4</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-1.20014645026065</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

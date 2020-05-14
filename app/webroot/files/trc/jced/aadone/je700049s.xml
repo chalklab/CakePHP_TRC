@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2007</yrYrPub>
+			<sAuthor1>nik</sAuthor1>
+			<sAuthor2>pop</sAuthor2>
+			<nAuthorn>1</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Nikitin, E. D.[Eugene D.]</sAuthor>
+		<sAuthor>Popov, A. P.[Alexander P.]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2007</yrPubYr>
+		<dateCit>2007-08-21</dateCit>
+		<sTitle>Critical Point Measurements for n-Alkyl Benzoates (C8 to C13)</sTitle>
+		<sAbstract>The critical temperatures and critical pressures of six n-alkyl benzoates C6H5COO(CH2)nH with n ) 1 to 6 have  been measured. All the substances are thermally unstable at their critical points. The method of pulse-heating of  a wire probe placed into the liquid under study has been used. Residence times are from (0.03 to 1) ms, which  results in little decomposition of the liquid in the course of measuring. The experimental critical properties of  alkylbenzoates have been compared with the values estimated by the group contribution methods of Constantinou  and Gani and Marrero and Gani.</sAbstract>
+		<sVol>52</sVol>
+		<sPage>1336-1339</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>methyl benzoate</sCommonName>
+		<sFormulaMolec>C8H8O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.9</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>ethyl benzoate</sCommonName>
+		<sFormulaMolec>C9H10O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.9</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>propyl benzoate</sCommonName>
+		<sFormulaMolec>C10H12O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.9</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>butyl benzoate</sCommonName>
+		<sFormulaMolec>C11H14O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.9</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>pentyl benzoate</sCommonName>
+		<sFormulaMolec>C12H16O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.6</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>benzoic acid, hexyl ester</sCommonName>
+		<sFormulaMolec>C13H18O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.2</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Gas chromatography</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical temperature, K</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Specified by the manufacturer</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>695</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>7</nStdUncertValue>
+			</PropUncertainty>
+			<nPropDeviceSpecValue>.001</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical pressure, kPa</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>3460</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>100</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical temperature, K</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Specified by the manufacturer</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>700</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>7</nStdUncertValue>
+			</PropUncertainty>
+			<nPropDeviceSpecValue>.001</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical pressure, kPa</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>3050</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>90</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical temperature, K</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Specified by the manufacturer</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>710</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>7</nStdUncertValue>
+			</PropUncertainty>
+			<nPropDeviceSpecValue>.001</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical pressure, kPa</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>2600</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>80</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical temperature, K</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Specified by the manufacturer</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>725</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>7</nStdUncertValue>
+			</PropUncertainty>
+			<nPropDeviceSpecValue>.001</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical pressure, kPa</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>2400</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>70</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical temperature, K</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Specified by the manufacturer</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>736</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>7</nStdUncertValue>
+			</PropUncertainty>
+			<nPropDeviceSpecValue>.001</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical pressure, kPa</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>2190</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>70</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical temperature, K</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Specified by the manufacturer</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>748</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>7</nStdUncertValue>
+			</PropUncertainty>
+			<nPropDeviceSpecValue>.001</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RNF</sCompiler>
+		<sContributor>RNF</sContributor>
+		<dateDateAdded>7/16/2007</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<Criticals>
+						<ePropName>Critical pressure, kPa</ePropName>
+						<sMethodName>Pulse Heating Apparatus</sMethodName>
+					</Criticals>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>1980</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>60</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Zeman, S.[Svatopluk]</sAuthor>
+		<sAuthor>Yan, Q.-L.[Qi-Long]</sAuthor>
+		<sAuthor>Gozin, M.[Michael]</sAuthor>
+		<sAuthor>Zhao, F.-Q.[Feng-Qi]</sAuthor>
+		<sAuthor>Akstein, Z.[Zbynek]</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2015</yrPubYr>
+		<dateCit>2015-08-19</dateCit>
+		<sTitle>Thermal behavior of 1,3,5-trinitroso-1,3,5-triazinane and its melt-castable mixtures with cyclic nitramines</sTitle>
+		<sKeyword>1,3,5-Trinitroso-1,3,5-triazinane</sKeyword>
+		<sKeyword>1,3,5-Trinitro-1,3,5-triazinane</sKeyword>
+		<sKeyword>Cis-1,3,4,6-tetranitro-octahydro-imidazo-[4,5-d]imidazole</sKeyword>
+		<sKeyword>epsilon-2,4,6,8,10,12-Hexanitro-2,4,6,8,10,12-Hexaazaisowurtzitane</sKeyword>
+		<sKeyword>Thermal decomposition</sKeyword>
+		<sDOI>10.1016/j.tca.2015.07.010</sDOI>
+		<sVol>615</sVol>
+		<sPage>51-60</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>RDX</sCommonName>
+		<sFormulaMolec>C3H6N6O6</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>TNOHX</sCommonName>
+		<sFormulaMolec>C3H6N6O3</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>CL-20</sCommonName>
+		<sFormulaMolec>C6H6N12O12</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/19/2015</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>478.95</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/19/2015</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>369.25</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/19/2015</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>380.15</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/19/2015</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>432.75</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/19/2015</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<sMethodName>DSC</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>5.433500448</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

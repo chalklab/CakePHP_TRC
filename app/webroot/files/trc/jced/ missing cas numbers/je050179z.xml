@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+  <Version>
+    <nVersionMajor>2</nVersionMajor>
+    <nVersionMinor>0</nVersionMinor>
+  </Version>
+  <Citation>
+    <TRCRefID>
+      <yrYrPub>2005</yrYrPub>
+      <sAuthor1>umn</sAuthor1>
+      <sAuthor2>chi</sAuthor2>
+      <nAuthorn>0</nAuthorn>
+    </TRCRefID>
+    <eType>journal</eType>
+    <eSourceType>Original</eSourceType>
+    <sAuthor>Umnahanant, P.[Patamaporn]</sAuthor>
+    <sAuthor>Chickos, J. S.[James S.]</sAuthor>
+    <sPubName>J. Chem. Eng. Data</sPubName>
+    <yrPubYr>2005</yrPubYr>
+    <dateCit>2005-09-26</dateCit>
+    <sTitle>Thermochemistry of Ethyl 3-Oxobutanoate Revisited: Observance of a Non-Zero Enthalpy of Mixing between Tautomers and Its Effects on Enthalpies of Formation</sTitle>
+    <sAbstract>The enthalpies of formation of pure liquid and gas-phase ethyl 3-oxobutanoate and ethyl Z-3-hydroxy- 2-butenoate are examined in the light of some recent NMR studies on the enthalpy differences between gas-phase enthalpies of the two tautomers. Correlation-gas chromatography experiments are used to evaluate the vaporization enthalpies of the pure tautomers. Values of (61.6 ( 2.2) and (54.7 ( 1.3) kJamol-1 at T ) 298.15 K are measured for pure ethyl 3-oxobutanoate and ethyl Z-3-hydroxy-2-butenoate, respectively. These values can be contrasted to a value of (54.2 ( 1.0) kJamol-1 when the vaporization enthalpy is measured as a mixture of tautomers. The difference is attributed to an endothermic enthalpy of mixing term of (7.1 ( 2.1) kJamol-1, which destabilizes the mixture relative to the pure components. Using the existing liquid-phase enthalpy differences measured by NMR, the endothermic enthalpy of mixing term and the condensed phase enthalpy of formation of the equilibrium mixture, new enthalpies of formation for ethyl 3-oxobutanoate and ethyl Z-3-hydroxy-2-butenoate in both the gas, centsfHdeg m(g) ) (-578.2 ( 3.3), (-593.0 ( 2.7) kJamol-1, respectively, and liquid phases, centsfHdeg m(l) ) (-639.8 ( 2.4), (-647.7 ( 2.4) kJamol-1, respectively, are calculated. A comparison of the difference in gas phase enthalpy of formation of the two tautomers reproduces the enthalpy difference measured previously by gas-phase NMR studies.</sAbstract>
+    <sKeyword>enthalpy of formation</sKeyword>
+    <sKeyword>ethyl 3-oxobutanoate. ethyl Z-3-hydroxy-2-butenoate</sKeyword>
+    <sVol>50</sVol>
+    <sPage>1720-1726</sPage>
+  </Citation>
+  <Compound>
+    <RegNum>
+      <nOrgNum>1</nOrgNum>
+    </RegNum>
+    <nPubChemID>8868</nPubChemID>
+    <sCommonName>ethyl acetoacetate</sCommonName>
+    <sFormulaMolec>C6H10O3</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>2</nOrgNum>
+    </RegNum>
+    <nPubChemID>54682338</nPubChemID>
+    <sCommonName>ethyl Z-3-hydroxy-2-butenoate</sCommonName>
+    <sFormulaMolec>C5H8O3</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+    </Sample>
+  </Compound>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>1</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>9/23/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <sMethodName>Correlation Gas Chromatography</sMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Liquid</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of a single value (unbiased)</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>61.6</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.3</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>2</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>9/23/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <sMethodName>Correlation Gas Chromatography</sMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Liquid</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of a single value (unbiased)</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>54.7</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.3</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+</DataReport>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Burba, C. M.[Christopher M.]</sAuthor>
+		<sAuthor>Janzen, J.[Jonathan]</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2015</yrPubYr>
+		<dateCit>2015-08-19</dateCit>
+		<sTitle>Confinement effects on the phase transition temperature of aqueous NaCl solutions:The extended Gibbs-Thomson equation</sTitle>
+		<sKeyword>Gibbs-Thomson equation</sKeyword>
+		<sKeyword>Confinement</sKeyword>
+		<sKeyword>Solutions</sKeyword>
+		<sKeyword>Mesoporous silica</sKeyword>
+		<sDOI>10.1016/j.tca.2015.07.013</sDOI>
+		<sVol>615</sVol>
+		<sPage>81-87</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.9</nPurityMass>
+				<nPurityMassDigits>3</nPurityMassDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>sodium chloride</sCommonName>
+		<sFormulaMolec>ClNa</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.5</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/19/2015</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Solid-liquid equilibrium temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>98.38</nConstraintValue>
+			<nConstrDigits>4</nConstrDigits>
+			<ConstrUncertainty>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nStdUncertValue>.55</nStdUncertValue>
+			</ConstrUncertainty>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Molality, mol/kg</eComponentComposition>
+				</VariableType>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Liquid</eVarPhase>
+			</VarPhaseID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
+			</Solvent>
+			<VarUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</VarUncertainty>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>0</nVarValue>
+				<nVarDigits>0</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>273.15</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.300000000000011</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.0499</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>272.99</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.300000000000011</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.0999</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>272.94</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.300000000000011</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.1501</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>272.59</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.300000000000011</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.2</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>272.48</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.300000000000011</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.2503</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>272.2</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.300000000000011</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

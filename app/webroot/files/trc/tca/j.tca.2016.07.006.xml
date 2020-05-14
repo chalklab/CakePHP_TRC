@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Chang, Q.[Qifeng]</sAuthor>
+		<sAuthor>Long, L.[Lijuan]</sAuthor>
+		<sAuthor>He, W.[Wentao]</sAuthor>
+		<sAuthor>Qin, S.[Shuhao]</sAuthor>
+		<sAuthor>Yu, J.[Jie]</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2016</yrPubYr>
+		<dateCit>2016-09-07</dateCit>
+		<sTitle>Thermal degradation behavior of PLA composites containing bis DOPO phosphonates</sTitle>
+		<sKeyword>Poly(lactic acid)</sKeyword>
+		<sKeyword>Phosphaphenanthrene</sKeyword>
+		<sKeyword>Bis DOPO phosphonates</sKeyword>
+		<sKeyword>Thermal degradation</sKeyword>
+		<sDOI>10.1016/j.tca.2016.07.006</sDOI>
+		<sVol>639</sVol>
+		<sPage>84-90</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>6,6'-(ethane-1,2-diyl)bis(dibenzo[c,e][1,2]oxaphosphinine 6-oxide)</sCommonName>
+		<sFormulaMolec>C26H20O4P2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Dried by oven heating</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>98</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>6,6'-(1-phenylethane-1,2-diyl)bis(dibenzo[c,e][1,2]oxaphosphinine 6-oxide)</sCommonName>
+		<sFormulaMolec>C32H24O4P2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+				<ePurifMethod>Dried by oven heating</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>98</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>6,6'-(1-(naphthalen-2-yl)ethane-1,2-diyl)bis(dibenzo[c,e][1,2]oxaphosphinine 6-oxide)</sCommonName>
+		<sFormulaMolec>C36H26O4P2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+				<ePurifMethod>Dried by oven heating</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>98</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>9/7/2016</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Normal melting temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>554.15</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>9/7/2016</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>521.15</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>9/7/2016</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Normal melting temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>460.05</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>9/7/2016</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Normal melting temperature, K</ePropName>
+						<sMethodName>DSC/DTA</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Air at 1 atmosphere</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>469.05</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2012</yrYrPub>
+			<sAuthor1>jan</sAuthor1>
+			<sAuthor2>lom</sAuthor2>
+			<nAuthorn>0</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Janghorban, A.</sAuthor>
+		<sAuthor>Lomello-Tafin, M.</sAuthor>
+		<sAuthor>Mazingue, T.</sAuthor>
+		<sPubName>J. Chem. Thermodyn.</sPubName>
+		<yrPubYr>2012</yrPubYr>
+		<dateCit>2012-09-26</dateCit>
+		<sTitle>Standard enthalpies of formation of Ce Au congruent compounds (CeAu, CeAu2,  and Ce14Au51)</sTitle>
+		<sKeyword>Thermodynamics</sKeyword>
+		<sKeyword>Calorimetry</sKeyword>
+		<sKeyword>Standard enthalpy</sKeyword>
+		<sKeyword>Rare-earth intermetallics</sKeyword>
+		<sKeyword>Gold intermetallics</sKeyword>
+		<sDOI>10.1016/j.jct.2012.02.029</sDOI>
+		<sVol>51</sVol>
+		<sPage>65-9</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>CeAu</sCommonName>
+		<sFormulaMolec>AuCe</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99.6</nPurityMol>
+				<nPurityMolDigits>3</nPurityMolDigits>
+				<eAnalMeth>Chemical analysis</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>CeAu2</sCommonName>
+		<sFormulaMolec>Au2Ce</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99.6</nPurityMol>
+				<nPurityMolDigits>3</nPurityMolDigits>
+				<eAnalMeth>Chemical analysis</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>Ce14Au51</sCommonName>
+		<sFormulaMolec>Au51Ce14</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99.6</nPurityMol>
+				<nPurityMolDigits>3</nPurityMolDigits>
+				<eAnalMeth>Chemical analysis</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>cerium</sCommonName>
+		<sFormulaMolec>Ce</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>gold</sCommonName>
+		<sFormulaMolec>Au</sFormulaMolec>
+	</Compound>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>9/26/2012</dateDateAdded>
+		<eReactionType>Formation of a compound from elements in their stable state</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>drop calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298</nTemperature-K>
+			<nTemperatureDigits>3</nTemperatureDigits>
+			<nPressure-kPa>101</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-152.4</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>3.8</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>9/26/2012</dateDateAdded>
+		<eReactionType>Formation of a compound from elements in their stable state</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>drop calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298</nTemperature-K>
+			<nTemperatureDigits>3</nTemperatureDigits>
+			<nPressure-kPa>101</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-210.9</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>6.6</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-14</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-51</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>9/26/2012</dateDateAdded>
+		<eReactionType>Formation of a compound from elements in their stable state</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>drop calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298</nTemperature-K>
+			<nTemperatureDigits>3</nTemperatureDigits>
+			<nPressure-kPa>101</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-3458</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>123</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

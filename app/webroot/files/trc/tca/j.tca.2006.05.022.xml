@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2006</yrYrPub>
+			<sAuthor1>dun</sAuthor1>
+			<sAuthor2/>
+			<nAuthorn>1</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Dunstan, P. O.[Pedro Oliver]</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2006</yrPubYr>
+		<dateCit>2006-11-22</dateCit>
+		<sTitle>Thermochemistry of adducts of some bivalent transition  metal bromides with 4-chloroaniline</sTitle>
+		<sKeyword>Metal bromides</sKeyword>
+		<sKeyword>Transition metals</sKeyword>
+		<sKeyword>Thermochemistry</sKeyword>
+		<sKeyword>Metal(II) nitrogen bonds</sKeyword>
+		<sKeyword>Dissolution enthalpies</sKeyword>
+		<sVol>450</sVol>
+		<sPage>5-11</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>MnBr2*2 p-chloroaniline</sCommonName>
+		<sFormulaMolec>C12H12Br2Cl2MnN2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+				<ePurifMethod>Dried in a desiccator</ePurifMethod>
+				<ePurifMethod>Dried by vacuum heating</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Chemical analysis</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>FeBr2*2 p-chloroaniline</sCommonName>
+		<sFormulaMolec>C12H12Br2Cl2FeN2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+				<ePurifMethod>Dried in a desiccator</ePurifMethod>
+				<ePurifMethod>Dried by vacuum heating</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Chemical analysis</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>CoBr2*2 p-chloroaniline</sCommonName>
+		<sFormulaMolec>C12H12Br2Cl2CoN2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+				<ePurifMethod>Dried in a desiccator</ePurifMethod>
+				<ePurifMethod>Dried by vacuum heating</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Chemical analysis</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>NiBr2*2 p-chloroaniline</sCommonName>
+		<sFormulaMolec>C12H12Br2Cl2N2Ni</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+				<ePurifMethod>Dried in a desiccator</ePurifMethod>
+				<ePurifMethod>Dried by vacuum heating</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Chemical analysis</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>CuBr2*2 p-chloroaniline</sCommonName>
+		<sFormulaMolec>C12H12Br2Cl2CuN2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+				<ePurifMethod>Dried in a desiccator</ePurifMethod>
+				<ePurifMethod>Dried by vacuum heating</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Chemical analysis</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>ZnBr2*2 p-chloroaniline</sCommonName>
+		<sFormulaMolec>C12H12Br2Cl2N2Zn</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Crystallization from solution</ePurifMethod>
+				<ePurifMethod>Dried in a desiccator</ePurifMethod>
+				<ePurifMethod>Dried by vacuum heating</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Chemical analysis</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>7</nOrgNum>
+		</RegNum>
+		<sCommonName>manganese bromide</sCommonName>
+		<sFormulaMolec>Br2Mn</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>8</nOrgNum>
+		</RegNum>
+		<sCommonName>iron bromide (FeBr2)</sCommonName>
+		<sFormulaMolec>Br2Fe</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>9</nOrgNum>
+		</RegNum>
+		<sCommonName>cobalt bromide</sCommonName>
+		<sFormulaMolec>Br2Co</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>10</nOrgNum>
+		</RegNum>
+		<sCommonName>nickel bromide</sCommonName>
+		<sFormulaMolec>Br2Ni</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>11</nOrgNum>
+		</RegNum>
+		<sCommonName>copper dibromide</sCommonName>
+		<sFormulaMolec>Br2Cu</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>12</nOrgNum>
+		</RegNum>
+		<sCommonName>zinc bromide</sCommonName>
+		<sFormulaMolec>Br2Zn</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>13</nOrgNum>
+		</RegNum>
+		<sCommonName>4-chloroaniline</sCommonName>
+		<sFormulaMolec>C6H6ClN</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMol>99</nPurityMol>
+				<nPurityMolDigits>2</nPurityMolDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>13</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/22/2006</dateDateAdded>
+		<eReactionType>Other reactions</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>Solution calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-44.27</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>1.85</nPropRepeatValue>
+				<nRepetitions>1</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>13</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/22/2006</dateDateAdded>
+		<eReactionType>Other reactions</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>Solution calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-71.64</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>2.96</nPropRepeatValue>
+				<nRepetitions>1</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>13</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>9</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/22/2006</dateDateAdded>
+		<eReactionType>Other reactions</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>Solution calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-56.45</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>1.86</nPropRepeatValue>
+				<nRepetitions>1</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>13</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/22/2006</dateDateAdded>
+		<eReactionType>Other reactions</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>Solution calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-60.17</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>1.14</nPropRepeatValue>
+				<nRepetitions>1</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>13</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>11</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/22/2006</dateDateAdded>
+		<eReactionType>Other reactions</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>Solution calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-43.87</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>.3</nPropRepeatValue>
+				<nRepetitions>1</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>13</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>12</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>VVD</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>11/22/2006</dateDateAdded>
+		<eReactionType>Other reactions</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>Solution calorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>101.325</nPressure-kPa>
+			<nPressureDigits>6</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-49.16</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>1.34</nPropRepeatValue>
+				<nRepetitions>1</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

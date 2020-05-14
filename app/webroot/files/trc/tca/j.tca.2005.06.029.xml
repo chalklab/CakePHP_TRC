@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+  <Version>
+    <nVersionMajor>2</nVersionMajor>
+    <nVersionMinor>0</nVersionMinor>
+  </Version>
+  <Citation>
+    <TRCRefID>
+      <yrYrPub>2005</yrYrPub>
+      <sAuthor1>roj</sAuthor1>
+      <sAuthor2>mar</sAuthor2>
+      <nAuthorn>0</nAuthorn>
+    </TRCRefID>
+    <eType>journal</eType>
+    <eSourceType>Original</eSourceType>
+    <sAuthor>Rojas-Aguilar, A.[Aaron]</sAuthor>
+    <sAuthor>Martynez-Herrera, M.[Melchor]</sAuthor>
+    <sPubName>Thermochim. Acta</sPubName>
+    <yrPubYr>2005</yrPubYr>
+    <dateCit>2005-10-22</dateCit>
+    <sTitle>Enthalpies of combustion and formation of fullerenes by micro-combustion calorimetry in a Calvet calorimeter</sTitle>
+    <sVol>437</sVol>
+    <sPage>126-133</sPage>
+  </Citation>
+  <Compound>
+    <RegNum>
+      <nOrgNum>1</nOrgNum>
+    </RegNum>
+    <sCommonName>footballene</sCommonName>
+    <sFormulaMolec>C60</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nPurityMass>99.95</nPurityMass>
+        <nPurityMassDigits>4</nPurityMassDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>2</nOrgNum>
+    </RegNum>
+    <sCommonName>fullerene carbon 70</sCommonName>
+    <sFormulaMolec>C70</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nPurityMass>99</nPurityMass>
+        <nPurityMassDigits>2</nPurityMassDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>3</nOrgNum>
+    </RegNum>
+    <sCommonName>carbon dioxide</sCommonName>
+    <sFormulaMolec>CO2</sFormulaMolec>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>4</nOrgNum>
+    </RegNum>
+    <sCommonName>oxygen</sCommonName>
+    <sFormulaMolec>O2</sFormulaMolec>
+  </Compound>
+  <ReactionData>
+    <Participant>
+      <RegNum>
+        <nOrgNum>1</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+      <nStoichiometricCoef>-1</nStoichiometricCoef>
+      <ePhase>Crystal</ePhase>
+    </Participant>
+    <Participant>
+      <RegNum>
+        <nOrgNum>3</nOrgNum>
+      </RegNum>
+      <nSampleNm>0</nSampleNm>
+      <nStoichiometricCoef>60</nStoichiometricCoef>
+      <ePhase>Gas</ePhase>
+    </Participant>
+    <Participant>
+      <RegNum>
+        <nOrgNum>4</nOrgNum>
+      </RegNum>
+      <nSampleNm>0</nSampleNm>
+      <nStoichiometricCoef>-60</nStoichiometricCoef>
+      <ePhase>Gas</ePhase>
+    </Participant>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>VVD</sCompiler>
+    <sContributor>TRC</sContributor>
+    <dateDateAdded>10/4/2005</dateDateAdded>
+    <eReactionType>Combustion with oxygen</eReactionType>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <ReactionStateChangeProp>
+            <ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+            <eMethodName>Micro-bomb calorimetry</eMethodName>
+          </ReactionStateChangeProp>
+        </PropertyGroup>
+      </Property-MethodID>
+      <nTemperature-K>303.15</nTemperature-K>
+      <nTemperatureDigits>5</nTemperatureDigits>
+      <nPressure-kPa>100</nPressure-kPa>
+      <nPressureDigits>3</nPressureDigits>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+      <PropDeviceSpec>
+        <eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+      </PropDeviceSpec>
+    </Property>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>-35927.54</nPropValue>
+        <nPropDigits>7</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>12.63</nPropRepeatValue>
+          <nRepetitions>6</nRepetitions>
+        </PropRepeatability>
+        <nPropDeviceSpecValue>-9.58948545330526</nPropDeviceSpecValue>
+      </PropertyValue>
+    </NumValues>
+  </ReactionData>
+  <ReactionData>
+    <Participant>
+      <RegNum>
+        <nOrgNum>2</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+      <nStoichiometricCoef>-1</nStoichiometricCoef>
+      <ePhase>Crystal</ePhase>
+    </Participant>
+    <Participant>
+      <RegNum>
+        <nOrgNum>3</nOrgNum>
+      </RegNum>
+      <nSampleNm>0</nSampleNm>
+      <nStoichiometricCoef>70</nStoichiometricCoef>
+      <ePhase>Gas</ePhase>
+    </Participant>
+    <Participant>
+      <RegNum>
+        <nOrgNum>4</nOrgNum>
+      </RegNum>
+      <nSampleNm>0</nSampleNm>
+      <nStoichiometricCoef>-70</nStoichiometricCoef>
+      <ePhase>Gas</ePhase>
+    </Participant>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>VVD</sCompiler>
+    <sContributor>TRC</sContributor>
+    <dateDateAdded>10/4/2005</dateDateAdded>
+    <eReactionType>Combustion with oxygen</eReactionType>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <ReactionStateChangeProp>
+            <ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+            <eMethodName>Micro-bomb calorimetry</eMethodName>
+          </ReactionStateChangeProp>
+        </PropertyGroup>
+      </Property-MethodID>
+      <nTemperature-K>303.15</nTemperature-K>
+      <nTemperatureDigits>5</nTemperatureDigits>
+      <nPressure-kPa>100</nPressure-kPa>
+      <nPressureDigits>3</nPressureDigits>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+      <PropDeviceSpec>
+        <eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+      </PropDeviceSpec>
+    </Property>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>-35806.93</nPropValue>
+        <nPropDigits>7</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>7.2</nPropRepeatValue>
+          <nRepetitions>8</nRepetitions>
+        </PropRepeatability>
+        <nPropDeviceSpecValue>-9.55729321747383</nPropDeviceSpecValue>
+      </PropertyValue>
+    </NumValues>
+  </ReactionData>
+</DataReport>

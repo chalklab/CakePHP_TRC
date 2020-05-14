@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Citation information only -->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Brown, B.R.</sAuthor>
+		<sAuthor>Origlia-Luster, M.L.</sAuthor>
+		<sAuthor>Niederhauser, T.L.</sAuthor>
+		<sAuthor>Woolley, E.M.</sAuthor>
+		<sPubName>J. Chem. Thermodyn.</sPubName>
+		<yrPubYr>2004</yrPubYr>
+		<sTitle>Corrigendum to "Apparent molar volumes and heat capacities of aqueous lithium chloride, rubidium chloride, and cesium chloride at temperatures from (278.15 to 393.15) K at the pressure 0.35 MPa" [Journal of Chemical Thermodynamics 2003 (36) 331-339]</sTitle>
+		<sVol>36</sVol>
+		<sPage>1025-1025</sPage>
+	</Citation>
+</DataReport>

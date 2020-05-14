@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Rodrigo, M. M.</sAuthor>
+		<sAuthor>Valente, A. J. M.[Artur J. M.]</sAuthor>
+		<sAuthor>Barros, M. C. F.[Marisa C. F.]</sAuthor>
+		<sAuthor>Verissimo, L. M. P.[Luis M. P.]</sAuthor>
+		<sAuthor>Ramos, M. L.</sAuthor>
+		<sAuthor>Justino, L. L. G.[Licinia L. G.]</sAuthor>
+		<sAuthor>Burrows, H. D.[Hugh D.]</sAuthor>
+		<sAuthor>Ribeiro, A. C. F.[Ana C. F.]</sAuthor>
+		<sAuthor>Esteso, M. A.[Miguel A.]</sAuthor>
+		<sPubName>J. Chem. Thermodyn.</sPubName>
+		<yrPubYr>2015</yrPubYr>
+		<dateCit>2015-09-24</dateCit>
+		<sTitle>Binary diffusion coefficients of L-histidine methyl ester dihydrochloride in aqueous solutions</sTitle>
+		<sKeyword>Diffusion coefficient</sKeyword>
+		<sKeyword>L-Histidine</sKeyword>
+		<sKeyword>Amino acids</sKeyword>
+		<sKeyword>Aqueous solutions</sKeyword>
+		<sKeyword>Taylor dispersion</sKeyword>
+		<sKeyword>NMR</sKeyword>
+		<sKeyword>DFT</sKeyword>
+		<sDOI>10.1016/j.jct.2015.05.013</sDOI>
+		<sVol>89</sVol>
+		<sPage>240-244</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>methyl L-histidinate dihydrochloride</sCommonName>
+		<sFormulaMolec>C7H13Cl2N3O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>97</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Fractional distillation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.8</nPurityMass>
+				<nPurityMassDigits>3</nPurityMassDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>9/24/2015</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<TransportProp>
+						<ePropName>Binary diffusion coefficient, m2/s</ePropName>
+						<sMethodName>Taylor dispersion method</sMethodName>
+					</TransportProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101.3</nConstraintValue>
+			<nConstrDigits>4</nConstrDigits>
+			<ConstrUncertainty>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nStdUncertValue>2.03</nStdUncertValue>
+			</ConstrUncertainty>
+		</Constraint>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<eTemperature>Temperature, K</eTemperature>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>298.15</nConstraintValue>
+			<nConstrDigits>5</nConstrDigits>
+			<ConstrUncertainty>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nStdUncertValue>.01</nStdUncertValue>
+			</ConstrUncertainty>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Amount concentration (molarity), mol/dm3</eComponentComposition>
+				</VariableType>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Liquid</eVarPhase>
+			</VarPhaseID>
+			<VarUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</VarUncertainty>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.001</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>0.000000001045</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.00000000002</nStdUncertValue>
+			</PropUncertainty>
+			<PropRepeatability>
+				<nPropRepeatValue>.0000000000008</nPropRepeatValue>
+				<nRepetitions>4</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.005</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>0.000000001006</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.00000000002</nStdUncertValue>
+			</PropUncertainty>
+			<PropRepeatability>
+				<nPropRepeatValue>.0000000000007</nPropRepeatValue>
+				<nRepetitions>4</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.01</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>0.000000000982</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.00000000002</nStdUncertValue>
+			</PropUncertainty>
+			<PropRepeatability>
+				<nPropRepeatValue>.000000000001</nPropRepeatValue>
+				<nRepetitions>4</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.02</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>0.00000000096</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.00000000002</nStdUncertValue>
+			</PropUncertainty>
+			<PropRepeatability>
+				<nPropRepeatValue>.000000000004</nPropRepeatValue>
+				<nRepetitions>4</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.05</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>0.000000000921</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.00000000002</nStdUncertValue>
+			</PropUncertainty>
+			<PropRepeatability>
+				<nPropRepeatValue>.000000000002</nPropRepeatValue>
+				<nRepetitions>4</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.1</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>0.000000000861</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.00000000002</nStdUncertValue>
+			</PropUncertainty>
+			<PropRepeatability>
+				<nPropRepeatValue>.000000000001</nPropRepeatValue>
+				<nRepetitions>4</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

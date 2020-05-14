@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Watanabe, Y.[Yuta]</sAuthor>
+		<sAuthor>Katsuta, S.[Shoichi]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2014</yrPubYr>
+		<dateCit>2014-03-12</dateCit>
+		<sTitle>Distribution of a Monovalent Anion in Various Ionic Liquid/Water Biphasic Systems: Relationship of the Distribution Ratio of Picrate Ions with the Aqueous Solubility of Ionic Liquids</sTitle>
+		<sAbstract>The distribution of picrate anions in various ionic liquid (IL)/water biphasic systems was investigated at 298.2 K. The ILs were 1-butyl-3-methylimidazolium hexafluorophosphate, 1-butyl-3-methylimidazolium bis(trifluoromethanesulfonyl)amide, 1-hexyl-3-methylimidazolium hexafluorophosphate, 1-hexyl-3-methylimidazolium bis(trifluoromethanesulfonyl)amide, 1-methyl-3-octylimidazolium tetrafluoroborate, 1-methyl-3-octylimidazolium hexafluorophosphate, 1-methyl-3-octylimidazolium bis(trifluoromethanesulfonyl)amide, 1-methyl-3-octylimidazolium bis(pentafluoroethanesulfonyl)amide, 1-butyl-2,3-dimethylimidazolium bis(trifluoromethanesulfonyl)amide, 1-butyl-1-methylpyrrolidinium bis(trifluoromethanesulfonyl)amide, methyltrioctylammonium bis(trifluoromethanesulfonyl)amide, 1-butylimidazolium bis(trifluoromethanesulfonyl)amide, and 1-butylpyrrolidinium bis(trifluoromethanesulfonyl)amide. The distribution ratios in dilute conditions (Ddeg ) and the aqueous solubilities of the ILs (square root of the solubility product, Ksp1/2) were determined. The extractability of the picrate anion generally increases with increasing hydrophobicity of the IL cation (C+) and increasing hydrophilicity of the IL anion (A ). For the ILs with different C+ but the same A , the log Ddeg  vs log Ksp1/2 plot generally gives a linear relationship with a slope of -1; when the ILs have similar Ksp1/2 values, the Ddeg  value decreases in the C+ order, protic cations 1,3-dialkylimidazolium cations greater than other cations. For the ILs comprising different A  but the same C+, the log Ddeg  versus log Ksp1/2 plot is close to a linear line with a slope of 1. These regularities can be explained on the basis of the extraction mechanism including both the ion pair extraction with C+ and the ion exchange with A .</sAbstract>
+		<sDOI>10.1021/je400726y</sDOI>
+		<sVol>59</sVol>
+		<sPage>696-701</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>1-hexyl-3-methylimidazolium hexafluorophosphate</sCommonName>
+		<sFormulaMolec>C10H19F6N2P</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Estimation</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>1-hexyl-3-methylimidazolium bis[(trifluoromethyl)sulfonyl]amide</sCommonName>
+		<sFormulaMolec>C12H19F6N3O4S2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Estimation</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>1-methyl-3-octylimidazolium hexafluorophosphate</sCommonName>
+		<sFormulaMolec>C12H23F6N2P</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Estimation</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>1-octyl-3-methylimidazolium bis(perfluoroethylsulfonyl)imide</sCommonName>
+		<sFormulaMolec>C16H23F10N3O4S2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Estimation</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>1-butyl-2,3-dimethyl-1H-imidazolium bis(trifluoromethylsulfonyl)amide</sCommonName>
+		<sFormulaMolec>C11H17F6N3O4S2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Estimation</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>3-butyl-1H-imidazol-3-ium bis((trifluoromethyl)sulfonyl)amide</sCommonName>
+		<sFormulaMolec>C9H13F6N3O4S2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Estimation</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>7</nOrgNum>
+		</RegNum>
+		<sCommonName>1-butylpyrrolidinium bis(trifluoromethylsulfonyl)amide</sCommonName>
+		<sFormulaMolec>C10H18F6N2O4S2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Estimation</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>8</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Synthesized by the authors</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.8</nPurityMass>
+				<nPurityMassDigits>3</nPurityMassDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>2/18/2014</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Mole fraction</ePropName>
+						<sMethodName>picrate formation</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.2</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.000455</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.000003</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>2/18/2014</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Mole fraction</ePropName>
+						<sMethodName>picrate formation</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.2</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.0000862</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.0000003</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>2/18/2014</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Mole fraction</ePropName>
+						<sMethodName>picrate formation</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.2</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.000146</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.000001</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>2/18/2014</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Mole fraction</ePropName>
+						<sMethodName>picrate formation</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.2</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.000005298</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.000000008</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>2/18/2014</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Mole fraction</ePropName>
+						<sMethodName>picrate formation</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.2</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.0001987</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.0000008</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>2/18/2014</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Mole fraction</ePropName>
+						<sMethodName>picrate formation</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.2</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.0008159</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.0000006</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>2/18/2014</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Mole fraction</ePropName>
+						<sMethodName>picrate formation</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>298.2</nVarValue>
+				<nVarDigits>4</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.000574</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nStdUncertValue>.000002</nStdUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

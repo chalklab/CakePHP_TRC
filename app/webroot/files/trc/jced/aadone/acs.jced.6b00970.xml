@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Uslu, H.[Hasan]</sAuthor>
+		<sAuthor>Datta, D.[Dipaloy]</sAuthor>
+		<sAuthor>Bamufleh, H. S.[Hisham S.]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2017</yrPubYr>
+		<dateCit>2017-04-21</dateCit>
+		<sTitle>Solvent Polarity Effect when Amberlite-LA2 Is Used in the Extraction of Picric Acid</sTitle>
+		<sAbstract>The separation and recovery of picric acid (0.061 mol*kg 1) from its aqueous solution was studied at a fixed temperature of 298 K. The extraction experiments were performed by using a secondary amine, Amberlite-LA2 (ALA2), dissolved in five different solvents such as dichloromethane (DCM), dodecanol, toluene, benzene, and dodecane. Physical extraction data were also produced by pure solvent alone. The experimental data obtained from the batch studies were analyzed by calculating the distribution coefficient (KD), extraction efficiency (%E), and loading factor (Z). The highest synergistic effect was achieved with DCM in ALA2 at a concentration of 0.588 mol*kg 1 as 83.61%. The equilibrium constants for the complex formation between acid and amine (1:1 and 2:1) were calculated for all the solvents applying the mass action law.</sAbstract>
+		<sKeyword>Reactive extraction</sKeyword>
+		<sKeyword>Picric acid</sKeyword>
+		<sKeyword>Amberlite LA-2</sKeyword>
+		<sKeyword>Solvent</sKeyword>
+		<sDOI>10.1021/acs.jced.6b00970</sDOI>
+		<sVol>62</sVol>
+		<sPage>1125-1129</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>dichloromethane</sCommonName>
+		<sFormulaMolec>CH2Cl2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.8</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>dodecanol</sCommonName>
+		<sFormulaMolec>C12H26O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99</nUnknownPerCent>
+				<nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>toluene</sCommonName>
+		<sFormulaMolec>C7H8</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.8</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>benzene</sCommonName>
+		<sFormulaMolec>C6H6</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.9</nUnknownPerCent>
+				<nUnknownPerCentDigits>3</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>dodecane</sCommonName>
+		<sFormulaMolec>C12H26</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99</nUnknownPerCent>
+				<nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>picric acid</sCommonName>
+		<sFormulaMolec>C6H3N3O7</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>98</nUnknownPerCent>
+				<nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>7</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.8</nPurityMass>
+				<nPurityMassDigits>3</nPurityMassDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>EP</sCompiler>
+		<sContributor>EP</sContributor>
+		<dateDateAdded>2/7/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Molality, mol/kg</ePropName>
+						<sMethodName>titration</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<eTemperature>Temperature, K</eTemperature>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>298</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>100</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Molality, mol/kg</eComponentComposition>
+				</VariableType>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Liquid mixture 1</eVarPhase>
+			</VarPhaseID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.053</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.008</nPropValue>
+				<nPropDigits>1</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>EP</sCompiler>
+		<sContributor>EP</sContributor>
+		<dateDateAdded>2/7/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Molality, mol/kg</ePropName>
+						<sMethodName>titration</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<eTemperature>Temperature, K</eTemperature>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>298</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>100</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Molality, mol/kg</eComponentComposition>
+				</VariableType>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Liquid mixture 1</eVarPhase>
+			</VarPhaseID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.056</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.005</nPropValue>
+				<nPropDigits>1</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>PB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>1/18/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Molality, mol/kg</ePropName>
+						<sMethodName>titration</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<eTemperature>Temperature, K</eTemperature>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>298</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>100</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Molality, mol/kg</eComponentComposition>
+				</VariableType>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Liquid mixture 1</eVarPhase>
+			</VarPhaseID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.059</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.002</nPropValue>
+				<nPropDigits>1</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>PB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>1/18/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Molality, mol/kg</ePropName>
+						<sMethodName>titration</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<eTemperature>Temperature, K</eTemperature>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>298</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>100</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Molality, mol/kg</eComponentComposition>
+				</VariableType>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Liquid mixture 1</eVarPhase>
+			</VarPhaseID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.059</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.002</nPropValue>
+				<nPropDigits>1</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>PB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>1/18/2017</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<CompositionAtPhaseEquilibrium>
+						<ePropName>Molality, mol/kg</ePropName>
+						<sMethodName>titration</sMethodName>
+					</CompositionAtPhaseEquilibrium>
+				</PropertyGroup>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid mixture 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid mixture 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid mixture 1</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<eTemperature>Temperature, K</eTemperature>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>298</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>100</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Molality, mol/kg</eComponentComposition>
+				</VariableType>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Liquid mixture 1</eVarPhase>
+			</VarPhaseID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
+			</Solvent>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.06</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.001</nPropValue>
+				<nPropDigits>1</nPropDigits>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Zheng, P.[Peizhu]</sAuthor>
+		<sAuthor>Zhang, X.[Xianshuo]</sAuthor>
+		<sAuthor>Fang, J.[Jian]</sAuthor>
+		<sAuthor>Shen, W.[Weiguo]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2016</yrPubYr>
+		<dateCit>2016-02-18</dateCit>
+		<sTitle>Thermodynamic Study of Mixed Surfactants of Polyoxyethylene Tert-octyl Phenyl Ether and Dodecyltrimethylammonium Bromide</sTitle>
+		<sAbstract>Mixtures of polyoxyethylene tert-octyl phenyl ether (TX100) and dodecyltrimethylammonium bromide (DTAB) were investigated using isothermal titration calorimetry. On the base of the pseudophase separation model and using the two-parameter Margules equation, the compositions of mixed micelles and activity coefficient of each surfactant in mixed micelles were obtained and further used to calculate the thermodynamic parameters of micellization and excess properties of mixed surfactants in the micelles. Through three titration methods, the tendency of surfactants to form mixed micelles and the interactions between TX100 and DTAB in the micelles were investigated.</sAbstract>
+		<sDOI>10.1021/acs.jced.5b00824</sDOI>
+		<sVol>61</sVol>
+		<sPage>979-986</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>dodecyltrimethylammonium bromide</sCommonName>
+		<sFormulaMolec>C15H34BrN</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Not stated in the document</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.8</nPurityMass>
+				<nPurityMassDigits>3</nPurityMassDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>sodium bromide</sCommonName>
+		<sFormulaMolec>BrNa</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.0</nPurityMass>
+				<nPurityMassDigits>3</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+</DataReport>

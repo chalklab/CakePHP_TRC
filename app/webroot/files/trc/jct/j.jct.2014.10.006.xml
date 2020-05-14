@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport
+	xmlns = "http://www.iupac.org/namespaces/ThermoML"
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Bohler, R.</sAuthor>
+		<sAuthor>Cakir, P.</sAuthor>
+		<sAuthor>Benes, O.</sAuthor>
+		<sAuthor>Hein, H.</sAuthor>
+		<sAuthor>Konings, R. J. M.</sAuthor>
+		<sAuthor>Manara, D.</sAuthor>
+		<sPubName>J. Chem. Thermodyn.</sPubName>
+		<yrPubYr>2015</yrPubYr>
+		<dateCit>2015-02-24</dateCit>
+		<sTitle>High temperature phase transition of mixed (PuO2 + ThO2) investigated by laser melting</sTitle>
+		<sKeyword>Actinide alloys and compounds</sKeyword>
+		<sKeyword>Phase transitions</sKeyword>
+		<sKeyword>Phase diagrams</sKeyword>
+		<sKeyword>(Thorium + plutonium) dioxide</sKeyword>
+		<sDOI>10.1016/j.jct.2014.10.006</sDOI>
+		<sVol>81</sVol>
+		<sPage>245-252</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>plutonium dioxide</sCommonName>
+		<sFormulaMolec>O2Pu</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>thorium dioxide</sCommonName>
+		<sFormulaMolec>O2Th</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>2/24/2015</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Solid-liquid equilibrium temperature, K</ePropName>
+						<sMethodName>laser-pulse method</sMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nUncertLevOfConfid>95</nUncertLevOfConfid>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>300</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+			<ConstrUncertainty>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nStdUncertValue>5</nStdUncertValue>
+			</ConstrUncertainty>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Mole fraction</eComponentComposition>
+				</VariableType>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Crystal</eVarPhase>
+			</VarPhaseID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.05</nVarValue>
+				<nVarDigits>1</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>3008</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nExpandUncertValue>45</nExpandUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.15</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>3050</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nExpandUncertValue>49</nExpandUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.46</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>3208</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nExpandUncertValue>55</nExpandUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.92</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>3551</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nExpandUncertValue>68</nExpandUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>.97</nVarValue>
+				<nVarDigits>2</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>3592</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nExpandUncertValue>67</nExpandUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Robert D. Chirico (U. S. Department of Commerce) -->
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Aspiala, M.[Markus]</sAuthor>
+		<sAuthor>Sukhomlinov, D.[Dmitry]</sAuthor>
+		<sAuthor>Taskinen, P.[Pekka]</sAuthor>
+		<sPubName>J. Chem. Thermodyn.</sPubName>
+		<yrPubYr>2014</yrPubYr>
+		<dateCit>2014-08-20</dateCit>
+		<sTitle>Standard thermodynamic properties of Bi2O3 by a solid-oxide electrolyte EMF technique</sTitle>
+		<sKeyword>Bismuth trioxide</sKeyword>
+		<sKeyword>Standard Gibbs free energy of formation</sKeyword>
+		<sKeyword>Enthalpy of formation</sKeyword>
+		<sKeyword>Standard entropy</sKeyword>
+		<sKeyword>EMF technique</sKeyword>
+		<sDOI>10.1016/j.jct.2014.04.002</sDOI>
+		<sVol>75</sVol>
+		<sPage>8-12</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>bismuth oxide</sCommonName>
+		<sFormulaMolec>Bi2O3</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.997</nPurityMass>
+				<nPurityMassDigits>5</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>bismuth</sCommonName>
+		<sFormulaMolec>Bi</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.99</nPurityMass>
+				<nPurityMassDigits>4</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>oxygen</sCommonName>
+		<sFormulaMolec>O2</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>99.95</nPurityMass>
+				<nPurityMassDigits>4</nPurityMassDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal 2</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1.5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/15/2014</dateDateAdded>
+		<eReactionType>Formation of a compound from elements in their stable state</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar enthalpy of reaction, kJ/mol</ePropName>
+						<sMethodName>Electrochemical Cell</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298</nTemperature-K>
+			<nTemperatureDigits>3</nTemperatureDigits>
+			<nPressure-kPa>101</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nUncertLevOfConfid>95</nUncertLevOfConfid>
+			</PropUncertainty>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-567.31</nPropValue>
+				<nPropDigits>5</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>14.77</nExpandUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Crystal 1</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1.5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/20/2014</dateDateAdded>
+		<eReactionType>Formation of a compound from elements in their stable state</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar Gibbs energy of reaction, kJ/mol</ePropName>
+						<sMethodName>(Electrochemical) cell potential</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nUncertLevOfConfid>95</nUncertLevOfConfid>
+			</PropUncertainty>
+		</Property>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+			<VarUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nUncertLevOfConfid>95</nUncertLevOfConfid>
+			</VarUncertainty>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>1061.70</nVarValue>
+				<nVarDigits>6</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-280.01</nPropValue>
+				<nPropDigits>5</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.492</nExpandUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>1012.20</nVarValue>
+				<nVarDigits>6</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-294.53</nPropValue>
+				<nPropDigits>5</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.492</nExpandUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>1036.81</nVarValue>
+				<nVarDigits>6</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-287.31</nPropValue>
+				<nPropDigits>5</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.492</nExpandUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>1086.05</nVarValue>
+				<nVarDigits>6</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-272.86</nPropValue>
+				<nPropDigits>5</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.492</nExpandUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>1</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-2</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>-1.5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>AB</sCompiler>
+		<sContributor>TRC</sContributor>
+		<dateDateAdded>8/20/2014</dateDateAdded>
+		<eReactionType>Formation of a compound from elements in their stable state</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Molar Gibbs energy of reaction, kJ/mol</ePropName>
+						<sMethodName>(Electrochemical) cell potential</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nUncertLevOfConfid>95</nUncertLevOfConfid>
+			</PropUncertainty>
+		</Property>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+			<VarUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nUncertLevOfConfid>95</nUncertLevOfConfid>
+			</VarUncertainty>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>1111.09</nVarValue>
+				<nVarDigits>6</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-265.69</nPropValue>
+				<nPropDigits>5</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.481</nExpandUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>1136.69</nVarValue>
+				<nVarDigits>6</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-258.38</nPropValue>
+				<nPropDigits>5</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.481</nExpandUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>1186.01</nVarValue>
+				<nVarDigits>6</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-244.31</nPropValue>
+				<nPropDigits>5</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.481</nExpandUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>1235.11</nVarValue>
+				<nVarDigits>6</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-230.31</nPropValue>
+				<nPropDigits>5</nPropDigits>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.481</nExpandUncertValue>
+				</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

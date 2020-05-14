@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Cetti, J.[Jonathan]</sAuthor>
+		<sAuthor>Eike, D.[David]</sAuthor>
+		<sAuthor>Vallana, F. M. F.[Federico M. Ferrero]</sAuthor>
+		<sAuthor>Gunaratne, H. Q. N.</sAuthor>
+		<sAuthor>Holland, L. A. M.[Lynette A.M.]</sAuthor>
+		<sAuthor>Puga, A. V.[Alberto V.]</sAuthor>
+		<sAuthor>Seddon, K. R.[Kenneth R.]</sAuthor>
+		<sAuthor>Todini, O.[Oreste]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2017</yrPubYr>
+		<dateCit>2017-10-03</dateCit>
+		<sTitle>Modeling the Vapor Liquid Equilibria of Ionic Liquids Containing Perfume Raw Materials</sTitle>
+		<sAbstract>In this work, the vapor liquid equilibria of binary and multinary systems comprise perfume raw materials and ionic liquids have been computed using two different models: COSMO-RS, a solvation model, and UNIFAC, a group contribution method. For systems already well-known in the literature, a comparison with experimental data was performed, and good agreement was observed with both models. Although UNIFAC was not applicable to nonparametrized ionic liquids, COSMO-RS proved very reliable in predicting the vapor liquid equilibria of solutions of perfume raw materials in new-to-the-world ionic liquids. This opens the door for the prediction and modeling of new formulations for novel consumer products, prior to embarking on detailed experimental investigations.</sAbstract>
+		<sDOI>10.1021/acs.jced.7b00116</sDOI>
+		<sVol>62</sVol>
+		<sPage>2787-2798</sPage>
+	</Citation>
+</DataReport>

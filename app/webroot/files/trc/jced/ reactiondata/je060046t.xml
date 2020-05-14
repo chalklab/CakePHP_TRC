@@ -1,0 +1,1144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2006</yrYrPub>
+			<sAuthor1>rib</sAuthor1>
+			<sAuthor2>cab</sAuthor2>
+			<nAuthorn>3</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Ribeiro da Silva, M. A. V.[Manuel A. V.]</sAuthor>
+		<sAuthor>Cabral, J. I. T. A.[Joana I. T. A.]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2006</yrPubYr>
+		<dateCit>2006-10-06</dateCit>
+		<sTitle>Thermochemistry of Some Derivatives of 2- and 4-Piperidone</sTitle>
+		<sAbstract>Standard (pdeg  ) 0.1 MPa) massic energies of combustion for 2-piperidone, 1-methyl-2-piperidone, 1-benzyl-2-  piperidone, 1-methyl-4-piperidone, 1-ethyl-4-piperidone, and 1-benzyl-4-piperidone were measured at T ) 298.15  K by static bomb calorimetry. The standard molar enthalpies of formation in the condensed phase were derived.  The standard molar enthalpies of vaporization at T ) 298.15 K of the piperidone and derivatives studied were  determined by high-temperature Calvet microcalorimetry. The respective standard molar enthalpies of formation  in the gaseous phase, at T ) 298.15 K, were derived. These results are discussed in terms of molecular structure  contributions.</sAbstract>
+		<sKeyword>energies of combustion</sKeyword>
+		<sKeyword>-piperidone</sKeyword>
+		<sKeyword>1-methyl-2-piperidone</sKeyword>
+		<sKeyword>1-benzyl-2-  piperidone</sKeyword>
+		<sKeyword>1-methyl-4-piperidone</sKeyword>
+		<sKeyword>1-ethyl-4-piperidone</sKeyword>
+		<sKeyword>1-benzyl-4-piperidone</sKeyword>
+		<sKeyword>molar enthalpies of formation derived</sKeyword>
+		<sKeyword>Calvet microcalorimetry</sKeyword>
+		<sVol>51</sVol>
+		<sPage>1556-1561</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>2-piperidone</sCommonName>
+		<sFormulaMolec>C5H9NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Sublimation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.973</nUnknownPerCent>
+				<nUnknownPerCentDigits>5</nUnknownPerCentDigits>
+				<eAnalMeth>CO2 yield in combustion products</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>1-methyl-2-piperidone</sCommonName>
+		<sFormulaMolec>C6H11NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Fractional distillation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.861</nUnknownPerCent>
+				<nUnknownPerCentDigits>5</nUnknownPerCentDigits>
+				<eAnalMeth>CO2 yield in combustion products</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>3</nOrgNum>
+		</RegNum>
+		<sCommonName>1-benzyl-2-piperidone</sCommonName>
+		<sFormulaMolec>C12H15NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Fractional distillation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.863</nUnknownPerCent>
+				<nUnknownPerCentDigits>5</nUnknownPerCentDigits>
+				<eAnalMeth>CO2 yield in combustion products</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>4</nOrgNum>
+		</RegNum>
+		<sCommonName>1-methyl-4-piperidone</sCommonName>
+		<sFormulaMolec>C6H11NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Fractional distillation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.33</nUnknownPerCent>
+				<nUnknownPerCentDigits>4</nUnknownPerCentDigits>
+				<eAnalMeth>CO2 yield in combustion products</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>5</nOrgNum>
+		</RegNum>
+		<sCommonName>1-ethyl-4-piperidone</sCommonName>
+		<sFormulaMolec>C7H13NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Fractional distillation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.989</nUnknownPerCent>
+				<nUnknownPerCentDigits>5</nUnknownPerCentDigits>
+				<eAnalMeth>CO2 yield in combustion products</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>6</nOrgNum>
+		</RegNum>
+		<sCommonName>1-benzyl-4-piperidone</sCommonName>
+		<sFormulaMolec>C12H15NO</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>Fractional distillation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99.945</nUnknownPerCent>
+				<nUnknownPerCentDigits>5</nUnknownPerCentDigits>
+				<eAnalMeth>CO2 yield in combustion products</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>7</nOrgNum>
+		</RegNum>
+		<sCommonName>carbon dioxide</sCommonName>
+		<sFormulaMolec>CO2</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>8</nOrgNum>
+		</RegNum>
+		<sCommonName>nitrogen</sCommonName>
+		<sFormulaMolec>N2</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>9</nOrgNum>
+		</RegNum>
+		<sCommonName>water</sCommonName>
+		<sFormulaMolec>H2O</sFormulaMolec>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>10</nOrgNum>
+		</RegNum>
+		<sCommonName>oxygen</sCommonName>
+		<sFormulaMolec>O2</sFormulaMolec>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<HeatCapacityAndDerivedProp>
+						<ePropName>Molar enthalpy, kJ/mol</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</HeatCapacityAndDerivedProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Gas</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Difference with the reference state, X-X(REF)</ePresentation>
+			<eRefStateType>Reference phase with the same composition at fixed temperature and pressure</eRefStateType>
+			<nRefTemp>298.15</nRefTemp>
+			<nRefTempDigits>5</nRefTempDigits>
+			<nRefPressure>101</nRefPressure>
+			<nRefPressureDigits>3</nRefPressureDigits>
+			<RefPhaseID>
+				<eRefPhase>Crystal</eRefPhase>
+			</RefPhaseID>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<Variable>
+			<nVarNumber>2</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<ePressure>Pressure, kPa</ePressure>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>334</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<VariableValue>
+				<nVarNumber>2</nVarNumber>
+				<nVarValue>101</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>82.87</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>.47</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<HeatCapacityAndDerivedProp>
+						<ePropName>Molar enthalpy, kJ/mol</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</HeatCapacityAndDerivedProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Gas</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Difference with the reference state, X-X(REF)</ePresentation>
+			<eRefStateType>Reference phase with the same composition at fixed temperature and pressure</eRefStateType>
+			<nRefTemp>298.15</nRefTemp>
+			<nRefTempDigits>5</nRefTempDigits>
+			<nRefPressure>101</nRefPressure>
+			<nRefPressureDigits>3</nRefPressureDigits>
+			<RefPhaseID>
+				<eRefPhase>Liquid</eRefPhase>
+			</RefPhaseID>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<Variable>
+			<nVarNumber>2</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<ePressure>Pressure, kPa</ePressure>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>355</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<VariableValue>
+				<nVarNumber>2</nVarNumber>
+				<nVarValue>101</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>68.08</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>.07</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<HeatCapacityAndDerivedProp>
+						<ePropName>Molar enthalpy, kJ/mol</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</HeatCapacityAndDerivedProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Gas</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Difference with the reference state, X-X(REF)</ePresentation>
+			<eRefStateType>Reference phase with the same composition at fixed temperature and pressure</eRefStateType>
+			<nRefTemp>298.15</nRefTemp>
+			<nRefTempDigits>5</nRefTempDigits>
+			<nRefPressure>101</nRefPressure>
+			<nRefPressureDigits>3</nRefPressureDigits>
+			<RefPhaseID>
+				<eRefPhase>Liquid</eRefPhase>
+			</RefPhaseID>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<Variable>
+			<nVarNumber>2</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<ePressure>Pressure, kPa</ePressure>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>427</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<VariableValue>
+				<nVarNumber>2</nVarNumber>
+				<nVarValue>101</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>121.29</nPropValue>
+				<nPropDigits>5</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>.41</nPropRepeatValue>
+				<nRepetitions>5</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<HeatCapacityAndDerivedProp>
+						<ePropName>Molar enthalpy, kJ/mol</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</HeatCapacityAndDerivedProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Gas</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Difference with the reference state, X-X(REF)</ePresentation>
+			<eRefStateType>Reference phase with the same composition at fixed temperature and pressure</eRefStateType>
+			<nRefTemp>298.15</nRefTemp>
+			<nRefTempDigits>5</nRefTempDigits>
+			<nRefPressure>101</nRefPressure>
+			<nRefPressureDigits>3</nRefPressureDigits>
+			<RefPhaseID>
+				<eRefPhase>Liquid</eRefPhase>
+			</RefPhaseID>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<Variable>
+			<nVarNumber>2</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<ePressure>Pressure, kPa</ePressure>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>334</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<VariableValue>
+				<nVarNumber>2</nVarNumber>
+				<nVarValue>101</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>59.01</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>.34</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<HeatCapacityAndDerivedProp>
+						<ePropName>Molar enthalpy, kJ/mol</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</HeatCapacityAndDerivedProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Gas</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Difference with the reference state, X-X(REF)</ePresentation>
+			<eRefStateType>Reference phase with the same composition at fixed temperature and pressure</eRefStateType>
+			<nRefTemp>298.15</nRefTemp>
+			<nRefTempDigits>5</nRefTempDigits>
+			<nRefPressure>101</nRefPressure>
+			<nRefPressureDigits>3</nRefPressureDigits>
+			<RefPhaseID>
+				<eRefPhase>Liquid</eRefPhase>
+			</RefPhaseID>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<Variable>
+			<nVarNumber>2</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<ePressure>Pressure, kPa</ePressure>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>358</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<VariableValue>
+				<nVarNumber>2</nVarNumber>
+				<nVarValue>101</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>66.35</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>.35</nPropRepeatValue>
+				<nRepetitions>5</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<HeatCapacityAndDerivedProp>
+						<ePropName>Molar enthalpy, kJ/mol</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</HeatCapacityAndDerivedProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Gas</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Difference with the reference state, X-X(REF)</ePresentation>
+			<eRefStateType>Reference phase with the same composition at fixed temperature and pressure</eRefStateType>
+			<nRefTemp>298.15</nRefTemp>
+			<nRefTempDigits>5</nRefTempDigits>
+			<nRefPressure>101</nRefPressure>
+			<nRefPressureDigits>3</nRefPressureDigits>
+			<RefPhaseID>
+				<eRefPhase>Liquid</eRefPhase>
+			</RefPhaseID>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+		</Property>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eTemperature>Temperature, K</eTemperature>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<Variable>
+			<nVarNumber>2</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<ePressure>Pressure, kPa</ePressure>
+				</VariableType>
+			</VariableID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>358</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<VariableValue>
+				<nVarNumber>2</nVarNumber>
+				<nVarValue>101</nVarValue>
+				<nVarDigits>3</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>90.79</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>.4</nPropRepeatValue>
+				<nRepetitions>5</nRepetitions>
+			</PropRepeatability>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Crystal</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>0.5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>9</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>4.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nStoichiometricCoef>-6.75</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-29698.4</nPropValue>
+				<nPropDigits>6</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>4.5</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-1.43743065150188</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>6</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>0.5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>9</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>5.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nStoichiometricCoef>-8.25</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-32128.6</nPropValue>
+				<nPropDigits>6</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>6.9</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-1.9391423965718</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>3</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>12</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>0.5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>9</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>7.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nStoichiometricCoef>-15.25</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-35132.7</nPropValue>
+				<nPropDigits>6</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>3.2</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-2.12045679164477</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>4</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>6</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>0.5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>9</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>5.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nStoichiometricCoef>-8.25</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-32820.3</nPropValue>
+				<nPropDigits>6</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>2.8</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-1.98089039666233</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>5</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>7</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>0.5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>9</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>6.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nStoichiometricCoef>-9.75</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-34337</nPropValue>
+				<nPropDigits>6</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>1.7</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-2.07243180440747</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+	<ReactionData>
+		<Participant>
+			<RegNum>
+				<nOrgNum>6</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+			<nStoichiometricCoef>-1</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>7</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>12</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>8</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>0.5</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>9</nOrgNum>
+			</RegNum>
+			<nSampleNm>0</nSampleNm>
+			<nStoichiometricCoef>7.5</nStoichiometricCoef>
+			<ePhase>Liquid</ePhase>
+		</Participant>
+		<Participant>
+			<RegNum>
+				<nOrgNum>10</nOrgNum>
+			</RegNum>
+			<nStoichiometricCoef>-15.25</nStoichiometricCoef>
+			<ePhase>Gas</ePhase>
+		</Participant>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>JCE</sCompiler>
+		<sContributor>JCE</sContributor>
+		<dateDateAdded>9/28/2006</dateDateAdded>
+		<eReactionType>Combustion with oxygen</eReactionType>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ReactionStateChangeProp>
+						<ePropName>Specific internal energy of reaction at constant volume, J/g</ePropName>
+						<sMethodName>vacuum sublimation drop microcalorimetry</sMethodName>
+					</ReactionStateChangeProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<nTemperature-K>298.15</nTemperature-K>
+			<nTemperatureDigits>5</nTemperatureDigits>
+			<nPressure-kPa>100</nPressure-kPa>
+			<nPressureDigits>3</nPressureDigits>
+			<PropRepeatability>
+				<sRepeatEvaluator>Author</sRepeatEvaluator>
+				<eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+			</PropRepeatability>
+			<PropDeviceSpec>
+				<eDeviceSpecMethod>Calibrated by the experimentalist</eDeviceSpecMethod>
+			</PropDeviceSpec>
+		</Property>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-35558.9</nPropValue>
+				<nPropDigits>6</nPropDigits>
+			<PropRepeatability>
+				<nPropRepeatValue>4.8</nPropRepeatValue>
+				<nRepetitions>6</nRepetitions>
+			</PropRepeatability>
+			<nPropDeviceSpecValue>-2.14576755728598</nPropDeviceSpecValue>
+			</PropertyValue>
+		</NumValues>
+	</ReactionData>
+</DataReport>

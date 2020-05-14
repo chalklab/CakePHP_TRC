@@ -1,0 +1,3062 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+  <Version>
+    <nVersionMajor>2</nVersionMajor>
+    <nVersionMinor>0</nVersionMinor>
+  </Version>
+  <Citation>
+    <TRCRefID>
+      <yrYrPub>2005</yrYrPub>
+      <sAuthor1>rou</sAuthor1>
+      <sAuthor2>tem</sAuthor2>
+      <nAuthorn>0</nAuthorn>
+    </TRCRefID>
+    <eType>journal</eType>
+    <eSourceType>Original</eSourceType>
+    <sAuthor>Roux, M. V.[MarIa Victoria]</sAuthor>
+    <sAuthor>Temprado, M.[Manuel]</sAuthor>
+    <sAuthor>Chickos, J. S.[James S.]</sAuthor>
+    <sPubName>J. Chem. Thermodyn.</sPubName>
+    <yrPubYr>2005</yrPubYr>
+    <dateCit>2005-07-20</dateCit>
+    <sTitle>Vaporization, fusion and sublimation enthalpies of the dicarboxylic acids from C4 to C14 and C16</sTitle>
+    <sKeyword>vaporization enthalpies</sKeyword>
+    <sKeyword>fusion enthalpies</sKeyword>
+    <sKeyword>sublimation enthalipies</sKeyword>
+    <sKeyword>dicarboxylic acids</sKeyword>
+    <sKeyword>DSC</sKeyword>
+    <sKeyword>solid-solid phase transitions</sKeyword>
+    <sVol>37</sVol>
+    <sPage>941-953</sPage>
+  </Citation>
+  <Compound>
+    <RegNum>
+      <nOrgNum>1</nOrgNum>
+    </RegNum>
+    <sCommonName>butanedioic acid</sCommonName>
+    <sFormulaMolec>C4H6O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>2</nOrgNum>
+    </RegNum>
+    <sCommonName>glutaric acid</sCommonName>
+    <sFormulaMolec>C5H8O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>3</nOrgNum>
+    </RegNum>
+    <sCommonName>hexanedioic acid</sCommonName>
+    <sFormulaMolec>C6H10O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>4</nOrgNum>
+    </RegNum>
+    <sCommonName>heptanedioic acid</sCommonName>
+    <sFormulaMolec>C7H12O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>5</nOrgNum>
+    </RegNum>
+    <sCommonName>octanedioic acid</sCommonName>
+    <sFormulaMolec>C8H14O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>6</nOrgNum>
+    </RegNum>
+    <sCommonName>nonanedioic acid</sCommonName>
+    <sFormulaMolec>C9H16O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>7</nOrgNum>
+    </RegNum>
+    <sCommonName>decanedioic acid</sCommonName>
+    <sFormulaMolec>C10H18O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>8</nOrgNum>
+    </RegNum>
+    <sCommonName>undecanedioic acid</sCommonName>
+    <sFormulaMolec>C11H20O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>9</nOrgNum>
+    </RegNum>
+    <sCommonName>tridecanedioic acid</sCommonName>
+    <sFormulaMolec>C13H24O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>None used</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>10</nOrgNum>
+    </RegNum>
+    <sCommonName>tetradecanedioic acid</sCommonName>
+    <sFormulaMolec>C14H26O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>11</nOrgNum>
+    </RegNum>
+    <sCommonName>hexadecanedioic acid</sCommonName>
+    <sFormulaMolec>C16H30O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>None used</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <Compound>
+    <RegNum>
+      <nOrgNum>12</nOrgNum>
+    </RegNum>
+    <sCommonName>1,12-dodecanedioic acid</sCommonName>
+    <sFormulaMolec>C12H22O4</sFormulaMolec>
+    <Sample>
+      <nSampleNm>1</nSampleNm>
+      <eSource>Commercial source</eSource>
+      <purity>
+        <nStep>1</nStep>
+        <nUnknownPerCent>98</nUnknownPerCent>
+        <nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+        <eAnalMeth>Stated by supplier</eAnalMeth>
+      </purity>
+      <purity>
+        <nStep>2</nStep>
+        <ePurifMethod>Crystallization from solution</ePurifMethod>
+        <ePurifMethod>Dried by oven heating</ePurifMethod>
+      </purity>
+    </Sample>
+  </Compound>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>1</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>34</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.3</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>1</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>455.2</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>2</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>2.3</nPropValue>
+        <nPropDigits>2</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.3</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>2</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>18.8</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>2</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>340.5</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.8</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>2</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>363.9</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>6.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>2</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>119.2</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>3</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>33.7</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>3</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>419</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>4</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 3</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 3</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>1.5</nPropValue>
+        <nPropDigits>2</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.3</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>4</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>23.7</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>4</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 3</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 3</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>337.7</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.6</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>4</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>366.3</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>4</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>368.2</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.6</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>4</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>132.9</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>5</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 3</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 3</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>2</nPropValue>
+        <nPropDigits>2</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.8</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>5</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>9.1</nPropValue>
+        <nPropDigits>2</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.1</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>5</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>30.7</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>5</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 3</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 3</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>355.9</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.8</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>5</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>403.6</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>5</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>413.2</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>5</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>151.1</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>3.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>6</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 3</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 3</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>.01</nPropValue>
+        <nPropDigits>1</nPropDigits>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>6</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>.7</nPropValue>
+        <nPropDigits>1</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.3</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>6</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>29.7</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.9</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>6</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 3</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 3</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>330.6</nPropValue>
+        <nPropDigits>4</nPropDigits>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>6</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>339.8</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>4.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>6</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>372.4</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>6</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>144.2</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>2.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>7</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>.4</nPropValue>
+        <nPropDigits>1</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.06</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>7</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>46.6</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>5</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>7</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>370.3</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>7</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>403.9</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>8</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>1.6</nPropValue>
+        <nPropDigits>2</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.5</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>8</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>41.2</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.6</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>8</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>355.3</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>8</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>380.1</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.8</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>8</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>163.7</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>2.6</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>8</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>164.6</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>3.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>9</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>49.4</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>9</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>386.3</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>10</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>56.5</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.6</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>10</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>397.3</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>10</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>174.9</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>3.8</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>11</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>52.2</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>11</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>395.4</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.6</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>12</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 3</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 3</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>.06</nPropValue>
+        <nPropDigits>1</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.04</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>12</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>-.1</nPropValue>
+        <nPropDigits>1</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.2</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>12</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>49.8</nPropValue>
+        <nPropDigits>3</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>1.1</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>12</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 3</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 3</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>359.5</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>4.8</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>12</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 2</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 2</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>387</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.4</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>12</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Triple point temperature, K</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Liquid</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Air at 1 atmosphere</ePhase>
+    </PhaseID>
+    <NumValues>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>400.3</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>.6</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+  <PureOrMixtureData>
+    <Component>
+      <RegNum>
+        <nOrgNum>12</nOrgNum>
+      </RegNum>
+      <nSampleNm>1</nSampleNm>
+    </Component>
+    <eExpPurpose>Principal objective of the work</eExpPurpose>
+    <sCompiler>JCE</sCompiler>
+    <sContributor>JCE</sContributor>
+    <dateDateAdded>7/20/2005</dateDateAdded>
+    <Property>
+      <nPropNumber>1</nPropNumber>
+      <Property-MethodID>
+        <PropertyGroup>
+          <PhaseTransition>
+            <ePropName>Molar enthalpy of vaporization or sublimation, kJ/mol</ePropName>
+            <eMethodName>DSC/DTA</eMethodName>
+          </PhaseTransition>
+        </PropertyGroup>
+      </Property-MethodID>
+      <PropPhaseID>
+        <ePropPhase>Crystal 1</ePropPhase>
+      </PropPhaseID>
+      <ePresentation>Direct value, X</ePresentation>
+      <PropRepeatability>
+        <sRepeatEvaluator>Author</sRepeatEvaluator>
+        <eRepeatMethod>Standard deviation of the mean</eRepeatMethod>
+      </PropRepeatability>
+    </Property>
+    <PhaseID>
+      <ePhase>Crystal 1</ePhase>
+    </PhaseID>
+    <PhaseID>
+      <ePhase>Gas</ePhase>
+    </PhaseID>
+    <Variable>
+      <nVarNumber>1</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+      </VariableID>
+    </Variable>
+    <NumValues>
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>171.4</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <PropRepeatability>
+          <nPropRepeatValue>3.5</nPropRepeatValue>
+          <nRepetitions>1</nRepetitions>
+        </PropRepeatability>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
+</DataReport>

@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2010</yrYrPub>
+			<sAuthor1>rie</sAuthor1>
+			<sAuthor2>bar</sAuthor2>
+			<nAuthorn>0</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Rietveld, I. B.[Ivo B.]</sAuthor>
+		<sAuthor>Barrio, M.</sAuthor>
+		<sAuthor>Veglio, N.[Nestor]</sAuthor>
+		<sAuthor>Espeau, P.</sAuthor>
+		<sAuthor>Tamarit, J. L.</sAuthor>
+		<sAuthor>Ceolin, R.[Rene]</sAuthor>
+		<sPubName>Thermochim. Acta</sPubName>
+		<yrPubYr>2010</yrPubYr>
+		<dateCit>2010-11-12</dateCit>
+		<sTitle>Temperature and composition-dependent properties of the two-component system D- + L-camphor at 'ordinary' pressure</sTitle>
+		<sKeyword>phase diagram</sKeyword>
+		<sKeyword>racemic compound</sKeyword>
+		<sKeyword>fusion</sKeyword>
+		<sKeyword>solid solution</sKeyword>
+		<sKeyword>mixed crystals</sKeyword>
+		<sKeyword>plastic crystals</sKeyword>
+		<sDOI>10.1016/j.tca.2010.07.023</sDOI>
+		<sVol>511</sVol>
+		<sPage>43-50</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>(+)-camphor</sCommonName>
+		<sFormulaMolec>C10H16O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Not known</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<ePurifMethod>Sublimation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<nPurityMass>98.8</nPurityMass>
+				<nPurityMassDigits>3</nPurityMassDigits>
+				<eAnalMeth>HPLC</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>(.+-.)-1,7,7-trimethylbicyclo[2.2.1]heptan-2-one</sCommonName>
+		<sFormulaMolec>C10H16O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nPurityMass>98</nPurityMass>
+				<nPurityMassDigits>2</nPurityMassDigits>
+				<eAnalMeth>Not known</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<ePurifMethod>Sublimation</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<nPurityMass>98.7</nPurityMass>
+				<nPurityMassDigits>3</nPurityMassDigits>
+				<eAnalMeth>HPLC</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 3</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 3</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>242.7</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.6</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>370</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>4</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>451.8</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.7</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 3</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 3</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>11.2</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.4</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.16</nPropValue>
+				<nPropDigits>2</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.02</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>6.3</nPropValue>
+				<nPropDigits>2</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.5</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 3</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 3</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>206.1</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.3</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>364</nPropValue>
+				<nPropDigits>3</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>5</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Triple point temperature, K</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>448</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.7</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 3</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 3</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>1.3</nPropValue>
+				<nPropDigits>2</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.3</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 2</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 2</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>.17</nPropValue>
+				<nPropDigits>2</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.02</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>XML</sCompiler>
+		<sContributor>XML</sContributor>
+		<dateDateAdded>7/23/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<PhaseTransition>
+						<ePropName>Molar enthalpy of transition or fusion, kJ/mol</ePropName>
+						<eMethodName>DSC/DTA</eMethodName>
+					</PhaseTransition>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Crystal 1</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<sCombUncertEvaluator>Data file complier</sCombUncertEvaluator>
+				<eCombUncertEvalMethod>Propagation of evaluated standard uncertainties</eCombUncertEvalMethod>
+				<nCombUncertLevOfConfid>95</nCombUncertLevOfConfid>
+			</CombinedUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Crystal 1</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<PhaseID>
+				<ePhase>Gas</ePhase>
+		</PhaseID>
+		<NumValues>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>5.9</nPropValue>
+				<nPropDigits>2</nPropDigits>
+			<CombinedUncertainty>
+				<nCombUncertAssessNum>1</nCombUncertAssessNum>
+				<nCombExpandUncertValue>.2</nCombExpandUncertValue>
+			</CombinedUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

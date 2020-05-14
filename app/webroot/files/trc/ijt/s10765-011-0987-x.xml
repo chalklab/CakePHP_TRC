@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2011</yrYrPub>
+			<sAuthor1>li</sAuthor1>
+			<sAuthor2>zha</sAuthor2>
+			<nAuthorn>3</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Li, Z. X.</sAuthor>
+		<sAuthor>Zhao, W. W.</sAuthor>
+		<sAuthor>Pu, X. H.</sAuthor>
+		<sPubName>Int. J. Thermophys.</sPubName>
+		<yrPubYr>2011</yrPubYr>
+		<dateCit>2011-06-21</dateCit>
+		<sTitle>Thermodynamic Properties of Matrine in Ethanol</sTitle>
+		<sAbstract>In this paper, the enthalpies of dissolution of matrine in ethanol (EtOH) were measured using a RD496-2000 Calvet microcalorimeter at 309.65 K under atmospheric pressure. The differential enthalpy (?dif H m) and molar enthalpy (?sol H m) of dissolution of matrine in ethanol were determined. And the relationship between heat and the amount of solute was also established. Based on the thermodynamic and kinetic knowledge, the corresponding kinetic equation that described the dissolution process was determined to be dtd=23610-4(1-)109 . Moreover, the half-life, t 1/2 = 48.89 min, ?sol H m = -12.40 kJ * mol-1, ?sol S m = -354.7 J * mol-1 * K-1, and ? sol G m =  97.43  kJ * mol-1 of the dissolution process were also obtained. The results show that this work not only provides a simple method for the determination of the half-life for a drug but also offers a theoretical reference for the clinical application of matrine.</sAbstract>
+		<sDOI>10.1007/s10765-011-0987-x</sDOI>
+		<sVol>32</sVol>
+		<sPage>1202-1209</sPage>
+	</Citation>
+	<Compound>
+		<RegNum>
+			<nOrgNum>1</nOrgNum>
+		</RegNum>
+		<sCommonName>matrine</sCommonName>
+		<sFormulaMolec>C15H24N2O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>99</nUnknownPerCent>
+				<nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+				<eAnalMeth>Stated by supplier</eAnalMeth>
+			</purity>
+			<purity>
+				<nStep>2</nStep>
+				<ePurifMethod>None used</ePurifMethod>
+			</purity>
+		</Sample>
+	</Compound>
+	<Compound>
+		<RegNum>
+			<nOrgNum>2</nOrgNum>
+		</RegNum>
+		<sCommonName>ethanol</sCommonName>
+		<sFormulaMolec>C2H6O</sFormulaMolec>
+		<Sample>
+			<nSampleNm>1</nSampleNm>
+			<eSource>Commercial source</eSource>
+			<purity>
+				<nStep>1</nStep>
+				<ePurifMethod>None used</ePurifMethod>
+			</purity>
+			<purity>
+				<nStep>1</nStep>
+				<nUnknownPerCent>98</nUnknownPerCent>
+				<nUnknownPerCentDigits>2</nUnknownPerCentDigits>
+				<eAnalMeth>Estimated by the compiler</eAnalMeth>
+			</purity>
+		</Sample>
+	</Compound>
+	<PureOrMixtureData>
+		<Component>
+			<RegNum>
+				<nOrgNum>2</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<Component>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			<nSampleNm>1</nSampleNm>
+		</Component>
+		<eExpPurpose>Principal objective of the work</eExpPurpose>
+		<sCompiler>RDC</sCompiler>
+		<sContributor>XXX</sContributor>
+		<dateDateAdded>11/17/2010</dateDateAdded>
+		<Property>
+			<nPropNumber>1</nPropNumber>
+			<Property-MethodID>
+				<PropertyGroup>
+					<ExcessPartialApparentEnergyProp>
+						<ePropName>Molar enthalpy of solution, kJ/mol</ePropName>
+						<eMethodName>Calvet calorimetry</eMethodName>
+					</ExcessPartialApparentEnergyProp>
+				</PropertyGroup>
+			</Property-MethodID>
+			<PropPhaseID>
+				<ePropPhase>Liquid</ePropPhase>
+			</PropPhaseID>
+			<ePresentation>Direct value, X</ePresentation>
+			<RefPhaseID>
+				<eRefPhase>Crystal</eRefPhase>
+			</RefPhaseID>
+			<Solvent>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
+			</Solvent>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<sUncertEvaluator>Author</sUncertEvaluator>
+				<nUncertLevOfConfid>95</nUncertLevOfConfid>
+			</PropUncertainty>
+		</Property>
+		<PhaseID>
+				<ePhase>Liquid</ePhase>
+		</PhaseID>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<eTemperature>Temperature, K</eTemperature>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>309.65</nConstraintValue>
+			<nConstrDigits>5</nConstrDigits>
+		</Constraint>
+		<Constraint>
+			<ConstraintID>
+				<ConstraintType>
+					<ePressure>Pressure, kPa</ePressure>
+				</ConstraintType>
+			</ConstraintID>
+			<nConstraintValue>101</nConstraintValue>
+			<nConstrDigits>3</nConstrDigits>
+		</Constraint>
+		<Variable>
+			<nVarNumber>1</nVarNumber>
+			<VariableID>
+				<VariableType>
+					<eComponentComposition>Mole fraction</eComponentComposition>
+				</VariableType>
+			<RegNum>
+				<nOrgNum>1</nOrgNum>
+			</RegNum>
+			</VariableID>
+			<VarPhaseID>
+				<eVarPhase>Liquid</eVarPhase>
+			</VarPhaseID>
+		</Variable>
+		<NumValues>
+			<VariableValue>
+				<nVarNumber>1</nVarNumber>
+				<nVarValue>0</nVarValue>
+				<nVarDigits>0</nVarDigits>
+			</VariableValue>
+			<PropertyValue>
+				<nPropNumber>1</nPropNumber>
+				<nPropValue>-12.36</nPropValue>
+				<nPropDigits>4</nPropDigits>
+			<PropUncertainty>
+				<nUncertAssessNum>1</nUncertAssessNum>
+				<nExpandUncertValue>.72</nExpandUncertValue>
+			</PropUncertainty>
+			</PropertyValue>
+		</NumValues>
+	</PureOrMixtureData>
+</DataReport>

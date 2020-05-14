@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+	<Version>
+		<nVersionMajor>2</nVersionMajor>
+		<nVersionMinor>0</nVersionMinor>
+	</Version>
+	<Citation>
+		<TRCRefID>
+			<yrYrPub>2008</yrYrPub>
+			<sAuthor1>hoj</sAuthor1>
+			<sAuthor2>yam</sAuthor2>
+			<nAuthorn>0</nAuthorn>
+		</TRCRefID>
+		<eType>journal</eType>
+		<eSourceType>Original</eSourceType>
+		<sAuthor>Hojjati, M.[Mohammad]</sAuthor>
+		<sAuthor>Yamini, Y.[Yadollah]</sAuthor>
+		<sAuthor>Khajeh, M.[Mostafa]</sAuthor>
+		<sAuthor>Shohre, R.[Rouhani]</sAuthor>
+		<sAuthor>Gharanjig, K.[Kamaladin]</sAuthor>
+		<sPubName>J. Chem. Eng. Data</sPubName>
+		<yrPubYr>2008</yrPubYr>
+		<dateCit>2008-07-16</dateCit>
+		<sTitle>Measurement and Correlation of Solubilities of Some Disperse Azo Dyes in Supercritical Carbon Dioxide</sTitle>
+		<sAbstract>The solubilities of three novel disperse azo dyes, ethyl 2-[6-{(E)-2-[4-(diethylamino)-2-methylphenyl]-1-  diazenyl}-1,3-dioxo-1H-benzo[de]isoquinolin-2(3H)-yl] acetate (Dye 1), ethyl 2-[6-{(E)-2-3-hydroxy-2-  naphthyl-1-diazenyl}-1,3-dioxo-1H-benzo[de]isoquinolin-2(3H)-yl] acetate (Dye 2), and 6-{(E)-2-[4-  (diethylamino)phenyl]-1-diazenyl}-2-propyl-1H-benzo[de]isoquinoline-1,3(2H)-dione (Dye 3), in supercritical  carbon dioxide were measured at T ) (308, 318, 328, 338, and 348) K and various pressures in the range  of (122 to 355) bar. The measurements were performed using a simple static method. On the basis of the  obtained experimental results, the solubilities increased by increasing the density of supercritical CO2. Also,  the solubilities of the dyes in supercritical CO2 at high pressure were decreased in the order of Dye 3 greater than  Dye 1 greater than Dye 2, which parallels the order of their relative melting points. The higher the melting point, the  lower the solubility. The mole fraction solubilities, y2, and solubilities, s, of the disperse dyes ranged from  [(0.01 to 20.7) * 10-6 and (0.01 to 15.8) * 10-2] g*L-1, respectively. The solubility data were correlated using  a semiempirical density-based Chrastil model with an overall average absolute relative deviation of 18.6 %.  Using the correlation results, the enthalpy of CO2-dye solvation approximated in the range of (29 to 225)  kJ * mol-1 for different dyes. The calculated results show satisfactory agreement with the experimental data.</sAbstract>
+		<sVol>53</sVol>
+		<sPage>634-638</sPage>
+	</Citation>
+</DataReport>
