@@ -199,7 +199,7 @@ class DatasetsController extends AppController
 				'Setting' => ['Unit', 'Property' => ['fields' => ['name'],
 					'Quantity' => ['fields' => ['name']]]],
 				'Datapoint' => [
-					'Condition' => ['fields' => ['id', 'datapoint_id', 'property_id', 'system_eid',
+					'Condition' => ['fields' => ['id', 'datapoint_id', 'property_id', 'system_id',
 						'property_name', 'datatype', 'number', 'significand', 'exponent', 'unit_id',
 						'accuracy', 'exact'], 'Unit',
 						'Property' => ['fields' => ['name'],
@@ -231,9 +231,9 @@ class DatasetsController extends AppController
 		$file = $data['File'];
 		$ref = $data['Reference'];
 		$jnl = $ref['Journal'];
-		$ser = $data['Dataseries'];
+		$sers = $data['Dataseries'];
 		$sys = $data['System'];
-		debug($ser);exit;
+		//debug($ser);exit;
 
 		// Other systems -> related
 		$othersys = $this->Dataset->find('list', ['fields' => ['id'], 'conditions' => ['system_id' => $sys['id'], 'file_id' => $file['id'], 'NOT' => ['Dataset.id' => $id]]]);
@@ -293,6 +293,7 @@ class DatasetsController extends AppController
 		// Methodology sections (add data to $aspects)
 		// Settings
 
+		// This is a line that also needs to be taken out!
 
 		// System (general info)
 		$sysj = [];
@@ -350,22 +351,34 @@ class DatasetsController extends AppController
 			//$sd=$trc->asarray();
 			//debug($sd);exit;
 
-			// conditions
-			//$cond = $ser['Condition'];
-			debug($ser);exit;
+			// conditions (organize first then write to a variable to send to the model)
+			// here we need to process both series conditions and regular conditions
+			// In a dataseries ($ser) $ser['Condition'] is where the series conditions are (1 -> n)
+			// ... and the regular conditions are in datapoints ($pnt) under $pnt['Condition']
 			$conditions = [];
-			foreach ($cond as $conser => $con) {
-				$s = [];
-				$opts = ['property_name','number', 'unit_id'];
-				foreach ($opts as $opt) {
-					$s[$opt] = $sys[$opt];
+			foreach ($sers as $seridx => $ser) {
+				$cond = $ser['Condition']; // series conditions
+				$pnts = $ser['Datapoint']; // all datapoints in a series
+				foreach ($pnts as $pntidx => $pnt) {
+					$conds = $pnt['Condition']; // conditions for datapoints (0 -> n)
+					foreach ($conds as $conidx => $cond) {
+						// generate array of unique values of each condition
+                        array_values(array_unique($cond));
+						// generate variable to capture the links between condition @ids and datapoints
+						$s = [];
+						$opts = ['property_name', 'number', 'unit_id'];
+						foreach ($opts as $opt) {
+							$s[$opt] = $sys[$opt];
+						}
+						foreach ($con['Property'] as $conid) {
+							$s[$conid['name']] = $conid['symbol'];
+						}
+					}
 				}
-				foreach ($con['Property'] as $conid) {
-					$s[$conid['name']] = $conid['symbol'];
-				}
-				//debug($conditions);exit;
-				$facets['sci:condition'] = $conditions;
 			}
+
+			//debug($conditions);exit;
+			$facets['sci:condition'] = $conditions;
 		}
 
 		// add facets data to instance
@@ -719,9 +732,10 @@ class DatasetsController extends AppController
                 }
                 $scondj['value'][] = $v;
                 $ser[0]['Condition'][$scidx]['sclink']=$v['@id'];
-            }
-            $sysj['facets'][] = $scondj;
+				$sysj['facets'][] = $scondj;
+			}
         }
+
         $json['scidata']['system']=$sysj;
 
         //debug($conds);exit;
