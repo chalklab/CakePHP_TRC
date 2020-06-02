@@ -82,7 +82,7 @@ class DatasetsController extends AppController
 			if(!empty($ser['Condition'])) {
 				foreach($ser['Condition'] as $sc) {
 					$scont=$sc["number"]+0;
-					$sconunit=$sc["Unit"]["symbol"];
+					$scondunit=$sc["Unit"]["symbol"];
 					$serconds[]=$scont." ".$scondunit;
 				}
 			}
@@ -183,10 +183,11 @@ class DatasetsController extends AppController
 
 	/**
 	 * New SciData creation script that uses the class to create the file
-	 * @param $id
+	 * @param int $id
+	 * @param array $sclink
 	 * @param string $down
 	 */
-    public function scidata($id,$down="")
+    public function scidata($id, $sclink=[], $down="")  // the $sclink variable was not set to a default value
 	{
 		// Note: there is an issue with the retrival of substances under system if id is not requested as a field
 		// This is a bug in CakePHP as it works without id if its at the top level...
@@ -202,16 +203,16 @@ class DatasetsController extends AppController
 					'Condition' => ['fields' => ['id', 'datapoint_id', 'property_id', 'system_id',
 						'property_name', 'datatype', 'number', 'significand', 'exponent', 'unit_id',
 						'accuracy', 'exact'], 'Unit',
-						'Property' => ['fields' => ['name'],
-							'Quantity' => ['fields' => ['name']]]],
+						'Property' => ['fields' => ['id','name'],
+							'Quantity' => ['fields' => ['id','name']]]],
 					'Data' => ['fields' => ['id', 'datapoint_id', 'property_id', 'sampleprop_id',
 						'datatype', 'number', 'significand', 'exponent', 'error', 'error_type',
 						'unit_id', 'accuracy', 'exact'], 'Unit',
-						'Property' => ['fields' => ['name'],
-							'Quantity' => ['fields' => ['name']]]],
+						'Property' => ['fields' => ['id','name'],
+							'Quantity' => ['fields' => ['id','name']]]],
 					'Setting' => ['Unit',
-						'Property' => ['fields' => ['name'],
-							'Quantity' => ['fields' => ['name']]]]],
+						'Property' => ['fields' => ['id','name'],
+							'Quantity' => ['fields' => ['id','name']]]]],
 				'Annotation'
 			],
 			'File',
@@ -266,8 +267,7 @@ class DatasetsController extends AppController
 		$trc->setid("https://scidata.coas.unf.edu/trc/" . $id . "/");
 		$meta = ['title' => $ref['title'],
 			'publisher' => $jnl['publisher'],
-			'description' => '"Report of thermochemical data in ThermoML format from the
-								NIST TRC website http://www.trc.nist.gov/ThermoML/"',
+			'description' => '"Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/"',
 			'authors' => $ref['authors'],
 			'uid' => "trc:dataset:" . $id];
 		$trc->setdiscipline("chemistry");
@@ -276,7 +276,7 @@ class DatasetsController extends AppController
 
 		// Process data series to split out conditions, settings, and parameters
 		$datas = $conds = $setts = [];
-		foreach ($ser[0]['Datapoint'] as $p => $pnt) {
+		foreach ($sers[0]['Datapoint'] as $p => $pnt) {
 			foreach ($pnt['Data'] as $d => $dval) {
 				$datas[$d][$p] = $dval;
 			}
@@ -292,8 +292,6 @@ class DatasetsController extends AppController
 
 		// Methodology sections (add data to $aspects)
 		// Settings
-
-		// This is a line that also needs to be taken out!
 
 		// System (general info)
 		$sysj = [];
@@ -333,10 +331,14 @@ class DatasetsController extends AppController
 				$opts = ['name','source','purity'];
 				foreach ($opts as $opt) {
 					if($opt=='purity') {
-						$value=$chmf[$opt][0]['purity'];
-						$unit='% (w/w)'; // TODO: really should get unit from units table
-						$desc=$chmf[$opt][0]['analmeth'][0];
-						$chmf['purity']=$value.$unit.' ('.$desc.')';
+						foreach($chmf['purity'] as $purity) {
+							if(!is_null($purity['purity'])) {
+								$value=$purity['purity'];
+								$unit='% (w/w)'; // TODO: really should get unit from units table
+								$desc=$purity['analmeth'][0];
+								$chmf['purity']=$value.$unit.' ('.$desc.')';
+							}
+						}
 					}
 					$c[$opt] = $chmf[$opt];
 				}
@@ -347,51 +349,98 @@ class DatasetsController extends AppController
 			$facets['sci:compound'] = $substances;
 			//debug($chemicals);exit;
 			$facets['sci:chemical'] = $chemicals;
+			// if there are two or more substances then make chemical system
+			if(count($sys['Substance'])>1) {
+				// TODO add code to generate a chemical system
+			}
 			//$trc->setfacets($facets);
 			//$sd=$trc->asarray();
 			//debug($sd);exit;
+		}
 
-			// conditions (organize first then write to a variable to send to the model)
-			// here we need to process both series conditions and regular conditions
-			// In a dataseries ($ser) $ser['Condition'] is where the series conditions are (1 -> n)
-			// ... and the regular conditions are in datapoints ($pnt) under $pnt['Condition']
-			$conditions = [];
-			foreach ($sers as $seridx => $ser) {
-				$cond = $ser['Condition']; // series conditions
-				$pnts = $ser['Datapoint']; // all datapoints in a series
-				foreach ($pnts as $pntidx => $pnt) {
-					$conds = $pnt['Condition']; // conditions for datapoints (0 -> n)
-					foreach ($conds as $conidx => $cond) {
-						// generate array of unique values of each condition
-                        array_values(array_unique($cond));
-						// generate variable to capture the links between condition @ids and datapoints
-						$s = [];
-						$opts = ['property_name', 'number', 'unit_id'];
-						foreach ($opts as $opt) {
-							$s[$opt] = $sys[$opt];
-						}
-						foreach ($con['Property'] as $conid) {
-							$s[$conid['name']] = $conid['symbol'];
-						}
+		// conditions (organize first then write to a variable to send to the model)
+		// here we need to process both series conditions and regular conditions
+		// In a dataseries ($ser) $ser['Condition'] is where the series conditions are (1 -> n)
+		// ... and the regular conditions are in datapoints ($pnt) under $pnt['Condition']
+
+		$conditions = [];
+		foreach($sers as $seridx=>$ser) {
+			$scons = $ser['Condition']; // series conditions
+			$pnts = $ser['Datapoint']; // all datapoints in a series
+			foreach ($pnts as $pntidx => $pnt) {
+				//debug($pnt);exit;
+				$conds = $pnt['Condition']; // conditions for datapoints (0 -> n)
+				foreach ($conds as $conidx => $cond) {
+					if(!isset($conditions[$cond['property_id']]['property'])) {
+						$conditions[$cond['property_id']]['property']=$cond['Property']['name'];
+						$conditions[$cond['property_id']]['unit']=$cond['Unit']['name'];
 					}
+					//debug($cond);exit;
+					$conditions[$cond['property_id']]['value'][]=$cond['number'];
 				}
 			}
 
-			//debug($conditions);exit;
-			$facets['sci:condition'] = $conditions;
+			// deduplicate values and record series and datapoint index
+			foreach($conditions as $propid=>$values) {
+				$origvals=$conditions[$propid]['value'];
+				$conditions[$propid]['value']=array_unique($conditions[$propid]['value'],SORT_NUMERIC);
+				$varray=[];
+				foreach($conditions[$propid]['value'] as $vidx=>$val) {
+					$varray[$vidx]['value']=$val;
+					// find original rows for this value
+					foreach($origvals as $ovidx=>$origval) {
+						if($val==$origval) {
+							$varray[$vidx]['rows'][]=($seridx+1).':'.$ovidx;
+						}
+					}
+				}
+				$conditions[$propid]['value']=$varray;
+			}
 		}
+		//debug($conditions);
+
+		// add conditions facet to $facets
+		$facets['sci:condition'] = $conditions;
 
 		// add facets data to instance
 		$trc->setfacets($facets);
+		//$sd=$trc->asarray();
+		//debug($sd);exit;
 
-		// Dataset (general info)
-		//
 
-		// Data (add data to $series)
-		$series=[];
-
-		// add series data to instance
-
+		// Data (add data to $group)
+		$group=[];
+		foreach($sers as $seridx=>$ser) {
+			$pnts = $ser['Datapoint'];$sernum=$seridx+1;
+			$group[$seridx]=[];
+			$group[$seridx]['title']='Series '.$sernum;
+			if(count($sys['Substance'])==1) {
+				$group[$seridx]['compound']="compound/1/";
+			} else {
+				$group[$seridx]['chemicalsystem']="system/1/";
+			}
+			//debug($group);
+			$points=[];
+			foreach ($pnts as $pntidx => $pnt) {
+				$pntnum=$pntidx+1;
+				//debug($pnt);exit;
+				foreach($pnt['Data'] as $datum) {
+					$val=$this->exponentialGen($datum['number']);
+					$val['property']=$datum['Property']['name'];
+					if(!empty($datum['Unit']['qudt'])) {
+						$val['unit']="qudt:".$datum['Unit']['qudt'];
+					} else {
+						$val['unit']=$datum['Unit']['name'];
+					}
+					$points[$datum['Property']['name']][]=$val;
+				}
+			}
+			$group[$seridx]['data']=$points;
+		}
+		//debug($group);exit;
+		$trc->setdatagroup($group);
+		$sd=$trc->asarray();
+		//debug($sd);exit;
 
 		// Sources
 		// Go get the DOI
@@ -406,6 +455,10 @@ class DatasetsController extends AppController
 		//debug($src);exit;
 
 		// Rights
+		$json['rights']=['@id'=>'rights','@type'=>'dc:rights'];
+		$json['rights']['holder']='NIST Thermodynamics Research Center (Boulder, CO)';
+		$json['rights']['license']='https://creativecommons.org/licenses/by-nc/4.0/';
+        //debug($json);exit;
 
 		// spit out data to view as an array
 		$sd=$trc->asarray();
@@ -580,6 +633,8 @@ class DatasetsController extends AppController
             $sysj['facets']=[];
         }
 
+        // Conditions code in scidata2
+
         // System sections
         // Mixture/Substance/Chemical
         //debug($sys);exit;
@@ -678,6 +733,7 @@ class DatasetsController extends AppController
 
             $sysj['facets'][] = $mixj;
         }
+
         // Conditions
         if(is_array($conds)&&!empty($conds)) {
             foreach($conds as $cid=>$cond) {
@@ -1305,6 +1361,80 @@ class DatasetsController extends AppController
 		if($down=="download") { header('Content-Disposition: attachment; filename="'.$id.'.json"'); }
 		echo json_encode($json,JSON_UNESCAPED_UNICODE);exit;
 
+	}
+
+	/**
+	 * Generates a exponential number removing any zeros at the end not needed
+	 * @param $string
+	 * @return array
+	 */
+	private function exponentialGen($string) {
+		$return=[];
+		$return['text']=$string;
+		$return['value']=floatval($string);
+		if($string==0) {
+			$return+=['dp'=>0,'scinot'=>'0e+0','exponent'=>0,'significand'=>0,'error'=>null,'sf'=>0];
+		} elseif(stristr($string,'E')) {
+			list($man,$exp)=explode('E',$string);
+			if($man>0){
+				$sf=strlen($man)-1;
+			} else {
+				$sf=strlen($man)-2;
+			}
+			$return['scinot']=$string;
+			$return['error']=pow(10,$exp-$sf+1);
+			$return['exponent']=$exp;
+			$return['significand']=$man;
+			$return['dp']=$sf;
+		} else {
+			$string=str_replace([",","+"],"",$string);
+			$num=explode(".",$string);
+			$neg=false;
+			if(stristr($num[0],'-')) {
+				$neg=true;
+			}
+			// If there is something after the decimal
+			if(isset($num[1])){
+				$return['dp']=strlen($num[1]);
+				if($num[0]!=""&&$num[0]!=0) {
+					// All digits count (-1 for period)
+					if($neg) {
+						// substract 1 for the minus sign and 1 for decimal point
+						$return['sf']=strlen($string)-2;
+						$return['exponent']=strlen($num[0])-2;
+					} else {
+						$return['sf']=strlen($string)-1;
+						$return['exponent']=strlen($num[0])-1;
+					}
+					// Exponent is based on digit before the decimal -1
+				} else {
+					// Remove any leading zeroes after decimal and count string length
+					$return['sf']=strlen(ltrim($num[1],'0'));
+					// Count leading zeros
+					preg_match('/^(0*)[1234567890]+$/',$num[1],$match);
+					$return['exponent']=-1*(strlen($match[1]) + 1);
+				}
+				$return['scinot']=sprintf("%." .($return['sf']-1). "e", $string);
+				$s=explode("e",$return['scinot']);
+				$return['significand']=$s[0];
+				$return['error']=pow(10,$return['exponent']-$return['sf']+1);
+			} else {
+				$return['dp']=0;
+				$return['scinot']=sprintf("%." .(strlen($string)-1). "e", $string);
+				$s=explode("e",$return['scinot']);
+				$return['significand']=$s[0];
+				$return['exponent'] = $s[1];
+				$z=explode(".",$return['significand']);
+				$return['sf']=strlen($return['significand'])-1;
+				// Check for negative
+				if(isset($z[1])) {
+					$return['error']=pow(10,strlen($z[1])-$s[1]-$neg); // # SF after decimal - exponent
+				} else {
+					$return['error']=pow(10,0-$s[1]); // # SF after decimal - exponent
+				}
+			}
+		}
+		return $return;
 	}
 
 }
