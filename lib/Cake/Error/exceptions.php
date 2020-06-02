@@ -668,15 +668,6 @@ class SecurityException extends BadRequestException {
 	}
 
 /**
- * Get Reason
- *
- * @return string
- */
-	public function getReason() {
-		return $this->_reason;
-	}
-
-/**
  * Set Reason
  *
  * @param string|null $reason Reason details
@@ -684,6 +675,15 @@ class SecurityException extends BadRequestException {
  */
 	public function setReason($reason = null) {
 		$this->_reason = $reason;
+	}
+
+/**
+ * Get Reason
+ *
+ * @return string
+ */
+	public function getReason() {
+		return $this->_reason;
 	}
 
 }
