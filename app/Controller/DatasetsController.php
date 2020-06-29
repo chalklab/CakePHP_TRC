@@ -1060,7 +1060,7 @@ class DatasetsController extends AppController
 			$json['toc']['sections'][] = $metj['@id'];
 			$meaj['@id'] = 'measurement/1';
 			$meaj['@type'] = 'meas:measurement';
-			$json['toc']['sections'][] = $meaj['@id'];
+			$json['toc']['sections'][] = $meaj['@type'];
 			$meaj['settings'] = [];
 			foreach($setts as $sid=>$sett) {
 				// debug($sett);exit;
