@@ -234,7 +234,7 @@ class DatasetsController extends AppController
 		$jnl = $ref['Journal'];
 		$sers = $data['Dataseries'];
 		$sys = $data['System'];
-		//debug($ser);exit;
+		//debug($sers);exit;
 
 		// Other systems -> related
 		$othersys = $this->Dataset->find('list', ['fields' => ['id'], 'conditions' => ['system_id' => $sys['id'], 'file_id' => $file['id'], 'NOT' => ['Dataset.id' => $id]]]);
@@ -267,7 +267,7 @@ class DatasetsController extends AppController
 		$trc->setid("https://scidata.coas.unf.edu/trc/" . $id . "/");
 		$meta = ['title' => $ref['title'],
 			'publisher' => $jnl['publisher'],
-			'description' => '"Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/"',
+			'description' => 'Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/',
 			'authors' => $ref['authors'],
 			'uid' => "trc:dataset:" . $id];
 		$trc->setdiscipline("chemistry");
@@ -297,8 +297,8 @@ class DatasetsController extends AppController
 		$sysj = [];
 		if (is_array($sys) && !empty($sys) || is_array($conds) && !empty($conds)) {
 			$sysj['@id'] = 'system/';
-			$json['toc']['sections'][] = $sysj['@id'];
 			$sysj['@type'] = 'sci:system';
+			$json['toc']['sections'][] = $sysj['@type'];
 			$sysj['discipline'] = 'chemistry';
 			$sysj['subdiscipline'] = 'physical chemistry';
 			$sysj['facets'] = [];
@@ -310,7 +310,7 @@ class DatasetsController extends AppController
 		if (is_array($sys) && !empty($sys)) {
 			// get substances
 			$subs = $sys['Substance'];
-			$substances = [];$chemicals = [];
+			$substances = [];$chemicals = [];$systems = [];
 			foreach ($subs as $subidx => $sub) {
 				$s = [];
 				$opts = ['name', 'formula', 'molweight', 'type'];
@@ -334,9 +334,10 @@ class DatasetsController extends AppController
 						foreach($chmf['purity'] as $purity) {
 							if(!is_null($purity['purity'])) {
 								$value=$purity['purity'];
-								$unit='% (w/w)'; // TODO: really should get unit from units table
+								$unit='%(w/w)';
+								$uid='(unitid:'.$purity['purityunit_id'].')'; // TODO: really should get unit from units table
 								$desc=$purity['analmeth'][0];
-								$chmf['purity']=$value.$unit.' ('.$desc.')';
+								$chmf['purity']=$value.$unit.$uid.' ('.$desc.')';
 							}
 						}
 					}
@@ -351,8 +352,11 @@ class DatasetsController extends AppController
 			$facets['sci:chemical'] = $chemicals;
 			// if there are two or more substances then make chemical system
 			if(count($sys['Substance'])>1) {
+
 				// TODO add code to generate a chemical system
 			}
+			//debug($systems);exit;
+			$facets['sci:chemicalsystem'] = $systems;
 			//$trc->setfacets($facets);
 			//$sd=$trc->asarray();
 			//debug($sd);exit;
@@ -367,7 +371,7 @@ class DatasetsController extends AppController
 		foreach($sers as $seridx=>$ser) {
 			$scons = $ser['Condition']; // series conditions
 			$pnts = $ser['Datapoint']; // all datapoints in a series
-			foreach ($pnts as $pntidx => $pnt) {
+			foreach($pnts as $pntidx => $pnt) {
 				//debug($pnt);exit;
 				$conds = $pnt['Condition']; // conditions for datapoints (0 -> n)
 				foreach ($conds as $conidx => $cond) {
@@ -378,6 +382,20 @@ class DatasetsController extends AppController
 					//debug($cond);exit;
 					$conditions[$cond['property_id']]['value'][]=$cond['number'];
 				}
+			}
+			foreach($scons as $scidx=>$scon) {
+				//debug($scon);
+				$scond=[];
+				$cid=$scon['property_id'];
+				$scond['property']=$scon['Property']['name'];
+				$scond['unit']=$scon['Unit']['name'];
+				$value=$scon['number'];
+				// iterate over all datapoints to add condition to each
+				foreach($pnts as $pntidx=>$pnt) {
+					$scond['value'][$pntidx]=$value;
+				}
+				// debug($scond);
+				$conditions[$cid]=$scond;
 			}
 
 			// deduplicate values and record series and datapoint index
@@ -397,6 +415,11 @@ class DatasetsController extends AppController
 				$conditions[$propid]['value']=$varray;
 			}
 		}
+		// reindex conditions array
+		$tmp=$conditions;$conditions=[];$cidx=1;
+		foreach($tmp as $con) {
+			$conditions[$cidx]=$con;$cidx++;
+		}
 		//debug($conditions);
 
 		// add conditions facet to $facets
@@ -412,13 +435,15 @@ class DatasetsController extends AppController
 		$group=[];
 		foreach($sers as $seridx=>$ser) {
 			$pnts = $ser['Datapoint'];$sernum=$seridx+1;
-			$group[$seridx]=[];
-			$group[$seridx]['title']='Series '.$sernum;
+			//debug($pnts);exit;
+			$group[$sernum]=[];
+			$group[$sernum]['title']='Series '.$sernum;
 			if(count($sys['Substance'])==1) {
-				$group[$seridx]['compound']="compound/1/";
+				$group[$sernum]['compound']="compound/1/";
 			} else {
-				$group[$seridx]['chemicalsystem']="system/1/";
+				$group[$sernum]['chemicalsystem']="system/1/";
 			}
+
 			//debug($group);
 			$points=[];
 			foreach ($pnts as $pntidx => $pnt) {
@@ -426,43 +451,62 @@ class DatasetsController extends AppController
 				//debug($pnt);exit;
 				foreach($pnt['Data'] as $datum) {
 					$val=$this->exponentialGen($datum['number']);
+					// $val['conditions']?
 					$val['property']=$datum['Property']['name'];
 					if(!empty($datum['Unit']['qudt'])) {
 						$val['unit']="qudt:".$datum['Unit']['qudt'];
 					} else {
 						$val['unit']=$datum['Unit']['name'];
 					}
+
 					$points[$datum['Property']['name']][]=$val;
 				}
 			}
-			$group[$seridx]['data']=$points;
+			$group[$sernum]['data']=$points;
 		}
-		//debug($group);exit;
+		//debug($group);
+
 		$trc->setdatagroup($group);
-		$sd=$trc->asarray();
+		//$sd=$trc->asarray();
 		//debug($sd);exit;
 
 		// Sources
 		// Go get the DOI
-		$bib=$ref['title']." ".$ref['authors']." ".$ref['journal']." ".$ref['year']." ".$ref['volume']." ".$ref['startpage'];
+		$bib=$ref['title']." ".$ref['aulist']." ".$ref['journal']." ".$ref['year']." ".$ref['volume']." ".$ref['startpage'];
 		$src=[];
-		$src['id']="source/".$ref['id'];
+		$src['id']="source/".$ref['id'].'/';
 		$src['type']="paper";
 		$src['citation']=$bib;
 		$src['url']=$ref['url'];
+		$sources[]=$src;
+		// add TRC dataset
+		$src=[];
+		$src['id']="source/2/";
+		$src['citation']="NIST TRC ThermoML Archive";
+		$src['url']="https://www.trc.nist.gov/ThermoML/".$ref['doi'].".xml";
+		$src['type']="dataset";
 		$sources[]=$src;
 		$trc->setsources($sources);
 		//debug($src);exit;
 
 		// Rights
-		$json['rights']=['@id'=>'rights','@type'=>'dc:rights'];
-		$json['rights']['holder']='NIST Thermodynamics Research Center (Boulder, CO)';
-		$json['rights']['license']='https://creativecommons.org/licenses/by-nc/4.0/';
-        //debug($json);exit;
+		$right=['@id'=>'rights/1/','@type'=>'dc:rights'];
+		$right['holder']='NIST Thermodynamics Research Center (Boulder, CO)';
+		$right['license']='https://creativecommons.org/licenses/by-nc/4.0/';
+		$rights[]=$right;
+		$trc->setrights($rights);
+		//debug($json);exit;
 
 		// spit out data to view as an array
-		$sd=$trc->asarray();
-		debug($sd);exit;
+		//$sd=$trc->asarray();
+		//debug($sd);exit;
+
+		// output as JSON-LD
+		$json=$trc->asjsonld();
+		header("Content-Type: application/json");
+		if($down=="download") { header('Content-Disposition: attachment; filename="'.$id.'.json"'); }
+		echo $json;exit;
+
 	}
 
     /**
