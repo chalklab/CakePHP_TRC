@@ -298,7 +298,7 @@ class DatasetsController extends AppController
 		if (is_array($sys) && !empty($sys) || is_array($conds) && !empty($conds)) {
 			$sysj['@id'] = 'system/';
 			$sysj['@type'] = 'sci:system';
-			$json['toc']['sections'][] = $sysj['@type'];
+			$json['toc']['sections'][] = $sysj['type'];
 			$sysj['discipline'] = 'chemistry';
 			$sysj['subdiscipline'] = 'physical chemistry';
 			$sysj['facets'] = [];
