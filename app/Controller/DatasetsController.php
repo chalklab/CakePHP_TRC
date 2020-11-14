@@ -268,11 +268,12 @@ class DatasetsController extends AppController
 		$meta = ['title' => $ref['title'],
 			'publisher' => $jnl['publisher'],
 			'description' => 'Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/',
-			'authors' => $ref['authors'],
+			'authors' => $ref['aulist'],
 			'uid' => "trc:dataset:" . $id];
 		$trc->setdiscipline("chemistry");
 		$trc->setsubdiscipline("physical chemistry");
 		$trc->setmeta($meta);
+		//debug($meta);exit;
 
 		// Process data series to split out conditions, settings, and parameters
 		$datas = $conds = $setts = [];
