@@ -331,26 +331,64 @@ class DatasetsController extends AppController
 				$c = [];
 				$opts = ['name','source','purity'];
 				foreach ($opts as $opt) {
-					if($opt=='purity') {
-						foreach($chmf['purity'] as $purity) {
-							if(!is_null($purity['purity'])) {
-								$value=$purity['purity'];
-								$unit='%(w/w)';
-								$uid='(unitid:'.$purity['purityunit_id'].')'; // TODO: really should get unit from units table
-								$desc=$purity['analmeth'][0];
-								$chmf['purity']=$value.$unit.$uid.' ('.$desc.')';
+					if ($opt == 'purity') {
+						$c[$opt]=[];
+						if (!is_null($chmf['purity'])) {
+							$steps=[];
+							// TODO Issue #18
+							$s = [];
+							foreach($temp as $sidx=>$step) {
+								$s[$sidx]=[];
+								$s[$sidx]['part'] = $step['type'];
+								if(!is_null($step['analmeth'])) {
+									if(count($step['analmeth'])==1) {
+										$s[$sidx]['analysis']=$step['analmeth'][0];
+									} else {
+										$s[$sidx]['analysis']=$step['analmeth'];
+									}
+								}
+								if(!is_null($step['purimeth'])) {
+									$s[$sidx]['purification']=$step['purimeth'];
+								} else {
+									$s[$sidx]['purification']=null;
+								}
+								if(!is_null($step['purity'])) {
+									$s[$sidx]['number']=$step['purity'];
+								}
+								if(!is_null($step['puritysf'])) {
+									$s[$sidx]['sigfigs']=$step['puritysf'];
+								}
+								if(!is_null($step['purityunit_id'])) {
+									$uname=$this->Unit->getfield('name',$step['purityunit_id']);
+									$s[$sidx]['unit']=$uname;
+									$qudtid=$this->Unit->getfield('qudt',$step['purityunit_id']);
+									$s[$sidx]['unitref']='qudt:'.$qudtid;
+								}
 							}
+							$c[$opt][]['steps'] = $s;
 						}
+					} else {
+						$c[$opt]=$chmf[$opt];
 					}
-					$c[$opt] = $chmf[$opt];
 				}
-				$c['compound']='compound/'.($subidx + 1).'/';
+				$c['compound'] = 'compound/' . ($subidx + 1) . '/';
 				$chemicals[($subidx + 1)] = $c;
 			}
-			//debug($substances);
-			$facets['sci:compound'] = $substances;
+			if (count($sys['Substance']) == 1) {
+				$type = "substance";
+			} else {
+				$type = "mixture";
+			}
 			//debug($chemicals);exit;
-			$facets['sci:chemical'] = $chemicals;
+
+			//debug($substances);exit;
+			$facets['sdo:compound'] = $substances;
+			//debug($chemicals);debug($temp);exit;
+			$facets['sdo:chemical'] = $chemicals;
+			$facets['sdo:system']=$systems;
+			//debug($facets);exit;
+
+
 			// if there are two or more substances then make chemical system
 			if(count($sys['Substance'])>1) {
 
