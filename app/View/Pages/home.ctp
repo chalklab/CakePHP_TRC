@@ -51,7 +51,7 @@
     </div>
 <?php } else { ?>
 <div class="row">
-    <div class="col-md-12 text-justify">
+    <div class="col-md-12 text-justify" style="margin-top: 60px;">
         <h2>Welcome to the ThermoMLConverter! <span class="label label-danger">Beta</span></h2>
         <p>The ThermoMLConverter is a website where data represented in the IUPAC ThermoML XML Specification and currently published at
             the <?php echo $this->Html->link('NIST TRC website','https://trc.nist.gov/ThermoML/',['target'=>'_blank']); ?>

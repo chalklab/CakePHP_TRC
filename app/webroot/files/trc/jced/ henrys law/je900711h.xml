@@ -548,9 +548,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -563,19 +563,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -605,10 +605,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>56</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>10</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>10</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -621,10 +621,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>75</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>10</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>10</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -637,10 +637,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>100</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>10</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>10</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -653,10 +653,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>130</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>10</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>10</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -669,10 +669,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>170</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>10</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>10</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -702,9 +702,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>22</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>22</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -717,19 +717,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>22</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>22</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -759,10 +759,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>7.5</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>.3</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.3</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -775,10 +775,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>8.7</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -791,10 +791,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>13</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -807,10 +807,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>20</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>3</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>3</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -823,10 +823,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>26</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>4</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>4</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -856,9 +856,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>23</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>23</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -871,19 +871,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>23</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>23</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -913,10 +913,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>6.5</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>.9</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.9</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -929,10 +929,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>10</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -945,10 +945,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>13</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>4</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>4</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -961,10 +961,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>20</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>3</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>3</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -977,10 +977,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>26</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1010,9 +1010,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>24</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>24</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1025,19 +1025,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>24</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>24</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1067,10 +1067,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>120</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>20</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>20</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1100,9 +1100,9 @@
 						<sMethodName>Pressure vs solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>25</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>25</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1115,19 +1115,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>25</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>25</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1157,10 +1157,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>60</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>20</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>20</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1190,9 +1190,9 @@
 						<sMethodName>Pressure vs solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>26</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>26</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1205,19 +1205,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>26</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>26</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1247,10 +1247,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>150</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>100</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>100</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1280,9 +1280,9 @@
 						<sMethodName>Pressure vs solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>14</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>14</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1295,19 +1295,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>14</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>14</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1337,10 +1337,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>26</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1370,9 +1370,9 @@
 						<sMethodName>Pressure vs solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1385,19 +1385,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1427,10 +1427,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>120</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>10</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>10</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1460,9 +1460,9 @@
 						<sMethodName>Pressure vs. Solute Concentration Measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1475,19 +1475,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1517,10 +1517,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>170</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>10</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>10</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1550,9 +1550,9 @@
 						<sMethodName>Pressure vs. Solute Concentration Measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>5</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1565,19 +1565,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>5</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1607,10 +1607,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>20</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>3</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>3</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1640,9 +1640,9 @@
 						<sMethodName>Pressure vs. Solute Concentration Measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>9</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>9</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1655,19 +1655,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>9</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>9</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1697,10 +1697,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>30</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1730,9 +1730,9 @@
 						<sMethodName>Pressure vs. Solute Concentration Measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>27</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>27</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1745,19 +1745,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>27</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>27</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1787,10 +1787,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>260</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>30</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>30</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1820,9 +1820,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>23</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>23</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1835,19 +1835,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>23</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>23</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1877,10 +1877,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>28</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1910,9 +1910,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>25</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>25</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1925,19 +1925,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>25</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>25</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1967,10 +1967,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>81</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2000,9 +2000,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>26</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>26</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2015,19 +2015,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>26</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>26</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2057,10 +2057,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>164</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>8</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>8</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2090,9 +2090,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2105,19 +2105,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2147,10 +2147,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>170</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>10</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>10</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2180,9 +2180,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2195,19 +2195,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2237,10 +2237,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>35</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>4</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>4</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2270,9 +2270,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2285,19 +2285,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2327,10 +2327,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>44</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>3</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>3</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2360,9 +2360,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>27</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>27</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2375,19 +2375,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>27</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>27</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2417,10 +2417,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>10</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2450,9 +2450,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>5</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2465,19 +2465,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>5</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2507,10 +2507,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>7.3</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>.3</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.3</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2540,9 +2540,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>12</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>12</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2555,19 +2555,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>12</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>12</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2597,10 +2597,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>85</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>10</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>10</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2630,9 +2630,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>11</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>11</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2645,19 +2645,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>11</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>11</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2687,10 +2687,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>26</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2720,9 +2720,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>10</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>10</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2735,19 +2735,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>10</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>10</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2777,10 +2777,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>79</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>60</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>60</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2810,9 +2810,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>20</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>20</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2825,19 +2825,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>20</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>20</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2867,10 +2867,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>16</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2900,9 +2900,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>21</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>21</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2915,19 +2915,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>21</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>21</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2957,10 +2957,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>18.8</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>.5</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>.5</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2990,9 +2990,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>7</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3005,19 +3005,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>7</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3047,10 +3047,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>27</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3080,9 +3080,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>8</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>8</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3095,19 +3095,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>8</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>8</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3137,10 +3137,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>18</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3170,9 +3170,9 @@
 						<sMethodName>Pressure vs. solute Concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>9</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>9</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3185,19 +3185,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>9</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>9</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3227,10 +3227,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>22</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3260,9 +3260,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>13</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>13</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3275,19 +3275,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>13</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>13</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3317,10 +3317,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>69</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>7</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>7</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3350,9 +3350,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>14</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>14</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3365,19 +3365,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>14</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>14</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3407,10 +3407,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>14</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3440,9 +3440,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>18</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>18</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3455,19 +3455,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>18</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>18</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3497,10 +3497,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>830</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>60</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>60</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3530,9 +3530,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>15</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>15</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3545,19 +3545,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>15</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>15</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3587,10 +3587,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>72</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>3</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>3</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3620,9 +3620,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>16</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>16</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3635,19 +3635,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>16</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>16</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3677,10 +3677,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>24</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3710,9 +3710,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>6</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3725,19 +3725,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>6</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3767,10 +3767,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>36</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3800,9 +3800,9 @@
 						<sMethodName>Pressure vs. solute concentration measurements</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>29</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>29</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3815,19 +3815,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>29</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>29</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3857,10 +3857,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>48</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>3</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>3</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>

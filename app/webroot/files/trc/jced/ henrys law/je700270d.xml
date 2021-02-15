@@ -292,10 +292,10 @@
 			<ePresentation>Direct value, X</ePresentation>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Variable>
 			<nVarNumber>1</nVarNumber>
@@ -488,9 +488,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -499,19 +499,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -618,9 +618,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -632,19 +632,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -674,10 +674,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>428</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>8.56</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>8.56</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -690,10 +690,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>780</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>15.6</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>15.6</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -706,10 +706,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>1270</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>25.4</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>25.4</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -722,10 +722,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>1920</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>38.4</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>38.4</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -738,10 +738,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>2710</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>54.2</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>54.2</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -771,9 +771,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -782,19 +782,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -901,9 +901,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -915,19 +915,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -957,10 +957,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>362</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>7.24</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>7.24</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -973,10 +973,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>680</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>13.6</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>13.6</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -989,10 +989,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>1140</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>22.8</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>22.8</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1005,10 +1005,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>1760</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>35.2</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>35.2</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1021,10 +1021,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>2520</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>50.4</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>50.4</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1054,9 +1054,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1065,19 +1065,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1184,9 +1184,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1198,19 +1198,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1240,10 +1240,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>79</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>1.58</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>1.58</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1256,10 +1256,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>173</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>3.46</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>3.46</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1272,10 +1272,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>326</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>6.52</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>6.52</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1288,10 +1288,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>560</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>11.2</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>11.2</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1304,10 +1304,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>890</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>17.8</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>17.8</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1337,9 +1337,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>5</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1348,19 +1348,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>5</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1467,9 +1467,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>5</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1481,19 +1481,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>5</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>5</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1523,10 +1523,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>131</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>2.62</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.62</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1539,10 +1539,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>272</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>5.44</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>5.44</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1555,10 +1555,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>486</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>9.72</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>9.72</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1571,10 +1571,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>810</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>16.2</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>16.2</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1587,10 +1587,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>1230</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>24.6</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>24.6</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1620,9 +1620,9 @@
 						<sMethodName>Gas Stripping Method</sMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>6</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1631,19 +1631,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>6</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1750,9 +1750,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>6</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1764,19 +1764,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>6</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>6</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -1806,10 +1806,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>68</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>1.36</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>1.36</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1822,10 +1822,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>153</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>3.06</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>3.06</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1838,10 +1838,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>296</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>5.92</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>5.92</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1854,10 +1854,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>520</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>10.4</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>10.4</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1870,10 +1870,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>840</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>16.8</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>16.8</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1903,9 +1903,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>7</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1914,19 +1914,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>7</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2033,9 +2033,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>7</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2047,19 +2047,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>7</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>7</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2089,10 +2089,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>69</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>1.38</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>1.38</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2105,10 +2105,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>155</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>3.1</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>3.1</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2121,10 +2121,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>300</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>6</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>6</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2137,10 +2137,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>530</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>10.6</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>10.6</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2153,10 +2153,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>850</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>17</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>17</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2186,9 +2186,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>8</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>8</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2197,19 +2197,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>8</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>8</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2316,9 +2316,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>8</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>8</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2330,19 +2330,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>8</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>8</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2372,10 +2372,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>52</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>1.04</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>1.04</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2388,10 +2388,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>119</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>2.38</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.38</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2404,10 +2404,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>236</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>4.72</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>4.72</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2420,10 +2420,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>427</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>8.54</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>8.54</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2436,10 +2436,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>700</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>14</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>14</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2469,9 +2469,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>9</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>9</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2480,19 +2480,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>9</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>9</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2599,9 +2599,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>9</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>9</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2613,19 +2613,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>9</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>9</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2655,10 +2655,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>42.8</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.856</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.856</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2671,10 +2671,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>100</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>2</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2687,10 +2687,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>204</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>4.08</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>4.08</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2703,10 +2703,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>372</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>7.44</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>7.44</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2719,10 +2719,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>630</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>12.6</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>12.6</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -2752,9 +2752,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>10</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>10</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2763,19 +2763,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>10</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>10</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2882,9 +2882,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>10</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>10</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -2896,19 +2896,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>10</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>10</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -2938,10 +2938,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>43.1</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.862</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.862</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2954,10 +2954,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>101</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>2.02</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.02</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2970,10 +2970,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>207</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>4.14</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>4.14</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -2986,10 +2986,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>382</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>7.64</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>7.64</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3002,10 +3002,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>650</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>13</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>13</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3035,9 +3035,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>11</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>11</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3046,19 +3046,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>11</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>11</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3165,9 +3165,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>11</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>11</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3179,19 +3179,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>11</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>11</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3221,10 +3221,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>135</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>2.7</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.7</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3237,10 +3237,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>284</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>5.68</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>5.68</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3253,10 +3253,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>530</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>10.6</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>10.6</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3269,10 +3269,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>890</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>17.8</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>17.8</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3285,10 +3285,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>1390</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>27.8</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>27.8</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3318,9 +3318,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>12</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>12</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3329,19 +3329,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>12</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>12</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3448,9 +3448,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>12</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>12</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3462,19 +3462,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>12</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>12</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3504,10 +3504,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>19.1</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.382</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.382</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3520,10 +3520,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>47.7</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.954</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.954</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3536,10 +3536,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>103</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>2.06</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.06</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3552,10 +3552,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>209</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>4.18</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>4.18</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3568,10 +3568,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>375</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>7.5</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>7.5</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3601,9 +3601,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>13</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>13</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3612,19 +3612,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>13</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>13</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3731,9 +3731,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>13</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>13</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3745,19 +3745,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>13</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>13</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -3787,10 +3787,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>166</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>3.32</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>3.32</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3803,10 +3803,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>376</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>7.52</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>7.52</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3819,10 +3819,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>720</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>14.4</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>14.4</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3835,10 +3835,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>1230</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>24.6</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>24.6</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -3851,10 +3851,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>1880</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>37.6</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>37.6</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -3884,9 +3884,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</ActivityFugacityOsmoticProp>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>14</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>14</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -3895,19 +3895,19 @@
 			<eStandardState>Pure compound</eStandardState>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>14</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>14</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -4014,9 +4014,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>14</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>14</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -4028,19 +4028,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>14</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>14</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -4070,10 +4070,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>24.5</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.49</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.49</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -4086,10 +4086,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>36.7</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.734</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.734</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -4102,10 +4102,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>54</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>1.08</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>1.08</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -4118,10 +4118,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>78</nPropValue>
 				<nPropDigits>2</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>1.56</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>1.56</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -4134,10 +4134,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>107</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>2.14</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>2.14</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>

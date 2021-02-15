@@ -108,7 +108,7 @@ class FilesController extends AppController
 	// file ingestion, checking and testing
 
 	/**
-	 * Adds ThermoML files to the database to roganize them...
+	 * Adds ThermoML files to the database to organize them...
 	 */
 	public function loadfiles()
 	{

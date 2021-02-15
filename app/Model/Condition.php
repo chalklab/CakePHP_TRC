@@ -7,7 +7,7 @@
 class Condition extends AppModel
 {
 
-    public $belongsTo = ['Dataseries','Datapoint','Property','Unit'];
+    public $belongsTo = ['Dataseries','Datapoint','Property','Sampleprop','Unit'];
 
     public $hasOne = [
     	'Annotation'=> [
@@ -15,7 +15,7 @@ class Condition extends AppModel
 			'dependent' => true
 		]
 	];
-    
+
     /**
      * Function to create rows in conditions_systems table
      * @param $s

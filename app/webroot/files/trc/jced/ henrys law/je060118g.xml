@@ -98,9 +98,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -112,10 +112,10 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Variable>
 			<nVarNumber>1</nVarNumber>
@@ -156,10 +156,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.0005882</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.000017646</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.000017646</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -177,10 +177,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.0007348</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.000022044</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.000022044</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -198,10 +198,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.0007674</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.000023022</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.000023022</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -219,10 +219,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.0008719</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.000026157</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.000026157</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -240,10 +240,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.001089</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00003267</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00003267</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -261,10 +261,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.001179</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00003537</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00003537</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -282,10 +282,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.001356</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00004068</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00004068</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -303,10 +303,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.001446</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00004338</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00004338</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -324,10 +324,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.002997</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00008991</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00008991</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -345,10 +345,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.003275</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00009825</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00009825</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -366,10 +366,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.003879</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00011637</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00011637</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -387,10 +387,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.004623</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00013869</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00013869</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -408,10 +408,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.004716</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00014148</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00014148</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -429,10 +429,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.005497</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00016491</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00016491</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -450,10 +450,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.00921</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0002763</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0002763</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -471,10 +471,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.009197</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.00027591</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.00027591</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -492,10 +492,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.01039</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0003117</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0003117</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -513,10 +513,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.01535</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0004605</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0004605</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -534,10 +534,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.01662</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0004986</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0004986</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -555,10 +555,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.01869</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0005607</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0005607</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -576,10 +576,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.01901</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0005703</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0005703</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -597,10 +597,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.01999</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0005997</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0005997</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -618,10 +618,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.02456</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0007368</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0007368</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -639,10 +639,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.02771</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0008313</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0008313</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -660,10 +660,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.02764</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0008292</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0008292</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -681,10 +681,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.02785</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0008355</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0008355</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -702,10 +702,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.02798</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0008394</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0008394</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -723,10 +723,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.03528</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0010584</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0010584</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -744,10 +744,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.0349</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.001047</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.001047</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -765,10 +765,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.03559</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0010677</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0010677</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -786,10 +786,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.0364</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.001092</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.001092</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -807,10 +807,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.03968</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0011904</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0011904</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -828,10 +828,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.04673</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0014019</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0014019</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -849,10 +849,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.05416</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0016248</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0016248</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -870,10 +870,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.05351</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0016053</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0016053</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -891,10 +891,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.05474</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0016422</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0016422</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -912,10 +912,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.05426</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0016278</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0016278</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -933,10 +933,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.06309</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0018927</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0018927</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -954,10 +954,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.07385</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0022155</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0022155</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -975,10 +975,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.07181</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0021543</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0021543</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -996,10 +996,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.06754</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0020262</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0020262</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1017,10 +1017,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.06528</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0019584</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0019584</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1038,10 +1038,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.08592</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0025776</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0025776</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1059,10 +1059,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.08377</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0025131</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0025131</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1080,10 +1080,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.07971</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0023913</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0023913</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1101,10 +1101,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.07477</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0022431</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0022431</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -1122,10 +1122,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>.07435</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nStdUncertValue>.0022305</nStdUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nStdUncertValue>.0022305</nStdUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -1155,9 +1155,9 @@
 						<sMethodName>derived from PVT phase equilibration data</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1165,19 +1165,19 @@
 			<ePresentation>Direct value, X</ePresentation>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>

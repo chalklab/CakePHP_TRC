@@ -37,7 +37,7 @@
 </head>
 <body>
 	<?php include('header.ctp'); ?>
-		<div class="container theme-showcase" role="main">
+		<div class="container-fluid theme-showcase" role="main" style="margin-top: 60px;">
 			<?php echo $this->fetch('content'); ?>
 		</div>
 	<?php //echo $this->element('sql_dump'); ?>

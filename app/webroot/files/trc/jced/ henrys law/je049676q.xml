@@ -98,9 +98,9 @@
 						<eMethodName>Chromatography</eMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Gas</ePropPhase>
@@ -108,10 +108,10 @@
 			<ePresentation>Direct value, X</ePresentation>
 		</Property>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<Variable>
 			<nVarNumber>1</nVarNumber>

@@ -38,28 +38,4 @@ class Dataset extends AppModel
 
     public $belongsTo = ['System','Reference','File'];
 
-    /**
-     * Create qudt unit
-     * @param $unit
-     * @return string
-     */
-    public function qudt($unit) {
-        if($unit=="MHz") {
-            $unit="qudt:MegaHz";
-        } elseif($unit=="s") {
-            $unit="qudt:SEC";
-        } elseif($unit=="Hz") {
-            $unit="qudt:Hz";
-        } elseif($unit=="nm") {
-            $unit="qudt:NanoM";
-        } elseif($unit=="°C"||$unit=="&deg;C") {
-            $unit="qudt:DegC";
-        }  elseif($unit=="mm<sup>2</sup> s<sup>-1</sup>") {
-            $unit="qudt:CentiSTOKES";
-        } elseif($unit=="Pa s") {
-            $unit="qudt:POISEUILLE";
-        }
-        return $unit;
-    }
-
 }

@@ -17,7 +17,7 @@
     });
 </script>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <?php //echo $this->Html->image('jsonld.png',['width'=>'100','url'=>'/files/view/'.str_replace('trc:file:','',$data['pid']).'/jsonld','alt'=>'Output as JSON-LD','class'=>'img-responsive pull-right']); ?>
@@ -33,9 +33,9 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8 col-md-offset-2">
 		<h3>Datasets</h3>
-        <ul class="list-group">
+        <ul class="list-group responsivediv">
 			<?php
 			foreach($sets as $setidx=>$set) {
 				//if($setidx==0) { debug($set); }
@@ -44,7 +44,7 @@
 				foreach($sers as $ser) {
 					$points+=count($ser['Datapoint']);
 				}
-				$p="";if($points>1) { $p="2"; }
+				$p="";if($points>1) { $p="s"; }
 				$desc=ucfirst($sys['name']). " (".$sys['phase'].") - ".$prp['property_name'].": ".$points." point".$p;
 				echo '<a href="/trc/datasets/view/'.$set['id'].'" class="list-group-item">'.$desc."</a>";
 			}

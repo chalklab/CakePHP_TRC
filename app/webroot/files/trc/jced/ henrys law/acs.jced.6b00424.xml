@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Created by Guided Data Capture (GDC) Software (http://www.trc.nist.gov)-->
-<DataReport
-	xmlns = "http://www.iupac.org/namespaces/ThermoML"
-	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
+<DataReport xmlns="http://www.iupac.org/namespaces/ThermoML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iupac.org/namespaces/ThermoML http://trc.nist.gov/ThermoML.xsd">
 	<Version>
 		<nVersionMajor>2</nVersionMajor>
 		<nVersionMinor>0</nVersionMinor>
@@ -89,7 +86,7 @@
 			<ePresentation>Direct value, X</ePresentation>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<Variable>
 			<nVarNumber>1</nVarNumber>
@@ -152,7 +149,7 @@
 			<ePresentation>Direct value, X</ePresentation>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<Variable>
 			<nVarNumber>1</nVarNumber>
@@ -214,9 +211,9 @@
 						<sMethodName>Chromatography</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Gas</ePropPhase>
@@ -224,10 +221,10 @@
 			<ePresentation>Direct value, X</ePresentation>
 		</Property>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<Variable>
 			<nVarNumber>1</nVarNumber>
@@ -243,9 +240,9 @@
 				<VariableType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</VariableType>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</VariableID>
 			<VarPhaseID>
 				<eVarPhase>Liquid</eVarPhase>
@@ -659,10 +656,10 @@
 			<ePresentation>Direct value, X</ePresentation>
 		</Property>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<Variable>
 			<nVarNumber>1</nVarNumber>
@@ -678,9 +675,9 @@
 				<VariableType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</VariableType>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</VariableID>
 			<VarPhaseID>
 				<eVarPhase>Liquid</eVarPhase>
@@ -1087,9 +1084,9 @@
 						<sMethodName>Chromatography</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -1097,19 +1094,19 @@
 			<ePresentation>Direct value, X</ePresentation>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>

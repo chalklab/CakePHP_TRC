@@ -3,7 +3,8 @@
 $i=1;$size=3;
 ?>
 <h2>Files in J. Chem. Eng. Data <a href="add" class="btn btn-success btn-sm pull-right">Add File</a></h2>
-<div class="row">
+<div class="row" style="margin-top: 60px;">
+	<div class="col-md-8 col-md-offset-2">
     <div class="panel-group" id="accordion">
         <?php foreach($data as $year=>$files) { ?>
             <div class="panel panel-default">
@@ -26,4 +27,5 @@ $i=1;$size=3;
             </div>
         <?php $i++; } ?>
     </div>
+	</div>
 </div>

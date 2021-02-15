@@ -141,9 +141,9 @@
 						<sMethodName>UV Spectrometer</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -156,19 +156,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>1</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>1</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -194,10 +194,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>70700</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2500</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2500</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -210,10 +210,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>112300</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>15900</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>15900</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -226,10 +226,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>160000</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>7400</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>7400</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -259,9 +259,9 @@
 						<sMethodName>UV Spectrometer</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -274,19 +274,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>2</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>2</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -312,10 +312,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>85500</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>1800</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>1800</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -328,10 +328,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>138800</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>8200</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>8200</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -344,10 +344,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>214900</nPropValue>
 				<nPropDigits>4</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>17200</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>17200</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -377,9 +377,9 @@
 						<sMethodName>UV Spectrometer</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -392,19 +392,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>3</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>3</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -430,10 +430,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>43500</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>3600</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>3600</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -446,10 +446,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>53300</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>5200</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>5200</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -462,10 +462,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>55100</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>4400</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>4400</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>
@@ -495,9 +495,9 @@
 						<sMethodName>UV Spectrometer</sMethodName>
 					</CompositionAtPhaseEquilibrium>
 				</PropertyGroup>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</Property-MethodID>
 			<PropPhaseID>
 				<ePropPhase>Liquid</ePropPhase>
@@ -510,19 +510,19 @@
 			</PropUncertainty>
 		</Property>
 		<PhaseID>
-				<ePhase>Liquid</ePhase>
+			<ePhase>Liquid</ePhase>
 		</PhaseID>
 		<PhaseID>
-				<ePhase>Gas</ePhase>
+			<ePhase>Gas</ePhase>
 		</PhaseID>
 		<Constraint>
 			<ConstraintID>
 				<ConstraintType>
 					<eComponentComposition>Mole fraction</eComponentComposition>
 				</ConstraintType>
-			<RegNum>
-				<nOrgNum>4</nOrgNum>
-			</RegNum>
+				<RegNum>
+					<nOrgNum>4</nOrgNum>
+				</RegNum>
 			</ConstraintID>
 			<ConstraintPhaseID>
 				<eConstraintPhase>Liquid</eConstraintPhase>
@@ -548,10 +548,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>15900</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>800</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>800</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -564,10 +564,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>32300</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>2400</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>2400</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 		<NumValues>
@@ -580,10 +580,10 @@
 				<nPropNumber>1</nPropNumber>
 				<nPropValue>48400</nPropValue>
 				<nPropDigits>3</nPropDigits>
-			<PropUncertainty>
-				<nUncertAssessNum>1</nUncertAssessNum>
-				<nExpandUncertValue>5100</nExpandUncertValue>
-			</PropUncertainty>
+				<PropUncertainty>
+					<nUncertAssessNum>1</nUncertAssessNum>
+					<nExpandUncertValue>5100</nExpandUncertValue>
+				</PropUncertainty>
 			</PropertyValue>
 		</NumValues>
 	</PureOrMixtureData>

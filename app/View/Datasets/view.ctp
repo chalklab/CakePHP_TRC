@@ -243,20 +243,24 @@ if(!empty($dpts)) {
     ?>
     <div class="row">
         <?php
-        $dscount=count($dpts);
-        if($dscount==1||$dscount==2) {
-            $width=8;$offset=2;
-        } elseif($dscount==3) {
-            $width=10;$offset=1;
+        $dscount=count($dpts);  // dataseries count
+        if($dscount<=3) {
+            $width1=6;$width2=6;
+        } elseif($dscount>3&&$dscount<6) {
+			$width1=8;$width2=4;
         } else {
-            $width=12;$offset=0;
+			$width1=12;$width2=4;
         }
         ?>
-        <div class="col-md-6">
+        <div class="col-md-<?php echo $width1; ?>">
             <?php echo $this->element('dataseries',['dpts'=>$dpts]); ?>
         </div>
-        <div class="col-md-6">
-            <?php echo $this->Element("chart"); ?>
+        <div class="col-md-<?php echo $width2; ?>">
+            <?php
+			if($xlabel!="") {
+				echo $this->Element("chart");
+			}
+			?>
         </div>
     </div>
 <?php } ?>

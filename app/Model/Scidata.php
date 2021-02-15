@@ -12,12 +12,15 @@ class Scidata extends AppModel
 	public $path=null;
 	public $contexts=["https://stuchalk.github.io/scidata/contexts/scidata.jsonld"];
 	public $nspaces=[
-		'sci'=>'https://stuchalk.github.io/scidata/ontology/scidata.owl#',
+		'sdo'=>'https://stuchalk.github.io/scidata/ontology/scidata.owl#',
 		'dc'=>'http://purl.org/dc/terms/',
 		'qudt'=>'http://www.qudt.org/qudt/owl/1.0.0/unit.owl#',
 		'xsd'=>'http://www.w3.org/2001/XMLSchema#'];
 	public $id=null;
-	public $pid=null;
+	public $generatedat=null;
+	public $version=null;
+	public $graphid=null;
+	public $uid=null;
 	public $base=null;
 	public $meta=null;
 	public $authors=null;
@@ -43,6 +46,7 @@ class Scidata extends AppModel
 	private $sers=[];
 	private $pnts=[];
 	private $cnds=[];
+	private $rels=[];
 	private $scnds=[];
 	private $sttgs=[];
 	public $sources=null;
@@ -62,9 +66,12 @@ class Scidata extends AppModel
 		$output=[];
 		$output['@context']=[];
 		$output['@id']="";
+		$output['generatedAt']="";
+		$output['version']=1;
 		$graph=[];
-		$graph['@id']="graph/";
-		$graph['pid']="";
+		$graph['@id']="";
+		$graph['@type']="sdo:scientificData";
+		$graph['uid']="";
 		$graph['title']="";
 		$graph['authors']=[];
 		$graph['description']="";
@@ -174,6 +181,45 @@ class Scidata extends AppModel
 	}
 
 	/**
+	 * Set graph id
+	 * @param $value
+	 * @return bool
+	 */
+	public function setgraphid($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("graphid","string",$value);
+		}
+	}
+
+	/**
+	 * Set generatedAt date
+	 * @param $value
+	 * @return bool
+	 */
+	public function setgenat($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("generatedat","string",$value);
+		}
+	}
+
+	/**
+	 * Set version
+	 * @param $value
+	 * @return bool
+	 */
+	public function setversion($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			return $this->setter("version","integer",$value);
+		}
+	}
+
+	/**
 	 * Set the path
 	 * @param $value
 	 * @return bool
@@ -217,15 +263,15 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the pid
+	 * Set the uid
 	 * @param $value
 	 * @return bool
 	 */
-	public function setpid($value=null) {
+	public function setuid($value=null) {
 		if($value==null) {
 			return false;
 		} else {
-			return $this->setter("pid","string",$value);
+			return $this->setter("uid","string",$value);
 		}
 	}
 
@@ -346,6 +392,11 @@ class Scidata extends AppModel
 		if($value==null) {
 			return false;
 		} else {
+			if(stristr($value,':')) {
+				$ids=$this->ids;
+				$ids[]=$value;
+				$this->ids=$ids;
+			}
 			return $this->setter("discipline","string",$value);
 		}
 	}
@@ -359,6 +410,11 @@ class Scidata extends AppModel
 		if($value==null) {
 			return false;
 		} else {
+			if(stristr($value,':')) {
+				$ids=$this->ids;
+				$ids[]=$value;
+				$this->ids=$ids;
+			}
 			return $this->setter("subdiscipline","string",$value);
 		}
 	}
@@ -534,7 +590,6 @@ class Scidata extends AppModel
 				return false;
 			}
 		}
-		//debug($this->$prop);debug($prop);debug($value);debug($mode);exit;
 		// set property
 		$current=$this->$prop;
 		if($mode=='append') {
@@ -597,11 +652,32 @@ class Scidata extends AppModel
 			unset($output["@id"]);
 		}
 
-		// base
-		if(!is_null($this->pid)) {
-			$graph["pid"]=$this->pid;
+		// generatedAt
+		if(!is_null($this->generatedat)) {
+			$output["generatedAt"]=$this->generatedat;
 		} else {
-			unset($output["pid"]);
+			unset($output["generatedAt"]);
+		}
+
+		// version
+		if(!is_null($this->version)) {
+			$output["version"]=$this->version;
+		} else {
+			unset($output["version"]);
+		}
+
+		// graphid
+		if(!is_null($this->graphid)) {
+			$graph["@id"]=$this->graphid;
+		} else {
+			unset($graph["@id"]);
+		}
+
+		// uid
+		if(!is_null($this->uid)) {
+			$graph["uid"]=$this->uid;
+		} else {
+			unset($output["uid"]);
 		}
 
 		// meta
@@ -677,7 +753,7 @@ class Scidata extends AppModel
 		$sci=[];$rels=[];
 
 		$sci['@id']="scidata";
-		$sci['@type']="sci:scientificData";
+		$sci['@type']="sdo:scientificData";
 		$graph['toc'][]=$sci['@type'];
 		$sci['discipline']=$this->discipline;
 		$sci['subdiscipline']=$this->subdiscipline;
@@ -689,7 +765,7 @@ class Scidata extends AppModel
 		if(!empty($this->aspects)) {
 			$meth=[];
 			$meth['@id']='methodology/';
-			$meth['@type']='sci:methodology';
+			$meth['@type']='sdo:methodology';
 			$meth['aspects']=[];
 			$rels['methodology']=[];
 			foreach($this->aspects as $type=>$aspgrp) {
@@ -715,7 +791,7 @@ class Scidata extends AppModel
 		if(!empty($this->facets)) {
 			$sys=[];
 			$sys['@id']='system/';
-			$sys['@type']='sci:system';
+			$sys['@type']='sdo:system';
 			$sys['facets']=[];$condrels=[];
 			$rels['system']=[];
 			foreach($this->facets as $type=>$facgrp) {
@@ -730,22 +806,42 @@ class Scidata extends AppModel
 					if($type=='condition') {
 						$facet=$this->makedata($facet,$type,$idx,$condrels,$graph);
 					} else {
-						foreach($facet as $label=>$items) {
-							if(substr($label,-1)=='s') {
-								$sublabel=substr($label,0,-1);
+						//debug($facet);
+						foreach($facet as $label1=>$items1) {
+							if(substr($label1,-1)=='s') {
+								$sublabel=substr($label1,0,-1);
 							} else {
-								$sublabel=$label;
+								$sublabel=$label1;
 							}
-							if(is_array($items)) {
-								foreach($items as $idx=>$item) {
-									if(is_array($item)) {
-										$id=$sublabel.'/'.($idx+1).'/';
-										$itype='sci:'.$sublabel;
-										$item=["@id"=>$id,"@type"=>$itype]+$item;
-										$items[$idx]=$item;
+							//debug($items1);
+							if(is_array($items1)) {
+								foreach($items1 as $idx1=>$item1) {
+									//debug($item1);
+									if(is_array($item1)) {
+										//debug($idx);debug($item);exit;
+										foreach($item1 as $label2=>$items2) {
+											if(substr($label2,-1)=='s') {
+												$sublabel2=substr($label2,0,-1);
+											} else {
+												$sublabel2=$label2;
+											}
+											if(is_array($items2)) {
+												foreach($items2 as $idx2=>$item2) {
+													$id2=$sublabel2.'/'.($idx2+1).'/';
+													$itype2='sdo:'.$sublabel2;
+													$item2=["@id"=>$id2,"@type"=>$itype2]+$item2;
+													$items2[$idx2]=$item2;
+												}
+											}
+											$item1[$label2]=$items2;
+										}
+										$id1=$sublabel.'/'.($idx1+1).'/';
+										$itype1='sdo:'.$sublabel;
+										$item1=["@id"=>$id1,"@type"=>$itype1]+$item1;
+										$items1[$idx1]=$item1;
 									}
 								}
-								$facet[$label]=$items;
+								$facet[$label1]=$items1;
 							}
 						}
 					}
@@ -763,7 +859,7 @@ class Scidata extends AppModel
 		$set=[];
 		if(!empty($this->dataseries)||!empty($this->datagroup)||!empty($this->datapoint)) {
 			$set["@id"]='dataset/1/';
-			$set["@type"]='sci:dataset';
+			$set["@type"]='sdo:dataset';
 			if(!empty($this->datapoint)) {
 				// start the point total count at the # of individual datapoints
 				$pnttot=count($this->datapoint);
@@ -808,7 +904,7 @@ class Scidata extends AppModel
 						}
 					}
 					$ser["@id"]='dataseries/'.$seridx.'/';
-					$ser["@type"]="sci:dataseries";
+					$ser["@type"]="sdo:dataseries";
 					$ser['title']=$series['title'];
 					if(!empty($series['system'])) {
 						$ser['system']=$series['system'];
@@ -1004,6 +1100,7 @@ class Scidata extends AppModel
 			if(!empty($this->datagroup)) {
 				// add datagroup
 				foreach($this->datagroup as $grpidx=>$group) {
+					// debug($group);
 					$grptot++;$grprels[$grpidx]=[];$points=[];
 					if(!isset($group['points'])) {
 						// generate an index of points
@@ -1037,12 +1134,13 @@ class Scidata extends AppModel
 						$points=$group['points'];
 					}
 					$grp["@id"]='datagroup/'.$grpidx.'/';
-					$grp["@type"]="sci:datagroup";
+					$grp["@type"]="sdo:datagroup";
 					$grp['title']=$group['title'];
 					if(!empty($group['anns']['column'])) {
 						$grp['annotations']=$group['anns']['column'];
 					}
 					$grp['datapoints']=[];
+					//debug($points);//exit;
 					foreach($points as $p) {
 						$pnttot++;
 						// array of datapoints
@@ -1053,6 +1151,8 @@ class Scidata extends AppModel
 						}
 						if(isset($condrels['condition'][$grpidx])) {
 							$dpnt['conditions']=[];
+							//debug($p);debug($condrels);//exit;
+
 							foreach($condrels['condition'][$grpidx] as $cond) {
 								$dpnt['conditions'][]=$cond[$p];
 							}
@@ -1076,9 +1176,6 @@ class Scidata extends AppModel
 									if(!empty($pnts[$p]['propertyref'])) {
 										$val['propertyref']=$pnts[$p]['propertyref'];
 									}
-									if(!empty($val['propertyref'])) {
-										$graph['ids'][]=$val['propertyref'];
-									}
 									if(!empty($series['anns']['rows'][$prop][$p])) {
 										$val['annotation']=$series['anns']['rows'][$prop][$p];
 									}
@@ -1094,6 +1191,9 @@ class Scidata extends AppModel
 									}
 									if(!empty($pnts[$p]['unit'])) {
 										$val['unit']=$pnts[$p]['unit'];
+									}
+									if(!empty($pnts[$p]['unitref'])) {
+										$val['unitref']=$pnts[$p]['unitref'];
 									}
 									if(!empty($pnts[$p]['error'])) {
 										$val['error']=$pnts[$p]['error'];
@@ -1232,7 +1332,7 @@ class Scidata extends AppModel
 				foreach($this->datapoint as $pidx=>$pnt) {
 					$dpnt=[];
 					$dpnt["@id"]='datapoint/'.$pidx.'/';
-					$dpnt["@type"]="sci:datapoint";  // TODO add datatype: exptdata etc...
+					$dpnt["@type"]="sdo:datapoint";  // TODO add datatype: exptdata etc...
 					if(isset($pnt['id'])) {
 						$dpnt['id']=$pnt['id'];
 					}
@@ -1252,6 +1352,14 @@ class Scidata extends AppModel
 						}
 						if(isset($pnt['propertyref'])) {
 							$dpnt['propertyref']=$pnt['propertyref'];
+							$graph['ids'][]=$pnt['propertyref'];
+						}
+						if(isset($pnt['unit'])) {
+							$dpnt['unit']=$pnt['unit'];
+						}
+						if(isset($pnt['unitref'])) {
+							$dpnt['unitref']=$pnt['unitref'];
+							$graph['ids'][]=$pnt['unitref'];
 						}
 						if(isset($pnt['annotation'])) {
 							$dpnt['annotation']=$pnt['annotation'];
@@ -1259,7 +1367,7 @@ class Scidata extends AppModel
 						if(isset($pnt['value'])) {
 							$val=[];
 							$val["@id"]=$dpnt["@id"].'value/';
-							$val["@type"]="sci:numericValue";
+							$val["@type"]="sdo:numericValue";
 							if(is_float($pnt['value'])) {
 								$val['datatype']='float';
 							} else {
@@ -1277,9 +1385,6 @@ class Scidata extends AppModel
 							if(!empty($pnt['sf'])) {
 								$val['sigfigs']=$pnt['sf'];
 							}
-							if(!empty($pnt['unit'])) {
-								$val['unit']=$pnt['unit'];
-							}
 							if(!empty($pnt['error'])) {
 								$val['error']=$pnt['error'];
 							}
@@ -1290,7 +1395,7 @@ class Scidata extends AppModel
 						} elseif(isset($pnt['text'])) {
 							$val=[];
 							$val["@id"]=$dpnt["@id"].'value/';
-							$val["@type"]="sci:textValue";
+							$val["@type"]="sdo:textValue";
 							$val['text']=$pnt['text'];
 							$data['textstring']=$val;
 						}
@@ -1299,7 +1404,7 @@ class Scidata extends AppModel
 						foreach($pnt['values'] as $didx=>$datum) {
 							$data=[];
 							$data["@id"]=$dpnt["@id"].'datum/'.($didx+1).'/';
-							$data["@type"]="sci:".$datum['type'];
+							$data["@type"]="sdo:".$datum['type'];
 							if(isset($datum['quantity'])) {
 								$data['quantity']=$datum['quantity'];
 							}
@@ -1308,6 +1413,14 @@ class Scidata extends AppModel
 							}
 							if(isset($datum['propertyref'])) {
 								$data['propertyref']=$datum['propertyref'];
+								$graph['ids'][]=$datum['propertyref'];
+							}
+							if(isset($datum['unit'])) {
+								$data['unit']=$datum['unit'];
+							}
+							if(isset($datum['unitref'])) {
+								$data['unitref']=$datum['unitref'];
+								$graph['ids'][]=$datum['unitref'];
 							}
 							if(isset($datum['annotation'])) {
 								$data['annotation']=$datum['annotation'];
@@ -1315,7 +1428,7 @@ class Scidata extends AppModel
 							if(isset($datum['value'])) {
 								$val=[];
 								$val["@id"]=$data["@id"].'value/';
-								$val["@type"]="sci:numericValue";
+								$val["@type"]="sdo:numericValue";
 								if(is_float($datum['value'])) {
 									$val['datatype']='float';
 								} else {
@@ -1333,9 +1446,6 @@ class Scidata extends AppModel
 								if(!empty($datum['sf'])) {
 									$val['sigfigs']=$datum['sf'];
 								}
-								if(!empty($datum['unit'])) {
-									$val['unit']=$datum['unit'];
-								}
 								if(!empty($datum['error'])) {
 									$val['error']=$datum['error'];
 								}
@@ -1346,7 +1456,7 @@ class Scidata extends AppModel
 							} elseif(isset($datum['text'])) {
 								$val=[];
 								$val["@id"]=$data["@id"].'value/';
-								$val["@type"]="sci:textValue";
+								$val["@type"]="sdo:textValue";
 								$val['text']=$datum['text'];
 								if(!empty($datum['note'])) {
 									$val['note']=$datum['note'];
@@ -1375,7 +1485,7 @@ class Scidata extends AppModel
 			foreach($srcs as $idx=>$src) {
 				$source=[];
 				$source["@id"]='source/'.($idx+1).'/';
-				$source["@type"]="sci:source";
+				$source["@type"]="sdo:source";
 				$graph['toc'][]=$source['@type'];
 				if(!empty($src['journal']))		{ $source["journal"]=$src['journal']; }
 				if(!empty($src['citation']))	{ $source["citation"]=$src['citation']; }
@@ -1399,7 +1509,7 @@ class Scidata extends AppModel
 			foreach($rs as $idx=>$r) {
 				$right=[];
 				$right["@id"]='rights/'.($idx+1).'/';
-				$right["@type"]="sci:rights";
+				$right["@type"]="sdo:rights";
 				$graph['toc'][]=$right['@type'];
 				$right=array_merge($right,$r);
 				$graph["rights"][]=$right;
@@ -1408,9 +1518,19 @@ class Scidata extends AppModel
 			unset($output["rights"]);
 		}
 
+		// dedup and order toc
+		$graph['toc']=array_unique($graph['toc']);
+		sort($graph['toc']);
+		$this->toc=$graph['toc'];
+
 		// dedup and order ids
 		$graph['ids']=array_unique($graph['ids']);
 		sort($graph['ids']);
+		$this->ids=$graph['ids'];
+
+		// update private vars
+		$this->rels=$rels;
+
 		// add the graph data
 		$output["@graph"]=$graph;
 
@@ -1441,11 +1561,58 @@ class Scidata extends AppModel
 	}
 
 	/**
+	 * export data from class variables to set format
+	 */
+	public function rawout()
+	{
+		$this->asarray();
+		$output=[];
+		$output['context']=$this->contexts;
+		$output['path']=$this->path;
+		$output['nspaces']=$this->nspaces;
+		$output['id']=$this->id;
+		$output['uid']=$this->uid;
+		$output['base']=$this->base;
+		$output['context']=$this->contexts;
+		$output['meta']=$this->meta;
+		$output['authors']=$this->authors;
+		$output['related']=$this->related;
+		$output['keywords']=$this->keywords;
+		$output['startdate']=$this->startdate;
+		$output['permalink']=$this->permalink;
+		$output['toc']=$this->toc;
+		$output['ids']=$this->ids;
+		$output['report']=$this->report;
+		$output['discipline']=$this->discipline;
+		$output['subdiscipline']=$this->subdiscipline;
+		$output['facets']=$this->facets;
+		$output['aspects']=$this->aspects;
+		$output['data']=$this->data;
+		$output['dataseries']=$this->dataseries;
+		$output['datagroup']=$this->datagroup;
+		$output['datapoint']=$this->datapoint;
+		$output['cpds']=$this->cpds;
+		$output['syss']=$this->syss;
+		$output['chms']=$this->chms;
+		$output['sets']=$this->sets;
+		$output['sers']=$this->sers;
+		$output['pnts']=$this->pnts;
+		$output['cnds']=$this->cnds;
+		$output['sttgs']=$this->sttgs;
+		$output['sources']=$this->sources;
+		$output['rights']=$this->rights;
+		$output['errors']=$this->errors;
+		$output['ontlinks']=$this->ontlinks;
+		$output['intlinks']=$this->intlinks;
+		$output['sysrows']=$this->sysrows;
+		return $output;
+	}
+
+	/**
 	 * private function to create data structure for conditions, data, and supplemental data
 	 * @param array $facet
 	 * @param string $type
 	 * @param int $idx
-	 * @param array $olinks
 	 * @param array $condrels
 	 * @param array $graph
 	 * @return array
@@ -1464,12 +1631,16 @@ class Scidata extends AppModel
 			$output['property']=$prop;
 			if(isset($facet['propertyref'])) {
 				$output['propertyref']=$facet['propertyref'];
+				$graph['ids'][]=$facet['propertyref'];
 			}
 			if(isset($facet['propid'])) {
 				$output['propertyref']=$facet['propid'];
+				$graph['ids'][]=$facet['propid'];
 			}
-			if(!empty($output['propertyref'])) {
-				$graph['ids'][]=$output['propertyref'];
+			$output['unit']=$unit;
+			if(!empty($facet['unitref'])) {
+				$output['unitref']=$facet['unitref'];
+				$graph['ids'][]=$facet['unitref'];
 			}
 			if(is_array($vals)) {
 				$output['valuearray']=[];$vidx=1;
@@ -1482,7 +1653,7 @@ class Scidata extends AppModel
 					}
 					$value=[];
 					$value['@id']='condition/'.$idx.'/value/'.$vidx.'/';
-					$value['@type']='sci:numericValue';
+					$value['@type']='sdo:numericValue';
 					if(is_float($val['value'])) {
 						$value['datatype']='float';
 					} elseif(is_int($val['value'])) {
@@ -1492,8 +1663,6 @@ class Scidata extends AppModel
 					$value['number']=$val['scinot'];
 					if(!empty($val['unit'])) {
 						$value['unit']=$val['unit'];
-					} elseif(!is_null($unit)) {
-						$value['unit']=$unit;
 					}
 					if(!empty($errs)) {
 						$value['error']=$errs['val'];
@@ -1506,13 +1675,14 @@ class Scidata extends AppModel
 						list($ser,$row)=explode(':',$serrow);
 						$condrels[$type][$ser][$prop][$row]=$value['@id'];
 					}
+					//debug($condrels);
 					$vidx++;
 				}
 			} else {
 				$output['value']=[];
 				$value=[];$val=$vals;
 				$value['@id']='condition/'.$idx.'/value/';
-				$value['@type']='sci:numericValue';
+				$value['@type']='sdo:numericValue';
 				if(is_float($vals)) {
 					$value['datatype']='float';
 				} elseif(is_int($vals)) {
