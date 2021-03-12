@@ -1184,6 +1184,9 @@ class Scidata extends AppModel
 									if(!empty($pnts[$p]['equality'])) {
 										$val['equality']=$pnts[$p]['equality'];
 									}
+									if(!empty($pnts[$p]['scinot'])) {
+										$val['scinot']=$pnts[$p]['scinot'];
+									}
 									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
 										$val['value'] = $pnts[$p]['value'];
 									}
@@ -1233,6 +1236,9 @@ class Scidata extends AppModel
 									}
 									if(!empty($pnts[$p]['equality'])) {
 										$val['equality']=$pnts[$p]['equality'];
+									}
+									if(!empty($pnts[$p]['scinot'])) {
+										$val['scinot']=$pnts[$p]['scinot'];
 									}
 									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
 										$val['value'] = $pnts[$p]['value'];
@@ -1284,6 +1290,9 @@ class Scidata extends AppModel
 									}
 									if(!empty($pnts[$p]['equality'])) {
 										$val['equality']=$pnts[$p]['equality'];
+									}
+									if(!empty($pnts[$p]['scinot'])) {
+										$val['scinot']=$pnts[$p]['scinot'];
 									}
 									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
 										$val['value'] = $pnts[$p]['value'];
@@ -1382,7 +1391,8 @@ class Scidata extends AppModel
 								$val['min']=$pnt['text']; // using the string as it is safer in JSON
 								$val['max']=$pnt['max'];
 							} else {
-								$val['number']=$pnt['text']; // using the string as it is safer in JSON
+								//$val['number']=$pnt['text']; // using the string as it is safer in JSON
+								$val['number']=$pnt['scinot']; // using the string as it is safer in JSON
 							}
 							if(!empty($pnt['sf'])) {
 								$val['sigfigs']=$pnt['sf'];
@@ -1710,7 +1720,7 @@ class Scidata extends AppModel
 	 * @return array
 	 */
 	private function exponentialGen($string) {
-		$return=[];
+		$e="E";$return=[];
 		$return['text']=$string;
 		$return['value']=floatval($string);
 		if($string==0) {
@@ -1755,14 +1765,14 @@ class Scidata extends AppModel
 					preg_match('/^(0*)[1234567890]+$/',$num[1],$match);
 					$return['exponent']=-1*(strlen($match[1]) + 1);
 				}
-				$return['scinot']=sprintf("%." .($return['sf']-1). "e", $string);
-				$s=explode("e",$return['scinot']);
+				$return['scinot']=sprintf("%." .($return['sf']-1). $e, $string);
+				$s=explode($e,$return['scinot']);
 				$return['significand']=$s[0];
 				$return['error']=pow(10,$return['exponent']-$return['sf']+1);
 			} else {
 				$return['dp']=0;
-				$return['scinot']=sprintf("%." .(strlen($string)-1). "e", $string);
-				$s=explode("e",$return['scinot']);
+				$return['scinot']=sprintf("%." .(strlen($string)-1). $e, $string);
+				$s=explode($e,$return['scinot']);
 				$return['significand']=$s[0];
 				$return['exponent'] = $s[1];
 				$z=explode(".",$return['significand']);

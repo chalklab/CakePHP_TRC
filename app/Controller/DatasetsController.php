@@ -480,10 +480,11 @@ class DatasetsController extends AppController
 									$s[$sidx]['purification'] = null;
 								}
 								if (!is_null($step['purity'])) {
-									$s[$sidx]['number'] = $step['purity'];
+									$val=$this->exponentialGen($step['purity']);
+									$s[$sidx]['number'] = $val['scinot'];
 								}
 								if (!is_null($step['puritysf'])) {
-									$s[$sidx]['sigfigs'] = $step['puritysf'];
+									$s[$sidx]['sigfigs'] = (int) $step['puritysf'];
 								}
 								if (!is_null($step['purityunit_id'])) {
 									$uname = $this->Unit->getfield('name', $step['purityunit_id']);
@@ -1058,10 +1059,10 @@ class DatasetsController extends AppController
                             }
 
                             if(!is_null($step['purity'])) {
-                                $stepsj['number']=$step['purity'];
+                                $stepsj['number']=(float) $step['purity'];
                             }
                             if(!is_null($step['puritysf'])) {
-                                $stepsj['sigfigs']=$step['puritysf'];
+                                $stepsj['sigfigs']=(int) $step['puritysf'];
                             }
 							if(!is_null($step['purityunit_id'])) {
                                 $unit=$this->Unit->getfield("qudt",$step['purityunit_id']);
@@ -1918,6 +1919,7 @@ class DatasetsController extends AppController
 	 * @return array
 	 */
 	private function exponentialGen($string) {
+		$e="E";
 		$return=[];
 		$return['text']=$string;
 		$return['value']=floatval($string);
@@ -1963,14 +1965,14 @@ class DatasetsController extends AppController
 					preg_match('/^(0*)[1234567890]+$/',$num[1],$match);
 					$return['exponent']=-1*(strlen($match[1]) + 1);
 				}
-				$return['scinot']=sprintf("%." .($return['sf']-1). "e", $string);
-				$s=explode("e",$return['scinot']);
+				$return['scinot']=sprintf("%." .($return['sf']-1). $e, $string);
+				$s=explode($e,$return['scinot']);
 				$return['significand']=$s[0];
 				$return['error']=pow(10,$return['exponent']-$return['sf']+1);
 			} else {
 				$return['dp']=0;
-				$return['scinot']=sprintf("%." .(strlen($string)-1). "e", $string);
-				$s=explode("e",$return['scinot']);
+				$return['scinot']=sprintf("%." .(strlen($string)-1). $e, $string);
+				$s=explode($e,$return['scinot']);
 				$return['significand']=$s[0];
 				$return['exponent'] = $s[1];
 				$z=explode(".",$return['significand']);
