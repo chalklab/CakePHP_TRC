@@ -1,6 +1,6 @@
 
 .DS_Store
-.idea/*
+.idea
 app/.DS_Store
 app/Config/.DS_Store
 app/Console/.DS_Store
