@@ -39,17 +39,17 @@ class Compound extends AppModel
         } else {
             return false;
         }
-        if($type=="inchi") {
+		if($type=="inchi") {
             $json=$HttpSocket->post($url,['inchi'=>$value]); // requires post
         } else {
             $json=$HttpSocket->get($url);
         }
 		$cid=json_decode($json,true);
-		
+
 		if(isset($cid['Fault'])) {
             return false;
         } else {
-            return $cid['IdentifierList']['CID'][0];
+            return $cid['IdentifierList']['CID'][0]; // get first CID in list
         }
     }
 
@@ -126,7 +126,11 @@ class Compound extends AppModel
      * @return mixed
      */
     public function getcas($name) {
-        $cid=$this->cid("name",$name);
+    	if(preg_match('/[A-Z]{14}-[A-Z]{10}-[A-Z]/',$name)) {
+			$cid=$this->cid("inchikey",$name);
+		} else {
+			$cid=$this->cid("name",$name);
+		}
         $url=$this->path.'cid/'.$cid.'/synonyms/JSON';
 		$HttpSocket = new HttpSocket();
         $json=$HttpSocket->get($url);
@@ -149,9 +153,7 @@ class Compound extends AppModel
 				$lengths=array_map('strlen',$cas);
 				$min=min($lengths);
 				foreach ($cas as $str) {
-					if(strlen($str)==$min) {
-						return $str;
-					}
+					if(strlen($str)==$min) { return $str; }
 				}
 			}
 		} else {

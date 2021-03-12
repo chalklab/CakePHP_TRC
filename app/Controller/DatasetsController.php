@@ -1,4 +1,6 @@
 <?php
+// Load Composer autoload.
+require_once realpath(__DIR__.'/..')."/vendor/autoload.php";
 
 /**
  * Class DatasetsController
@@ -191,6 +193,92 @@ class DatasetsController extends AppController
 	// other actions
 
 	/**
+	 * create json load of all dataset endpoints
+	 * used to process jsonld -> N-Quads in python
+	 */
+	public function sddslist()
+	{
+		$sets=$this->Dataset->find('list',['order'=>'id','conditions'=>['points'=>1]]);
+		$output=[];
+		foreach($sets as $setid=>$title) {
+			$output[]='https://sds.coas.unf.edu/trc/datasets/scidata/'.$setid;
+		}
+		$json=json_encode($output);
+		header("Content-Type: application/json");
+		echo $json;exit;
+	}
+
+	/**
+	 * test if jsonld files are valid
+	 * @param int $max
+	 */
+	public function test($max=100)
+	{
+		$grps=$this->Dataset->find('list',['fields'=>['id','title','points'],'order'=>'points','conditions'=>['points >'=>$max]]);
+		// data group by number of points in dataset first then list of id:title
+		//debug($grps);exit;
+		foreach($grps as $points=>$grp) {
+			$text="Datasets with ".$points." datapoint";
+			if($points>1) { $text.="s<br/>"; } else { $text.="<br/>"; }
+			echo $text;
+			foreach($grp as $setid=>$title) {
+				$url='https://sds.coas.unf.edu/trc/datasets/scidata/'.$setid;
+				$hdrs=get_headers($url,true);
+				if(stristr($hdrs[0],'200')) {
+					$json=file_get_contents($url);
+					if(stristr($json,'<pre class="cake-error">')) {
+						echo "Dataset <a href='".$url."' target='_blank'>".$setid."</a> has error(s) (".$points." points)<br/>";
+					} else {
+						//echo "Dataset <a href='".$url."' target='_blank'>".$setid."</a> valid<br/>";
+					}
+				} else {
+					echo "Dataset <a href='".$url."' target='_blank'>".$setid."</a> not found<br/>";
+				}
+			}
+			//debug($grp);exit;
+		}
+		exit;
+	}
+
+	/**
+	 * export jsonld files
+	 * @param int $limit
+	 * @param int $offset
+	 * @throws
+	 */
+	public function exportjld($limit=100, $offset=0)
+	{
+		$sets=$this->Dataset->find('list',['fields'=>['id','title'],'order'=>'points','offset'=>$offset,'limit'=>$limit]);
+		$folder='files_'.str_pad($offset,5,'0',STR_PAD_LEFT).'_'.str_pad(($offset+$limit-1),5,'0',STR_PAD_LEFT);
+		$zip = new ZipArchive;
+		$res = $zip->open($folder.'.zip', ZipArchive::CREATE);
+		//debug($res);exit;
+		foreach($sets as $setid=>$title) {
+			$url='https://sds.coas.unf.edu/trc/datasets/scidata/'.$setid;
+			$hdrs=get_headers($url,true);
+			if(stristr($hdrs[0],'200')) {
+				$json = file_get_contents($url);
+				// serialize to N-Quads
+				//$jsld = new \EasyRdf\Graph("test",$json,'jsonld');
+				//$jsld->parse();
+				//echo "URI: ".$jsld->getUri();
+				//exit;
+				preg_match('/^Dataset ([0-9]+) in paper 10\.1021\/(.+)$/', $title, $m);
+				$filename = $m[2] . '_' . $m[1] . '.jsonld';
+				$zip->addFromString($filename, $json);
+			}
+		}
+		$zip->close();
+		chmod($folder.".zip", 0777);
+		header("Content-type: application/zip");
+		header("Content-Disposition: attachment; filename=".$folder.".zip");
+		sleep(5);
+		readfile($folder.'.zip');
+
+		exit;
+	}
+
+	/**
 	 * Function to find the most recent datasets
 	 * @return mixed
 	 */
@@ -209,7 +297,7 @@ class DatasetsController extends AppController
 	 * @param array $sclink
 	 * @param string $down
 	 */
-	public function scidata($id, $down = "", $sclink = [])  // the $sclink variable was not set to a default value
+	public function scidata(int $id, $down = "", $sclink = [])  // the $sclink variable was not set to a default value
 	{
 		// Note: there is an issue with the retrival of substances under system if id is not requested as a field
 		// This is a bug in CakePHP as it works without id if its at the top level...
@@ -265,19 +353,6 @@ class DatasetsController extends AppController
 		$othersys = $this->Dataset->find('list', ['fields' => ['id'], 'conditions' => ['system_id' => $sys['id'], 'file_id' => $file['id'], 'NOT' => ['Dataset.id' => $id]]]);
 		//debug($othersys);exit;
 
-		// base
-		$base = "https://chalk.coas.unf.edu/trc/datasets/scidata/" . $id . "/";
-
-		// Build the PHP array that will then be converted to JSON
-		$json['@context'] = ['https://stuchalk.github.io/scidata/contexts/scidata.jsonld',
-			['sci' => 'https://stuchalk.github.io/scidata/ontology/scidata.owl#',
-				'sub'=>'http://stuchalk.github.io/scidata/ontology/substance.owl#',
-				'meas' => 'http://stuchalk.github.io/scidata/ontology/scidata_measurement.owl#',
-				'qudt' => 'http://www.qudt.org/qudt/owl/1.0.0/unit.owl#',
-				'dc' => 'http://purl.org/dc/terms/',
-				'w3i' => 'https://w3id.org/skgo/modsci#',
-				'xsd' => 'http://www.w3.org/2001/XMLSchema#'],
-			['@base' => $base]];
 		// get the crosswalk data
 		$fields = $nspaces = $ontlinks = [];
 		$this->getcw('metadata', $fields, $nspaces, $ontlinks);
@@ -288,30 +363,33 @@ class DatasetsController extends AppController
 		//debug($fields);debug($nspaces);debug($ontlinks);exit;
 
 		//debug($set);exit;
+
 		// create an instance of the Scidata class
 		$json['toc'] = [];
 		$json['ids'] = [];
 		$trc = new $this->Scidata;
 		$trc->setnspaces($nspaces);
-		$trc->setid("https://scidata.unf.edu/data/<dataid>");
+		$trc->setid("https://scidata.unf.edu/data/trc".str_pad($id,6,'0',STR_PAD_LEFT));
 		$trc->setgenat(date("Y-m-d H:i:s"));
 		$trc->setversion(1);
-		$uid = "trc:jced:" . $doi;
-		$upath = "https://scidata.coas.unf.edu/" . $uid . "/";
+		$uid = "trc_jced_".str_replace('acs.jced.','',$doi);
+		$upath = "https://scidata.coas.unf.edu/".$uid."/";
 		$trc->setbase($upath);
 		$trc->setuid($uid);
 		$trc->setgraphid($upath);
 
-		$meta = ['title' => $ref['title'],
+		$meta = [
+			'title' => $ref['title'],
 			'publisher' => $jnl['publisher'],
-			'description' => 'Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/',
+			'description' => 'Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/'
 		];
+		$trc->setmeta($meta);
 		$aus = explode('; ', $ref['aulist']);
 		$trc->setauthors($aus);
+		$trc->setstarttime($file['date']);
+		$trc->setpermalink("https://scidata.unf.edu/trc/datasets/view/".$id);
 		$trc->setdiscipline("w3i:Chemistry");
 		$trc->setsubdiscipline("w3i:PhysicalChemistry");
-		$trc->setmeta($meta);
-		//debug($meta);exit;
 
 		// Process data series to split out conditions, settings, and parameters
 		$serdata = [];
@@ -434,7 +512,7 @@ class DatasetsController extends AppController
 				$sid = "substance/1/";
 				$s['@id'] = $sid;
 				$s['@type'] = "sdo:" . $type;
-				$json['toc'][] = $sys['@type'];
+				$json['toc'][] = $s['@type'];
 				$s['composition'] = $sys['composition'];
 				$s['phase'] = $sys['phase'];
 				$s['name']=$sys['name'];
@@ -448,6 +526,9 @@ class DatasetsController extends AppController
 				$json['toc'][] = $s['@type'];
 				$s['composition'] = $sys['composition'];
 				$phases=json_decode($set['phase']);
+				if(!is_array($phases)) {
+					$phases=[0=>$phases];
+				}
 				foreach($phases as $phase) {
 					$phase=strtolower($phase);
 					if(in_array($phase,['liquid','solid','gas'])) {
@@ -464,6 +545,8 @@ class DatasetsController extends AppController
 						$s['phase'][]='sub:gas';
 					} elseif(stristr($phase,'air')) {
 						$s['phase'][]='sub:gas';
+					} elseif(stristr($phase,'supercritical')) {
+						$s['phase'][]='sub:fluid';
 					}
 					$s['phase']=array_unique($s['phase']);
 				}
@@ -584,32 +667,30 @@ class DatasetsController extends AppController
 
 		// add facets data to instance
 		$trc->setfacets($facets);
-		//$sd=$trc->asarray();
 
 		// Data (add data to $group)
-		$group=[];
-		//debug($sers);debug($sprops);
+		$groups=[];
 		foreach($sers as $seridx=>$ser) {
-			$pnts = $ser['Datapoint'];$sernum=$seridx+1;
-			//debug($pnts);exit;
-			$group[$sernum]=[];
-			$group[$sernum]['title']='Series '.$sernum;
+			$group=[];$sernum=$seridx+1;
+			$group['title']='Series '.$sernum;
 			if(count($sys['Substance'])==1) {
-				$group[$sernum]['compound']="compound/1/";
+				$group['system']="compound/1/";
 			} else {
-				$group[$sernum]['chemicalsystem']="system/1/";
+				$group['system']="system/1/";
 			}
-
-			//debug($group);
-			$points=[];
-			//debug($pnts);
-			foreach ($pnts as $pntidx => $pnt) {
-				$pntnum=$pntidx+1;$unit=$qudt="";
-				foreach($pnt['Data'] as $didx=>$datum) {
+			$group['data']=[];
+			foreach ($ser['Datapoint'] as $pntidx => $pnt) {
+				$pntnum=$pntidx+1;$unit=$qudt="";$point=[];
+				foreach($pnt['Data'] as $datidx=>$datum) {
+					$datnum=$datidx+1;
 					$val=$this->exponentialGen($datum['number']);
 					// $val['conditions']?
-					$val['property']=$datum['Property']['name'];
-					//****
+					$propphase=$datum['Property']['name']." (".$sprops[$datidx]['phase'].")";
+					if(!isset($group['data'][$propphase])) {
+						$group['data'][$propphase]=[];
+					}
+					$val['property']=$propphase;
+					$val['quantity']=$datum['Property']['name'];
 					// lookup property in $ontlinks and assign to 'propertyref'
 					if(!empty($datum['Property']['kind'])) {
 						$kind=$datum['Property']['kind'];
@@ -628,16 +709,14 @@ class DatasetsController extends AppController
 							$json['ids'][]=$unitref;
 						}
 					}
-					$propphase=$datum['Property']['name']." (".$sprops[$didx]['phase'].")";
-					$points[$propphase][$pntnum]=$val;
+					$group['data'][$propphase][$pntnum]=$val;
 				}
 			}
-			$group[$sernum]['data']=$points;
+			$groups[$sernum]=$group;
 		}
-		//debug($group);exit;
 
-		$trc->setdatagroup($group);
-		//$sd=$trc->asarray();
+		$trc->setdatagroup($groups);
+
 
 		// Sources
 		// Go get the DOI

@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'ML\\JsonLD\\' => array($vendorDir . '/ml/json-ld'),
     'EasyRdf\\' => array($vendorDir . '/easyrdf/easyrdf/lib'),
 );

@@ -3,6 +3,7 @@
     "vendor-dir": "Vendor"
   },
   "require": {
-    "easyrdf/easyrdf": "dev-master"
+    "easyrdf/easyrdf": "1.1.1",
+	"ml/json-ld": "1.2.0"
   }
 }

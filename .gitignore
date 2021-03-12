@@ -1,25 +1,6 @@
 
 .DS_Store
-.idea/.DS_Store
-.idea/.name
-.idea/cake_config_setting_v0_5.xml
-.idea/cake_config_setting_v0_6.xml
-.idea/composerJson.xml
-.idea/copyright/
-.idea/dataSources.ids
-.idea/dataSources.local.xml
-.idea/dataSources.xml
-.idea/deployment.xml
-.idea/dictionaries/
-.idea/encodings.xml
-.idea/inspectionProfiles/
-.idea/misc.xml
-.idea/modules.xml
-.idea/php.xml
-.idea/scopes/
-.idea/springer.iml
-.idea/webServers.xml
-.idea/workspace.xml
+.idea/*
 app/.DS_Store
 app/Config/.DS_Store
 app/Console/.DS_Store
@@ -47,4 +28,3 @@ app/webroot/js/flot/examples/gauge/
 app/webroot/temp/
 lib/.DS_Store
 lib/Cake/.DS_Store
-tatum/*

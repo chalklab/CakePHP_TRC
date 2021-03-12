@@ -14,7 +14,7 @@ class Scidata extends AppModel
 	public $nspaces=[
 		'sdo'=>'https://stuchalk.github.io/scidata/ontology/scidata.owl#',
 		'dc'=>'http://purl.org/dc/terms/',
-		'qudt'=>'http://www.qudt.org/qudt/owl/1.0.0/unit.owl#',
+		'qudt'=>'http://qudt.org/vocab/unit/',
 		'xsd'=>'http://www.w3.org/2001/XMLSchema#'];
 	public $id=null;
 	public $generatedat=null;
@@ -26,7 +26,7 @@ class Scidata extends AppModel
 	public $authors=null;
 	public $related=null;
 	public $keywords=null;
-	public $startdate=null;
+	public $starttime=null;
 	public $permalink=null;
 	public $toc=null;
 	public $ids=null;
@@ -76,7 +76,7 @@ class Scidata extends AppModel
 		$graph['authors']=[];
 		$graph['description']="";
 		$graph['publisher']="";
-		$graph['startdate']="";
+		$graph['starttime']="";
 		$graph['permalink']="";
 		$graph['keywords']=[];
 		$graph['related']=[];
@@ -354,15 +354,15 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the startdate
+	 * Set the starttime
 	 * @param $value
 	 * @return bool
 	 */
-	public function setstartdate($value=null) {
+	public function setstarttime($value=null) {
 		if($value==null) {
 			return false;
 		} else {
-			return $this->setter("startdate","string",$value);
+			return $this->setter("starttime","string",$value);
 		}
 	}
 
@@ -563,7 +563,7 @@ class Scidata extends AppModel
 	 * @param $value
 	 * @return bool
 	 */
-	public function setintlinks($value=null) {
+	public function setintlinks($value=null) : bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -579,7 +579,7 @@ class Scidata extends AppModel
 	 * @param string $mode (append|replace|clear)
 	 * @return bool
 	 */
-	private function setter($prop,$type,$value,$mode='replace') {
+	private function setter($prop,$type,$value,$mode='replace') : bool {
 		// check datatype
 		if($type=="array") {
 			if(!is_array($value)) {
@@ -634,8 +634,7 @@ class Scidata extends AppModel
 	 * create output and return
 	 * @return mixed
 	 */
-	public function asarray()
-	{
+	public function asarray() : array {
 		$ppty=ClassRegistry::init('Property');
 		$olinks=$this->ontlinks;
 		$output=$this->output;
@@ -726,9 +725,9 @@ class Scidata extends AppModel
 			unset($output["authors"]);
 		}
 
-		// startdate
-		if(!is_null($this->startdate)) {
-			$date=$this->startdate;
+		// starttime
+		if(!is_null($this->starttime)) {
+			$date=$this->starttime;
 			// work out format and convert to UTC
 			if(!stristr($date,"T")) {
 				if(is_numeric($date)) {
@@ -737,14 +736,14 @@ class Scidata extends AppModel
 					$date=date(DATE_ATOM,strtotime($date));
 				}
 			}
-			$graph["startdate"]=$date;
+			$graph["starttime"]=$date;
 		} else {
-			unset($output["startdate"]);
+			unset($output["starttime"]);
 		}
 
 		// permalink
 		if(!is_null($this->permalink)) {
-			$output["permalink"]=$this->permalink;
+			$graph["permalink"]=$this->permalink;
 		} else {
 			unset($output["permalink"]);
 		}
@@ -1100,7 +1099,7 @@ class Scidata extends AppModel
 			if(!empty($this->datagroup)) {
 				// add datagroup
 				foreach($this->datagroup as $grpidx=>$group) {
-					// debug($group);
+					//debug($group);
 					$grptot++;$grprels[$grpidx]=[];$points=[];
 					if(!isset($group['points'])) {
 						// generate an index of points
@@ -1129,6 +1128,7 @@ class Scidata extends AppModel
 								}
 							}
 							$points=array_merge($ckeys,$dkeys,$vkeys,$skeys);
+							$points=array_unique($points);
 						}
 					} else {
 						$points=$group['points'];
@@ -1136,11 +1136,13 @@ class Scidata extends AppModel
 					$grp["@id"]='datagroup/'.$grpidx.'/';
 					$grp["@type"]="sdo:datagroup";
 					$grp['title']=$group['title'];
+					if(!empty($group['system'])) {
+						$grp['system']=$group['system'];
+					}
 					if(!empty($group['anns']['column'])) {
 						$grp['annotations']=$group['anns']['column'];
 					}
 					$grp['datapoints']=[];
-					//debug($points);//exit;
 					foreach($points as $p) {
 						$pnttot++;
 						// array of datapoints
@@ -1369,9 +1371,9 @@ class Scidata extends AppModel
 							$val["@id"]=$dpnt["@id"].'value/';
 							$val["@type"]="sdo:numericValue";
 							if(is_float($pnt['value'])) {
-								$val['datatype']='float';
+								$val['datatype']='xsd:float';
 							} else {
-								$val['datatype']='integer';
+								$val['datatype']='xsd:integer';
 							}
 							if(isset($pnt['equality'])) {
 								$val['equality']=$pnt['equality'];
@@ -1430,9 +1432,9 @@ class Scidata extends AppModel
 								$val["@id"]=$data["@id"].'value/';
 								$val["@type"]="sdo:numericValue";
 								if(is_float($datum['value'])) {
-									$val['datatype']='float';
+									$val['datatype']='xsd:float';
 								} else {
-									$val['datatype']='integer';
+									$val['datatype']='xsd:integer';
 								}
 								if(isset($datum['equality'])) {
 									$val['equality']=$datum['equality'];
@@ -1554,8 +1556,7 @@ class Scidata extends AppModel
 	 * create output and return as json
 	 * @return string
 	 */
-	public function asjsonld()
-	{
+	public function asjsonld() {
 		$output=$this->asarray();
 		return json_encode($output,JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
 	}
@@ -1578,7 +1579,7 @@ class Scidata extends AppModel
 		$output['authors']=$this->authors;
 		$output['related']=$this->related;
 		$output['keywords']=$this->keywords;
-		$output['startdate']=$this->startdate;
+		$output['starttime']=$this->starttime;
 		$output['permalink']=$this->permalink;
 		$output['toc']=$this->toc;
 		$output['ids']=$this->ids;
@@ -1655,9 +1656,9 @@ class Scidata extends AppModel
 					$value['@id']='condition/'.$idx.'/value/'.$vidx.'/';
 					$value['@type']='sdo:numericValue';
 					if(is_float($val['value'])) {
-						$value['datatype']='float';
+						$value['datatype']='xsd:float';
 					} elseif(is_int($val['value'])) {
-						$value['datatype']='integer';
+						$value['datatype']='xsd:integer';
 					}
 					$value['sigfigs']=$val['sf'];
 					$value['number']=$val['scinot'];
@@ -1684,9 +1685,9 @@ class Scidata extends AppModel
 				$value['@id']='condition/'.$idx.'/value/';
 				$value['@type']='sdo:numericValue';
 				if(is_float($vals)) {
-					$value['datatype']='float';
+					$value['datatype']='xsd:float';
 				} elseif(is_int($vals)) {
-					$value['datatype']='integer';
+					$value['datatype']='xsd:integer';
 				}
 				$value['number']=$val;
 				if(!is_null($unit)) {
