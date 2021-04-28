@@ -6,7 +6,7 @@ class UtilsComponent extends Component {
     /**
      * Get PDF Version from PDF file
      * @param $filename
-     * @return int
+     * @return mixed
      */
     public function pdfVersion($filename) {
         $fp = @fopen($filename, 'rb');
@@ -30,7 +30,12 @@ class UtilsComponent extends Component {
         }
     }
 
-    public function ucfarray($array)
+	/**
+	 * convert array of strings to uppercase first
+	 * @param $array
+	 * @return array
+	 */
+    public function ucfarray($array): array
     {
         $oarray=[];
         for($x=0;$x<count($array);$x++) {
@@ -64,4 +69,5 @@ class UtilsComponent extends Component {
             return $return;
         }
     }
+
 }

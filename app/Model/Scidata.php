@@ -95,6 +95,7 @@ class Scidata extends AppModel
 
 	/**
 	 * Get path
+	 * @return mixed
 	 */
 	public function path() {
 		if(is_null($this->path)) {
@@ -106,6 +107,7 @@ class Scidata extends AppModel
 
 	/**
 	 * Get base
+	 * @return mixed
 	 */
 	public function base() {
 		if(is_null($this->base)) {
@@ -144,7 +146,7 @@ class Scidata extends AppModel
 	/**
 	 * Set the contexts
 	 * @param $value
-	 * @return bool
+	 * @return mixed
 	 */
 	public function setcontexts($value=null) {
 		if($value==null) {
@@ -272,6 +274,54 @@ class Scidata extends AppModel
 			return false;
 		} else {
 			return $this->setter("uid","string",$value);
+		}
+	}
+
+	/**
+	 * Set the title
+	 * @param $value
+	 * @return bool
+	 */
+	public function settitle($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			$meta=$this->meta;
+			$meta['title']=$value;
+			$this->setmeta($meta);
+			return $this->setter("title","string",$value);
+		}
+	}
+
+	/**
+	 * Set the publisher
+	 * @param $value
+	 * @return bool
+	 */
+	public function setpublisher($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			$meta=$this->meta;
+			$meta['publisher']=$value;
+			$this->setmeta($meta);
+			return $this->setter("publisher","string",$value);
+		}
+	}
+
+	/**
+	 * Set the description
+	 * @param $value
+	 * @return bool
+	 */
+	public function setdescription($value=null) {
+		if($value==null) {
+			return false;
+		} else {
+			$meta=$this->meta;
+			$meta['description']=$value;
+			$this->setmeta($meta);
+			return $this->setter("description","string",$value);
 		}
 	}
 
@@ -635,6 +685,7 @@ class Scidata extends AppModel
 	 * @return mixed
 	 */
 	public function asarray() : array {
+		$Set=ClassRegistry::init('Dataset');
 		$ppty=ClassRegistry::init('Property');
 		$olinks=$this->ontlinks;
 		$output=$this->output;
@@ -803,9 +854,10 @@ class Scidata extends AppModel
 					$fac["@id"]=$type."/".$idx.'/';
 					$fac["@type"]=$ns.$type;
 					if($type=='condition') {
-						$facet=$this->makedata($facet,$type,$idx,$condrels,$graph);
-					} else {
 						//debug($facet);
+						$facet=$this->makedata($facet,$type,$idx,$condrels,$graph);
+						//debug($facet);exit;
+					} else {
 						foreach($facet as $label1=>$items1) {
 							if(substr($label1,-1)=='s') {
 								$sublabel=substr($label1,0,-1);
@@ -826,16 +878,32 @@ class Scidata extends AppModel
 											}
 											if(is_array($items2)) {
 												foreach($items2 as $idx2=>$item2) {
-													$id2=$sublabel2.'/'.($idx2+1).'/';
-													$itype2='sdo:'.$sublabel2;
+													if(!isset($item2["@id"])) {
+														$id2=$sublabel2.'/'.($idx2+1).'/';
+													} else {
+														$id2=$item2["@id"];
+													}
+													if(!isset($item2["@type"])) {
+														$itype2 = 'sdo:' . $sublabel2;
+													} else {
+														$itype2=$item2["@type"];
+													}
 													$item2=["@id"=>$id2,"@type"=>$itype2]+$item2;
 													$items2[$idx2]=$item2;
 												}
 											}
 											$item1[$label2]=$items2;
 										}
-										$id1=$sublabel.'/'.($idx1+1).'/';
-										$itype1='sdo:'.$sublabel;
+										if(!isset($item1["@id"])) {
+											$id1=$sublabel.'/'.($idx1+1).'/';
+										} else {
+											$id1=$item1["@id"];
+										}
+										if(!isset($item1["@type"])) {
+											$itype1 = 'sdo:' . $sublabel;
+										} else {
+											$itype1=$item1["@type"];
+										}
 										$item1=["@id"=>$id1,"@type"=>$itype1]+$item1;
 										$items1[$idx1]=$item1;
 									}
@@ -1100,7 +1168,7 @@ class Scidata extends AppModel
 				// add datagroup
 				foreach($this->datagroup as $grpidx=>$group) {
 					//debug($group);
-					$grptot++;$grprels[$grpidx]=[];$points=[];
+					$grptot++;$grprels[$grpidx]=[];
 					if(!isset($group['points'])) {
 						// generate an index of points
 						if(isset($group['ids'])) {
@@ -1143,69 +1211,35 @@ class Scidata extends AppModel
 						$grp['annotations']=$group['anns']['column'];
 					}
 					$grp['datapoints']=[];
+					//debug($condrels['condition']);
 					foreach($points as $p) {
-						$pnttot++;
+						//debug($p);
 						// array of datapoints
-						$dpnt=[];
+						$dpnt=[];$pnttot++;
 						$dpntid='datapoint/'.$pnttot.'/';
 						if(isset($series['ids'][$p])) {
 							$dpnt['id']=$group['ids'][$p];
 						}
 						if(isset($condrels['condition'][$grpidx])) {
 							$dpnt['conditions']=[];
-							//debug($p);debug($condrels);//exit;
+							//debug($p);debug($condrels);debug($grpidx);exit;
 
 							foreach($condrels['condition'][$grpidx] as $cond) {
-								$dpnt['conditions'][]=$cond[$p];
+								if(isset($cond[$p])) {
+									$dpnt['conditions'][]=$cond[$p];
+								}
+								//debug($cond);debug($dpnt['conditions']);
 							}
 						}
-						$dpnt['values']=[];
+						$dpnt['values']=[];if(is_null($olinks)) { $olinks=[]; }
 						if(!empty($group['data'])) {
+							//debug($group['data']);
 							foreach($group['data'] as $prop=>$pnts) {
 								// add data columns
 								if(!empty($pnts[$p])) {
-									$val=[];$dtype='exptdata';
-									$val['type']=$dtype;
-									if(!empty($pnts[$p]['property'])) {
-										$val['property']=$pnts[$p]['property'];
-									} else {
-										$pmeta=$ppty->find('first',['conditions'=>['datafield like'=>"%'".$prop."'%"],'contain'=>['Quantity'=>'Unit'],'recursive'=>-1]);
-										$val['property']=$pmeta['Property']['name'];
-									}
-									if(!empty($olinks[$dtype][$prop])) {
-										$val['propertyref']=$olinks[$dtype][$prop];
-									}
-									if(!empty($pnts[$p]['propertyref'])) {
-										$val['propertyref']=$pnts[$p]['propertyref'];
-									}
-									if(!empty($series['anns']['rows'][$prop][$p])) {
-										$val['annotation']=$series['anns']['rows'][$prop][$p];
-									}
-									if(!empty($pnts[$p]['equality'])) {
-										$val['equality']=$pnts[$p]['equality'];
-									}
-									if(!empty($pnts[$p]['scinot'])) {
-										$val['scinot']=$pnts[$p]['scinot'];
-									}
-									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
-										$val['value'] = $pnts[$p]['value'];
-									}
-									$val['text']=$pnts[$p]['text'];
-									if(!empty($pnts[$p]['sf'])) {
-										$val['sf'] = $pnts[$p]['sf'];
-									}
-									if(!empty($pnts[$p]['unit'])) {
-										$val['unit']=$pnts[$p]['unit'];
-									}
-									if(!empty($pnts[$p]['unitref'])) {
-										$val['unitref']=$pnts[$p]['unitref'];
-									}
-									if(!empty($pnts[$p]['error'])) {
-										$val['error']=$pnts[$p]['error'];
-									}
-									if(!empty($pnts[$p]['note'])) {
-										$val['note']=$pnts[$p]['note'];
-									}
+									// passthough the value of the data as $val['number']
+									// expGen done datapoints section
+									$val=$this->passmeta($pnts[$p],'exptdata',$p,$prop,$olinks,$graph);
 									$dpnt['values'][]=$val;
 								}
 							}
@@ -1214,105 +1248,20 @@ class Scidata extends AppModel
 							foreach($group['sups'] as $prop=>$pnts) {
 								// add supp columns
 								if(!empty($pnts[$p])) {
-									$val=[];$dtype='suppdata';
-									$val['type']=$dtype;
-									if(!empty($pnts[$p]['property'])) {
-										$val['property']=$pnts[$p]['property'];
-									} else {
-										$pmeta=$ppty->find('first',['conditions'=>['datafield like'=>"%'".$prop."'%"],'contain'=>['Quantity'=>'Unit'],'recursive'=>-1]);
-										$val['property']=$pmeta['Property']['name'];
-									}
-									if(!empty($olinks[$dtype][$prop])) {
-										$val['propertyref']=$olinks[$dtype][$prop];
-									}
-									if(!empty($pnts[$p]['propertyref'])) {
-										$val['propertyref']=$pnts[$p]['propertyref'];
-									}
-									if(!empty($val['propertyref'])) {
-										$graph['ids'][]=$val['propertyref'];
-									}
-									if(!empty($series['anns']['rows'][$prop][$p])) {
-										$val['annotation']=$series['anns']['rows'][$prop][$p];
-									}
-									if(!empty($pnts[$p]['equality'])) {
-										$val['equality']=$pnts[$p]['equality'];
-									}
-									if(!empty($pnts[$p]['scinot'])) {
-										$val['scinot']=$pnts[$p]['scinot'];
-									}
-									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
-										$val['value'] = $pnts[$p]['value'];
-									}
-									$val['text']=$pnts[$p]['text'];
-									if(!empty($pnts[$p]['max'])) {
-										$val['max']=$pnts[$p]['max'];
-									}
-									if(!empty($pnts[$p]['sf'])) {
-										$val['sf'] = $pnts[$p]['sf'];
-									}
-									if(!empty($pnts[$p]['unit'])) {
-										$val['unit']=$pnts[$p]['unit'];
-									}
-									if(!empty($pnts[$p]['error'])) {
-										$val['error']=$pnts[$p]['error'];
-									}
-									if(!empty($pnts[$p]['note'])) {
-										$val['note']=$pnts[$p]['note'];
-									}
+									// passthough the value of the data as $val['number']
+									// expGen done datapoints section
+									$val=$this->passmeta($pnts[$p],'suppdata',$p,$prop,$olinks,$graph);
 									$dpnt['values'][]=$val;
 								}
 							}
 						}
 						if(!empty($group['drvs'])) {
-							//debug($group['drvs']);
 							foreach($group['drvs'] as $prop=>$pnts) {
 								// add derived data columns
 								if(!empty($pnts[$p])) {
-									$val=[];$dtype='deriveddata';
-									$val['type']=$dtype;
-									if(!empty($pnts[$p]['property'])) {
-										$val['property']=$pnts[$p]['property'];
-									} else {
-										$pmeta=$ppty->find('first',['conditions'=>['datafield like'=>"%'".$prop."'%"],'contain'=>['Quantity'=>'Unit'],'recursive'=>-1]);
-										$val['property']=$pmeta['Property']['name'];
-									}
-									if(!empty($olinks[$dtype][$prop])) {
-										$val['propertyref']=$olinks[$dtype][$prop];
-									}
-									if(!empty($pnts[$p]['propertyref'])) {
-										$val['propertyref']=$pnts[$p]['propertyref'];
-									}
-									if(!empty($val['propertyref'])) {
-										$graph['ids'][]=$val['propertyref'];
-									}
-									if(!empty($series['anns']['rows'][$prop][$p])) {
-										$val['annotation']=$series['anns']['rows'][$prop][$p];
-									}
-									if(!empty($pnts[$p]['equality'])) {
-										$val['equality']=$pnts[$p]['equality'];
-									}
-									if(!empty($pnts[$p]['scinot'])) {
-										$val['scinot']=$pnts[$p]['scinot'];
-									}
-									if(!empty($pnts[$p]['value'])||$pnts[$p]['value']==0) { // zero is not false here
-										$val['value'] = $pnts[$p]['value'];
-									}
-									$val['text']=$pnts[$p]['text'];
-									if(!empty($pnts[$p]['max'])) {
-										$val['max']=$pnts[$p]['max'];
-									}
-									if(!empty($pnts[$p]['sf'])) {
-										$val['sf'] = $pnts[$p]['sf'];
-									}
-									if(!empty($pnts[$p]['unit'])) {
-										$val['unit']=$pnts[$p]['unit'];
-									}
-									if(!empty($pnts[$p]['error'])) {
-										$val['error']=$pnts[$p]['error'];
-									}
-									if(!empty($pnts[$p]['note'])) {
-										$val['note']=$pnts[$p]['note'];
-									}
+									// passthough the value of the data as $val['number']
+									// expGen done datapoints section
+									$val=$this->passmeta($pnts[$p],'derived',$p,$prop,$olinks,$graph);
 									$dpnt['values'][]=$val;
 								}
 							}
@@ -1320,12 +1269,8 @@ class Scidata extends AppModel
 						if(!empty($group['anns']['general'])) {
 							foreach($group['anns']['general'] as $field => $pnts) {
 								// add anns columns
-								$val=[];
-								$val['type']='annotation';
-								$val['text']=$pnts[$p];
-								if(!empty($pnts[$p]['note'])) {
-									$val['note']=$pnts[$p]['note'];
-								}
+								$val=['type'=>'annotation','text'=>$pnts[$p]];
+								if(!empty($pnts[$p]['note'])) { $val['note']=$pnts[$p]['note']; }
 								$dpnt['values'][]=$val;
 							}
 						}
@@ -1355,125 +1300,141 @@ class Scidata extends AppModel
 					}
 					if(count($pnt['values'])==1) {
 						$pnt=$pnt['values'][0];
-						if(isset($pnt['quantity'])) {
-							$dpnt['quantity']=$pnt['quantity'];
-						}
-						if(isset($pnt['property'])) {
-							$dpnt['property']=$pnt['property'];
-						}
+						if(isset($pnt['quantity'])) { $dpnt['quantity']=$pnt['quantity']; }
+						if(isset($pnt['property'])) { $dpnt['property']=$pnt['property']; }
 						if(isset($pnt['propertyref'])) {
 							$dpnt['propertyref']=$pnt['propertyref'];
 							$graph['ids'][]=$pnt['propertyref'];
 						}
-						if(isset($pnt['unit'])) {
-							$dpnt['unit']=$pnt['unit'];
-						}
+						if(isset($pnt['unit'])) { $dpnt['unit']=$pnt['unit']; }
 						if(isset($pnt['unitref'])) {
 							$dpnt['unitref']=$pnt['unitref'];
 							$graph['ids'][]=$pnt['unitref'];
 						}
-						if(isset($pnt['annotation'])) {
-							$dpnt['annotation']=$pnt['annotation'];
-						}
-						if(isset($pnt['value'])) {
-							$val=[];
-							$val["@id"]=$dpnt["@id"].'value/';
-							$val["@type"]="sdo:numericValue";
-							if(is_float($pnt['value'])) {
-								$val['datatype']='xsd:float';
-							} else {
-								$val['datatype']='xsd:integer';
-							}
-							if(isset($pnt['equality'])) {
-								$val['equality']=$pnt['equality'];
-							}
+						if(isset($pnt['annotation'])) { $dpnt['annotation']=$pnt['annotation']; }
+						if(isset($pnt['number'])) {
+							$val=$Set->exponentialGen($pnt['number']);$nval=[];
+							$nval["@id"]=$dpnt["@id"].'value/';
+							$nval["@type"]="sdo:numericValue";
+							if(isset($pnt['equality'])) { $val['equality']=$pnt['equality']; }
 							if(!empty($pnt['max'])) {
-								$val['min']=$pnt['text']; // using the string as it is safer in JSON
-								$val['max']=$pnt['max'];
+								if($val['isint']) {
+									$nval['datatype']='xsd:integer';
+									$nval['min']=(int) $val['scinot'];
+								} else {
+									$nval['datatype']='xsd:float';
+									$nval['min']=(float) $val['scinot'];
+								}
+								$max=$Set->exponentialGen($pnt['max']);
+								if($val['isint']) {
+									$nval['max']=(int) $max['scinot'];
+								} else {
+									$nval['max']=(float) $max['scinot'];
+								}
 							} else {
-								//$val['number']=$pnt['text']; // using the string as it is safer in JSON
-								$val['number']=$pnt['scinot']; // using the string as it is safer in JSON
+								if($val['isint']) {
+									$nval['datatype']='xsd:integer';
+									$nval['number']=(int) $val['scinot'];
+								} else {
+									$nval['datatype']='xsd:float';
+									$nval['number']=(float) $val['scinot'];
+								}
 							}
-							if(!empty($pnt['sf'])) {
-								$val['sigfigs']=$pnt['sf'];
-							}
+							if(!empty($val['sf'])) { $nval['sigfigs']=$val['sf']; }
 							if(!empty($pnt['error'])) {
-								$val['error']=$pnt['error'];
+								$nval['error']=$pnt['error'];
+								if(!empty($pnt['errortype'])) {
+									$nval['errortype']=$pnt['errortype'];
+								} else {
+									$nval['errortype']='unknown';
+								}
+								$nval['errornote']='from source';
+							} else {
+								$nval['error']=$val['error'];
+								$nval['errortype']='absolute';
+								$nval['errornote']='estimated from value';
 							}
-							if(!empty($pnt['note'])) {
-								$val['note']=$pnt['note'];
-							}
-							$dpnt['numericvalue']=$val;
+							if(!empty($pnt['note'])) { $nval['note']=$pnt['note']; }
+							$dpnt['numericvalue']=$nval;
 						} elseif(isset($pnt['text'])) {
-							$val=[];
-							$val["@id"]=$dpnt["@id"].'value/';
-							$val["@type"]="sdo:textValue";
-							$val['text']=$pnt['text'];
-							$data['textstring']=$val;
+							$tval=[];
+							$tval["@id"]=$dpnt["@id"].'value/';
+							$tval["@type"]="sdo:textValue";
+							$tval['text']=$pnt['text'];
+							$data['textstring']=$tval;
+						} else {
+							echo "Missing/misassigned value!";
+							debug($pnt);
+							exit;
 						}
 					} else {
 						$dpnt['data']=[];
 						foreach($pnt['values'] as $didx=>$datum) {
-							$data=[];
 							$data["@id"]=$dpnt["@id"].'datum/'.($didx+1).'/';
 							$data["@type"]="sdo:".$datum['type'];
-							if(isset($datum['quantity'])) {
-								$data['quantity']=$datum['quantity'];
-							}
-							if(isset($datum['property'])) {
-								$data['property']=$datum['property'];
-							}
+							if(isset($datum['quantity'])) { $data['quantity']=$datum['quantity']; }
+							if(isset($datum['property'])) { $data['property']=$datum['property']; }
 							if(isset($datum['propertyref'])) {
 								$data['propertyref']=$datum['propertyref'];
 								$graph['ids'][]=$datum['propertyref'];
 							}
-							if(isset($datum['unit'])) {
-								$data['unit']=$datum['unit'];
-							}
+							if(isset($datum['unit'])) { $data['unit']=$datum['unit']; }
 							if(isset($datum['unitref'])) {
 								$data['unitref']=$datum['unitref'];
 								$graph['ids'][]=$datum['unitref'];
 							}
-							if(isset($datum['annotation'])) {
-								$data['annotation']=$datum['annotation'];
-							}
-							if(isset($datum['value'])) {
-								$val=[];
-								$val["@id"]=$data["@id"].'value/';
-								$val["@type"]="sdo:numericValue";
-								if(is_float($datum['value'])) {
-									$val['datatype']='xsd:float';
-								} else {
-									$val['datatype']='xsd:integer';
-								}
-								if(isset($datum['equality'])) {
-									$val['equality']=$datum['equality'];
-								}
+							if(isset($datum['annotation'])) { $data['annotation']=$datum['annotation']; }
+							if(isset($datum['number'])) {
+								$val=$Set->exponentialGen($datum['number']);$nval=[];
+								$nval["@id"]=$data["@id"].'value/';
+								$nval["@type"]="sdo:numericValue";
+								if(isset($datum['equality'])) { $nval['equality']=$datum['equality']; }
 								if(!empty($datum['max'])) {
-									$val['min']=$datum['text'];
-									$val['max']=$datum['max'];
+									if($val['isint']) {
+										$nval['datatype']='xsd:integer';
+										$nval['min']=(int) $val['scinot'];
+									} else {
+										$nval['datatype']='xsd:float';
+										$nval['min']=(float) $val['scinot'];
+									}
+									$max=$Set->exponentialGen($pnt['max']);
+									if($val['isint']) {
+										$nval['max']=(int) $max['scinot'];
+									} else {
+										$nval['max']=(float) $max['scinot'];
+									}
 								} else {
-									$val['number']=$datum['text'];
+									if($val['isint']) {
+										$nval['datatype']='xsd:integer';
+										$nval['number']=(int) $val['scinot'];
+									} else {
+										$nval['datatype']='xsd:float';
+										$nval['number']=(float) $val['scinot'];
+									}
 								}
-								if(!empty($datum['sf'])) {
-									$val['sigfigs']=$datum['sf'];
-								}
+								if(!empty($val['sf'])) { $nval['sigfigs']=$val['sf']; }
 								if(!empty($datum['error'])) {
-									$val['error']=$datum['error'];
+									$nval['error']=$datum['error'];
+									if(!empty($datum['errortype'])) {
+										$nval['errortype']=$datum['errortype'];
+									} else {
+										$nval['errortype']='unknown';
+									}
+									$nval['errornote']='from source';
+								} else {
+									$nval['error']=$val['error'];
+									$nval['errortype']='absolute';
+									$nval['errornote']='estimated from value';
 								}
-								if(!empty($datum['note'])) {
-									$val['note']=$datum['note'];
-								}
-								$data['numericvalue']=$val;
+								if(!empty($datum['note'])) { $nval['note']=$datum['note']; }
+								$data['numericvalue']=$nval;
 							} elseif(isset($datum['text'])) {
-								$val=[];
-								$val["@id"]=$data["@id"].'value/';
-								$val["@type"]="sdo:textValue";
-								$val['text']=$datum['text'];
-								if(!empty($datum['note'])) {
-									$val['note']=$datum['note'];
-								}
-								$data['textstring']=$val;
+								$tval=[];
+								$tval["@id"]=$data["@id"].'value/';
+								$tval["@type"]="sdo:textValue";
+								$tval['text']=$datum['text'];
+								if(!empty($datum['note'])) { $tval['note']=$datum['note']; }
+								$data['textstring']=$tval;
 							}
 							$dpnt['data'][]=$data;
 						}
@@ -1482,6 +1443,8 @@ class Scidata extends AppModel
 				}
 			}
 		}
+		//debug($set);exit;
+
 		$sci['dataset']=$set;
 
 		$graph['scidata']=$sci;
@@ -1568,7 +1531,7 @@ class Scidata extends AppModel
 	 */
 	public function asjsonld() {
 		$output=$this->asarray();
-		return json_encode($output,JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
+		return json_encode($output,JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION|JSON_NUMERIC_CHECK);
 	}
 
 	/**
@@ -1628,8 +1591,8 @@ class Scidata extends AppModel
 	 * @param array $graph
 	 * @return array
 	 */
-	private function makedata($facet,$type,$idx,&$condrels,&$graph) {
-		//debug($facet);exit;
+	private function makedata(array $facet, string $type,int $idx,array &$condrels,array &$graph) {
+		$Set = ClassRegistry::init('Dataset');
 		$prop=$facet['property'];
 		$unit=$facet['unit'];
 		$vals=$facet['value'];
@@ -1648,38 +1611,49 @@ class Scidata extends AppModel
 				$output['propertyref']=$facet['propid'];
 				$graph['ids'][]=$facet['propid'];
 			}
-			$output['unit']=$unit;
+			if(isset($facet['unit'])) {
+				$output['unit'] = $unit;
+			}
 			if(!empty($facet['unitref'])) {
 				$output['unitref']=$facet['unitref'];
 				$graph['ids'][]=$facet['unitref'];
 			}
 			if(is_array($vals)) {
 				$output['valuearray']=[];$vidx=1;
-				foreach($vals as $val) {
+				foreach($vals as $vidx=>$val) {
 					$serrows=$val['rows'];
 					if(isset($val['meta'])) {
 						$val=$val['meta'];
 					} elseif(isset($val['value'])) {
-						$val=$this->exponentialGen($val['value']);
+						$val=$Set->exponentialGen($val['value']);
 					}
 					$value=[];
 					$value['@id']='condition/'.$idx.'/value/'.$vidx.'/';
 					$value['@type']='sdo:numericValue';
-					if(is_float($val['value'])) {
-						$value['datatype']='xsd:float';
-					} elseif(is_int($val['value'])) {
+					if($val['isint']) {
 						$value['datatype']='xsd:integer';
+						$value['number']=(int) $val['scinot'];
+					} else {
+						$value['datatype']='xsd:float';
+						$dp=$val['sf']-($val['exponent']+1);
+						$value['number']=number_format($val['scinot'],$dp,'.','');
 					}
 					$value['sigfigs']=$val['sf'];
-					$value['number']=$val['scinot'];
 					if(!empty($val['unit'])) {
 						$value['unit']=$val['unit'];
 					}
-					if(!empty($errs)) {
-						$value['error']=$errs['val'];
-						if(!is_null($errs['note'])) { $value['errnote']=$errs['note']; }
+					if(!empty($errs[$vidx])) {
+						$value['error']=$errs[$vidx]['val'];
+						if(!is_null($errs[$vidx]['errortype'])) {
+							$value['errortype']=$errs[$vidx]['errortype'];
+						} else {
+							$value['errortype']='unknown';
+						}
+						if(!is_null($errs[$vidx]['note'])) { $value['errornote']=$errs[$vidx]['note']; }
 					} elseif($val['error']!='') {
 						$value['error']=$val['error'];
+						$value['errortype']='absolute';
+						$value['errornote']='estimated from data';
 					}
 					$output['valuearray'][]=$value;
 					foreach($serrows as $serrow) {
@@ -1694,18 +1668,31 @@ class Scidata extends AppModel
 				$value=[];$val=$vals;
 				$value['@id']='condition/'.$idx.'/value/';
 				$value['@type']='sdo:numericValue';
-				if(is_float($vals)) {
-					$value['datatype']='xsd:float';
-				} elseif(is_int($vals)) {
-					$value['datatype']='xsd:integer';
+				if(isset($val['meta'])) {
+					$val=$val['meta'];
+				} elseif(isset($val['value'])) {
+					$val=$Set->exponentialGen($val['value']);
 				}
-				$value['number']=$val;
-				if(!is_null($unit)) {
-					$value['unit']=$unit;
+				if($val['isint']) {
+					$value['datatype']='xsd:integer';
+					$value['number']=(int) $val['scinot'];
+				} else {
+					$value['datatype']='xsd:float';
+					$dp=$val['sf']-($val['exponent']+1);
+					$value['number']= number_format($val['scinot'],$dp,'.','');
 				}
 				if(!empty($errs)) {
 					$value['error']=$errs['val'];
-					if(!is_null($errs['note'])) { $value['note']=$errs['note']; }
+					if(!is_null($errs['errortype'])) {
+						$value['errortype']=$errs['errortype'];
+					} else {
+						$value['errortype']='unknown';
+					}
+					if(!is_null($errs['note'])) { $value['errnote']=$errs['note']; }
+				} elseif($val['error']!='') {
+					$value['error']=$val['error'];
+					$value['errortype']='absolute';
+					$value['errornote']='estimated from data';
 				}
 				$output['value']=$value;
 				$condrels[$type][$idx][$prop]=[$value['@id']=>$val];
@@ -1715,77 +1702,49 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Generates a exponential number removing any zeros at the end not needed
-	 * @param $string
+	 * pass metadata through the group
+	 * @param array $pnt
+	 * @param string $dtype
+	 * @param int $p
+	 * @param string $prop
+	 * @param array|null $olinks
+	 * @param array $graph
 	 * @return array
 	 */
-	private function exponentialGen($string) {
-		$e="E";$return=[];
-		$return['text']=$string;
-		$return['value']=floatval($string);
-		if($string==0) {
-			$return+=['dp'=>0,'scinot'=>'0e+0','exponent'=>0,'significand'=>0,'error'=>null,'sf'=>0];
-		} elseif(stristr($string,'E')) {
-			list($man,$exp)=explode('E',$string);
-			if($man>0){
-				$sf=strlen($man)-1;
-			} else {
-				$sf=strlen($man)-2;
-			}
-			$return['scinot']=$string;
-			$return['error']=pow(10,$exp-$sf+1);
-			$return['exponent']=$exp;
-			$return['significand']=$man;
-			$return['dp']=$sf;
+	private function passmeta(array $pnt, string $dtype, int $p, string $prop, array $olinks, array &$graph): array
+	{
+		$Ppty=ClassRegistry::init('Property');
+		$val['type']=$dtype;
+		if(!empty($pnt['quantity'])) { $val['quantity']=$pnt['quantity']; }
+		if(!empty($pnt['property'])) {
+			$val['property']=$pnt['property'];
 		} else {
-			$string=str_replace([",","+"],"",$string);
-			$num=explode(".",$string);
-			$neg=false;
-			if(stristr($num[0],'-')) {
-				$neg=true;
-			}
-			// If there is something after the decimal
-			if(isset($num[1])){
-				$return['dp']=strlen($num[1]);
-				if($num[0]!=""&&$num[0]!=0) {
-					// All digits count (-1 for period)
-					if($neg) {
-						// substract 1 for the minus sign and 1 for decimal point
-						$return['sf']=strlen($string)-2;
-						$return['exponent']=strlen($num[0])-2;
-					} else {
-						$return['sf']=strlen($string)-1;
-						$return['exponent']=strlen($num[0])-1;
-					}
-					// Exponent is based on digit before the decimal -1
-				} else {
-					// Remove any leading zeroes after decimal and count string length
-					$return['sf']=strlen(ltrim($num[1],'0'));
-					// Count leading zeros
-					preg_match('/^(0*)[1234567890]+$/',$num[1],$match);
-					$return['exponent']=-1*(strlen($match[1]) + 1);
-				}
-				$return['scinot']=sprintf("%." .($return['sf']-1). $e, $string);
-				$s=explode($e,$return['scinot']);
-				$return['significand']=$s[0];
-				$return['error']=pow(10,$return['exponent']-$return['sf']+1);
-			} else {
-				$return['dp']=0;
-				$return['scinot']=sprintf("%." .(strlen($string)-1). $e, $string);
-				$s=explode($e,$return['scinot']);
-				$return['significand']=$s[0];
-				$return['exponent'] = $s[1];
-				$z=explode(".",$return['significand']);
-				$return['sf']=strlen($return['significand'])-1;
-				// Check for negative
-				if(isset($z[1])) {
-					$return['error']=pow(10,strlen($z[1])-$s[1]-$neg); // # SF after decimal - exponent
-				} else {
-					$return['error']=pow(10,0-$s[1]); // # SF after decimal - exponent
-				}
-			}
+			$conds=['datafield like'=>"%'".$prop."'%"];$cont=['Quantity'=>'Unit'];
+			$pmeta=$Ppty->find('first',['conditions'=>$conds,'contain'=>$cont,'recursive'=>-1]);
+			$val['property']=$pmeta['Property']['name'];
 		}
-		return $return;
+		if(!empty($olinks[$dtype][$prop])) {
+			$val['propertyref']=$olinks[$dtype][$prop];
+		}
+		if(!empty($pnt['propertyref'])) { $val['propertyref']=$pnt['propertyref']; }
+		if(!empty($val['propertyref'])) { $graph['ids'][]=$val['propertyref']; }
+		if(!empty($series['anns']['rows'][$prop][$p])) {
+			$val['annotation']=$series['anns']['rows'][$prop][$p];
+		}
+		if(!empty($pnt['equality'])) { $val['equality']=$pnt['equality']; }
+		if(isset($pnt['number'])) { $val['number']=$pnt['number']; }
+		if(!empty($pnt['scinot'])) { $val['scinot']=$pnt['scinot']; }
+		if(isset($pnt['value'])&&(!empty($pnt['value'])||$pnt['value']==0)) { $val['value'] = $pnt['value']; }  // zero is not false here
+		if(isset($pnt['isint'])) { $val['isint']=$pnt['isint']; }
+		if(isset($pnt['text'])) { $val['text']=$pnt['text']; }
+		if(!empty($pnt['max'])) { $val['max']=$pnt['max']; }
+		if(!empty($pnt['sf'])) { $val['sf'] = $pnt['sf']; }
+		if(!empty($pnt['dp'])) { $val['dp'] = $pnt['dp']; }
+		if(!empty($pnt['unit'])) { $val['unit']=$pnt['unit']; }
+		if(!empty($pnt['unitref'])) { $val['unitref']=$pnt['unitref']; }
+		if(!empty($pnt['error'])) { $val['error']=$pnt['error']; }
+		if(!empty($pnt['errortype'])) { $val['errortype']=$pnt['errortype']; }
+		if(!empty($pnt['note'])) { $val['note']=$pnt['note']; }
+		return $val;
 	}
-
 }

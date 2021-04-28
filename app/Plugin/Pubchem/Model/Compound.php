@@ -53,6 +53,41 @@ class Compound extends AppModel
         }
     }
 
+	/**
+	 * get all the data for a particular compound via its cid
+	 * @param int $cid
+	 */
+    public function allcid($cid=null)
+	{
+		$HttpSocket = new HttpSocket();
+		$url=$this->path.'/cid/'.$cid.'/json';
+		$json=$HttpSocket->get($url);
+		$data=json_decode($json,true);
+		$cmpd=$data['PC_Compounds'][0];
+		$props=$cmpd['props'];
+		$output=[];
+		foreach($props as $prop) {
+			if($prop['urn']['label']=='IUPAC Name'&&$prop['urn']['name']=='Preferred') {
+				$output['iupacname']=$prop['value']['sval'];
+			} elseif($prop['urn']['label']=='Mass') {
+				$output['monomass']=$prop['value']['fval'];
+			} elseif($prop['urn']['label']=='Weight') {
+				$output['exactmass']=$prop['value']['fval'];
+			} elseif($prop['urn']['label']=='Molecular Weight') {
+				$output['mw']=$prop['value']['fval'];
+			} elseif($prop['urn']['label']=='Molecular Formula') {
+				$output['formula']=$prop['value']['sval'];
+			} elseif($prop['urn']['label']=='SMILES'&&$prop['urn']['name']=='Canonical') {
+				$output['csmiles']=$prop['value']['sval'];
+			} elseif($prop['urn']['label']=='SMILES'&&$prop['urn']['name']=='Isomeric') {
+				$output['ismiles']=$prop['value']['sval'];
+			} elseif($prop['urn']['label']=='Molecular Weight') {
+				$output['mw']=$prop['value']['fval'];
+			}
+		}
+		return $output;
+	}
+
     /**
      * Get a property of a chemical
      * List of proprties available at

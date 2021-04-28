@@ -79,9 +79,7 @@ Inflector::rules('plural', ['uninflected' => ['apparatus'=>'apparatus','srddata'
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
-CakePlugin::load('Pubchem');
-CakePlugin::load('Chemspider');
-CakePlugin::load('Crossref');
+CakePlugin::loadAll();
 
 /**
  * To prefer app translation over plugin translation, you can set

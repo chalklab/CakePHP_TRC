@@ -47,9 +47,7 @@ class SubstancesController extends AppController
         $contain=[
             'Identifier',
             'System'=>['order'=>['name'],
-                'Dataset'=>[
-                    'Propertytype'
-                ]
+                'Dataset'
             ]
         ];
         if(is_numeric($id)) {

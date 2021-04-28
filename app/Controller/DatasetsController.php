@@ -49,7 +49,6 @@ class DatasetsController extends AppController
 		$ref = ['id', 'journal', 'authors', 'year', 'volume', 'issue', 'startpage', 'endpage', 'title', 'url'];
 		$con = ['id', 'datapoint_id', 'system_id', 'property_name', 'number', 'significand', 'exponent', 'unit_id', 'accuracy'];
 		$prop = ['id', 'name', 'phase', 'field', 'label', 'symbol', 'definition', 'updated'];
-		$chmf = ['formula', 'orgnum', 'source', 'substance_id'];
 		$c = ['Annotation',
 			'File' => [
 				'Chemical' => ['Substance']],
@@ -73,7 +72,6 @@ class DatasetsController extends AppController
 				]]];
 
 		$dump = $this->Dataset->find('first', ['conditions' => ['Dataset.id' => $id], 'contain' => $c, 'recursive' => -1]);
-		//debug($cont);exit;
 		$datum = $dump["Dataseries"][0]["Datapoint"][0];
 
 		if (isset($datum["Condition"][0])) {
@@ -143,7 +141,7 @@ class DatasetsController extends AppController
 				$count++;
 			}
 		}
-		//debug($xy);exit;
+
 		// send variable to the view
 		$this->set('xy', $xy);
 		$this->set('maxx', $maxx);
@@ -172,8 +170,6 @@ class DatasetsController extends AppController
 			echo '{ "title" : "' . $title . '" }';
 			exit;
 		}
-
-		// debug($xy);exit;
 	}
 
 	/**
@@ -201,7 +197,9 @@ class DatasetsController extends AppController
 		$sets=$this->Dataset->find('list',['order'=>'id','conditions'=>['points'=>1]]);
 		$output=[];
 		foreach($sets as $setid=>$title) {
-			$output[]='https://sds.coas.unf.edu/trc/datasets/scidata/'.$setid;
+			preg_match('/Dataset (\d+) in paper 10.1021\/(.+)$/',$title,$m);
+			$filename=$m[2]."_".$m[1];
+			$output[$filename]='https://sds.coas.unf.edu/trc/datasets/scidata/'.$setid;
 		}
 		$json=json_encode($output);
 		header("Content-Type: application/json");
@@ -258,11 +256,6 @@ class DatasetsController extends AppController
 			$hdrs=get_headers($url,true);
 			if(stristr($hdrs[0],'200')) {
 				$json = file_get_contents($url);
-				// serialize to N-Quads
-				//$jsld = new \EasyRdf\Graph("test",$json,'jsonld');
-				//$jsld->parse();
-				//echo "URI: ".$jsld->getUri();
-				//exit;
 				preg_match('/^Dataset ([0-9]+) in paper 10\.1021\/(.+)$/', $title, $m);
 				$filename = $m[2] . '_' . $m[1] . '.jsonld';
 				$zip->addFromString($filename, $json);
@@ -274,7 +267,6 @@ class DatasetsController extends AppController
 		header("Content-Disposition: attachment; filename=".$folder.".zip");
 		sleep(5);
 		readfile($folder.'.zip');
-
 		exit;
 	}
 
@@ -294,10 +286,10 @@ class DatasetsController extends AppController
 	/**
 	 * New SciData creation script that uses the class to create the file
 	 * @param int $id
-	 * @param array $sclink
 	 * @param string $down
+	 * @param array $sclink
 	 */
-	public function scidata(int $id, $down = "", $sclink = [])  // the $sclink variable was not set to a default value
+	public function scidata(int $id,$down="",$sclink=[])  // the $sclink variable was not set to a default value
 	{
 		// Note: there is an issue with the retrival of substances under system if id is not requested as a field
 		// This is a bug in CakePHP as it works without id if its at the top level...
@@ -336,64 +328,62 @@ class DatasetsController extends AppController
 					'Chemical' => ['fields' => ['orgnum', 'name', 'source', 'purity']]]
 			],
 		];
+
+		// get data for this dataset
 		$data = $this->Dataset->find('first', ['conditions' => ['Dataset.id' => $id], 'contain' => $c, 'recursive' => -1]);
 		//debug($data);exit;
 		$set = $data['Dataset'];
 		$file = $data['File'];
 		$ref = $data['Reference'];
-		$doi = str_replace('10.1021/', '', $ref['doi']);
+		$doi = $ref['doi'];
 		$jnl = $ref['Journal'];
 		$sers = $data['Dataseries'];
 		$sys = $data['System'];
 		$anns = $data['Annotation'];
 		$sprops = $data['Sampleprop'];
-		//debug($sers);exit;
 
-		// Other systems -> related
-		$othersys = $this->Dataset->find('list', ['fields' => ['id'], 'conditions' => ['system_id' => $sys['id'], 'file_id' => $file['id'], 'NOT' => ['Dataset.id' => $id]]]);
-		//debug($othersys);exit;
-
-		// get the crosswalk data
+		// get the metadata crosswalk data
 		$fields = $nspaces = $ontlinks = [];
 		$this->getcw('metadata', $fields, $nspaces, $ontlinks);
 		$this->getcw('conditions', $fields, $nspaces, $ontlinks);
 		$this->getcw('exptdata', $fields, $nspaces, $ontlinks);
 		$this->getcw('deriveddata', $fields, $nspaces, $ontlinks);
 		$this->getcw('suppdata', $fields, $nspaces, $ontlinks);
-		//debug($fields);debug($nspaces);debug($ontlinks);exit;
-
-		//debug($set);exit;
 
 		// create an instance of the Scidata class
 		$json['toc'] = [];
 		$json['ids'] = [];
+		$sdpath="https://scidata.unf.edu/";
+		$setid=str_pad($id,6,'0',STR_PAD_LEFT);
+		$uid = "trc_jced_".$setid;
+		$upath = $sdpath.$uid."/";
 		$trc = new $this->Scidata;
 		$trc->setnspaces($nspaces);
-		$trc->setid("https://scidata.unf.edu/data/trc".str_pad($id,6,'0',STR_PAD_LEFT));
+		$trc->setid($sdpath."tranche/trc/jced/".$setid);
 		$trc->setgenat(date("Y-m-d H:i:s"));
 		$trc->setversion(1);
-		$uid = "trc_jced_".str_replace('acs.jced.','',$doi);
-		$upath = "https://scidata.coas.unf.edu/".$uid."/";
 		$trc->setbase($upath);
 		$trc->setuid($uid);
 		$trc->setgraphid($upath);
-
-		$meta = [
-			'title' => $ref['title'],
-			'publisher' => $jnl['publisher'],
-			'description' => 'Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/'
-		];
-		$trc->setmeta($meta);
+		$trc->settitle($ref['title']);
+		$trc->setpublisher($jnl['publisher']);
+		$trc->setdescription('Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/');
 		$aus = explode('; ', $ref['aulist']);
 		$trc->setauthors($aus);
 		$trc->setstarttime($file['date']);
-		$trc->setpermalink("https://scidata.unf.edu/trc/datasets/view/".$id);
+		$trc->setpermalink($sdpath."trc/datasets/view/".$setid);
 		$trc->setdiscipline("w3i:Chemistry");
 		$trc->setsubdiscipline("w3i:PhysicalChemistry");
 
-		// Process data series to split out conditions, settings, and parameters
+		// other datsets from same paper are added as 'related' data
+		$reldata = $this->Dataset->find('list', ['fields' => ['id'], 'conditions' => ['system_id' => $sys['id'], 'file_id' => $file['id'], 'NOT' => ['Dataset.id' => $id]]]);
+		$related=[];
+		foreach($reldata as $relset) {
+			$related[]=$sdpath."trc/datasets/view/".$relset;
+		}
+		$trc->setrelated($related);
+		// process data series to split out conditions, settings, and parameters
 		$serdata = [];
-		//debug($sers);exit;
 		foreach ($sers as $s => $pnts) {
 			$datas = $conds = $setts = [];
 			foreach ($pnts['Datapoint'] as $p => $pnt) {
@@ -411,15 +401,12 @@ class DatasetsController extends AppController
 			$serdata[$s]['conds'] = $conds;
 			$serdata[$s]['setts'] = $setts;
 		}
-		//debug($serdata);exit;
-		//debug($datas);exit;
-		//debug($conds);exit;
-		//debug($setts);exit;
-
-		// Methodology (general info)
 
 		// Methodology sections (add data to $aspects)
-		// Settings
+
+		// nothing in the XML about the methodology?
+
+		// System sections (add data to $facets)
 
 		// System (general info)
 		$sysj = [];
@@ -429,10 +416,7 @@ class DatasetsController extends AppController
 			$json['toc'][] = $sysj['@type'];
 			$sysj['facets'] = [];
 		}
-		//debug($json);exit;
-		//debug($sysj);exit;
 
-		// System sections (add data to $facets)
 		// Mixture/Substance/Chemical
 		$facets = [];$systems = [];
 		if (is_array($sys) && !empty($sys)) {
@@ -449,51 +433,56 @@ class DatasetsController extends AppController
 				foreach ($sub['Identifier'] as $subid) {
 					$s[$subid['type']] = $subid['value'];
 				}
-
 				$substances[($subidx + 1)] = $s;
 
 				// get chemicals
 				$chmf = $sub['Chemical'];
-				$temp = json_decode($chmf['purity'], true);
-				$c = [];
-				$opts = ['name', 'source', 'purity'];
+				$purstep = json_decode($chmf['purity'], true);
+				$c = [];$opts = ['name', 'sourcetype', 'purity'];
 				foreach ($opts as $opt) {
 					if ($opt == 'purity') {
 						$c[$opt] = [];
 						if (!is_null($chmf['purity'])) {
-							$steps = [];
-							// TODO Issue #18
-							$s = [];
-							foreach ($temp as $sidx => $step) {
-								$s[$sidx] = [];
-								$s[$sidx]['part'] = $step['type'];
+							$p=[];
+							$p['@id']='chemical/'.($subidx + 1).'/purity/';
+							$p["@type"]="sdo:purity";
+							foreach ($purstep as $sidx => $step) {
+								$s = [];
+								$s["@id"]='chemical/'.($subidx + 1).'/purity/step/'.($sidx+1).'/';
+								$s["@type"]="sdo:step";
+								$s['part'] = $step['type'];
 								if (!is_null($step['analmeth'])) {
 									if (count($step['analmeth']) == 1) {
-										$s[$sidx]['analysis'] = $step['analmeth'][0];
+										$s['analysis'] = $step['analmeth'][0];
 									} else {
-										$s[$sidx]['analysis'] = $step['analmeth'];
+										$s['analysis'] = $step['analmeth'];
 									}
 								}
 								if (!is_null($step['purimeth'])) {
-									$s[$sidx]['purification'] = $step['purimeth'];
+									$s['purification'] = $step['purimeth'];
 								} else {
-									$s[$sidx]['purification'] = null;
+									$s['purification'] = null;
 								}
 								if (!is_null($step['purity'])) {
-									$val=$this->exponentialGen($step['purity']);
-									$s[$sidx]['number'] = $val['scinot'];
+									$val=$this->Dataset->exponentialGen($step['purity']);
+									if($val['isint']) {
+										$s['number'] = (int) $val['scinot'];
+									} else {
+										$s['number'] = (float) $val['scinot'];
+									}
 								}
 								if (!is_null($step['puritysf'])) {
-									$s[$sidx]['sigfigs'] = (int) $step['puritysf'];
+									$s['sigfigs'] = (int) $step['puritysf'];
 								}
 								if (!is_null($step['purityunit_id'])) {
 									$uname = $this->Unit->getfield('name', $step['purityunit_id']);
-									$s[$sidx]['unit'] = $uname;
+									$s['unit'] = $uname;
 									$qudtid = $this->Unit->getfield('qudt', $step['purityunit_id']);
-									$s[$sidx]['unitref'] = 'qudt:' . $qudtid;
+									$s['unitref'] = 'qudt:' . $qudtid;
 								}
+								$p['steps'][$sidx] = $s;
 							}
-							$c[$opt][]['steps'] = $s;
+							$c[$opt][]=$p;
 						}
 					} else {
 						$c[$opt] = $chmf[$opt];
@@ -503,6 +492,7 @@ class DatasetsController extends AppController
 				$c['compound'] = 'compound/' . ($subidx + 1) . '/';
 				$chemicals[($subidx + 1)] = $c;
 			}
+
 			$facets['sdo:compound'] = $substances;
 			$facets['sdo:chemical'] = $chemicals;
 
@@ -560,29 +550,24 @@ class DatasetsController extends AppController
 			$systems[1] = $s;
 		}
 
-		//debug($systems);exit;
 		$facets['sdo:substance'] = $systems;
-		//$trc->setfacets($facets);
-		//$sd=$trc->asarray();
-		//debug($sd);exit;
-		//debug($facets);exit;
-
-
 
 		// conditions (organize first then write to a variable to send to the model)
 		// here we need to process both series conditions and regular conditions
 		// In a dataseries ($ser) $ser['Condition'] is where the series conditions are (1 -> n)
 		// ... and the regular conditions are in datapoints ($pnt) under $pnt['Condition']
-
 		$conditions = [];$srconds=[];
 		foreach($sers as $seridx=>$ser) {
 			$sernum=$seridx+1;
-			$scons = $ser['Condition']; // series conditions
+			$sconds = $ser['Condition']; // series conditions
 			$pnts = $ser['Datapoint']; // all datapoints in a series
 			foreach($pnts as $pntidx=>$pnt) {
 				$pntnum=$pntidx+1;
 				$conds = $pnt['Condition']; // conditions for datapoints (0 -> n)
 				foreach ($conds as $conidx=>$cond) {
+					// update number to correctly reflect the # sig figs
+					$dp=$cond['accuracy']-($cond['exponent']+1);
+					$cond['number']=(string) number_format($cond['number'],$dp,'.','');
 					if(!isset($conditions[$cond['property_id']]['property'])) {
 						$conditions[$cond['property_id']]['property']=$cond['Property']['name'];
 					}
@@ -603,49 +588,49 @@ class DatasetsController extends AppController
 							$json['ids'][]=$unit;
 						}
 					}
-					//debug($conditions);debug($cond);exit;
-					//debug($conditions);exit;
 					$srconds[$cond['property_id']][$cond['number']][]=$sernum.":".$pntnum;
 					$conditions[$cond['property_id']]['value'][]=$cond['number'];
 				}
 			}
-			//debug($conditions);exit;
-			//debug($condp);exit;
-			foreach($scons as $scidx=>$scon) {
-				//debug($scon);
-				if(!isset($conditions[$scon['property_id']])) {
-					$scond=[];
-					$scond['property']=$scon['Property']['name'];
-					if(!empty($scon['Property']['kind'])) {
-						$kind=$scon['Property']['kind'];
-						$scond['propertyref'] = $ontlinks['conditions'][$kind];
-						if(!in_array($scond['propertyref'],$json['ids'])) {
-							$json['ids'][]=$scond['propertyref'];
+			foreach($sconds as $scidx=>$scond) {
+				// update number to correctly reflect the # sig figs
+				$dp=$scond['accuracy']-($scond['exponent']+1);
+				$scond['number']=(string) number_format($scond['number'],$dp,'.','');
+				if(!isset($conditions[$scond['property_id']])) {
+					$scon=[];
+					$scon['property']=$scond['Property']['name'];
+					if(!empty($scond['Property']['kind'])) {
+						$kind=$scond['Property']['kind'];
+						$scon['propertyref'] = $ontlinks['conditions'][$kind];
+						if(!in_array($scon['propertyref'],$json['ids'])) {
+							$json['ids'][]=$scon['propertyref'];
 						}
 					}
-					$scond['unit']=$scon['Unit']['name'];
-					if(!empty($scon['Unit']['qudt'])) {
-						$unit="qudt:".$scon['Unit']['qudt'];
-						$scond['unitref']=$unit;
+					$scon['unit']=$scond['Unit']['name'];
+					if(!empty($scond['Unit']['qudt'])) {
+						$unit="qudt:".$scond['Unit']['qudt'];
+						$scon['unitref']=$unit;
 						if(!in_array($unit,$json['ids'])) {
 							$json['ids'][]=$unit;
 						}
 					}
-					$conditions[$scon['property_id']]=$scond;
+					$conditions[$scond['property_id']]=$scon;
 				}
-				//debug($conditions);debug($scon);exit;
+
 				// iterate over all datapoints to add condition to each
 				foreach($pnts as $pntidx=>$pnt) {
 					$pntnum=$pntidx+1;
-					$srconds[$scon['property_id']][$scon['number']][]=$sernum.":".$pntnum;
-					$conditions[$scon['property_id']]['value'][]=$scon['number'];
+					$srconds[$scond['property_id']][$scond['number']][]=$sernum.":".$pntnum;
+					$conditions[$scond['property_id']]['value'][]=$scond['number'];
 				}
 			}
 		}
-		// deduplicate values and record series and datapoint index
-		//debug($conditions);debug($srconds);exit;
+
+		// deduplicate condition values and record series and datapoint index
 		foreach($conditions as $propid=>$values) {
-			$conditions[$propid]['value']=array_unique($conditions[$propid]['value'],SORT_NUMERIC);
+			$uvals=array_unique($conditions[$propid]['value']); // SORT_NUMERIC not working...
+			sort($uvals);
+			$conditions[$propid]['value']=$uvals;
 			$varray=[];
 			foreach($conditions[$propid]['value'] as $vidx=>$val) {
 				$v['value']=$val;
@@ -656,12 +641,11 @@ class DatasetsController extends AppController
 			$conditions[$propid]['value']=$varray;
 		}
 
-		// reindex conditions array
+		// reindex conditions array and sort values
 		$tmp=$conditions;$conditions=[];$cidx=1;
 		foreach($tmp as $con) {
 			$conditions[$cidx]=$con;$cidx++;
 		}
-		//debug($conditions);exit;
 
 		// add conditions facet to $facets
 		$facets['sdo:condition'] = $conditions;
@@ -684,14 +668,22 @@ class DatasetsController extends AppController
 				$pntnum=$pntidx+1;$unit=$qudt="";$point=[];
 				foreach($pnt['Data'] as $datidx=>$datum) {
 					$datnum=$datidx+1;
-					$val=$this->exponentialGen($datum['number']);
-					// $val['conditions']?
+					$val=[];
 					$propphase=$datum['Property']['name']." (".$sprops[$datidx]['phase'].")";
 					if(!isset($group['data'][$propphase])) {
 						$group['data'][$propphase]=[];
 					}
 					$val['property']=$propphase;
 					$val['quantity']=$datum['Property']['name'];
+					if(!empty($datum['accuracy'])) {
+						// check that the number is correctly represented based on accuracy
+						$dp=$datum['accuracy']-($datum['exponent']+1);
+						$datum['number']=number_format($datum['number'],$dp,'.','');
+						$val['number']=$datum['number'];
+					} else {
+						$val['number']=$datum['number'];
+					}
+					if(!empty($datum['error'])) { $val['error']=(float) $datum['error'];$val['errortype']=$datum['error_type']; }
 					// lookup property in $ontlinks and assign to 'propertyref'
 					if(!empty($datum['Property']['kind'])) {
 						$kind=$datum['Property']['kind'];
@@ -715,6 +707,7 @@ class DatasetsController extends AppController
 			}
 			$groups[$sernum]=$group;
 		}
+		//exit;//debug($groups);
 
 		$trc->setdatagroup($groups);
 
@@ -1911,81 +1904,6 @@ class DatasetsController extends AppController
 		if($down=="download") { header('Content-Disposition: attachment; filename="'.$id.'.json"'); }
 		echo json_encode($json,JSON_UNESCAPED_UNICODE);exit;
 
-	}
-
-	/**
-	 * Generates a exponential number removing any zeros at the end not needed
-	 * @param $string
-	 * @return array
-	 */
-	private function exponentialGen($string) {
-		$e="E";
-		$return=[];
-		$return['text']=$string;
-		$return['value']=floatval($string);
-		if($string==0) {
-			$return+=['dp'=>0,'scinot'=>'0e+0','exponent'=>0,'significand'=>0,'error'=>null,'sf'=>0];
-		} elseif(stristr($string,'E')) {
-			list($man,$exp)=explode('E',$string);
-			if($man>0){
-				$sf=strlen($man)-1;
-			} else {
-				$sf=strlen($man)-2;
-			}
-			$return['scinot']=$string;
-			$return['error']=pow(10,$exp-$sf+1);
-			$return['exponent']=$exp;
-			$return['significand']=$man;
-			$return['dp']=$sf;
-		} else {
-			$string=str_replace([",","+"],"",$string);
-			$num=explode(".",$string);
-			$neg=false;
-			if(stristr($num[0],'-')) {
-				$neg=true;
-			}
-			// If there is something after the decimal
-			if(isset($num[1])){
-				$return['dp']=strlen($num[1]);
-				if($num[0]!=""&&$num[0]!=0) {
-					// All digits count (-1 for period)
-					if($neg) {
-						// substract 1 for the minus sign and 1 for decimal point
-						$return['sf']=strlen($string)-2;
-						$return['exponent']=strlen($num[0])-2;
-					} else {
-						$return['sf']=strlen($string)-1;
-						$return['exponent']=strlen($num[0])-1;
-					}
-					// Exponent is based on digit before the decimal -1
-				} else {
-					// Remove any leading zeroes after decimal and count string length
-					$return['sf']=strlen(ltrim($num[1],'0'));
-					// Count leading zeros
-					preg_match('/^(0*)[1234567890]+$/',$num[1],$match);
-					$return['exponent']=-1*(strlen($match[1]) + 1);
-				}
-				$return['scinot']=sprintf("%." .($return['sf']-1). $e, $string);
-				$s=explode($e,$return['scinot']);
-				$return['significand']=$s[0];
-				$return['error']=pow(10,$return['exponent']-$return['sf']+1);
-			} else {
-				$return['dp']=0;
-				$return['scinot']=sprintf("%." .(strlen($string)-1). $e, $string);
-				$s=explode($e,$return['scinot']);
-				$return['significand']=$s[0];
-				$return['exponent'] = $s[1];
-				$z=explode(".",$return['significand']);
-				$return['sf']=strlen($return['significand'])-1;
-				// Check for negative
-				if(isset($z[1])) {
-					$return['error']=pow(10,strlen($z[1])-$s[1]-$neg); // # SF after decimal - exponent
-				} else {
-					$return['error']=pow(10,0-$s[1]); // # SF after decimal - exponent
-				}
-			}
-		}
-		return $return;
 	}
 
 }
