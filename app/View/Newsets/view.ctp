@@ -11,7 +11,7 @@ $rprops=$dump['NewReactionprop'];
 $sers=$dump['NewDataseries'];
 $ser=$dump['NewDataseries'][0];
 $mix=$dump['NewMixture'];
-//debug($dump);exit;
+//pr($dump);exit;
 //if($this->Session->read('Auth.User.type') == 'superadmin') { pr($sers);exit; }
 ?>
 <div class="row">
@@ -55,6 +55,7 @@ $mix=$dump['NewMixture'];
                     } ?>
                     <li>Substances:
                         <?php
+						//pr($mix['NewComponent']);
                         if (count($sys['NewSubstance']) > 1) {
 							echo "<ul>";
 							foreach($mix['NewComponent'] as $c) {
@@ -73,7 +74,7 @@ $mix=$dump['NewMixture'];
 							}
 							echo "</ul>";
                         } else {
-                            $substance = $sys['Substance'][0];
+                            $substance = $sys['NewSubstance'][0];
                             $f = str_replace(" ", "", $substance['formula']);
                             $n = $substance['name'];
                             foreach ($substance['NewIdentifier'] as $ident) {
@@ -133,12 +134,8 @@ $mix=$dump['NewMixture'];
 <?php
 $dpts=$eqns=[];
 foreach($sers as $ser) {
-    if(!empty($ser['NewEquation'])) {
-        $eqns[]=$ser;
-    } elseif(!empty($ser['NewDatapoint'])) {
+    if(!empty($ser['NewDatapoint'])) {
         $dpts[]=$ser;
-    } else {
-        // No data!
     }
 }
 $sprops=[];
@@ -238,7 +235,7 @@ if(!empty($dpts)) {
         <div class="col-md-<?php echo $width2; ?>">
             <?php
 			if($xlabel!="") {
-				echo $this->Element("chart");
+				//echo $this->Element("chart");
 			}
 			?>
         </div>

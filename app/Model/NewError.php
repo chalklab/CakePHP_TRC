@@ -3,10 +3,10 @@
 /**
  * Class Error
  */
-class Error extends AppModel {
-	
-	public $belongsTo=['File'];
-	
+class NewError extends AppModel {
+
+	public $belongsTo=['NewFile'];
+
 	/**
 	 * General function to add a new error
 	 * @param array $data
@@ -21,5 +21,5 @@ class Error extends AppModel {
 		$this->clear();
 		return $ret[$model];
 	}
-	
+
 }

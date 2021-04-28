@@ -19,15 +19,35 @@ class NewComponent extends AppModel
 		]
 	];
 
-	public $hasMany=[
+	public $hasMany=[  // no need for dependent=true as already deleted based on datapoint
 		'NewCondition'=> [
-			'foreignKey' => 'component_id',
-			'dependent' => true
+			'foreignKey' => 'component_id'
 		],
 		'NewData'=> [
-			'foreignKey' => 'data_id',
-			'dependent' => true
+			'foreignKey' => 'data_id'
 		]
 	];
+
+	/**
+	 * function to add a new component if it does not already exist
+	 * @param array $data
+	 * @return integer
+	 * @throws
+	 */
+	public function add(array $data): int
+	{
+		$model='NewComponent';
+		$found=$this->find('first',['conditions'=>$data,'recursive'=>-1]);
+		if(!$found) {
+			$this->create();
+			$this->save([$model=>$data]);
+			$id=$this->id;
+			$this->clear();
+		} else {
+			$id=$found[$model]['id'];
+		}
+		return $id;
+	}
+
 
 }

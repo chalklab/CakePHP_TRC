@@ -15,11 +15,13 @@ class NewReference extends AppModel
 			'dependent' => true
 		]
 	];
+
     public $belongsTo=[
     	'NewJournal'=> [
 			'foreignKey' => 'journal_id'
 		]
 	];
+
     public $virtualFields=[
         'citation'=>'CONCAT("\'",NewReference.title,"\' ",NewReference.aulist,", ",NewReference.journal," ",NewReference.year," ",NewReference.volume,"(",NewReference.issue,") ",NewReference.startpage,"-",NewReference.endpage)',
         'bib'=>'CONCAT(NewReference.aulist,", ",NewReference.journal," ",NewReference.year," ",NewReference.volume,"(",NewReference.issue,") ",NewReference.startpage,"-",NewReference.endpage)'
@@ -293,14 +295,15 @@ class NewReference extends AppModel
      */
     public function addbydoi($doi)
     {
-        $Journal=ClassRegistry::init('Journal');
+        $Journal=ClassRegistry::init('NewJournal');
         $doi=str_replace(["http://dx.doi.org/","https://doi.org/"],"",$doi);
         $ref=$this->find('first',['conditions'=>['url'=>'http://dx.doi.org/'.$doi],'recursive'=>-1]);
         if(empty($ref)) {
             $cite=$this->crossref(['doi'=>$doi]);
-            // Add journal_id
+			$cite['url']=str_replace("http://dx.","https://",$cite['url']);
+			// Add journal_id
             $jid=$Journal->getfield('id',$cite['journal']);
-            if($jid) {
+			if($jid) {
                 $cite['journal_id']=$jid;
             } else {
                 $jid=$Journal->getfield('id',$cite['journal'],'name');
@@ -310,10 +313,39 @@ class NewReference extends AppModel
                     $cite['journal_id']=0;
                 }
             }
-            $this->create();
-            $ref=$this->save(["Reference"=>$cite]);
+			$aulist="";
+			$aus=json_decode($cite['authors'],true);
+			foreach($aus as $idx=>$au) {
+				if($idx!=0) { $aulist.="; "; }
+				$fname=$this->ucode($au['firstname']);
+				$lname=$this->ucode($au['lastname']);
+				$aulist.=$lname.", ";
+				if(stristr($fname,"-")) {
+					$chunks=explode('-',$fname);
+					foreach($chunks as $chunk) {
+						$aulist.=mb_substr($chunk, 0, 1,'UTF-8').'.';
+					}
+				} elseif(stristr($fname," ")) {
+					$chunks=explode(' ',$fname);
+					foreach($chunks as $chunk) {
+						$aulist.=mb_substr($chunk, 0, 1,'UTF-8').'.';
+					}
+				} else {
+					$aulist.=$fname[0].'.';
+				}
+			}
+			$cite['aulist']=mb_convert_encoding($aulist, 'US-ASCII', 'UTF-8');
+			$this->create();
+            $ref=$this->save(["NewReference"=>$cite]);
             $this->clear();
         }
-        return $ref['Reference'];
+        return $ref['NewReference'];
     }
+
+	private function ucode($string)
+	{
+		$string = preg_replace('/\\\\u([0-9a-f]{4})/', '&#x$1;', $string);
+		return html_entity_decode($string, ENT_COMPAT, 'UTF-8');
+	}
+
 }

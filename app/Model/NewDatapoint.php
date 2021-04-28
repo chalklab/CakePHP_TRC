@@ -42,4 +42,26 @@ class NewDatapoint extends AppModel
 		]
 	];
 
+	/**
+	 * function to add a new dataset if it does not already exist
+	 * @param array $data
+	 * @param $setcnt
+	 * @return integer
+	 * @throws Exception
+	 */
+	public function add(array $data): int
+	{
+		$model='NewDatapoint';
+		$found=$this->find('first',['conditions'=>$data,'recursive'=>-1]);
+		if(!$found) {
+			$this->create();
+			$this->save([$model=>$data]);
+			$id=$this->id;
+			$this->clear();
+		} else {
+			$id=$found[$model]['id'];
+		}
+		return $id;
+	}
+
 }

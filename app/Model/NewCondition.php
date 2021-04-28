@@ -12,39 +12,30 @@ class NewCondition extends AppModel
 
 	public $belongsTo = [
 		'NewDataset'=> [
-			'foreignKey' => 'dataset_id',
-			'dependent' => true
+			'foreignKey' => 'dataset_id'
 		],
 		'NewDataseries'=> [
-			'foreignKey' => 'dataseries_id',
-			'dependent' => true
+			'foreignKey' => 'dataseries_id'
 		],
 		'NewDatapoint'=> [
-			'foreignKey' => 'datapoint_id',
-			'dependent' => true
+			'foreignKey' => 'datapoint_id'
 		],
 		'NewProperty'=> [
-			'foreignKey' => 'property_id',
-			'dependent' => true
+			'foreignKey' => 'property_id'
 		],
 		'NewSampleprop'=> [
-			'foreignKey' => 'sampleprop_id',
-			'dependent' => true
+			'foreignKey' => 'sampleprop_id'
 		],
 		'NewPhase'=> [
-			'foreignKey' => 'phase_id',
-			'dependent' => true
+			'foreignKey' => 'phase_id'
 		],
 		'NewComponent'=> [
-			'foreignKey' => 'component_id',
-			'dependent' => true
+			'foreignKey' => 'component_id'
 		],
 		'NewUnit'=> [
-			'foreignKey' => 'unit_id',
-			'dependent' => true
+			'foreignKey' => 'unit_id'
 		]
 	];
-
 
 	public $hasOne = [
     	'NewAnnotation'=> [
@@ -53,7 +44,30 @@ class NewCondition extends AppModel
 		]
 	];
 
-    /**
+	/**
+	 * function to add a new condition if it does not already exist
+	 * @param array $data
+	 * @return integer
+	 * @throws
+	 */
+	public function add(array $data): int
+	{
+		$model='NewCondition';
+		$found=$this->find('first',['conditions'=>$data,'recursive'=>-1]);
+		if(!$found) {
+			$this->create();
+			if(!$this->save([$model=>$data])){
+				debug($this->validationErrors); die();
+			}
+			$id=$this->id;
+			$this->clear();
+		} else {
+			$id=$found[$model]['id'];
+		}
+		return $id;
+	}
+
+	/**
      * Function to create rows in conditions_systems table
      * @param $s
      */

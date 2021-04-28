@@ -11,6 +11,7 @@ class NewUnit extends AppModel
 	public $useTable='units';
 
 	public $hasAndBelongsToMany = ['NewQuantity'];
+	public $hasMany = ['NewData','NewCondition','NewSampleProp'];
 
 	/**
 	 * retrieve contents of field

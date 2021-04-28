@@ -12,7 +12,8 @@ class NewSampleprop extends AppModel
 
 	public $hasMany = [
 		'NewData'=> [
-			'foreignKey' => 'sampleprop_id'
+			'foreignKey' => 'sampleprop_id',
+			'dependent' => true
 		],
 	];
 
@@ -27,5 +28,26 @@ class NewSampleprop extends AppModel
 			'foreignKey' => 'unit_id'
 		]
 	];
+
+	/**
+	 * function to add a new sampleprop if it does not already exist
+	 * @param array $data
+	 * @return integer
+	 * @throws
+	 */
+	public function add(array $data): int
+	{
+		$model='NewSampleprop';
+		$found=$this->find('first',['conditions'=>$data,'recursive'=>-1]);
+		if(!$found) {
+			$this->create();
+			$this->save([$model=>$data]);
+			$id=$this->id;
+			$this->clear();
+		} else {
+			$id=$found[$model]['id'];
+		}
+		return $id;
+	}
 
 }

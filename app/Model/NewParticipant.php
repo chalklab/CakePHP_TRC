@@ -1,41 +1,39 @@
 <?php
 
 /**
- * Class Chemical
- * Chemical model
+ * Class Participant
+ * Participant model
  */
-class NewChemical extends AppModel
+class NewParticipant extends AppModel
 {
 
 	public $useDbConfig='new';
-	public $useTable='chemicals';
-
-	public $hasMany = [
-		'NewComponent'=> [
-			'foreignKey' => 'chemical_id',
-			'dependent' => true
-		]
-	];
+	public $useTable='participants';
 
 	public $belongsTo = [
-		'NewFile'=>[
-			'foreignKey' => 'file_id',
-			],
+		'NewReaction'=>[
+			'foreignKey' => 'reaction_id',
+		],
+		'NewChemical'=>[
+			'foreignKey' => 'chemical_id',
+		],
 		'NewSubstance'=>[
 			'foreignKey' => 'substance_id',
+		],
+		'NewPhase'=>[
+			'foreignKey' => 'phase_id',
 		]
 	];
 
 	/**
-	 * function to add a new chemical if it does not already exist
+	 * function to add a new particpant (of a reaction) if it does not already exist
 	 * @param array $data
-	 * @param $setcnt
 	 * @return integer
 	 * @throws Exception
 	 */
 	public function add(array $data): int
 	{
-		$model='NewChemical';
+		$model='NewParticipant';
 		$found=$this->find('first',['conditions'=>$data,'recursive'=>-1]);
 		if(!$found) {
 			$this->create();

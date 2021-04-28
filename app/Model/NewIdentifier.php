@@ -10,25 +10,30 @@ class NewIdentifier extends AppModel {
 
 	public $belongsTo=[
     	'NewSubstance'=> [
-			'foreignKey' => 'substance_id',
-			'dependent' => true
+			'foreignKey' => 'substance_id'
 		]
 	];
 
-    /**
-     * General function to add a new identifier
-     * @param array $data
-     * @return integer
+	/**
+	 * function to add a new identifier if it does not already exist
+	 * @param array $data
+	 * @return integer
 	 * @throws
-     */
-    public function add($data)
-    {
-        $model='NewIdentifier';
-        $this->create();
-        $ret=$this->save([$model=>$data]);
-        $this->clear();
-        return $ret[$model];
-    }
+	 */
+	public function add(array $data): int
+	{
+		$model='NewIdentifier';
+		$found=$this->find('first',['conditions'=>$data,'recursive'=>-1]);
+		if(!$found) {
+			$this->create();
+			$this->save([$model=>$data]);
+			$id=$this->id;
+			$this->clear();
+		} else {
+			$id=$found[$model]['id'];
+		}
+		return $id;
+	}
 
     /**
      * Search CIR for identifiers

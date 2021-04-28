@@ -12,10 +12,12 @@ class NewProperty extends AppModel
 
 	public $hasMany = [
     	'NewData'=> [
-			'foreignKey' => 'property_id'
+			'foreignKey' => 'property_id',
+			'dependent' => true
 		],
 		'NewCondition'=> [
-			'foreignKey' => 'property_id'
+			'foreignKey' => 'property_id',
+			'dependent' => true
 		]
 	];
 

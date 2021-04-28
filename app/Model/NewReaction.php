@@ -1,33 +1,38 @@
 <?php
 
 /**
- * Class phase
- * Phase model
+ * Class Reaction
+ * Reaction model
  */
-class NewPhase extends AppModel
+class NewReaction extends AppModel
 {
 
 	public $useDbConfig='new';
-	public $useTable='phases';
+	public $useTable='reactions';
+
+	public $hasMany = [
+		'NewParticipant'=> [
+			'foreignKey' => 'reaction_id',
+			'dependent' => true
+		]
+	];
 
 	public $belongsTo = [
-		'NewPhasetype'=> [
-			'foreignKey' => 'phasetype_id'
-		],
-		'NewMixture'=> [
-			'foreignKey' => 'mixture_id'
+		'NewDataset'=>[
+			'foreignKey' => 'dataset_id',
 		]
 	];
 
 	/**
-	 * function to add a new phase if it does not already exist
+	 * function to add a new reaction if it does not already exist
 	 * @param array $data
+	 * @param $setcnt
 	 * @return integer
-	 * @throws
+	 * @throws Exception
 	 */
 	public function add(array $data): int
 	{
-		$model='NewPhase';
+		$model='NewReaction';
 		$found=$this->find('first',['conditions'=>$data,'recursive'=>-1]);
 		if(!$found) {
 			$this->create();
