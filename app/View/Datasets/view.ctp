@@ -20,7 +20,7 @@ $ser=$dump['Dataseries'][0];
                 <h2 class="panel-title"><?php echo $ref['title']; ?></h2>
             </div>
             <div class="panel-body" style="font-size: 16px;">
-                <?php echo $this->Html->image('jsonld.png', ['width' => '100', 'url' => '/datasets/scidata2/' . $dsid, 'alt' => 'Output as JSON-LD', 'class' => 'img-responsive pull-right']); ?>
+                <?php echo $this->Html->image('jsonld.png', ['width' => '100', 'url' => '/datasets/scidata/' . $dsid, 'alt' => 'Output as JSON-LD', 'class' => 'img-responsive pull-right']); ?>
                 <ul>
                     <li><?php echo "Journal: " . $this->Html->link($ref['Journal']['name'], "/journals/view/" . $ref['Journal']['id']); ?></li>
 

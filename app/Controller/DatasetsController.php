@@ -9,7 +9,7 @@ class DatasetsController extends AppController
 {
 	public $uses = ['Dataset', 'Journal', 'Report', 'Quantity', 'Dataseries',
 		'Parameter', 'Variable', 'Scidata', 'System', 'Substance', 'File',
-		'Reference', 'Unit', 'Sampleprop', 'Trc', 'Chemical', 'Condition'];
+		'Reference', 'Unit', 'Sampleprop', 'Trc', 'Chemical', 'Condition', 'NewDataset'];
 
 	/**
 	 * beforeFilter function
@@ -294,6 +294,475 @@ class DatasetsController extends AppController
 		// Note: there is an issue with the retrival of substances under system if id is not requested as a field
 		// This is a bug in CakePHP as it works without id if its at the top level...
 		$c = [
+			'NewAnnotation',
+			'NewDataseries' => [
+				'NewCondition' => ['NewUnit',
+					'NewProperty' => ['fields' => ['id', 'name', 'kind'],
+						'NewQuantity' => ['fields' => ['name']]]],
+				'NewSetting' => ['NewUnit', 'NewProperty' => ['fields' => ['name'],
+					'NewQuantity' => ['fields' => ['name']]]],
+				'NewDatapoint' => [
+					'NewCondition' => ['fields' => ['id', 'datapoint_id', 'property_id', 'system_id',
+						'property_name', 'datatype', 'number', 'significand', 'exponent', 'unit_id',
+						'accuracy', 'exact'], 'NewUnit',
+						'NewProperty' => ['fields' => ['id', 'name', 'kind'],
+							'NewQuantity' => ['fields' => ['id', 'name']]]],
+					'NewData' => ['fields' => ['id', 'datapoint_id', 'property_id', 'sampleprop_id',
+						'datatype', 'number', 'significand', 'exponent', 'error', 'error_type',
+						'unit_id', 'accuracy', 'exact'], 'NewUnit',
+						'NewProperty' => ['fields' => ['id', 'name', 'kind'],
+							'NewQuantity' => ['fields' => ['id', 'name']]]],
+					'NewSetting' => ['NewUnit',
+						'NewProperty' => ['fields' => ['id', 'name', 'kind'],
+							'NewQuantity' => ['fields' => ['id', 'name']]]]],
+				'NewAnnotation'
+			],
+			'NewFile' => ['NewChemical' => ['fields' => ['orgnum', 'name', 'sourcetype', 'purity']]],
+			'NewReference' => ['NewJournal'],
+			'NewSampleprop',
+			'NewSystem' => [
+				'NewSubstance' => [
+					'fields' => ['name', 'formula', 'molweight', 'type'],
+					'NewIdentifier' => ['fields' => ['type', 'value'], 'conditions' => ['type' => ['inchi', 'inchikey', 'iupacname']]]
+				]
+			],
+		];
+
+		// get data for this dataset
+		$data = $this->NewDataset->find('first', ['conditions' => ['NewDataset.id' => $id], 'contain' => $c, 'recursive' => -1]);
+		debug($data);exit;
+
+		$set = $data['Dataset'];
+		$file = $data['File'];
+		$ref = $data['Reference'];
+		$doi = $ref['doi'];
+		$jnl = $ref['Journal'];
+		$sers = $data['Dataseries'];
+		$sys = $data['System'];
+		$anns = $data['Annotation'];
+		$sprops = $data['Sampleprop'];
+
+		// get the metadata crosswalk data
+		$fields = $nspaces = $ontlinks = [];
+		$this->getcw('metadata', $fields, $nspaces, $ontlinks);
+		$this->getcw('conditions', $fields, $nspaces, $ontlinks);
+		$this->getcw('exptdata', $fields, $nspaces, $ontlinks);
+		$this->getcw('deriveddata', $fields, $nspaces, $ontlinks);
+		$this->getcw('suppdata', $fields, $nspaces, $ontlinks);
+
+		// create an instance of the Scidata class
+		$json['toc'] = [];
+		$json['ids'] = [];
+		$sdpath="https://scidata.unf.edu/";
+		$setid=str_pad($id,6,'0',STR_PAD_LEFT);
+		$uid = "trc_jced_".$setid;
+		$upath = $sdpath.$uid."/";
+		$trc = new $this->Scidata;
+		$trc->setnspaces($nspaces);
+		$trc->setid($sdpath."tranche/trc/jced/".$setid);
+		$trc->setgenat(date("Y-m-d H:i:s"));
+		$trc->setversion(1);
+		$trc->setbase($upath);
+		$trc->setuid($uid);
+		$trc->setgraphid($upath);
+		$trc->settitle($ref['title']);
+		$trc->setpublisher($jnl['publisher']);
+		$trc->setdescription('Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/');
+		$aus = explode('; ', $ref['aulist']);
+		$trc->setauthors($aus);
+		$trc->setstarttime($file['date']);
+		$trc->setpermalink($sdpath."trc/datasets/view/".$setid);
+		$trc->setdiscipline("w3i:Chemistry");
+		$trc->setsubdiscipline("w3i:PhysicalChemistry");
+
+		// other datsets from same paper are added as 'related' data
+		$reldata = $this->Dataset->find('list', ['fields' => ['id'], 'conditions' => ['system_id' => $sys['id'], 'file_id' => $file['id'], 'NOT' => ['Dataset.id' => $id]]]);
+		$related=[];
+		foreach($reldata as $relset) {
+			$related[]=$sdpath."trc/datasets/view/".$relset;
+		}
+		$trc->setrelated($related);
+		// process data series to split out conditions, settings, and parameters
+		$serdata = [];
+		foreach ($sers as $s => $pnts) {
+			$datas = $conds = $setts = [];
+			foreach ($pnts['Datapoint'] as $p => $pnt) {
+				foreach ($pnt['Data'] as $d => $dval) {
+					$datas[$d][$p] = $dval;
+				}
+				foreach ($pnt['Condition'] as $c => $cval) {
+					$conds[$c][$p] = $cval;
+				}
+				foreach ($pnt['Setting'] as $s => $sval) {
+					$setts[$s][$p] = $sval;
+				}
+			}
+			$serdata[$s]['datas'] = $datas;
+			$serdata[$s]['conds'] = $conds;
+			$serdata[$s]['setts'] = $setts;
+		}
+
+		// Methodology sections (add data to $aspects)
+
+		// nothing in the XML about the methodology?
+
+		// System sections (add data to $facets)
+
+		// System (general info)
+		$sysj = [];
+		if (is_array($sys) && !empty($sys) || is_array($conds) && !empty($conds)) {
+			$sysj['@id'] = 'system/';
+			$sysj['@type'] = 'sdo:system';
+			$json['toc'][] = $sysj['@type'];
+			$sysj['facets'] = [];
+		}
+
+		// Mixture/Substance/Chemical
+		$facets = [];$systems = [];
+		if (is_array($sys) && !empty($sys)) {
+			// get substances
+			$subs = $sys['Substance'];
+			$substances = [];
+			$chemicals = [];
+			foreach ($subs as $subidx => $sub) {
+				$s = [];
+				$opts = ['name', 'formula', 'molweight'];
+				foreach ($opts as $opt) {
+					$s[$opt] = $sub[$opt];
+				}
+				foreach ($sub['Identifier'] as $subid) {
+					$s[$subid['type']] = $subid['value'];
+				}
+				$substances[($subidx + 1)] = $s;
+
+				// get chemicals
+				$chmf = $sub['Chemical'];
+				$purstep = json_decode($chmf['purity'], true);
+				$c = [];$opts = ['name', 'sourcetype', 'purity'];
+				foreach ($opts as $opt) {
+					if ($opt == 'purity') {
+						$c[$opt] = [];
+						if (!is_null($chmf['purity'])) {
+							$p=[];
+							$p['@id']='chemical/'.($subidx + 1).'/purity/';
+							$p["@type"]="sdo:purity";
+							foreach ($purstep as $sidx => $step) {
+								$s = [];
+								$s["@id"]='chemical/'.($subidx + 1).'/purity/step/'.($sidx+1).'/';
+								$s["@type"]="sdo:step";
+								$s['part'] = $step['type'];
+								if (!is_null($step['analmeth'])) {
+									if (count($step['analmeth']) == 1) {
+										$s['analysis'] = $step['analmeth'][0];
+									} else {
+										$s['analysis'] = $step['analmeth'];
+									}
+								}
+								if (!is_null($step['purimeth'])) {
+									$s['purification'] = $step['purimeth'];
+								} else {
+									$s['purification'] = null;
+								}
+								if (!is_null($step['purity'])) {
+									$val=$this->Dataset->exponentialGen($step['purity']);
+									if($val['isint']) {
+										$s['number'] = (int) $val['scinot'];
+									} else {
+										$s['number'] = (float) $val['scinot'];
+									}
+								}
+								if (!is_null($step['puritysf'])) {
+									$s['sigfigs'] = (int) $step['puritysf'];
+								}
+								if (!is_null($step['purityunit_id'])) {
+									$uname = $this->Unit->getfield('name', $step['purityunit_id']);
+									$s['unit'] = $uname;
+									$qudtid = $this->Unit->getfield('qudt', $step['purityunit_id']);
+									$s['unitref'] = 'qudt:' . $qudtid;
+								}
+								$p['steps'][$sidx] = $s;
+							}
+							$c[$opt][]=$p;
+						}
+					} else {
+						$c[$opt] = $chmf[$opt];
+					}
+				}
+
+				$c['compound'] = 'compound/' . ($subidx + 1) . '/';
+				$chemicals[($subidx + 1)] = $c;
+			}
+
+			$facets['sdo:compound'] = $substances;
+			$facets['sdo:chemical'] = $chemicals;
+
+			# create the the substance (chemical system)
+			if (count($sys['Substance']) == 1) {
+				$type = "substance";
+				$s = [];
+				$sid = "substance/1/";
+				$s['@id'] = $sid;
+				$s['@type'] = "sdo:" . $type;
+				$json['toc'][] = $s['@type'];
+				$s['composition'] = $sys['composition'];
+				$s['phase'] = $sys['phase'];
+				$s['name']=$sys['name'];
+				$s['source']="chemical/".++$subidx."/";
+			} else {
+				$s = [];
+				$type = "mixture";
+				$sid="substance/1/";
+				$s['@id'] = $sid;
+				$s['@type'] = "sdo:" . $type;
+				$json['toc'][] = $s['@type'];
+				$s['composition'] = $sys['composition'];
+				$phases=json_decode($set['phase']);
+				if(!is_array($phases)) {
+					$phases=[0=>$phases];
+				}
+				foreach($phases as $phase) {
+					$phase=strtolower($phase);
+					if(in_array($phase,['liquid','solid','gas'])) {
+						$s['phase'][]="sub:".$phase;
+					} elseif(stristr($phase,'liquid')) {
+						$s['phase'][]='sub:liquid';
+					} elseif(stristr($phase,'solution')) {
+						$s['phase'][]='sub:liquid';
+					} elseif(stristr($phase,'glass')) {
+						$s['phase'][]='sub:liquid';
+					} elseif(stristr($phase,'crystal')) {
+						$s['phase'][]='sub:solid';
+					} elseif(stristr($phase,'gas')) {
+						$s['phase'][]='sub:gas';
+					} elseif(stristr($phase,'air')) {
+						$s['phase'][]='sub:gas';
+					} elseif(stristr($phase,'supercritical')) {
+						$s['phase'][]='sub:fluid';
+					}
+					$s['phase']=array_unique($s['phase']);
+				}
+				$s['phasetype'] = $sys['phase'];
+				$s['name']=$sys['name'];
+				foreach($chemicals as $cidx => $c) {
+					$s['constituents'][]=['source'=>"chemical/".$cidx.'/'];
+				}
+			}
+			$systems[1] = $s;
+		}
+
+		$facets['sdo:substance'] = $systems;
+
+		// conditions (organize first then write to a variable to send to the model)
+		// here we need to process both series conditions and regular conditions
+		// In a dataseries ($ser) $ser['Condition'] is where the series conditions are (1 -> n)
+		// ... and the regular conditions are in datapoints ($pnt) under $pnt['Condition']
+		$conditions = [];$srconds=[];
+		foreach($sers as $seridx=>$ser) {
+			$sernum=$seridx+1;
+			$sconds = $ser['Condition']; // series conditions
+			$pnts = $ser['Datapoint']; // all datapoints in a series
+			foreach($pnts as $pntidx=>$pnt) {
+				$pntnum=$pntidx+1;
+				$conds = $pnt['Condition']; // conditions for datapoints (0 -> n)
+				foreach ($conds as $conidx=>$cond) {
+					// update number to correctly reflect the # sig figs
+					$dp=$cond['accuracy']-($cond['exponent']+1);
+					$cond['number']=(string) number_format($cond['number'],$dp,'.','');
+					if(!isset($conditions[$cond['property_id']]['property'])) {
+						$conditions[$cond['property_id']]['property']=$cond['Property']['name'];
+					}
+					if(!empty($cond['Property']['kind'])) {
+						$kind=$cond['Property']['kind'];
+						$conditions[$cond['property_id']]['propertyref'] = $ontlinks['conditions'][$kind];
+						if(!in_array($conditions[$cond['property_id']]['propertyref'],$json['ids'])) {
+							$json['ids'][]=$conditions[$cond['property_id']]['propertyref'];
+						}
+					}
+					if(!isset($conditions[$cond['property_id']]['unit'])) {
+						$conditions[$cond['property_id']]['unit']=$cond['Unit']['name'];
+					}
+					if(!empty($cond['Unit']['qudt'])) {
+						$unit="qudt:".$cond['Unit']['qudt'];
+						$conditions[$cond['property_id']]['unitref']=$unit;
+						if(!in_array($unit,$json['ids'])) {
+							$json['ids'][]=$unit;
+						}
+					}
+					$srconds[$cond['property_id']][$cond['number']][]=$sernum.":".$pntnum;
+					$conditions[$cond['property_id']]['value'][]=$cond['number'];
+				}
+			}
+			foreach($sconds as $scidx=>$scond) {
+				// update number to correctly reflect the # sig figs
+				$dp=$scond['accuracy']-($scond['exponent']+1);
+				$scond['number']=(string) number_format($scond['number'],$dp,'.','');
+				if(!isset($conditions[$scond['property_id']])) {
+					$scon=[];
+					$scon['property']=$scond['Property']['name'];
+					if(!empty($scond['Property']['kind'])) {
+						$kind=$scond['Property']['kind'];
+						$scon['propertyref'] = $ontlinks['conditions'][$kind];
+						if(!in_array($scon['propertyref'],$json['ids'])) {
+							$json['ids'][]=$scon['propertyref'];
+						}
+					}
+					$scon['unit']=$scond['Unit']['name'];
+					if(!empty($scond['Unit']['qudt'])) {
+						$unit="qudt:".$scond['Unit']['qudt'];
+						$scon['unitref']=$unit;
+						if(!in_array($unit,$json['ids'])) {
+							$json['ids'][]=$unit;
+						}
+					}
+					$conditions[$scond['property_id']]=$scon;
+				}
+
+				// iterate over all datapoints to add condition to each
+				foreach($pnts as $pntidx=>$pnt) {
+					$pntnum=$pntidx+1;
+					$srconds[$scond['property_id']][$scond['number']][]=$sernum.":".$pntnum;
+					$conditions[$scond['property_id']]['value'][]=$scond['number'];
+				}
+			}
+		}
+
+		// deduplicate condition values and record series and datapoint index
+		foreach($conditions as $propid=>$values) {
+			$uvals=array_unique($conditions[$propid]['value']); // SORT_NUMERIC not working...
+			sort($uvals);
+			$conditions[$propid]['value']=$uvals;
+			$varray=[];
+			foreach($conditions[$propid]['value'] as $vidx=>$val) {
+				$v['value']=$val;
+				// find original rows for this value
+				$v['rows']=$srconds[$propid][$val];
+				$varray[]=$v;
+			}
+			$conditions[$propid]['value']=$varray;
+		}
+
+		// reindex conditions array and sort values
+		$tmp=$conditions;$conditions=[];$cidx=1;
+		foreach($tmp as $con) {
+			$conditions[$cidx]=$con;$cidx++;
+		}
+
+		// add conditions facet to $facets
+		$facets['sdo:condition'] = $conditions;
+
+		// add facets data to instance
+		$trc->setfacets($facets);
+
+		// Data (add data to $group)
+		$groups=[];
+		foreach($sers as $seridx=>$ser) {
+			$group=[];$sernum=$seridx+1;
+			$group['title']='Series '.$sernum;
+			if(count($sys['Substance'])==1) {
+				$group['system']="compound/1/";
+			} else {
+				$group['system']="system/1/";
+			}
+			$group['data']=[];
+			foreach ($ser['Datapoint'] as $pntidx => $pnt) {
+				$pntnum=$pntidx+1;$unit=$qudt="";$point=[];
+				foreach($pnt['Data'] as $datidx=>$datum) {
+					$datnum=$datidx+1;
+					$val=[];
+					$propphase=$datum['Property']['name']." (".$sprops[$datidx]['phase'].")";
+					if(!isset($group['data'][$propphase])) {
+						$group['data'][$propphase]=[];
+					}
+					$val['property']=$propphase;
+					$val['quantity']=$datum['Property']['name'];
+					if(!empty($datum['accuracy'])) {
+						// check that the number is correctly represented based on accuracy
+						$dp=$datum['accuracy']-($datum['exponent']+1);
+						$datum['number']=number_format($datum['number'],$dp,'.','');
+						$val['number']=$datum['number'];
+					} else {
+						$val['number']=$datum['number'];
+					}
+					if(!empty($datum['error'])) { $val['error']=(float) $datum['error'];$val['errortype']=$datum['error_type']; }
+					// lookup property in $ontlinks and assign to 'propertyref'
+					if(!empty($datum['Property']['kind'])) {
+						$kind=$datum['Property']['kind'];
+						$val['propertyref'] = $ontlinks['exptdata'][$kind];
+						if(!in_array($val['propertyref'],$json['ids'])) {
+							$json['ids'][]=$val['propertyref'];
+						}
+					}
+					if(!empty($datum['Unit']['name'])) {
+						$val['unit']=$datum['Unit']['name'];
+					}
+					if(!empty($datum['Unit']['qudt'])) {
+						$unitref="qudt:".$datum['Unit']['qudt'];
+						$val['unitref']=$unitref;
+						if(!in_array($unitref,$json['ids'])) {
+							$json['ids'][]=$unitref;
+						}
+					}
+					$group['data'][$propphase][$pntnum]=$val;
+				}
+			}
+			$groups[$sernum]=$group;
+		}
+		//exit;//debug($groups);
+
+		$trc->setdatagroup($groups);
+
+
+		// Sources
+		// Go get the DOI
+		$bib=$ref['title']." ".$ref['aulist']." ".$ref['journal']." ".$ref['year']." ".$ref['volume']." ".$ref['startpage'];
+		$src=[];
+		$src['id']="source/".$ref['id'].'/';
+		$src['type']="paper";
+		$src['citation']=$bib;
+		$src['url']=$ref['url'];
+		$sources[]=$src;
+		// add TRC dataset
+		$src=[];
+		$src['id']="source/2/";
+		$src['citation']="NIST TRC ThermoML Archive";
+		$src['url']="https://www.trc.nist.gov/ThermoML/".$ref['doi'].".xml";
+		$src['type']="dataset";
+		$sources[]=$src;
+		$trc->setsources($sources);
+		//debug($src);exit;
+
+		// Rights
+		$right=['@id'=>'rights/1/','@type'=>'dc:rights'];
+		$right['holder']='NIST Thermodynamics Research Center (Boulder, CO)';
+		$right['license']='https://creativecommons.org/licenses/by-nc/4.0/';
+		$rights[]=$right;
+		$trc->setrights($rights);
+		//debug($json);exit;
+
+		// spit out data to view as an array
+		//$sd=$trc->asarray();
+		//$sd=$trc->rawout();
+		//debug($sd);exit;
+
+		// output as JSON-LD
+		$json=$trc->asjsonld();
+		header("Content-Type: application/json");
+		if($down=="download") { header('Content-Disposition: attachment; filename="'.$id.'.json"'); }
+		echo $json;exit;
+
+	}
+
+	/**
+	 * New SciData creation script that uses the class to create the file
+	 * @param int $id
+	 * @param string $down
+	 * @param array $sclink
+	 */
+	public function scidatav1(int $id,$down="",$sclink=[])  // the $sclink variable was not set to a default value
+	{
+		// Note: there is an issue with the retrival of substances under system if id is not requested as a field
+		// This is a bug in CakePHP as it works without id if its at the top level...
+		$c = [
 			'Annotation',
 			'Dataseries' => [
 				'Condition' => ['Unit',
@@ -325,7 +794,7 @@ class DatasetsController extends AppController
 				'Substance' => [
 					'fields' => ['name', 'formula', 'molweight', 'type'],
 					'Identifier' => ['fields' => ['type', 'value'], 'conditions' => ['type' => ['inchi', 'inchikey', 'iupacname']]],
-					'Chemical' => ['fields' => ['orgnum', 'name', 'source', 'purity']]]
+					'Chemical' => ['fields' => ['orgnum', 'name', 'sourcetype', 'purity']]]
 			],
 		];
 
@@ -757,7 +1226,7 @@ class DatasetsController extends AppController
      * @param $id
      * @param $down
      */
-    public function scidata2($id,$down="")
+    public function scidataold($id,$down="")
     {
         // Note: there is an issue with the retrival of substances under system if id is not requested as a field
         // This is a bug in CakePHP as it works without id if its at the top level...
