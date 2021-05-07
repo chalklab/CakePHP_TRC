@@ -48,7 +48,7 @@
 							<?php
 							foreach($refs as $refid=>$title) {
 								$opts = ["title"=>strtolower($title),'alt'=>$title,"class"=>"list-group-item"];
-								echo "<li class='refs'>".$this->Html->link($title,'/refs/view/'.$refid,$opts)."</li>";
+								echo "<li class='refs'>".$this->Html->link($title,'/references/view/'.$refid,$opts)."</li>";
 							}
 							?>
 						</div>

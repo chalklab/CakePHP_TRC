@@ -289,7 +289,7 @@ class DatasetsController extends AppController
 	 * @param string $down
 	 * @param array $sclink
 	 */
-	public function scidata(int $id,$down="",$sclink=[])  // the $sclink variable was not set to a default value
+	public function scidata(int $id,string $down="",array $sclink=[])  // the $sclink variable was not set to a default value
 	{
 		// Note: there is an issue with the retrival of substances under system if id is not requested as a field
 		// This is a bug in CakePHP as it works without id if its at the top level...
@@ -758,7 +758,7 @@ class DatasetsController extends AppController
 	 * @param string $down
 	 * @param array $sclink
 	 */
-	public function scidatav1(int $id,$down="",$sclink=[])  // the $sclink variable was not set to a default value
+	public function scidatav1(int $id,string $down="",array $sclink=[])  // the $sclink variable was not set to a default value
 	{
 		// Note: there is an issue with the retrival of substances under system if id is not requested as a field
 		// This is a bug in CakePHP as it works without id if its at the top level...
@@ -1226,7 +1226,7 @@ class DatasetsController extends AppController
      * @param $id
      * @param $down
      */
-    public function scidataold($id,$down="")
+    public function scidataold($id,string $down="")
     {
         // Note: there is an issue with the retrival of substances under system if id is not requested as a field
         // This is a bug in CakePHP as it works without id if its at the top level...

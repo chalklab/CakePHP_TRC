@@ -39,7 +39,7 @@ class ReferencesController extends AppController
 	 */
 	public function view(int $id)
     {
-    	$c = ['Dataset','Refcode'];
+    	$c = ['Dataset'];
         $data = $this->Reference->find('first', ['conditions'=>['Reference.id'=>$id], 'contain'=>$c, 'recursive'=>-1]);
         $this->set('data',$data);
     }
