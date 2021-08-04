@@ -254,7 +254,7 @@ class FilesController extends AppController
 	 */
 	public function ingest($maxfiles=10,$test=0)
 	{
-		$path = WWW_ROOT.'files'.DS.'trc'.DS.'jced'.DS;
+		$path = WWW_ROOT.'files'.DS.'trc'.DS.'jct'.DS;
 		$maindir = new Folder($path);
 		$files = $maindir->find('.*\.xml',true);
 		//debug($files);exit;
@@ -1432,9 +1432,9 @@ class FilesController extends AppController
 			$cnds['identifier']=$idstr;
 			if($scount==1) {
 				$key = $this->Identifier->getfield('value', ['substance_id' => $idstr, 'type' => 'inchikey']);
-				$headers = get_headers('http://classyfire.wishartlab.com/entities/' . $key . '.json');
+				$headers = get_headers('https://classyfire.wishartlab.com/entities/' . $key . '.json');
 				if (stristr($headers[0], 'OK')) {
-					$json = file_get_contents('http://classyfire.wishartlab.com/entities/' . $key . '.json');
+					$json = file_get_contents('https://classyfire.wishartlab.com/entities/' . $key . '.json');
 					$classy = json_decode($json, true);
 					if(!empty($classy)) {
 						$kingdom = $classy['kingdom']['name'];
