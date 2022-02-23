@@ -357,7 +357,8 @@
     if (event.action == "readMolFile" || event.action == "readJME") {
      // JSME marks the selected atom in the third from last column!
       this._molData = this._applet.molFile().replace(/1  0  0\n/g, "0  0  0\n");
-      return;
+      setTimeout(function() {jme.__updateAtomCorrelation()},10);
+	return;
     }
 		var a = this._applet.molFile().replace(/1  0  0\n/g, "0  0  0\n").split("V2000")[1];
 		var b = ("" + this._molData).replace(/1  0  0\n/g, "0  0  0\n").split("V2000")[1];
@@ -383,22 +384,32 @@
 		var A = [];
 		var map = this._currentView.JME.atomMap;    
 		A.push(map == null ? iAtom : map.toJmol[iAtom]);
+
+
 		Jmol.View.updateAtomPick(this, A);
 		this._updateAtomPick(A);
 		if (this._atomPickCallback)
 			setTimeout(this._atomPickCallback+"([" + iAtom + "])",10);    
 	}
 
+	proto.__updateAtomCorrelation = function(){
+			if (this._viewSet && this._currentView) {
+			  var v = this._currentView;
+			  v.JME.data = this._molData;
+				v.JME.atomMap = (v.Jmol && v.Jmol.applet? v.Jmol.applet._getAtomCorrelation(this._molData,false) : null);
+			}
+
+	}
 	proto.__clearAtomSelection = function(andUpdate) {
 		System.out.println("clearAtomSelection");
 		this.__atomSelection = [];
-		this._applet.resetAtomColors(1);
+		this._applet.jmeFile() && this._applet.resetAtomColors(1);
 		if (andUpdate)
 			Jmol.View.updateAtomPick(this, []);
 	}	
 
 	proto._updateAtomPick = function(A, _jme_updateAtomPick) {
-		this._applet.resetAtomColors(1);
+		this._applet.jmeFile() && this._applet.resetAtomColors(1);
 		if (A.length == 0)
 			return;
 		var B = [];
@@ -487,11 +498,7 @@
     	Jmol.jmeReadMolecule(this, this._molData);
 //			this._applet.readMolecule(this._molData);
 			this._molData = this._applet.molFile();
-			if (this._viewSet) {
-			  var v = this._currentView;
-			  v.JME.data = this._molData;
-				v.JME.atomMap = (v.Jmol && v.Jmol.applet? v.Jmol.applet._getAtomCorrelation(this._molData) : null);
-			}
+			this.__updateAtomCorrelation();
 		} else {
 			this._applet.reset();
 			this._molData = "<zapped>";
@@ -531,7 +538,7 @@
 					ctx.clearRect( 0, 0, (canvas.width = svg.width.animVal.value - 5), (canvas.height = svg.height.animVal.value));
 					ctx.drawImage(img, 0, 0);
 					// throw out "data:image/png;base64," because we will reconstruct that if we need to, and we might not
-					Jmol._saveFile(me._id + ".png", canvas.toDataURL("image/png").substring(22), "image/png", "base64");
+					Jmol._saveFile(me._id + ".png", canvas.toDataURL("image/png"));
 				}
 				img.src = "data:image/svg+xml;base64," + btoa(svg.outerHTML);
 				break;
@@ -618,4 +625,5 @@
 
 
 })(Jmol, document);
+
 

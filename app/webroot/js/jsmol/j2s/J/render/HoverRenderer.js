@@ -28,7 +28,7 @@ text.setXYZs (hover.xy.x, hover.xy.y, 1, -2147483648);
 return true;
 }if (this.vwr != null && (label.indexOf ("%{") >= 0 || label.indexOf ("@{") >= 0)) label = JU.Txt.formatText (this.vwr, label);
 text.setText (label);
-J.render.TextRenderer.render (text, this.g3d, 0, antialias ? 2 : 1, false, null, this.tempXY);
+J.render.TextRenderer.render (text, this.g3d, 0, antialias ? 2 : 1, false, null, this.tempXY, false, 0, 0, false);
 return true;
 });
 Clazz.defineMethod (c$, "fixLabel", 

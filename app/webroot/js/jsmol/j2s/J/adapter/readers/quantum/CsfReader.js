@@ -249,9 +249,9 @@ break;
 }
 }
 for (var i = 0; i < this.nVibrations; i++) {
-if (!this.doGetVibration (i + 1)) continue;
+if (!this.doGetVibration (++this.vibrationNumber)) continue;
 this.asc.cloneAtomSetWithBonds (false);
-this.asc.setAtomSetFrequency (null, null, energies[i], null);
+this.asc.setAtomSetFrequency (this.vibrationNumber, null, null, energies[i], null);
 var ipt = 0;
 var baseAtom = this.nAtoms * (i + 1);
 for (var iAtom = 0; iAtom < this.nAtoms; iAtom++) this.asc.addVibrationVector (baseAtom + iAtom, vibData[i][ipt++], vibData[i][ipt++], vibData[i][ipt++]);
@@ -397,7 +397,7 @@ if (zetas[ipt][i] == 0) break;
 this.createSphericalSlaterByType (iAtom, this.atomicNumbers[iAtom], types[ipt], zetas[ipt][i] * (i == 0 ? 1 : -1), contractionCoefs == null ? 1 : contractionCoefs[ipt][i]);
 }
 }
-this.setSlaters (true, false);
+this.setSlaters (false);
 }}, "~S");
 Clazz.defineStatics (c$,
 "objCls1", 1,

@@ -9,6 +9,7 @@
 * 
 */
 
+// BH 2019.04.27 fixes 1H+13C viewing
 // BH 1/14/2017 7:12:47 PM adds proto._showTooltip
 // BH 4/24/2016 4:42:06 PM working around Resolver 2D issues
 // BH 2/2/2014 11:39:44 AM Jmol/JSME/JSV working triad
@@ -169,7 +170,7 @@
 		this._showInfo(true);
 		this._showInfo(false);
 		this._readyFunction && this._readyFunction(this);
-		Jmol.Cache.setDragDrop(this);
+		Jmol.Cache.setDragDrop(this, "appletdiv");
 		Jmol._setReady(this);
 	}	
 		
@@ -319,7 +320,7 @@
 			script = "CLOSE VIEWS;CLOSE SIMULATIONS > 1";
 		script += "; LOAD ID \"" + view.info.viewID + "\" APPEND \"http://SIMULATION/MOL=" + molData.replace(/\n/g,"\\n") + "\"";
   	if (this._addC13)
-      script += "; LOAD ID \"" + view.info.viewID + "C13\" APPEND \"http://SIMULATION/C13/MOL=" + molData.replace(/\n/g,"\\n") + "\"";
+      script += "; LOAD ID \"" + view.info.viewID + "__C13\" APPEND \"http://SIMULATION/C13/MOL=" + molData.replace(/\n/g,"\\n") + "\"";
 		this._applet.runScriptNow(script);
 		// update Jmol and/or JME to correspond with the model returned.
 		molData = this._getAppletInfo("DATA_mol");
@@ -362,11 +363,11 @@
 			if (msg && (msg.indexOf("http://SIMULATION" >= 0) || msg.indexOf("cache://") >= 0)) {
 				var molData = this._getAppletInfo("DATA_mol");
 				if (molData) {
-					Jmol.View.updateView(this, { chemID: "", viewID: Jmol._getAttr(msg, "file"), data:molData});
+					Jmol.View.updateView(this, { chemID: "", viewID: Jmol._getAttr(msg, "sourceID") || Jmol._getAttr(msg, "file"), data:molData});
 					this._propagateView(this._currentView, molData);
 				}
 			}
-			return;		 
+			return;
 		}
  		// called from file load or panel selection or peak selection
 		Jmol.View.updateFromSync(this, peakData);
@@ -615,7 +616,7 @@
 		return applet._code;
 	}
 	
-Jmol._newGrayScaleImage = function(context, image, width, height, grayBuffer) {
+Jmol.newGrayScaleImage = function(context, image, width, height, grayBuffer) {
 	var c;
   image || (image = Jmol.$(context.canvas.applet, "image")[0]);
 	if (image == null) {

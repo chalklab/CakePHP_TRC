@@ -229,11 +229,11 @@ for (var i = 0; i < frequencyCount; i++) {
 ignore[i] = !this.doGetVibration (++this.vibrationNumber);
 if (ignore[i]) continue;
 this.asc.cloneFirstAtomSet (0);
-this.asc.setAtomSetFrequency (null, symmetries == null ? null : symmetries[i + 1], frequencies[i + 1], null);
+this.asc.setAtomSetFrequency (this.vibrationNumber, null, symmetries == null ? null : symmetries[i + 1], frequencies[i + 1], null);
 if (intensities != null) this.asc.setAtomSetModelProperty ("IRIntensity", intensities[i + 1] + " km/mol");
 }
 this.haveLine = true;
-this.fillFrequencyData (iAtom0, ac, ac, ignore, false, 0, 0, null, 0);
+this.fillFrequencyData (iAtom0, ac, ac, ignore, false, 0, 0, null, 0, null);
 this.rd ();
 this.rd ();
 }

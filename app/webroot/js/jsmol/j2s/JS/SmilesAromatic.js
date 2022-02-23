@@ -45,7 +45,7 @@ function (jmolAtoms, bsSelected, bsAromatic) {
 for (var i = bsSelected.nextSetBit (0); i >= 0; i = bsSelected.nextSetBit (i + 1)) {
 var bonds = jmolAtoms[i].getEdges ();
 for (var j = 0; j < bonds.length; j++) {
-switch (bonds[j].order) {
+switch (bonds[j].getBondType ()) {
 case 515:
 case 514:
 case 513:
@@ -160,7 +160,7 @@ if (n < 0) return -1;
 if (eCounts != null) eCounts[i] = n;
 npi += n;
 if (n == 1) n1++;
-if (JU.Logger.debugging) JU.Logger.info ("atom " + atom + " pi=" + n + " npi=" + npi);
+if (JU.Logger.debuggingHigh) JU.Logger.info ("atom " + atom + " pi=" + n + " npi=" + npi);
 continue;
 }
 }}

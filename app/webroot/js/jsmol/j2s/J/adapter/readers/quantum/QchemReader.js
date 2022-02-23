@@ -93,10 +93,10 @@ for (var i = 0; i < frequencyCount; ++i) {
 ignore[i] = !this.doGetVibration (++this.vibrationNumber);
 if (ignore[i]) continue;
 this.asc.cloneLastAtomSet ();
-this.asc.setAtomSetFrequency ("Job " + this.calculationNumber, null, frequencies[i + 1], null);
+this.asc.setAtomSetFrequency (this.vibrationNumber, "Job " + this.calculationNumber, null, frequencies[i + 1], null);
 }
 this.discardLinesUntilStartsWith ("               X");
-this.fillFrequencyData (iAtom0, ac, ac, ignore, true, 0, 0, null, 0);
+this.fillFrequencyData (iAtom0, ac, ac, ignore, true, 0, 0, null, 0, null);
 this.discardLinesUntilBlank ();
 }
 });
@@ -276,7 +276,7 @@ pt++;
 }
 for (var i = 0; i < nMO; i++) {
 var moInfo = moInfos[moid[i]];
-mos[i].put ("energy", Float.$valueOf (JU.PT.fVal (energy[i])));
+mos[i].put ("energy", Float.$valueOf (energy[i]));
 mos[i].put ("coefficients", mocoef[i]);
 var label = this.alphaBeta;
 var ne = moInfo.ne;

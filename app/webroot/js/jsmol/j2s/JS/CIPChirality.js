@@ -1,16 +1,14 @@
 Clazz.declarePackage ("JS");
-Clazz.load (["JU.BS", "$.V3"], "JS.CIPChirality", ["java.util.Arrays", "$.Hashtable", "JU.Lst", "$.Measure", "$.P4", "$.PT", "JU.BSUtil", "$.Elements", "$.Logger", "JV.JC"], function () {
+Clazz.load (["JU.BS"], "JS.CIPChirality", ["java.util.Arrays", "$.Collections", "$.Hashtable", "JU.Lst", "$.PT", "JU.Elements", "$.Logger", "JV.JC"], function () {
 c$ = Clazz.decorateAsClass (function () {
-this.bsNeedRule = null;
-this.ptIDLogger = 0;
-this.root = null;
 this.currentRule = 1;
-this.bsAzacyclic = null;
-this.vNorm = null;
-this.vNorm2 = null;
-this.vTemp = null;
-this.setAuxiliary = false;
+this.root = null;
 this.data = null;
+this.doTrack = false;
+this.isAux = false;
+this.bsNeedRule = null;
+this.havePseudoAuxiliary = false;
+this.ptIDLogger = 0;
 if (!Clazz.isClassDefined ("JS.CIPChirality.CIPAtom")) {
 JS.CIPChirality.$CIPChirality$CIPAtom$ ();
 }
@@ -18,37 +16,32 @@ Clazz.instantialize (this, arguments);
 }, JS, "CIPChirality");
 Clazz.prepareFields (c$, function () {
 this.bsNeedRule =  new JU.BS ();
-this.vNorm =  new JU.V3 ();
-this.vNorm2 =  new JU.V3 ();
-this.vTemp =  new JU.V3 ();
 });
 Clazz.defineMethod (c$, "getRuleName", 
 function (rule) {
-if (rule == 99) return "RS";
 return JS.CIPChirality.ruleNames[rule];
 }, "~N");
 Clazz.makeConstructor (c$, 
 function () {
 });
-Clazz.defineMethod (c$, "init", 
- function () {
-this.ptIDLogger = 0;
-});
 Clazz.defineMethod (c$, "getChiralityForAtoms", 
 function (data) {
+if (data.bsAtoms.cardinality () == 0) return;
 this.data = data;
-if (data.bsAtoms.isEmpty ()) return;
-this.init ();
-this.setAuxiliary = (this.setAuxiliary && data.bsAtoms.cardinality () == 1);
-this.bsAzacyclic = this.getAzacyclic (data.atoms, data.bsAtoms);
-var bsToDo = JU.BSUtil.copy (data.bsAtoms);
-var haveAlkenes = this.preFilterAtomList (data.atoms, bsToDo);
+this.doTrack = data.isTracker ();
+this.ptIDLogger = 0;
+var bsToDo = data.bsMolecule.clone ();
+var haveAlkenes = this.preFilterAtomList (data.atoms, bsToDo, data.bsEnes);
+if (!data.bsEnes.isEmpty ()) data.getEneKekule ();
+JU.Logger.info ("bsKekule:" + data.bsKekuleAmbiguous);
+bsToDo = data.bsAtoms.clone ();
 for (var i = bsToDo.nextSetBit (0); i >= 0; i = bsToDo.nextSetBit (i + 1)) {
 var a = data.atoms[i];
 a.setCIPChirality (0);
 this.ptIDLogger = 0;
 var c = this.getAtomChiralityLimited (a, null, null);
 a.setCIPChirality (c == 0 ? 3 : c | ((this.currentRule - 1) << 5));
+if (this.doTrack && c != 0) data.getRootTrackerResult (this.root);
 }
 if (haveAlkenes) {
 var lstEZ =  new JU.Lst ();
@@ -58,135 +51,34 @@ if (data.lstSmallRings.length > 0 && lstEZ.size () > 0) this.clearSmallRingEZ (d
 this.setStereoFromSmiles (data.bsHelixM, 17, data.atoms);
 this.setStereoFromSmiles (data.bsHelixP, 18, data.atoms);
 }if (JU.Logger.debugging) {
-JU.Logger.info ("sp2-aromatic = " + data.bsKekuleAmbiguous);
-JU.Logger.info ("smallRings = " + JU.PT.toJSON (null, data.lstSmallRings));
+JU.Logger.info ("Kekule ambiguous = " + data.bsKekuleAmbiguous);
+JU.Logger.info ("small rings = " + JU.PT.toJSON (null, data.lstSmallRings));
 }}, "JS.CIPData");
 Clazz.defineMethod (c$, "setStereoFromSmiles", 
  function (bsHelix, stereo, atoms) {
 if (bsHelix != null) for (var i = bsHelix.nextSetBit (0); i >= 0; i = bsHelix.nextSetBit (i + 1)) atoms[i].setCIPChirality (stereo);
 
 }, "JU.BS,~N,~A");
-Clazz.defineMethod (c$, "getAzacyclic", 
- function (atoms, bsAtoms) {
-var bsAza = null;
-for (var i = bsAtoms.nextSetBit (0); i >= 0; i = bsAtoms.nextSetBit (i + 1)) {
-var atom = atoms[i];
-if (atom.getElementNumber () != 7 || atom.getCovalentBondCount () != 3 || this.data.bsKekuleAmbiguous.get (i)) continue;
-var nRings =  new JU.Lst ();
-for (var j = this.data.lstSmallRings.length; --j >= 0; ) {
-var bsRing = this.data.lstSmallRings[j];
-if (bsRing.get (i)) nRings.addLast (bsRing);
-}
-var nr = nRings.size ();
-if (nr < 2) continue;
-var bsSubs =  new JU.BS ();
-var bonds = atom.getEdges ();
-for (var b = bonds.length; --b >= 0; ) if (bonds[b].isCovalent ()) bsSubs.set (bonds[b].getOtherNode (atom).getIndex ());
-
-var bsBoth =  new JU.BS ();
-var bsAll =  new JU.BS ();
-for (var j = 0; j < nr - 1 && bsAll != null; j++) {
-var bs1 = nRings.get (j);
-for (var k = j + 1; k < nr && bsAll != null; k++) {
-var bs2 = nRings.get (k);
-JU.BSUtil.copy2 (bs1, bsBoth);
-bsBoth.and (bs2);
-if (bsBoth.cardinality () > 2) {
-JU.BSUtil.copy2 (bs1, bsAll);
-bsAll.or (bs2);
-bsAll.and (bsSubs);
-if (bsAll.cardinality () == 3) {
-if (bsAza == null) bsAza =  new JU.BS ();
-bsAza.set (i);
-bsAll = null;
-}}}
-}
-}
-return bsAza;
-}, "~A,JU.BS");
 Clazz.defineMethod (c$, "preFilterAtomList", 
- function (atoms, bsToDo) {
+ function (atoms, bsToDo, bsEnes) {
 var haveAlkenes = false;
 for (var i = bsToDo.nextSetBit (0); i >= 0; i = bsToDo.nextSetBit (i + 1)) {
-if (!this.couldBeChiralAtom (atoms[i])) {
+if (!this.data.couldBeChiralAtom (atoms[i])) {
 bsToDo.clear (i);
 continue;
-}if (!haveAlkenes && this.couldBeChiralAlkene (atoms[i], null) != -1) haveAlkenes = true;
+}switch (this.data.couldBeChiralAlkene (atoms[i], null)) {
+case -1:
+break;
+case 13:
+bsEnes.set (i);
+case 17:
+haveAlkenes = true;
+break;
+}
 }
 return haveAlkenes;
-}, "~A,JU.BS");
-Clazz.defineMethod (c$, "couldBeChiralAtom", 
- function (a) {
-var mustBePlanar = false;
-switch (a.getCovalentBondCount ()) {
-default:
-System.out.println ("?? too many bonds! " + a);
-return false;
-case 0:
-return false;
-case 1:
-return false;
-case 2:
-return a.getElementNumber () == 7;
-case 3:
-switch (a.getElementNumber ()) {
-case 7:
-if (this.bsAzacyclic != null && this.bsAzacyclic.get (a.getIndex ())) break;
-return false;
-case 6:
-mustBePlanar = true;
-break;
-case 15:
-case 16:
-case 33:
-case 34:
-case 51:
-case 52:
-case 83:
-case 84:
-break;
-case 4:
-break;
-default:
-return false;
-}
-break;
-case 4:
-break;
-}
-var edges = a.getEdges ();
-var nH = 0;
-var haveDouble = false;
-for (var j = edges.length; --j >= 0; ) {
-if (mustBePlanar && edges[j].getCovalentOrder () == 2) haveDouble = true;
-if (edges[j].getOtherNode (a).getIsotopeNumber () == 1) nH++;
-}
-return (nH < 2 && (haveDouble || mustBePlanar == Math.abs (this.getTrigonality (a, this.vNorm)) < 0.2));
-}, "JU.SimpleNode");
-Clazz.defineMethod (c$, "couldBeChiralAlkene", 
- function (a, b) {
-switch (a.getCovalentBondCount ()) {
-default:
-return -1;
-case 2:
-if (a.getElementNumber () != 7) return -1;
-break;
-case 3:
-if (!this.isFirstRow (a)) return -1;
-break;
-}
-var bonds = a.getEdges ();
-var n = 0;
-for (var i = bonds.length; --i >= 0; ) if (bonds[i].getCovalentOrder () == 2) {
-if (++n > 1) return 17;
-var other = bonds[i].getOtherNode (a);
-if (!this.isFirstRow (other)) return -1;
-if (b != null && (other !== b || b.getCovalentBondCount () == 1)) {
-return -1;
-}}
-return 13;
-}, "JU.SimpleNode,JU.SimpleNode");
-Clazz.defineMethod (c$, "isFirstRow", 
+}, "~A,JU.BS,JU.BS");
+c$.isFirstRow = Clazz.defineMethod (c$, "isFirstRow", 
 function (a) {
 var n = a.getElementNumber ();
 return (n > 2 && n <= 10);
@@ -205,15 +97,6 @@ atoms[ab[1]].setCIPChirality (3);
 }}
 }
 }, "~A,JU.Lst");
-Clazz.defineMethod (c$, "getTrigonality", 
-function (a, vNorm) {
-var pts =  new Array (4);
-var bonds = a.getEdges ();
-for (var n = bonds.length, i = n, pt = 0; --i >= 0 && pt < 4; ) if (bonds[i].isCovalent ()) pts[pt++] = bonds[i].getOtherNode (a).getXYZ ();
-
-var plane = JU.Measure.getPlaneThroughPoints (pts[0], pts[1], pts[2], vNorm, this.vTemp,  new JU.P4 ());
-return JU.Measure.distanceToPlane (plane, (pts[3] == null ? a.getXYZ () : pts[3]));
-}, "JU.SimpleNode,JU.V3");
 Clazz.defineMethod (c$, "getAtomBondChirality", 
  function (atom, lstEZ, bsToDo) {
 var index = atom.getIndex ();
@@ -229,7 +112,7 @@ atom1 = bonds[j].getOtherNode (atom);
 index1 = atom1.getIndex ();
 if (!this.data.bsAtropisomeric.get (index1)) continue;
 c = this.setBondChirality (atom, atom1, atom, atom1, true);
-} else if (bond.getCovalentOrder () == 2) {
+} else if (this.data.getBondOrder (bond) == 2) {
 atom1 = this.getLastCumuleneAtom (bond, atom, null, null);
 index1 = atom1.getIndex ();
 if (index1 < index) continue;
@@ -257,7 +140,7 @@ var edges = atom2.getEdges ();
 for (var i = edges.length; --i >= 0; ) {
 var atom3 = (bond = edges[i]).getOtherNode (atom2);
 if (atom3 === atom) continue;
-if (bond.getCovalentOrder () != 2) return atom2;
+if (this.data.getBondOrder (bond) != 2) return atom2;
 if (parents != null) {
 if (ppt == 0) {
 parents[0] = atom2;
@@ -271,7 +154,7 @@ break;
 }
 }, "JU.SimpleEdge,JU.SimpleNode,~A,~A");
 Clazz.defineMethod (c$, "getAtomChiralityLimited", 
- function (atom, cipAtom, parentAtom) {
+function (atom, cipAtom, parentAtom) {
 var rs = 0;
 this.bsNeedRule.clearAll ();
 this.bsNeedRule.set (1);
@@ -281,15 +164,22 @@ if (isAlkeneEndCheck) {
 atom = (this.root = cipAtom).atom;
 cipAtom.htPathPoints = (cipAtom.parent = Clazz.innerTypeInstance (JS.CIPChirality.CIPAtom, this, null).create (parentAtom, null, true, false, false)).htPathPoints;
 } else {
-if (!(this.root = cipAtom = Clazz.innerTypeInstance (JS.CIPChirality.CIPAtom, this, null).create (atom, null, false, false, false)).isSP3) {
+if (!(this.root = cipAtom = (cipAtom == null ? Clazz.innerTypeInstance (JS.CIPChirality.CIPAtom, this, null).create (atom, null, false, false, false) : cipAtom)).isSP3) {
 return 0;
 }}if (cipAtom.setNode ()) {
 for (this.currentRule = 1; this.currentRule <= 9; this.currentRule++) {
-if (JU.Logger.debugging) JU.Logger.info ("-Rule " + this.getRuleName (this.currentRule) + " CIPChirality for " + cipAtom + "-----");
+var nPrioritiesPrev = cipAtom.nPriorities;
 switch (this.currentRule) {
+case 3:
+if (cipAtom.rule6refIndex >= 0) this.bsNeedRule.set (3);
+break;
 case 4:
-cipAtom.rootRule4bQueue =  new JU.Lst ();
+this.isAux = true;
+this.doTrack = false;
+this.havePseudoAuxiliary = false;
 cipAtom.createAuxiliaryDescriptors (null, null);
+this.doTrack = this.data.isTracker ();
+this.isAux = false;
 break;
 case 5:
 if (!this.bsNeedRule.get (5)) {
@@ -298,25 +188,28 @@ continue;
 }case 6:
 case 7:
 cipAtom.sortSubstituents (-2147483648);
+this.bsNeedRule.set (this.currentRule);
+break;
 case 8:
+if (this.havePseudoAuxiliary) cipAtom.clearRule4Lists ();
+cipAtom.sortSubstituents (-2147483648);
 this.bsNeedRule.set (this.currentRule);
 break;
 case 9:
-this.bsNeedRule.setBitTo (9, ((rs = cipAtom.setupRule6 (false)) != 0));
+this.bsNeedRule.setBitTo (9, (cipAtom.rule6refIndex < 0 && (rs = cipAtom.getRule6Descriptor (false)) != 0));
 break;
 }
 if (!this.bsNeedRule.get (this.currentRule)) continue;
-var nPrioritiesPrev = cipAtom.nPriorities;
 if (rs == 0 && cipAtom.sortSubstituents (0)) {
-if (JU.Logger.debugging && cipAtom.h1Count < 2) {
-JU.Logger.info (this.currentRule + ">>>>" + cipAtom);
+if (JU.Logger.debuggingHigh && cipAtom.h1Count < 2) {
 for (var i = 0; i < cipAtom.bondCount; i++) {
 if (cipAtom.atoms[i] != null) JU.Logger.info (cipAtom.atoms[i] + " " + cipAtom.priorities[i]);
 }
-}if (isAlkeneEndCheck) return (cipAtom.atoms[0].isDuplicate ? 2 : 1);
-rs = cipAtom.checkHandedness ();
-if (this.currentRule == 8 && (cipAtom.nPriorities != 4 || nPrioritiesPrev != 2)) {
-rs |= 8;
+}if (isAlkeneEndCheck) return cipAtom.getEneTop ();
+rs = this.data.checkHandedness (cipAtom);
+if (this.currentRule == 8) {
+if (cipAtom.nPriorities == 4 && nPrioritiesPrev == 2) cipAtom.isRule5Pseudo = !cipAtom.isRule5Pseudo;
+if (cipAtom.isRule5Pseudo) rs |= 8;
 }if (JU.Logger.debugging) JU.Logger.info (atom + " " + JV.JC.getCIPChiralityName (rs) + " by Rule " + this.getRuleName (this.currentRule) + "\n----------------------------------");
 return rs;
 }}
@@ -330,52 +223,47 @@ return rs;
 }, "JU.SimpleNode,JS.CIPChirality.CIPAtom,JU.SimpleNode");
 Clazz.defineMethod (c$, "getBondChiralityLimited", 
  function (bond, a) {
-if (JU.Logger.debugging) JU.Logger.info ("get Bond Chirality " + bond);
 if (a == null) a = bond.getOtherNode (null);
-if (this.couldBeChiralAlkene (a, bond.getOtherNode (a)) == -1) return 0;
+if (this.data.couldBeChiralAlkene (a, bond) == -1) return 0;
 var nSP2 =  Clazz.newIntArray (1, 0);
 var parents =  new Array (2);
 var b = this.getLastCumuleneAtom (bond, a, nSP2, parents);
 var isAxial = nSP2[0] % 2 == 1;
-return this.setBondChirality (a, parents[0], parents[1], b, isAxial);
+if (!isAxial && this.data.bsAromatic.get (a.getIndex ())) return -1;
+var c = this.setBondChirality (a, parents[0], parents[1], b, isAxial);
+if (JU.Logger.debugging) JU.Logger.info ("get Bond Chirality " + JV.JC.getCIPChiralityName (c) + " " + bond);
+return c;
 }, "JU.SimpleEdge,JU.SimpleNode");
 Clazz.defineMethod (c$, "setBondChirality", 
  function (a, pa, pb, b, isAxial) {
 var a1 = Clazz.innerTypeInstance (JS.CIPChirality.CIPAtom, this, null).create (a, null, true, false, false);
+var b2 = Clazz.innerTypeInstance (JS.CIPChirality.CIPAtom, this, null).create (b, null, true, false, false);
 var atop = this.getAtomChiralityLimited (null, a1, pa) - 1;
 var ruleA = this.currentRule;
-var b2 = Clazz.innerTypeInstance (JS.CIPChirality.CIPAtom, this, null).create (b, null, true, false, false);
 var btop = this.getAtomChiralityLimited (null, b2, pb) - 1;
 var ruleB = this.currentRule;
-var c = (atop >= 0 && btop >= 0 ? this.getEneChirality (b2.atoms[btop], b2, a1, a1.atoms[atop], isAxial, true) : 0);
+if (isAxial && a1.nRootDuplicates > 3 && atop < 0 && btop < 0) {
+ruleA = ruleB = this.currentRule = 9;
+b2.rule6refIndex = a1.atoms[atop = a1.getEneTop () - 1].atomIndex;
+if (b2.sortSubstituents (0)) btop = b2.getEneTop () - 1;
+}var c = (atop >= 0 && btop >= 0 ? this.getEneChirality (b2.atoms[btop], b2, a1, a1.atoms[atop], isAxial, true) : 0);
 if (c != 0 && (isAxial || !this.data.bsAtropisomeric.get (a.getIndex ()) && !this.data.bsAtropisomeric.get (b.getIndex ()))) {
-if (isAxial && ((ruleA >= 8) != (ruleB >= 8))) {
-c |= 8;
-}a.setCIPChirality (c | ((ruleA - 1) << 5));
+if (isAxial == (ruleA == 8) == (ruleB == 8)) c &= -9;
+ else c |= 8;
+a.setCIPChirality (c | ((ruleA - 1) << 5));
 b.setCIPChirality (c | ((ruleB - 1) << 5));
 if (JU.Logger.debugging) JU.Logger.info (a + "-" + b + " " + JV.JC.getCIPChiralityName (c));
 }return c;
 }, "JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,~B");
 Clazz.defineMethod (c$, "getEneChirality", 
-function (top1, end1, end2, top2, isAxial, allowPseudo) {
-return (top1 == null || top2 == null || top1.atom == null || top2.atom == null ? 0 : isAxial ? (this.isPos (top1, end1, end2, top2) ? 18 : 17) : (this.isCis (top1, end1, end2, top2) ? 13 : 14));
+function (winner1, end1, end2, winner2, isAxial, allowPseudo) {
+return (winner1 == null || winner2 == null || winner1.atom == null || winner2.atom == null ? 0 : isAxial ? this.data.isPositiveTorsion (winner1, end1, end2, winner2) : this.data.isCis (winner1, end1, end2, winner2));
 }, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,~B,~B");
-Clazz.defineMethod (c$, "isCis", 
-function (a, b, c, d) {
-JU.Measure.getNormalThroughPoints (a.atom.getXYZ (), b.atom.getXYZ (), c.atom.getXYZ (), this.vNorm, this.vTemp);
-var vNorm2 =  new JU.V3 ();
-JU.Measure.getNormalThroughPoints (b.atom.getXYZ (), c.atom.getXYZ (), d.atom.getXYZ (), vNorm2, this.vTemp);
-return (this.vNorm.dot (vNorm2) > 0);
-}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom");
-Clazz.defineMethod (c$, "isPos", 
-function (a, b, c, d) {
-var angle = JU.Measure.computeTorsion (a.atom.getXYZ (), b.atom.getXYZ (), c.atom.getXYZ (), d.atom.getXYZ (), true);
-return (angle > 0);
-}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom");
 c$.$CIPChirality$CIPAtom$ = function () {
 Clazz.pu$h(self.c$);
 c$ = Clazz.decorateAsClass (function () {
 Clazz.prepareCallback (this, arguments);
+this.isRule5Pseudo = true;
 this.id = 0;
 this.sphere = 0;
 this.rootDistance = 0;
@@ -384,11 +272,12 @@ this.isDuplicate = true;
 this.isTerminal = false;
 this.isAlkene = false;
 this.atom = null;
-this.atomIndex = 0;
+this.atomIndex = -1;
 this.bondCount = 0;
 this.elemNo = 0;
 this.mass = -1;
 this.parent = null;
+this.rootSubstituent = null;
 this.h1Count = 0;
 this.atoms = null;
 this.nAtoms = 0;
@@ -398,8 +287,12 @@ this.oldPriorities = null;
 this.priorities =  Clazz.newIntArray (4, 0);
 this.oldNPriorities = 0;
 this.nPriorities = 0;
+this.priority = 0;
+this.chiralPath = null;
 this.nRootDuplicates = 0;
 this.htPathPoints = null;
+this.rule6refIndex = -1;
+this.bsRule6Subs = null;
 this.alkeneParent = null;
 this.alkeneChild = null;
 this.isAlkeneAtom2 = false;
@@ -411,14 +304,11 @@ this.auxEZ = -1;
 this.isSP3 = true;
 this.auxChirality = '~';
 this.nextChiralBranch = null;
-this.rootRule4bQueue = null;
 this.isChiralPath = false;
 this.rule4Type = 0;
 this.bsTemp = null;
 this.rule4Ref = 0;
 this.listRS = null;
-this.newAtoms = null;
-this.rule6refIndex = -1;
 Clazz.instantialize (this, arguments);
 }, JS.CIPChirality, "CIPAtom", null, [Comparable, Cloneable]);
 Clazz.prepareFields (c$, function () {
@@ -428,48 +318,6 @@ this.bsTemp =  new JU.BS ();
 Clazz.makeConstructor (c$, 
 function () {
 });
-Clazz.defineMethod (c$, "setupRule6", 
-function (a) {
-if (this.nPriorities > 2 || (a ? this.countDuplicates (this.atomIndex) : this.nRootDuplicates) <= 2) return 0;
-var b = (this.nPriorities == 1 && !a);
-this.b$["JS.CIPChirality"].root.rule6refIndex = this.atoms[this.priorities[2]].atomIndex;
-if (b) this.saveRestorePriorities (false);
-this.sortSubstituents (-2147483648);
-var c = 0;
-if (!this.sortSubstituents (0)) return 0;
-c = this.checkHandedness ();
-if (c == 0 || !b) {
-return c;
-}this.b$["JS.CIPChirality"].root.rule6refIndex = this.atoms[1].atomIndex;
-this.saveRestorePriorities (true);
-this.sortSubstituents (-2147483648);
-this.sortSubstituents (0);
-var d = this.checkHandedness ();
-return d == c ? c : 0;
-}, "~B");
-Clazz.defineMethod (c$, "saveRestorePriorities", 
- function (a) {
-if (a) {
-this.priorities = this.oldPriorities;
-this.nPriorities = this.oldNPriorities;
-} else {
-this.oldPriorities = java.util.Arrays.copyOf (this.priorities, 4);
-this.oldNPriorities = this.nPriorities;
-}for (var b = 0; b < this.nAtoms; b++) this.atoms[b].saveRestorePriorities (a);
-
-}, "~B");
-Clazz.defineMethod (c$, "countDuplicates", 
- function (a) {
-var b = 0;
-for (var c = 0; c < 4; c++) {
-if (this.atoms[c] == null) continue;
-if (this.atoms[c].isDuplicate) {
-if (this.atoms[c].atomIndex == a) b++;
-} else {
-b += this.atoms[c].countDuplicates (a);
-}}
-return b;
-}, "~N");
 Clazz.defineMethod (c$, "create", 
 function (a, b, c, d, e) {
 this.id = ++this.b$["JS.CIPChirality"].ptIDLogger;
@@ -483,13 +331,15 @@ this.isDuplicate = this.multipleBondDuplicate = d;
 this.isKekuleAmbiguous = (this.b$["JS.CIPChirality"].data.bsKekuleAmbiguous != null && this.b$["JS.CIPChirality"].data.bsKekuleAmbiguous.get (this.atomIndex));
 this.elemNo = (d && this.isKekuleAmbiguous ? b.getKekuleElementNumber () : a.getElementNumber ());
 this.bondCount = a.getCovalentBondCount ();
-this.isSP3 = (this.bondCount == 4 || this.bondCount == 3 && !c && (this.elemNo > 10 || this.b$["JS.CIPChirality"].bsAzacyclic != null && this.b$["JS.CIPChirality"].bsAzacyclic.get (this.atomIndex)));
+this.isSP3 = (this.bondCount == 4 || this.bondCount == 3 && !c && (this.elemNo > 10 || this.b$["JS.CIPChirality"].data.bsAzacyclic != null && this.b$["JS.CIPChirality"].data.bsAzacyclic.get (this.atomIndex)));
 if (b != null) this.sphere = b.sphere + 1;
 if (this.sphere == 1) {
+this.rootSubstituent = this;
 this.htPathPoints =  new java.util.Hashtable ();
 } else if (b != null) {
+this.rootSubstituent = b.rootSubstituent;
 this.htPathPoints = (b.htPathPoints).clone ();
-}this.bsPath = (b == null ?  new JU.BS () : JU.BSUtil.copy (b.bsPath));
+}this.bsPath = (b == null ?  new JU.BS () : b.bsPath.clone ());
 if (d) this.b$["JS.CIPChirality"].bsNeedRule.set (4);
 this.rootDistance = this.sphere;
 if (b == null) {
@@ -503,13 +353,88 @@ this.b$["JS.CIPChirality"].root.nRootDuplicates++;
 }} else {
 this.bsPath.set (this.atomIndex);
 this.htPathPoints.put (Integer.$valueOf (this.atomIndex), Integer.$valueOf (this.rootDistance));
-}if (JU.Logger.debuggingHigh) {
+}if (this.b$["JS.CIPChirality"].doTrack) {
 if (this.sphere < 50) this.myPath = (b != null ? b.myPath + "-" : "") + this;
-JU.Logger.info ("new CIPAtom " + this.myPath);
+if (JU.Logger.debuggingHigh) JU.Logger.info ("new CIPAtom " + this.myPath);
 }return this;
 }, "JU.SimpleNode,JS.CIPChirality.CIPAtom,~B,~B,~B");
+Clazz.defineMethod (c$, "getEneTop", 
+function () {
+return (this.atoms[0].isDuplicate ? 2 : 1);
+});
+Clazz.defineMethod (c$, "getRule6Descriptor", 
+function (a) {
+if (this.nPriorities > 2 || (a ? this.countAuxDuplicates (this.atomIndex) : this.nRootDuplicates) <= 2) return 0;
+var b = (this.priorities[0] == this.priorities[1] ? 0 : 1);
+var c = (this.priorities[2] != this.priorities[3] ? 3 : 4);
+var d = (this.priorities[2] == this.priorities[1] ? 1 : 2);
+var e = 0;
+var f = 0;
+var g =  new JU.BS ();
+for (var h = b; h < c; h++) g.set (this.atoms[h].atomIndex);
+
+if (this.nPriorities == 1) c = 2;
+var i = null;
+var j;
+for (var k = b; k < c; k += d) {
+if (this.b$["JS.CIPChirality"].data.testRule6Full) {
+i = Clazz.innerTypeInstance (JS.CIPChirality.CIPAtom, this, null).create (this.atom, null, false, false, false);
+i.rule6refIndex = this.atoms[k].atomIndex;
+i.setNode ();
+for (var l = 0; l < 4; l++) {
+i.atoms[l] = this.atoms[l].clone ();
+i.priorities[l] = this.priorities[l];
+}
+i.bsRule6Subs = g;
+j = this.b$["JS.CIPChirality"].getAtomChiralityLimited (this.atom, i, null);
+this.b$["JS.CIPChirality"].currentRule = 9;
+if (j == 0) return 0;
+} else {
+this.b$["JS.CIPChirality"].root.bsRule6Subs =  new JU.BS ();
+this.b$["JS.CIPChirality"].root.rule6refIndex = this.atoms[k].atomIndex;
+this.saveRestorePriorities (false);
+this.sortSubstituents (-2147483648);
+if (!this.sortSubstituents (0)) return 0;
+j = this.b$["JS.CIPChirality"].data.checkHandedness (this);
+this.saveRestorePriorities (true);
+}if ((j & 8) == 0) {
+if (j == 1 || j == 17) {
+if (e == 0) {
+e = j;
+continue;
+}} else if (f == 0) {
+f = j;
+continue;
+}}return j;
+}
+return 0;
+}, "~B");
+Clazz.defineMethod (c$, "saveRestorePriorities", 
+ function (a) {
+if (a) {
+this.priorities = this.oldPriorities;
+this.nPriorities = this.oldNPriorities;
+} else {
+this.oldPriorities = java.util.Arrays.copyOf (this.priorities, 4);
+this.oldNPriorities = this.nPriorities;
+}for (var b = 0; b < this.nAtoms; b++) this.atoms[b].saveRestorePriorities (a);
+
+}, "~B");
+Clazz.defineMethod (c$, "countAuxDuplicates", 
+ function (a) {
+var b = 0;
+for (var c = 0; c < 4; c++) {
+if (this.atoms[c] == null) continue;
+if (this.atoms[c].isDuplicate) {
+if (this.atoms[c].atomIndex == a) b++;
+} else {
+b += this.atoms[c].countAuxDuplicates (a);
+}}
+return b;
+}, "~N");
 Clazz.defineMethod (c$, "getMass", 
  function () {
+if (this.isDuplicate) return 0;
 if (this.mass == -1) {
 if (this.isDuplicate || (this.mass = this.atom.getMass ()) != Clazz.floatToInt (this.mass) || this.isType (";9Be;19F;23Na;27Al;31P;45Sc;55Mn;59Co;75As;89Y;93Nb;98Tc;103Rh;127I;133Cs;141Pr;145Pm;159Tb;165Ho;169Tm;197Au;209Bi;209Po;210At;222Rn;223Fr;226Ra;227Ac;231Pa;232Th;and all > U (atomno > 92)")) return (this.mass == -1 ? this.mass = JU.Elements.getAtomicMass (Clazz.floatToInt (this.elemNo)) : this.mass);
 if (this.isType (";16O;52Cr;96Mo;175Lu;")) this.mass -= 0.1;
@@ -546,9 +471,9 @@ var f = b[e];
 if (!f.isCovalent ()) continue;
 var g = f.getOtherNode (this.atom);
 var h = (this.parent != null && this.parent.atom === g);
-var i = f.getCovalentOrder ();
+var i = this.b$["JS.CIPChirality"].data.getBondOrder (f);
 if (i == 2) {
-if (this.elemNo > 10 || !this.b$["JS.CIPChirality"].isFirstRow (g)) i = 1;
+if (this.elemNo > 10 || !JS.CIPChirality.isFirstRow (g)) i = 1;
  else {
 this.isAlkene = true;
 if (h) this.setEne ();
@@ -568,7 +493,7 @@ this.nAtoms = d;
 switch (d) {
 case 2:
 case 3:
-if (this.elemNo == 6 && this.b$["JS.CIPChirality"].data.bsCMinus.get (a) || this.b$["JS.CIPChirality"].data.bsXAromatic.get (a)) {
+if (this.elemNo == 6 && this.b$["JS.CIPChirality"].data.bsNegativeAromatic.get (a) || this.b$["JS.CIPChirality"].data.bsXAromatic.get (a)) {
 this.nAtoms++;
 this.addAtom (d++, this.atom, true, false, false);
 }break;
@@ -600,7 +525,7 @@ this.alkeneParent.isEvenEne = !this.alkeneParent.isEvenEne;
 this.isAlkeneAtom2 = true;
 }});
 Clazz.defineMethod (c$, "addAtom", 
-function (a, b, c, d, e) {
+ function (a, b, c, d, e) {
 if (a >= this.atoms.length) {
 if (JU.Logger.debugging) JU.Logger.info (" too many bonds on " + this.atom);
 return null;
@@ -613,20 +538,21 @@ return null;
 }, "~N,JU.SimpleNode,~B,~B,~B");
 Clazz.defineMethod (c$, "sortSubstituents", 
 function (a) {
-if (this.b$["JS.CIPChirality"].currentRule != 99 && this.nPriorities == (a < 1 ? 4 : 3)) return true;
+if (this.nPriorities == (a < 1 ? 4 : 3)) return true;
 var b = (a == -2147483648);
 if (b) {
 if (this.isTerminal) return false;
 switch (this.b$["JS.CIPChirality"].currentRule) {
-case 9:
-for (var c = 0; c < 4; c++) if (this.atoms[c] != null && !this.atoms[c].isDuplicate && this.atoms[c].atom != null && this.atoms[c].setNode ()) this.atoms[c].sortSubstituents (-2147483648);
-
-break;
 case 5:
 case 7:
-for (var d = 0; d < 4; d++) if (this.atoms[d] != null && this.atoms[d].isChiralPath) this.atoms[d].sortSubstituents (-2147483648);
+for (var c = 0; c < 4; c++) if (this.atoms[c] != null && (this.atoms[c].isChiralPath || this.atoms[c].nextChiralBranch != null)) this.atoms[c].sortSubstituents (-2147483648);
 
-if (!this.isSP3) return false;
+if (this.isAlkene) return false;
+break;
+case 9:
+for (var d = 0; d < 4; d++) if (this.atoms[d] != null && !this.atoms[d].isDuplicate && this.atoms[d].atom != null && this.atoms[d].setNode ()) this.atoms[d].sortSubstituents (-2147483648);
+
+break;
 }
 }b = new Boolean (b | (this.b$["JS.CIPChirality"].currentRule == 6 || this.b$["JS.CIPChirality"].currentRule == 8)).valueOf ();
 var c =  Clazz.newIntArray (4, 0);
@@ -638,22 +564,18 @@ JU.Logger.info (this.b$["JS.CIPChirality"].getRuleName (this.b$["JS.CIPChirality
 }
 JU.Logger.info ("---" + this.nPriorities);
 }var e;
-var f;
-if (this.b$["JS.CIPChirality"].currentRule == 99) for (var g = 0; g < 4; g++) {
-var h = this.atoms[g];
-if (h.nextChiralBranch != null) {
-h.nextChiralBranch.sortSubstituents (a);
-}}
-for (var h = 0; h < 3; h++) {
-var i = this.atoms[h];
-var j = i.isDuplicate && this.b$["JS.CIPChirality"].currentRule > 2;
-for (var k = h + 1; k < 4; k++) {
-var l = this.atoms[e = k];
-switch (l.atom == null || this.priorities[h] < this.priorities[k] ? -1 : j || i.atom == null || this.priorities[k] < this.priorities[h] ? 1 : (f = i.checkCurrentRule (l)) != 0 && f != -2147483648 || b ? f : this.sign (i.breakTie (l, a + 1))) {
+for (var f = 0; f < 3; f++) {
+var g = this.atoms[f];
+var h = g.isDuplicate && this.b$["JS.CIPChirality"].currentRule > 2;
+for (var i = f + 1; i < 4; i++) {
+var j = this.atoms[e = i];
+var k = 0;
+switch (j.atom == null || this.priorities[f] < this.priorities[i] ? -1 : h || g.atom == null || this.priorities[i] < this.priorities[f] ? 1 : (k = g.checkCurrentRule (j)) != 0 && k != -2147483648 || b ? k : this.sign (g.breakTie (j, a + 1))) {
 case 1:
-e = h;
+e = f;
 case -1:
 d[e]++;
+if (this.b$["JS.CIPChirality"].doTrack && k != 0 && (a == 0 || b)) this.b$["JS.CIPChirality"].data.track (this.b$["JS.CIPChirality"], g, j, 1, k, false);
 case -2147483648:
 case 0:
 c[e]++;
@@ -662,22 +584,20 @@ continue;
 }
 }
 this.bsTemp.clearAll ();
-this.newAtoms =  new Array (4);
-for (var i = 0; i < 4; i++) {
-var j = c[i];
-var k = this.newAtoms[j] = this.atoms[i];
-if (k.atom != null) this.bsTemp.set (d[i]);
-if (this.b$["JS.CIPChirality"].currentRule == 99) continue;
-this.priorities[j] = d[i];
+var g =  new Array (4);
+for (var h = 0; h < 4; h++) {
+var i = c[h];
+var j = g[i] = this.atoms[h];
+var k = d[h];
+if (j.atom != null) this.bsTemp.set (k);
+j.priority = this.priorities[i] = k;
 }
-if (this.b$["JS.CIPChirality"].currentRule == 99) {
-return false;
-}this.atoms = this.newAtoms;
+this.atoms = g;
 this.nPriorities = this.bsTemp.cardinality ();
 if (JU.Logger.debuggingHigh && this.atoms[2].atom != null && this.atoms[2].elemNo != 1) {
 JU.Logger.info (this.dots () + this.atom + " nPriorities = " + this.nPriorities);
-for (var j = 0; j < 4; j++) {
-JU.Logger.info (this.dots () + this.myPath + "[" + j + "]=" + this.atoms[j] + " " + this.priorities[j] + " " + Integer.toHexString (this.priorities[j]));
+for (var i = 0; i < 4; i++) {
+JU.Logger.info (this.dots () + this.myPath + "[" + i + "]=" + this.atoms[i] + " " + this.priorities[i] + " " + Integer.toHexString (this.priorities[i]));
 }
 JU.Logger.info (this.dots () + "-------" + this.nPriorities);
 }return (this.nPriorities == this.bondCount);
@@ -688,40 +608,41 @@ return ".....................".substring (0, Math.min (20, this.sphere));
 });
 Clazz.defineMethod (c$, "breakTie", 
  function (a, b) {
-if (this.isDuplicate && (this.b$["JS.CIPChirality"].currentRule > 2 || a.isDuplicate && this.atom === a.atom && this.rootDistance == a.rootDistance) || !this.setNode () || !a.setNode () || this.isTerminal && a.isTerminal || this.isDuplicate && a.isDuplicate) return 0;
-if (this.isTerminal != a.isTerminal) return (this.isTerminal ? 1 : -1) * (b + (a.isDuplicate || this.isDuplicate ? 0 : 1));
-var c = (this.b$["JS.CIPChirality"].currentRule > 1 ? 0 : this.unlikeDuplicates (a));
+var c = 0;
+while (true) {
+if (this.isDuplicate && (this.b$["JS.CIPChirality"].currentRule > 2 || a.isDuplicate && this.atom === a.atom && this.rootDistance == a.rootDistance) || !this.setNode () || !a.setNode () || this.isTerminal && a.isTerminal || this.isDuplicate && a.isDuplicate) break;
+if (this.isTerminal != a.isTerminal) {
+c = (this.isTerminal ? 1 : -1) * (b + (a.isDuplicate || this.isDuplicate ? 0 : 1));
+if (this.b$["JS.CIPChirality"].doTrack) this.b$["JS.CIPChirality"].data.track (this.b$["JS.CIPChirality"], this, a, b, c, true);
+break;
+}var d = (this.b$["JS.CIPChirality"].currentRule > 2 ? 0 : this.unlikeDuplicates (a));
+if (d != 0) {
+c = d * (b + 1);
+if (this.b$["JS.CIPChirality"].doTrack) this.b$["JS.CIPChirality"].data.track (this.b$["JS.CIPChirality"], this, a, b, c, false);
+break;
+}for (var e = 0; e < this.nAtoms; e++) if ((d = this.atoms[e].checkCurrentRule (a.atoms[e])) != 0) {
+c = d * (b + 1);
+if (this.b$["JS.CIPChirality"].doTrack) this.b$["JS.CIPChirality"].data.track (this.b$["JS.CIPChirality"], this.atoms[e], a.atoms[e], b, c, false);
+break;
+}
 if (c != 0) {
-return c * (b + 1);
-}for (var d = 0; d < this.nAtoms; d++) if ((c = this.atoms[d].checkCurrentRule (a.atoms[d])) != 0) return c * (b + 1);
-
-this.sortSubstituents (b);
+break;
+}this.sortSubstituents (b);
 a.sortSubstituents (b);
-var e = 0;
 for (var f = 0, g, h = 2147483647; f < this.nAtoms; f++) {
-if ((c = this.atoms[f].breakTie (a.atoms[f], b + 1)) != 0 && (g = Math.abs (c)) < h) {
+if ((d = this.atoms[f].breakTie (a.atoms[f], b + 1)) != 0 && (g = Math.abs (d)) < h) {
 h = g;
-e = c;
+c = d;
 }}
-return e;
+break;
+}
+return c;
 }, "JS.CIPChirality.CIPAtom,~N");
 Clazz.overrideMethod (c$, "compareTo", 
 function (a) {
 var b;
-return (a == null ? -1 : (this.atom == null) != (a.atom == null) ? (this.atom == null ? 1 : -1) : (b = this.compareRule1a (a)) != 0 ? b : (b = this.unlikeDuplicates (a)) != 0 || !this.isDuplicate ? b : this.compareRule1b (a));
+return (this.b$["JS.CIPChirality"].root.rule4Ref == 0 ? (a == null ? -1 : (this.atom == null) != (a.atom == null) ? (this.atom == null ? 1 : -1) : (b = this.compareRule1a (a)) != 0 ? b : (b = this.unlikeDuplicates (a)) != 0 ? b : this.isDuplicate ? this.compareRule1b (a) : this.compareRule2 (a)) : this.sphere < a.sphere ? -1 : this.sphere > a.sphere ? 1 : this.chiralPath.compareTo (a.chiralPath));
 }, "JS.CIPChirality.CIPAtom");
-Clazz.defineMethod (c$, "auxSort", 
- function (a) {
-var b = this.b$["JS.CIPChirality"].currentRule;
-this.b$["JS.CIPChirality"].currentRule = a;
-var c = this.b$["JS.CIPChirality"].root.rule6refIndex;
-var d = this.b$["JS.CIPChirality"].root.nRootDuplicates;
-var e = (a == 9 ? this.setupRule6 (true) != 0 : this.sortSubstituents (0));
-this.b$["JS.CIPChirality"].root.nRootDuplicates = d;
-this.b$["JS.CIPChirality"].root.rule6refIndex = c;
-this.b$["JS.CIPChirality"].currentRule = b;
-return e;
-}, "~N");
 Clazz.defineMethod (c$, "checkCurrentRule", 
  function (a) {
 switch (this.b$["JS.CIPChirality"].currentRule) {
@@ -736,11 +657,9 @@ case 4:
 return this.compareRule3 (a);
 case 5:
 return this.compareRules4ac (a, " sr SR PM");
-case 99:
-return this.compareRule4bRef (a);
 case 6:
 case 8:
-return (this.isTerminal || a.isTerminal ? 0 : this.compareRule4b5Root (a));
+return (this.isTerminal || a.isTerminal ? 0 : this.compareRule4b5 (a));
 case 7:
 return this.compareRules4ac (a, " s r p m");
 case 9:
@@ -757,11 +676,11 @@ return a.atom == null ? -1 : this.atom == null ? 1 : a.elemNo < this.elemNo ? -1
 }, "JS.CIPChirality.CIPAtom");
 Clazz.defineMethod (c$, "compareRule1b", 
  function (a) {
-return a.isDuplicate != this.isDuplicate ? 0 : Integer.compare (this.rootDistance, a.rootDistance);
+return Integer.compare (this.rootDistance, a.rootDistance);
 }, "JS.CIPChirality.CIPAtom");
 Clazz.defineMethod (c$, "compareRule2", 
  function (a) {
-return (this.getMass () == a.getMass () ? 0 : this.mass > a.mass ? -1 : 1);
+return (this.atomIndex == a.atomIndex ? 0 : this.getMass () > a.getMass () ? -1 : this.mass < a.mass ? 1 : this.b$["JS.CIPChirality"].root.rule6refIndex < 0 ? 0 : !this.b$["JS.CIPChirality"].root.bsRule6Subs.get (this.atomIndex) || !this.b$["JS.CIPChirality"].root.bsRule6Subs.get (a.atomIndex) ? 0 : this.b$["JS.CIPChirality"].root.rule6refIndex == this.atomIndex ? -1 : this.b$["JS.CIPChirality"].root.rule6refIndex == a.atomIndex ? 1 : 0);
 }, "JS.CIPChirality.CIPAtom");
 Clazz.defineMethod (c$, "compareRule3", 
  function (a) {
@@ -774,28 +693,70 @@ var c = b.indexOf (this.auxChirality);
 var d = b.indexOf (a.auxChirality);
 return (c > d + 1 ? -1 : d > c + 1 ? 1 : 0);
 }, "JS.CIPChirality.CIPAtom,~S");
-Clazz.defineMethod (c$, "compareRule4bRef", 
+Clazz.defineMethod (c$, "compareRule4b5", 
  function (a) {
-return this.rule4Type == a.rule4Type ? 0 : this.rule4Type == this.b$["JS.CIPChirality"].root.rule4Ref ? -1 : 1;
-}, "JS.CIPChirality.CIPAtom");
-Clazz.defineMethod (c$, "compareRule4b5Root", 
- function (a) {
-var b = this.getBestList ();
-var c = a.getBestList ();
+var b = this.getBetter4bList ();
+var c = a.getBetter4bList ();
 var d = this.compareLikeUnlike (b, c);
-return (d == null ? -2147483648 : d === b ? -1 : 1);
+var e = (d == null ? -2147483648 : d === b ? -1 : 1);
+if (d != null) {
+if (this.b$["JS.CIPChirality"].currentRule == 8) {
+if ((this.compareLikeUnlike (this.listRS[2], a.listRS[2]) === this.listRS[2]) == (d === b)) this.parent.isRule5Pseudo = !this.parent.isRule5Pseudo;
+}if (this.b$["JS.CIPChirality"].doTrack) this.b$["JS.CIPChirality"].data.track (this.b$["JS.CIPChirality"], this, a, 1, e, false);
+}return e;
 }, "JS.CIPChirality.CIPAtom");
-Clazz.defineMethod (c$, "getBestList", 
- function () {
-if (this.b$["JS.CIPChirality"].currentRule == 8) return this.listRS[0];
-if (this.listRS == null) {
-this.listRS =  new Array (2);
-this.rankAndRead (this.listRS[0] =  new JU.BS (), 1);
-this.rankAndRead (this.listRS[1] =  new JU.BS (), 2);
-}if (JU.Logger.debugging) JU.Logger.info ("getBS4b5 " + this + " " + this.listRS[0] + this.listRS[1]);
-var a = this.compareLikeUnlike (this.listRS[0], this.listRS[1]);
-return (a == null ? this.listRS[0] : a);
+Clazz.defineMethod (c$, "compareRule6", 
+ function (a) {
+return ((this.atomIndex == this.b$["JS.CIPChirality"].root.rule6refIndex) == (a.atomIndex == this.b$["JS.CIPChirality"].root.rule6refIndex) ? 0 : this.atomIndex == this.b$["JS.CIPChirality"].root.rule6refIndex ? -1 : 1);
+}, "JS.CIPChirality.CIPAtom");
+Clazz.defineMethod (c$, "clearRule4Lists", 
+function () {
+this.listRS = null;
+for (var a = 0; a < 4 && this.atoms[a] != null; a++) this.atoms[a].clearRule4Lists ();
+
 });
+Clazz.defineMethod (c$, "getBetter4bList", 
+ function () {
+if (this.listRS != null) return this.listRS[this.b$["JS.CIPChirality"].currentRule == 8 ? 1 : 0];
+var a;
+this.listRS =  Clazz.newArray (-1, [null, a = this.rank4bAndRead (null), this.rank4bAndRead (a)]);
+JU.Logger.info ("getBest " + this.b$["JS.CIPChirality"].currentRule + " " + this + " " + this.listRS[1] + this.listRS[2] + " " + this.myPath);
+a = this.compareLikeUnlike (this.listRS[1], this.listRS[2]);
+return this.listRS[0] = (this.b$["JS.CIPChirality"].currentRule == 8 || a == null ? this.listRS[1] : a);
+});
+Clazz.defineMethod (c$, "rank4bAndRead", 
+ function (a) {
+var b = (a != null);
+var c = (b ? 2 : 1);
+var d =  new JU.BS ();
+var e =  new JU.Lst ();
+this.b$["JS.CIPChirality"].root.rule4Ref = c;
+this.addChiralAtoms (e, c);
+java.util.Collections.sort (e);
+this.b$["JS.CIPChirality"].root.rule4Ref = 0;
+for (var f = 0, g = e.size (); f < g; f++) {
+if (JU.Logger.debugging) JU.Logger.info ("" + c + " " + this + " " + e.get (f).chiralPath);
+if (e.get (f).rule4Type == c) d.set (f);
+}
+return d;
+}, "JU.BS");
+Clazz.defineMethod (c$, "addChiralAtoms", 
+ function (a, b) {
+if (this.atom == null || this.isTerminal || this.isDuplicate) return;
+if (this.rule4Type != 0) {
+var c = "";
+var d = this;
+while (d != null) {
+c = String.fromCharCode (64 + (d.priority << 2) + (d.rule4Type == 0 ? 0 : d.rule4Type == b ? 1 : 2)) + c;
+if ((d = d.parent) != null && d.chiralPath != null) {
+c = d.chiralPath + c;
+break;
+}}
+this.chiralPath = c;
+a.addLast (this);
+}for (var c = 0; c < 4; c++) if (this.atoms[c] != null) this.atoms[c].addChiralAtoms (a, b);
+
+}, "JU.Lst,~N");
 Clazz.defineMethod (c$, "compareLikeUnlike", 
  function (a, b) {
 var c = b.clone ();
@@ -803,97 +764,6 @@ c.xor (a);
 var d = c.nextSetBit (0);
 return (d < 0 ? null : a.get (d) ? a : b);
 }, "JU.BS,JU.BS");
-Clazz.defineMethod (c$, "rankAndRead", 
- function (a, b) {
-this.b$["JS.CIPChirality"].root.rule4Ref = b;
-this.b$["JS.CIPChirality"].currentRule = 99;
-this.sortSubstituents (0);
-this.b$["JS.CIPChirality"].root.rootRule4bQueue.clear ();
-this.b$["JS.CIPChirality"].root.rootRule4bQueue.addLast (this);
-if (this.rule4Type == b) a.set (0);
-var c = (this.rule4Type == 0 ? 0 : 1);
-while (this.b$["JS.CIPChirality"].root.rootRule4bQueue.size () != 0) {
-var d = this.b$["JS.CIPChirality"].root.rootRule4bQueue.removeItemAt (0);
-var e = d.newAtoms;
-if (e == null) e = d.atoms;
-if (e != null) for (var f = 0; f < 4; f++) {
-var g = e[f];
-if (g == null || g.atom == null || g.isTerminal || g.isDuplicate) continue;
-this.b$["JS.CIPChirality"].root.rootRule4bQueue.addLast (g);
-if (g.rule4Type == 0) continue;
-if (g.rule4Type == b) a.set (c);
-c++;
-}
-}
-this.b$["JS.CIPChirality"].currentRule = 6;
-}, "JU.BS,~N");
-Clazz.defineMethod (c$, "compareRule6", 
- function (a) {
-return ((this.atomIndex == this.b$["JS.CIPChirality"].root.rule6refIndex) == (a.atomIndex == this.b$["JS.CIPChirality"].root.rule6refIndex) ? 0 : this.atomIndex == this.b$["JS.CIPChirality"].root.rule6refIndex ? -1 : 1);
-}, "JS.CIPChirality.CIPAtom");
-Clazz.defineMethod (c$, "getAuxEneWinnerChirality", 
- function (a, b, c, d) {
-var e = this.getAuxEneEndWinner (a, a.nextSP2, null);
-if (JU.Logger.debuggingHigh) JU.Logger.info (this + " alkene end winner1 " + e);
-var f = (e == null || e.atom == null ? null : this.getAuxEneEndWinner (b, b.nextSP2, d));
-if (JU.Logger.debuggingHigh) JU.Logger.info (this + " alkene end winners " + e + f);
-return this.b$["JS.CIPChirality"].getEneChirality (e, a, b, f, c, false);
-}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,~B,~A");
-Clazz.defineMethod (c$, "getAuxEneEndWinner", 
- function (a, b, c) {
-var d = a.clone ();
-if (d.parent !== b) d.addReturnPath (b, a);
-var e;
-for (var f = 1; f <= 9; f++) {
-if (d.auxSort (f)) {
-for (var g = 0; g < 4; g++) {
-e = d.atoms[g];
-if (!e.multipleBondDuplicate) {
-if (d.priorities[g] != d.priorities[g + 1]) {
-if (c != null) c[0] = f;
-return (e.atom == null ? null : e);
-}}}
-}}
-return null;
-}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,~A");
-Clazz.defineMethod (c$, "addReturnPath", 
- function (a, b) {
-var c =  new JU.Lst ();
-var d = this;
-var e;
-var f = b;
-var g = a;
-while (f.parent != null && f.parent.atoms[0] != null) {
-if (JU.Logger.debuggingHigh) JU.Logger.info ("path:" + f.parent + "->" + f);
-c.addLast (f = f.parent);
-}
-c.addLast (null);
-for (var h = 0, i = c.size (); h < i; h++) {
-f = c.get (h);
-e = (f == null ? Clazz.innerTypeInstance (JS.CIPChirality.CIPAtom, this, null).create (null, this, this.isAlkene, true, false) : f.clone ());
-e.sphere = d.sphere + 1;
-d.replaceParentSubstituent (g, a, e);
-if (h > 0 && d.isAlkene && !d.isAlkeneAtom2) {
-if (a.isAlkeneAtom2) {
-a.isAlkeneAtom2 = false;
-d.alkeneParent = a;
-}d.setEne ();
-}a = d;
-d = e;
-g = b;
-b = f;
-}
-}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom");
-Clazz.defineMethod (c$, "replaceParentSubstituent", 
- function (a, b, c) {
-for (var d = 0; d < 4; d++) if (this.atoms[d] === a || b == null && this.atoms[d].atom == null) {
-if (JU.Logger.debuggingHigh) JU.Logger.info ("reversed: " + b + "->" + this + "->" + c);
-this.parent = b;
-this.atoms[d] = c;
-java.util.Arrays.sort (this.atoms);
-break;
-}
-}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom");
 Clazz.defineMethod (c$, "createAuxiliaryDescriptors", 
 function (a, b) {
 var c = false;
@@ -974,32 +844,98 @@ for (; n <= 9; n++) if ((!h || n < 5 || n > 8) && m.auxSort (n)) break;
 if (n > 9) {
 d = '~';
 } else {
-e = m.checkHandedness ();
+e = this.b$["JS.CIPChirality"].data.checkHandedness (m);
 c = new Boolean (c | (e != 0)).valueOf ();
 d = (e == 1 ? 'R' : e == 2 ? 'S' : '~');
 if (n == 8) {
 d = (d == 'R' ? 'r' : d == 'S' ? 's' : '~');
+if (e != 0) this.b$["JS.CIPChirality"].havePseudoAuxiliary = true;
 } else {
 this.rule4Type = e;
 }}}this.auxChirality = d;
-}if (this.b$["JS.CIPChirality"].setAuxiliary && this.auxChirality != '~') this.atom.setCIPChirality (JV.JC.getCIPChiralityCode (this.auxChirality));
-if (a == null) this.b$["JS.CIPChirality"].bsNeedRule.setBitTo (5, f > 0);
-if (JU.Logger.debugging && d != '~') {
-JU.Logger.info ("creating aux " + d + " for " + this + " = " + this.myPath);
+}if (a == null) this.b$["JS.CIPChirality"].bsNeedRule.setBitTo (5, f > 0);
+if (d != '~') {
+JU.Logger.info ("creating aux " + d + " for " + this + (this.myPath.length == 0 ? "" : " = " + this.myPath));
 }return (this.isChiralPath = c);
 }, "JS.CIPChirality.CIPAtom,~A");
-Clazz.defineMethod (c$, "checkHandedness", 
-function () {
-var a = this.atoms[0].atom.getXYZ ();
-var b = this.atoms[1].atom.getXYZ ();
-var c = this.atoms[2].atom.getXYZ ();
-JU.Measure.getNormalThroughPoints (a, b, c, this.b$["JS.CIPChirality"].vNorm, this.b$["JS.CIPChirality"].vTemp);
-this.b$["JS.CIPChirality"].vTemp.setT ((this.atoms[3].atom == null ? this.atom : this.atoms[3].atom).getXYZ ());
-this.b$["JS.CIPChirality"].vTemp.sub (a);
-return (this.b$["JS.CIPChirality"].vTemp.dot (this.b$["JS.CIPChirality"].vNorm) > 0 ? 1 : 2);
-});
+Clazz.defineMethod (c$, "auxSort", 
+ function (a) {
+var b = this.b$["JS.CIPChirality"].currentRule;
+this.b$["JS.CIPChirality"].currentRule = a;
+var c = this.b$["JS.CIPChirality"].root.rule6refIndex;
+var d = this.b$["JS.CIPChirality"].root.nRootDuplicates;
+var e = (a == 9 ? this.getRule6Descriptor (true) != 0 : this.sortSubstituents (0));
+this.b$["JS.CIPChirality"].root.nRootDuplicates = d;
+this.b$["JS.CIPChirality"].root.rule6refIndex = c;
+this.b$["JS.CIPChirality"].currentRule = b;
+return e;
+}, "~N");
+Clazz.defineMethod (c$, "getAuxEneWinnerChirality", 
+ function (a, b, c, d) {
+if (c && a.nextSP2 === b) return 0;
+var e = this.getAuxEneEndWinner (a, a.nextSP2, null);
+var f = (e == null || e.atom == null ? null : this.getAuxEneEndWinner (b, b.nextSP2, d));
+if (JU.Logger.debuggingHigh) JU.Logger.info (this + " alkene end winners " + e + f);
+return this.b$["JS.CIPChirality"].getEneChirality (e, a, b, f, c, false);
+}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,~B,~A");
+Clazz.defineMethod (c$, "getAuxEneEndWinner", 
+ function (a, b, c) {
+var d = a.clone ();
+if (d.parent !== b) d.addReturnPath (b, a);
+var e;
+for (var f = 1; f <= 9; f++) {
+if (d.auxSort (f)) {
+for (var g = 0; g < 4; g++) {
+e = d.atoms[g];
+if (!e.multipleBondDuplicate) {
+if (d.priorities[g] != d.priorities[g + 1]) {
+if (c != null) c[0] = f;
+return (e.atom == null ? null : e);
+}}}
+}}
+return null;
+}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,~A");
+Clazz.defineMethod (c$, "addReturnPath", 
+ function (a, b) {
+var c =  new JU.Lst ();
+var d = this;
+var e;
+var f = b;
+var g = a;
+while (f.parent != null && f.parent.atoms[0] != null) {
+if (JU.Logger.debuggingHigh) JU.Logger.info ("path:" + f.parent + "->" + f);
+c.addLast (f = f.parent);
+}
+c.addLast (null);
+for (var h = 0, i = c.size (); h < i; h++) {
+f = c.get (h);
+e = (f == null ? Clazz.innerTypeInstance (JS.CIPChirality.CIPAtom, this, null).create (null, this, this.isAlkene, true, false) : f.clone ());
+e.nPriorities = 0;
+e.sphere = d.sphere + 1;
+d.replaceParentSubstituent (g, a, e);
+if (h > 0 && d.isAlkene && !d.isAlkeneAtom2) {
+if (a.isAlkeneAtom2) {
+a.isAlkeneAtom2 = false;
+d.alkeneParent = a;
+}d.setEne ();
+}a = d;
+d = e;
+g = b;
+b = f;
+}
+}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom");
+Clazz.defineMethod (c$, "replaceParentSubstituent", 
+ function (a, b, c) {
+for (var d = 0; d < 4; d++) if (this.atoms[d] === a || b == null && this.atoms[d].atom == null) {
+if (JU.Logger.debuggingHigh) JU.Logger.info ("reversed: " + b + "->" + this + "->" + c);
+this.parent = b;
+this.atoms[d] = c;
+java.util.Arrays.sort (this.atoms);
+break;
+}
+}, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom");
 Clazz.defineMethod (c$, "sign", 
-function (a) {
+ function (a) {
 return (a < 0 ? -1 : a > 0 ? 1 : 0);
 }, "~N");
 Clazz.defineMethod (c$, "clone", 
@@ -1023,11 +959,14 @@ a.alkeneParent = null;
 a.auxEZ = -1;
 a.rule4Type = 0;
 a.listRS = null;
+if (JU.Logger.debuggingHigh) a.myPath = a.toString ();
 return a;
 });
 Clazz.overrideMethod (c$, "toString", 
 function () {
-return (this.atom == null ? "<null>" : "[" + this.b$["JS.CIPChirality"].currentRule + "." + this.sphere + "," + this.id + "." + (this.isDuplicate ? this.parent.atom : this.atom).getAtomName () + (this.isDuplicate ? "*(" + this.rootDistance + ")" : "") + (this.auxChirality == '~' ? "" : "" + this.auxChirality) + " " + this.elemNo + "]");
+if (this.atom == null) return "<null>";
+if (JU.Logger.debuggingHigh) return ("[" + this.b$["JS.CIPChirality"].currentRule + "." + this.sphere + "," + this.id + "." + (this.isDuplicate ? this.parent.atom : this.atom).getAtomName () + (this.isDuplicate ? "*(" + this.rootDistance + ")" : "") + (this.auxChirality == '~' ? "" : "" + this.auxChirality) + " " + this.elemNo + "]");
+return (this.isDuplicate ? "(" + this.atom.getAtomName () + "." + this.rootDistance + ")" : this.atom.getAtomName ());
 });
 c$ = Clazz.p0p ();
 };
@@ -1057,9 +996,7 @@ Clazz.defineStatics (c$,
 "RULE_4c", 7,
 "RULE_5", 8,
 "RULE_6", 9,
-"RULE_RS", 99,
 "ruleNames",  Clazz.newArray (-1, ["", "1a", "1b", "2", "3", "4a", "4b", "4c", "5", "6"]),
-"TRIGONALITY_MIN", 0.2,
 "MAX_PATH", 50,
 "SMALL_RING_MAX", 7);
 });

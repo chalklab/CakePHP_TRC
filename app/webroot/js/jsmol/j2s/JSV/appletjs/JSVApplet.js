@@ -65,10 +65,6 @@ Clazz.overrideMethod (c$, "isSigned",
 function () {
 return this.app.isSigned ();
 });
-Clazz.overrideMethod (c$, "finalize", 
-function () {
-System.out.println ("JSpecView " + this + " finalized");
-});
 Clazz.overrideMethod (c$, "destroy", 
 function () {
 this.app.dispose ();
@@ -117,6 +113,10 @@ this.app.toggleGrid ();
 Clazz.overrideMethod (c$, "toggleCoordinate", 
 function () {
 this.app.toggleCoordinate ();
+});
+Clazz.overrideMethod (c$, "togglePointsOnly", 
+function () {
+this.app.togglePointsOnly ();
 });
 Clazz.overrideMethod (c$, "toggleIntegration", 
 function () {

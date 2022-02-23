@@ -108,6 +108,7 @@ var leader = llr.getHeader (64).trim ();
 if (leader.indexOf ("PNG") == 1 && leader.indexOf ("PNGJ") >= 0) return "pngj";
 if (leader.indexOf ("PNG") == 1 || leader.indexOf ("JPG") == 1 || leader.indexOf ("JFIF") == 6) return "spt";
 if (leader.indexOf ("\"num_pairs\"") >= 0) return "dssr";
+if (leader.indexOf ("output.31\n") >= 0) return "GenNBO|output.31";
 if ((readerName = J.adapter.smarter.Resolver.checkFileStart (leader)) != null) {
 return (readerName.equals ("Xml") ? J.adapter.smarter.Resolver.getXmlType (llr.getHeader (0)) : readerName);
 }var lines =  new Array (16);
@@ -154,15 +155,26 @@ case 1:
 return "Xyz";
 case 2:
 return "Bilbao";
+case 3:
+return "PWmat";
 }
 if (J.adapter.smarter.Resolver.checkAlchemy (lines[0])) return "Alchemy";
 if (J.adapter.smarter.Resolver.checkFoldingXyz (lines)) return "FoldingXyz";
+if (J.adapter.smarter.Resolver.checkXSF (lines)) return "Xcrysden";
 if (J.adapter.smarter.Resolver.checkCube (lines)) return "Cube";
 if (J.adapter.smarter.Resolver.checkWien2k (lines)) return "Wien2k";
 if (J.adapter.smarter.Resolver.checkAims (lines)) return "Aims";
 if (J.adapter.smarter.Resolver.checkGenNBO (lines, leader)) return "GenNBO";
 return null;
 }, "~N,~A,~S");
+c$.checkXSF = Clazz.defineMethod (c$, "checkXSF", 
+ function (lines) {
+var i = 0;
+while (lines[i].length == 0) {
+i++;
+}
+return (lines[i].startsWith ("ANIMSTEPS ") || lines[i].equals ("ATOMS\n") && JU.PT.parseInt (lines[i + 1]) > 0);
+}, "~A");
 c$.checkAims = Clazz.defineMethod (c$, "checkAims", 
  function (lines) {
 for (var i = 0; i < lines.length; i++) {
@@ -176,65 +188,41 @@ return false;
 c$.checkAlchemy = Clazz.defineMethod (c$, "checkAlchemy", 
  function (line) {
 var pt;
-if ((pt = line.indexOf ("ATOMS")) >= 0 && line.indexOf ("BONDS") > pt) try {
-var n = Integer.parseInt (line.substring (0, pt).trim ());
+if ((pt = line.indexOf ("ATOMS")) > 0 && line.indexOf ("BONDS") > pt) {
+var n = JU.PT.parseInt (line.substring (0, pt).trim ());
 return (n > 0);
-} catch (nfe) {
-if (Clazz.exceptionOf (nfe, NumberFormatException)) {
-} else {
-throw nfe;
-}
-}
-return false;
+}return false;
+}, "~S");
+c$.isInt = Clazz.defineMethod (c$, "isInt", 
+ function (s) {
+J.adapter.smarter.Resolver.n[0] = 0;
+s = s.trim ();
+return s.length > 0 && JU.PT.parseIntNext (s, J.adapter.smarter.Resolver.n) != -2147483648 && J.adapter.smarter.Resolver.n[0] == s.length;
+}, "~S");
+c$.isFloat = Clazz.defineMethod (c$, "isFloat", 
+ function (s) {
+return !Float.isNaN (JU.PT.parseFloat (s));
 }, "~S");
 c$.checkCube = Clazz.defineMethod (c$, "checkCube", 
  function (lines) {
-try {
 for (var j = 2; j <= 5; j++) {
 var tokens2 =  new java.util.StringTokenizer (lines[j]);
 var n = tokens2.countTokens ();
-if (!(n == 4 || j == 2 && n == 5)) return false;
-Integer.parseInt (tokens2.nextToken ());
-for (var i = 3; --i >= 0; ) JU.PT.fVal (tokens2.nextToken ());
+if (!(n == 4 || j == 2 && n == 5) || !J.adapter.smarter.Resolver.isInt (tokens2.nextToken ())) return false;
+for (var i = 3; --i >= 0; ) if (!J.adapter.smarter.Resolver.isFloat (tokens2.nextToken ())) return false;
 
-if (n == 5) Integer.parseInt (tokens2.nextToken ());
+if (n == 5 && !J.adapter.smarter.Resolver.isInt (tokens2.nextToken ())) return false;
 }
 return true;
-} catch (nfe) {
-if (Clazz.exceptionOf (nfe, NumberFormatException)) {
-} else {
-throw nfe;
-}
-}
-return false;
 }, "~A");
 c$.checkFoldingXyz = Clazz.defineMethod (c$, "checkFoldingXyz", 
  function (lines) {
 var tokens =  new java.util.StringTokenizer (lines[0].trim (), " \t");
-if (tokens.countTokens () < 2) return false;
-try {
-Integer.parseInt (tokens.nextToken ().trim ());
-} catch (nfe) {
-if (Clazz.exceptionOf (nfe, NumberFormatException)) {
-return false;
-} else {
-throw nfe;
-}
-}
+if (tokens.countTokens () < 2 || !J.adapter.smarter.Resolver.isInt (tokens.nextToken ().trim ())) return false;
 var secondLine = lines[1].trim ();
 if (secondLine.length == 0) secondLine = lines[2].trim ();
 tokens =  new java.util.StringTokenizer (secondLine, " \t");
-if (tokens.countTokens () == 0) return false;
-try {
-Integer.parseInt (tokens.nextToken ().trim ());
-} catch (nfe) {
-if (Clazz.exceptionOf (nfe, NumberFormatException)) {
-return false;
-} else {
-throw nfe;
-}
-}
-return true;
+return (tokens.countTokens () > 0 && J.adapter.smarter.Resolver.isInt (tokens.nextToken ().trim ()));
 }, "~A");
 c$.checkGenNBO = Clazz.defineMethod (c$, "checkGenNBO", 
  function (lines, leader) {
@@ -243,20 +231,12 @@ return (leader.indexOf ("$GENNBO") >= 0 || lines[1].startsWith (" Basis set info
 c$.checkMol = Clazz.defineMethod (c$, "checkMol", 
  function (lines) {
 var line4trimmed = ("X" + lines[3]).trim ().toUpperCase ();
-if (line4trimmed.length < 7 || line4trimmed.indexOf (".") >= 0) return 0;
+if (line4trimmed.length < 7 || line4trimmed.indexOf (".") >= 0 || lines[0].startsWith ("data_")) return 0;
 if (line4trimmed.endsWith ("V2000")) return 2000;
 if (line4trimmed.endsWith ("V3000")) return 3000;
-try {
-var n1 = Integer.parseInt (lines[3].substring (0, 3).trim ());
-var n2 = Integer.parseInt (lines[3].substring (3, 6).trim ());
+var n1 = JU.PT.parseInt (lines[3].substring (0, 3).trim ());
+var n2 = JU.PT.parseInt (lines[3].substring (3, 6).trim ());
 return (n1 > 0 && n2 >= 0 && lines[0].indexOf ("@<TRIPOS>") != 0 && lines[1].indexOf ("@<TRIPOS>") != 0 && lines[2].indexOf ("@<TRIPOS>") != 0 ? 3 : 0);
-} catch (nfe) {
-if (Clazz.exceptionOf (nfe, NumberFormatException)) {
-} else {
-throw nfe;
-}
-}
-return 0;
 }, "~A");
 c$.checkMopacGraphf = Clazz.defineMethod (c$, "checkMopacGraphf", 
  function (lines) {
@@ -268,20 +248,15 @@ var i;
 for (i = 0; i < lines.length; i++) if (!lines[i].startsWith ("C ") && lines[i].length != 0) break;
 
 if (i >= lines.length || lines[i].charAt (0) != ' ' || (i = i + 2) + 1 >= lines.length) return false;
-try {
-var spin = Integer.parseInt (lines[i].substring (2).trim ());
-var charge = Integer.parseInt (lines[i].substring (0, 2).trim ());
-var atom1 = Integer.parseInt (lines[++i].substring (0, 2).trim ());
-if (spin < 0 || spin > 5 || atom1 <= 0 || charge > 5) return false;
-var atomline = J.adapter.smarter.AtomSetCollectionReader.getTokensFloat (lines[i], null, 5);
+var l = lines[i];
+if (l.length < 3) return false;
+var spin = JU.PT.parseInt (l.substring (2).trim ());
+var charge = JU.PT.parseInt (l.substring (0, 2).trim ());
+if ((l = lines[i + 1]).length < 2) return false;
+var atom1 = JU.PT.parseInt (l.substring (0, 2).trim ());
+if (spin < 0 || spin > 5 || atom1 <= 0 || charge == -2147483648 || charge > 5) return false;
+var atomline = J.adapter.smarter.AtomSetCollectionReader.getTokensFloat (l, null, 5);
 return !Float.isNaN (atomline[1]) && !Float.isNaN (atomline[2]) && !Float.isNaN (atomline[3]) && Float.isNaN (atomline[4]);
-} catch (e) {
-if (Clazz.exceptionOf (e, Exception)) {
-} else {
-throw e;
-}
-}
-return false;
 }, "~A");
 c$.checkWien2k = Clazz.defineMethod (c$, "checkWien2k", 
  function (lines) {
@@ -289,26 +264,8 @@ return (lines[2].startsWith ("MODE OF CALC=") || lines[2].startsWith ("         
 }, "~A");
 c$.checkXyz = Clazz.defineMethod (c$, "checkXyz", 
  function (lines) {
-try {
-Integer.parseInt (lines[0].trim ());
-try {
-Integer.parseInt (lines[2].trim ());
-} catch (nfe) {
-if (Clazz.exceptionOf (nfe, NumberFormatException)) {
-return 1;
-} else {
-throw nfe;
-}
-}
-return 2;
-} catch (nfe) {
-if (Clazz.exceptionOf (nfe, NumberFormatException)) {
-if (lines[0].indexOf ("Bilbao Crys") >= 0) return 2;
-} else {
-throw nfe;
-}
-}
-return 0;
+if (J.adapter.smarter.Resolver.isInt (lines[0].trim ())) return (J.adapter.smarter.Resolver.isInt (lines[2]) ? 2 : lines.length > 5 && lines[5].length > 8 && lines[5].substring (0, 8).equalsIgnoreCase ("position") ? 3 : 1);
+return (lines[0].indexOf ("Bilabao Crys") >= 0 ? 2 : lines[1].indexOf ("Lattice vector") == 0 ? 3 : 0);
 }, "~A");
 c$.checkLineStarts = Clazz.defineMethod (c$, "checkLineStarts", 
  function (lines) {
@@ -346,6 +303,8 @@ return "XmlMolpro";
 return "XmlOdyssey";
 }if (header.indexOf ("C3XML") >= 0) {
 return "XmlChem3d";
+}if (header.indexOf ("CDXML") >= 0) {
+return "XmlChemDraw";
 }if (header.indexOf ("arguslab") >= 0) {
 return "XmlArgus";
 }if (header.indexOf ("jvxl") >= 0 || header.indexOf ("http://www.xml-cml.org/schema") >= 0 || header.indexOf ("cml:") >= 0 || header.indexOf ("<cml>") >= 0) {
@@ -362,9 +321,15 @@ c$.checkSpecial2 = Clazz.defineMethod (c$, "checkSpecial2",
  function (lines) {
 if (J.adapter.smarter.Resolver.checkGromacs (lines)) return "Gromacs";
 if (J.adapter.smarter.Resolver.checkCrystal (lines)) return "Crystal";
-var s = J.adapter.smarter.Resolver.checkCastepVasp (lines);
+if (J.adapter.smarter.Resolver.checkFAH (lines)) return "FAH";
+var s = J.adapter.smarter.Resolver.checkCastepVaspSiesta (lines);
 if (s != null) return s;
 return null;
+}, "~A");
+c$.checkFAH = Clazz.defineMethod (c$, "checkFAH", 
+ function (lines) {
+var s = lines[0].trim () + lines[2].trim ();
+return s.equals ("{\"atoms\": [");
 }, "~A");
 c$.checkCrystal = Clazz.defineMethod (c$, "checkCrystal", 
  function (lines) {
@@ -383,18 +348,19 @@ for (var i = 2; i < 16 && len != 0; i++) if ((len = lines[i].length) != 69 && le
 
 return true;
 }, "~A");
-c$.checkCastepVasp = Clazz.defineMethod (c$, "checkCastepVasp", 
+c$.checkCastepVaspSiesta = Clazz.defineMethod (c$, "checkCastepVaspSiesta", 
  function (lines) {
 for (var i = 0; i < lines.length; i++) {
 var line = lines[i].toUpperCase ();
 if (line.indexOf ("FREQUENCIES IN         CM-1") == 1 || line.contains ("CASTEP") || line.startsWith ("%BLOCK LATTICE_ABC") || line.startsWith ("%BLOCK LATTICE_CART") || line.startsWith ("%BLOCK POSITIONS_FRAC") || line.startsWith ("%BLOCK POSITIONS_ABS") || line.contains ("<-- E")) return "Castep";
+if (line.contains ("%BLOCK")) return "Siesta";
 if (i >= 6 && i < 10 && (line.startsWith ("DIRECT") || line.startsWith ("CARTESIAN"))) return "VaspPoscar";
 }
 return null;
 }, "~A");
 Clazz.defineStatics (c$,
 "classBase", "J.adapter.readers.");
-c$.readerSets = c$.prototype.readerSets =  Clazz.newArray (-1, ["aflow.", ";AFLOW;", "cif.", ";Cif;Cif2;MMCif;MMTF;MagCif", "molxyz.", ";Mol3D;Mol;Xyz;", "more.", ";BinaryDcd;Gromacs;Jcampdx;MdCrd;MdTop;Mol2;TlsDataOnly;", "quantum.", ";Adf;Csf;Dgrid;GamessUK;GamessUS;Gaussian;GaussianFchk;GaussianWfn;Jaguar;Molden;MopacGraphf;GenNBO;NWChem;Psi;Qchem;QCJSON;WebMO;MO;", "pdb.", ";Pdb;Pqr;P2n;JmolData;", "pymol.", ";PyMOL;", "simple.", ";Alchemy;Ampac;Cube;FoldingXyz;GhemicalMM;HyperChem;Jme;JSON;Mopac;MopacArchive;Tinker;Input;", "spartan.", ";Spartan;SpartanSmol;Odyssey;", "xtal.", ";Abinit;Aims;Bilbao;Castep;Cgd;Crystal;Dmol;Espresso;Gulp;Jana;Magres;Shelx;Siesta;VaspOutcar;VaspPoscar;Wien2k;Xcrysden;", "xml.", ";XmlArgus;XmlCml;XmlChem3d;XmlMolpro;XmlOdyssey;XmlXsd;XmlVasp;XmlQE;"]);
+c$.readerSets = c$.prototype.readerSets =  Clazz.newArray (-1, ["cif.", ";Cif;Cif2;MMCif;MMTF;MagCif", "molxyz.", ";Mol3D;Mol;Xyz;", "more.", ";AFLOW;BinaryDcd;Gromacs;Jcampdx;MdCrd;MdTop;Mol2;TlsDataOnly;", "quantum.", ";Adf;Csf;Dgrid;GamessUK;GamessUS;Gaussian;GaussianFchk;GaussianWfn;Jaguar;Molden;MopacGraphf;GenNBO;NWChem;Psi;Qchem;QCJSON;WebMO;MO;", "pdb.", ";Pdb;Pqr;P2n;JmolData;", "pymol.", ";PyMOL;", "simple.", ";Alchemy;Ampac;Cube;FoldingXyz;GhemicalMM;HyperChem;Jme;JSON;Mopac;MopacArchive;Tinker;Input;FAH;", "spartan.", ";Spartan;SpartanSmol;Odyssey;", "xtal.", ";Abinit;Aims;Bilbao;Castep;Cgd;Crystal;Dmol;Espresso;Gulp;Jana;Magres;Shelx;Siesta;VaspOutcar;VaspPoscar;Wien2k;Xcrysden;PWmat;", "xml.", ";XmlChemDraw;XmlArgus;XmlCml;XmlChem3d;XmlMolpro;XmlOdyssey;XmlXsd;XmlVasp;XmlQE;"]);
 Clazz.defineStatics (c$,
 "CML_NAMESPACE_URI", "http://www.xml-cml.org/schema",
 "LEADER_CHAR_MAX", 64,
@@ -415,11 +381,12 @@ Clazz.defineStatics (c$,
 "jmoldataStartRecords",  Clazz.newArray (-1, ["JmolData", "REMARK   6 Jmol"]),
 "pqrStartRecords",  Clazz.newArray (-1, ["Pqr", "REMARK   1 PQR", "REMARK    The B-factors"]),
 "p2nStartRecords",  Clazz.newArray (-1, ["P2n", "REMARK   1 P2N"]),
-"cif2StartRecords",  Clazz.newArray (-1, ["Cif2", "#\\#CIF_2"]),
+"cif2StartRecords",  Clazz.newArray (-1, ["Cif2", "#\\#CIF_2", "\u00EF\u00BB\u00BF#\\#CIF_2"]),
 "xmlStartRecords",  Clazz.newArray (-1, ["Xml", "<?xml"]),
 "cfiStartRecords",  Clazz.newArray (-1, ["Input", "$CFI"]));
 c$.fileStartsWithRecords = c$.prototype.fileStartsWithRecords =  Clazz.newArray (-1, [J.adapter.smarter.Resolver.xmlStartRecords, J.adapter.smarter.Resolver.sptRecords, J.adapter.smarter.Resolver.m3dStartRecords, J.adapter.smarter.Resolver.cubeFileStartRecords, J.adapter.smarter.Resolver.mol2Records, J.adapter.smarter.Resolver.webmoFileStartRecords, J.adapter.smarter.Resolver.moldenFileStartRecords, J.adapter.smarter.Resolver.dcdFileStartRecords, J.adapter.smarter.Resolver.tlsDataOnlyFileStartRecords, J.adapter.smarter.Resolver.inputFileStartRecords, J.adapter.smarter.Resolver.magresFileStartRecords, J.adapter.smarter.Resolver.pymolStartRecords, J.adapter.smarter.Resolver.janaStartRecords, J.adapter.smarter.Resolver.jsonStartRecords, J.adapter.smarter.Resolver.jcampdxStartRecords, J.adapter.smarter.Resolver.jmoldataStartRecords, J.adapter.smarter.Resolver.pqrStartRecords, J.adapter.smarter.Resolver.p2nStartRecords, J.adapter.smarter.Resolver.cif2StartRecords, J.adapter.smarter.Resolver.cfiStartRecords]);
 Clazz.defineStatics (c$,
+"n",  Clazz.newIntArray (1, 0),
 "mmcifLineStartRecords",  Clazz.newArray (-1, ["MMCif", "_entry.id", "_database_PDB_", "_pdbx_", "_chem_comp.pdbx_type", "_audit_author.name", "_atom_site."]),
 "cifLineStartRecords",  Clazz.newArray (-1, ["Cif", "data_", "_publ"]),
 "pdbLineStartRecords",  Clazz.newArray (-1, ["Pdb", "HEADER", "OBSLTE", "TITLE ", "CAVEAT", "COMPND", "SOURCE", "KEYWDS", "EXPDTA", "AUTHOR", "REVDAT", "SPRSDE", "JRNL  ", "REMARK ", "DBREF ", "SEQADV", "SEQRES", "MODRES", "HELIX ", "SHEET ", "TURN  ", "CRYST1", "ORIGX1", "ORIGX2", "ORIGX3", "SCALE1", "SCALE2", "SCALE3", "ATOM  ", "HETATM", "MODEL ", "LINK  ", "USER  MOD "]),
@@ -463,5 +430,5 @@ Clazz.defineStatics (c$,
 "inputContainsRecords",  Clazz.newArray (-1, ["Input", " ATOMS cartesian", "$molecule", "&zmat", "geometry={", "$DATA", "%coords", "GEOM=PQS", "geometry units angstroms"]),
 "aflowContainsRecords",  Clazz.newArray (-1, ["AFLOW", "/AFLOWDATA/"]),
 "magCifContainsRecords",  Clazz.newArray (-1, ["MagCif", "_space_group_magn"]));
-c$.headerContainsRecords = c$.prototype.headerContainsRecords =  Clazz.newArray (-1, [J.adapter.smarter.Resolver.sptRecords, J.adapter.smarter.Resolver.bilbaoContainsRecords, J.adapter.smarter.Resolver.xmlContainsRecords, J.adapter.smarter.Resolver.gaussianContainsRecords, J.adapter.smarter.Resolver.ampacContainsRecords, J.adapter.smarter.Resolver.mopacContainsRecords, J.adapter.smarter.Resolver.gamessUKContainsRecords, J.adapter.smarter.Resolver.gamessUSContainsRecords, J.adapter.smarter.Resolver.spartanBinaryContainsRecords, J.adapter.smarter.Resolver.spartanContainsRecords, J.adapter.smarter.Resolver.qchemContainsRecords, J.adapter.smarter.Resolver.mol2Records, J.adapter.smarter.Resolver.adfContainsRecords, J.adapter.smarter.Resolver.psiContainsRecords, J.adapter.smarter.Resolver.nwchemContainsRecords, J.adapter.smarter.Resolver.uicrcifContainsRecords, J.adapter.smarter.Resolver.dgridContainsRecords, J.adapter.smarter.Resolver.crystalContainsRecords, J.adapter.smarter.Resolver.dmolContainsRecords, J.adapter.smarter.Resolver.gulpContainsRecords, J.adapter.smarter.Resolver.espressoContainsRecords, J.adapter.smarter.Resolver.siestaContainsRecords, J.adapter.smarter.Resolver.xcrysDenContainsRecords, J.adapter.smarter.Resolver.mopacArchiveContainsRecords, J.adapter.smarter.Resolver.abinitContainsRecords, J.adapter.smarter.Resolver.gaussianFchkContainsRecords, J.adapter.smarter.Resolver.inputContainsRecords, J.adapter.smarter.Resolver.aflowContainsRecords, J.adapter.smarter.Resolver.magCifContainsRecords, J.adapter.smarter.Resolver.qcJsonContainsRecords]);
+c$.headerContainsRecords = c$.prototype.headerContainsRecords =  Clazz.newArray (-1, [J.adapter.smarter.Resolver.sptRecords, J.adapter.smarter.Resolver.bilbaoContainsRecords, J.adapter.smarter.Resolver.xmlContainsRecords, J.adapter.smarter.Resolver.gaussianContainsRecords, J.adapter.smarter.Resolver.ampacContainsRecords, J.adapter.smarter.Resolver.mopacContainsRecords, J.adapter.smarter.Resolver.gamessUKContainsRecords, J.adapter.smarter.Resolver.gamessUSContainsRecords, J.adapter.smarter.Resolver.qchemContainsRecords, J.adapter.smarter.Resolver.spartanBinaryContainsRecords, J.adapter.smarter.Resolver.spartanContainsRecords, J.adapter.smarter.Resolver.mol2Records, J.adapter.smarter.Resolver.adfContainsRecords, J.adapter.smarter.Resolver.psiContainsRecords, J.adapter.smarter.Resolver.nwchemContainsRecords, J.adapter.smarter.Resolver.uicrcifContainsRecords, J.adapter.smarter.Resolver.dgridContainsRecords, J.adapter.smarter.Resolver.crystalContainsRecords, J.adapter.smarter.Resolver.dmolContainsRecords, J.adapter.smarter.Resolver.gulpContainsRecords, J.adapter.smarter.Resolver.espressoContainsRecords, J.adapter.smarter.Resolver.siestaContainsRecords, J.adapter.smarter.Resolver.xcrysDenContainsRecords, J.adapter.smarter.Resolver.mopacArchiveContainsRecords, J.adapter.smarter.Resolver.abinitContainsRecords, J.adapter.smarter.Resolver.gaussianFchkContainsRecords, J.adapter.smarter.Resolver.inputContainsRecords, J.adapter.smarter.Resolver.aflowContainsRecords, J.adapter.smarter.Resolver.magCifContainsRecords, J.adapter.smarter.Resolver.qcJsonContainsRecords]);
 });

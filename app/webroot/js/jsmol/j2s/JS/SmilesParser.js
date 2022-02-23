@@ -37,7 +37,6 @@ if (pattern.indexOf ("$(select") >= 0) pattern = this.parseNested (search, patte
 var ret =  Clazz.newIntArray (1, 0);
 pattern = JS.SmilesParser.extractFlags (pattern, ret);
 this.flags = ret[0];
-this.ignoreStereochemistry = ((this.flags & 32) == 32);
 search.setFlags (this.flags);
 if (pattern.indexOf ("$") >= 0) pattern = this.parseVariables (pattern);
 if (this.isSmarts && pattern.indexOf ("[$") >= 0) pattern = this.parseVariableLength (pattern);
@@ -404,7 +403,7 @@ var tokens = JU.PT.split (strMeasure, ",");
 if (tokens.length % 2 == 1 || isNot && tokens.length != 2) break;
 var vals =  Clazz.newFloatArray (tokens.length, 0);
 var i = tokens.length;
-for (; --i >= 0; ) if (Float.isNaN (vals[i] = JU.PT.fVal (tokens[i]))) break;
+for (; --i >= 0; ) if (Float.isNaN (vals[i] = Float.parseFloat (tokens[i]))) break;
 
 if (i >= 0) break;
 m =  new JS.SmilesMeasure (search, index, type, isNot, vals);
@@ -513,7 +512,7 @@ if (this.isSmarts && ch == '!') {
 ch = JS.SmilesParser.getChar (pattern, ++index);
 if (ch == '\0') throw  new JS.InvalidSmilesException ("invalid '!'");
 newAtom.not = isNot = true;
-}var biopt = pattern.indexOf ('.');
+}var biopt = (pattern.indexOf ("@PH") >= 0 ? -1 : pattern.indexOf ('.'));
 if (biopt >= 0) {
 newAtom.isBioResidue = true;
 var resOrName = pattern.substring (index, biopt);
@@ -583,8 +582,8 @@ case '+':
 index = this.checkCharge (pattern, index, newAtom);
 break;
 case '@':
-if (search.stereo == null) search.stereo = JS.SmilesStereo.newStereo (null);
-index = JS.SmilesStereo.checkChirality (pattern, index, search.patternAtoms[newAtom.index]);
+if (search.stereo == null) search.stereo = JS.SmilesStereo.newStereo (search);
+index = JS.SmilesStereo.checkChirality (search, pattern, index, search.patternAtoms[newAtom.index]);
 break;
 case ':':
 index = JS.SmilesParser.getDigits (pattern, ++index, ret);
@@ -680,7 +679,7 @@ newAtom.notBondedIndex = atom.index;
 }if (atom != null && bond.order != 0) {
 if (bond.order == -1) bond.order = (this.isBioSequence && isBranchAtom ? 112 : this.isSmarts || atom.isAromatic && newAtom.isAromatic ? 81 : 1);
 if (!isBracketed) this.setBondAtom (bond, null, newAtom, search);
-if (this.branchLevel == 0 && (bond.order == 17 || bond.order == 112)) this.branchLevel++;
+if (this.branchLevel == 0 && (bond.getBondType () == 17 || bond.order == 112)) this.branchLevel++;
 }if (this.branchLevel == 0) search.lastChainAtom = newAtom;
 return newAtom;
 }, "JS.SmilesSearch,JS.SmilesAtom,~S,JS.SmilesAtom,JS.SmilesBond,~B,~B,~B");
@@ -771,7 +770,7 @@ Clazz.defineMethod (c$, "checkLogic",
 var pt = pattern.lastIndexOf ("!");
 if (atom != null) atom.pattern = pattern;
 while (pt > 0) {
-if (",;&!".indexOf (pattern.charAt (pt - 1)) < 0) pattern = pattern.substring (0, pt) + "&" + pattern.substring (pt);
+if (",;&!(".indexOf (pattern.charAt (pt - 1)) < 0) pattern = pattern.substring (0, pt) + "&" + pattern.substring (pt);
 pt = pattern.lastIndexOf ("!", pt - 1);
 }
 pt = pattern.indexOf (',');

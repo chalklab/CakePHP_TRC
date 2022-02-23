@@ -216,6 +216,10 @@ s = this.getPropI ("list", index);
 if (s.length > 1) s += "cutoff = " + this.jvxlData.cutoff + "\n";
 s = "\n" + s;
 }return this.getMoInfo (-1) + s;
+}if (propertyName === "moLabel") {
+var labels = this.sg.params.moData.get ("nboLabels");
+if (this.$moNumber > 0 && labels != null && labels.length != 0) return labels[(this.$moNumber - 1) % labels.length];
+return "";
 }if (propertyName === "moNumber") return Integer.$valueOf (this.$moNumber);
 if (propertyName === "moLinearCombination") return this.$moLinearCombination;
 if (propertyName === "moSquareData") return this.moSquareData;
@@ -240,13 +244,13 @@ this.setPropI ("init", this.sg.params, null);
 this.setOrbital (i, null);
 }this.jvxlData.moleculeXml = this.vwr.getModelCml (this.vwr.getModelUndeletedAtomsBitSet (this.thisMesh.modelIndex), 100, true, false);
 if (!haveHeader) {
-str.append (J.jvxl.data.JvxlCoder.jvxlGetFileVwr (this.vwr, this.jvxlData, null, null, "HEADERONLY", true, nTotal, null, null));
+str.append (J.jvxl.data.JvxlCoder.jvxlGetFile (this.jvxlData, null, null, "HEADERONLY", true, nTotal, null, null));
 haveHeader = true;
-}str.append (J.jvxl.data.JvxlCoder.jvxlGetFileVwr (this.vwr, this.jvxlData, null, this.jvxlData.title, null, false, 1, this.thisMesh.getState (this.myType), (this.thisMesh.scriptCommand == null ? "" : this.thisMesh.scriptCommand)));
+}str.append (J.jvxl.data.JvxlCoder.jvxlGetFile (this.jvxlData, null, this.jvxlData.title, null, false, 1, this.thisMesh.getState (this.myType), (this.thisMesh.scriptCommand == null ? "" : this.thisMesh.scriptCommand)));
 if (!doOneMo) this.setPropI ("delete", "mo_show", null);
 if (nTotal == 1) break;
 }
-str.append (J.jvxl.data.JvxlCoder.jvxlGetFileVwr (this.vwr, this.jvxlData, null, null, "TRAILERONLY", true, 0, null, null));
+str.append (J.jvxl.data.JvxlCoder.jvxlGetFile (this.jvxlData, null, null, "TRAILERONLY", true, 0, null, null));
 return str.toString ();
 }return this.getPropI (propertyName, index);
 }, "~S,~N");
@@ -286,6 +290,7 @@ Clazz.defineMethod (c$, "getSettings",
  function (strID) {
 this.thisModel = this.htModels.get (strID);
 if (this.thisModel == null || this.thisModel.get ("moNumber") == null) return false;
+this.nboType = this.thisModel.get ("nboType");
 this.moTranslucency = this.thisModel.get ("moTranslucency");
 this.moTranslucentLevel = this.thisModel.get ("moTranslucentLevel");
 this.moPlane = this.thisModel.get ("moPlane");
@@ -296,7 +301,6 @@ this.moCutoff = Float.$valueOf (0.05);
 }this.thisModel.put ("moCutoff", Float.$valueOf (this.moCutoff.floatValue ()));
 this.moResolution = this.thisModel.get ("moResolution");
 this.moScale = this.thisModel.get ("moScale");
-this.nboType = this.thisModel.get ("moType");
 this.moColorPos = this.thisModel.get ("moColorPos");
 this.moColorNeg = this.thisModel.get ("moColorNeg");
 this.moSquareData = this.thisModel.get ("moSquareData");

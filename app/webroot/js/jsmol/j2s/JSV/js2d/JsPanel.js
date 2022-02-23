@@ -1,5 +1,5 @@
 Clazz.declarePackage ("JSV.js2d");
-Clazz.load (["JSV.api.JSVPanel"], "JSV.js2d.JsPanel", ["javajs.awt.Font", "JU.Base64", "JSV.common.ExportType", "$.JSViewer", "$.PanelData", "JU.Logger"], function () {
+Clazz.load (["JSV.api.JSVPanel"], "JSV.js2d.JsPanel", ["JSV.common.JSViewer", "$.PanelData", "JU.Font", "$.Logger"], function () {
 c$ = Clazz.decorateAsClass (function () {
 this.apiPlatform = null;
 this.pd = null;
@@ -9,10 +9,6 @@ this.name = null;
 this.bgcolor = null;
 Clazz.instantialize (this, arguments);
 }, JSV.js2d, "JsPanel", null, JSV.api.JSVPanel);
-Clazz.overrideMethod (c$, "finalize", 
-function () {
-JU.Logger.info ("JSVPanel " + this + " finalized");
-});
 Clazz.overrideMethod (c$, "getApiPlatform", 
 function () {
 return this.apiPlatform;
@@ -86,7 +82,7 @@ if (this.pd != null) this.pd.dialogsToFront (null);
 }, "~B");
 Clazz.overrideMethod (c$, "getFontFaceID", 
 function (name) {
-return javajs.awt.Font.getFontFaceID ("SansSerif");
+return JU.Font.getFontFaceID ("SansSerif");
 }, "~S");
 Clazz.overrideMethod (c$, "doRepaint", 
 function (andTaintAll) {
@@ -133,26 +129,10 @@ this.pd.setPrint (null, null);
 Clazz.overrideMethod (c$, "saveImage", 
 function (type, file, out) {
 var fname = file.getName ();
-var isPNG = type.equals (JSV.common.ExportType.PNG);
-var s = (isPNG ? "png" : "jpeg");
-{
-s = viewer.display.toDataURL(s);
-if (!isPNG && s.contains("/png"))
-fname = fname.split('.jp')[0] + ".png";
-}try {
-out = this.vwr.getOutputChannel (fname, true);
-var data = JU.Base64.decodeBase64 (s);
-out.write (data, 0, data.length);
-out.closeChannel ();
-return "OK " + out.getByteCount () + " bytes";
-} catch (e) {
-if (Clazz.exceptionOf (e, Exception)) {
-return e.toString ();
-} else {
-throw e;
-}
-}
-}, "~S,javajs.api.GenericFileInterface,JU.OC");
+if (out != null) out.cancel ();
+JSV.common.JSViewer.jmolObject.saveImage (this.vwr.html5Applet, "png", fname);
+return "OK";
+}, "~S,J.api.GenericFileInterface,JU.OC");
 Clazz.overrideMethod (c$, "hasFocus", 
 function () {
 return false;

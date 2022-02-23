@@ -49,8 +49,13 @@ function (sg, br) {
 this.init2VFR (sg, br);
 this.isAngstroms = true;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
+Clazz.defineMethod (c$, "checkInsideOut", 
+function (mapc, mapr, maps) {
+if (this.params.thePlane == null) this.params.insideOut = (";123;231;312;".indexOf (";" + mapc + mapr + maps) >= 0);
+}, "~N,~N,~N");
 Clazz.defineMethod (c$, "getVectorsAndOrigin", 
 function () {
+this.checkInsideOut (this.mapc, this.mapr, this.maps);
 JU.Logger.info ("grid parameters: nx,ny,nz: " + this.n0 + "," + this.n1 + "," + this.n2);
 JU.Logger.info ("grid parameters: nxStart,nyStart,nzStart: " + this.xyzStart[0] + "," + this.xyzStart[1] + "," + this.xyzStart[2]);
 JU.Logger.info ("grid parameters: mx,my,mz: " + this.na + "," + this.nb + "," + this.nc);

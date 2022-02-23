@@ -1,6 +1,7 @@
 Clazz.declarePackage ("J.jvxl.readers");
 Clazz.load (["J.jvxl.readers.MapFileReader"], "J.jvxl.readers.BCifDensityReader", ["java.io.BufferedInputStream", "$.ByteArrayInputStream", "java.lang.Float", "JU.AU", "$.BC", "$.MessagePackReader", "$.P3", "$.SB", "JU.Logger"], function () {
 c$ = Clazz.decorateAsClass (function () {
+this.header = null;
 this.pt = 0;
 this.checkSum = 0;
 this.values = null;
@@ -47,7 +48,8 @@ throw e;
 var dataBlocks = this.cifData.get ("dataBlocks");
 for (var i = dataBlocks.length; --i >= 0; ) {
 var map = dataBlocks[i];
-if (type.equalsIgnoreCase (map.get ("header").toString ())) {
+this.header = map.get ("header").toString ();
+if ("EM".equals (this.header) || type.equalsIgnoreCase (this.header)) {
 var categories = map.get ("categories");
 for (var j = categories.length; --j >= 0; ) {
 var cat = categories[j];
@@ -61,14 +63,6 @@ map.put (catName + "_" + col.get ("name"), col.get ("data"));
 map.remove ("categories");
 return this.thisData = map;
 }}
-return null;
-}, "~S");
-Clazz.defineMethod (c$, "getCifString", 
-function (key) {
-var map = this.thisData.get (key);
-var data = map.get ("data");
-var encoding = (map.get ("encoding"))[0];
-var o = encoding.get ("offsetEncoding");
 return null;
 }, "~S");
 Clazz.defineMethod (c$, "getCifFloat", 
@@ -86,7 +80,7 @@ case 33:
 f = JU.BC.bytesToDoubleToFloat (data, 0, false);
 break;
 default:
-System.out.println ("BCDensityReader: Number encoding not recognized: " + encoding);
+System.out.println ("BCifDensityReader: Number encoding not recognized: " + encoding);
 break;
 }
 } catch (e) {
@@ -130,7 +124,6 @@ this.nSurfaces = 1;
 Clazz.overrideMethod (c$, "readParameters", 
 function () {
 this.getCifMap (this.isDiff ? "FO-FC" : "2FO-FC");
-var test = this.getCifString ("_volume_data_3d_info_name");
 this.readCifP3 ("_volume_data_3d_info_axis_order", this.p3);
 var axis_order = this.readCifP3 ("_volume_data_3d_info_axis_order", null);
 var fracOrigin = this.readCifP3 ("_volume_data_3d_info_origin", null);
@@ -139,22 +132,26 @@ var sampleCounts = this.readCifP3 ("_volume_data_3d_info_sample_count", this.p3)
 this.mapc = Clazz.floatToInt (axis_order.x) + 1;
 this.mapr = Clazz.floatToInt (axis_order.y) + 1;
 this.maps = Clazz.floatToInt (axis_order.z) + 1;
+var crs2abc =  Clazz.newIntArray (3, 0);
+crs2abc[this.mapc - 1] = 0;
+crs2abc[this.mapr - 1] = 1;
+crs2abc[this.maps - 1] = 2;
 this.n0 = Clazz.floatToInt (sampleCounts.x);
 this.n1 = Clazz.floatToInt (sampleCounts.y);
 this.n2 = Clazz.floatToInt (sampleCounts.z);
-this.na = Clazz.floatToInt (this.getXYZ (sampleCounts, this.mapc - 1));
-this.nb = Clazz.floatToInt (this.getXYZ (sampleCounts, this.mapr - 1));
-this.nc = Clazz.floatToInt (this.getXYZ (sampleCounts, this.maps - 1));
+this.na = Clazz.floatToInt (this.getXYZ (sampleCounts, crs2abc[0]));
+this.nb = Clazz.floatToInt (this.getXYZ (sampleCounts, crs2abc[1]));
+this.nc = Clazz.floatToInt (this.getXYZ (sampleCounts, crs2abc[2]));
 this.readCifP3 ("_volume_data_3d_info_spacegroup_cell_size", this.p3);
 this.a = this.p3.x;
 this.b = this.p3.y;
 this.c = this.p3.z;
-var fa = this.getXYZ (fracDimensions, this.mapc - 1);
-var fb = this.getXYZ (fracDimensions, this.mapr - 1);
-var fc = this.getXYZ (fracDimensions, this.maps - 1);
-this.xyzStart[this.xIndex = 0] = this.getXYZ (fracOrigin, this.mapc - 1) * this.na / fa;
-this.xyzStart[this.yIndex = 1] = this.getXYZ (fracOrigin, this.mapr - 1) * this.nb / fb;
-this.xyzStart[this.zIndex = 2] = this.getXYZ (fracOrigin, this.maps - 1) * this.nc / fc;
+var fa = this.getXYZ (fracDimensions, crs2abc[0]);
+var fb = this.getXYZ (fracDimensions, crs2abc[1]);
+var fc = this.getXYZ (fracDimensions, crs2abc[2]);
+this.xyzStart[this.xIndex = 0] = this.getXYZ (fracOrigin, crs2abc[0]) * this.na / fa;
+this.xyzStart[this.yIndex = 1] = this.getXYZ (fracOrigin, crs2abc[1]) * this.nb / fb;
+this.xyzStart[this.zIndex = 2] = this.getXYZ (fracOrigin, crs2abc[2]) * this.nc / fc;
 this.a *= fa;
 this.b *= fb;
 this.c *= fc;
@@ -171,8 +168,7 @@ var rmsDeviation = this.getCifFloat ("_volume_data_3d_info_sigma_sampled");
 this.params.cutoff = rmsDeviation * sigma + this.dmean;
 JU.Logger.info ("Cutoff set to (mean + rmsDeviation*" + sigma + " = " + this.params.cutoff + ")\n");
 }this.jvxlFileHeaderBuffer =  new JU.SB ();
-this.jvxlFileHeaderBuffer.append ("CifDensity reader\n");
-this.jvxlFileHeaderBuffer.append ("see http://www.ebi.ac.uk/pdbe/densities/x-ray/1cbs/dbox/\n");
+this.jvxlFileHeaderBuffer.append ("BCifDensity reader type=" + this.header + "\n");
 });
 Clazz.defineMethod (c$, "getXYZ", 
  function (a, x) {

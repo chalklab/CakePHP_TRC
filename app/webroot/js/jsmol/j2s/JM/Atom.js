@@ -345,7 +345,7 @@ return type;
 Clazz.defineMethod (c$, "getBondingRadius", 
 function () {
 var rr = this.group.chain.model.ms.bondingRadii;
-var r = (rr == null ? 0 : rr[this.i]);
+var r = (rr == null || this.i >= rr.length ? 0 : rr[this.i]);
 return (r == 0 ? JU.Elements.getBondingRadius (this.atomicAndIsotopeNumber, this.getFormalCharge ()) : r);
 });
 Clazz.defineMethod (c$, "getVolume", 
@@ -388,7 +388,7 @@ this.group.setAtomBits (bs);
 }, "JU.BS");
 Clazz.overrideMethod (c$, "getAtomName", 
 function () {
-return (this.atomID > 0 ? JM.Group.specialAtomNames[this.atomID] : this.group.chain.model.ms.atomNames[this.i]);
+return (this.atomID > 0 ? JM.Group.specialAtomNames[this.atomID] : this.group.chain.model.ms.atomNames == null ? "" : this.group.chain.model.ms.atomNames[this.i]);
 });
 Clazz.overrideMethod (c$, "getAtomType", 
 function () {
@@ -470,12 +470,13 @@ return this;
 Clazz.defineMethod (c$, "getFractionalCoordPt", 
 function (fixJavaFloat, ignoreOffset, pt) {
 var c = this.getUnitCell ();
-if (c == null) return this;
 if (pt == null) pt = JU.P3.newP (this);
  else pt.setT (this);
+if (c != null) {
+c = c.getUnitCellMultiplied ();
 c.toFractional (pt, ignoreOffset);
 if (fixJavaFloat) JU.PT.fixPtFloats (pt, 100000.0);
-return pt;
+}return pt;
 }, "~B,~B,JU.P3");
 Clazz.defineMethod (c$, "getUnitCell", 
 function () {
@@ -489,9 +490,10 @@ return (ch == 'X' ? pt.x : ch == 'Y' ? pt.y : pt.z);
 Clazz.defineMethod (c$, "getFractionalUnitCoordPt", 
 function (fixJavaFloat, asCartesian, pt) {
 var c = this.getUnitCell ();
-if (c == null) return this;
 if (pt == null) pt = JU.P3.newP (this);
  else pt.setT (this);
+if (c == null) return pt;
+c = c.getUnitCellMultiplied ();
 if (this.group.chain.model.isJmolDataFrame) {
 c.toFractional (pt, false);
 if (asCartesian) c.toCartesian (pt, false);
@@ -577,7 +579,7 @@ return this.getIdentity (true);
 Clazz.defineMethod (c$, "getIdentityXYZ", 
 function (allInfo, pt) {
 pt = (this.group.chain.model.isJmolDataFrame ? this.getFractionalCoordPt (!this.group.chain.model.ms.vwr.g.legacyJavaFloat, false, pt) : this);
-return this.getIdentity (allInfo) + " " + pt.x + " " + pt.y + " " + pt.z;
+return this.getIdentity (allInfo) + " " + JU.PT.formatF (pt.x, 0, 3, true, true) + " " + JU.PT.formatF (pt.y, 0, 3, true, true) + " " + JU.PT.formatF (pt.z, 0, 3, true, true);
 }, "~B,JU.P3");
 Clazz.defineMethod (c$, "getIdentity", 
 function (allInfo) {
@@ -780,7 +782,7 @@ case 1094713367:
 return this.group.getStrucNo ();
 case 1296041986:
 return this.getSymOp ();
-case 1094715417:
+case 1094715418:
 return this.getValence ();
 }
 return 0;
@@ -999,13 +1001,13 @@ var flags = (this.formalChargeAndFlags & 496) >> 4;
 if (flags == 0 && this.atomicAndIsotopeNumber > 1 && doCalculate) {
 flags = this.group.chain.model.ms.getAtomCIPChiralityCode (this);
 this.formalChargeAndFlags |= ((flags == 0 ? 3 : flags) << 4);
-}return (JV.JC.getCIPChiralityName (flags));
+}return JV.JC.getCIPChiralityName (flags);
 }, "~B");
 Clazz.defineMethod (c$, "getCIPChiralityRule", 
 function () {
 var rs = this.getCIPChirality (true);
 var flags = (rs.length == 0 ? -1 : (this.formalChargeAndFlags & 3584) >> 9);
-return (JV.JC.getCIPRuleName (flags + 1));
+return JV.JC.getCIPRuleName (flags + 1);
 });
 Clazz.overrideMethod (c$, "setCIPChirality", 
 function (c) {
@@ -1066,7 +1068,7 @@ return this.group.chain.model.ms.vwr.getAtomBitSet (atomExpression);
 }, "~S");
 Clazz.defineMethod (c$, "getUnitID", 
 function (flags) {
-var m = this.group.getModel ();
+var m = this.group.chain.model;
 return (m.isBioModel ? (m).getUnitID (this, flags) : "");
 }, "~N");
 Clazz.overrideMethod (c$, "getFloatProperty", 
@@ -1084,6 +1086,17 @@ throw e;
 }
 }return f;
 }, "~S");
+Clazz.overrideMethod (c$, "modelIsRawPDB", 
+function () {
+var m = this.group.chain.model;
+return (m.isBioModel && !m.isPdbWithMultipleBonds && m.hydrogenCount == 0);
+});
+Clazz.defineMethod (c$, "setSymop", 
+function (isym, andClear) {
+if (this.atomSymmetry == null) this.atomSymmetry =  new JU.BS ();
+if (andClear) this.atomSymmetry.clearAll ();
+if (isym > 0) this.atomSymmetry.set (isym - 1);
+}, "~N,~B");
 Clazz.defineStatics (c$,
 "ATOM_INFRAME", 1,
 "ATOM_VISSET", 2,

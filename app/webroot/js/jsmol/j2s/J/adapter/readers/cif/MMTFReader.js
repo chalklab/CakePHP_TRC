@@ -2,6 +2,7 @@ Clazz.declarePackage ("J.adapter.readers.cif");
 Clazz.load (["J.adapter.readers.cif.MMCifReader"], "J.adapter.readers.cif.MMTFReader", ["java.lang.Boolean", "java.util.Hashtable", "JU.BS", "$.Lst", "$.M4", "$.MessagePackReader", "$.PT", "$.SB", "J.adapter.smarter.Atom", "$.Bond", "$.Structure", "JS.SV", "JU.Logger"], function () {
 c$ = Clazz.decorateAsClass (function () {
 this.haveStructure = false;
+this.$pdbID = null;
 this.map = null;
 this.fileAtomCount = 0;
 this.opCount = 0;
@@ -15,7 +16,6 @@ this.entities = null;
 this.groupCount = 0;
 this.ac0 = 0;
 this.bsStructures = null;
-this.lastGroup = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.cif, "MMTFReader", J.adapter.readers.cif.MMCifReader);
 Clazz.overrideMethod (c$, "addHeader", 
@@ -44,8 +44,8 @@ JU.Logger.info ("MMTF version " + this.map.get ("mmtfVersion"));
 JU.Logger.info ("MMTF Producer " + this.map.get ("mmtfProducer"));
 var title = this.map.get ("title");
 if (title != null) this.appendLoadNote (title);
-var id = this.map.get ("structureId");
-if (id == null) id = "?";
+this.$pdbID = this.map.get ("structureId");
+if (this.$pdbID == null) this.$pdbID = this.map.get ("pdbId");
 this.fileAtomCount = (this.map.get ("numAtoms")).intValue ();
 var nBonds = (this.map.get ("numBonds")).intValue ();
 this.groupCount = (this.map.get ("numGroups")).intValue ();
@@ -53,7 +53,7 @@ this.groupModels =  Clazz.newIntArray (this.groupCount, 0);
 this.groupDSSP =  Clazz.newIntArray (this.groupCount, 0);
 this.groupMap =  Clazz.newIntArray (this.groupCount, 0);
 var modelCount = (this.map.get ("numModels")).intValue ();
-this.appendLoadNote ("id=" + id + " numAtoms=" + this.fileAtomCount + " numBonds=" + nBonds + " numGroups=" + this.groupCount + " numModels=" + modelCount);
+this.appendLoadNote ("id=" + this.$pdbID + " numAtoms=" + this.fileAtomCount + " numBonds=" + nBonds + " numGroups=" + this.groupCount + " numModels=" + modelCount);
 this.getMMTFAtoms (doDoubleBonds);
 if (!this.isCourseGrained) {
 var bo = this.decode ("bondOrderList");
@@ -69,7 +69,7 @@ Clazz.defineMethod (c$, "applySymmetryAndSetTrajectory",
 function () {
 this.ac0 = this.ac;
 Clazz.superCall (this, J.adapter.readers.cif.MMTFReader, "applySymmetryAndSetTrajectory", []);
-if (this.haveStructure) this.addStructureSymmetry ();
+this.addStructureSymmetry ();
 });
 Clazz.defineMethod (c$, "getMMTFAtoms", 
  function (doMulti) {
@@ -117,6 +117,7 @@ nChain = chainsPerModel[iModel];
 iChain = 0;
 this.setModelPDB (true);
 this.incrementModel (iModel + 1);
+this.asc.setCurrentModelInfo ("pdbID", this.$pdbID);
 this.nAtoms0 = this.asc.ac;
 if (this.done) return;
 }}var g = groupList[groupTypeList[j]];
@@ -168,7 +169,7 @@ this.asc.addAtomWithMappedSerialNumber (a);
 this.asc.addAtom (a);
 }this.atomMap[iatom] = a;
 this.atomGroup[this.ac] = j;
-this.groupMap[j] = this.lastGroup = thisGroup;
+this.groupMap[j] = thisGroup;
 this.ac++;
 }
 if (!this.isCourseGrained) {
@@ -176,6 +177,7 @@ var bo = g.get ("bondOrderList");
 var bi = g.get ("bondAtomList");
 this.addMMTFBonds (bo, bi, a0, doMulti, false);
 }}
+this.asc.setCurrentModelInfo ("pdbID", this.$pdbID);
 }, "~B");
 Clazz.defineMethod (c$, "addMMTFBonds", 
  function (bo, bi, a0, doMulti, isInter) {
@@ -258,12 +260,14 @@ this.haveStructure = true;
 this.asc.addStructure ( new J.adapter.smarter.Structure (n, null, null, null, 0, 0, this.bsStructures));
 }});
 Clazz.defineMethod (c$, "addStructureSymmetry", 
- function () {
-if (this.asc.ac == 0) return;
+function () {
+if (this.asc.ac == 0 || !this.haveStructure || this.thisBiomolecule == null || this.ac0 == this.asc.ac) return;
 var atoms = this.asc.atoms;
 var bsAtoms = this.asc.bsAtoms;
-var ptGroup = this.lastGroup;
+var ptGroup = -1;
 var mygroup = -1;
+for (var i = this.bsStructures.length; --i >= 0; ) if (this.bsStructures[i] != null) this.bsStructures[i].clearAll ();
+
 for (var i = this.ac0, n = this.asc.ac; i < n; i++) {
 if (bsAtoms == null || bsAtoms.get (i)) {
 var a = atoms[i];
@@ -271,10 +275,10 @@ var igroup = this.atomGroup[a.atomSite];
 if (igroup != mygroup) {
 mygroup = igroup;
 ptGroup++;
-}var dssp = this.groupDSSP[igroup];
+var dssp = this.groupDSSP[igroup];
 if (dssp > 0) {
 this.bsStructures[dssp - 1].set (ptGroup);
-}}}
+}}}}
 });
 Clazz.defineMethod (c$, "decode", 
  function (key) {

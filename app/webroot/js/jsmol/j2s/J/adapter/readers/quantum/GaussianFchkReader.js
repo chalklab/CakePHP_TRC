@@ -46,7 +46,7 @@ ignore[i] = !this.doGetVibration (++this.vibrationNumber);
 if (ignore[i]) continue;
 var iAtom0 = this.asc.ac;
 this.asc.cloneAtomSetWithBonds (true);
-var name = this.asc.setAtomSetFrequency ("Calculation " + this.calculationNumber, null, "" + frequencies[i], null);
+var name = this.asc.setAtomSetFrequency (this.vibrationNumber, "Calculation " + this.calculationNumber, null, "" + frequencies[i], null);
 this.appendLoadNote ("model " + this.asc.atomSetCount + ": " + name);
 this.namedSets.set (this.asc.iSet);
 this.asc.setAtomSetModelProperty ("ReducedMass", red_masses[i] + " AMU");

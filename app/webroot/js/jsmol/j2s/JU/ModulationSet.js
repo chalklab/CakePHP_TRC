@@ -165,15 +165,16 @@ a.add (this.ptTemp);
 }if (this.mxyz != null) this.setVib (isReset, scale);
 }, "JU.T3,~N");
 Clazz.defineMethod (c$, "setVib", 
- function (isReset, scale) {
+ function (isReset, modulationScale) {
+if (isReset) {
 this.vib.setT (this.v0);
-if (isReset) return;
-this.ptTemp.setT (this.mxyz);
-this.ptTemp.scale (this.$scale * scale);
+return;
+}this.ptTemp.setT (this.mxyz);
 this.symmetry.toCartesian (this.ptTemp, true);
 JU.PT.fixPtFloats (this.ptTemp, 10000.0);
-this.ptTemp.scale (this.vib.modScale);
-this.vib.add (this.ptTemp);
+this.ptTemp.add (this.v0);
+this.ptTemp.scale (this.vib.modScale * modulationScale * this.$scale);
+this.vib.setT (this.ptTemp);
 }, "~B,~N");
 Clazz.overrideMethod (c$, "getState", 
 function () {
@@ -247,7 +248,7 @@ modInfo.put ("rsvs", this.rsvs);
 modInfo.put ("sigma", this.sigma.getArray ());
 modInfo.put ("symop", Integer.$valueOf (this.iop + 1));
 modInfo.put ("strop", this.strop);
-modInfo.put ("unitcell", this.symmetry.getUnitCellInfo ());
+modInfo.put ("unitcell", this.symmetry.getUnitCellInfo (true));
 var mInfo =  new JU.Lst ();
 for (var i = 0; i < this.mods.size (); i++) mInfo.addLast (this.mods.get (i).getInfo ());
 
@@ -274,7 +275,10 @@ return (this.mxyz == null ? this : this.mxyz);
 });
 Clazz.overrideMethod (c$, "scaleVibration", 
 function (m) {
-if (this.vib != null) this.vib.scale (m);
+if (this.vib == null) return;
+if (m == 0) {
+m = 1 / this.vib.modScale;
+}this.vib.scale (m);
 this.vib.modScale *= m;
 }, "~N");
 Clazz.overrideMethod (c$, "setMoment", 

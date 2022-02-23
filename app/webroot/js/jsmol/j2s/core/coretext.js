@@ -65,11 +65,10 @@
 var $t$;
 //var c$;
 Clazz_declarePackage ("JM");
-Clazz_load (null, "JM.Text", ["java.lang.Float", "javajs.awt.Font", "JU.PT", "J.shape.Shape", "JU.C", "$.Txt", "JV.JC"], function () {
+Clazz_load (null, "JM.Text", ["java.lang.Float", "JU.PT", "J.shape.Shape", "JU.C", "$.Font", "$.Txt", "JV.JC"], function () {
 c$ = Clazz_decorateAsClass (function () {
-this.isEcho = false;
+this.vwr = null;
 this.doFormatText = false;
-this.lines = null;
 this.font = null;
 this.fid = 0;
 this.ascent = 0;
@@ -77,20 +76,21 @@ this.descent = 0;
 this.lineHeight = 0;
 this.offsetX = 0;
 this.offsetY = 0;
+this.boxYoff2 = 0;
+this.widths = null;
 this.textWidth = 0;
 this.textHeight = 0;
 this.text = null;
 this.textUnformatted = null;
-this.widths = null;
-this.vwr = null;
+this.lines = null;
 this.image = null;
 this.imageScale = 1;
-this.boxYoff2 = 0;
 this.xAdj = 0;
 this.yAdj = 0;
 this.y0 = 0;
 this.pointerPt = null;
-this.isLabelOrHover = false;
+this.isMeasure = false;
+this.isEcho = false;
 this.xyz = null;
 this.target = null;
 this.script = null;
@@ -126,13 +126,6 @@ this.boxXY = null;
 this.scalePixelsPerMicron = 0;
 Clazz_instantialize (this, arguments);
 }, JM, "Text");
-Clazz_defineMethod (c$, "setOffset", 
-function (offset) {
-this.offsetX = JV.JC.getXOffset (offset);
-this.offsetY = JV.JC.getYOffset (offset);
-this.pymolOffset = null;
-this.valign = 3;
-}, "~N");
 Clazz_makeConstructor (c$, 
 function () {
 this.boxXY =  Clazz_newFloatArray (5, 0);
@@ -141,31 +134,45 @@ c$.newLabel = Clazz_defineMethod (c$, "newLabel",
 function (vwr, font, text, colix, bgcolix, align, scalePixelsPerMicron) {
 var t =  new JM.Text ();
 t.vwr = vwr;
-t.set (font, colix, align, true, scalePixelsPerMicron);
+t.set (font, colix, align, scalePixelsPerMicron);
 t.setText (text);
 t.bgcolix = bgcolix;
 return t;
-}, "JV.Viewer,javajs.awt.Font,~S,~N,~N,~N,~N");
+}, "JV.Viewer,JU.Font,~S,~N,~N,~N,~N");
+c$.newMeasure = Clazz_defineMethod (c$, "newMeasure", 
+function (vwr, font, colix) {
+var t =  new JM.Text ();
+t.vwr = vwr;
+t.set (font, colix, 0, 0);
+t.isMeasure = true;
+return t;
+}, "JV.Viewer,JU.Font,~N");
 c$.newEcho = Clazz_defineMethod (c$, "newEcho", 
 function (vwr, font, target, colix, valign, align, scalePixelsPerMicron) {
 var t =  new JM.Text ();
-t.vwr = vwr;
 t.isEcho = true;
-t.set (font, colix, align, false, scalePixelsPerMicron);
+t.vwr = vwr;
+t.set (font, colix, align, scalePixelsPerMicron);
 t.target = target;
 t.valign = valign;
 t.z = 2;
 t.zSlab = -2147483648;
 return t;
-}, "JV.Viewer,javajs.awt.Font,~S,~N,~N,~N,~N");
+}, "JV.Viewer,JU.Font,~S,~N,~N,~N,~N");
 Clazz_defineMethod (c$, "set", 
- function (font, colix, align, isLabelOrHover, scalePixelsPerMicron) {
+ function (font, colix, align, scalePixelsPerMicron) {
 this.scalePixelsPerMicron = scalePixelsPerMicron;
-this.isLabelOrHover = isLabelOrHover;
 this.colix = colix;
 this.align = align;
-this.setFont (font, isLabelOrHover);
-}, "javajs.awt.Font,~N,~N,~B,~N");
+this.setFont (font, !this.isEcho);
+}, "JU.Font,~N,~N,~N");
+Clazz_defineMethod (c$, "setOffset", 
+function (offset) {
+this.offsetX = JV.JC.getXOffset (offset);
+this.offsetY = JV.JC.getYOffset (offset);
+this.pymolOffset = null;
+this.valign = 3;
+}, "~N");
 Clazz_defineMethod (c$, "getFontMetrics", 
  function () {
 this.descent = this.font.getDescent ();
@@ -176,7 +183,7 @@ Clazz_defineMethod (c$, "setFontFromFid",
 function (fid) {
 if (this.fid == fid) return;
 this.fontScale = 0;
-this.setFont (javajs.awt.Font.getFont3D (fid), true);
+this.setFont (JU.Font.getFont3D (fid), true);
 }, "~N");
 Clazz_defineMethod (c$, "setText", 
 function (text) {
@@ -206,7 +213,7 @@ this.getFontMetrics ();
 if (!doAll) return;
 this.fid = this.font.fid;
 this.recalc ();
-}, "javajs.awt.Font,~B");
+}, "JU.Font,~B");
 Clazz_defineMethod (c$, "setFontScale", 
 function (scale) {
 if (this.fontScale == scale) return;
@@ -250,13 +257,13 @@ this.recalc ();
 var dy = this.offsetY * imageFontScaling;
 this.xAdj = (this.fontScale >= 2 ? 8 : 4);
 this.yAdj = this.ascent - this.lineHeight + this.xAdj;
-if (this.isLabelOrHover || this.pymolOffset != null) {
+if (!this.isEcho || this.pymolOffset != null) {
 boxXY[0] = this.movableX;
 boxXY[1] = this.movableY;
 if (this.pymolOffset != null && this.pymolOffset[0] != 2 && this.pymolOffset[0] != 3) {
 var pixelsPerAngstrom = this.vwr.tm.scaleToScreen (this.z, 1000);
 var pz = this.pymolOffset[3];
-var dz = (pz < 0 ? -1 : 1) * Math.max (0, Math.abs (pz) - 1) * pixelsPerAngstrom;
+var dz = (pz < 0 ? -1 : 1) * Math.max (pz == 0 ? 0.5 : 0, Math.abs (pz) - 1) * pixelsPerAngstrom;
 this.z -= Clazz_floatToInt (dz);
 pixelsPerAngstrom = this.vwr.tm.scaleToScreen (this.z, 1000);
 dx = this.getPymolXYOffset (this.pymolOffset[1], this.textWidth, pixelsPerAngstrom);
@@ -287,8 +294,9 @@ JM.Text.setBoxXY (this.boxWidth, this.boxHeight, dx, dy, boxXY, isAbsolute);
 this.setPos (this.fontScale);
 }this.boxX = boxXY[0];
 this.boxY = boxXY[1];
-if (this.adjustForWindow) this.setBoxOffsetsInWindow (0, this.isLabelOrHover ? 16 * this.fontScale + this.lineHeight : 0, this.boxY - this.textHeight);
+if (this.adjustForWindow) this.setBoxOffsetsInWindow (0, this.isEcho ? 0 : 16 * this.fontScale + this.lineHeight, this.boxY - this.textHeight);
 this.y0 = this.boxY + this.yAdj;
+if (this.isMeasure && this.align != 8) this.y0 += this.ascent + (this.lines.length - 1) / 2 * this.lineHeight;
 }, "~N,~N,~B,~A");
 Clazz_defineMethod (c$, "getPymolXYOffset", 
  function (off, width, ppa) {
@@ -720,7 +728,7 @@ return false;
 }, "~N,~N,JU.BS");
 });
 Clazz_declarePackage ("J.shape");
-Clazz_load (["J.shape.AtomShape", "java.util.Hashtable", "JU.P3"], "J.shape.Labels", ["javajs.awt.Font", "JU.AU", "$.BS", "$.Lst", "$.PT", "J.c.PAL", "JM.LabelToken", "$.Text", "JS.SV", "JU.BSUtil", "$.C", "JV.JC"], function () {
+Clazz_load (["J.shape.AtomShape", "java.util.Hashtable", "JU.P3"], "J.shape.Labels", ["JU.AU", "$.BS", "$.Lst", "$.PT", "J.c.PAL", "JM.LabelToken", "$.Text", "JS.SV", "JU.BSUtil", "$.C", "$.Font", "JV.JC"], function () {
 c$ = Clazz_decorateAsClass (function () {
 this.strings = null;
 this.formats = null;
@@ -740,12 +748,12 @@ this.defaultBgcolix = 0;
 this.defaultPaletteID = 0;
 this.defaultPointer = 0;
 this.zeroFontId = 0;
-this.defaultsOnlyForNone = true;
 this.setDefaults = false;
 this.isScaled = false;
 this.scalePixelsPerMicron = 0;
 this.ptTemp = null;
 this.pickedAtom = -1;
+this.lastPicked = -1;
 this.pickedOffset = 0;
 this.pickedX = 0;
 this.pickedY = 0;
@@ -767,7 +775,7 @@ this.defaultZPos = 0;
 this.translucentAllowed = false;
 });
 Clazz_overrideMethod (c$, "setProperty", 
-function (propertyName, value, bsSelected) {
+function (propertyName, value, bs) {
 this.isActive = true;
 if ("setDefaults" === propertyName) {
 this.setDefaults = (value).booleanValue ();
@@ -775,20 +783,20 @@ return;
 }if ("color" === propertyName) {
 var pid = J.c.PAL.pidOf (value);
 var colix = JU.C.getColixO (value);
-if (!this.setDefaults) {
-var n = this.checkColixLength (colix, bsSelected.length ());
-for (var i = bsSelected.nextSetBit (0); i >= 0 && i < n; i = bsSelected.nextSetBit (i + 1)) this.setLabelColix (i, colix, pid);
-
-}if (this.setDefaults || !this.defaultsOnlyForNone) {
+if (this.setDefaults) {
 this.defaultColix = colix;
 this.defaultPaletteID = pid;
+} else {
+var n = this.checkColixLength (colix, bs.length ());
+for (var i = bs.nextSetBit (0); i >= 0 && i < n; i = bs.nextSetBit (i + 1)) this.setLabelColix (i, colix, pid);
+
 }return;
 }if ("scalereference" === propertyName) {
 if (this.strings == null) return;
 var val = (value).floatValue ();
 var scalePixelsPerMicron = (val == 0 ? 0 : 10000 / val);
 var n = Math.min (this.ac, this.strings.length);
-for (var i = bsSelected.nextSetBit (0); i >= 0 && i < n; i = bsSelected.nextSetBit (i + 1)) {
+for (var i = bs.nextSetBit (0); i >= 0 && i < n; i = bs.nextSetBit (i + 1)) {
 var text = this.getLabel (i);
 if (text == null) {
 text = JM.Text.newLabel (this.vwr, null, this.strings[i], 0, 0, 0, scalePixelsPerMicron);
@@ -798,32 +806,35 @@ text.setScalePixelsPerMicron (scalePixelsPerMicron);
 }}
 return;
 }if ("label" === propertyName) {
+var isPicked = (this.isPickingMode () && bs.cardinality () == 1 && bs.nextSetBit (0) == this.lastPicked);
 this.setScaling ();
 var tokens = null;
-var nbs = this.checkStringLength (bsSelected.length ());
-if (this.defaultColix != 0 || this.defaultPaletteID != 0) this.checkColixLength (this.defaultColix, bsSelected.length ());
-if (this.defaultBgcolix != 0) this.checkBgColixLength (this.defaultBgcolix, bsSelected.length ());
+var nbs = this.checkStringLength (bs.length ());
+if (this.defaultColix != 0 || this.defaultPaletteID != 0) this.checkColixLength (this.defaultColix, bs.length ());
+if (this.defaultBgcolix != 0) this.checkBgColixLength (this.defaultBgcolix, bs.length ());
 if (Clazz_instanceOf (value, JU.Lst)) {
 var list = value;
 var n = list.size ();
 tokens =  Clazz_newArray (-1, [null]);
-for (var pt = 0, i = bsSelected.nextSetBit (0); i >= 0 && i < nbs; i = bsSelected.nextSetBit (i + 1)) {
+for (var pt = 0, i = bs.nextSetBit (0); i >= 0 && i < nbs; i = bs.nextSetBit (i + 1)) {
 if (pt >= n) {
-this.setLabel (J.shape.Labels.nullToken, "", i, true);
+this.setLabel (J.shape.Labels.nullToken, "", i, !isPicked);
 continue;
 }tokens[0] = null;
-this.setLabel (tokens, JS.SV.sValue (list.get (pt++)), i, true);
+this.setLabel (tokens, JS.SV.sValue (list.get (pt++)), i, !isPicked);
 }
 } else {
 var strLabel = value;
 tokens = (strLabel == null || strLabel.length == 0 ? J.shape.Labels.nullToken :  Clazz_newArray (-1, [null]));
-for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) this.setLabel (tokens, strLabel, i, true);
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) this.setLabel (tokens, strLabel, i, !isPicked);
 
 }return;
 }if (propertyName.startsWith ("label:")) {
 this.setScaling ();
 this.checkStringLength (this.ac);
-this.setLabel ( Clazz_newArray (-1, [null]), propertyName.substring (6), (value).intValue (), false);
+var label = propertyName.substring (6);
+if (label.length == 0) label = null;
+this.setLabel ( Clazz_newArray (-1, [null]), label, (value).intValue (), false);
 return;
 }if ("clearBoxes" === propertyName) {
 this.labelBoxes = null;
@@ -834,65 +845,83 @@ return;
 this.isActive = true;
 if (this.bsBgColixSet == null) this.bsBgColixSet = JU.BS.newN (this.ac);
 var bgcolix = JU.C.getColixO (value);
-if (!this.setDefaults) {
-var n = this.checkBgColixLength (bgcolix, bsSelected.length ());
-for (var i = bsSelected.nextSetBit (0); i >= 0 && i < n; i = bsSelected.nextSetBit (i + 1)) this.setBgcolix (i, bgcolix);
+if (this.setDefaults) {
+this.defaultBgcolix = bgcolix;
+} else {
+var n = this.checkBgColixLength (bgcolix, bs.length ());
+for (var i = bs.nextSetBit (0); i >= 0 && i < n; i = bs.nextSetBit (i + 1)) this.setBgcolix (i, bgcolix);
 
-}if (this.setDefaults || !this.defaultsOnlyForNone) this.defaultBgcolix = bgcolix;
-return;
+}return;
 }if (this.bsFontSet == null) this.bsFontSet = JU.BS.newN (this.ac);
 if ("fontsize" === propertyName) {
 var fontsize = (value).intValue ();
 if (fontsize < 0) {
 this.fids = null;
 return;
-}var fid = this.vwr.gdata.getFontFid (fontsize);
-if (!this.setDefaults) for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) this.setFont (i, fid);
-
-if (this.setDefaults || !this.defaultsOnlyForNone) this.defaultFontId = fid;
-return;
+}var f;
+if (this.setDefaults) {
+f = JU.Font.getFont3D (this.defaultFontId);
+this.defaultFontId = this.vwr.getFont3D (f.fontFace, f.fontStyle, fontsize).fid;
+} else {
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) {
+f = JU.Font.getFont3D (this.fids == null || i >= this.fids.length ? this.fids[i] : this.defaultFontId);
+this.setFont (i, this.vwr.getFont3D (f.fontFace, f.fontStyle, fontsize).fid);
+}
+}return;
 }if ("font" === propertyName) {
 var fid = (value).fid;
-if (!this.setDefaults) for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) this.setFont (i, fid);
-
-if (this.setDefaults || !this.defaultsOnlyForNone) this.defaultFontId = fid;
-return;
-}if ("offset" === propertyName) {
-if (!(Clazz_instanceOf (value, Integer))) {
-if (!this.setDefaults) {
-for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) this.setPymolOffset (i, value);
+if (this.setDefaults) {
+this.defaultFontId = fid;
+} else {
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) this.setFont (i, fid);
 
 }return;
-}var offset = (value).intValue ();
-if (!this.setDefaults) for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) this.setOffsets (i, offset);
+}if ("offset" === propertyName) {
+if (Clazz_instanceOf (value, Integer)) {
+var offset = (value).intValue ();
+if (this.setDefaults) {
+this.defaultOffset = offset;
+} else {
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) this.setOffsets (i, offset);
 
-if (this.setDefaults || !this.defaultsOnlyForNone) this.defaultOffset = offset;
-return;
+}} else if (!this.setDefaults) {
+this.checkColixLength (-1, this.ac);
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) this.setPymolOffset (i, value);
+
+}return;
 }if ("align" === propertyName) {
 var type = value;
 var hAlignment = (type.equalsIgnoreCase ("right") ? 12 : type.equalsIgnoreCase ("center") ? 8 : 4);
-for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) this.setHorizAlignment (i, hAlignment);
+if (this.setDefaults) {
+this.defaultAlignment = hAlignment;
+} else {
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) this.setHorizAlignment (i, hAlignment);
 
-if (this.setDefaults || !this.defaultsOnlyForNone) this.defaultAlignment = hAlignment;
-return;
+}return;
 }if ("pointer" === propertyName) {
 var pointer = (value).intValue ();
-if (!this.setDefaults) for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) this.setPointer (i, pointer);
+if (this.setDefaults) {
+this.defaultPointer = pointer;
+} else {
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) this.setPointer (i, pointer);
 
-if (this.setDefaults || !this.defaultsOnlyForNone) this.defaultPointer = pointer;
-return;
+}return;
 }if ("front" === propertyName) {
 var TF = (value).booleanValue ();
-if (!this.setDefaults) for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) this.setZPos (i, 32, TF);
+if (this.setDefaults) {
+this.defaultZPos = (TF ? 32 : 0);
+} else {
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) this.setZPos (i, 32, TF);
 
-if (this.setDefaults || !this.defaultsOnlyForNone) this.defaultZPos = (TF ? 32 : 0);
-return;
+}return;
 }if ("group" === propertyName) {
 var TF = (value).booleanValue ();
-if (!this.setDefaults) for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) this.setZPos (i, 16, TF);
+if (this.setDefaults) {
+this.defaultZPos = (TF ? 16 : 0);
+} else {
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) this.setZPos (i, 16, TF);
 
-if (this.setDefaults || !this.defaultsOnlyForNone) this.defaultZPos = (TF ? 16 : 0);
-return;
+}return;
 }if ("display" === propertyName || "toggleLabel" === propertyName) {
 var mode = ("toggleLabel" === propertyName ? 0 : (value).booleanValue () ? 1 : -1);
 if (this.mads == null) this.mads =  Clazz_newShortArray (this.ac, 0);
@@ -902,11 +931,11 @@ var strLabelUNK = null;
 var tokensUNK = null;
 var strLabel;
 var tokens;
-var nstr = this.checkStringLength (bsSelected.length ());
+var nstr = this.checkStringLength (bs.length ());
 var bgcolix = this.defaultBgcolix;
-var nbg = this.checkBgColixLength (bgcolix, bsSelected.length ());
+var nbg = this.checkBgColixLength (bgcolix, bs.length ());
 var thisMad = (mode >= 0 ? 1 : -1);
-for (var i = bsSelected.nextSetBit (0); i >= 0 && i < this.ac; i = bsSelected.nextSetBit (i + 1)) {
+for (var i = bs.nextSetBit (0); i >= 0 && i < this.ac; i = bs.nextSetBit (i + 1)) {
 var atom = this.atoms[i];
 if (i < nstr && this.strings[i] != null) {
 this.mads[i] = (mode == 1 || mode == 0 && this.mads[i] < 0 ? 1 : -1);
@@ -932,7 +961,7 @@ if (i < nbg && !this.bsBgColixSet.get (i)) this.setBgcolix (i, this.defaultBgcol
 }
 return;
 }if ("pymolLabels" === propertyName) {
-this.setPymolLabels (value, bsSelected);
+this.setPymolLabels (value, bs);
 return;
 }if (propertyName === "deleteModelAtoms") {
 this.labelBoxes = null;
@@ -943,10 +972,14 @@ this.bgcolixes = JU.AU.deleteElements (this.bgcolixes, firstAtomDeleted, nAtomsD
 this.offsets = JU.AU.deleteElements (this.offsets, firstAtomDeleted, nAtomsDeleted);
 this.formats = JU.AU.deleteElements (this.formats, firstAtomDeleted, nAtomsDeleted);
 this.strings = JU.AU.deleteElements (this.strings, firstAtomDeleted, nAtomsDeleted);
-JU.BSUtil.deleteBits (this.bsFontSet, bsSelected);
-JU.BSUtil.deleteBits (this.bsBgColixSet, bsSelected);
-}this.setPropAS (propertyName, value, bsSelected);
+JU.BSUtil.deleteBits (this.bsFontSet, bs);
+JU.BSUtil.deleteBits (this.bsBgColixSet, bs);
+}this.setPropAS (propertyName, value, bs);
 }, "~S,~O,JU.BS");
+Clazz_defineMethod (c$, "isPickingMode", 
+ function () {
+return (this.vwr.getPickingMode () == 2 && this.labelBoxes != null);
+});
 Clazz_defineMethod (c$, "checkStringLength", 
  function (n) {
 n = Math.min (this.ac, n);
@@ -978,7 +1011,7 @@ if (text == null) {
 if (this.strings == null || i >= this.strings.length || this.strings[i] == null) return;
 var fid = (this.bsFontSet != null && this.bsFontSet.get (i) ? this.fids[i] : -1);
 if (fid < 0) this.setFont (i, fid = this.defaultFontId);
-text = JM.Text.newLabel (this.vwr, javajs.awt.Font.getFont3D (fid), this.strings[i], this.getColix2 (i, this.atoms[i], false), this.getColix2 (i, this.atoms[i], true), 0, this.scalePixelsPerMicron);
+text = JM.Text.newLabel (this.vwr, JU.Font.getFont3D (fid), this.strings[i], this.getColix2 (i, this.atoms[i], false), this.getColix2 (i, this.atoms[i], true), 0, this.scalePixelsPerMicron);
 this.setPymolLabel (i, text, this.formats[i]);
 }text.pymolOffset = value;
 }, "~N,~A");
@@ -1037,6 +1070,7 @@ return isNew;
 }, "JM.Atom,~N,~S,~S");
 Clazz_overrideMethod (c$, "getProperty", 
 function (property, index) {
+if (property.equals ("font")) return JU.Font.getFont3D (this.defaultFontId);
 if (property.equals ("offsets")) return this.offsets;
 if (property.equals ("label")) return (this.strings != null && index < this.strings.length && this.strings[index] != null ? this.strings[index] : "");
 return null;
@@ -1118,7 +1152,7 @@ Clazz_defineMethod (c$, "setFont",
  function (i, fid) {
 if (this.fids == null || i >= this.fids.length) {
 if (fid == this.zeroFontId) return;
-this.fids = JU.AU.ensureLengthByte (this.fids, this.ac);
+this.fids = JU.AU.ensureLengthI (this.fids, this.ac);
 }this.fids[i] = fid;
 this.bsFontSet.set (i);
 var text = this.getLabel (i);
@@ -1130,26 +1164,36 @@ function () {
 if (this.strings == null) return;
 for (var i = this.strings.length; --i >= 0; ) {
 var label = this.strings[i];
-if (label != null && this.ms.at.length > i && !this.ms.isAtomHidden (i)) this.ms.at[i].setClickable (this.vf);
+if (label != null && this.ms.at.length > i && this.ms.at[i] != null && !this.ms.isAtomHidden (i)) this.ms.at[i].setClickable (this.vf);
 }
 });
+Clazz_overrideMethod (c$, "checkObjectClicked", 
+function (x, y, modifiers, bsVisible, drawPicking) {
+if (!this.isPickingMode ()) return null;
+var iAtom = this.findNearestLabel (x, y);
+if (iAtom < 0) return null;
+var map =  new java.util.Hashtable ();
+map.put ("type", "label");
+map.put ("atomIndex", Integer.$valueOf (iAtom));
+this.lastPicked = iAtom;
+return map;
+}, "~N,~N,~N,JU.BS,~B");
 Clazz_overrideMethod (c$, "checkObjectDragged", 
 function (prevX, prevY, x, y, dragAction, bsVisible) {
-if (this.vwr.getPickingMode () != 2 || this.labelBoxes == null) return false;
+if (!this.isPickingMode ()) return false;
 if (prevX == -2147483648) {
 var iAtom = this.findNearestLabel (x, y);
 if (iAtom >= 0) {
 this.pickedAtom = iAtom;
+this.lastPicked = this.pickedAtom;
 this.vwr.acm.setDragAtomIndex (iAtom);
 this.pickedX = x;
 this.pickedY = y;
 this.pickedOffset = (this.offsets == null || this.pickedAtom >= this.offsets.length ? JV.JC.LABEL_DEFAULT_OFFSET : this.offsets[this.pickedAtom]);
 return true;
 }return false;
-}if (prevX == 2147483647) {
-this.pickedAtom = -1;
-return false;
-}if (this.pickedAtom < 0) return false;
+}if (prevX == 2147483647) this.pickedAtom = -1;
+if (this.pickedAtom < 0) return false;
 this.move2D (this.pickedAtom, x, y);
 return true;
 }, "~N,~N,~N,~N,~N,JU.BS");
@@ -1197,7 +1241,7 @@ if (JU.C.isColixTranslucent (colix)) colix = JU.C.getColixTranslucent3 (colix, f
 c$.nullToken = c$.prototype.nullToken =  Clazz_newArray (-1, [null]);
 });
 Clazz_declarePackage ("J.shape");
-Clazz_load (["J.api.JmolMeasurementClient", "J.shape.AtomShape", "JU.Lst"], "J.shape.Measures", ["java.lang.Float", "java.util.Hashtable", "JU.AU", "$.BS", "$.PT", "$.SB", "JM.Measurement", "$.MeasurementData", "JU.BSUtil", "$.C", "$.Escape"], function () {
+Clazz_load (["J.api.JmolMeasurementClient", "J.shape.AtomShape", "JU.Lst"], "J.shape.Measures", ["java.lang.Boolean", "$.Float", "java.util.Hashtable", "JU.AU", "$.BS", "$.PT", "$.SB", "JM.Measurement", "$.MeasurementData", "JU.BSUtil", "$.C", "$.Escape"], function () {
 c$ = Clazz_decorateAsClass (function () {
 this.bsSelected = null;
 this.strFormat = null;
@@ -1230,7 +1274,7 @@ this.atoms = this.ms.at;
 });
 Clazz_overrideMethod (c$, "initShape", 
 function () {
-this.font3d = this.vwr.gdata.getFont3D (15);
+if (this.font3d == null) this.font3d = this.vwr.gdata.getFont3D (18);
 });
 Clazz_overrideMethod (c$, "setSize", 
 function (size, bsSelected) {
@@ -1273,7 +1317,7 @@ this.bsSelected.or (bs);
 }if ("setFormats" === propertyName) {
 this.setFormats (value);
 return;
-}this.measureAllModels = this.vwr.getBoolean (603979878);
+}this.measureAllModels = this.vwr.getBoolean (603979877);
 if ("delete" === propertyName) {
 this.deleteO (value);
 this.setIndices ();
@@ -1313,36 +1357,42 @@ if (this.tickInfo != null) this.define (md, 12291);
 this.define (md, md.tokAction);
 this.setIndices ();
 return;
-}var pt = this.setSingleItem (md.points);
+}var m = this.setSingleItem (md.points);
 if (md.thisID != null) {
-pt.thisID = md.thisID;
-pt.mad = md.mad;
-if (md.colix != 0) pt.colix = md.colix;
-pt.strFormat = md.strFormat;
-pt.text = md.text;
-}switch (md.tokAction) {
+m.thisID = md.thisID;
+m.mad = md.mad;
+if (md.colix != 0) m.colix = md.colix;
+m.strFormat = md.strFormat;
+m.text = md.text;
+}m.units = md.units;
+m.property = md.property;
+m.fixedValue = md.fixedValue;
+switch (md.tokAction) {
+case 266284:
+this.doAction (md, md.thisID, 266284);
+break;
 case 12291:
-this.defineAll (-2147483648, pt, true, false, false);
+this.defineAll (-2147483648, m, true, false, false);
 this.setIndices ();
 break;
 case 1073742335:
-this.showHideM (pt, false);
+this.showHideM (m, false);
 break;
 case 1073742334:
-this.showHideM (pt, true);
+this.showHideM (m, true);
 break;
 case 1665140738:
 if (md.thisID != null) this.doAction (md, md.thisID, 1665140738);
 break;
 case 12290:
 if (md.thisID == null) {
-this.deleteM (pt);
+this.deleteM (m);
 } else {
 this.deleteO (md.thisID);
-}this.toggle (pt);
+}this.toggle (m);
 break;
 case 268435538:
-this.toggle (pt);
+this.toggle (m);
 }
 return;
 }if ("clear" === propertyName) {
@@ -1383,6 +1433,9 @@ this.doAction (null, value, 12294);
 } else {
 this.showHideM ( new JM.Measurement ().setPoints (this.ms, value, null, null), true);
 }return;
+}if ("refresh" === propertyName) {
+this.doAction (value, null, 266284);
+return;
 }if ("show" === propertyName) {
 if (Clazz_instanceOf (value, String)) {
 this.doAction (null, value, 134222350);
@@ -1521,7 +1574,7 @@ for (var i = 1; i <= nPoints; i++) {
 var atomIndex = m.getAtomIndex (i);
 points.addLast (atomIndex >= 0 ? this.vwr.ms.getAtoms (1094715393, Integer.$valueOf (this.atoms[atomIndex].getAtomNumber ())) : m.getAtom (i));
 }
-this.define (( new JM.MeasurementData ().init (null, this.vwr, points)).set (this.tokAction, this.htMin, this.radiusData, this.strFormat, null, this.tickInfo, this.mustBeConnected, this.mustNotBeConnected, this.intramolecular, true, 0, 0, null), (isDelete ? 12291 : 12290));
+this.define (( new JM.MeasurementData ().init (null, this.vwr, points)).set (this.tokAction, this.htMin, this.radiusData, m.property, this.strFormat, null, this.tickInfo, this.mustBeConnected, this.mustNotBeConnected, this.intramolecular, true, 0, 0, null, NaN), (isDelete ? 12291 : 12290));
 }, "~N,JM.Measurement,~B,~B,~B");
 Clazz_defineMethod (c$, "find", 
  function (m) {
@@ -1573,6 +1626,8 @@ for (var i = 1; i <= m.count; i++) {
 if (i > 1) sb.append (", ");
 sb.append (m.getLabel (i, asBitSet, false));
 }
+sb.append (", ");
+sb.append (m.getString ());
 sb.append ("]");
 return sb.toString ();
 }, "JM.Measurement,~B");
@@ -1585,12 +1640,27 @@ this.measurementCount--;
 this.vwr.setStatusMeasuring ("measureDeleted", i, msg, 0);
 }, "~N");
 Clazz_defineMethod (c$, "doAction", 
- function (md, s, tok) {
-s = s.toUpperCase ().$replace ('?', '*');
-var isWild = JU.PT.isWild (s);
+ function (md, id, tok) {
+id = id.toUpperCase ().$replace ('?', '*');
+var isWild = JU.PT.isWild (id);
 for (var i = this.measurements.size (); --i >= 0; ) {
 var m = this.measurements.get (i);
-if (m.thisID != null && (m.thisID.equalsIgnoreCase (s) || isWild && JU.PT.isMatch (m.thisID.toUpperCase (), s, true, true))) switch (tok) {
+if (m.thisID != null && (m.thisID.equalsIgnoreCase (id) || isWild && JU.PT.isMatch (m.thisID.toUpperCase (), id, true, true))) switch (tok) {
+case 266284:
+if (md.colix != 0) m.colix = md.colix;
+if (md.mad != 0) m.mad = md.mad;
+if (md.strFormat != null) {
+m.strFormat = m.strFormat.substring (0, 2) + md.strFormat.substring (2);
+}if (md.text != null) {
+if (m.text == null) {
+m.text = md.text;
+} else {
+if (md.text.font != null) m.text.font = md.text.font;
+m.text.text = null;
+if (md.text.align != 0) m.text.align = md.text.align;
+if (md.colix != 0) m.labelColix = m.text.colix = md.text.colix;
+}}m.formatMeasurement (null);
+break;
 case 1665140738:
 m.mad = md.mad;
 break;
@@ -1645,7 +1715,10 @@ info.put ("index", Integer.$valueOf (index));
 info.put ("type", (count == 2 ? "distance" : count == 3 ? "angle" : "dihedral"));
 info.put ("strMeasurement", m.getString ());
 info.put ("count", Integer.$valueOf (count));
+info.put ("id", "" + m.thisID);
 info.put ("value", Float.$valueOf (m.value));
+info.put ("hidden", Boolean.$valueOf (m.isHidden));
+info.put ("visible", Boolean.$valueOf (m.isVisible));
 var tickInfo = m.tickInfo;
 if (tickInfo != null) {
 info.put ("ticks", tickInfo.ticks);
@@ -1916,48 +1989,58 @@ Clazz_declarePackage ("J.render");
 Clazz_load (null, "J.render.TextRenderer", ["java.lang.Float", "JM.Text"], function () {
 c$ = Clazz_declareType (J.render, "TextRenderer");
 c$.render = Clazz_defineMethod (c$, "render", 
-function (text, g3d, scalePixelsPerMicron, imageFontScaling, isAbsolute, boxXY, temp) {
+function (text, g3d, scalePixelsPerMicron, imageFontScaling, isAbsolute, boxXY, temp, doPointer, pointerColix, pointerWidth, isAntialiased) {
 if (text == null || text.image == null && !text.doFormatText && text.lines == null) return false;
 var showText = g3d.setC (text.colix);
 if (!showText && (text.image == null && (text.bgcolix == 0 || !g3d.setC (text.bgcolix)))) return false;
 text.setPosition (scalePixelsPerMicron, imageFontScaling, isAbsolute, boxXY);
-if (text.image == null && text.bgcolix != 0) {
-if (g3d.setC (text.bgcolix)) J.render.TextRenderer.showBox (g3d, text.colix, Clazz_floatToInt (text.boxX), Clazz_floatToInt (text.boxY) + text.boxYoff2 * 2, text.z + 2, text.zSlab, Clazz_floatToInt (text.boxWidth), Clazz_floatToInt (text.boxHeight), text.fontScale, text.isLabelOrHover);
+if (text.image == null) {
+if (text.bgcolix != 0) {
+if (g3d.setC (text.bgcolix)) J.render.TextRenderer.showBox (g3d, text.colix, Clazz_floatToInt (text.boxX), Clazz_floatToInt (text.boxY) + text.boxYoff2 * 2, text.z + 2, text.zSlab, Clazz_floatToInt (text.boxWidth), Clazz_floatToInt (text.boxHeight), text.fontScale, !text.isEcho);
 if (!showText) return false;
-}if (text.image == null) {
-for (var i = 0; i < text.lines.length; i++) {
+}for (var i = 0; i < text.lines.length; i++) {
 text.setXYA (temp, i);
 g3d.drawString (text.lines[i], text.font, Clazz_floatToInt (temp[0]), Clazz_floatToInt (temp[1]), text.z, text.zSlab, text.bgcolix);
 }
 } else {
 g3d.drawImage (text.image, Clazz_floatToInt (text.boxX), Clazz_floatToInt (text.boxY), text.z, text.zSlab, text.bgcolix, Clazz_floatToInt (text.boxWidth), Clazz_floatToInt (text.boxHeight));
-}if ((text.pointer & 1) == 0 || !g3d.setC ((text.pointer & 2) != 0 && text.bgcolix != 0 ? text.bgcolix : text.colix)) return true;
-var w = text.boxWidth;
-var h = text.boxHeight;
-var pt = NaN;
-var x = text.boxX + (text.boxX > text.atomX + w ? 0 : text.boxX + w < text.atomX - w ? w : (pt = w / 2));
-var setY = !Float.isNaN (pt);
-var y = text.boxY + (setY && text.boxY > text.atomY ? 0 : setY && text.boxY + h < text.atomY ? h : h / 2);
-g3d.drawLineXYZ (text.atomX, text.atomY, text.atomZ, Clazz_floatToInt (x), Clazz_floatToInt (y), text.zSlab);
+}if (!doPointer) return true;
+J.render.TextRenderer.drawLineXYZ (g3d, text.atomX, text.atomY, text.atomZ, text.boxX, text.boxY, text.zSlab, text.boxWidth, text.boxHeight, pointerColix, pointerWidth * (isAntialiased ? 2 : 1));
 return true;
-}, "JM.Text,J.api.JmolRendererInterface,~N,~N,~B,~A,~A");
+}, "JM.Text,J.api.JmolRendererInterface,~N,~N,~B,~A,~A,~B,~N,~N,~B");
+c$.drawLineXYZ = Clazz_defineMethod (c$, "drawLineXYZ", 
+ function (g3d, x0, y0, z0, x1, y1, z1, w, h, pointerColix, pointerWidth) {
+var offsetX = x1 - x0;
+var offsetY = y1 - y0;
+if (offsetX <= 0 && -offsetX <= w && offsetY <= 0 && -offsetY <= h) return;
+var setX = (offsetY > 0 || offsetY < -h);
+var pt = NaN;
+x1 += (setX ? (offsetX > w / 2 ? 0 : offsetX < -w * 3 / 2 ? w : (pt = w / 2)) : (offsetX > 0 ? 0 : w));
+var setY = !Float.isNaN (pt);
+y1 += (setY && offsetY > 0 ? 0 : setY && offsetY < -h ? h : h / 2);
+if (pointerWidth > 1) {
+g3d.fillCylinderXYZ (pointerColix, pointerColix, 2, pointerWidth, x0, y0, z0, Clazz_floatToInt (x1), Clazz_floatToInt (y1), z1);
+} else {
+g3d.setC (pointerColix);
+g3d.drawLineXYZ (x0, y0, z0, Clazz_floatToInt (x1), Clazz_floatToInt (y1), z1);
+}}, "J.api.JmolRendererInterface,~N,~N,~N,~N,~N,~N,~N,~N,~N,~N");
 c$.renderSimpleLabel = Clazz_defineMethod (c$, "renderSimpleLabel", 
-function (g3d, font, strLabel, colix, bgcolix, boxXY, z, zSlab, xOffset, yOffset, ascent, descent, doPointer, pointerColix, isAbsolute) {
-var boxWidth = font.stringWidth (strLabel) + 8;
-var boxHeight = ascent + descent + 8;
+function (g3d, font, strLabel, colix, bgcolix, boxXY, z, zSlab, xOffset, yOffset, ascent, descent, isAbsolute, doPointer, pointerColix, pointerWidth, isAntialiased) {
+var w = font.stringWidth (strLabel) + 8;
+var h = ascent + descent + 8;
 var x0 = Clazz_floatToInt (boxXY[0]);
 var y0 = Clazz_floatToInt (boxXY[1]);
-JM.Text.setBoxXY (boxWidth, boxHeight, xOffset, yOffset, boxXY, isAbsolute);
+JM.Text.setBoxXY (w, h, xOffset, yOffset, boxXY, isAbsolute);
 var x = boxXY[0];
 var y = boxXY[1];
-if (bgcolix != 0 && g3d.setC (bgcolix)) J.render.TextRenderer.showBox (g3d, colix, Clazz_floatToInt (x), Clazz_floatToInt (y), z, zSlab, Clazz_floatToInt (boxWidth), Clazz_floatToInt (boxHeight), 1, true);
- else g3d.setC (colix);
-g3d.drawString (strLabel, font, Clazz_floatToInt (x + 4), Clazz_floatToInt (y + 4 + ascent), z - 1, zSlab, bgcolix);
-if (doPointer) {
-g3d.setC (pointerColix);
-if (xOffset > 0) g3d.drawLineXYZ (x0, y0, zSlab, Clazz_floatToInt (x), Clazz_floatToInt (y + boxHeight / 2), zSlab);
- else if (xOffset < 0) g3d.drawLineXYZ (x0, y0, zSlab, Clazz_floatToInt (x + boxWidth), Clazz_floatToInt (y + boxHeight / 2), zSlab);
-}}, "J.api.JmolRendererInterface,javajs.awt.Font,~S,~N,~N,~A,~N,~N,~N,~N,~N,~N,~B,~N,~B");
+if (bgcolix != 0 && g3d.setC (bgcolix)) {
+J.render.TextRenderer.showBox (g3d, colix, Clazz_floatToInt (x), Clazz_floatToInt (y), z, zSlab, Clazz_floatToInt (w), Clazz_floatToInt (h), 1, true);
+} else {
+g3d.setC (colix);
+}g3d.drawString (strLabel, font, Clazz_floatToInt (x + 4), Clazz_floatToInt (y + 4 + ascent), z - 1, zSlab, bgcolix);
+if (doPointer && (xOffset != 0 || yOffset != 0)) {
+J.render.TextRenderer.drawLineXYZ (g3d, x0, y0, zSlab, x, y, zSlab, w, h, pointerColix, pointerWidth * (isAntialiased ? 2 : 1));
+}}, "J.api.JmolRendererInterface,JU.Font,~S,~N,~N,~A,~N,~N,~N,~N,~N,~N,~B,~B,~N,~N,~B");
 c$.showBox = Clazz_defineMethod (c$, "showBox", 
  function (g3d, colix, x, y, z, zSlab, boxWidth, boxHeight, imageFontScaling, atomBased) {
 g3d.fillTextRect (x, y, z, zSlab, boxWidth, boxHeight);
@@ -1970,7 +2053,7 @@ g3d.drawRect (x + 1, y + 1, z - 1, zSlab, boxWidth - 2, boxHeight - 2);
 }}, "J.api.JmolRendererInterface,~N,~N,~N,~N,~N,~N,~N,~N,~B");
 });
 Clazz_declarePackage ("J.render");
-Clazz_load (["J.render.FontLineShapeRenderer", "JU.P3", "$.P3i"], "J.render.LabelsRenderer", ["JM.Text", "J.render.TextRenderer", "JV.JC"], function () {
+Clazz_load (["J.render.FontLineShapeRenderer", "JU.P3", "$.P3i"], "J.render.LabelsRenderer", ["JM.Text", "J.render.TextRenderer", "JU.Font", "JV.JC"], function () {
 c$ = Clazz_decorateAsClass (function () {
 this.minZ = null;
 this.ascent = 0;
@@ -2049,7 +2132,7 @@ this.zBox = 1;
 var text = labels.getLabel (i);
 this.boxXY = (!this.isExport || this.vwr.creatingImage ? labels.getBox (i) :  Clazz_newFloatArray (5, 0));
 if (this.boxXY == null) labels.putBox (i, this.boxXY =  Clazz_newFloatArray (5, 0));
-text = this.renderLabelOrMeasure (text, label);
+text = this.renderLabelOrMeasure (text, label, isAntialiased);
 if (text != null) {
 labels.putLabel (i, text);
 }if (isAntialiased) {
@@ -2060,8 +2143,10 @@ this.boxXY[1] /= 2;
 return false;
 });
 Clazz_defineMethod (c$, "renderLabelOrMeasure", 
-function (text, label) {
+function (text, label, isAntialiased) {
 var newText = false;
+var doPointer = ((this.pointer & 1) != 0);
+var pointerColix = ((this.pointer & 2) != 0 && this.bgcolix != 0 ? this.bgcolix : this.labelColix);
 if (text != null) {
 if (text.font == null) text.setFontFromFid (this.fid);
 text.atomX = this.atomPt.sX;
@@ -2076,7 +2161,7 @@ text.getPymolScreenOffset (this.atomPt, this.screen, this.zSlab, this.pTemp, thi
 }} else {
 var isLeft = (this.textAlign == 4 || this.textAlign == 0);
 if (this.fid != this.fidPrevious || this.ascent == 0) {
-this.vwr.gdata.setFontFid (this.fid);
+this.vwr.gdata.setFont (JU.Font.getFont3D (this.fid));
 this.fidPrevious = this.fid;
 this.font3d = this.vwr.gdata.getFont3DCurrent ();
 if (isLeft) {
@@ -2084,11 +2169,9 @@ this.ascent = this.font3d.getAscent ();
 this.descent = this.font3d.getDescent ();
 }}var isSimple = isLeft && (this.imageFontScaling == 1 && this.scalePixelsPerMicron == 0 && label.indexOf ("|") < 0 && label.indexOf ("\n") < 0 && label.indexOf ("<su") < 0 && label.indexOf ("<co") < 0);
 if (isSimple) {
-var doPointer = ((this.pointer & 1) != 0);
-var pointerColix = ((this.pointer & 2) != 0 && this.bgcolix != 0 ? this.bgcolix : this.labelColix);
 this.boxXY[0] = this.atomPt.sX;
 this.boxXY[1] = this.atomPt.sY;
-J.render.TextRenderer.renderSimpleLabel (this.g3d, this.font3d, label, this.labelColix, this.bgcolix, this.boxXY, this.zBox, this.zSlab, JV.JC.getXOffset (this.offset), JV.JC.getYOffset (this.offset), this.ascent, this.descent, doPointer, pointerColix, this.isAbsolute);
+J.render.TextRenderer.renderSimpleLabel (this.g3d, this.font3d, label, this.labelColix, this.bgcolix, this.boxXY, this.zBox, this.zSlab, JV.JC.getXOffset (this.offset), JV.JC.getYOffset (this.offset), this.ascent, this.descent, this.isAbsolute, doPointer, pointerColix, (doPointer ? this.vwr.getInt (553648147) : 0), isAntialiased);
 return null;
 }text = JM.Text.newLabel (this.vwr, this.font3d, label, this.labelColix, this.bgcolix, this.textAlign, 0);
 text.atomX = this.atomPt.sX;
@@ -2101,9 +2184,9 @@ if (text.font == null) text.setFontFromFid (this.font3d.fid);
 text.setOffset (this.offset);
 if (this.textAlign != 0) text.setAlignment (this.textAlign);
 }text.pointer = this.pointer;
-J.render.TextRenderer.render (text, this.g3d, this.scalePixelsPerMicron, this.imageFontScaling, this.isAbsolute, this.boxXY, this.xy);
+J.render.TextRenderer.render (text, this.g3d, this.scalePixelsPerMicron, this.imageFontScaling, this.isAbsolute, this.boxXY, this.xy, doPointer, pointerColix, (doPointer ? this.vwr.getInt (553648147) : 0), isAntialiased);
 return (newText ? text : null);
-}, "JM.Text,~S");
+}, "JM.Text,~S,~B");
 });
 Clazz_declarePackage ("J.render");
 Clazz_load (["J.render.LabelsRenderer"], "J.render.MeasuresRenderer", ["java.util.Hashtable", "JU.A4", "$.M3", "$.Measure", "$.P3", "J.render.FontLineShapeRenderer", "JU.Point3fi"], function () {
@@ -2133,7 +2216,7 @@ if (measures.ms !== this.ms) {
 System.out.println ("!measure wrong modelset!");
 measures.clear ();
 return false;
-}this.doJustify = this.vwr.getBoolean (603979871);
+}this.doJustify = this.vwr.getBoolean (603979870);
 this.modulating = this.ms.bsModulated != null;
 this.imageFontScaling = this.vwr.imageFontScaling;
 this.mad0 = measures.mad;
@@ -2141,7 +2224,7 @@ this.font3d = this.vwr.gdata.getFont3DScaled (measures.font3d, this.imageFontSca
 this.m = measures.mPending;
 if (!this.isExport && this.m != null && (this.count = this.m.count) != 0) this.renderPendingMeasurement ();
 if (!this.vwr.getBoolean (603979926)) return false;
-var showMeasurementLabels = this.vwr.getBoolean (603979879);
+var showMeasurementLabels = this.vwr.getBoolean (603979878);
 measures.setVisibilityInfo ();
 for (var i = measures.measurementCount; --i >= 0; ) {
 this.m = measures.measurements.get (i);
@@ -2239,18 +2322,18 @@ var zB = b.sZ - b.sD - 10;
 var radius = this.drawLine (a.sX, a.sY, zA, b.sX, b.sY, zB, this.mad);
 if (s == null) return;
 if (this.mad > 0) radius <<= 1;
-var z = Clazz_doubleToInt ((zA + zB) / 2);
-if (z < 1) z = 1;
+var zLabel = (this.m.inFront ? Math.min (zA, zB) - 10 : Clazz_doubleToInt ((zA + zB) / 2));
+if (zLabel < 1) zLabel = 1;
 var x = Clazz_doubleToInt ((a.sX + b.sX) / 2);
 var y = Clazz_doubleToInt ((a.sY + b.sY) / 2);
 if (this.m.text == null) {
 this.g3d.setC (this.labelColix);
-this.drawString (x, y, z, radius, this.doJustify && (x - a.sX) * (y - a.sY) > 0, false, false, (this.doJustify ? 0 : 2147483647), s);
+this.drawString (x, y, zLabel, radius, this.doJustify && (x - a.sX) * (y - a.sY) > 0, false, true, (this.doJustify ? 0 : 2147483647), s);
 } else {
 this.atomPt.ave (a, b);
 this.atomPt.sX = Clazz_doubleToInt ((a.sX + b.sX) / 2);
 this.atomPt.sY = Clazz_doubleToInt ((a.sY + b.sY) / 2);
-this.renderLabelOrMeasure (this.m.text, s);
+this.renderLabelOrMeasure (this.m.text, s, false);
 }}, "~S,JU.Point3fi,JU.Point3fi");
 Clazz_defineMethod (c$, "renderAngle", 
  function (s, a, b, c) {
@@ -2269,7 +2352,7 @@ this.g3d.setC (this.labelColix);
 this.drawString (b.sX + offset, b.sY - offset, zB, radius, false, false, false, (this.doJustify ? 0 : 2147483647), s);
 } else {
 this.atomPt.setT (b);
-this.renderLabelOrMeasure (this.m.text, s);
+this.renderLabelOrMeasure (this.m.text, s, false);
 }return;
 }if (this.m.isTainted ()) {
 var radians = JU.Measure.computeAngle (this.p[0], this.p[1], this.p[2], this.vectorT2, this.vectorT3, false);
@@ -2300,13 +2383,14 @@ this.pointT.scale (1.1);
 this.matrixT.rotate (this.pointT);
 this.pointT.add (b);
 this.tm.transformPt (this.pointT);
-var zLabel = p3i.z - zOffset;
+var zLabel = (this.m.inFront ? Math.min (Math.min (zA, zB), zC) : p3i.z - zOffset);
+if (zLabel < 1) zLabel = 1;
 if (this.m.text == null) {
 this.g3d.setC (this.labelColix);
 this.drawString (p3i.x, p3i.y, zLabel, radius, p3i.x < b.sX, false, false, (this.doJustify ? b.sY : 2147483647), s);
 } else {
 this.atomPt.setT (this.pointT);
-this.renderLabelOrMeasure (this.m.text, s);
+this.renderLabelOrMeasure (this.m.text, s, false);
 }}
 }, "~S,JU.Point3fi,JU.Point3fi,JU.Point3fi");
 Clazz_defineMethod (c$, "renderTorsion", 
@@ -2319,7 +2403,8 @@ var radius = this.drawLine (a.sX, a.sY, zA, b.sX, b.sY, zB, this.mad);
 radius += this.drawLine (b.sX, b.sY, zB, c.sX, c.sY, zC, this.mad);
 radius += this.drawLine (c.sX, c.sY, zC, d.sX, d.sY, zD, this.mad);
 if (s == null) return;
-var zLabel = Clazz_doubleToInt ((zA + zB + zC + zD) / 4);
+var zLabel = (this.m.inFront ? Math.min (Math.min (Math.min (zA, zB), zC), zD) : Clazz_doubleToInt ((zA + zB + zC + zD) / 4));
+if (zLabel < 1) zLabel = 1;
 radius /= 3;
 if (this.m.text == null) {
 this.g3d.setC (this.labelColix);
@@ -2329,7 +2414,7 @@ this.atomPt.add2 (a, b);
 this.atomPt.add (c);
 this.atomPt.add (d);
 this.atomPt.scale (0.25);
-this.renderLabelOrMeasure (this.m.text, s);
+this.renderLabelOrMeasure (this.m.text, s, false);
 }}, "~S,JU.Point3fi,JU.Point3fi,JU.Point3fi,JU.Point3fi");
 Clazz_defineMethod (c$, "renderPendingMeasurement", 
  function () {
@@ -2362,7 +2447,7 @@ Clazz_overrideMethod (c$, "drawLine",
 function (x1, y1, z1, x2, y2, z2, mad) {
 var diameter = Clazz_floatToInt (mad >= 20 && this.exportType != 1 ? this.vwr.tm.scaleToScreen (Clazz_doubleToInt ((z1 + z2) / 2), mad) : mad);
 if (this.dotsOrDashes && (this.dashDots == null || this.dashDots === J.render.FontLineShapeRenderer.ndots)) this.width = diameter;
-return this.drawLine2 (x1, y1, z1, x2, y2, z2, diameter);
+return this.drawLine2 (this.g3d, x1, y1, z1, x2, y2, z2, diameter);
 }, "~N,~N,~N,~N,~N,~N,~N");
 });
 Clazz_declarePackage ("J.render");
@@ -2397,7 +2482,7 @@ t.atomX = this.pt0i.x;
 t.atomY = this.pt0i.y;
 t.atomZ = this.pt0i.z;
 if (t.zSlab == -2147483648) t.zSlab = 1;
-}if (J.render.TextRenderer.render (t, this.g3d, this.sppm, this.imageFontScaling, false, null, this.xy) && t.valign == 1 && t.align == 12) this.vwr.noFrankEcho = false;
+}if (J.render.TextRenderer.render (t, this.g3d, this.sppm, this.imageFontScaling, false, null, this.xy, false, 0, 0, false) && t.valign == 1 && t.align == 12) this.vwr.noFrankEcho = false;
 if (JU.C.renderPass2 (t.bgcolix) || JU.C.renderPass2 (t.colix)) haveTranslucent = true;
 }
 if (!this.isExport) {
@@ -2410,7 +2495,7 @@ this.renderFrameTitle (frameTitle);
 });
 Clazz_defineMethod (c$, "renderFrameTitle", 
  function (frameTitle) {
-this.vwr.gdata.setFontFid (this.vwr.gdata.getFontFidFS ("arial", Clazz_floatToInt (24 * this.imageFontScaling)));
+this.vwr.gdata.setFontBold ("arial", Clazz_floatToInt (24 * this.imageFontScaling));
 var y = Clazz_doubleToInt (Math.floor (this.vwr.getScreenHeight () * (this.g3d.isAntialiased () ? 2 : 1) - 10 * this.imageFontScaling));
 var x = Clazz_doubleToInt (Math.floor (5 * this.imageFontScaling));
 this.g3d.drawStringNoSlab (frameTitle, null, x, y, 0, 0);
@@ -2446,7 +2531,7 @@ text.setXYZs (hover.xy.x, hover.xy.y, 1, -2147483648);
 return true;
 }if (this.vwr != null && (label.indexOf ("%{") >= 0 || label.indexOf ("@{") >= 0)) label = JU.Txt.formatText (this.vwr, label);
 text.setText (label);
-J.render.TextRenderer.render (text, this.g3d, 0, antialias ? 2 : 1, false, null, this.tempXY);
+J.render.TextRenderer.render (text, this.g3d, 0, antialias ? 2 : 1, false, null, this.tempXY, false, 0, 0, false);
 return true;
 });
 Clazz_defineMethod (c$, "fixLabel", 

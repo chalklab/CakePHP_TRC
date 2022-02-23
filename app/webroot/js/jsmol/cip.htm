@@ -11,14 +11,22 @@
 
 //Jmol._debugCode = true;//(s.indexOf("debugcode") >= 0);
 
+
+calcscript = ";select *;calculate chirality;set labelfor {*} \"%[chirality]\";"
+styleYellow = ";select *;font label 20;set labeloffset 10 10; background label yellow;color labels black;set labelfor {*} \"%[chirality]\";"
+style2 = ";select *;font label 20;set labelfront;set labeloffset 0 0;display remove _H;background labels none;set labelfor {chirality == ''} \"\";select {chirality == ''};spacefill off;set labelfor {*} \"%a %[chirality]\";"
+style3 = ";select *;font label 20;set labelfront;set labeloffset 0 0;display remove _H;background labels none;set labelfor {chirality == ''} \"\";select {chirality == ''};spacefill off;set labelfor {chirality != ''} \"%a %[chirality]\";"
+
 var jmol="jmol";
 var jme = "jme";
 
 var defaultScript = ""
-if (document.location.href.indexOf("model=") >= 0) 
- defaultScript = "load \"$" + document.location.href.split("model=")[1].split("&")[0] + "\";"
-else if (document.location.href.indexOf("load=") >= 0)
- defaultScript = "load \"" + document.location.href.split("load=")[1].split("&")[0] + "\";"
+if (document.location.href.indexOf("model=") >= 0) { 
+ defaultScript = "set zoomlarge false; load \"$" + document.location.href.split("model=")[1].split("&")[0] + "\";"
+} else if (document.location.href.indexOf("load=") >= 0) {
+ defaultScript = "set zoomlarge false;load \"" + document.location.href.split("load=")[1].split("&")[0] + "\";"
+                + styleYellow
+}
  
 var JmolInfo = {
 	width: 1000,
@@ -35,7 +43,9 @@ var JmolInfo = {
   j2sPath: "j2s",
 	isSigned: true,
   defaultModel: "",
-	script: defaultScript + ";calculate chirality;label %[chirality];background label yellow;color labels black;set antialiasdisplay"
+	script: defaultScript + ";calculate chirality;label %[chirality];"
+	+"background label yellow;color labels black;set antialiasdisplay;"
+	+"set atomMovedCallback 'jmolScript:calculate Chirality;label %[chirality]';"
 }
 
 var JMEInfo = {     
@@ -89,10 +99,6 @@ for that compound. You can save your work as an <a target=_blank href=https://en
 <script>
 jmol = Jmol.getApplet(jmol, JmolInfo)
 jme = Jmol.getJMEApplet(jme, JMEInfo, jmol);
-calcscript = ";select *;calculate chirality;set labelfor {*} \"%[chirality]\";"
-styleYellow = ";select *;font label 20;set labeloffset 10 10; background label yellow;color labels black;set labelfor {*} \"%[chirality]\";"
-style2 = ";select *;font label 20;set labelfront;set labeloffset 0 0;display remove _H;background labels none;set labelfor {chirality == ''} \"\";select {chirality == ''};spacefill off;set labelfor {*} \"%a %[chirality]\";"
-style3 = ";select *;font label 20;set labelfront;set labeloffset 0 0;display remove _H;background labels none;set labelfor {chirality == ''} \"\";select {chirality == ''};spacefill off;set labelfor {chirality != ''} \"%a %[chirality]\";"
 
 Jmol.jmolButton(jmol, "load $glucose;" + calcscript + styleYellow, "glucose");
 Jmol.jmolHtml("<center>")

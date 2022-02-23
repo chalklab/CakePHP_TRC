@@ -52,6 +52,7 @@ return s
 function predictSpectrum(isJmol) {
   unhideJSV();
   if (!isJmol) {
+    jme._applet.resetAtomColors(1);
     var data = Jmol.jmeGetFile(jme, false);
     if (!data.length) {
       alert("Please draw a structure or do a search first.");
@@ -177,7 +178,8 @@ Jmol.getJSVApplet("jsv", JSVInfo)
 <a href="javascript:Jmol.clearConsole(jsv);Jmol.clearConsole(jmol);">clear</a>
 <a href="javascript:Jmol.showInfo(jsv, false);Jmol.showInfo(jmol, false)">spectrum</a>
  (note that OH and NH hydrogens will not be shown)
-<div style="position:absolute;left:745px;top:565px;z-index:9005"><input type="button" value="print" onclick="Jmol.script(jsv, 'write PDF')"/></div>
+<div style="position:absolute;left:675px;top:575px;z-index:9005"><input type="button" value="integrate" onclick="Jmol.script(jsv, 'integration auto')"/></div>
+<div style="position:absolute;left:745px;top:575px;z-index:9005"><input type="button" value="print" onclick="Jmol.script(jsv, 'write PDF')"/></div>
 </div>
 <div id="infodiv" style="text-align:center">
 This page illustrates how we can use JSME (the JavaScript Molecular Editor) 

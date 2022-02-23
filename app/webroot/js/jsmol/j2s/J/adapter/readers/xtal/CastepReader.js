@@ -490,7 +490,7 @@ this.asc.addVibrationVectorWithSymmetry (k, v.x, v.y, v.z, true);
 }
 }
 if (this.isTrajectory) this.asc.setTrajectory ();
-this.asc.setAtomSetFrequency (null, null, "" + freq, null);
+this.asc.setAtomSetFrequency (this.vibrationNumber, null, null, "" + freq, null);
 this.asc.setAtomSetName (JU.DF.formatDecimal (freq, 2) + " cm-1 " + qname);
 }
 });

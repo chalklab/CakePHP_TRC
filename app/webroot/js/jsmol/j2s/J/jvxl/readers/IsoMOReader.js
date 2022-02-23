@@ -1,5 +1,5 @@
 Clazz.declarePackage ("J.jvxl.readers");
-Clazz.load (["J.jvxl.readers.AtomDataReader"], "J.jvxl.readers.IsoMOReader", ["java.lang.Boolean", "$.Float", "java.util.Random", "JU.AU", "$.Measure", "$.P3", "$.PT", "$.V3", "J.api.Interface", "J.quantum.QS", "JU.Logger"], function () {
+Clazz.load (["J.jvxl.readers.AtomDataReader"], "J.jvxl.readers.IsoMOReader", ["java.lang.Float", "java.util.Random", "JU.AU", "$.Measure", "$.P3", "$.PT", "$.V3", "J.api.Interface", "J.quantum.QS", "JU.Logger"], function () {
 c$ = Clazz.decorateAsClass (function () {
 this.random = null;
 this.points = null;
@@ -120,14 +120,20 @@ break;
 }}
 } else {
 if (mo.containsKey ("energy")) energy = mo.get ("energy");
-}if (line.indexOf ("%E") >= 0) line = JU.PT.formatStringS (line, "E", energy != null && ++rep != 0 ? "" + energy : "");
-if (line.indexOf ("%U") >= 0) line = JU.PT.formatStringS (line, "U", energy != null && this.params.moData.containsKey ("energyUnits") && ++rep != 0 ? this.params.moData.get ("energyUnits") : "");
+}if (line.indexOf ("%E") >= 0) {
+line = JU.PT.formatStringS (line, "E", energy != null && ++rep != 0 ? "" + energy : "");
+} else if (energy != null) {
+var s = JU.PT.formatStringF (line, "E", energy.floatValue ());
+if (s !== line) {
+line = s;
+rep++;
+}}if (line.indexOf ("%U") >= 0) line = JU.PT.formatStringS (line, "U", energy != null && this.params.moData.containsKey ("energyUnits") && ++rep != 0 ? this.params.moData.get ("energyUnits") : "");
 if (line.indexOf ("%S") >= 0) line = JU.PT.formatStringS (line, "S", mo != null && mo.containsKey ("symmetry") && ++rep != 0 ? "" + mo.get ("symmetry") : "");
 if (line.indexOf ("%O") >= 0) {
 var obj = (mo == null ? null : mo.get ("occupancy"));
 var o = (obj == null ? 0 : obj.floatValue ());
-line = JU.PT.formatStringS (line, "O", obj != null && ++rep != 0 ? (o == Clazz.floatToInt (o) ? "" + Clazz.floatToInt (o) : JU.PT.formatF (o, 0, 4, false, false)) : "");
-}if (line.indexOf ("%T") >= 0) line = JU.PT.formatStringS (line, "T", mo != null && mo.containsKey ("type") && ++rep != 0 ? "" + mo.get ("type") : "");
+line = JU.PT.formatStringS (line, "O", obj != null && this.params.qm_moLinearCombination == null && ++rep != 0 ? (o == Clazz.floatToInt (o) ? "" + Clazz.floatToInt (o) : JU.PT.formatF (o, 0, 4, false, false)) : "");
+}if (line.indexOf ("%T") >= 0) line = JU.PT.formatStringS (line, "T", mo != null && mo.containsKey ("type") ? (this.params.qm_moLinearCombination == null && ++rep != 0 ? "" + mo.get ("type") : "") + ((this.params.isSquared || this.params.isSquaredLinear) && ++rep != 0 ? " ^2" : "") : "");
 if (line.equals ("string")) {
 this.params.title[iLine] = "";
 return;
@@ -196,6 +202,7 @@ function () {
 var isMonteCarlo = (this.params.psi_monteCarloCount > 0);
 if (this.isElectronDensityCalc) {
 if (this.mos == null || isMonteCarlo) return;
+System.out.println ("createOrbital " + this.params.qm_moNumber);
 for (var i = this.params.qm_moNumber; --i >= 0; ) {
 JU.Logger.info (" generating isosurface data for MO " + (i + 1));
 var mo = this.mos.get (i);
@@ -222,10 +229,9 @@ this.qSetupDone = true;
 switch (this.params.qmOrbitalType) {
 case 5:
 break;
-case 1:
-return (this.q).setupCalculation (this.volumeData, this.bsMySelected, this.params.moData.get ("calculationType"), this.atomData.xyz, this.atomData.atoms, this.atomData.firstAtomIndex, this.params.moData.get ("shells"), this.params.moData.get ("gaussians"), this.dfCoefMaps, null, this.coef, this.linearCombination, this.params.isSquaredLinear, this.coefs, this.params.moData.get ("isNormalized") !== Boolean.TRUE, this.points);
 case 2:
-return (this.q).setupCalculation (this.volumeData, this.bsMySelected, this.params.moData.get ("calculationType"), this.atomData.xyz, this.atomData.atoms, this.atomData.firstAtomIndex, null, null, null, this.params.moData.get ("slaters"), this.coef, this.linearCombination, this.params.isSquaredLinear, this.coefs, true, this.points);
+case 1:
+return (this.q).setupCalculation (this.params.moData, this.params.qmOrbitalType == 2, this.volumeData, this.bsMySelected, this.atomData.xyz, this.atomData.atoms, this.atomData.firstAtomIndex, this.dfCoefMaps, this.coef, this.linearCombination, this.params.isSquaredLinear, this.coefs, this.points);
 case 3:
 return (this.q).setupCalculation (this.volumeData, this.bsMySelected, this.params.bsSolvent, this.atomData.bsMolecules, this.atomData.atoms, this.atomData.firstAtomIndex, true, this.points, this.params.parameters, this.params.testFlags);
 }

@@ -1,5 +1,5 @@
 Clazz.declarePackage ("J.adapter.readers.quantum");
-Clazz.load (["J.adapter.readers.quantum.MopacSlaterReader", "JU.BS"], "J.adapter.readers.quantum.MoldenReader", ["java.lang.Exception", "$.Float", "java.util.Arrays", "$.Hashtable", "JU.AU", "$.Lst", "$.PT", "J.adapter.readers.quantum.BasisFunctionReader", "JU.Logger"], function () {
+Clazz.load (["J.adapter.readers.quantum.MopacSlaterReader", "JU.BS"], "J.adapter.readers.quantum.MoldenReader", ["java.lang.Double", "$.Exception", "$.Float", "java.util.Arrays", "$.Hashtable", "JU.AU", "$.Lst", "$.PT", "J.adapter.readers.quantum.BasisFunctionReader", "JU.Logger"], function () {
 c$ = Clazz.decorateAsClass (function () {
 this.loadGeometries = false;
 this.loadVibrations = false;
@@ -8,10 +8,13 @@ this.optOnly = false;
 this.doSort = true;
 this.orbitalType = "";
 this.modelAtomCount = 0;
+this.lineBuffer = null;
 this.bsAtomOK = null;
 this.bsBadIndex = null;
 this.nSPDF = null;
 this.haveEnergy = true;
+this.ptLineBuf = 0;
+this.bufLen = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "MoldenReader", J.adapter.readers.quantum.MopacSlaterReader);
 Clazz.prepareFields (c$, function () {
@@ -37,7 +40,7 @@ if (!this.line.startsWith ("[")) return true;
 JU.Logger.info (this.line);
 if (this.line.indexOf ("[ATOMS]") == 0) {
 this.readAtoms ();
-this.modelAtomCount = this.asc.atomSetAtomCounts[0];
+this.modelAtomCount = this.asc.getAtomSetAtomCount (0);
 if (this.asc.atomSetCount == 1 && this.moData != null) this.finalizeMOData (this.moData);
 return false;
 }if (this.line.indexOf ("[GTO]") == 0) return this.readGaussianBasis ();
@@ -130,14 +133,17 @@ atom.elementNumber = this.parseIntStr (tokens[2]);
 });
 Clazz.defineMethod (c$, "readSlaterBasis", 
 function () {
+var stoFactor = (this.line.indexOf ("ANGS") >= 0 ? 0.5291772 : 1);
+this.scaleSlaters = (this.line.indexOf ("MOPAC") >= 0);
 this.nCoef = 0;
 while (this.rd () != null && this.line.indexOf ("[") < 0) {
 var tokens = this.getTokens ();
 if (tokens.length < 7) continue;
-this.addSlater (this.parseIntStr (tokens[0]), this.parseIntStr (tokens[1]), this.parseIntStr (tokens[2]), this.parseIntStr (tokens[3]), this.parseIntStr (tokens[4]), this.parseFloatStr (tokens[5]), this.parseFloatStr (tokens[6]));
+var zeta = this.parseFloatStr (tokens[5]) * stoFactor;
+this.addSlater (this.parseIntStr (tokens[0]), this.parseIntStr (tokens[1]), this.parseIntStr (tokens[2]), this.parseIntStr (tokens[3]), this.parseIntStr (tokens[4]), zeta, this.parseFloatStr (tokens[6]));
 this.nCoef++;
 }
-this.setSlaters (false, false);
+this.setSlaters (false);
 return false;
 });
 Clazz.defineMethod (c$, "readGaussianBasis", 
@@ -199,7 +205,9 @@ Clazz.defineMethod (c$, "readMolecularOrbitals",
  function () {
 while (this.checkOrbitalType (this.rd ())) {
 }
-this.fixOrbitalType ();
+if (this.orbitalType === "") {
+this.createLineBuffer ();
+}this.fixOrbitalType ();
 var tokens = this.getMoTokens (this.line);
 while (tokens != null && tokens.length > 0 && tokens[0].indexOf ('[') < 0) {
 var mo =  new java.util.Hashtable ();
@@ -220,9 +228,13 @@ this.alphaBeta = tokens[1].toLowerCase ();
 }tokens = this.getMoTokens (null);
 }
 var pt = 0;
+var offset = 0;
 while (tokens != null && tokens.length > 0 && this.parseIntStr (tokens[0]) != -2147483648) {
 if (tokens.length != 2) throw  new Exception ("invalid MO coefficient specification");
 var i = this.parseIntStr (tokens[0]);
+if (pt == 0 && i == this.nCoef + 1 && "beta".equals (this.alphaBeta)) {
+offset = -this.nCoef;
+}i += offset;
 while (i > ++pt) data.addLast ("0");
 
 data.addLast (tokens[1]);
@@ -254,9 +266,32 @@ JU.Logger.debug (coefs.length + " coefficients in MO " + this.orbitals.size ());
 }}this.line = l;
 }
 if (this.debugging) JU.Logger.debug ("read " + this.orbitals.size () + " MOs");
-this.setMOs ("eV");
+this.setMOs ("");
 if (this.haveEnergy && this.doSort) this.sortMOs ();
 return false;
+});
+Clazz.defineMethod (c$, "rd", 
+function () {
+if (++this.ptLineBuf < this.bufLen) {
+return this.line = this.lineBuffer.get (this.ptLineBuf);
+}if (this.bufLen > 0) {
+this.lineBuffer = null;
+this.bufLen = -1;
+return null;
+}return Clazz.superCall (this, J.adapter.readers.quantum.MoldenReader, "rd", []);
+});
+Clazz.defineMethod (c$, "createLineBuffer", 
+ function () {
+if (this.lineBuffer != null) return;
+this.lineBuffer =  new JU.Lst ();
+var l0 = this.line;
+while (Clazz.superCall (this, J.adapter.readers.quantum.MoldenReader, "rd", []) != null) {
+if (!this.line.contains ("[") || !this.checkOrbitalType (this.line)) {
+this.lineBuffer.addLast (this.line);
+}}
+this.bufLen = this.lineBuffer.size ();
+this.ptLineBuf = -1;
+this.line = l0;
 });
 Clazz.defineMethod (c$, "sortMOs", 
  function () {
@@ -314,7 +349,7 @@ this.skipTo ("vibration");
 this.doGetVibration (++this.vibrationNumber);
 if (haveVib) this.asc.cloneLastAtomSet ();
 haveVib = true;
-this.asc.setAtomSetFrequency (null, null, "" + JU.PT.dVal (frequencies.get (nFreq)), null);
+this.asc.setAtomSetFrequency (this.vibrationNumber, null, null, "" + Double.$valueOf (frequencies.get (nFreq)), null);
 var i0 = this.asc.getLastAtomSetAtomIndex ();
 for (var i = 0; i < this.modelAtomCount; i++) {
 tokens = JU.PT.getTokens (this.rd ());
@@ -327,7 +362,7 @@ Clazz.defineMethod (c$, "readGeometryOptimization",
  function () {
 var energies =  new JU.Lst ();
 this.rd ();
-while (this.rd () != null && this.line.indexOf ("force") < 0) energies.addLast ("" + JU.PT.dVal (this.line.trim ()));
+while (this.rd () != null && this.line.indexOf ("force") < 0) energies.addLast ("" + Double.$valueOf (this.line.trim ()));
 
 this.skipTo ("[GEOMETRIES] XYZ");
 var nGeom = energies.size ();

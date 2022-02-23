@@ -333,7 +333,7 @@ this.finalizeObjects ();
 } catch (e) {
 if (Clazz.exceptionOf (e, Exception)) {
 JU.Logger.info ("PyMOLScene exception " + e);
-if (!this.vwr.isJS) e.printStackTrace ();
+e.printStackTrace ();
 } else {
 throw e;
 }
@@ -353,7 +353,7 @@ this.addJmolObject (1140850689, bs, null).argb = icolor;
 }, "~A");
 Clazz.defineMethod (c$, "processSelection", 
 function (selection) {
-var id = selection.get (0).toString ();
+var id = J.adapter.readers.pymol.PyMOLReader.stringAt (selection, 0);
 id = "_" + (id.equals ("sele") ? id : "sele_" + id);
 var g = this.getGroup (id);
 this.getSelectionAtoms (J.adapter.readers.pymol.PyMOLReader.listAt (selection, 5), 0, g.bsAtoms);
@@ -477,7 +477,7 @@ obj.finalizeObject (this, this.vwr.ms, this.mepList, this.doCache);
 } catch (e) {
 if (Clazz.exceptionOf (e, Exception)) {
 System.out.println (e);
-if (!this.vwr.isJS) e.printStackTrace ();
+e.printStackTrace ();
 } else {
 throw e;
 }
@@ -681,7 +681,7 @@ return J.adapter.readers.pymol.PyMOL.getDefaultSetting (i, this.pymolVersion);
 Clazz.defineMethod (c$, "stringSetting", 
 function (i) {
 var setting = this.getSetting (i);
-if (setting != null && setting.size () == 3) return setting.get (2).toString ();
+if (setting != null && setting.size () == 3) return J.adapter.readers.pymol.PyMOLReader.stringAt (setting, 2);
 return J.adapter.readers.pymol.PyMOL.getDefaultSettingS (i, this.pymolVersion);
 }, "~N");
 Clazz.defineMethod (c$, "getSetting", 
@@ -743,7 +743,7 @@ offset = md.text.pymolOffset;
 }var nDigits = Clazz.floatToInt (this.floatSetting (J.adapter.readers.pymol.PyMOLScene.MEAS_DIGITS[nCoord - 2]));
 var strFormat = nCoord + ": " + (drawLabel ? "%0." + (nDigits < 0 ? 1 : nDigits) + "VALUE" : "");
 var text = this.newTextLabel (strFormat, offset, clabel, Clazz.floatToInt (this.floatSetting (328)), this.floatSetting (453));
-md.set (12290, null, null, strFormat, "angstroms", null, false, false, null, false, Clazz.floatToInt (rad * 2000), colix, text);
+md.set (12290, null, null, null, strFormat, "angstroms", null, false, false, null, false, Clazz.floatToInt (rad * 2000), colix, text, NaN);
 this.addJmolObject (6, bs, md);
 }
 return true;

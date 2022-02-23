@@ -103,4 +103,8 @@ name = "";
 this.nRotations++;
 return name;
 }, "~S,~N,~S");
+Clazz.overrideMethod (c$, "toString", 
+function () {
+return this.hallSymbol;
+});
 });

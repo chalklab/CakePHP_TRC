@@ -110,8 +110,10 @@ for (var i = list.size (); --i >= 0; ) list.get (i).visible = TF;
 
 return;
 }var ac = this.vwr.ms.ac;
-for (var i = ac; --i >= 0; ) if (this.lcaoID != null || this.thisSet.get (i)) this.setLcaoOn (i, TF);
-
+var at = this.vwr.ms.at;
+for (var i = ac; --i >= 0; ) {
+if (this.lcaoID != null || this.thisSet.get (i)) this.setLcaoOn (i, TF && at[i] != null);
+}
 }, "~B");
 Clazz.defineMethod (c$, "setLcaoOn", 
  function (iAtom, TF) {

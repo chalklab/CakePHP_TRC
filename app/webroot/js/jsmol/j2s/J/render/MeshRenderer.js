@@ -1,5 +1,5 @@
 Clazz.declarePackage ("J.render");
-Clazz.load (["J.render.ShapeRenderer", "JU.BS", "$.P3", "$.P3i"], "J.render.MeshRenderer", ["JU.AU", "JU.C"], function () {
+Clazz.load (["J.render.ShapeRenderer", "JU.BS", "$.P3", "$.P3i"], "J.render.MeshRenderer", ["JU.AU", "JU.C", "$.SimpleUnitCell"], function () {
 c$ = Clazz.decorateAsClass (function () {
 this.mesh = null;
 this.vertices = null;
@@ -94,7 +94,7 @@ mesh.colix = c;
 } else {
 var minXYZ =  new JU.P3i ();
 var maxXYZ = JU.P3i.new3 (Clazz.floatToInt (mesh.lattice.x), Clazz.floatToInt (mesh.lattice.y), Clazz.floatToInt (mesh.lattice.z));
-unitcell.setMinMaxLatticeParameters (minXYZ, maxXYZ);
+JU.SimpleUnitCell.setMinMaxLatticeParameters (Clazz.floatToInt (unitcell.getUnitCellInfoType (6)), minXYZ, maxXYZ, 0);
 for (var tx = minXYZ.x; tx < maxXYZ.x; tx++) for (var ty = minXYZ.y; ty < maxXYZ.y; ty++) for (var tz = minXYZ.z; tz < maxXYZ.z; tz++) {
 this.latticeOffset.set (tx, ty, tz);
 unitcell.toCartesian (this.latticeOffset, false);
@@ -317,13 +317,22 @@ return;
 }} else {
 this.pt1f.ave (vA, vB);
 this.tm.transformPtScr (this.pt1f, this.pt1i);
+if (this.width < 0) {
+this.diameter = -1;
+} else {
 var mad = Clazz.doubleToInt (Math.floor (Math.abs (this.width) * 1000));
 this.diameter = Clazz.floatToInt (this.vwr.tm.scaleToScreen (this.pt1i.z, mad));
-}if (this.diameter == 0) this.diameter = 1;
+}}if (this.diameter == 0) this.diameter = 1;
 this.tm.transformPt3f (vA, this.pt1f);
 this.tm.transformPt3f (vB, this.pt2f);
+if (this.diameter == -1) {
+this.g3d.drawLineAB (this.pt1f, this.pt2f);
+} else if (this.diameter < 0) {
+var idash = -this.diameter;
+this.g3d.drawDashedLineBits (idash << 1, idash, this.pt1f, this.pt2f);
+} else {
 this.g3d.fillCylinderBits (endCap, this.diameter, this.pt1f, this.pt2f);
-}, "~N,~N,~B,JU.T3,JU.T3,JU.P3i,JU.P3i");
+}}, "~N,~N,~B,JU.T3,JU.T3,JU.P3i,JU.P3i");
 Clazz.defineMethod (c$, "exportSurface", 
 function (colix) {
 this.mesh.normals = this.mesh.getNormals (this.vertices, null);

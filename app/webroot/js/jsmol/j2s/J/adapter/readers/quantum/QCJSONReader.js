@@ -97,11 +97,12 @@ return $private.apply (this, arguments);
 if (vibrations != null) {
 var n = vibrations.size ();
 for (var i = 0; i < n; i++) {
+if (!this.doGetVibration (++this.vibrationNumber)) continue;
 var vib = vibrations.get (i);
 var freq = org.qcschema.QCSchemaUnits.getDouble (vib, "frequency", "cm-1");
 var vectors = org.qcschema.QCSchemaUnits.getDoubleArray (vib, "vectors");
 if (i > 0) this.asc.cloneLastAtomSet ();
-this.asc.setAtomSetFrequency (null, null, "" + freq, "cm-1");
+this.asc.setAtomSetFrequency (this.vibrationNumber, null, null, "" + freq, "cm-1");
 var i0 = this.asc.getLastAtomSetAtomIndex ();
 for (var j = 0, pt = 0; j < this.modelAtomCount; j++) {
 this.asc.addVibrationVector (j + i0, (vectors[pt++] * 0.5291772), (vectors[pt++] * 0.5291772), (vectors[pt++] * 0.5291772));
@@ -193,7 +194,8 @@ for (var i = 0; i < this.nCoef; i++) {
 var a = org.qcschema.QCSchemaUnits.getDoubleArray (listS.get (i), null);
 this.addSlater (Clazz.doubleToInt (a[0]), Clazz.doubleToInt (a[1]), Clazz.doubleToInt (a[2]), Clazz.doubleToInt (a[3]), Clazz.doubleToInt (a[4]), a[5], a[6]);
 }
-this.setSlaters (false, false);
+this.scaleSlaters = false;
+this.setSlaters (false);
 return true;
 }, "java.util.ArrayList");
 Clazz.defineMethod (c$, "readGaussianBasis", 

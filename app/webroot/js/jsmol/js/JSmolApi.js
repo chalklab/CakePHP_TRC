@@ -133,6 +133,10 @@
 
 ////////////////// scripting ///////////////////
 
+	Jmol.setCallback = function(applet, name, func) {
+		applet._setCallback(name, func);
+	}
+
 	Jmol.loadFile = function(applet, fileName, params){
 		applet._loadFile(fileName, params);
 	}
@@ -438,22 +442,26 @@
 		return Jmol._getNCIInfo(appletOrIdentifier, what, fCallback);
 	}
 
-	Jmol.saveImage = function(app) {
+	Jmol.saveImage = function(app, type, fname) {
 		// see: https://svgopen.org/2010/papers/62-From_SVG_to_Canvas_and_Back/index.html
 		// From SVG to Canvas and Back
 		// Samuli Kaipiainen University of Helsinki, Department of Computer Science samuli.kaipiainen@cs.helsinki.fi
 		// Matti Paksula University of Helsinki, Department of Computer Science matti.paksula@cs.helsinki.fi
+		type = (type || "png").toLowerCase();
+		fname || (fname = app.id + "." + type.toLowerCase());
+		if (fname.indexOf(".") < 0) fname += "." + type;
 		switch (app._viewType) {
 		case "Jmol":
-			app._script("write PNGJ \"" + app._id + ".png\"");
-			break;
+			return app._script("write PNGJ \"" + fname + "\"");
 		case "JSV":
-			app._script("write PDF");
+			if (type == "PDF")
+				return app._script("write PDF");
 			break;
 		case "JME":
-			app._script("print");
-			break;
+			return app._script("print");			
 		}
+		Jmol._saveFile(fname,app._canvas.toDataURL("image/png"));
 	}
+		
 		
 })(Jmol);

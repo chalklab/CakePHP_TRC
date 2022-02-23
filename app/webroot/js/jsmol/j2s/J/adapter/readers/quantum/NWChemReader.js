@@ -196,10 +196,10 @@ bsIgnore.set (this.vibrationNumber);
 continue;
 }if (!firstTime) this.asc.cloneLastAtomSet ();
 firstTime = false;
-this.asc.setAtomSetFrequency (path, null, tokens[i], null);
+this.asc.setAtomSetFrequency (this.vibrationNumber, path, null, tokens[i], null);
 }
 this.readLines (1);
-this.fillFrequencyData (iAtom0, ac, ac, ignore, false, 0, 0, null, 0);
+this.fillFrequencyData (iAtom0, ac, ac, ignore, false, 0, 0, null, 0, null);
 this.readLines (3);
 }
 try {
@@ -389,7 +389,12 @@ function () {
 this.RL ();
 if (!this.purging && this.line != null && this.line.startsWith ("--")) {
 this.purging = true;
-this.discardLinesUntilStartsWith ("*");
+if (this.rd ().indexOf ("EAF") == 0) {
+this.rd ();
+this.discardLinesUntilStartsWith ("--");
+this.purging = false;
+return this.rd ();
+}this.discardLinesUntilStartsWith ("*");
 this.rd ();
 this.purging = false;
 this.RL ();

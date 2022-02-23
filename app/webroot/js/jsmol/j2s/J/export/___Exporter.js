@@ -63,7 +63,7 @@ this.gdata = g3d;
 this.privateKey = privateKey;
 this.backgroundColix = vwr.getObjectColix (0);
 this.center.setT (this.tm.fixedRotationCenter);
-this.exportScale = vwr.getFloat (570425358);
+this.exportScale = vwr.getFloat (570425357);
 if (this.exportScale == 0) {
 this.exportScale = 10;
 }JU.Logger.info ("__Exporter exportScale: " + this.exportScale);
@@ -137,7 +137,7 @@ sb.append ("\n").append (this.commentChar).append ("rotationRadius: " + this.vwr
 sb.append ("\n").append (this.commentChar).append ("boundboxCenter: " + this.vwr.getBoundBoxCenter ());
 sb.append ("\n").append (this.commentChar).append ("translationOffset: " + this.tm.getTranslationScript ());
 sb.append ("\n").append (this.commentChar).append ("zoom: " + this.vwr.tm.zmPct);
-sb.append ("\n").append (this.commentChar).append ("moveto command: " + this.vwr.getOrientationText (4129, null, null));
+sb.append ("\n").append (this.commentChar).append ("moveto command: " + this.vwr.getOrientation (4129, null, null));
 sb.append ("\n");
 return sb.toString ();
 });
@@ -327,7 +327,7 @@ function (x, y, z, colix, text, font3d) {
 this.outputComment ("start text " + (++this.nText) + ": " + text);
 this.gdata.plotText (x, y, z, this.gdata.getColorArgbOrGray (colix), 0, text, font3d, this.export3D);
 this.outputComment ("end text " + this.nText + ": " + text);
-}, "~N,~N,~N,~N,~S,javajs.awt.Font");
+}, "~N,~N,~N,~N,~S,JU.Font");
 Clazz.defineStatics (c$,
 "degreesPerRadian", (57.29577951308232));
 });

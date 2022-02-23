@@ -46,7 +46,7 @@ this.jvxlData.mappedDataMax = minmax[1];
 Clazz.overrideMethod (c$, "setProperty", 
 function (propertyName, value, bs) {
 if ("set" === propertyName) {
-this.setContacts (value, !this.vwr.getBoolean (603979965));
+this.setContacts (value, true);
 return;
 }if ("init" === propertyName) {
 this.translucentLevel = 0;
@@ -250,9 +250,12 @@ for (var j = this.thisMesh.vc; --j >= 0; ) box.addBoundBoxPoint (this.thisMesh.v
 
 }
 JU.Logger.setLogLevel (logLevel);
+if (this.jvxlData.boundingBox == null) {
+System.out.println ("???");
+} else {
 this.jvxlData.boundingBox[0] = box.bbCorner0;
 this.jvxlData.boundingBox[1] = box.bbCorner1;
-this.displayType = displayType;
+}this.displayType = displayType;
 return volume;
 }, "JU.Lst,~N,~N,~A,~O,~B,~B");
 Clazz.defineMethod (c$, "setColorByScore", 

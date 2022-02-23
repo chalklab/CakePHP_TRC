@@ -335,7 +335,7 @@ JU.Logger.debug ("reading VIBFREQ vibration records: frequencyCount = " + freque
 }var ignore =  Clazz.newBooleanArray (frequencyCount, false);
 for (var i = 0; i < frequencyCount; ++i) {
 var ac0 = this.r.asc.ac;
-ignore[i] = !this.r.doGetVibration (i + 1);
+ignore[i] = !this.r.doGetVibration (++this.r.vibrationNumber);
 if (!ignore[i] && this.r.desiredVibrationNumber <= 0) {
 this.r.asc.cloneLastAtomSet ();
 this.addBonds (this.bondData, ac0);
@@ -346,10 +346,10 @@ info.put ("freq", Float.$valueOf (freq));
 if (this.line.length > 15 && !(label = this.line.substring (15, this.line.length)).equals ("???")) info.put ("label", label);
 freqs.addLast (info);
 if (!ignore[i]) {
-this.r.asc.setAtomSetFrequency (null, label, "" + freq, null);
+this.r.asc.setAtomSetFrequency (this.r.vibrationNumber, null, label, "" + freq, null);
 }}
 this.r.asc.setInfo ("VibFreqs", freqs);
-var ac = this.r.asc.atomSetAtomCounts[0];
+var ac = this.r.asc.getAtomSetAtomCount (0);
 var vib =  new JU.Lst ();
 var vibatom =  new JU.Lst ();
 var ifreq = 0;
@@ -407,7 +407,7 @@ this.r.asc.setAtomSetModelProperty ("Frequency", freq + " cm^-1");
 this.r.asc.setAtomSetModelProperty (".PATH", "Frequencies");
 }
 this.r.asc.setInfo ("VibFreqs", freqs);
-var ac = this.r.asc.atomSetAtomCounts[0];
+var ac = this.r.asc.getAtomSetAtomCount (0);
 var iatom = ac;
 for (var i = 0; i < frequencyCount; i++) {
 if (!this.r.doGetVibration (i + 1)) continue;

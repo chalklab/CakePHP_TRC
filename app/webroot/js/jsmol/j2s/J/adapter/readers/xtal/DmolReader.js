@@ -92,11 +92,11 @@ if (ignore[i]) continue;
 this.applySymmetryAndSetTrajectory ();
 lastAtomCount = this.cloneLastAtomSet (ac, null);
 if (i == 0) iAtom0 = this.asc.getLastAtomSetAtomIndex ();
-this.asc.setAtomSetFrequency (null, null, String.valueOf (frequencies[i]), null);
+this.asc.setAtomSetFrequency (this.vibrationNumber, null, null, String.valueOf (frequencies[i]), null);
 this.asc.setAtomSetName (JU.DF.formatDecimal (frequencies[i], 2) + " cm-1");
 }
 this.rd ();
-this.fillFrequencyData (iAtom0, ac, lastAtomCount, ignore, false, 5, 13, null, 0);
+this.fillFrequencyData (iAtom0, ac, lastAtomCount, ignore, false, 5, 13, null, 0, null);
 this.readLines (2);
 }
 });

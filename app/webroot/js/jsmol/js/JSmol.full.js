@@ -10655,6 +10655,7 @@ return jQuery;
 // see JSmolApi.js for public user-interface. All these are private functions
 
 
+// BH 4/30/2019 fixes write xyz "https://...."
 // BH 7/6/2017 2:22:07 AM adds BZ2 as binary
 // BH 4/13/2017 11:23:05 PM adds "binary pmesh" .pmb extension
 // BH 1/14/2017 6:28:07 AM adds &debugCore
@@ -10682,7 +10683,7 @@ return jQuery;
 // BH 2/14/2016 12:30:41 PM Info.appletLoadingImage: "j2s/img/JSmol_spinner.gif", 
    // can be set to "none" or some other image; see Jmol._hideLoadingSpinner(applet)
    // implemented only for JSmolApplet, not others
-// BH 2/14/2016 12:27:09 PM Jmol._setCursor 
+// BH 2/14/2016 12:27:09 PM Jmol.setCursor 
 // BH 2/14/2016 6:48:33 AM _setCursor() and cursor_wait   http://ajaxload.info/
 // BH 1/15/2016 4:23:14 PM adding Info.makeLiveImage
 // BH 12/30/2015 8:18:42 PM adding AMS call to database list; allowing for ?ALLOWSORIGIN? to override settings here
@@ -10828,7 +10829,7 @@ Jmol = (function(document) {
 		}
 	};
 	var j = {
-		_version: "$Date: 2017-07-06 02:22:33 -0500 (Thu, 06 Jul 2017) $", // svn.keywords:lastUpdated
+		_version: "$Date: 2022-01-23 22:53:29 -0600 (Sun, 23 Jan 2022) $", // svn.keywords:lastUpdated
 		_alertNoBinary: true,
 		// this url is used to Google Analytics tracking of Jmol use. You may remove it or modify it if you wish. 
 		_allowedJmolSize: [25, 2048, 300],   // min, max, default (pixels)
@@ -10907,7 +10908,7 @@ Jmol = (function(document) {
 	j._isSafari = (!j._isChrome && navigator.userAgent.toLowerCase().indexOf("safari") >= 0);
 	j._isMsie = (window.ActiveXObject !== undefined);
   j._isEdge = (navigator.userAgent.indexOf("Edge/") >= 0);
-	j._useDataURI = !j._isSafari && !j._isMsie && !j._isEdge; // safari may be OK here -- untested
+	j._useDataURI = /*!j._isSafari && */ !j._isMsie && !j._isEdge; // safari may be OK here -- untested
 
   window.requestAnimationFrame || (window.requestAnimationFrame = window.setTimeout);
 	for(var i in Jmol) j[i] = Jmol[i]; // allows pre-definition
@@ -11348,7 +11349,7 @@ Jmol = (function(document) {
 				query = encodeURIComponent(query.substring(pt));		
 			}
       if (query.indexOf(".mmtf") >= 0) {
-        query = "http://mmtf.rcsb.org/full/" + query.replace(/\.mmtf/, "");
+        query = "https://mmtf.rcsb.org/v1.0/full/" + query.replace(/\.mmtf/, "");
 			} else if (call.indexOf("FILENCI") >= 0) {
 				query = query.replace(/\%2F/g, "/");				
 				query = call.replace(/\%FILENCI/, query);
@@ -11399,11 +11400,49 @@ Jmol = (function(document) {
 		return fSuccess;
 	}
 	
-  Jmol._playAudio = function(filePath) {
+  Jmol.playAudio = function(filePath) {
+    Jmol.playAudio(null, filePath);
+  }
+  
+  Jmol.playAudio = function(applet, params) {
+  
+    var get = (params.get ? function(key){return params.get(key)} : null);
+    var put = (params.put ? function(key,val){return params.put(key,val)} : null);
+    var filePath = (get ? get("audioFile") : params);
+    var jmolAudio = get && get("audioPlayer");
     var audio = document.createElement("audio");
+    put && put("audioElement", audio);
+    var callback = null;
+    if (jmolAudio) {
+      callback = function(type){jmolAudio.processUpdate(type)};
+      jmolAudio.myClip = {
+         open: function() {callback("open")},
+         start: function() { audio.play(); callback("start")},
+         loop: function(n) { audio.loop = (n != 0); },
+         stop: function() { audio.pause(); },
+         close: function() { callback("close") },
+         setMicrosecondPosition: function(us) { audio.currentTime = us / 1e6; }
+      };
+    }    
     audio.controls = "true";
     audio.src = filePath;
-    audio.play();
+    if (get && get("loop"))
+      audio.loop = "true";
+    if (callback) {
+      audio.addEventListener("pause", function() {
+          callback("pause");
+      });
+      audio.addEventListener("play", function() {
+          callback("play");
+      });
+      audio.addEventListener("playing", function() {
+          callback("playing");
+      });
+      audio.addEventListener("ended", function() {
+          callback("ended");
+      });
+      callback("open")
+    }
   }
   
 	Jmol._loadFileData = function(applet, fileName, fSuccess, fError){
@@ -11585,7 +11624,7 @@ Jmol = (function(document) {
 
 	Jmol._binaryTypes = ["mmtf",".gz",".bz2",".jpg",".gif",".png",".zip",".jmol",".bin",".smol",".spartan",".pmb",".mrc",".map",".ccp4",".dn6",".delphi",".omap",".pse",".dcd",".uk/pdbe/densities/"];
 
-	Jmol._isBinaryUrl = function(url) {
+	Jmol.isBinaryUrl = function(url) {
 		for (var i = Jmol._binaryTypes.length; --i >= 0;)
 			if (url.indexOf(Jmol._binaryTypes[i]) >= 0) return true;
 		return false;
@@ -11593,7 +11632,7 @@ Jmol = (function(document) {
 
 	Jmol._getFileData = function(fileName, fSuccess, doProcess) {
 		// use host-server PHP relay if not from this host
-		var isBinary = Jmol._isBinaryUrl(fileName);
+		var isBinary = Jmol.isBinaryUrl(fileName);
 		var isPDB = (fileName.indexOf(".gz") >= 0 && fileName.indexOf("rcsb.org") >= 0);
 		if (isPDB) {
 			// avoid unnecessary binary transfer
@@ -11697,14 +11736,14 @@ Jmol = (function(document) {
   Jmol._hideLocalFileReader = function(applet, cursor) {
     applet._localReader && Jmol.$setVisible(applet._localReader, false);
     applet._readingLocal = false;
-    Jmol._setCursor(applet, 0);
+    Jmol.setCursor(applet, 0);
   }
   
   Jmol.loadFileFromDialog = function(applet) {
-    Jmol._loadFileAsynchronously(null, applet, null, null);
+    Jmol.loadFileAsynchronously(null, applet, null, null);
   }
   
-	Jmol._loadFileAsynchronously = function(fileLoadThread, applet, fileName, appData) {
+	Jmol.loadFileAsynchronously = function(fileLoadThread, applet, fileName, appData) {
 		if (fileName && fileName.indexOf("?") != 0) {
 			// LOAD ASYNC command
 			var fileName0 = fileName;
@@ -11769,12 +11808,18 @@ Jmol = (function(document) {
     }    
   }
 
-	Jmol._doAjax = function(url, postOut, dataOut) {
+	Jmol.doAjax = function(url, postOut, dataOut) {
 		// called by org.jmol.awtjs2d.JmolURLConnection.doAjax()
 		url = url.toString();
+		if (dataOut) {
 
-		if (dataOut != null) 
-			return Jmol._saveFile(url, dataOut);
+			if (url.indexOf("http://") != 0 && url.indexOf("https://") != 0)
+				return Jmol._saveFile(url, dataOut);
+			var info = {async:false,url:url,type:"POST",
+				data:typeof data == "string" ? dataOut :";base64," + (JU || J.util).Base64.getBase64(dataOut).toString(), processData:false
+			};
+			return Jmol.$ajax(info).responseText;
+		}
 		if (postOut)
 			url += "?POST?" + postOut;
 		return Jmol._getFileData(url, null, true);
@@ -11791,8 +11836,14 @@ Jmol = (function(document) {
 			: filename.indexOf(".gif") >= 0 ? "image/gif" 
 			: filename.indexOf(".jpg") >= 0 ? "image/jpg" : ""));
 		var isString = (typeof data == "string");
-   	data = (JU ? JU : J.util).Base64.getBase64(isString ? data.getBytes("UTF-8") : data).toString();
+		
+	if (isString && data.indexOf(";base64,") >= 0) {
+	  data = data.split(";base64,")[1];
+	} else {	
+   	data = (JU || J.util).Base64.getBase64(isString ? data.getBytes("UTF-8") : data).toString();
+   	}
 		encoding || (encoding = "base64");
+		
 		var url = Jmol._serverUrl;
 		url && url.indexOf("your.server") >= 0 && (url = "");
 		if (Jmol._useDataURI || !url) {
@@ -11850,7 +11901,7 @@ Jmol = (function(document) {
 	}
 
 	Jmol._registerApplet = function(id, applet) {
-		return window[id] = Jmol._applets[id] = Jmol._applets[id + "__" + Jmol._syncId + "__"] = applet;
+		return window[id] = Jmol._applets[id] = Jmol._applets.master = Jmol._applets[id + "__" + Jmol._syncId + "__"] = applet;
 	} 
 
 	Jmol._readyCallback = function (appId,fullId,isReady,javaApplet,javaAppletPanel) {
@@ -12269,7 +12320,7 @@ Jmol = (function(document) {
 		return (x == undefined ? null : [Math.round(x), Math.round(y), Jmol._jsGetMouseModifiers(ev)]);
 	}
 
-  Jmol._setCursor = function(applet, c) {
+  Jmol.setCursor = function(applet, c) {
     if (applet._isJava || applet._readingLocal)
       return;
     var curs;
@@ -12406,7 +12457,7 @@ Jmol = (function(document) {
       if (canvas.isdragging && (!ui || !ui.handleJSEvent(canvas, 506, ev))) {}
 			canvas.applet._processEvent((canvas.isDragging ? 506 : 503), xym); // java.awt.Event.MOUSE_DRAG : java.awt.Event.MOUSE_MOVE
 			return !!ui;
-		}
+}
 		
 		Jmol.$bind(canvas, 'DOMMouseScroll mousewheel', function(ev) { // Zoom
       if (doIgnore(ev))
@@ -12992,14 +13043,14 @@ Jmol.Cache.put = function(filename, data) {
   Jmol.Cache.fileCache[filename] = data;
 }
 
-	Jmol.Cache.setDragDrop = function(me) {
-		Jmol.$appEvent(me, "appletdiv", "dragover", function(e) {
+	Jmol.Cache.setDragDrop = function(me, divname) {
+		Jmol.$appEvent(me, divname, "dragover", function(e) {
 			e = e.originalEvent;
 			e.stopPropagation();
 			e.preventDefault();
 			e.dataTransfer.dropEffect = 'copy';
 		});
-		Jmol.$appEvent(me, "appletdiv", "drop", function(e) {
+		Jmol.$appEvent(me, divname, "drop", function(e) {
 			var oe = e.originalEvent;
 			oe.stopPropagation();
 			oe.preventDefault();
@@ -13025,6 +13076,11 @@ Jmol.Cache.put = function(filename, data) {
 				if (evt.target.readyState == FileReader.DONE) {
 					var cacheName = "cache://DROP_" + file.name;
 					var bytes = Clazz.newByteArray(-1, evt.target.result);
+					if (divname == "console_input") {
+						var s = String.instantialize(bytes);
+						Jmol.$(me,divname).val(s.indexOf('\0') < 0 ? s : bytes.length + " bytes");
+						return;
+					}
 					if (!cacheName.endsWith(".spt"))
 						me._appletPanel.cacheFileByName("cache://DROP_*",false);
 					if (me._viewType == "JSV" || cacheName.endsWith(".jdx")) // shared by Jmol and JSV
@@ -13047,6 +13103,7 @@ Jmol._debugCode = false;
 // author: Bob Hanson, hansonr@stolaf.edu	4/16/2012
 // author: Takanori Nakane biochem_fan 6/12/2012
 
+// BH 2021.04.09 fix _cover(false) script in getAppletHtml() to be img onerror
 // BH 12/17/2015 4:43:05 PM adding Jmol._requestRepaint to allow for MSIE9 not having 3imationFrame
 // BH 12/13/2015 11:44:39 AM using requestAnimationFrame instead of setTimeout (fixes Chrome slowness)
 // BH 10/12/2015 1:15:39 PM fix for set echo image in JavaScript
@@ -13247,7 +13304,7 @@ Jmol._debugCode = false;
 				t = "";
 			} else {
 				this._deferApplet = true;
-				t += '<script type="text/javascript">' + id + '._cover(false)</script>';
+				t += '<img width=0 height=0 src=. onerror=' + id + '._cover(false) >';
 			}
 			t += Jmol._getWrapper(this, false);
 			if (Info.addSelectionOptions)
@@ -13269,7 +13326,7 @@ Jmol._debugCode = false;
     proto._getWidth = function() { return this._canvas.width }; 
     proto._getHeight = function() { return this._canvas.height };
     proto._getContentLayer = function() { return Jmol.$(this, "contentLayer")[0] };
-    proto._repaintNow = function() { Jmol._repaint(this, false) }; 
+    proto._repaintNow = function() { Jmol.repaint(this, false) }; 
 ////////
 
 
@@ -13395,6 +13452,7 @@ Jmol._debugCode = false;
 					base[base.length - 1] = codePath;
 				codePath = base.join("/");
 			}
+			applet._j2sFullPath = codePath.substring(0, codePath.length-1);
 			viewerOptions.put("codePath", codePath);
 			Jmol._registerApplet(applet._id, applet);
 			try {
@@ -13425,7 +13483,7 @@ Jmol._debugCode = false;
 		proto._show = function(tf) {
 			Jmol.$setVisible(Jmol.$(this,"appletdiv"), tf);
 			if (tf)
-				Jmol._repaint(this, true);
+				Jmol.repaint(this, true);
 		};
 
 		proto._canScript = function(script) {return true};
@@ -13448,13 +13506,13 @@ Jmol._debugCode = false;
 			if (Jmol[s])
 				clearTimeout(Jmol[s]);
 			var me = this;
-			Jmol[s] = setTimeout(function() {Jmol._repaint(me, true);Jmol[s]=null}, 100);
+			Jmol[s] = setTimeout(function() {Jmol.repaint(me, true);Jmol[s]=null}, 100);
 		}
 
 		return proto;
 	};
 
-	Jmol._repaint = function(applet, asNewThread) {
+	Jmol.repaint = function(applet, asNewThread) {
     // JmolObjectInterface 
 		// asNewThread: true is from RepaintManager.repaintNow()
 		// false is from Repaintmanager.requestRepaintAndWait()
@@ -13487,25 +13545,25 @@ Jmol._debugCode = false;
 	}
 
   /**
-   * _loadImage is called for asynchronous image loading.   
+   * loadImage is called for asynchronous image loading.   
    * If bytes are not null, they are from a ZIP file. They are processed sychronously
    * here using an image data URI. Can all browsers handle MB of data in data URI?
    *
    */        
-	Jmol._loadImage = function(platform, echoName, path, bytes, fOnload, image) {
+	Jmol.loadImage = function(platform, echoName, path, bytes, fOnload, image) {
     // JmolObjectInterface  
 		var id = "echo_" + echoName + path + (bytes ? "_" + bytes.length : "");
-		var canvas = Jmol._getHiddenCanvas(platform.vwr.html5Applet, id, 0, 0, false, true);
+		var canvas = Jmol.getHiddenCanvas(platform.vwr.html5Applet, id, 0, 0, false, true);
 //    System.out.println(["JSmol.js loadImage ",id,path,canvas,image])
     if (canvas == null) { 
   		if (image == null) {
   			image = new Image();
         if (bytes == null) {
-          image.onload = function() {Jmol._loadImage(platform, echoName, path, null, fOnload, image)};
+          image.onload = function() {Jmol.loadImage(platform, echoName, path, null, fOnload, image)};
     			image.src = path;
           return null;
         }
-        System.out.println("Jsmol.js Jmol._loadImage using data URI for " + id) 
+        System.out.println("Jsmol.js Jmol.loadImage using data URI for " + id) 
         image.src = (typeof bytes == "string" ? bytes : 
           "data:" + JU.Rdr.guessMimeTypeForBytes(bytes) + ";base64," + JU.Base64.getBase64(bytes));
       }
@@ -13516,22 +13574,22 @@ Jmol._debugCode = false;
        width /= 2;
        height /= 2; 
       } 
-		  canvas = Jmol._getHiddenCanvas(platform.vwr.html5Applet, id, width, height, true, false);
+		  canvas = Jmol.getHiddenCanvas(platform.vwr.html5Applet, id, width, height, true, false);
   		canvas.imageWidth = width;
   		canvas.imageHeight = height;
   		canvas.id = id;
   		canvas.image=image;
-  		Jmol._setCanvasImage(canvas, width, height);
+  		Jmol.setCanvasImage(canvas, width, height);
 		// return a null canvas and the error in path if there is a problem
     } else {
-      System.out.println("Jsmol.js Jmol._loadImage reading cached image for " + id) 
+      System.out.println("Jsmol.js Jmol.loadImage reading cached image for " + id) 
     }
     return (bytes == null? fOnload(canvas,path) : canvas);
 	};
 
 Jmol._canvasCache = {};
 
-	Jmol._getHiddenCanvas = function(applet, id, width, height, forceNew, checkOnly) {
+	Jmol.getHiddenCanvas = function(applet, id, width, height, forceNew, checkOnly) {
 		id = applet._id + "_" + id;
     var d = Jmol._canvasCache[id];
     if (checkOnly)
@@ -13549,7 +13607,7 @@ Jmol._canvasCache = {};
 		return d;
    	}
 
-	Jmol._setCanvasImage = function(canvas, width, height) {
+	Jmol.setCanvasImage = function(canvas, width, height) {
     // called from org.jmol.awtjs2d.Platform
 		canvas.buf32 = null;
 		canvas.width = width;
@@ -13557,7 +13615,7 @@ Jmol._canvasCache = {};
 		canvas.getContext("2d").drawImage(canvas.image, 0, 0, canvas.image.width, canvas.image.height, 0, 0, width, height);
 	};
   
-  Jmol._apply = function(f,a) {
+  Jmol.applyFunc = function(f,a) {
     // JmolObjectInterface
     return f(a);
   }
@@ -13565,9 +13623,11 @@ Jmol._canvasCache = {};
 })(Jmol);
 // JmolApplet.js -- Jmol._Applet and Jmol._Image
 
+// BH 2022.01.23 updated _availableParams callbacks
+// BH 1/28/2018 7:15:09 AM adding _notifyAudioEnded
 // BH 2/14/2016 12:31:02 PM fixed local reader not disappearing after script call
 // BH 2/14/2016 12:30:41 PM Info.appletLoadingImage: "j2s/img/JSmol_spinner.gif", // can be set to "none" or some other image
-// BH 2/14/2016 12:27:09 PM Jmol._setCursor, proto._getSpinner 
+// BH 2/14/2016 12:27:09 PM Jmol.setCursor, proto._getSpinner 
 // BH 1/15/2016 4:23:14 PM adding Info.makeLiveImage
 // BH 4/17/2015 2:33:32 PM update for SwingJS 
 // BH 10/19/2014 8:08:51 PM moved applet._cover and applet._displayCoverImage to 
@@ -13594,10 +13654,11 @@ Jmol._canvasCache = {};
 		this._isJava = true;
 		this._syncKeyword = "Select:";
 		this._availableParams = ";progressbar;progresscolor;boxbgcolor;boxfgcolor;allowjavascript;boxmessage;\
-									;messagecallback;pickcallback;animframecallback;appletreadycallback;atommovedcallback;\
-									;echocallback;evalcallback;hovercallback;language;loadstructcallback;measurecallback;\
-									;minimizationcallback;resizecallback;scriptcallback;statusform;statustext;statustextarea;\
-									;synccallback;usecommandthread;syncid;appletid;startupscript;menufile;";
+			;animframecallback;appletreadycallback;atommovedcallback;audiocallback;\
+			;clickcallback;dragdropcallback;echocallback;errorcallback;evalcallback;hovercallback;\
+			;imagecallback;loadstructcallback;measurecallback;messagecallback;minimizationcallback;modelkitcallback;pickcallback;\
+			;resizecallback;scriptcallback;selectcallback;servicecallback;structuremodifiedcallback;synccallback;\
+			;statusform;statustext;statustextarea;usecommandthread;syncid;appletid;startupscript;language;menufile;";
 		if (checkOnly)
 			return this;
 		this._isSigned = Info.isSigned;
@@ -13893,6 +13954,10 @@ Jmol._canvasCache = {};
 		}
 	}
 
+  proto._notifyAudioEnded = function(htParams) {
+    this._applet.notifyAudioEnded(htParams);
+  }
+  
 	proto._readyCallback = function(id, fullid, isReady) {
 		if (!isReady)
 			return; // ignore -- page is closing
@@ -13907,7 +13972,7 @@ Jmol._canvasCache = {};
 			this._script('load "' + this._src + '"');
 		this._showInfo(true);
 		this._showInfo(false);
-		Jmol.Cache.setDragDrop(this);
+		Jmol.Cache.setDragDrop(this, "appletdiv");
 		this._readyFunction && this._readyFunction(this);
 		Jmol._setReady(this);
 		var app = this._2dapplet;
@@ -13952,11 +14017,14 @@ Jmol._canvasCache = {};
     return (this.__Info.appletLoadingImage || this._j2sPath + "/img/JSmol_spinner.gif");
   }
 
-  proto._getAtomCorrelation = function(molData) {
+  proto._getAtomCorrelation = function(molData, isC13) {
     // get the first atom mapping available by loading the model structure into model 2, 
-    this._loadMolData(molData, "atommap = compare({1.1} {2.1} 'MAP' 'H'); zap 2.1", true);
-    var map = this._evaluate("atommap");
+
     var n = this._evaluate("{*}.count");
+    if (n == 0)return;
+
+    this._loadMolData(molData, "atommap = compare({1.1} {2.1} 'MAP' " + (isC13 ? "" : "'H'") + "); zap 2.1", true);
+    var map = this._evaluate("atommap");
     var A = [];
     var B = [];
     // these are Jmol atom indexes. The second number will be >= n, and all must be incremented by 1.
@@ -13991,11 +14059,15 @@ Jmol._canvasCache = {};
 		return true;
 	}
 
+	proto._setCallback = function(name, func) {
+		this._applet.setCallback(name, func);
+	}
+
 	proto._script = function(script) {
 		if (!this._ready)
 				return this._addScript(script);
 		Jmol._setConsoleDiv(this._console);
-    Jmol._hideLocalFileReader(this);
+		Jmol._hideLocalFileReader(this);
 		this._applet.script(script);
 	}
 
@@ -14175,7 +14247,7 @@ Jmol._canvasCache = {};
 		this._containerWidth = sz[0];
 		this._containerHeight = sz[1];
 		if (this._is2D)
-			Jmol._repaint(this, true);
+			Jmol.repaint(this, true);
 	}
 
 	proto._search = function(query, script){
@@ -14281,7 +14353,7 @@ Jmol._canvasCache = {};
 			return;
 		// called from model change without chemical identifier, possibly by user action and call to Jmol.updateView(applet)
 		chemID = "" + this._getPropertyAsJavaObject("variableInfo","script('show chemical inchiKey')");
-		if (chemID.length() < 36) // InChIKey=RZVAJINKPMORJF-BGGKNDAXNA-N
+		if (chemID.length < 36) // InChIKey=RZVAJINKPMORJF-BGGKNDAXNA-N
 			chemID = null;
 		else
 			chemID = chemID.substring(36).split('\n')[0];
@@ -15126,6 +15198,10 @@ Jmol._canvasCache = {};
 
 ////////////////// scripting ///////////////////
 
+	Jmol.setCallback = function(applet, name, func) {
+		applet._setCallback(name, func);
+	}
+
 	Jmol.loadFile = function(applet, fileName, params){
 		applet._loadFile(fileName, params);
 	}
@@ -15431,23 +15507,27 @@ Jmol._canvasCache = {};
 		return Jmol._getNCIInfo(appletOrIdentifier, what, fCallback);
 	}
 
-	Jmol.saveImage = function(app) {
+	Jmol.saveImage = function(app, type, fname) {
 		// see: https://svgopen.org/2010/papers/62-From_SVG_to_Canvas_and_Back/index.html
 		// From SVG to Canvas and Back
 		// Samuli Kaipiainen University of Helsinki, Department of Computer Science samuli.kaipiainen@cs.helsinki.fi
 		// Matti Paksula University of Helsinki, Department of Computer Science matti.paksula@cs.helsinki.fi
+		type = (type || "png").toLowerCase();
+		fname || (fname = app.id + "." + type.toLowerCase());
+		if (fname.indexOf(".") < 0) fname += "." + type;
 		switch (app._viewType) {
 		case "Jmol":
-			app._script("write PNGJ \"" + app._id + ".png\"");
-			break;
+			return app._script("write PNGJ \"" + fname + "\"");
 		case "JSV":
-			app._script("write PDF");
+			if (type == "PDF")
+				return app._script("write PDF");
 			break;
 		case "JME":
-			app._script("print");
-			break;
+			return app._script("print");			
 		}
+		Jmol._saveFile(fname,app._canvas.toDataURL("image/png"));
 	}
+		
 		
 })(Jmol);
 // j2sjmol.js 
@@ -16354,11 +16434,12 @@ Clazz.getStackTrace = function(n) {
   // updateNode and updateParents cause infinite loop here
 	var s = "\n";
 	var c = arguments.callee;
-  var showParams = (n < 0);
+  var showParams = (n < 0)
   if (showParams)
     n = -n;
-	for (var i = 0; i < n; i++) {
-		if (!(c = c.caller))
+ try {
+  for (var i = 0; i < n; i++) {
+    if (!(c = c.caller))
       break;
     var sig = (c.toString ? c.toString().substring(0, c.toString().indexOf("{")) : "<native method>");
 		s += i + " " + (c.exName ? (c.claxxOwner ? c.claxxOwner.__CLASS_NAME__ + "."  : "") + c.exName  + sig.replace(/function /,""): sig) + "\n";
@@ -16375,7 +16456,8 @@ Clazz.getStackTrace = function(n) {
         s += " args[" + j + "]=" + sa.replace(/\s+/g," ") + "\n";
       }
     }
-	}
+  }
+ }catch(e){}
 	return s;
 }
 
@@ -18367,6 +18449,7 @@ System.out.print = function () {};
 System.out.printf = function () {};
 System.out.println = function () {};
 System.out.write = function () {};
+System.out.flush = function() {};
 
 System.err = new Clazz._O ();
 System.err.__CLASS_NAME__ = "java.io.PrintStream";
@@ -18374,6 +18457,7 @@ System.err.print = function () {};
 System.err.printf = function () {};
 System.err.println = function () {};
 System.err.write = function () {};
+System.err.flush = function() {};
 
 Clazz.popup = Clazz.assert = Clazz.log = Clazz.error = window.alert;
 
@@ -20894,6 +20978,6 @@ Sys.err.write = function (buf, offset, len) {
 })(Clazz, Jmol); // requires JSmolCore.js
 
 }; // called by external application 
-Jmol.___JmolDate="$Date: 2018-01-16 10:12:58 -0600 (Tue, 16 Jan 2018) $"
+Jmol.___JmolDate="$Date: 2022-02-23 05:39:09 -0600 (Wed, 23 Feb 2022) $"
 Jmol.___fullJmolProperties="src/org/jmol/viewer/Jmol.properties"
-Jmol.___JmolVersion="14.28.2"
+Jmol.___JmolVersion="14.32.25" 
