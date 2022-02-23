@@ -13,6 +13,6 @@ class ArticlesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public array $components = array('Paginator');
 
 }

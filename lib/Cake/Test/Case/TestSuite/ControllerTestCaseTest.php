@@ -45,7 +45,7 @@ if (!class_exists('AppController', false)) {
 	 *
 	 * @var array
 	 */
-		public $uses = array('ControllerPost');
+		public array $uses = array('ControllerPost');
 
 	/**
 	 * components property
@@ -76,7 +76,7 @@ if (!class_exists('PostsController')) {
 	 *
 	 * @var array
 	 */
-		public $components = array(
+		public array $components = array(
 			'RequestHandler',
 			'Email',
 			'AliasedEmail' => array(

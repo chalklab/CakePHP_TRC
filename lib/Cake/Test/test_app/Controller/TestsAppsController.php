@@ -25,7 +25,7 @@ class TestsAppsController extends AppController {
 
 	public $uses = array();
 
-	public $components = array('RequestHandler');
+	public array $components = array('RequestHandler');
 
 	public function index() {
 		$var = '';

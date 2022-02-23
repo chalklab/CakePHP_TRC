@@ -25,9 +25,9 @@ class TestsController extends TestPluginAppController {
 
 	public $uses = array();
 
-	public $helpers = array('TestPlugin.OtherHelper', 'Html');
+	public array $helpers = array('TestPlugin.OtherHelper', 'Html');
 
-	public $components = array('TestPlugin.Plugins');
+	public array $components = array('TestPlugin.Plugins');
 
 	public function index() {
 		$this->set('test_value', 'It is a variable');

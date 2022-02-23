@@ -15,13 +15,13 @@ class ArticlesController extends AppController {
  *
  * @var array
  */
-	public $helpers = array('Js', 'Time');
+	public array $helpers = array('Js', 'Time');
 
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Acl', 'Auth', 'Paginator');
+	public array $components = array('Acl', 'Auth', 'Paginator');
 
 }
