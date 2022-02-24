@@ -1,91 +1,36 @@
-3<h2><?php echo 'Data From: '.'"'.$Data['Dataseries']['Dataset']['File']['Publication']['title'].'"'; ?></h2>
-<ul>
-    <li><?php echo "Publication: ".$this->Html->link($Data['Dataseries']['Dataset']['File']['Publication']['title'],"/publications/view/".$Data['Dataseries']['Dataset']['File']['Publication']['id']); ?></li>
-    <li><?php echo "Property Type: ".$Data['Dataseries']['Dataset']['Propertytype']['code']; ?>  </li>
-    <li><?php echo "States: ".$Data['Dataseries']['Dataset']['Propertytype']['states']."<br>".'<span style="width:25px;">Phases:</span>'.$Data['Dataseries']['Dataset']['Propertytype']['phases']."<br>"; ?></li>
-    <li><?php echo "Number of Components: ".$Data['Dataseries']['Dataset']['Propertytype']['num_components']; ?></li>
-    <li>Components:
-        <?php
-        foreach($Data['Dataseries']['Dataset']['System']['Substance'] as $i=>$substance){
-            echo "<br>";
-            echo $this->Html->link($substance['formula']." ".$substance['name'],"/substances/view/".$substance['id']);
-            foreach($substance['Identifier'] as $ident){
-                if($ident['type']=="casrn") {
-                    echo " (" . $ident['value'] . ") ";
-                }
-            }
-        }
-        ?></li>
-    <li><?php echo "Method: ".$Data['Dataseries']['Dataset']['Propertytype']['method'];?></li>
-</ul>
-<ul>
-    <li><?php echo "File Number: ".$this->Html->link((isset($dump['Report']['file_code'])?$dump['Report']['file_code']:"N/A"),"/files/view/".$Data['Dataseries']['Dataset']['File']['id']);?></li>
-    <li><?php echo "Data Series: ".$this->Html->link($Data['Dataseries']['id'],"/dataseries/view/".$Data['Dataseries']['id']); ?></li>
-    <li><?php echo "Data Set: ".$this->Html->link($Data['Dataseries']['Dataset']['id'],"/datasets/view/".$Data['Dataseries']['Dataset']['id']); ?></li>
-</ul><br>
-<h3>Data</h3>
-<table  align="center" border="0" style="width:50%">
-    <thead>
-    <?php
-    $dataSize=0;
-    $columns=count($Data['Condition'])+1;
-    for($i=0;$i<count($Data['Dataseries']['Condition']);$i++) {
-        echo "<tr>";
-        echo "<td colspan='$columns'>";
-        echo $Data['Dataseries']['Condition'][$i]['Property']['name'] . " = ";
-        if (isset($_GET['numDisplay'])&&$_GET['numDisplay']=="decimal") {
-            echo  ((float)$Data['Dataseries']['Condition'][$i]['number']);
-            if((float)$Data['Dataseries']['Condition'][$i]['error']!==0.0) {
-                echo "±" . ((float)$Data['Dataseries']['Condition'][$i]['error']);
-            }
-        } else{
-            echo  $Data['Dataseries']['Condition'][$i]['number'];
-            if((float)$Data['Dataseries']['Condition'][$i]['error']!==0.0) {
-                echo "±" . $Data['Dataseries']['Condition'][$i]['error'];
-            }
-        }
-        echo " " . $Data['Dataseries']['Condition'][$i]['Unit']['symbol'];
-        echo "</td>";
-        if (count($Data['Dataseries']['Data']) > $dataSize) {
-            $dataSize=count($Data['Dataseries']['Data']);
-        }
-        echo "</tr>";
-    }
-    echo "<tr>";
-    foreach($Data['Condition'] as $cond){
-        $headers[]=$cond['Unit']['symbol'];
-    }
-    $headers[]=$Data['Unit']['symbol'];
-    foreach($headers as $header) {
-        echo "<th>" . $header . "</th>";
-    }
-    echo "</tr></thead>";
-    echo "<tr>";
-    foreach($Data['Condition'] as $condition) {
-        if (isset($_GET['numDisplay'])&&$_GET['numDisplay']=="exp") {
-            echo "<td>" . $condition['number'];
-            if((float)$condition['error']!==0.0){
-                echo " ± " . $condition['error'] . "</td>";
-            }
-        } else {
-            echo "<td>" . ((float)$condition['number']);
-            if((float)$condition['error']!==0.0){
-                echo " ± " . ((float)$condition['error']). "</td>";
-            }
-        }
-    }
-    if (isset($_GET['numDisplay'])&&$_GET['numDisplay']=="exp") {
-        echo "<td>" . $Data['Data']['number'];
-        if((float)$Data['Data']['error']!==0.0) {
-            " ± " . $Data['Data']['error'] . "</td>";
-        }
-    }else {
-        echo "<td>" . ((float)$Data['Data']['number']);
-        if ((float)$Data['Data']['error'] !== 0.0) {
-            echo " ± " . ((float)$Data['Data']['error']) . "</td>";
-        }
-    }
-
-    echo "</tr>";
+<?php
+// separate the data into sections by table
+$dat=$datum['Data'];
+$cmp=$datum['Compohnent'];
+$pnt=$datum['Datapoint'];
+$ser=$datum['Dataseries'];
+$set=$datum['Dataset'];
+$phs=$datum['Phase'];
+$qty=$datum['Quantity'];
+$smp=$datum['Sampleprop'];
+$unt=$datum['Unit'];
 ?>
-</table>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4 style="margin: 0;">Datum</h4>
+			</div>
+			<div class="panel-body">
+				<p>From: <?php echo $this->Html->link($set['title'],'/datasets/view/'.$set['id']); ?><br/>
+					Quantity: <?php echo $qty['name']; ?><br/>
+					Value: <?php echo $dat['number']." ± ".$dat['error']; ?><br/>
+					Unit: <?php echo $unt['symbol']; ?><br/>
+					<?php
+					if(!is_null($ser['id'])) { echo "Dataseries: ".$ser['idx'].'<br/>'; }
+					if(!is_null($pnt['id'])) { echo "Datapoint: ".$pnt['row_index'].'<br/>'; }
+					if(!is_null($phs['id'])) { echo "Phase: ".$phs['Phasetype']['name'].'<br/>'; }
+					if(!is_null($smp['id'])) { echo "Sampleprop: ".$smp['quantity_name'].'<br/>'; }
+					if(!is_null($cmp['id'])) { echo "Component: ".$cmp['Chemical']['Substance']['name'].'<br/>'; }
+					?>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<?php //pr($cond); ?>

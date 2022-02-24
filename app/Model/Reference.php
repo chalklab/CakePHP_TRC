@@ -2,22 +2,31 @@
 
 /**
  * Class Reference
- * Reference model
+ * model for the references table
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
 class Reference extends AppModel
 {
+	// relationships to other tables
+	// dataset table marked as dependent, so they get deleted when a reference does
+	public $hasOne = ['File'];
+	public $hasMany = [
+		'Dataset'=> [
+			'foreignKey' => 'reference_id',
+			'dependent' => true
+		]
+	];
+	public $belongsTo = ['Journal'];
 
-    public $hasMany=['Dataset'];
-
-    public $belongsTo=['Journal'];
-
-    public $virtualFields=[
-        'citation'=>'CONCAT("\'",Reference.title,"\' ",Reference.aulist,", ",Reference.journal," ",Reference.year," ",Reference.volume,"(",Reference.issue,") ",Reference.startpage,"-",Reference.endpage)',
-        'bib'=>'CONCAT(Reference.aulist,", ",Reference.journal," ",Reference.year," ",Reference.volume,"(",Reference.issue,") ",Reference.startpage,"-",Reference.endpage)'
+	// create additional 'virtual' fields built from real fields
+	public $virtualFields = [
+        'citation'=>'CONCAT("\'",Reference.title,"\' ",Reference.aulist,", *",Reference.journal_id,"* ",Reference.year,", ",Reference.volume,COALESCE(CONCAT("(",Reference.issue,") "),""),Reference.startpage,COALESCE(CONCAT("-",Reference.endpage),""))',
+		'bib'=>'CONCAT(Reference.aulist,", *",Reference.journal_id,"* ",Reference.year," ",Reference.volume,COALESCE(CONCAT("(",Reference.issue,") "),""),Reference.startpage,COALESCE(CONCAT("-",Reference.endpage),""))'
     ];
 
     /**
-     * Get papers via Crossrefs OpenURL API
+     * get papers via Crossrefs OpenURL API
      * @param $citation
      * @return mixed
      */
@@ -74,19 +83,14 @@ class Reference extends AppModel
             if(isset($meta['journal_article']['titles'])) {
                 if (isset($meta['journal_article']['titles'][0])) {
                     $title = $meta['journal_article']['titles'][0]['title'];
-                    if (is_array($title)) {
-                        $citation['title'] = "HTML in title";
-                    } else {
-                        $citation['title'] = trim($title);
-                    }
                 } else {
                     $title = $meta['journal_article']['titles']['title'];
-                    if (is_array($title)) {
-                        $citation['title'] = "HTML in title";
-                    } else {
-                        $citation['title'] = trim($title);
-                    }
                 }
+				if (is_array($title)) {
+					$citation['title'] = "HTML in title";
+				} else {
+					$citation['title'] = trim($title);
+				}
 
 				$citation['title']=str_replace("\n",'',$citation['title']);
 				$citation['title']=preg_replace('/\s+/',' ',$citation['title']);
@@ -145,12 +149,12 @@ class Reference extends AppModel
     }
 
     /**
-     * Get papers via Crossrefs API
+     * get papers via Crossrefs API
      * @param array $citation
      * @return array $return
      */
-    public function crossrefapi($citation)
-    {
+    public function crossrefapi(array $citation): array
+	{
         $Char=ClassRegistry::init('Char');
         $options=[];$return=[];
         $citation['title']=$Char->clean($citation['title']);
@@ -199,11 +203,12 @@ class Reference extends AppModel
     }
 
     /**
-     * Search Crossref via search API
+     * search Crossref via search API
      * @param $citation
      * @return array
      */
-    public function crossrefsearch($citation) {
+    public function crossrefsearch($citation): array
+	{
         // Experimental service - may go away...
         $query="http://search.crossref.org/dois?q=".urlencode($citation);
         $json=file_get_contents($query);
@@ -220,7 +225,8 @@ class Reference extends AppModel
     }
 
     /**
-     * Process citation using the frecite service a Brown
+     * process citation using the frecite service at Brown
+	 * (legacy function, may not work)
      * @param $citation
      * @return mixed
      */
@@ -238,7 +244,6 @@ class Reference extends AppModel
         curl_close($curl);
         $xml = simplexml_load_string($result,'SimpleXMLElement',LIBXML_NOERROR|LIBXML_NOENT);
         $ref=json_decode(json_encode($xml),true);
-        debug($ref);exit;
         $found=[];
         if(!empty($ref)) {
             // Send to crossref OpenURL
@@ -277,13 +282,13 @@ class Reference extends AppModel
     }
 
     /**
-     * Add reference to DB based on its DOI
-     * @param $doi
+     * add reference to DB based on its DOI
+     * @param string $doi
      * @return array
 	 * @throws
      */
-    public function addbydoi($doi)
-    {
+    public function addbydoi(string $doi): array
+	{
         $Journal=ClassRegistry::init('Journal');
         $doi=str_replace(["http://dx.doi.org/","https://doi.org/"],"",$doi);
         $ref=$this->find('first',['conditions'=>['url'=>'http://dx.doi.org/'.$doi],'recursive'=>-1]);
@@ -301,10 +306,63 @@ class Reference extends AppModel
                     $cite['journal_id']=0;
                 }
             }
-            $this->create();
+			$aulist="";
+			$aus=json_decode($cite['authors'],true);
+			foreach($aus as $idx=>$au) {
+				if($idx!=0) { $aulist.="; "; }
+				$fname=$this->ucode($au['firstname']);
+				$lname=$this->ucode($au['lastname']);
+				$aulist.=$lname.", ";
+				if(stristr($fname,"-")) {
+					$chunks=explode('-',$fname);
+					foreach($chunks as $chunk) {
+						$aulist.=mb_substr($chunk, 0, 1,'UTF-8').'.';
+					}
+				} elseif(stristr($fname," ")) {
+					$chunks=explode(' ',$fname);
+					foreach($chunks as $chunk) {
+						$aulist.=mb_substr($chunk, 0, 1,'UTF-8').'.';
+					}
+				} else {
+					$aulist.=$fname[0].'.';
+				}
+			}
+			//$cite['aulist']=mb_convert_encoding($aulist, 'UTF-8', 'ASCII');
+			$cite['aulist']=utf8_encode($aulist);
+			$this->create();
             $ref=$this->save(["Reference"=>$cite]);
             $this->clear();
         }
         return $ref['Reference'];
     }
+
+	/**
+	 * create a unique trcid for a paper
+	 * (uses data in the ['Citation']['TRCRefID'] section of XML file)
+	 * @param array $m
+	 * @return string
+	 */
+	public function trcid(array $m): string
+	{
+		if (is_array($m['sAuthor2'])) {
+			$trcid = $m['yrYrPub'] . $m['sAuthor1'] . $m['nAuthorn'];
+		} else {
+			$trcid = $m['yrYrPub'] . $m['sAuthor1'] . $m['sAuthor2'] . $m['nAuthorn'];
+		}
+		return $trcid;
+	}
+
+	// private functions
+
+	/**
+	 * replace unicode character encodings \u with &#x
+	 * @param $string
+	 * @return string
+	 */
+	private function ucode($string): string
+	{
+		$string = preg_replace('/\\\\u([0-9a-f]{4})/', '&#x$1;', $string);
+		return html_entity_decode($string, ENT_COMPAT, 'UTF-8');
+	}
+
 }

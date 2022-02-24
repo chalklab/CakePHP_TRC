@@ -13,36 +13,47 @@ class Wiki extends AppModel
 	public $qpath='https://query.wikidata.org/sparql';
 
 	/**
-	 * search the Wikidata SPARQL service
-	 * @param $id
-	 * @return false|mixed
+	 * search the Wikidata SPARQL service using substance inchikey
+	 * @param string $key
+	 * @return mixed
 	 */
-	public function search($id)
+	public function findbykey(string $key='')
 	{
-		$HttpSocket = new HttpSocket();
-		$path=$this->qpath;
-		$q1 = 'SELECT DISTINCT ?compound ';
-    	$q2 = 'WHERE { ?compound wdt:P235 "'.$id.'" .';
-    	$q3 = 'SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }}';
-    	$sparql = $q1.$q2.$q3;
-    	$url=$path."?query=".$sparql."&format=json";
-    	echo $url;exit;
-		$json=$HttpSocket->get($url);
-		$hits=json_decode($json,true);
-		if($hits['count']==0) {
-			return false;
+		if($key!='') {
+			$HttpSocket = new HttpSocket(['ssl_verify_host' => false,'ssl_verify_peer'=>false]);
+			$path=$this->qpath;
+			$sparql = 'SELECT DISTINCT * ';
+			$sparql .= 'WHERE { ?wikidataId wdt:P235 "'.$key.'" .';
+			$sparql .= 'OPTIONAL { ?wikidataId wdt:P231 ?casrn .} ';
+			$sparql .= 'OPTIONAL { ?wikidataId wdt:P661 ?chemspiderId .} ';
+			$sparql .= 'OPTIONAL { ?wikidataId wdt:P8494 ?dsstoxcmpId .} ';
+			$sparql .= 'OPTIONAL { ?wikidataId wdt:P592 ?chemblId .} ';
+			$sparql .= 'OPTIONAL { ?wikidataId wdt:P232 ?ecnumber .} ';
+			$sparql .= 'SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }}';
+			$url=$path."?query=".$sparql."&format=json";
+			$response=$HttpSocket->get($url);
+			$json=$response['body'];
+			$data=json_decode($json,true);
+			//debug($key);debug($data);exit;
+			if(empty($data['results']['bindings'])) {
+				return false;
+			} else {
+				$meta=[];$fields=$data['head']['vars'];$vals=$data['results']['bindings'][0];
+				//debug($fields);debug($vals);exit;
+				foreach($fields as $field) {
+					if(isset($vals[$field])) {
+						if($vals[$field]['type']=='uri'&&$field=='wikidataId') {
+							$meta[$field]=str_replace('http://www.wikidata.org/entity/','',$vals[$field]['value']);
+						} else {
+							$meta[$field]=$vals[$field]['value'];
+						}
+					}
+				}
+				return $meta;
+			}
 		} else {
-			return $hits['results'][0]['rn'];
+			return false;
 		}
 	}
 
-	public function detail($id)
-	{
-		$HttpSocket = new HttpSocket();
-		$url=$this->cpath.$id;
-		$json=$HttpSocket->get($url);
-		$hit=json_decode($json,true);
-		debug($hit);exit;
-
-	}
 }

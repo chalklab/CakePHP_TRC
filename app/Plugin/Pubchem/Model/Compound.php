@@ -2,11 +2,10 @@
 App::uses('AppModel', 'Model');
 App::uses('ClassRegistry', 'Utility');
 App::uses('HttpSocket', 'Network/Http');
-Configure::load('Pubchem.pugrest', 'default');
+Configure::load('Pubchem.pugrest');
 
 /**
- * Class Compound
- * Compound model
+ * Model Class Compound
  */
 class Compound extends AppModel
 {
@@ -19,14 +18,14 @@ class Compound extends AppModel
      * Get the PubChem CID for chemical based on name or CAS search of names
      * You can use names, ids, cas# etc...
      * Format returned has CID and Synonyms in separate parts of array
-     * @param $type
-     * @param $value
+     * @param string $type
+     * @param string $value
      * @return bool
      */
-    public function cid($type="name",$value="")
+    public function cid(string $type="name", string $value=""): bool
     {
         $HttpSocket = new HttpSocket();
-		if($type=="cas") { $type="name"; }
+		if($type=="cas"||$type=='casrn') { $type="name"; }
 		$nss=Configure::read('compound.namespaces');
         if(in_array($type,$nss)) {
             if($type=="inchi") {
@@ -36,6 +35,7 @@ class Compound extends AppModel
 			} else {
                 $url=$this->path.$type.'/'.str_replace(' ','%20',$value).'/cids/JSON';
             }
+			//debug($url);
         } else {
             return false;
         }
@@ -56,23 +56,25 @@ class Compound extends AppModel
 	/**
 	 * get all the data for a particular compound via its cid
 	 * @param int $cid
+	 * @return array
 	 */
-    public function allcid($cid=null)
+    public function allcid(int $cid=0): array
 	{
 		$HttpSocket = new HttpSocket();
-		$url=$this->path.'/cid/'.$cid.'/json';
+		$url=$this->path.'cid/'.$cid.'/json';
 		$json=$HttpSocket->get($url);
 		$data=json_decode($json,true);
 		$cmpd=$data['PC_Compounds'][0];
 		$props=$cmpd['props'];
+		//debug($props);exit;
 		$output=[];
 		foreach($props as $prop) {
 			if($prop['urn']['label']=='IUPAC Name'&&$prop['urn']['name']=='Preferred') {
 				$output['iupacname']=$prop['value']['sval'];
 			} elseif($prop['urn']['label']=='Mass') {
-				$output['monomass']=$prop['value']['fval'];
+				$output['monomass']=$prop['value']['sval'];
 			} elseif($prop['urn']['label']=='Weight') {
-				$output['exactmass']=$prop['value']['fval'];
+				$output['exactmass']=$prop['value']['sval'];
 			} elseif($prop['urn']['label']=='Molecular Weight') {
 				$output['mw']=$prop['value']['fval'];
 			} elseif($prop['urn']['label']=='Molecular Formula') {
@@ -81,8 +83,8 @@ class Compound extends AppModel
 				$output['csmiles']=$prop['value']['sval'];
 			} elseif($prop['urn']['label']=='SMILES'&&$prop['urn']['name']=='Isomeric') {
 				$output['ismiles']=$prop['value']['sval'];
-			} elseif($prop['urn']['label']=='Molecular Weight') {
-				$output['mw']=$prop['value']['fval'];
+			} elseif($prop['urn']['label']=='InChI') {
+				$output['inchi']=$prop['value']['sval'];
 			}
 		}
 		return $output;
@@ -127,7 +129,7 @@ class Compound extends AppModel
         } else {
             //debug($meta);
             if($props=='synonyms') {
-                return implode(", ",$meta['InformationList']['Information'][0]['Synonym']);
+                return implode("|",$meta['InformationList']['Information'][0]['Synonym']);
             } else {
                 return $meta['PropertyTable']['Properties'][0];
             }
@@ -136,11 +138,11 @@ class Compound extends AppModel
 
     /**
      * Check for a
-     * @param $name
-     * @param $cas
+     * @param string $name
+     * @param string $cas
      * @return mixed
      */
-    public function check($name,$cas="")
+    public function check(string $name, string $cas="")
     {
         // Get CID if exists by checking name then CAS
         $cid=$this->cid("name",$name);
@@ -188,12 +190,38 @@ class Compound extends AppModel
 				$lengths=array_map('strlen',$cas);
 				$min=min($lengths);
 				foreach ($cas as $str) {
-					if(strlen($str)==$min) { return $str; }
+					if(strlen($str)==$min) {
+						return $str;
+					}
 				}
 			}
-		} else {
-			return false;
 		}
+		return false;
     }
 
+	/**
+	 * get the molecular weight of a compound from its formula
+	 * uses the fastformula function in PUG-REST
+	 * see: https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest$_Toc494865584
+	 * https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/fastformula/C6H12O/cids/json
+	 * @param string $formula
+	 * @return mixed
+	 */
+	public function getmw(string $formula='')
+	{
+		$HttpSocket = new HttpSocket();
+		$path=$this->path.'fastformula/';$mw=null;
+		if($formula!='') {
+			$url=$path.$formula.'/cids/json';
+			$json=$HttpSocket->get($url);
+			$meta=json_decode($json['body'],true);
+			// pick the first CID to get the molecular weight from
+			if(isset($meta['IdentifierList']['CID'][0])) {
+				$cid=$meta['IdentifierList']['CID'][0];
+				$response=$this->property('MolecularWeight',$cid);
+				$mw=$response['MolecularWeight'];
+			}
+		}
+		return $mw;
+	}
 }

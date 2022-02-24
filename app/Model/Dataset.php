@@ -2,50 +2,59 @@
 
 /**
  * Class Dataset
- * Parameter model
+ * model for the datasets table
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
 class Dataset extends AppModel
 {
-
-    // Removed datapoint from hasMany 7/2/16 SJC (no data in table)
-    // Added datasystem as it is a useful table for aggregating data
-    public $hasMany = [
+	// relationships to other tables
+	// mixtures, dataseries and sampleprop tables marked as dependent, so they get deleted when a dataset does
+	public $hasOne = [
+		'Mixture'=> [
+			'foreignKey' => 'dataset_id',
+			'dependent' => true
+		]
+	];
+	public $hasMany = [
         'Dataseries'=> [
-            'foreignKey' => 'dataset_id',
-            'dependent' => true
-        ],
-        'DataSystem'=> [
-            'foreignKey' => 'dataset_id',
-            'dependent' => true
-        ],
-        'Annotation'=> [
             'foreignKey' => 'dataset_id',
             'dependent' => true
         ],
         'Sampleprop'=> [
             'foreignKey' => 'dataset_id',
             'dependent' => true
-        ],
-        'Reactionprop'=> [
-            'foreignKey' => 'dataset_id',
-            'dependent' => true
-        ],
-        'Chemical'=> [
-            'foreignKey'=> 'orgnum','source',
-            'dependent' => true
         ]
     ];
+	public $hasAndBelongsToMany = ['Chemical'];
+    public $belongsTo = ['File','Report','System','Reference'];
 
-    public $belongsTo = ['System','Reference','File'];
+	public $virtualFields = [
+		'fileset'=>"CONCAT(Dataset.file_id,':',Dataset.setnum)",
+		'filesys'=>"CONCAT(Dataset.file_id,':',Dataset.system_id)",
+		'refsetnum'=>"CONCAT(Dataset.reference_id,':',Dataset.setnum)",
+	];
 
 	/**
-	 * Generates a exponential number removing any zeros at the end not needed
+	 * function to add a new dataset if it does not already exist
+	 * @param array $data
+	 * @param $setcnt
+	 * @return integer
+	 * @throws
+	 */
+	public function add(array $data,&$setcnt): int
+	{
+		return $this->addentry('Dataset',$data);
+	}
+
+	/**
+	 * Generates an exponential number removing any zeros at the end not needed
 	 * @param $string
 	 * @return array
 	 */
 	public function exponentialGen($string): array
 	{
-		$e="E";$return=[];
+		$e="e";$return=[];
 		$return['text']=$string;
 		$return['value']=floatval($string);
 		$return['isint']=1;
@@ -53,8 +62,8 @@ class Dataset extends AppModel
 		if($string==0) {
 			$return+=['dp'=>0,'scinot'=>'0e+0','exponent'=>0,'significand'=>0,'error'=>null,'sf'=>0];
 		} elseif(stristr($string,'E')) {
-			$string=str_replace('e','E',$string); // so it catches either case
-			list($man,$exp)=explode('E',$string);
+			$string=str_replace('E','e',$string); // so it catches either case
+			list($man, $exp)=explode('e',$string);
 			if($man>0){
 				$sf=strlen($man)-1;
 			} else {
@@ -91,17 +100,17 @@ class Dataset extends AppModel
 					preg_match('/^(0*)[1234567890]+$/',$num[1],$match);
 					$return['exponent']=-1*(strlen($match[1]) + 1);
 				}
-				$return['scinot']=sprintf("%." .($return['sf']-1). $e, $string);
+				$return['scinot']=sprintf("%.".($return['sf']-1).$e, $string);
 				$s=explode($e,$return['scinot']);
 				$return['significand']=$s[0];
 				$return['error']=pow(10,$return['exponent']-$return['sf']+1);
 			} else {
 				$return['dp']=0;
-				$return['scinot']=sprintf("%." .(strlen($string)-1). $e, $string);
+				$return['scinot']=sprintf("%.".(strlen($string)-1).$e, $string);
 				$s=explode($e,$return['scinot']);
 				$return['significand']=$s[0];
 				$return['exponent'] = $s[1];
-				$z=explode(".",$return['significand']);
+				$z=explode(".", $return['significand']);
 				$return['sf']=strlen($return['significand'])-1;
 				// Check for negative
 				if(isset($z[1])) {

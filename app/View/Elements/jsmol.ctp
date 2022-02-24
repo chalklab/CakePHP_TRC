@@ -6,7 +6,13 @@ if(!isset($height)) { $height=Configure::read('jmol.height'); }
 if(!isset($width))  { $width=Configure::read('jmol.width'); }
 // Get molecule at CIR via id that works
 $valid=false;
-if(isset($inchikey)) {
+if(isset($pubchemid)) {
+	$url=str_replace("<id>",$pubchemid,Configure::read('pc.url'));
+	$hdrs=get_headers($url,true);
+	if(stristr($hdrs[0],"OK")) { $valid=true; }
+	debug($hdrs);exit;
+}
+if(isset($inchikey)&&!$valid) {
     $url=str_replace("<id>",$inchikey,Configure::read('cir.url'));
     $hdrs=get_headers($url,true);
     if(stristr($hdrs[0],"OK")) { $valid=true; }
@@ -26,7 +32,7 @@ if(isset($name)&&!$valid) {
     $hdrs=get_headers($url,true);
     if(stristr($hdrs[0],"OK")) { $valid=true; }
 }
-
+// set the absolute path to jsmol
 $j2spath=Configure::read('jmol.j2spath');
 ?>
 
@@ -46,14 +52,14 @@ $j2spath=Configure::read('jmol.j2spath');
         debug: false,
         color: "<?php echo $color; ?>",
         addSelectionOptions: false,
-        serverURL: "https://chalk.coas.unf.edu/trc/js/jsmol/php/jsmol.php",
+        serverURL: "https://sds.coas.unf.edu/trc/js/jsmol/php/jsmol.php",
         use: "HTML5",
         coverImage: "",
         coverScript: "",
         deferApplet: false,
         deferUncover: false,
         jarPath: "java",
-        j2sPath: "<?php echo "/trc".$j2spath; ?>",
+        j2sPath: "<?php echo $j2spath; ?>",
         jarFile: "JmolApplet.jar",
         isSigned: false,
         readyFunction: jmol_isReady

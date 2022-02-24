@@ -12,10 +12,10 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
+ * @link          https://cakephp.org CakePHP(tm) Project
  * @package       app.Config
  * @since         CakePHP(tm) v 0.2.9
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       https://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 /**
@@ -53,15 +53,15 @@ date_default_timezone_set('America/New_York');
  *
  * @see ErrorHandler for more information on error handling and configuration.
  */
-	Configure::write('Error', array(
+	Configure::write('Error', [
 		'handler' => 'ErrorHandler::handleError',
 		'level' => E_ALL & ~E_DEPRECATED,
 		'trace' => true
-	));
+	]);
 
 /**
  * Configure the Exception handler used for uncaught exceptions. By default,
- * ErrorHandler::handleException() is used. It will display a HTML page for the exception, and
+ * ErrorHandler::handleException() is used. It will display an HTML page for the exception, and
  * while debug > 0, framework errors like Missing Controller will be displayed. When debug = 0,
  * framework errors will be coerced into generic HTTP errors.
  *
@@ -75,7 +75,7 @@ date_default_timezone_set('America/New_York');
  * - `log` - boolean - Should Exceptions be logged?
  * - `skipLog` - array - list of exceptions to skip for logging. Exceptions that
  *   extend one of the listed exceptions will also be skipped for logging.
- *   Example: `'skipLog' => array('NotFoundException', 'UnauthorizedException')`
+ *   Example: `'skipLog' => ['NotFoundException', 'UnauthorizedException']`
  *
  * @see ErrorHandler for more information on exception handling and configuration.
  */
@@ -103,7 +103,7 @@ date_default_timezone_set('America/New_York');
  * that plugin assets such as images, CSS and JavaScript files
  * will not work without URL rewriting!
  * To work around this issue you should either symlink or copy
- * the plugin assets into you app's webroot directory. This is
+ * the plugin assets into your app's webroot directory. This is
  * recommended even when you are using mod_rewrite. Handling static
  * assets through the Dispatcher is incredibly inefficient and
  * included primarily as a development convenience - and
@@ -121,7 +121,7 @@ date_default_timezone_set('America/New_York');
 	//Configure::write('App.fullBaseUrl', 'http://example.com');
 
 /**
- * Web path to the public images directory under webroot.
+ * Web path to the public 'images' directory under webroot.
  * If not set defaults to 'img/'
  */
 	//Configure::write('App.imageBaseUrl', 'img/');
@@ -139,22 +139,22 @@ date_default_timezone_set('America/New_York');
 	//Configure::write('App.jsBaseUrl', 'js/');
 
 /**
- * Uncomment the define below to use CakePHP prefix routes.
+ * Uncomment the definition below to use CakePHP prefix routes.
  *
- * The value of the define determines the names of the routes
+ * The value of the definition determines the names of the routes
  * and their associated controller actions:
  *
  * Set to an array of prefixes you want to use in your application. Use for
  * admin or other prefixed routes.
  *
- * 	Routing.prefixes = array('admin', 'manager');
+ * 	Routing.prefixes = ['admin', 'manager'];
  *
  * Enables:
  *	`admin_index()` and `/admin/controller/index`
  *	`manager_index()` and `/manager/controller/index`
  *
  */
-	//Configure::write('Routing.prefixes', array('admin'));
+	//Configure::write('Routing.prefixes', ['admin']);
 
 /**
  * Turn off all caching application-wide.
@@ -206,7 +206,7 @@ date_default_timezone_set('America/New_York');
  *    sessionids that change frequently. See CakeSession::$requestCountdown.
  * - `Session.ini` - An associative array of additional ini values to set.
  *
- * The built in defaults are:
+ * The built-in defaults are:
  *
  * - 'php' - Uses settings defined in your php.ini.
  * - 'cake' - Saves session files in CakePHP's /tmp directory.
@@ -214,15 +214,13 @@ date_default_timezone_set('America/New_York');
  * - 'cache' - Use the Cache class to save sessions.
  *
  * To define a custom session handler, save it at /app/Model/Datasource/Session/<name>.php.
- * Make sure the class implements `CakeSessionHandlerInterface` and set Session.handler to <name>
+ * Make sure the class implements `CakeSessionHandlerInterface` and set `Session.handler` to <name>
  *
  * To use database sessions, run the app/Config/Schema/sessions.php schema using
  * the cake shell command: cake schema create Sessions
  *
  */
-	Configure::write('Session', array(
-		'defaults' => 'php'
-	));
+	Configure::write('Session', ['defaults' => 'php']);
 
 /**
  * A random string used in security hashing methods.
@@ -288,7 +286,7 @@ date_default_timezone_set('America/New_York');
  *
  * File storage engine.
  *
- * 	 Cache::config('default', array(
+ * 	 Cache::config('default', [
  *		'engine' => 'File', //[required]
  *		'duration' => 3600, //[optional]
  *		'probability' => 100, //[optional]
@@ -297,59 +295,58 @@ date_default_timezone_set('America/New_York');
  * 		'lock' => false, //[optional]  use file locking
  * 		'serialize' => true, //[optional]
  * 		'mask' => 0664, //[optional]
- *	));
+ *	]);
  *
  * APC (http://pecl.php.net/package/APC)
  *
- * 	 Cache::config('default', array(
+ * 	 Cache::config('default', [
  *		'engine' => 'Apc', //[required]
  *		'duration' => 3600, //[optional]
  *		'probability' => 100, //[optional]
  * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- *	));
+ *	]);
  *
  * Xcache (http://xcache.lighttpd.net/)
  *
- * 	 Cache::config('default', array(
+ * 	 Cache::config('default', [
  *		'engine' => 'Xcache', //[required]
  *		'duration' => 3600, //[optional]
  *		'probability' => 100, //[optional]
  *		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
  *		'user' => 'user', //user from xcache.admin.user settings
  *		'password' => 'password', //plaintext password (xcache.admin.pass)
- *	));
+ *	]);
  *
  * Memcached (http://www.danga.com/memcached/)
  *
  * Uses the memcached extension. See http://php.net/memcached
  *
- * 	 Cache::config('default', array(
+ * 	 Cache::config('default', [
  *		'engine' => 'Memcached', //[required]
  *		'duration' => 3600, //[optional]
  *		'probability' => 100, //[optional]
  * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- * 		'servers' => array(
- * 			'127.0.0.1:11211' // localhost, default port 11211
- * 		), //[optional]
+ * 		'servers' => ['127.0.0.1:11211' // localhost, default port 11211
+ * 		], //[optional]
  * 		'persistent' => 'my_connection', // [optional] The name of the persistent connection.
  * 		'compress' => false, // [optional] compress data in Memcached (slower, but uses less memory)
- *	));
+ *	]);
  *
  *  Wincache (http://php.net/wincache)
  *
- * 	 Cache::config('default', array(
+ * 	 Cache::config('default', [
  *		'engine' => 'Wincache', //[required]
  *		'duration' => 3600, //[optional]
  *		'probability' => 100, //[optional]
  *		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- *	));
+ *	]);
  */
 
 /**
  * Configure the cache handlers that CakePHP will use for internal
  * metadata like class maps, and model schema.
  *
- * By default File is used, but for improved performance you should use APC.
+ * By default, File is used, but for improved performance you should use APC.
  *
  * Note: 'default' and other application caches should be configured in app/Config/bootstrap.php.
  *       Please check the comments in bootstrap.php for more info on the cache engines available
@@ -359,9 +356,7 @@ $engine = 'File';
 
 // In development mode, caches should expire quickly.
 $duration = '+999 days';
-if (Configure::read('debug') > 0) {
-	$duration = '+10 seconds';
-}
+if (Configure::read('debug') > 0) { $duration = '+10 seconds'; }
 
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
 $prefix = 'myapp_';
@@ -370,22 +365,22 @@ $prefix = 'myapp_';
  * Configure the cache used for general framework caching. Path information,
  * object listings, and translation cache files are stored with this configuration.
  */
-Cache::config('_cake_core_', array(
+Cache::config('_cake_core_', [
 	'engine' => $engine,
 	'prefix' => $prefix . 'cake_core_',
 	'path' => CACHE . 'persistent' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
-));
+]);
 
 /**
  * Configure the cache for model and datasource caches. This cache configuration
  * is used to store schema descriptions, and table listings in connections.
  */
-Cache::config('_cake_model_', array(
+Cache::config('_cake_model_', [
 	'engine' => $engine,
 	'prefix' => $prefix . 'cake_model_',
 	'path' => CACHE . 'models' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
-));
+]);

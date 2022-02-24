@@ -21,11 +21,7 @@ Configure::load('trc','default');
 class AppController extends Controller {
 
     public $components = [
-    	'Utils',
-		'Email',
-		'RequestHandler',
-		'Session',
-		'Flash',
+    	'Utils', 'Email', 'RequestHandler', 'Session', 'Flash',
 		'Auth' => [
 			'loginRedirect' => [
 				'controller' => 'pages',
@@ -46,6 +42,5 @@ class AppController extends Controller {
     public $helpers = ['Form','Html','Session','Time','Flash'];
 
 	public $actsAs = ['Containable'];
-
 
 }

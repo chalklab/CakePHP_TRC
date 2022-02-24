@@ -4,17 +4,17 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 /**
  * Class User
- * User Model
+ * model for the users table
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
 class User extends AppModel
 {
-
-    public $name="User";
-
+	// create additional 'virtual' fields built from real fields
     public $virtualFields=['fullname'=>'CONCAT(firstname," ",lastname)'];
 
     /**
-     * Validate user/password
+     * validate user/password
      * @var array
      */
     public $validate = [
@@ -33,11 +33,11 @@ class User extends AppModel
     ];
 
     /**
-     * BeforeSave
+     * beforeSave
      * @param array $options
      * @return bool
      */
-    public function beforeSave($options = []) {
+    public function beforeSave($options = []): bool {
         if (!empty($this->data[$this->alias]['password'])) {
             $passwordHasher = new BlowfishPasswordHasher();
             $this->data[$this->alias]['password'] = $passwordHasher->hash(

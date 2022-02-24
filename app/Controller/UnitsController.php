@@ -3,25 +3,27 @@
 /**
  * Class UnitsController
  * Actions related to dealing with units
- * @author Stuart Chalk <schalk@unf.edu>
- *
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
 class UnitsController extends AppController
 {
+	public $uses=['Unit'];
 
-    /**
+	/**
      * beforeFilter function
      */
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow();
+        $this->Auth->allow(['index','view','qudtunits']);
     }
 
     /**
-     * List the quantities
-     * @param $qid - quantityID
-     */
+     * list the all units OR just those for a quantity
+     * @param int $qid - quantityID
+	 * @return void
+	 */
     public function index($qid="",$format="")
     {
         if($qid=="") {
@@ -29,31 +31,27 @@ class UnitsController extends AppController
         } else {
             $data=$this->Unit->find('list',['fields'=>['id','name'],'conditions'=>['quantity_id'=>$qid],'order'=>['name']]);
         }
-        //echo "<pre>";print_r($data);echo "</pre>";exit;
         if($format=="json") { echo json_encode($data); exit; }
         $this->set('data',$data);
     }
 
-    /**
-     * Get id for term and send out as XML
-     * @param $term
-     */
-    public function xml($term)
-    {
-        $meta=$this->Unit->find("first",['fields'=>['id','label'],'conditions'=>['header like'=>'%"'.$term.'"%'],'recursive'=>1]);
-        header("Content-Type: application/xml");
-        echo "<m><id>".$meta['Unit']['id']."</id><label>".$meta['Unit']['label']."</label></m>";
-        exit;
-    }
-	
-	public function qudtunits() {
-		$qudt=$this->Unit->find('list',['fields'=>['qudt','symbol'],'recursive'=>-1]);
-		return $qudt;
+	/**
+	 * view a unit
+	 * @param $id
+	 * @return void
+	 */
+	public function view($id)
+	{
+		$data=$this->Unit->find('first',['conditions'=>['Unit.id'=>$id],'contain'=>['Quantity','Quantitykind'],'recursive'=>-1]);
+		$this->set('data',$data);
 	}
-    public function view($id)
-    {
-        $data=$this->Unit->find('first',['conditions'=>['Unit.id'=>$id],'recursive'=>3]);
-        echo "<pre>";print_r($data);echo "</pre>";exit;
-        $this->set('data',$data);
-    }
+
+	/**
+	 * get a list of QUDT units
+	 * @return void
+	 */
+	public function qudt()
+	{
+		return $this->Unit->find('list',['fields'=>['qudt','symbol'],'recursive'=>-1]);
+	}
 }

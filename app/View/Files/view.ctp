@@ -26,7 +26,10 @@
             <div class="panel-body" style="font-size: 16px;">
 				<?php
 				// Display the citation
-				echo $ref['citation']." (".$this->Html->link($ref["url"],$ref["url"],["target"=>"_blank"]).")";
+				$url="https://doi.org/".$ref["doi"];
+				$jnl=$ref['Journal']['abbrev'];
+				$citestr=preg_replace('/\*\d+\*/',$jnl,$ref['citation']);
+				echo $citestr." (".$this->Html->link($url,$url,["target"=>"_blank"]).")";
 				?>
             </div>
         </div>
@@ -35,7 +38,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
 		<h3>Datasets</h3>
-        <ul class="list-group responsivediv">
+        <ul class="list-group responsivediv200">
 			<?php
 			foreach($sets as $setidx=>$set) {
 				//if($setidx==0) { debug($set); }
@@ -45,7 +48,7 @@
 					$points+=count($ser['Datapoint']);
 				}
 				$p="";if($points>1) { $p="s"; }
-				$desc=ucfirst($sys['name']). " (".$sys['phase'].") - ".$prp['property_name'].": ".$points." point".$p;
+				$desc=ucfirst($sys['name']). " => ".$prp['quantity_name'].": ".$points." point".$p;
 				echo '<a href="/trc/datasets/view/'.$set['id'].'" class="list-group-item">'.$desc."</a>";
 			}
 			?>

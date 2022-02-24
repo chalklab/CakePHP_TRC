@@ -1,19 +1,18 @@
 @charset "utf-8";
 /**
- *
  * Generic CSS for CakePHP
  *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link          https://cakephp.org CakePHP(tm) Project
  * @package       app.webroot.css
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
 * {
@@ -48,7 +47,7 @@ h1, h2, h3, h4 {
 h1 {
 	background:#fff;
 	color: #003d4c;
-	font-size: 150%;
+	font-size: 100%;
 }
 h2 {
 	background:#fff;
@@ -101,13 +100,12 @@ p {
 	background: #fff;
 	clear: both;
 	color: #333;
-	padding: 20px;
+	padding: 10px 20px 40px 20px;
 	overflow: auto;
 }
 #footer {
 	clear: both;
 	padding: 6px 10px;
-	text-align: right;
 }
 #header a, #footer a {
 	color: #fff;
@@ -186,7 +184,7 @@ table td.actions a {
 .cake-sql-log td {
 	padding: 4px 8px;
 	text-align: left;
-	font-family: Monaco, Consolas, Courier, monospace;
+	font-family: Monaco, Consolas, "Courier New", monospaced;
 }
 .cake-sql-log caption {
 	color:#fff;
@@ -239,7 +237,7 @@ table td.actions a {
 /** Scaffold View **/
 dl {
 	line-height: 2em;
-	margin: 0 0;
+	margin: 0em 0em;
 	width: 60%;
 }
 dl dd:nth-child(4n+2),
@@ -264,7 +262,7 @@ form {
 	clear: both;
 	margin-right: 20px;
 	padding: 0;
-	width: 300px;
+	width: 95%;
 }
 fieldset {
 	border: none;
@@ -317,18 +315,18 @@ label {
 }
 input, textarea {
 	clear: both;
-	font-size: 80%;
+	font-size: 140%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
 	padding: 1%;
-	width:300px;
+	width:98%;
 }
 select {
 	clear: both;
-	font-size: 80%;
+	font-size: 120%;
 	vertical-align: text-bottom;
 }
 select[multiple=multiple] {
-	width: 400px;
+	width: 100%;
 }
 option {
 	font-size: 120%;
@@ -381,9 +379,9 @@ form .error {
 	font-weight: normal;
 }
 form .error-message {
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	border-radius: 0;
+	-moz-border-radius: none;
+	-webkit-border-radius: none;
+	border-radius: none;
 	border: none;
 	background: none;
 	margin: 0;
@@ -431,6 +429,7 @@ p.error,
 	margin-bottom: 18px;
 	padding: 7px 14px;
 	color: #404040;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
@@ -658,7 +657,7 @@ pre {
 	font-family: monospace;
 	border: 1px solid #bbb;
 	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+	-wekbkit-border-radius: 4px;
 	border-radius: 4px;
 	background: #dcdcdc;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#dcdcdc));
@@ -708,19 +707,19 @@ pre {
 	color:#666;
 }
 .code-coverage-results div.start {
-	border: solid #aaa;
+	border:1px solid #aaa;
 	border-width:1px 1px 0 1px;
 	margin-top:30px;
 	padding-top:5px;
 }
 .code-coverage-results div.end {
-	border: solid #aaa;
-	border-width:0 1px 1px 1px;
+	border:1px solid #aaa;
+	border-width:0px 1px 1px 1px;
 	margin-bottom:30px;
 	padding-bottom:5px;
 }
 .code-coverage-results div.realstart {
-	margin-top:0;
+	margin-top:0px;
 }
 .code-coverage-results p.note {
 	color:#bbb;
@@ -741,8 +740,4 @@ pre {
 /** Elements **/
 #url-rewriting-warning {
 	display:none;
-}
-.showReports:hover{
-	text-decoration: underline;
-	cursor: pointer;
 }

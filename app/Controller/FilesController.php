@@ -2,48 +2,44 @@
 
 /**
  * Class FilesController
- * @author Stuart Chalk <schalk@unf.edu>
+ * actions related to working with the files table
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
 class FilesController extends AppController
 {
+	public $uses = ['Chemical','Compohnent','Condition','Data','Datapoint','Dataseries','Dataset',
+		'File','Journal','Identifier','Mixture','Phasetype','Phase','Quantity','Reference','Report','Sampleprop',
+		'Scidata','Substance','SubstancesSystem','System','Unit','Pubchem.Compound','Crossref.Api','CommonChem.Cas'];
 
-	public $uses = ['File', 'Error', 'Chemical', 'Sampleprop', 'Identifier', 'Datarectification',
-		'System', 'Dataset', 'Condition', 'Dataseries', 'Datapoint', 'Data', 'Reference',
-		'Reactionprop', 'Pubchem.Compound', 'Substance', 'SubstancesSystem', 'Crossref.Api',
-		'Journal', 'Property', 'Unit', 'Annotation', 'Scidata','NewFile','NewChemical','NewReference', 'NewSubstance',
-		'NewDataset','NewReport','NewPhase','NewDatasetsPhase','NewSampleprop','NewProperty','NewMixture',
-		'NewComponent','NewPhasetype','NewDataseries','NewCondition','NewUnit','NewDatapoint','NewData','NewSystem',
-		'NewReaction','NewParticipant','NewIdentifier','CommonChem.Cas','NewSubstancesSystem','NewDataSystem'];
+	public string $ccapi='https://commonchemistry.cas.org/api/search?q=';
 
-	public $c = [
-		'Chemical' => [
-			'Substance'],
-		'Reference',
+	public array $c = [
+		'Chemical' => ['Substance'],
+		'Reference' => ['Journal'],
 		'Dataset' => [
 			'Dataseries' => [
 				'Condition' => ['Unit',
-					'Property' => ['fields' => ['name'],
-						'Quantity' => ['fields' => ['name']]]],
+					'Quantity' => ['fields' => ['name'],
+						'Quantitykind' => ['fields' => ['name']]]],
 				'Datapoint' => [
 					'Condition' => ['Unit',
-						'Property' => ['fields' => ['name'],
-							'Quantity' => ['fields' => ['name']]]],
+						'Quantity' => ['fields' => ['name'],
+							'Quantitykind' => ['fields' => ['name']]]],
 					'Data' => ['Unit',
-						'Property' => ['fields' => ['name'],
-							'Quantity' => ['fields' => ['name']]]]
+						'Quantity' => ['fields' => ['name'],
+							'Quantitykind' => ['fields' => ['name']]]]
 				]
 			],
 			'Sampleprop',
-			'Reactionprop',
 			'System' => [
-				'Substance' => ['fields' => ['name', 'casrn', 'formula', 'molweight', 'type'],
-					'Identifier' => ['fields' => ['type', 'value'], 'conditions' => ['type' => ['inchi', 'inchikey', 'iupacname']]]
+				'Substance' => ['fields' => ['name', 'formula', 'mw', 'type'],
+					'Identifier' => ['fields' => ['type', 'value'],
+						'conditions' => ['type' => ['inchi','inchikey','iupacname','casrn']]]
 				]
 			]
 		]
 	];
-
-	public $ccapi='https://commonchemistry.cas.org/api/search?q=';
 
 	/**
 	 * function beforeFilter
@@ -51,29 +47,28 @@ class FilesController extends AppController
 	public function beforeFilter()
 	{
 		parent::beforeFilter();
-		$this->Auth->allow('index','view');
+		$this->Auth->allow('index','view','most');
 	}
 
-	// CRUD operations
-
 	/**
-	 * show a list of ThermoML files
+	 * show a list of NIST TRC ThermoML XML files
+	 * @return void
 	 */
 	public function index()
 	{
-		$f=['id','title','year'];$o=['year','title'];
-		$data = $this->File->find('list',['fields'=>$f,'order'=>$o,'recursive' => -1]);
-		$this->set('data', $data);
+		$f=['File.id','Reference.title','File.year'];$c=['Reference'];$o=['year','title'];
+		$data = $this->File->find('list',['fields'=>$f,'contain'=>$c,'order'=>$o,'recursive'=>-1]);
+		$this->set('data',$data);
 	}
 
 	/**
-	 * view general information about a TRC XML file
+	 * view general information about a NIST TRC ThermoML XML file
 	 * @param int $id
+	 * @return void
 	 */
-	public function view($id)
+	public function view(int $id)
 	{
 		$data = $this->File->find('first', ['conditions' => ['File.id' => $id], 'contain' => $this->c, 'recursive' => -1]);
-		//debug($data);exit;
 		$ref = $data['Reference'];
 		$sets = $data['Dataset'];
 		$this->set('ref',$ref);
@@ -81,193 +76,37 @@ class FilesController extends AppController
 	}
 
 	/**
-	 * delete a file (and all data derived from it)
-	 * @param $id
-	 * @param $return
-	 * @return bool
+	 * get a list of files containing the most data
+	 * called via a requestAction call in the 'most.ctp' element view
+	 * no most view file
+	 * @param int $l
+	 * @return void
 	 */
-	public function delete($id,$return=null)
+	public function most(int $l=6)
 	{
-		if($this->File->delete($id)) {
-			$this->Flash->set('File '.$id.' deleted!');
-			if($return==null) {
-				$this->redirect('/files/index');
-			} else {
-				$return=1;
-			}
-		} else {
-			$this->Flash->set('File '.$id.' could not be deleted!');
-			if($return==null) {
-				$this->redirect('/files/index');
-			} else {
-				$return=0;
-			}
-		}
-		return $return;
+		$this->Reference->virtualFields['titlepnts'] = "CONCAT(Reference.title,' (',File.points,' points)')";
+		$f=['Reference.id','Reference.titlepnts'];$c=['File'];$o=['File.points'=>'desc'];
+		$data=$this->Reference->find('list',['fields'=>$f,'order'=>$o,'contain'=>$c,'limit'=>$l]);
+		if($this->request->params['requested']) { return $data; }
 	}
 
-	// file ingestion, checking and testing
-
-	/**
-	 * Adds ThermoML files to the database to organize them...
-	 */
-	public function loadfiles()
-	{
-		$path = WWW_ROOT . 'files' . DS . 'trc';
-		$maindir = new Folder($path);
-		$files = $maindir->tree();
-		foreach ($files[1] as $file) {
-			$xml = simplexml_load_file($file);
-			$trc = json_decode(json_encode($xml), true);
-
-			// Grab the chemical info
-			$compds = $trc['Compound'];
-			if (!isset($trc['Compound'][0])) {
-				// Make a single compound into an array
-				$trc['Compound'] = ['0' => $trc['Compound']];
-			}
-			foreach ($compds as $comp) {
-				$name = $comp['sCommonName'];
-				$formula = $comp['sFormulaMolec'];
-				$purity = $comp['Sample']['purity']['nPurityMass'];
-				$puritysf = $comp['Sample']['purity']['nPurityMassDigits'];
-				// Get substance id
-				// Get CASRN to send to datarefticiation code
-				$url = "https://cactus.nci.nih.gov/chemical/structure/" . $name . "/cas/xml";
-				$xml = simplexml_load_file($url);
-				$cir = json_decode(json_encode($xml), true);
-				if (!empty($cir['data'])) {
-					$cas = $cir['data'][0]['item'][0];
-					$search = [0 => ['casrn' => $cas, 'name' => $name, 'formula' => $formula]];
-					$this->Datarectification->checkAndAddSubstances($search, true);
-					$sid = $search[0]['id'];
-				} else {
-					$sid = 0;
-				}
-
-				$data = ['Chemical' => ['name' => $name, 'formula' => $formula, 'substance_id' => $sid, 'purity' => $purity, 'puritysf' => $puritysf]];
-				$this->Chemical->create();
-				$this->Chemical->save($data);
-				debug($comp);
-				exit;
-			}
-
-			// Get the properties
-
-			// Grab the data
-			//debug($trc);exit;
-
-			// Grab the general info
-			if (isset($trc['Citation']['sDOI'])) {
-				$url = 'http://dx.doi.org/' . $trc['Citation']['sDOI'];
-			} else {
-				$id = $trc['Citation']['TRCRefID'];
-				if (is_array($id['sAuthor2'])) {
-					$url = $id['yrYrPub'] . $id['sAuthor1'] . $id['nAuthorn'];
-				} else {
-					$url = $id['yrYrPub'] . $id['sAuthor1'] . $id['sAuthor2'] . $id['nAuthorn'];
-				}
-			}
-			$result = $this->File->find('first', ['conditions' => ['url' => $url]]);
-			if (empty($result)) {
-				$title = $trc['Citation']['sTitle'];
-				$journal = $trc['Citation']['sPubName'];
-				if($journal=='J.Chem.Eng.Data') { $journal='J. Chem. Eng. Data'; }
-				$parts = explode("/", $file);
-				$filename = $parts[(count($parts) - 1)];
-				$props = [];
-				$pnts = 0;
-				if (isset($trc['PureOrMixtureData'])) {
-					if (!isset($trc['PureOrMixtureData'][0])) {
-						$trc['PureOrMixtureData'] = [0 => $trc['PureOrMixtureData']];
-					}
-					foreach ($trc['PureOrMixtureData'] as $set) {
-						//debug($set);
-						if (!isset($set['Property'][0])) {
-							$set['Property'] = [0 => $set['Property']];
-						}
-						foreach ($set['Property'] as $prop) {
-							$group = $prop['Property-MethodID']['PropertyGroup'];
-							if (isset($group['Criticals'])) {
-								$props[] = $group['Criticals']['ePropName'];
-							} elseif (isset($group['VaporPBoilingTAzeotropTandP'])) {
-								$props[] = $group['VaporPBoilingTAzeotropTandP']['ePropName'];
-							} elseif (isset($group['PhaseTransition'])) {
-								$props[] = $group['PhaseTransition']['ePropName'];
-							} elseif (isset($group['CompositionAtPhaseEquilibrium'])) {
-								$props[] = $group['CompositionAtPhaseEquilibrium']['ePropName'];
-							} elseif (isset($group['ActivityFugacityOsmoticProp'])) {
-								$props[] = $group['ActivityFugacityOsmoticProp']['ePropName'];
-							} elseif (isset($group['VolumetricProp'])) {
-								$props[] = $group['VolumetricProp']['ePropName'];
-							} elseif (isset($group['HeatCapacityAndDerivedProp'])) {
-								$props[] = $group['HeatCapacityAndDerivedProp']['ePropName'];
-							} elseif (isset($group['ExcessPartialApparentEnergyProp'])) {
-								$props[] = $group['ExcessPartialApparentEnergyProp']['ePropName'];
-							} elseif (isset($group['TransportProp'])) {
-								$props[] = $group['TransportProp']['ePropName'];
-							} elseif (isset($group['RefractionSurfaceTensionSoundSpeed'])) {
-								$props[] = $group['RefractionSurfaceTensionSoundSpeed']['ePropName'];
-							} elseif (isset($group['BioProperties'])) {
-								$props[] = $group['BioProperties']['ePropName'];
-							}
-						}
-						$pnts += count($set['NumValues']);
-					}
-				} elseif (isset($trc['ReactionData'])) {
-					if (!isset($trc['ReactionData'][0])) {
-						$trc['ReactionData'] = [0 => $trc['ReactionData']];
-					}
-					foreach ($trc['ReactionData'] as $set) {
-						//debug($set);
-						if (!isset($set['Property'][0])) {
-							$set['Property'] = [0 => $set['Property']];
-						}
-						foreach ($set['Property'] as $prop) {
-							$group = $prop['Property-MethodID']['PropertyGroup'];
-							if (isset($group['ReactionStateChangeProp'])) {
-								$props[] = $group['ReactionStateChangeProp']['ePropName'];
-							} elseif (isset($group['ReactionEquilibriumProp'])) {
-								$props[] = $group['ReactionEquilibriumProp']['ePropName'];
-							}
-						}
-						$pnts += count($set['NumValues']);
-					}
-				}
-				$props = array_unique($props);
-				$props = array_values($props);
-				$data = ['File' => ['title' => $title, 'url' => $url, 'filename' => $filename, 'properties' => json_encode($props), 'datapoints' => $pnts, 'journal' => $journal]];
-				$this->File->create();
-				$this->File->save($data);
-				echo "Added: " . $url . "<br />";
-			} else {
-				echo "Already added: " . $url . "<br />";
-			}
-		}
-		exit;
-	}
+	// functions requiring login (not in Auth::allow)
 
 	/**
 	 * ingest TRC xml files
-	 * @param $maxfiles
-	 * @param $test
+	 * @param int $maxfiles
+	 * @return void
 	 */
-	public function ingest($maxfiles=10,$test=0)
+	public function ingest(int $maxfiles=10)
 	{
+		// updated for change of tables to properties to quantities
+		// and quantities to quantitykinds... SJC 11/08/21
 		$path = WWW_ROOT.'files'.DS.'trc'.DS.'jct'.DS;
 		$maindir = new Folder($path);
-		$files = $maindir->find('.*\.xml',true);
-		//debug($files);exit;
-		if ($test) {
-			$files[1] = [
-				0 => WWW_ROOT . 'files/trc/jced/acs.jced.5b00619.xml',
-				1 => WWW_ROOT . 'files/trc/jced/acs.jced.5b00623.xml',
-				2 => WWW_ROOT . 'files/trc/jced/acs.jced.5b00624.xml',
-				3 => WWW_ROOT . 'files/trc/jced/acs.jced.5b00625.xml',
-				5 => WWW_ROOT . 'files/trc/jced/acs.jced.5b00632.xml'];
-		}
+		$files = $maindir->find('^.*\.xml$',true);
+
 		$count=0;
-		$done = $this->NewFile->find('list', ['fields' => ['id','filename'],'conditions'=>['comments'=>'done']]);
+		$done = $this->File->find('list', ['fields' => ['id','filename'],'recursive'=>-1]);
 		foreach ($files as $filename) {
 			if(in_array($filename,$done)) { continue; }  // echo $filename." already processed<br/>";
 			$filepath = $path.$filename;
@@ -276,30 +115,30 @@ class FilesController extends AppController
 			$trc = json_decode(json_encode($xml), true);
 
 			if(!isset($trc['PureOrMixtureData'])) { echo "No data in '".$filename."'<br/>";continue; }
-			//debug($trc);exit;
 
 			// Get doi
-			$doi = null;
+			$doi = $title = null;
 			if (isset($trc['Citation']['sDOI'])) {
 				$doi = $trc['Citation']['sDOI'];
+				$title = $trc['Citation']['sTitle'];
 			} else {
 				// Get DOI from crossref
 				$pages = str_replace('  ', ' ', $trc['Citation']['sPage']);
 				$journal =  $trc['Citation']['sPubName'];
 				if($journal=='J.Chem.Eng.Data') { $journal='J. Chem. Eng. Data'; }
+				if($journal=='Int J Thermophys') { $journal='Int. J. Thermophys.';}
 				$issn = $this->Journal->getfield('issn',$journal);
 				$year = $trc['Citation']['yrPubYr'];
                 $volume = $trc['Citation']['sVol'];
                 $filter = ['issn' => $issn, 'date' => $year];
 				$found = $this->Api->works($pages, $filter);
-                //debug($file);debug($pages);debug($filter);debug($found);exit;
+
 				if ($found) {
 					if (count($found['items']) == 1) {
 						$doi = $found['items'][0]['DOI'];
 					} else {
-					    foreach($found['items'] as $idx=>$hit) {
+					    foreach($found['items'] as $hit) {
 					        if($issn==$hit['ISSN'][0]||$issn==$hit['ISSN'][1]) {
-					            //debug($volume);debug($pages);debug($hit);
 					            if($volume==$hit['volume']) {
 					                if($pages==$hit['page']) {
 					                    $doi = $hit['DOI'];break;
@@ -314,13 +153,8 @@ class FilesController extends AppController
 				}
 			}
 
-			//debug($done);exit;
-
 			// check for errors
 			if(!empty($errors)) {
-				foreach ($errors as $error) {
-					$this->Error->add(['file' => $filename, 'error' => $error]);
-				}
 				echo "File '".$filename."' has errors.<br/>";
 				debug($errors);continue;
 			}
@@ -465,27 +299,23 @@ class FilesController extends AppController
 			}
 
 			// add reference if not already present
-			$refs = $this->NewReference->find('list', ['fields' => ['doi', 'id']]);
+			$refs = $this->Reference->find('list', ['fields' => ['doi', 'id']]);
 			$refid = null;
 			if (!isset($refs[$doi])) {
-				$ref = $this->NewReference->addbydoi($doi);
+				$ref = $this->Reference->addbydoi($doi);
 				// padded so it can be used to get reference title from indexed array below
 				$refid = str_pad($ref['id'],5,'0',STR_PAD_LEFT);
+				// add title field from the XML file as issues with crossref title data
+				$this->Reference->id = $refid;
+				$this->Reference->saveField('titlexml',$title);
 			} else {
 				$refid = $refs[$doi];
 			}
-			//debug($refid);exit;
 
 			// add file if not already present
 			$meta = [];$cite = $trc['Citation'];
-			// trcid (if present)
-			if (isset($cite['TRCRefID'])) {
-				$id = $cite['TRCRefID'];
-				if (is_array($id['sAuthor2'])) {
-					$meta['trcid'] = $id['yrYrPub'] . $id['sAuthor1'] . $id['nAuthorn'];
-				} else {
-					$meta['trcid'] = $id['yrYrPub'] . $id['sAuthor1'] . $id['sAuthor2'] . $id['nAuthorn'];
-				}
+			if(isset($cite['TRCRefID'])) {
+				$meta['trcid'] = $this->Reference->trcid($cite['TRCRefID']);
 			} else {
 				$meta['trcid'] = null;
 			}
@@ -493,23 +323,20 @@ class FilesController extends AppController
 			$meta['abstract'] = $cite['sAbstract'];
 			$meta['date'] = $cite['dateCit'];
 			$meta['year'] = $cite['yrPubYr'];
-			$meta['url'] = 'https://doi.org/' . $doi;
-			$meta['doi'] = $doi;
 			$meta['reference_id'] = $refid;
 			$meta['filename'] = $filename;
 			$journal =  $trc['Citation']['sPubName'];
 			if($journal=='J.Chem.Eng.Data') { $journal='J. Chem. Eng. Data'; }
 			$meta['journal'] = $journal;
 			$meta['journal_id'] = $this->Journal->getfield('id', $journal);
-			$fid = $this->NewFile->add($meta);
-			//debug($fid);exit;
+			$fid = $this->File->add($meta);
 
 			// add substances and/or get substance ids ($subs var updated by reference)
 			$subids = $names = [];
 			foreach ($subs as $orgnum => $sub) {
-				$found=$this->NewSubstance->find('first',['conditions'=>['inchikey'=>$sub['inchikey']]]);
+				$found=$this->Substance->find('first',['conditions'=>['inchikey'=>$sub['inchikey']]]);
 				if($found) {
-					$subid=$found['NewSubstance']['id'];
+					$subid=$found['Substance']['id'];
 				} else {
 					// get substance info from PubChem
 					$cid=$this->Compound->cid('inchikey',$sub['inchikey']);
@@ -521,17 +348,19 @@ class FilesController extends AppController
 							$casrn=$this->Cas->search($sub['inchikey']);
 							if(!$casrn) {
 								// search pubchem
-								$casrn=$this->Compound->getcas($sub['inchikey']);
+
+						$casrn=$this->Compound->getcas($sub['inchikey']);
 								if(!$casrn) { $casrn=null; }
 							}
 							$sub['casrn']=$casrn;
 						}
-					} else {
+					}
+					else {
 						$data=['pubchemid'=>null,'formula'=>null,'mw'=>null,'csmiles'=>null,'ismiles'=>null,'iupacname'=>null];
 					}
-					$cnds=['name'=>$sub['name'],'formula'=>$sub['formula'],'pcformula'=>$data['formula'],
-						'molweight'=>$data['mw'],'casrn'=>$sub['casrn'],'inchikey'=>$sub['inchikey']];
-					$subid=$this->NewSubstance->add($cnds);
+					$cnds=['name'=>$sub['name'],'formula'=>$sub['formula'],
+						'mw'=>$data['mw'],'casrn'=>$sub['casrn'],'inchikey'=>$sub['inchikey']];
+					$subid=$this->Substance->add($cnds);
 
 					// add identifiers
 					$idents=['inchi'=>$sub['inchi'],'inchikey'=>$sub['inchikey'],'casrn'=>$sub['casrn'],
@@ -540,48 +369,44 @@ class FilesController extends AppController
 					foreach($idents as $type=>$value) {
 						if(!empty($value)) {
 							$cnds=['substance_id'=>$subid,'type'=>$type,'value'=>$value];
-							$this->NewIdentifier->add($cnds);
+							$this->Identifier->add($cnds);
 						}
 					}
 				}
 				$subids[$orgnum] = str_pad($subid,5,'0', STR_PAD_LEFT);
 				$names[$orgnum] = $sub['name'];
 			}
-			//debug($subids);exit;
 
 			// add chemicals if not present
 			$chmids = [];
 			foreach($chems as $orgnum => $chem) {
 				$chem['file_id'] = $fid;
 				$chem['substance_id'] = $subids[$chem['orgnum']];
-				$chem['orgnum']=$chem['orgnum'];
-				if (isset($chem['purity'])) {
-					if (!is_null($chem['purity'])) {
-						$chem['purity'] = json_encode($chem['purity']);
-					} else {
-						$chem['purity'] = null;
-					}
+				$chem['orgnum']=$orgnum;
+				$chem['sourcetype']=$chem['source'];unset($chem['source']);
+				if(!empty($chem['purity'])) {
+					$chem['purity'] = json_encode($chem['purity']);
+				} else {
+					$chem['purity'] = null;
 				}
-				$chmid = $this->NewChemical->add($chem);
+				$chmid = $this->Chemical->add($chem);
 				$chmids[$orgnum]=$chmid;
 			}
-			//debug($chmids);exit;
 
 			// add report
-			$compcnt=count($chems);$psetcnt=$rsetcnt=0;$props=[];$trcdatacnt=0;
-			if(isset($trc['PureOrMixtureData'])) { $psetcnt=count($trc['PureOrMixtureData']); }
-			if(isset($trc['ReactionData'])) { $rsetcnt=count($trc['ReactionData']); }
+			$compcnt=count($chems);$props=[];$trcdatacnt=0;
+			$psetcnt=count($trc['PureOrMixtureData']);
 			if(!isset($trc['PureOrMixtureData'][0])) {
 				$psets=[0=>$trc['PureOrMixtureData']];
 			} else {
 				$psets=$trc['PureOrMixtureData'];
 			}
 			foreach($psets as $pset) {
-				if(!isset($pset['Property'][0])) { $pset['Property']=[0=>$pset['Property']]; }
-				foreach($pset['Property'] as $prop) {
+				if(!isset($pset['Quantity'][0])) { $pset['Quantity']=[0=>$pset['Quantity']]; }
+				foreach($pset['Quantity'] as $prop) {
 					$info=$this->getpropinfo($prop);
 					if(stristr($info['name'],', ')) {
-						list($prp,$junk) = explode(', ',$info['name']);
+						list($prp,) = explode(', ',$info['name']);
 					} else {
 						$prp=$info['name'];
 					}
@@ -594,7 +419,7 @@ class FilesController extends AppController
 			}
 			$props=array_unique($props);
 			$solprops=['molality','mass concentration','ratio of amount of solute to mass of solution',
-				'mass ratio of solute to solvent','smount concentration (molarity)','mole fraction',
+				'mass ratio of solute to solvent','amount concentration (molarity)','mole fraction',
 				'Amount ratio of solute to solvent','Henry\'s Law constant (mole fraction scale)',
 				'Henry\'s Law constant (molality scale)','Henry\'s Law constant (amount concentration scale)',
 				'Bunsen coefficient','Ostwald coefficient'];
@@ -613,479 +438,733 @@ class FilesController extends AppController
 				$propstr.=$prop;
 			}
 
-			$ref=$this->NewReference->find('list',['fields'=>['id','title'],'conditions'=>['id'=>$refid]]);
+			$ref=$this->Reference->find('list',['fields'=>['id','title'],'conditions'=>['id'=>$refid]]);
 			$psetstr=""; if($psetcnt>0) { $psetstr=$psetcnt." datasets of compound/mixture data"; }
-			$rsetstr=""; if($rsetcnt>0) { $rsetstr=$rsetcnt." datasets of reaction data"; }
-			$and=""; if($psetcnt>0&&$rsetcnt>0) { $and=" and "; }
-			$desc='Paper containing '.$psetstr.$and.$rsetstr.' about '.$compcnt.' compounds determining '.$propstr;
+			$desc='Paper containing '.$psetstr.' about '.$compcnt.' compounds determining '.$propstr;
 			$conds=['title'=>'Report on paper "'.$ref[$refid].'"','description'=>$desc,'file_id'=>$fid,'reference_id'=>$refid];
-			$repid=$this->NewReport->add($conds);
-			//debug($repid);exit;
+			$repid=$this->Report->add($conds);
 
 			// add property data
 			$repdatacnt=0;
-			if (isset($trc['PureOrMixtureData'])) {
-				$sets = $trc['PureOrMixtureData'];
-				if (!isset($sets[0])) { $sets = [0 => $sets]; }
-				foreach ($sets as $setidx => $set) {
-					$setnum = $set['nPureOrMixtureDataNumber'];
+			$sets = $trc['PureOrMixtureData'];
+			if (!isset($sets[0])) { $sets = [0 => $sets]; }
+			foreach($sets as $set) {
+				$setnum = $set['nPureOrMixtureDataNumber'];
+				//debug($set);exit;
+				// get components
+				$coms = $set['Component'];$comids = [];$cnames = [];
+				if (!isset($coms[0])) { $coms = ['0' => $coms]; }
+				foreach ($coms as $idx=>$com) {
+					$comnum = (int)$idx+1;
+					$orgnum = $com['RegNum']['nOrgNum'];
+					$comids[$comnum] = $subids[$orgnum];
+					$cnames[$comnum] = $names[$orgnum];
+				}
 
-					// get components
-					$coms = $set['Component'];$comids = [];$cnames = [];
-					if (!isset($coms[0])) { $coms = ['0' => $coms]; }
-					foreach ($coms as $idx=>$com) {
-						$comnum = (int)$idx+1;
-						$orgnum = $com['RegNum']['nOrgNum'];
-						$comids[$comnum] = $subids[$orgnum];
-						$cnames[$comnum] = $names[$orgnum];
-					}
-
-					// get phase
-					$phases = null;
-					if (isset($set['PhaseID'])) {
-						if (isset($set['PhaseID'][0])) {
-							foreach ($set['PhaseID'] as $p) {
-								$phases[] = $p['ePhase'];
-							}
-						} else {
-							$phases[] = $set['PhaseID']['ePhase'];
+				// get phase
+				$phases = null;
+				if (isset($set['PhaseID'])) {
+					if (isset($set['PhaseID'][0])) {
+						foreach ($set['PhaseID'] as $p) {
+							$phases[] = $p['ePhase'];
 						}
-					}
-
-					// add system
-					//debug($comids);exit;
-					asort($comids); // sort lowest first
-					if (count($comids) == 1) {
-						$idstr = $comids[1];
 					} else {
-						$idstr = implode(":", $comids);
+						$phases[] = $set['PhaseID']['ePhase'];
 					}
-					$sysid = $this->getsysid($idstr,$cnames,$phases);
-					//debug($sysid);exit;
+				}
 
-					// add dataset
-					$cnds=['title'=>'Dataset '.$setnum.' in paper '.$doi,'setnum'=>$setnum,
-						'file_id'=>$fid,'report_id'=>$repid, 'system_id'=>$sysid, 'reference_id'=>$refid];
-					$setcnt=0;
-					$setid=$this->NewDataset->add($cnds,$setcnt);
-					// assume dataset is complete if point count >0
-					if($setcnt>0) {
-						echo 'Dataset '.$setnum.' already complete<br/>';
-						$trcdatacnt += $setcnt;
-						$repdatacnt += $setcnt;continue;
+				// add system
+				asort($comids); // sort by lowest first
+				if (count($comids) == 1) {
+					$idstr = $comids[1];
+				} else {
+					$idstr = implode(":", $comids);
+				}
+				$sysid = $this->getsysid($idstr,$cnames,$phases);
+
+				// add dataset
+				$cnds=['title'=>'Dataset '.$setnum.' in paper '.$doi,'setnum'=>$setnum,
+					'file_id'=>$fid,'report_id'=>$repid, 'system_id'=>$sysid, 'reference_id'=>$refid,'trcidset_id'=>$meta['trcid'].'-'.$setnum];
+				$setcnt=null;
+				$setid=$this->Dataset->add($cnds,$setcnt); // updated by the function and returned by reference
+				// assume dataset is complete if point count >0
+				if($setcnt>0) {
+					echo 'Dataset '.$setnum.' already complete<br/>';
+					$trcdatacnt += $setcnt;
+					$repdatacnt += $setcnt;continue;
+				}
+
+
+				// add mixture
+				$cnds=['system_id'=>$sysid,'dataset_id'=>$setid];
+				$mixid=$this->Mixture->add($cnds);
+
+				// add phases
+				$phsids=[];
+				foreach($phases as $p) {
+					$ptid=$this->Phasetype->find('list',['fields'=>['name','id'],'conditions'=>['name'=>$p]]);
+					$orgnum=null; if(isset($p['RegNum'])) { $orgnum=$p['RegNum']['nOrgNum']; }
+					$cnds=['mixture_id'=>$mixid,'phasetype_id'=>$ptid[$p],'orgnum'=>$orgnum];
+					//debug($ptid);exit;
+					$phsid=$this->Phase->add($cnds);
+					$phsids[$p]=$phsid;
+				}
+
+				// add components
+				$tmpcomids=$comids;
+				ksort($comids); $cmpids=[]; // re-sort so components are added in numerical order
+				foreach ($comids as $comnum=>$subid) {
+					$orgnum=array_search($subid,$subids); // get the orgnum for this subid
+					$cnds=['chemical_id'=>$chmids[$orgnum],'mixture_id'=>$mixid,'compnum'=>$comnum];
+					$cmpid=$this->Compohnent->add($cnds);
+					$cmpids[$orgnum]=$cmpid;
+				}
+
+				// get the sample properties
+				$props = $set['Quantity'];$phasearray = [];
+				if (!isset($props[0])) { $props = ['0' => $props]; }
+				foreach ($props as $prop) {
+					$orgnum = $solorgnum = $uncnum = $unceval = $uncconf = null;
+					$propnum = $prop['nPropNumber'];
+					if (isset($prop['Property-MethodID']['RegNum']['nOrgNum'])) {
+						$orgnum = $prop['Property-MethodID']['RegNum']['nOrgNum'];
 					}
-
-					// add mixture
-					$cnds=['system_id'=>$sysid,'dataset_id'=>$setid];
-					$mixid=$this->NewMixture->add($cnds);
-					//debug($mixid);exit;
-
-					// add phases
-					$phsids=[];
-					//debug($phases);exit;
-					foreach($phases as $p) {
-						$ptid=$this->NewPhasetype->find('list',['fields'=>['name','id'],'conditions'=>['name'=>$p]]);
-						$orgnum=null; if(isset($p['RegNum'])) { $orgnum=$p['RegNum']['nOrgNum']; }
-						$cnds=['mixture_id'=>$mixid,'phasetype_id'=>$ptid[$p],'orgnum'=>$orgnum];
-						$phsid=$this->NewPhase->add($cnds);
-						$phsids[$p]=$phsid;
-					}
-					//debug($phsids);exit;
-
-					// add components
-					//debug($chmids);debug($comids);
-					$tmpcomids=$comids;
-					ksort($comids); $cmpids=[]; // re-sort so components are added in numerical order
-					//debug($comids);continue;
-					foreach ($comids as $comnum=>$subid) {
-						$orgnum=array_search($subid,$subids); // get the orgnum for this subid
-						$cnds=['chemical_id'=>$chmids[$orgnum],'mixture_id'=>$mixid,'compnum'=>$comnum];
-						$cmpid=$this->NewComponent->add($cnds);
-						$cmpids[$orgnum]=$cmpid;
-					}
-					//debug($cmpids);exit;
-
-					// get the sample properties
-					$props = $set['Property'];$proparray = [];$phasearray = [];$sprpids = [];
-					if (!isset($props[0])) { $props = ['0' => $props]; }
-					foreach ($props as $prop) {
-						$orgnum = $solorgnum = $uncnum = $unceval = $uncconf = null;
-						$propnum = $prop['nPropNumber'];
-						if (isset($prop['Property-MethodID']['RegNum']['nOrgNum'])) {
-							$orgnum = $prop['Property-MethodID']['RegNum']['nOrgNum'];
+					$pinfo=$this->getpropinfo($prop);
+					$propname = $pinfo['name'];
+					$propgroup = $pinfo['group'];
+					$pu = $this->getpropunit($propname);
+					list($propid,$unitid)=explode(':',$pu);
+					$methname = $pinfo['method'];
+					$phase = $prop['PropPhaseID']['ePropPhase'];
+					$phasearray[] = $phase;
+					$pres = $prop['ePresentation'];
+					if (isset($prop['Solvent'])) {
+						$solvents = $prop['Solvent']['RegNum'];
+						if (isset($solvents[0])) {
+							$temp = [];
+							foreach ($solvents as $s) {
+								$temp[] = $s['nOrgNum'];
+							}
+							$solorgnum = implode(':',$temp);
+						} else {
+							$solorgnum = $solvents['nOrgNum'];
 						}
-						$pinfo=$this->getpropinfo($prop);
-						$propname = $pinfo['name'];
-						$propgroup = $pinfo['group'];
+					}
+					// these should have been from Combined Uncertainty, not PropUncertainty
+					// see admin function adduncert
+					if (isset($prop['PropUncertainty']['nUncertAssessNum'])) {
+						$uncnum = $prop['PropUncertainty']['nUncertAssessNum'];
+					}
+					if (isset($prop['PropUncertainty']['sUncertEvaluator'])) {
+						$unceval = $prop['PropUncertainty']['sUncertEvaluator'];
+					}
+					if (isset($prop['PropUncertainty']['nUncertLevOfConfid'])) {
+						$uncconf = $prop['PropUncertainty']['nUncertLevOfConfid'];
+					}
+					$cnds = ['dataset_id' => $setid, 'propnum' => $propnum, 'orgnum' => $orgnum,
+						'quantity_group' => $propgroup, 'quantity_name' => $propname,
+						'quantity_id' => $propid, 'unit_id' => $unitid, 'method_name' => $methname,
+						'phase' => $phase, 'presentation' => $pres, 'solventorgnum' => $solorgnum,
+						'uncnum' => $uncnum, 'unceval' => $unceval, 'uncconf' => $uncconf];
+					$this->Sampleprop->add($cnds);
+					// $sprpids[$propnum]=$sprpid;
+					// padding the string as the ids do not come zerofill from the code above...
+					// $proparray[$propnum] = str_pad($propid, 5, '0', STR_PAD_LEFT).":".str_pad(str_pad($unitid, 5, '0', STR_PAD_LEFT), 5, '0');
+				}
+
+				// update the system based on phase data (if needed)
+				$this->getsysid($idstr, $cnames, $phasearray);
+
+				// create series condition (constraints) data arrays (saved to add to series later)
+				$sconds = [];
+				if (isset($set['Constraint'])) {
+					$serconds = $set['Constraint'];
+					if (!isset($serconds[0])) { $serconds = [0 => $serconds]; }
+					foreach ($serconds as $scidx => $sercond) {
+						$propname=null;$unitid=null;$comid=null;$cmpid=null;$phsid=null;
+						$ctype = $sercond['ConstraintID']['ConstraintType'];
+						$propname = $this->getpropname($ctype);
 						$pu = $this->getpropunit($propname);
-						list($propid,$unitid)=explode(':',$pu);
-						$methname = $pinfo['method'];
-						$phase = $prop['PropPhaseID']['ePropPhase'];
-						$phasearray[] = $phase;
-						$pres = $prop['ePresentation'];
-						if (isset($prop['Solvent'])) {
-							$solvents = $prop['Solvent']['RegNum'];
-							if (isset($solvents[0])) {
-								$temp = [];
-								foreach ($solvents as $s) {
-									$temp[] = $s['nOrgNum'];
-								}
-								$solorgnum = implode(':',$temp);
+						list($propid, $unitid) = explode(":", $pu);
+						if(is_null($unitid)) { echo "Unitid is 'null'";exit; }
+						$number = $sercond['nConstraintValue'];
+						$sf = $sercond['nConstrDigits'];
+						if(isset($sercond['ConstraintID']['RegNum'])) {
+							$orgnum=$sercond['ConstraintID']['RegNum']['nOrgNum'];
+							if(isset($cmpids[$orgnum])) {
+								$cmpid=$cmpids[$orgnum];
 							} else {
-								$solorgnum = $solvents['nOrgNum'];
+								echo "could not find comid from orgnum";debug($comids);debug($cmpids);debug($tmpcomids);exit;
 							}
 						}
-						if (isset($prop['PropUncertainty']['nUncertAssessNum'])) {
-							$uncnum = $prop['PropUncertainty']['nUncertAssessNum'];
+						if(isset($sercond['ConstraintPhaseID'])) {
+							$phase=$sercond['ConstraintPhaseID']['eConstraintPhase'];
+							$phsid=$phsids[$phase];
 						}
-						if (isset($prop['PropUncertainty']['sUncertEvaluator'])) {
-							$unceval = $prop['PropUncertainty']['sUncertEvaluator'];
-						}
-						if (isset($prop['PropUncertainty']['nUncertLevOfConfid'])) {
-							$uncconf = $prop['PropUncertainty']['nUncertLevOfConfid'];
-						}
-						$cnds = ['dataset_id' => $setid, 'propnum' => $propnum, 'orgnum' => $orgnum,
-							'property_group' => $propgroup, 'property_name' => $propname,
-							'property_id' => $propid, 'unit_id' => $unitid, 'method_name' => $methname,
-							'phase' => $phase, 'presentation' => $pres, 'solventorgnum' => $solorgnum,
-							'uncnum' => $uncnum, 'unceval' => $unceval, 'uncconf' => $uncconf];
-						$sprpid=$this->NewSampleprop->add($cnds);
-						$sprpids[$propnum]=$sprpid;
-						// padding the string as the ids do not come zerofill from the code above...
-						$proparray[$propnum] = str_pad($propid, 5, '0', STR_PAD_LEFT).":".str_pad(str_pad($unitid, 5, '0', STR_PAD_LEFT), 5, '0');
+
+						// Get sci notation data for value
+						$e = $this->Dataset->exponentialGen($number);
+						// create data to save - series_id placeholder for later
+						$sconds[$scidx] = ['dataset_id'=>$setid, 'dataseries_id'=>null,'datapoint_id'=>null,
+							'quantity_id'=>$propid,'system_id'=>$sysid,'quantity_name'=>$propname,
+							'number'=>$number,'component_id'=>$cmpid,'phase_id'=>$phsid,
+							'significand'=>$e['significand'],'exponent'=>$e['exponent'],'error'=>$e['error'],
+							'error_type'=>'absolute','unit_id'=>$unitid,'accuracy'=>$sf,'text'=>$number];
 					}
-					//debug($sprpids);debug($proparray);exit;
+				}
 
-					// update the system based on phase data (if needed)
-					$this->getsysid($idstr, $cnames, $phasearray);
-
-					// create series condition (constraints) data arrays (saved to add to series later)
-					$sconds = [];
-					if (isset($set['Constraint'])) {
-						$serconds = $set['Constraint'];
-						if (!isset($serconds[0])) { $serconds = [0 => $serconds]; }
-						foreach ($serconds as $scidx => $sercond) {
-							$propname=null;$unitid=null;$comid=null;$phsid=null;
-							$ctype = $sercond['ConstraintID']['ConstraintType'];
-							$propname = $this->getpropname($ctype);
-							$pu = $this->getpropunit($propname);
-							list($propid, $unitid) = explode(":", $pu);
-							if(is_null($unitid)) { echo "Unitid is 'null'";exit; }
-							$number = $sercond['nConstraintValue'];
-							$sf = $sercond['nConstrDigits'];
-							if(isset($sercond['ConstraintID']['RegNum'])) {
-								$orgnum=$sercond['ConstraintID']['RegNum']['nOrgNum'];
-								if(isset($cmpids[$orgnum])) {
-									$cmpid=$cmpids[$orgnum];
-								} else {
-									echo "could not find comid from orgnum";debug($comids);debug($cmpids);debug($tmpcomids);exit;
-								}
+				// analyze data for series to pull out (max) one additional series condition
+				$vals = $digits = $counts = [];$scondnum = $scondvals = null;
+				if (isset($set['NumValues'])) {
+					if (!isset($set['NumValues'][0])) { $set['NumValues'] = [0 => $set['NumValues']]; }
+					foreach ($set['NumValues'] as $point) {
+						if(isset($point['VariableValue'])) {
+							if (!isset($point['VariableValue'][0])) {
+								$point['VariableValue'] = [0 => $point['VariableValue']];
 							}
-							if(isset($sercond['ConstraintPhaseID'])) {
-								$phase=$sercond['ConstraintPhaseID']['eConstraintPhase'];
-								$phsid=$phsids[$phase];
-							}
-
-							// Get sci notation data for value
-							$e = $this->exponentialGen($number);
-							// create data to save - series_id placeholder for later
-							$sconds[$scidx] = ['dataset_id'=>$setid, 'dataseries_id'=>null,'datapoint_id'=>null,
-								'property_id'=>$propid,'system_id'=>$sysid,'property_name'=>$propname,
-								'number'=>$number,'component_id'=>$cmpid,'phase_id'=>$phsid,
-								'significand'=>$e['significand'],'exponent'=>$e['exponent'],'error'=>$e['error'],
-								'error_type'=>'absolute','unit_id'=>$unitid,'accuracy'=>$sf,'text'=>$number];
-						}
-					}
-
-					// analyze data for series to pull out (max) one additional series condition
-					$vals = $digits = $counts = [];$scondnum = $scondvals = $sconddigs = $sconddigits = null;
-					if (isset($set['NumValues'])) {
-						if (!isset($set['NumValues'][0])) { $set['NumValues'] = [0 => $set['NumValues']]; }
-						foreach ($set['NumValues'] as $point) {
-							if(isset($point['VariableValue'])) {
-								if (!isset($point['VariableValue'][0])) {
-									$point['VariableValue'] = [0 => $point['VariableValue']];
-								}
-								foreach ($point['VariableValue'] as $var) {
-									$cidx = $var['nVarNumber'];
-									$digits[$cidx][] = $var['nVarDigits'];
-									$vals[$cidx][] = $var['nVarValue'];
-								}
+							foreach ($point['VariableValue'] as $var) {
+								$cidx = $var['nVarNumber'];
+								$digits[$cidx][] = $var['nVarDigits'];
+								$vals[$cidx][] = $var['nVarValue'];
 							}
 						}
 					}
-					if (!empty($vals)) {
-						foreach ($vals as $cidx => $all) { $vals[$cidx] = array_unique($all); }
-						foreach ($vals as $cidx => $unique) { $counts[$cidx] = count($unique); }
-						$min = min($counts);
-						$max = max($counts);
-						if ($min != $max) {
-							$scondnum = array_search($min, $counts);
-							$scondvals = array_values($vals[$scondnum]);
-						}
+				}
+				if (!empty($vals)) {
+					foreach ($vals as $cidx => $all) { $vals[$cidx] = array_unique($all); }
+					foreach ($vals as $cidx => $unique) { $counts[$cidx] = count($unique); }
+					$min = min($counts);
+					$max = max($counts);
+					if ($min != $max) {
+						$scondnum = array_search($min, $counts);
+						$scondvals = array_values($vals[$scondnum]);
 					}
+				}
 
-					// create conditions templates (number values and dataseries will be added later)
-					$conds = [];
-					if (isset($set['Variable'])) {
-						$cnds = $set['Variable'];
-						if (!isset($cnds[0])) { $cnds = [0 => $cnds]; }
-						foreach ($cnds as $cnd) {
-							$comid = $phsid = null;
-							$ctype = $cnd['VariableID']['VariableType'];
-							$propname = $this->getpropname($ctype);
-							$pu = $this->getpropunit($propname);
-							list($propid, $unitid) = explode(":", $pu);
-							if (isset($cond['VariableID']['RegNum']['nOrgNum'])) {
-								$comid = $cmpids[$cnd['VariableID']['RegNum']['nOrgNum']];
-							}
-							if (isset($cond['VarPhaseID'])) { // only has one if present
-								$phsid = $phsids[$cnd['VarPhaseID']['eVarPhase']];
-							}
-							$conds[$cnd['nVarNumber']]=['dataset_id'=>$setid, 'dataseries_id'=>null,'datapoint_id'=>null,
-								'property_id'=>$propid,'system_id'=>$sysid,'property_name'=>$propname,
-								'component_id'=>$comid,'phase_id'=>$phsid,'unit_id'=>$unitid];
+				// create conditions templates (number values and dataseries will be added later)
+				$conds = [];
+				if (isset($set['Variable'])) {
+					$cnds = $set['Variable'];
+					if (!isset($cnds[0])) { $cnds = [0 => $cnds]; }
+					foreach ($cnds as $cnd) {
+						$comid = $phsid = null;
+						$ctype = $cnd['VariableID']['VariableType'];
+						$propname = $this->getpropname($ctype);
+						$pu = $this->getpropunit($propname);
+						list($propid, $unitid) = explode(":", $pu);
+						// ERR1: error in name of condition variable (was $cond instead of $cnd)
+						if (isset($cnd['VariableID']['RegNum']['nOrgNum'])) {
+							$comid = $cmpids[$cnd['VariableID']['RegNum']['nOrgNum']];
 						}
+						// ERR1: error in name of condition variable (was $cond instead of $cnd)
+						if (isset($cnd['VarPhaseID'])) { // only has one if present
+							$phsid = $phsids[$cnd['VarPhaseID']['eVarPhase']];
+						}
+						$conds[$cnd['nVarNumber']]=['dataset_id'=>$setid, 'dataseries_id'=>null,'datapoint_id'=>null,
+							'quantity_id'=>$propid,'system_id'=>$sysid,'quantity_name'=>$propname,
+							'component_id'=>$comid,'phase_id'=>$phsid,'unit_id'=>$unitid];
 					}
+				}
 
-					// create series and add series conditions
-					$serids = [];
-					if (is_null($scondnum)) {
+				// create series and add series conditions
+				$serids = [];
+				if (is_null($scondnum)) {
+					// add dataseries
+					$cnds = ['dataset_id'=>$setid,'idx'=>1];
+					$serid=$this->Dataseries->add($cnds);
+					// add 'constraint' series conditions
+					foreach ($sconds as $scond) {
+						$scond['dataseries_id'] = $serid;
+						$this->Condition->add($scond);
+					}
+					$serids[1]=$serid;
+				} else {
+					$sercnt=1;
+					// if there are series conditions derived from 'variable' conditions, create all series
+					foreach ($scondvals as $scondval) {
 						// add dataseries
-						$cnds = ['dataset_id'=>$setid,'type'=>'independent set','idx'=>1];
-						$serid=$this->NewDataseries->add($cnds);
+						$cnds = ['dataset_id'=>$setid,'idx'=>$sercnt];
+						$serid=$this->Dataseries->add($cnds);
+
 						// add 'constraint' series conditions
 						foreach ($sconds as $scond) {
 							$scond['dataseries_id'] = $serid;
-							$this->NewCondition->add($scond);
+							$this->Condition->add($scond);
 						}
-						$serids[1]=$serid;
-					} else {
-						$sercnt=1;
-						// if there are series conditions derived from 'variable' conditions, create all series
-						foreach ($scondvals as $scondval) {
-							// add dataseries
-							$cnds = ['dataset_id'=>$setid,'type'=>'independent set','idx'=>$sercnt];
-							$serid=$this->NewDataseries->add($cnds);
 
-							// add 'constraint' series conditions
-							foreach ($sconds as $scond) {
-								$scond['dataseries_id'] = $serid;
-								$this->NewCondition->add($scond);
-							}
+						// add 'variable' series condition
+						$scond = $conds[$scondnum];
+						$e = $this->Dataset->exponentialGen($scondval);
+						$scond['dataseries_id']=$serid;
+						$scond['accuracy']=$e['dp'];
+						$scond['significand']=$e['significand'];
+						$scond['number']=$e['scinot'];
+						$scond['error']=$e['error'];
+						$scond['error_type']='absolute';
+						$scond['exponent']=$e['exponent'];
+						$scond['text']=$scondval;
+						$this->Condition->add($scond);
 
-							// add 'variable' series condition
-							$scond = $conds[$scondnum];
-							$e = $this->exponentialGen($scondval);
-							$scond['dataseries_id']=$serid;
-							$scond['accuracy']=$e['dp'];
-							$scond['significand']=$e['significand'];
-							$scond['number']=$e['scinot'];
-							$scond['error']=$e['error'];
-							$scond['error_type']='absolute';
-							$scond['exponent']=$e['exponent'];
-							$scond['text']=$scondval;
-							$this->NewCondition->add($scond);
-
-							$serids[$sercnt] = $serid;
-							$sercnt++;
-						}
+						$serids[$sercnt] = $serid;
+						$sercnt++;
 					}
-					//debug($serids);exit;
-
-					$setdatcnt=0;
-					foreach ($serids as $scidx => $serid) {
-						// get and process the data
-						$data = $set['NumValues'];$serdatcnt=0;$dataidx=1;
-						if (!isset($data[0])) { $data = [0 => $data]; }
-						foreach ($data as $datum) {
-							// only add data to this series that has the correct scond value...
-							// assumes scondnums are always in numeric sequence
-							if (!is_null($scondnum)) {
-								if ($datum['VariableValue'][($scondnum - 1)]['nVarValue'] != $scondvals[($scidx-1)]) {
-									continue;
-								}
+				}
+				$setdatcnt=0;
+				foreach ($serids as $scidx => $serid) {
+					// get and process the data
+					$data = $set['NumValues'];$serdatcnt=0;$dataidx=1;
+					if (!isset($data[0])) { $data = [0 => $data]; }
+					foreach ($data as $datum) {
+						// only add data to this series that has the correct scond value...
+						// assumes scondnums are always in numeric sequence
+						if (!is_null($scondnum)) {
+							if ($datum['VariableValue'][($scondnum - 1)]['nVarValue'] != $scondvals[($scidx-1)]) {
+								continue;
 							}
-
-							// Add datapoint
-							$cnds = ['dataset_id' => $setid, 'dataseries_id' => $serid, 'row_index' =>$dataidx];
-							$pntid=$this->NewDatapoint->add($cnds);$trcdatacnt++;
-
-							// add remaining condition(s) ($vars)
-							if (isset($datum['VariableValue'])) {
-								$vars = $datum['VariableValue'];
-								if (!isset($vars[0])) { $vars = [0 => $vars]; }
-								foreach ($vars as $var) {
-									// $scondnum contains the 'Variable' that has been added as a series condition
-									if ($var['nVarNumber'] == $scondnum) { continue; }
-
-									// regular condition(s)
-									// get the prefilled data from the $conds array created above
-									$cond = $conds[$var['nVarNumber']];
-
-									// format the error based on the difference in sig figs in number and digits
-									$value=$var['nVarValue'];$sf=(int) $var['nVarDigits'];$tmp=null;
-									if($value<1) {
-										$tmp=preg_replace('/0\.0*/','',$value);
-									} else {
-										$tmp=str_replace('.','',$value);
-									}
-									$dgs=strlen($tmp);$diff=$sf-$dgs;
-									//debug($value);debug($diff);exit;
-
-									// Get sci notation data for value
-									$e = $this->exponentialGen($value);
-									// $cond['dataseries_id']=$serid; dont link datapoint conditions to the series
-									$cond['datapoint_id']=$pntid;
-									$cond['number']=$e['scinot'];
-									$cond['significand']=$e['significand'];
-									$cond['exponent']=$e['exponent'];
-									$cond['error']=$e['error']/pow(10,$diff);
-									$cond['error_type']='absolute';
-									$cond['accuracy']=$var['nVarDigits'];
-									$cond['text']=$var['nVarValue'];
-									$this->NewCondition->add($cond);
-								}
-							}
-
-							// add data
-							$edata = $datum['PropertyValue'];
-							if (!isset($edata[0])) { $edata = [0 => $edata]; }
-							foreach ($edata as $edatum) {
-								$propnum = $edatum['nPropNumber'];
-								$value = $edatum['nPropValue'];
-								$acc = $edatum['nPropDigits'];
-								$err = $this->getuncert($edatum);
-
-								// get property from sampleprop
-								$cnds = ['dataset_id'=>$setid, 'propnum' => $propnum];
-								$sprop = $this->NewSampleprop->find('first', ['conditions' => $cnds, 'recursive' => -1]);
-								if(!$sprop) { echo 'Sampleprop not found';debug($edatum);exit; }
-								$sprop = $sprop['NewSampleprop'];
-								$spropid = $sprop['id'];
-								$propname = $sprop['property_name'];
-								$propid = $sprop['property_id'];
-								$unitid = $sprop['unit_id'];
-								$orgnum = $sprop['orgnum'];
-								$phase = $sprop['phase'];
-
-								// get component, phase from mixture
-								$cptid = $phsid = null;$c=['NewPhase'=>['NewPhasetype'],'NewComponent'=>['NewChemical']];
-								$mix=$this->NewMixture->find('first',['conditions'=>['id'=>$mixid],'contain'=>$c,'recursive'=>-1]);
-								foreach($mix['NewComponent'] as $cpt) {
-									if($cpt['NewChemical']['orgnum']==$orgnum) { $cptid=$cpt['id']; }
-								}
-								foreach($mix['NewPhase'] as $phs) {
-									if($phs['NewPhasetype']['name']==$phase) { $phsid=$phs['id']; }
-								}
-
-								// get sci notation data for value
-								$e = $this->exponentialGen($value);
-								$cnds = ['dataset_id' => $setid, 'dataseries_id' => $serid, 'datapoint_id' => $pntid,
-									'property_id' => $propid,'property_name'=>$propname, 'sampleprop_id' => $spropid,
-									'number'=>$e['scinot'],'component_id'=>$cptid,'phase_id'=>$phsid,
-									'significand'=>$e['significand'],'exponent'=>$e['exponent'],
-									'error'=>$err,'unit_id'=>$unitid,'accuracy'=>$acc,'text'=>$value];
-								$this->NewData->add($cnds);
-							}
-							$serdatcnt++;$dataidx++;
 						}
 
-						// update series with # datapoints
-						$update=['NewDataseries'=>['id'=>$serid,'points'=>$serdatcnt]];
-						$this->NewDataseries->save($update);
+						// Add datapoint
+						$cnds = ['dataset_id' => $setid, 'dataseries_id' => $serid, 'row_index' =>$dataidx];
+						$pntid=$this->Datapoint->add($cnds);$trcdatacnt++;
 
-						$setdatcnt+=$serdatcnt;
+						// add remaining condition(s) ($vars)
+						if (isset($datum['VariableValue'])) {
+							$vars = $datum['VariableValue'];
+							if (!isset($vars[0])) { $vars = [0 => $vars]; }
+							foreach ($vars as $var) {
+								// $scondnum contains the 'Variable' that has been added as a series condition
+								if ($var['nVarNumber'] == $scondnum) { continue; }
+
+								// regular condition(s)
+								// get the prefilled data from the $conds array created above
+								$cond = $conds[$var['nVarNumber']];
+
+								// format the error based on the difference in sig figs in number and digits
+								$value=$var['nVarValue'];$sf=(int) $var['nVarDigits'];$tmp=null;
+								if($value<1) {
+									$tmp=preg_replace('/0\.0*/','',$value);
+								} else {
+									$tmp=str_replace('.','',$value);
+								}
+								$dgs=strlen($tmp);$diff=$sf-$dgs;
+								//debug($value);debug($diff);exit;
+
+								// Get sci notation data for value
+								$e = $this->Dataset->exponentialGen($value);
+								// $cond['dataseries_id']=$serid; dont link datapoint conditions to the series
+								$cond['datapoint_id']=$pntid;
+								$cond['number']=$e['scinot'];
+								$cond['significand']=$e['significand'];
+								$cond['exponent']=$e['exponent'];
+								$cond['error']=$e['error']/pow(10,$diff);
+								$cond['error_type']='absolute';
+								$cond['accuracy']=$var['nVarDigits'];
+								$cond['text']=$var['nVarValue'];
+								$this->Condition->add($cond);
+							}
+						}
+
+						// add data
+						$edata = $datum['PropertyValue'];
+						if (!isset($edata[0])) { $edata = [0 => $edata]; }
+						foreach ($edata as $edatum) {
+							$propnum = $edatum['nPropNumber'];
+							$value = $edatum['nPropValue'];
+							$acc = $edatum['nPropDigits'];
+							$err = $this->getuncert($edatum);
+
+							// get property from sampleprop
+							$cnds = ['dataset_id'=>$setid, 'propnum' => $propnum];
+							$sprop = $this->Sampleprop->find('first', ['conditions' => $cnds, 'recursive' => -1]);
+							if(!$sprop) { echo 'Sampleprop not found';debug($edatum);exit; }
+							$sprop = $sprop['Sampleprop'];
+							$spropid = $sprop['id'];
+							$propname = $sprop['quantity_name'];
+							$propid = $sprop['quantity_id'];
+							$unitid = $sprop['unit_id'];
+							$orgnum = $sprop['orgnum'];
+							$phase = $sprop['phase'];
+
+							// get component, phase from mixture
+							$cptid = $phsid = null;$c=['Phase'=>['Phasetype'],'Compohnent'=>['Chemical']];
+							$mix=$this->Mixture->find('first',['conditions'=>['id'=>$mixid],'contain'=>$c,'recursive'=>-1]);
+							foreach($mix['Compohnent'] as $cpt) {
+								if($cpt['Chemical']['orgnum']==$orgnum) { $cptid=$cpt['id']; }
+							}
+							foreach($mix['Phase'] as $phs) {
+								if($phs['Phasetype']['name']==$phase) { $phsid=$phs['id']; }
+							}
+							//debug($mix);exit;
+							// get sci notation data for value
+							$e = $this->Dataset->exponentialGen($value);
+							$cnds = ['dataset_id' => $setid, 'dataseries_id' => $serid, 'datapoint_id' => $pntid,
+								'quantity_id' => $propid,'quantity_name'=>$propname, 'sampleprop_id' => $spropid,
+								'number'=>$e['scinot'],'component_id'=>$cptid,'phase_id'=>$phsid,
+								'significand'=>$e['significand'],'exponent'=>$e['exponent'],
+								'error'=>$err,'unit_id'=>$unitid,'accuracy'=>$acc,'text'=>$value];
+							$this->Data->add($cnds);
+						}
+						$serdatcnt++;$dataidx++;
 					}
 
-					// update dataset with # datapoints
-					$update=['NewDataset'=>['id'=>$setid,'points'=>$setdatcnt]];
-					$this->NewDataset->save($update);
+					// update series with # datapoints
+					$update=['Dataseries'=>['id'=>$serid,'points'=>$serdatcnt]];
+					$this->Dataseries->save($update);
 
-					$repdatacnt+=$setdatcnt;
-
-					echo '<a href="/trc/newsets/view/'.$setid.'">'.$setnum.'</a>...';
-					//echo 'Completed dataset '.$setnum.' ('.$setid.')<br/>';
+					$setdatcnt+=$serdatcnt;
 				}
 
-				// update report with # datapoints
-				$update=['NewReport'=>['id'=>$repid,'points'=>$repdatacnt]];
-				$this->NewReport->save($update);
+				// update dataset with # datapoints
+				$update=['Dataset'=>['id'=>$setid,'points'=>$setdatcnt]];
+				$this->Dataset->save($update);
+
+				$repdatacnt+=$setdatcnt;
+
+				echo '<a href="/trc/newsets/view/'.$setid.'">'.$setnum.'</a>...';
 			}
 
-			// add reaction data
-			// see _ReactionDataCode.php
+			// update report with # datapoints
+			$update=['Report'=>['id'=>$repid,'points'=>$repdatacnt]];
+			$this->Report->save($update);
 
 			// Add datapoint stats to files table
-			$pntcnts=$this->NewDataset->find('list',['fields'=>['id','points'],'conditions'=>['file_id' => $fid],'recursive'=>-1]);
+			$pntcnts=$this->Dataset->find('list',['fields'=>['id','points'],'conditions'=>['file_id' => $fid],'recursive'=>-1]);
 			if(array_sum($pntcnts)!=$trcdatacnt) {
 				echo "mismatch on number of datapoints from file<br/>";
 				echo "sum of dataseries counts: ".array_sum($pntcnts)."; TRC count: ".$trcdatacnt;exit;
 			}
-			$this->NewFile->id=$fid;
-			$this->NewFile->saveField('points',$trcdatacnt);
+			$this->File->id=$fid;
+			$this->File->saveField('points',$trcdatacnt);
 
 			// data to data_systems table
-			$c=['NewDataseries'=>['NewDatapoint'=>['NewData']]];$datums=[];
-			$data=$this->NewDataset->find('all',['conditions'=>['file_id' => $fid],'contain'=>$c,'recursive'=>-1]);
+			$c=['Dataseries'=>['Datapoint'=>['Data']]];$datums=[];
+			$data=$this->Dataset->find('all',['conditions'=>['file_id' => $fid],'contain'=>$c,'recursive'=>-1]);
 			foreach($data as $set) {
-				foreach($set['NewDataseries'] as $ser) {
-					foreach($ser['NewDatapoint'] as $pnt) {
-						foreach($pnt['NewData'] as $datum) {
+				foreach($set['Dataseries'] as $ser) {
+					foreach($ser['Datapoint'] as $pnt) {
+						foreach($pnt['Data'] as $datum) {
 							$datums[]=$datum['id'];
 						}
 					}
 				}
 			}
-			foreach($datums as $did) {
-				$this->NewData->joinsys('id',$did);
-			}
+			foreach($datums as $did) { $this->Data->joinsys('id',$did); }
 			echo "File " . $filename . " added (".$trcdatacnt." points)<br />";
 
 			// indicate that the file is done
-			$this->NewFile->id=$fid;
-			$this->NewFile->saveField('comments','done');
+			$this->File->id=$fid;
+			$this->File->saveField('comments','done');
+
 
 			// check for problems
-			$conperr=$this->NewCondition->find('list',['fields'=>['id','datapoint_id'],'conditions'=>['property_id'=>null]]);
+			$conperr=$this->Condition->find('list',['fields'=>['id','datapoint_id'],'conditions'=>['quantity_id'=>null]]);
 			if(!empty($conperr)) { echo 'Conditions property error(s)';debug($conperr); }
-			$conuerr=$this->NewCondition->find('list',['fields'=>['id','datapoint_id'],'conditions'=>['unit_id'=>null]]);
+			$conuerr=$this->Condition->find('list',['fields'=>['id','datapoint_id'],'conditions'=>['unit_id'=>null]]);
 			if(!empty($conuerr)) { echo 'Conditions unit error(s)';debug($conuerr); }
-			$datperr=$this->NewData->find('list',['fields'=>['id','datapoint_id'],'conditions'=>['property_id'=>null]]);
+			$datperr=$this->Data->find('list',['fields'=>['id','datapoint_id'],'conditions'=>['quantity_id'=>null]]);
 			if(!empty($datperr)) { echo 'Data property error(s)';debug($datperr); }
-			$datuerr=$this->NewData->find('list',['fields'=>['id','datapoint_id'],'conditions'=>['unit_id'=>null]]);
+			$datuerr=$this->Data->find('list',['fields'=>['id','datapoint_id'],'conditions'=>['unit_id'=>null]]);
 			if(!empty($datuerr)) { echo 'Data unit error(s)';debug($datuerr); }
 			if(!empty($conperr)||!empty($conuerr)||!empty($datperr)||!empty($datuerr)) { exit; }
 
 			// check if we have processed enough files...
 			if($count==$maxfiles) { exit; }
-
-
-		}
-		exit;
-	}
-
-	public function updds()
-	{
-		$query="SELECT distinct dataset_id FROM `data_systems` where system_id not in (select id from systems) ORDER BY `data_systems`.`system_id` ASC";
-		$rows=$this->NewDataSystem->query($query);
-		$setids=[];
-		foreach($rows as $row) { $setids[]=$row['data_systems']['dataset_id']; }
-		$sets=$this->NewDataset->find('list',['fields'=>['id','system_id'],'conditions'=>['id'=>$setids]]);
-		$rows=$this->NewDataSystem->find('list',['fields'=>['id','dataset_id'],'conditions'=>['dataset_id'=>$setids]]);
-		foreach($rows as $dsid=>$setid) {
-			$this->NewDataSystem->id=$dsid;
-			$this->NewDataSystem->saveField('system_id',$sets[$setid]);
-			echo "Updated row ".$dsid."<br/>";
 		}
 		exit;
 	}
 
 	/**
-	 * get the property group, property, and method
-	 * @param $prop
+	 * delete a file (and all data derived from it)
+	 * uses model associations and dependent=true
+	 * @param int $id
+	 * @return void
 	 */
-	private function getpropinfo($prop)
+	public function delete(int $id)
+	{
+		if($this->File->delete($id)) {
+			$this->Flash->set('File '.$id.' deleted!');
+		} else {
+			$this->Flash->set('File '.$id.' could not be deleted!');
+		}
+		$this->redirect('/files/index');
+	}
+
+	/**
+	 * check entries added to the database
+	 */
+	public function check()
+	{
+		$path = WWW_ROOT . 'files' . DS . 'trc'. DS . 'jced'. DS . 'aadone';
+		$maindir = new Folder($path);
+		$files = $maindir->find('^.*\.xml$',true);
+		// check files in aadone...
+		echo "Files in aadone<br/>";
+		foreach ($files as $file) {
+			if(!$this->File->find('first',['conditions'=>['filename'=>$file],'recursive'=>-1])) {
+				echo 'Filename '.$file.' not found!<br/>';
+			}
+		}
+		// check entries in files DB
+		$done=$this->File->find('list',['fields'=>['id','filename']]);
+		echo "Files in database<br/>";
+		foreach($done as $filename) {
+			if(!in_array($filename,$files)) {
+				echo 'Filename '.$filename.' not found!<br/>';
+			}
+		}
+		exit;
+	}
+
+	/**
+	 * function to fix missing component_id and phase_id values in conditions
+	 * this was due to a coding error in ingest function -> ERR1 above
+	 * run once
+	 * @param int $maxfiles
+	 */
+	public function fixcond(int $maxfiles=1)
+	{
+		$path = WWW_ROOT.'files'.DS.'trc'.DS.'jct'.DS;
+		$maindir = new Folder($path);$count=0;
+		$xfiles = $maindir->find('^.*\.xml$',true);
+		$files = $this->File->find('list', ['fields' => ['id','filename']]);
+
+		$done = $this->File->find('list', ['fields' => ['id','filename'],'conditions'=>['cndchk'=>'yes']]);
+		$phts = $this->Phasetype->find('list',['fields'=>['name','id']]);
+		foreach($xfiles as $filename) {
+			if(in_array($filename,$done)) { continue; }
+			$fid = array_search($filename,$files);
+			// get data from XML
+			$filepath = $path.$filename;
+			$xml = simplexml_load_file($filepath);
+			$trc = json_decode(json_encode($xml), true);
+
+			// get the orgnum(s) of variables/constraints if available
+			$sdone = $this->Dataset->find('list',['fields'=>['id','setnum'],'conditions'=>['file_id'=>$fid,'cndchk'=>'yes']]);
+			if(!isset($trc['PureOrMixtureData'])) { continue; }
+			if(!isset($trc['PureOrMixtureData'][0])) { $trc['PureOrMixtureData']=[0=>$trc['PureOrMixtureData']]; }
+			foreach($trc['PureOrMixtureData'] as $set) {
+				// to update the correct rows in conditions we need
+				// dataset_id, quantity_id, and component_id and optionally phase_id
+				$sconds=[];$conds=[];
+				$setnum = $set['nPureOrMixtureDataNumber'];
+				// comment out the next line for alternate
+				if(in_array($setnum,$sdone)) { echo "Dataset ".$filename.":".$setnum." already completed<br/>";continue; }
+				// get dataset id
+				$dset = $this->Dataset->find('first',['conditions'=>['file_id'=>$fid,'setnum'=>$setnum],'recursive'=>-1]);
+				$dsid = $dset['Dataset']['id'];
+				//debug($filename);debug($dsid);//exit;
+				// search constraints for regnum
+				if(isset($set['Constraint'])) {
+					if(!isset($set['Constraint'][0])) { $set['Constraint'] = [0=>$set['Constraint']]; }
+					foreach($set['Constraint'] as $cst) {
+						if(isset($cst['ConstraintID']['RegNum'])) {
+							$scond = [];
+							$scond['num'] = $cst['nConstraintNumber'];
+							// use implode to get single property description because array key is variable
+							$scond['prop'] = implode(',',$cst['ConstraintID']['ConstraintType']);
+							$scond['orgnum'] = $cst['ConstraintID']['RegNum']['nOrgNum'];
+							$scond['phase'] = null;
+							if(isset($cst['ConstraintPhaseID'])) {
+								$scond['phase'] = $cst['ConstraintPhaseID']['eConstraintPhase'];
+							}
+							$sconds[]=$scond;
+						}
+					}
+					foreach($sconds as $scond) {
+						$phsid=$phstype=null;
+						// get quantity_id
+						$prop = $this->Quantity->find('first',['conditions'=>['field like'=>'%"'.$scond['prop'].'"%'],'recursive'=>-1]);
+						if(!empty($prop)) { $prpid = $prop['Quantity']['id']; } else { echo "Quantity not found!";debug($prop);exit; }
+						// get conditions that need to be updated...
+						$cnds = $this->Condition->find('all',['conditions'=>['dataset_id'=>$dsid,'quantity_id'=>$prpid],'recursive'=>-1]);
+						foreach($cnds as $cnd) {
+							$issues=0;$cnd=$cnd['Condition'];
+							if(is_null($cnd['component_id'])) {
+								echo "Missing component_id<br/>";$issues++;
+							}
+							if(!is_null($scond['phase'])&&is_null($cnd['phase_id'])) {
+								echo "Missing phase_id<br/>";$issues++;
+							}
+							if($issues>0) {
+								// get mixture
+								$mix = $this->Mixture->find('first',['conditions'=>['dataset_id'=>$dsid],'recursive'=>-1]);
+								if(!empty($mix)) { $mixid = $mix['Mixture']['id']; } else { echo "Mixture not found!";exit; }
+								// get components
+								$cmps = $this->Compohnent->find('list',['fields'=>['id','chemical_id'],'conditions'=>['mixture_id'=>$mixid]]);
+								if(empty($cmps)) { echo "Components not found!";exit; }
+								// get all chemicals for those components
+								$chms = $this->Chemical->find('list',['fields'=>['orgnum','id'],'conditions'=>['id'=>$cmps]]);
+								// get phase_id if required
+								if(!is_null($scond['phase'])) {
+									$phstype=$phts[$scond['phase']];
+									// get phases for this mixture
+									$phss = $this->Phase->find('list',['fields'=>['phasetype_id','id'],'conditions'=>['mixture_id'=>$mixid]]);
+									if(isset($phss[$phstype])) { $phsid=$phss[$phstype]; } else { echo "Phase ".$scond['phase']." not found!";exit; }
+								}
+								// get component_id - gets chmid from chms variable using the orgnum
+								// and then searches the cmps array for the key (component_id) that matches that chmid
+								$cmpid = array_search($chms[$scond['orgnum']],$cmps);
+								//echo "Correct?";debug($cnd);debug($cmpid);debug($phsid);exit;
+								$this->Condition->id=$cnd['id'];
+								$this->Condition->saveField('component_id',$cmpid);
+								if(!is_null($phsid)) { $this->Condition->saveField('phase_id',$phsid); }
+								//echo "Work on this code!";debug($cnd);exit;
+							}
+						}
+						//echo "OK, everything looks good";debug($scond);debug($cnds);exit;
+					}
+				}
+				// search variables for regnum and phase
+				if(isset($set['Variable'])) {
+					if(!isset($set['Variable'][0])) { $set['Variable'] = [0=>$set['Variable']]; }
+					foreach($set['Variable'] as $var) {
+						if(isset($var['VariableID']['RegNum'])) {
+							$cond = [];
+							$cond['num'] = $var['nVarNumber'];
+							// use implode to get single quantity description because array key is variable
+							$cond['prop'] = implode(',',$var['VariableID']['VariableType']);
+							$cond['orgnum'] = $var['VariableID']['RegNum']['nOrgNum'];
+							if(isset($var['VarPhaseID'])) {
+								$cond['phase'] = $var['VarPhaseID']['eVarPhase'];
+							}
+							$conds[]=$cond;
+						} elseif(isset($var['VarPhaseID'])) {
+							$cond = [];
+							$cond['num'] = $var['nVarNumber'];
+							// use implode to get single quantity description because array key has varying name
+							$cond['prop'] = implode(',',$var['VariableID']['VariableType']);
+							$cond['phase'] = $var['VarPhaseID']['eVarPhase'];
+							$conds[]=$cond;
+						}
+					}
+					//if(count($conds)>2) { echo "Just checking larger # of conditions with compounds identified";debug($conds);exit; }
+					$cndscs=[]; // variable cndscs is for conditions that have been turned into series conditions
+					//debug($conds);
+					foreach($conds as $cidx=>$cond) {
+						$prpid=$phsid=$cmpid=null;$prop=[];
+						// get quantity_id
+						if(isset($cond['prop'])) {
+							$prop = $this->Quantity->find('first',['conditions'=>['field like'=>'%"'.$cond['prop'].'"%'],'recursive'=>-1]);
+							if(!empty($prop)) { $prpid = $prop['Quantity']['id']; } else { echo "Quantity not found!";debug($set);exit; }
+						}
+						// get mixture
+						$mix = $this->Mixture->find('first',['conditions'=>['dataset_id'=>$dsid],'recursive'=>-1]);
+						if(!empty($mix)) { $mixid = $mix['Mixture']['id']; } else { echo "Mixture not found!";exit; }
+						// get component_id if needed
+						if(isset($cond['prop'])&&isset($cond['orgnum'])) {
+							// get component
+							// get all components of the mixture
+							$cmps = $this->Compohnent->find('list',['fields'=>['id','chemical_id'],'conditions'=>['mixture_id'=>$mixid]]);
+							if(empty($cmps)) { echo "Components not found!";exit; }
+							// get all chemicals for those components
+							$chms = $this->Chemical->find('list',['fields'=>['orgnum','id'],'conditions'=>['id'=>$cmps]]);
+							// get component_id - gets chmid from chms variable using the orgnum
+							// and then searches the cmps array for the key (component_id) that matches that chmid
+							$cmpid = array_search($chms[$cond['orgnum']],$cmps);
+						}
+						//debug($cond);debug($phsid);
+						// get phase_id if needed
+						if(!is_null($cond['phase'])) {
+							$phstype=$phts[$cond['phase']];
+							// get phases for this mixture
+							$phss = $this->Phase->find('list',['fields'=>['phasetype_id','id'],'conditions'=>['mixture_id'=>$mixid]]);
+							if(isset($phss[$phstype])) { $phsid=$phss[$phstype]; } else { echo "Phase ".$cond['phase']." not found!";debug($phss);exit; }
+						}
+						//debug($cond);debug($phsid);
+						// get conditions that need to be updated...
+						$cndids = $this->Condition->find('list',['fields'=>['id','quantity_id','datapoint_id'],'conditions'=>['dataset_id'=>$dsid,'quantity_id'=>$prpid]]);
+						// only update one condition per datapoint - the number of conditions should match the #rows/#datapoints
+						// if there are multiple conditions of the same quantity (e.g. mole fraction)
+						// then pick the right one from the sequence ($cidx starts at zero)
+						if(isset($cndids[0])) {
+							// rows found are series conditions (constriants) created from variables
+							$scnds = $this->Condition->find('all',['conditions'=>['dataset_id'=>$dsid,'quantity_id'=>$prpid],'recursive'=>-1]);
+							//debug($scnds);exit;
+							unset($cndids[0]);$cndscs[]=$cidx;
+							foreach($scnds as $scnd) {
+								$issues=0;$scnd=$scnd['Condition'];
+								if(is_null($scnd['component_id'])) {
+									echo "Missing component_id<br/>";$issues++;
+								}
+								if(!is_null($cond['phase'])&&is_null($scnd['phase_id'])) {
+									echo "Missing phase_id<br/>";$issues++;
+								}
+								if($issues>0) {
+									//echo "Work on this code!";debug($scnd);debug($cmpid);debug($phsid);exit;
+									$this->Condition->id=$scnd['id'];
+									$this->Condition->saveField('component_id',$cmpid);
+									if(!is_null($phsid)) { $this->Condition->saveField('phase_id',$phsid); }
+								}
+							}
+						}
+						if(isset($cndids[1])) { echo "Something else went wrong!";debug($dsid);debug($cndids);exit; }
+						foreach($cndids as $cndida) {
+							//debug($cndida);
+							$cndid=null;
+							if(count($cndida)==1) {
+								$cndid=implode('',array_keys($cndida));
+							} else {
+								// multiple conditions of the same type - remove any that have been converted
+								// to series conditions and then find the right one by index
+								$tmpcnds=$conds;
+								foreach($cndscs as $cndsc) { unset($tmpcnds[$cndsc]); }
+								$tmpcnds=array_values($tmpcnds);
+								// get properties that of this type and then assign based on relative order
+								$prptyps=json_decode($prop['Quantity']['field']);
+								$fndcnds=[];
+								foreach($tmpcnds as $tmpcnd) {
+									if(in_array($tmpcnd['prop'],$prptyps)) { $fndcnds[]=$tmpcnd; }
+								}
+								$csccnt=count($cndscs);
+								if(count($fndcnds)==count($cndida)) {
+									//debug($cidx);debug($prptyps);debug($fndcnds);
+									if(!in_array($cidx,$cndscs)) {
+										$keys=array_keys($cndida);
+										//debug($keys);
+										if(isset($keys[($cidx-$csccnt)])) {
+											$cndid=$keys[($cidx-$csccnt)];
+										} else {
+											echo "Can't disambiguate conditions (mutiple of same type?)";debug($fndcnds);
+										}
+									}
+								} else {
+									echo 'Mismatch in # of conditions per datapoint with the same quantity';
+									debug($prop);debug($cndida);debug($cndids);debug($conds);debug($tmpcnds);exit;
+								}
+							}
+							//debug($cond);debug($cndid);//debug($cmpid);debug($phsid);exit;
+							$this->Condition->id=$cndid;
+							if(!is_null($cmpid)) { $this->Condition->saveField('component_id',$cmpid); }
+							if(!is_null($phsid)) { $this->Condition->saveField('phase_id',$phsid); }
+						}
+					}
+					//debug($cndscs);exit;
+				}
+				// indicate that the dataset has been updated
+				$this->Dataset->id=$dsid;
+				$this->Dataset->saveField('cndchk','yes');
+				echo "Dataset ".$filename.':'.$setnum.' ('.$dsid.') done<br/>';
+			}
+
+			// indicate that the file has been updated
+			$this->File->id=$fid;
+			$this->File->saveField('cndchk','yes');
+			echo "File ".$filename.' done<br/>';$count++;
+
+			// check if we have processed enough files...
+			if($count==$maxfiles) { exit; }
+		}
+		exit;
+	}
+
+	// private functions called by the functions above (not exposed)
+
+	/**
+	 * get the quantity group, quantity, and method
+	 * @param array $prop
+	 * @return array
+	 */
+	private function getpropinfo(array $prop): array
 	{
 		$group = $prop['Property-MethodID']['PropertyGroup'];
 		$proptype=$propgroup=null;
@@ -1122,12 +1201,6 @@ class FilesController extends AppController
 		} elseif (isset($group['BioProperties'])) {
 			$proptype = $group['BioProperties'];
 			$propgroup = 'BioProperties';
-		} elseif (isset($group['ReactionStateChangeProp'])) {  //rxns
-			$proptype = $group['ReactionStateChangeProp'];
-			$propgroup = 'ReactionStateChangeProp';
-		} elseif (isset($group['ReactionEquilibriumProp'])) {  //rxns
-			$proptype = $group['ReactionEquilibriumProp'];
-			$propgroup = 'ReactionEquilibriumProp';
 		}
 		$method=null;
 		if(isset($proptype['eMethodName'])) { $method=$proptype['eMethodName']; }
@@ -1136,86 +1209,7 @@ class FilesController extends AppController
 	}
 
 	/**
-	 * check entries added to the database
-	 */
-	public function check()
-	{
-		$path = WWW_ROOT . 'files' . DS . 'trc'. DS . 'jced'. DS . 'aadone';
-		$maindir = new Folder($path);
-		$files = $maindir->find('.*\.xml',true);
-		// check files in aadone...
-		echo "Files in aadone<br/>";
-		foreach ($files as $file) {
-			if(!$this->File->find('first',['conditions'=>['filename'=>$file],'recursive'=>-1])) {
-				echo 'Filename '.$file.' not found!<br/>';
-			}
-		}
-		// check entries in files DB
-		$done=$this->File->find('list',['fields'=>['id','filename']]);
-		echo "Files in database<br/>";
-		foreach($done as $filename) {
-			if(!in_array($filename,$files)) {
-				echo 'Filename '.$filename.' not found!<br/>';
-			}
-		}
-		exit;
-		debug($files);exit;
-	}
-
-	/**
-	 * Test function
-	 */
-	public function test()
-	{
-		$search = [0 => ['casrn' => '18923-20-1', 'name' => 'carbon dioxide', 'formula' => 'CO2']];
-		debug($search);
-		$this->Datarectification->checkAndAddSubstances($search, true);
-		debug($search);
-		exit;
-	}
-
-	/**
-	 * Get the refs for the TRC files using call to the Crossref API
-	 */
-	public function getrefs()
-	{
-		$refs = $this->File->find('list', ['fields' => ['id', 'doi'], 'conditions' => ['reference_id' => 0]]);
-		foreach ($refs as $trcid => $doi) {
-			$meta = $this->Reference->addbydoi($doi);
-			debug($meta);
-			$this->File->id = $trcid;
-			$this->File->savefield('reference_id', $meta['id']);
-		}
-		exit;
-	}
-
-	/**
-	 * get a list of the most recently added files
-	 * @param integer $l
-	 * @return mixed
-	 */
-	public function recent($l=6)
-	{
-		$data=$this->File->find('list',['fields'=>['id','title'],'order'=>['updated'=>'desc'],'limit'=>$l]);
-		$this->set('data',$data);
-		if($this->request->params['requested']) { return $data; }
-	}
-
-	/**
-	 * count the number of files
-	 * @return mixed
-	 */
-	public function totalfiles()
-	{
-		$data=$this->File->find('count');
-
-		echo $data;exit;
-	}
-
-	// private functions called by the functions above (not exposed)
-
-	/**
-	 * Get the property string
+	 * get the quantity string
 	 * @param $ctype
 	 * @return string
 	 */
@@ -1234,19 +1228,16 @@ class FilesController extends AppController
 			$propname = $ctype['eMiscellaneous'];
 		} elseif (isset($ctype['eBioVariables'])) {
 			$propname = $ctype['eBioVariables'];
-		} elseif (isset($ctype['eParticipantAmount'])) {
-			$propname = $ctype['eParticipantAmount'];
 		}
 		return $propname;
 	}
 
-
 	/**
-	 * Get the uncertainty string
+	 * get the uncertainty string
 	 * @param array $uncert
-	 * @return string
+	 * @return string|null
 	 */
-	private function getuncert(array $uncert)
+	private function getuncert(array $uncert): string
 	{
 		$output=null;
 		if (isset($uncert['PropUncertainty'])) {
@@ -1281,18 +1272,18 @@ class FilesController extends AppController
 		return $output;
 	}
 
-
 	/**
-	 * Get the property and unit
-	 * @param $propunit
+	 * get the quantity and unit
+	 * @param string $propunit
 	 * @return string
 	 */
-	private function getpropunit($propunit): string
+	private function getpropunit(string $propunit): string
 	{
-		$propid = $this->NewProperty->getfield('id', '%"'.$propunit.'"%', 'field like');$unitid=null;
+		$propid = $this->Quantity->getfield('id', '%"'.$propunit.'"%', 'field like');
 		if (stristr($propunit, ', ')) {
-			list($prop, $unit) = explode(", ", $propunit);
-			$unitid = $this->NewUnit->getfield('id', '%"'.$unit.'"%', 'header like');
+			$pu = explode(", ", $propunit);
+			$unit = $pu[1];
+			$unitid = $this->Unit->getfield('id', '%"'.$unit.'"%', 'header like');
 		} else {
 			if(stristr($propunit,'mass fraction ')) {
 				$unitid=88;
@@ -1307,74 +1298,15 @@ class FilesController extends AppController
 	}
 
 	/**
-	 * Get the unit
-	 * @param $str
-	 * @return int
-	 */
-	private function getunit($str)
-	{
-		//debug($str);
-		if (preg_match('/, mol\/kg$/', $str)) {
-			$unitid = 53;
-		} elseif (preg_match('/, mol\/dm3$/', $str)) {
-			$unitid = 21;
-		} elseif (preg_match('/, kPa$/', $str)) {
-			$unitid = 25;
-		} elseif (preg_match('/, K$/', $str)) {
-			$unitid = 5;
-		} elseif (preg_match('/, kg\/m3$/', $str)) {
-			$unitid = 32;
-		} elseif (preg_match('/, nm$/', $str)) {
-			$unitid = 26;
-		} elseif (preg_match('/, MHz$/', $str)) {
-			$unitid = 67;
-		} elseif (preg_match('/, m3\/mol$/', $str)) {
-			$unitid = 30;
-		} elseif (preg_match('/, m3\/kg$/', $str)) {
-			$unitid = 68;
-		} elseif (preg_match('/, mol\/m3$/', $str)) {
-			$unitid = 69;
-		} elseif (preg_match('/, J\/K\/mol$/', $str)) {
-			$unitid = 70;
-		} elseif (preg_match('/, mol$/', $str)) {
-			$unitid = 6;
-		} elseif (preg_match('/, kg$/', $str)) {
-			$unitid = 71;
-		} elseif (preg_match('/, kJ\/mol$/', $str)) {
-			$unitid = 35;
-		} elseif (preg_match('/, kJ$/', $str)) {
-			$unitid = 72;
-		} elseif (preg_match('/, J\/g$/', $str)) {
-			$unitid = 73;
-		} elseif (preg_match('/, V$/', $str)) {
-			$unitid = 74;
-		} elseif (preg_match('/, \(mol\/kg\)$/', $str)) {
-			$unitid = 53;
-		} elseif (preg_match('/, \(mol\/dm3\)$/', $str)) {
-			$unitid = 21;
-		} elseif (preg_match('/, kPa$/', $str)) {
-			$unitid = 25;
-		} elseif (preg_match('/, m\/s$/', $str)) {
-			$unitid = 31;
-		} elseif (preg_match('/, N\/m$/', $str)) {
-			$unitid = 44;
-		} else {
-			$unitid = 17;
-		}
-
-		return $unitid;
-	}
-
-	/**
-	 * Get the systemid
-	 * @param $idstr
-	 * @param $cnames
-	 * @param $phases
+	 * get the systemid
+	 * @param string $idstr
+	 * @param array $cnames
+	 * @param array|null $phases
 	 * @return mixed
 	 */
-	private function getsysid($idstr, $cnames, $phases = null)
+	private function getsysid(string $idstr,array $cnames,array $phases = null)
 	{
-		$res = $this->NewSystem->find('list', ['fields' => ['id', 'phase'], 'conditions' => ['identifier' => $idstr]]);
+		$res = $this->System->find('list', ['fields' => ['id', 'phase'], 'conditions' => ['identifier' => $idstr]]);
 		$scount = count($cnames);
 		if(empty($res)) {
 			$cnds=[];
@@ -1425,8 +1357,6 @@ class FilesController extends AppController
 				} elseif (count($phases) > 2) {
 					$phase = 'multiphase system';
 				}
-			} else {
-				$phase = null;
 			}
 			$cnds['phase']=$phase;
 			$cnds['identifier']=$idstr;
@@ -1460,33 +1390,30 @@ class FilesController extends AppController
 					$cnds['subtype'] = 'organic compound*';
 				}
 			}
-			$sysid=$this->NewSystem->add($cnds);
+			$sysid=$this->System->add($cnds);
 
 			// add substances_systems entries
 			$subids = explode(":", $idstr);
 			foreach ($subids as $subid) {
-				$cnds=['substance_id'=>$subid,'system_id'=>$sysid,'role'=>null];
-				$this->NewSubstancesSystem->add($cnds);
+				$cnds=['substance_id'=>$subid,'system_id'=>$sysid];
+				$this->SubstancesSystem->add($cnds);
 			}
 			//echo "check that susbtances_system entries worked OK";exit;
 		} else {
 			if(count($res)>1) {
-				echo "check this code (getsysid:b)";exit;
 				foreach ($res as $sysid => $phase) {
 					if ($phase == null && $phases != null) {
-						if (!is_null($phases)) {
-							$phases = array_unique($phases);
-							if (count($phases) == 1) {
-								if ($scount == 1) {
-									$phase = $phases[0];
-								} else {
-									$phase = 'Solution';
-								}
-							} elseif (count($phases) == 2) {
-								$phase = 'Two phase system';
-							} elseif (count($phases) > 2) {
-								$phase = 'Multiphase system';
+						$phases = array_unique($phases);
+						if (count($phases) == 1) {
+							if ($scount == 1) {
+								$phase = $phases[0];
+							} else {
+								$phase = 'Solution';
 							}
+						} elseif (count($phases) == 2) {
+							$phase = 'Two phase system';
+						} elseif (count($phases) > 2) {
+							$phase = 'Multiphase system';
 						}
 						$this->System->id = $sysid;
 						$this->System->savefield('phase', $phase);
@@ -1497,885 +1424,4 @@ class FilesController extends AppController
 		}
 		return $sysid;
 	}
-
-	/**
-	 * Generates a exponential number removing any zeros at the end not needed
-	 * @param $string
-	 * @return array
-	 */
-	private function exponentialGen($string)
-	{
-		$e="e";$return=[];
-		$return['text']=$string;
-		$return['value']=floatval($string);
-		$return['isint']=1;
-		if(stristr($string,'.')) { $return['isint']=0; }
-		if ($string==0) {
-			$return=['dp'=>0,'scinot' =>'0e+0','exponent'=>0,'significand'=>0,'error'=>null,'sf'=>0];
-		} elseif(stristr($string, 'E')) {
-			$string=str_replace('E','e',$string); // so it catches either case
-			list($man, $exp)=explode('e', $string);
-			if ($man>0) {
-				$sf=strlen($man)-1;
-			} else {
-				$sf=strlen($man)-2;
-			}
-			$return['scinot']=$string;
-			$return['error']=pow(10,$exp-$sf+1);
-			$return['exponent']=$exp;
-			$return['significand']=$man;
-			$return['dp']=$sf;
-		} else {
-			$string=str_replace([",","+"],"", $string);
-			$num=explode(".", $string);
-			$neg=false;
-			if(stristr($num[0],'-')) { $neg=true; }
-			// If there is something after the decimal
-			if (isset($num[1])) {
-				$return['dp']=strlen($num[1]);
-				if ($num[0]!=""&&$num[0]!=0) {
-					// All digits count (-1 for period)
-					if($neg) {
-						// substract 1 for the minus sign and 1 for decimal point
-						$return['sf']=strlen($string)-2;
-						$return['exponent']=strlen($num[0])-2;
-					} else {
-						$return['sf']=strlen($string)-1;
-						$return['exponent']=strlen($num[0])-1;
-					}
-					// exponent is based on digit before the decimal -1
-				} else {
-					// Remove any leading zeroes after decimal and count string length
-					$return['sf']=strlen(ltrim($num[1],'0'));
-					// Count leading zeros
-					preg_match('/^(0*)[1234567890]+$/',$num[1],$match);
-					$return['exponent']=-1*(strlen($match[1]) + 1);
-				}
-				$return['scinot']=sprintf("%.".($return['sf']-1).$e,$string);
-				$s=explode($e,$return['scinot']);
-				$return['significand']=$s[0];
-				$return['error']=pow(10,$return['exponent']-$return['sf']+1);
-			} else {
-				$return['dp'] = 0;
-				$return['scinot'] = sprintf("%.".(strlen($string)-1).$e, $string);
-				$s = explode($e, $return['scinot']);
-				$return['significand'] = $s[0];
-				$return['exponent'] = $s[1];
-				$z = explode(".", $return['significand']);
-				$return['sf']=strlen($return['significand'])-1;
-				// Check for negative
-				if (isset($z[1])) {
-					$return['error']=pow(10,strlen($z[1])-$s[1]-$neg); // # SF after decimal - exponent
-				} else {
-					$return['error']=pow(10,0-$s[1]); // # SF after decimal - exponent
-				}
-			}
-		}
-
-		return $return;
-	}
-
-	// temporary/used functions
-
-	/**
-	 * View file (in scidata format)
-	 * @param int $id
-	 * @param string $format
-	 */
-	public function view2($id,$format="html")
-	{
-		$data = $this->File->find('first', ['conditions' => ['File.id' => $id], 'contain' => $this->c, 'recursive' => -1]);
-		//debug($data);exit;
-		$raw = $data;
-		$file = $data['File'];
-		$ref = $data['Reference'];
-		$chems = $data['Chemical'];
-		$sets = $data['Dataset'];
-
-		// Main metadata
-		$trc = new $this->Scidata;
-		$trc->setpath("https://chalk.coas.unf.edu/trc/");
-		$trc->setbase("files/scidata/" . $id . "/");
-		$trc->setpid("trc:file:" . $id);
-
-		$meta = [];
-		$meta['title'] = $file['title'];
-		$meta['description'] = "Report of thermochemical data in ThermoML format from the NIST TRC website http://www.trc.nist.gov/ThermoML/";
-		if (stristr($file['doi'], '10.1007')) {
-			$meta['publisher'] = 'Springer Nature';
-		} elseif (stristr($file['doi'], '10.1016')) {
-			$meta['publisher'] = 'Elsevier B.V.';
-		} elseif (stristr($file['doi'], '10.1021')) {
-			$meta['publisher'] = 'ACS Publications';
-		}
-		$trc->setmeta($meta);
-
-		// authors
-		$trc->setauthors($ref['authors']);
-
-		// startdate
-		$trc->setstartdate($file['date']);
-
-		// permalink
-		$trc->setpermalink("files/view/" . $id);
-
-		// discipline
-		$trc->setdiscipline("chemistry");
-
-		// subdiscipline
-		$trc->setsubdiscipline("physical chemistry");
-
-		// related
-		//$trc->setrelated();
-
-		// setup variables for code below
-		$measidx = $sysidx = $chmidx = $subidx = 0;
-		$aspects = $facets = $datasets = [];
-		$meths = $syss = $subs = $chms = [];
-		$methunq = $sysunq = $subunq = $chmunq = [];
-		$syslinks=[];
-
-		// chemical facets
-		// $subs => [chem orgnum] => sub id
-		foreach ($chems as $chem) {
-			if (!array_key_exists($chem['name'], $chmunq)) {
-				$chmtmp = [];
-				if (!is_null($chem['name'])) {
-					$chmtmp['name'] = $chem['name'];
-				}
-				if (!is_null($chem['source'])) {
-					$chmtmp['source'] = $chem['source'];
-				}
-				if (!is_null($chem['purity'])) {
-					$purity = json_decode($chem['purity'], true);
-					$steps = [];
-					foreach ($purity as $step) {
-						$steptmp = [];
-						$steptmp['part'] = $step['type'];
-						if (!is_null($step['analmeth'])) {
-							$steptmp['analysis'] = $step['analmeth'];
-						}
-						if (!is_null($step['purimeth'])) {
-							$steptmp['purification'] = $step['purimeth'];
-						}
-						if (!is_null($step['purity'])) {
-							$steptmp['number'] = $step['purity'];
-						}
-						if (!is_null($step['puritysf'])) {
-							$steptmp['sigfigs'] = $step['puritysf'];
-						}
-						if (!is_null($step['purityunit_id'])) {
-							$qudtid = $this->Unit->getfield('qudt', $step['purityunit_id']);
-							$steptmp['unit'] = 'qudt:' . $qudtid;
-						}
-						$steps[] = $steptmp;
-					}
-					$chmtmp['purity'] = $steps;
-				}
-				// substance info
-				$sub = $chem['Substance'];
-				$subidx++;
-				if (!array_key_exists($sub['name'], $subunq)) {
-					$subtmp = [];
-					if (!is_null($sub['name'])) {
-						$subtmp['name'] = $sub['name'];
-					}
-					if (!is_null($sub['subtype'])) {
-						$subtmp['type'] = $sub['subtype'];
-					}
-					if (!is_null($sub['formula'])) {
-						$subtmp['formula'] = $sub['formula'];
-					}
-					if (!is_null($sub['casrn'])) {
-						$subtmp['casrn'] = $sub['casrn'];
-					}
-					if (isset($sub['Identifier'])) {
-						$opts = ['inchi', 'inchikey', 'iupacname'];
-						foreach ($sub['Identifier'] as $idn) {
-							foreach ($opts as $opt) {
-								if ($idn['type'] == $opt) {
-									$subtmp[$opt] = $idn['value'];
-								}
-							}
-						}
-					}
-					$facets['sci:compound'][$chem['orgnum']] = $subtmp;
-					$subunq[$sub['name']] = $sub['id'];
-					$subs[$chem['orgnum']] = $sub['id'];
-				} else {
-					$subs[$chem['orgnum']] = $subunq[$sub['name']];
-				}
-				$chmtmp['substance'] = '/substance/' . $chem['orgnum'] . '/';
-				$chms[$chem['orgnum']] = $chem['id'];
-				$chmunq[$chem['name']] = $chem['id'];
-				$facets['sci:chemical'][$chem['orgnum']] = $chmtmp;
-			} else {
-				// link to existing system
-				$chms[$chmidx] = $chmunq[$chem['name']];
-			}
-		}
-
-		// iterate over each dataset as data, systems, methodology all related
-		foreach ($sets as $setidx => $set) {
-
-			// split out data
-			$sers = $set['Dataseries'];
-			$sprops = $set['Sampleprop'];
-			$rprops = $set['Reactionprop'];
-			$sys = $set['System'];
-
-			// methodology aspects
-			// $meths => [dataset idx][sampleprop idx][method idx]
-			if (!empty($sprops)) {
-				foreach ($sprops as $spidx => $sprop) {
-					if (!array_key_exists($sprop['method_name'], $methunq)) {
-						// add new methodology
-						$measidx++;
-						$mtmp = [];
-						$mtmp['technique'] = $sprop['method_name'];
-						$mtmp['property'] = $sprop['property_name'];
-						$mtmp['phase'] = $sprop['phase'];
-						$notes = "";
-						if (!is_null($sprop['presentation'])) {
-							$notes .= 'Presentation: ' . $sprop['presentation'];
-						}
-						if (!is_null($sprop['unceval'])) {
-							if ($notes != "") {
-								$notes .= ", ";
-							}
-							$notes .= 'Uncertainty evaluation: ' . $sprop['unceval'];
-						}
-						if (!is_null($sprop['uncconf'])) {
-							if ($notes != "") {
-								$notes .= ", ";
-							}
-							$notes .= 'Uncertainty confidence level: ' . $sprop['uncconf'];
-						}
-						$mtmp['notes'] = $notes;
-						$aspects['sci:measurement'][$measidx] = $mtmp;
-						$methunq[$sprop['method_name']] = $measidx;
-						$meths[$setidx][$spidx] = $measidx;
-					} else {
-						// link to existing methodology
-						$meths[$setidx][$spidx] = $methunq[$sprop['method_name']];
-					}
-				}
-			}
-
-			// system facets
-			// substances
-			if (!array_key_exists($sys['name'], $sysunq)) {
-				// add new system
-				$sysidx++;
-				$systmp = [];
-				if (!is_null($sys['name'])) {
-					$systmp['name'] = $sys['name'];
-				}
-				if (!is_null($sys['phase'])) {
-					$systmp['phase'] = $sys['phase'];
-				}
-				if (!is_null($sys['subtype'])) {
-					$systmp['type'] = $sys['subtype'];
-				}
-				if (!is_null($sys['composition'])) {
-					$systmp['composition'] = $sys['composition'];
-				}
-
-				// constituent...
-				$rsubs = array_flip($subs);
-				if (count($sys['Substance']) == 1) {
-					$systmp['source'] = 'compound/' . $rsubs[$sys['Substance'][0]['id']] . '/';
-				} else {
-					$systmp['constituents'] = [];
-					foreach ($sys['Substance'] as $const) {
-						$systmp['constituents'][] = 'compound/' . $rsubs[$const['id']] . '/';
-					}
-				}
-
-				$facets['sci:chemicalsystem'][$sysidx] = $systmp;
-				$sysunq[$sys['name']] = $sysidx;
-				$syss[$setidx] = $sysidx;
-			} else {
-				// link to existing system
-				$syss[$setidx] = $sysunq[$sys['name']];
-			}
-
-			// group dataset data for subsequent processing
-			$datasets[$setidx] = $sers;
-
-			// ad syslink
-			$syslinks[$setidx]='chemicalsystem/'.$sysidx.'/';
-		}
-
-		$conds = $sers = $datas = [];
-		$condsj = $sersj = $datasj = [];
-		$condunq = $scondlinks = $condlinks = $condmap = [];
-
-		// create unique conditions array
-		foreach ($datasets as $setidx => $series) {
-			foreach ($series as $seridx => $ser) {
-				foreach ($ser['Condition'] as $scondidx => $scval) {
-					$propid = $scval['property_id'];
-					if (!isset($condunq[$propid]) || !in_array($scval['number'], $condunq[$propid])) {
-						$condunq[$propid][] = $scval['number'];
-					}
-				}
-				foreach ($ser['Datapoint'] as $pntidx => $point) {
-					foreach ($point['Condition'] as $condidx => $cval) {
-						$propid = $cval['property_id'];
-						if (!isset($condunq[$propid]) || !in_array($cval['number'], $condunq[$propid])) {
-							$condunq[$propid][] = $cval['number'];
-						}
-					}
-				}
-			}
-
-		}
-
-		// sort condition values and create condition map
-		$mapidx = 1;
-		foreach ($condunq as $i => $prop) {
-			$condmap[$i] = $mapidx;
-			$mapidx++;
-			sort($condunq[$i]);
-		}
-
-		// get conditions (series and regular)
-		foreach ($datasets as $setidx => $series) {
-			foreach ($series as $seridx => $ser) {
-				if(!empty($ser['Condition'])) {
-					foreach ($ser['Condition'] as $scondidx => $scond) {
-						$propid = $scond['property_id'];
-						$condunqidx = array_search($scond['number'], $condunq[$propid]);
-						if (!isset($conds[$propid][$condunqidx])) {
-							$v = [];
-							if (empty($conds[$propid])) {
-								$conds[$propid]['quantity'] = strtolower($scond['Property']['Quantity']['name']);
-								$conds[$propid]['property'] = $scond['Property']['name'];
-								$conds[$propid]['value'] = [];
-							}
-							if (!is_null($scond['number'])) {
-								$v['number'] = $scond['number'];
-								$v['sigfigs'] = $scond['accuracy'];
-								if (isset($scond['Unit']['qudt']) && !empty($scond['Unit']['qudt'])) {
-									$v['unitref'] = 'qudt:' . $scond['Unit']['qudt'];
-								} elseif (isset($scond['Unit']['symbol']) && !empty($scond['Unit']['symbol'])) {
-									$v['unitstr'] = $this->Dataset->qudt($scond['Unit']['symbol']);
-								}
-							} else {
-								$v['text'] = $scond['text'];
-							}
-							$conds[$propid]['value'][$condunqidx] = $v;
-						}
-						$scondlinks[$setidx][$seridx][$scondidx] = 'condition/' . $condmap[$propid] . '/value/' . ($condunqidx + 1) . '/';
-					}
-				} else {
-					$scondlinks[$setidx][$seridx] = null;
-				}
-
-				foreach ($ser['Datapoint'] as $pntidx => $point) {
-					if(!empty($point['Condition'])) {
-						foreach ($point['Condition'] as $condidx => $cond) {
-							$propid = $cond['property_id'];
-							$condunqidx = array_search($cond['number'], $condunq[$propid]);
-							if (!isset($conds[$propid][$condunqidx])) {
-								$v = [];
-								if (empty($conds[$propid])) {
-									$conds[$propid]['quantity'] = strtolower($cond['Property']['Quantity']['name']);
-									$conds[$propid]['property'] = $cond['Property']['name'];
-									$conds[$propid]['value'] = [];
-								}
-								if (!is_null($cond['number'])) {
-									$v['number'] = $cond['number'];
-									$v['sigfigs'] = $cond['accuracy'];
-									if (isset($cond['Unit']['qudt']) && !empty($cond['Unit']['qudt'])) {
-										$v['unitref'] = 'qudt:' . $cond['Unit']['qudt'];
-									} elseif (isset($cond['Unit']['symbol']) && !empty($cond['Unit']['symbol'])) {
-										$v['unitstr'] = $this->Dataset->qudt($cond['Unit']['symbol']);
-									}
-								} else {
-									$v['text'] = $cond['text'];
-								}
-								$conds[$propid]['value'][$condunqidx] = $v;
-							}
-							$condlinks[$setidx][$seridx][$pntidx][$condidx] = 'condition/' . $condmap[$propid] . '/value/' . ($condunqidx + 1) . '/';
-						}
-					} else {
-						$condlinks[$setidx][$seridx][$pntidx] = null;
-					}
-
-					foreach ($point['Data'] as $datidx => $datum) {
-						$datas[$setidx][$seridx][$pntidx][$datidx] = $datum;
-					}
-				}
-			}
-		}
-
-		// sort conditions
-		foreach ($conds as $i => $prop) {
-			sort($conds[$i]['value']);
-		}
-		// add conditions to facets
-		foreach ($conds as $propid => $values) {
-			$facets['sci:condition'][$condmap[$propid]] = $values;
-		}
-
-		// get data
-		foreach ($datas as $setidx => $dataset) {
-			$datums['dataset'][$setidx] = [];
-			$datums['dataset'][$setidx]['system'] = $syslinks[$setidx];
-			foreach ($dataset as $seridx => $series) {
-				$datums['dataset'][$setidx]['dataseries'][$seridx] = [];
-				if(!is_null($scondlinks[$setidx][$seridx])) {
-					$datums['dataset'][$setidx]['dataseries'][$seridx]['conditions'] = $scondlinks[$setidx][$seridx];
-				}
-				foreach ($series as $pntidx => $point) {
-					$datums['dataset'][$setidx]['dataseries'][$seridx]['datapoints'][$pntidx] = [];
-					foreach ($point as $datidx => $datum) {
-						$v = [];
-						//$v['quantity'] = strtolower($datum['Property']['Quantity']['name']);
-						$v['property'] = $datum['Property']['name'];
-						if(!is_null($condlinks[$setidx][$seridx][$pntidx])) {
-							$v['conditions'] = $condlinks[$setidx][$seridx][$pntidx];
-						}
-						$v['value'] = [];
-						if (!is_null($datum['number'])) {
-							$v['value']['number'] = $datum['number'];
-							$v['value']['sigfigs'] = $datum['accuracy'];
-							if (isset($datum['Unit']['qudt']) && !empty($datum['Unit']['qudt'])) {
-								$v['value']['unitref'] = 'qudt:' . $datum['Unit']['qudt'];
-							} elseif (isset($datum['Unit']['symbol']) && !empty($datum['Unit']['symbol'])) {
-								$v['value']['unitstr'] = $this->Dataset->qudt($datum['Unit']['symbol']);
-							}
-						} else {
-							$v['text'] = $datum['text'];
-						}
-						$datums['dataset'][$setidx]['dataseries'][$seridx]['datapoints'][$pntidx] = $v;
-					}
-				}
-			}
-		}
-
-		// aspects
-		$trc->setaspects($aspects);
-
-		// facets
-		$trc->setfacets($facets);
-
-
-		$data=$trc->asarray();
-		debug($data);exit;
-
-		// facets
-		$trc->setdata($datums);
-
-		// sources
-		$sources = [];
-		// Original Paper
-		$paper = [];
-		$paper['journal']=$ref['journal'];
-		if ($ref['bibliography'] != null) {
-			$paper['citation'] = $ref['bibliography'];
-		} elseif ($ref['citation'] != null) {
-			if (stristr($ref['citation'], '[{')) {
-				preg_match('/\[{.+}\]/', $ref['citation'], $match);
-				$aus = json_decode($match[0], true);
-				$austr = "";
-				$aucnt = count($aus);
-				foreach ($aus as $idx => $au) {
-					if ($idx == $aucnt - 1) {
-						$austr .= " and ";
-					}
-					$austr .= $au['firstname'] . ' ' . $au['lastname'];
-					if ($idx < ($aucnt - 2)) {
-						$austr .= ", ";
-					}
-				}
-				$ref['citation'] = preg_replace('/\[{.+}\]/', $austr, $ref['citation']);
-			}
-			$paper['citation'] = $ref['citation'];
-		}
-		if (isset($ref['doi']) && $ref['doi'] != null) {
-			$paper['url'] = "http://dx.doi.org/" . $ref['doi'];
-		}
-		if (isset($ref['url']) && $ref['url'] != null) {
-			$paper['url'] = $ref['url'];
-		}
-		$paper['type'] = 'text';
-		$sources[] = $paper;
-		// ThermoML
-		$thermoml = [];
-		$thermoml['citation'] = "TRC Group ThermoML Archive, NIST - http://www.trc.nist.gov/ThermoML/";
-		$thermoml['url'] = 'https://trc.nist.gov/ThermoML/10.1021/' . $file['filename'];
-		$thermoml['type'] = 'dataset';
-		$sources[] = $thermoml;
-		$trc->setsources($sources);
-
-		// rights
-		$rights = [];
-		$rights['holder'] = 'NIST - TRC Group, Boulder CO';
-		$rights['license'] = 'http://creativecommons.org/publicdomain/zero/1.0/';
-		$rights['url'] = 'https://trc.nist.gov/ThermoML/';
-		$trc->setrights($rights);
-
-		if($format=="jsonld") {
-			header("Content-Type: application/ld+json");
-			echo $trc->asjsonld();exit;
-		} else {
-			$data=$trc->asarray();
-			//debug($data);exit;
-			$this->set("raw",$raw);
-			$this->set("data",$data);
-		}
-	}
-
-	/**
-     * **Deprecated - See view** Generate SciData
-     * @param $id
-     * @param $down
-     */
-    public function scidata($id,$down="")
-    {
-        // Note: there is an issue with the retrival of substances under system if id is not requested as a field
-        // This is a bug in CakePHP as it works without id if its at the top level...
-        $contains=[
-            'Dataseries'=>[
-                'Condition'=>['Unit',
-                    'Property'=>['fields'=>['name'],
-                        'Quantity'=>['fields'=>['name']]]],
-                'Setting'=>['Unit', 'Property'=>['fields'=>['name'],
-                    'Quantity'=>['fields'=>['name']]]],
-                'Datapoint'=>[
-                    'Condition'=>['Unit',
-                        'Property'=>['fields'=>['name'],
-                            'Quantity'=>['fields'=>['name']]]],
-                    'Data'=>['Unit',
-                        'Property'=>['fields'=>['name'],
-                            'Quantity'=>['fields'=>['name']]]],
-                    'Setting'=>['Unit',
-                        'Property'=>['fields'=>['name'],
-                            'Quantity'=>['fields'=>['name']]]]],
-                'Annotation'
-            ],
-            'Propertytype'=> [
-                'Property'=>['fields'=>['name'],
-                    'Quantity'=>['fields'=>['name']]]
-            ],
-            'System'=>['fields'=>['id','name','description','type'],
-                'Substance'=>['fields'=>['name','formula','molweight'],
-                    'Identifier'=>['fields'=>['type','value'],'conditions'=>['type'=>['inchi','inchikey','iupacname']]]]
-            ],
-            'Report',
-            'File'=>['Reference']
-        ];
-        $data=$this->Dataset->find('first',['conditions'=>['Dataset.id'=>$id],'contain'=>$contains,'recursive'=>-1]);
-        debug($data);exit;
-
-        $rpt=$data['Report'];
-        $ptype=$data['Propertytype'];
-        $set=$data['Dataset'];
-        $file=$data['File'];
-        $pub=$file['Publication'];
-        $ref=$data['Reference'];
-        $ser=$data['Dataseries'];
-        $sys=$data['System'];
-        //debug($ser);exit;
-
-        // Other systems -> related
-        $othersys=$this->Dataset->find('list',['fields'=>['id'],'conditions'=>['system_id'=>$sys['id'],'propertytype_id'=>$ptype['id'],'NOT'=>['Dataset.id'=>$id]]]);
-        //debug($othersys);exit;
-
-        // Base
-        $base="https://chalk.coas.unf.edu/trc/datasets/scidata/".$id."/";
-
-        // Build the PHP array that will then be converted to JSON
-        $json['@context']=['https://stuchalk.github.io/scidata/contexts/scidata.jsonld',
-            ['sci'=>'http://stuchalk.github.io/scidata/ontology/scidata.owl#',
-                'meas'=>'http://stuchalk.github.io/scidata/ontology/scidata_measurement.owl#',
-                'qudt'=>'http://www.qudt.org/qudt/owl/1.0.0/unit.owl#',
-                'dc'=>'http://purl.org/dc/terms/',
-                'xsd'=>'http://www.w3.org/2001/XMLSchema#'],
-            ['@base'=>$base]];
-
-        // Main metadata
-        $json['@id']="";
-        $json['uid']="trc:dataset:".$id;
-        $json['title']=$rpt['title'];
-        $json['author']=[];
-        if($ref['authors']!=null) {
-            if(stristr($ref['authors'],'[{')) {
-                $authors=json_decode($ref['authors'],true);
-            } else {
-                $authors=explode(", ",$ref['authors']);
-            }
-            $acount=1;
-            foreach ($authors as $au) {
-                $json['author'][]=['@id'=>'author/'.$acount,'@type'=>'dc:creator','name'=>$au];
-                $acount++;
-            }
-        }
-        $json['description']=$rpt['title'];
-        $json['publisher']='Springer Nature';
-        $json['startdate']=$set['updated'];
-        $json['permalink']="http://chalk.coas.unf.edu/trc/datasets/view/".$id;
-        foreach($othersys as $os) {
-            $json['related'][]="http://chalk.coas.unf.edu/trc/datasets/view/".$os;
-        }
-        $json['toc']=['@id'=>'toc','@type'=>'dc:tableOfContents','sections'=>[]];
-
-        // Process data series to split out conditions, and settings
-        $datas=$conds=$setts=[];
-        foreach($ser[0]['Datapoint'] as $p=>$point) {
-            foreach($point['Data'] as $d=>$dval) {
-                $datas[$d][$p]=$dval;
-            }
-            foreach($point['Condition'] as $c=>$cval) {
-                $conds[$c][$p]=$cval;
-            }
-            foreach($point['Setting'] as $s=>$sval) {
-                $setts[$s][$p]=$sval;
-            }
-        }
-
-        // SciData
-        $setj['@id']="scidata";
-        $setj['@type']="sci:scientificData";
-        $json['scidata']=$setj;
-
-        // Settings
-        $metj=[];
-        if(!empty($setts)) {
-            // Methodology
-            $metj['@id']='methodology';
-            $metj['@type']='sci:methodology';
-            $metj['evaluation']='experimental';
-            $metj['aspects']=[];
-            $json['toc']['sections'][] = $metj['@id'];
-            $meaj['@id'] = 'measurement/1';
-            $meaj['@type'] = 'meas:measurement';
-            $json['toc']['sections'][] = $meaj['@id'];
-            $meaj['settings'] = [];
-            foreach($setts as $sid=>$sett) {
-                //debug($sett);exit;
-                $setgj = [];
-                $setgj['@id'] = "setting/".($sid + 1);
-                $setgj['@type'] = "sci:setting";
-                $setgj['quantity'] = strtolower($sett[0]['Property']['Quantity']['name']);
-                $setgj['property'] = $sett[0]['Property']['name'];
-                foreach ($sett as $sidx => $s) {
-                    $v=$vs=[];
-                    if(!in_array($s['number'],$vs)) {
-                        $vs[]=$s['number'];
-                        $v['@id'] = "setting/" . ($sid + 1) . "/value/".(array_search($s['number'],$vs)+1);
-                        $v['@type'] = "sci:value";
-                        if (!is_null($s['number'])) {
-                            $v['number'] = $s['number'];
-                            if (isset($s['Unit']['symbol']) && !empty($s['Unit']['symbol'])) {
-                                $v['unitref'] = $this->Dataset->qudt($s['Unit']['symbol']);
-                            }
-                        } else {
-                            $v['text'] = $s['text'];
-                        }
-                        $setgj['value'] = $v;
-
-                    }
-                    $setts[$sid][$sidx]['slink'][]="setting/".($sid + 1) . "/value/".(array_search($s['number'],$vs)+1);
-                }
-                $meaj['settings'][] = $setgj;
-            }
-            $metj['aspects'][] = $meaj;
-        }
-        $json['scidata']['methodology']=$metj;
-
-        // System
-        $sysj=[];
-        if(is_array($sys)&&!empty($sys)||is_array($conds)&&!empty($conds)) {
-            $json['toc']['sections'][]="system";
-            $sysj['@id']='system';
-            $sysj['@type']='sci:system';
-            $sysj['discipline']='chemistry';
-            $sysj['subdiscipline']='physical chemistry';
-            $sysj['facets']=[];
-        }
-
-
-        // Data
-        $resj=[];
-        if(is_array($datas)&&!empty($datas)) {
-            $json['toc']['sections'][] = "dataset";
-            $resj['@id'] = 'dataset';        // System sections
-            // Mixture/Substance
-            $type='';
-            if(is_array($sys)&&!empty($sys)) {
-                // System
-                if (count($sys['Substance']) == 1) {
-                    $type = "substance";
-                } else {
-                    $type = "mixture";
-                }
-                $sid = $type . "/1";
-                $json['toc']['sections'][] = $sid;
-                $mixj['@id'] = $sid;
-                $mixj['@type'] = "sci:" . $type;
-                $opts = ['name', 'description', 'type'];
-                foreach ($opts as $opt) {
-                    if (isset($sys[$opt]) && $sys[$opt] != "") {
-                        $mixj[$opt] = $sys[$opt];
-                    }
-                }
-                if (isset($sys['Substance'])) {
-                    for ($j = 0; $j < count($sys['Substance']); $j++) {
-                        // Components
-                        $subj['@id'] = $sid . "/component/" . ($j + 1);
-                        $subj['@type'] = "sci:chemical";
-                        $subj['source'] = "compound/" . ($j + 1);
-                        $mixj['components'][] = $subj;
-                        // Chemicals
-                        $sub = $sys['Substance'][$j];
-                        $chmj['@id'] = "compound/" . ($j + 1);
-                        $json['toc']['sections'][] = $chmj['@id'];
-                        $chmj['@type'] = "sci:compound";
-                        $opts = ['name', 'formula', 'molweight'];
-                        foreach ($opts as $opt) {
-                            if (isset($sub[$opt]) && $sub[$opt] != "") {
-                                $chmj[$opt] = $sub[$opt];
-                            }
-                        }
-                        if (isset($sub['Identifier'])) {
-                            $opts = ['inchi', 'inchikey', 'iupacname'];
-                            foreach ($sub['Identifier'] as $idn) {
-                                foreach ($opts as $opt) {
-                                    if ($idn['type'] == $opt) {
-                                        $chmj[$opt] = $idn['value'];
-                                    }
-                                }
-                            }
-                        }
-                        $sysj['facets'][] = $chmj;
-                    }
-                }
-                $sysj['facets'][] = $mixj;
-            }
-            // Conditions
-            if(is_array($conds)&&!empty($conds)) {
-                foreach($conds as $cid=>$cond) {
-                    //debug($cond);exit;
-                    $v=$vs=$condj = [];
-                    $condj['@id'] = "condition/".($cid + 1);
-                    $json['toc']['sections'][] = $condj['@id'];
-                    $condj['@type'] = "sci:condition";
-                    $condj['quantity'] = strtolower($cond[0]['Property']['Quantity']['name']);
-                    $condj['property'] = $cond[0]['Property']['name'];
-                    foreach ($cond as $cidx => $c) {
-                        if(!in_array($c['number'],$vs)) {
-                            $vs[]=$c['number'];
-                            $v['@id'] = "condition/" . ($cid + 1) . "/value/".(array_search($c['number'],$vs)+1);
-                            $v['@type'] = "sci:value";
-                            if (!is_null($c['number'])) {
-                                $v['number'] = $c['number'];
-                                if (isset($c['Unit']['symbol']) && !empty($c['Unit']['symbol'])) {
-                                    $v['unitref'] = $this->Dataset->qudt($c['Unit']['symbol']);
-                                }
-                            } else {
-                                $v['text'] = $c['text'];
-                            }
-                            $condj['value'][] = $v;
-                        }
-                        $conds[$cid][$cidx]['clink'][]="condition/".($cid+1)."/value/".(array_search($c['number'],$vs)+1);
-                    }
-                    $sysj['facets'][] = $condj;
-                }
-            }
-            $json['scidata']['system']=$sysj;
-
-            $resj['@type'] = 'sci:dataset';
-            $resj['source'] = 'measurement/1';
-            $resj['scope'] = $type . '/1';
-            $resj['datagroup'] = [];
-            // Group
-            foreach($datas as $did=>$data) {
-                $grpj['@id']='datagroup/'.($did+1);
-                $json['toc']['sections'][] = $grpj['@id'];
-                $grpj['@type'] = 'sci:datagroup';
-                $grpj['quantity']=strtolower($data[0]['Property']['Quantity']['name']);
-                $grpj['property']=$data[0]['Property']['name'];
-                foreach($data as $d=>$dtm) {
-                    $dtmj=[];
-                    $dtmj['@id'] = 'datagroup/'.($did+1).'/datapoint/'.($d+1);
-                    $dtmj['@type'] = 'sci:datapoint';
-                    $dtmj['conditions']=$conds[$did][$d]['clink'];
-                    if(!empty($setts)) {
-                        $dtmj['settings']=$setts[$did][$d]['slink'];
-                    } else {
-                        $dtmj['settings']=[];
-                    }
-                    // Value
-                    $v=[];
-                    if(!is_null($dtm['number'])) {
-                        $unit="";
-                        if(isset($dtm['Unit']['symbol'])&&!empty($dtm['Unit']['symbol'])) {
-                            $unit=$this->Dataset->qudt($dtm['Unit']['symbol']);
-                        }
-                        if($dtm['datatype']=="datum") {
-                            $v['@id']=$dtmj['@id']."/value";
-                            $v['@type']="sci:value";
-                            $v['number']=$dtm['number'];
-                            if($unit!="") { $v['unitref']=$unit; }
-                            $dtmj['value']=$v;
-                        } else {
-                            $v['@id']=$dtmj['@id']."/valuearray";
-                            $v['@type']="sci:valuearray";
-                            $v['numberarray']=json_decode($dtm['number'],true);
-                            if($unit!="") { $v['unitref']=$unit; }
-                            $dtmj['value']=$v;
-                        }
-                    }
-                    $grpj['datapoint'][]=$dtmj;
-                }
-                $resj['datagroup'][]=$grpj;
-            }
-        }
-        $json['scidata']['dataset']=$resj;
-
-        // Sources
-        // Original Paper
-        $paper=['@id'=>'reference/1','@type'=>'dc:source'];
-        if($ref['bibliography']!=null) {
-            $paper['citation'] = $ref['bibliography'];
-        } elseif($ref['citation']!=null) {
-            $paper['citation'] = $ref['citation'];
-        }
-        if(isset($ref['doi'])&&$ref['doi']!=null) {
-            $paper['url']="http://dx.doi.org/".$ref['doi'];
-        }
-        if(isset($ref['url'])&&$ref['url']!=null) {
-            $paper['url']=$ref['url'];
-        }
-        // Publication
-        $volume=['@id'=>'reference/2','@type'=>'dc:source'];
-        $volume['citation'] = $pub['citation'];
-        if(isset($pub['doi'])&&$pub['doi']!=null) {
-            $volume['url']="http://dx.doi.org/".$pub['doi'];
-        }
-        if(isset($pub['url'])&&$pub['url']!=null) {
-            $volume['url']=$pub['url'];
-        }
-        if(isset($pub['eisbn'])&&$pub['eisbn']!=null) {
-            $volume['eisbn'] = $pub['eisbn'];
-        }
-        $json['references'][]=$paper;
-        $json['references'][]=$volume;
-
-        // Rights
-        $json['rights']=['@id'=>'rights','@type'=>'dc:rights'];
-        $json['rights']['holder']='NIST - TRC Group, Boulder CO';
-        $json['rights']['license']='http://creativecommons.org/publicdomain/zero/1.0/';
-
-        // OK turn it back into JSON-LD
-        header("Content-Type: application/ld+json");
-        if($down=="download") { header('Content-Disposition: attachment; filename="'.$id.'.jsonld"'); }
-        echo json_encode($json,JSON_UNESCAPED_UNICODE);exit;
-
-    }
-
 }

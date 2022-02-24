@@ -2,12 +2,13 @@
 
 /**
  * Class ReportsController
- * ReportsController
+ * Actions related to dealing with data reports
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
 class ReportsController extends AppController {
 
-    public $uses=array('Journal','System','Identifier','SubstancesSystem','File','Report','Dataset','Dataseries',
-        'Datapoint','Condition','Data','Setting','Annotation');
+    public $uses=['Report','Dataset'];
 
     /**
      * beforeFilter function
@@ -15,91 +16,72 @@ class ReportsController extends AppController {
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow();
+        $this->Auth->allow('index','view');
     }
 
     /**
-     * View a list of the Reports
-     */
+     * view a list of reports
+	 * @return void
+	 */
     public function index()
     {
-        $data=$this->Report->find('list',['fields'=>['id','title'],'order'=>['id'], "limit"=>100]);
+        $data=$this->Report->find('list',['fields'=>['id','title'],'order'=>['id'],'recursive'=>-1]);
         $this->set('data',$data);
+   }
 
-        $propCount=[];
-        foreach ($data as $id => $prop) {
-            {
-                $propCount[$id]= $this->Dataset->find('list',array('fields'=>['id']));
-            }
+	/**
+	 * view a report
+	 * @param int $id
+	 * @return void
+	 */
+	public function view(int $id)
+	{
+		$chmf=['orgnum','sourcetype','substance_id'];
+		$ref=['id','authors','year','volume','issue','startpage','endpage','title','doi'];
+		$con=['id','datapoint_id','system_id','number','significand','exponent','unit_id','accuracy'];
+		$prop=['id','name','phase','field','label','symbol','definition','updated'];
+		$file=['filename','points'];
+		$c=['Dataset'=>[
+				'System'=>[
+					'Substance'=>[
+						'Identifier'=>['fields'=>['type','value']]
+					]
+				],
+				'Dataseries'=>[
+					'Condition'=>['fields'=>$con,'Unit','Quantity'],
+					'Datapoint'=>[
+						'Condition'=>['fields'=>$con,'Unit','Quantity'=>['fields'=>$prop]],
+						'Data'=>['Unit','Quantity'=>['fields'=>$prop],'Sampleprop']
+					]
+				]
+			],
+			'File'=>['fields'=>$file,'Chemical'=>['fields'=>$chmf]],
+			'Reference'=>['fields'=>$ref,'Journal']
+		];
+		$data=$this->Report->find('first',['conditions'=>['Report.id'=>$id],'contain'=>$c,'recursive'=>-1]);
+		if($this->request->is('ajax')) {
+			header('Content-Type: application/json');
+			echo "[".json_encode($data)."]";exit;
+		}
+		$this->set('data',$data);
+	}
 
-        }
-        $this->set('propCount',$propCount);
-    }
+	// functions requiring login (not in Auth::allow)
 
-    /**
-     * Report add function
-     */
+	/**
+     * add a report
+	 * @return void
+	 */
     public function add()
     {
         if($this->request->is('post')) {
-            $this->Report->create();
-            if($this->Report->save($this->request->data)) {
+            if($this->Report->add($this->request->data)) {
                 $this->Flash->set('The report has been added');
-                $this->redirect(array('action'=>'index'));
+                $this->redirect(['action'=>'index']);
             } else {
                 $this->Flash->set('The report count not be added');
             }
         }
     }
 
-    /**
-     * View a Report
-     * @parem
-     * @type
-     */
-    public function view($id,$type=null)
-    {
-        $chmf=['formula','orgnum','source','substance_id'];
-        $ref =['id','journal','authors','year','volume','issue','startpage','endpage','title','url'];
-        $con =['id','datapoint_id','system_id','property_name','number','significand','exponent','unit_id','accuracy'];
-        $prop =['id','name','phase','field','label','symbol','definition','updated'];
-        $file =['filename','url','datapoints'];
-        $c=['Dataset'=>[
-                'Annotation',
-                'Dataseries'=>[
-                    'Condition'=>['fields'=>$con,'Unit', 'Property', 'Annotation'],
-                    'Setting'=>['Unit', 'Property'],
-                    'Datapoint'=>[
-                        'Annotation',
-                        'Condition'=>['fields'=>$con,'Unit', 'Property'=>['fields'=>$prop]],
-                        'Data'=>['Unit', 'Property'=>['fields'=>$prop],'Sampleprop'],
-                        'Setting'=>['Unit', 'Property']
-                    ],
-                    'Annotation'
-                ],
-                'File'=>['fields'=>$file,'Chemical'=>['fields'=>$chmf]],
-                'Reactionprop',
-                'Sampleprop'
-            ],
-            'Reference'=>['fields'=>$ref, 'Journal'],
-            'System'=>[
-                'Substance'=>[
-                    'Identifier'=>['fields'=>['type','value']]
-                ]
-            ]
-        ];
-
-        $data=$this->Report->find('first',['conditions'=>['Report.id'=>$id],'contain'=>$c,'recursive'=>-1]);
-
-
-        //debug($data);exit;//
-        if($this->request->is('ajax')) {
-            header('Content-Type: application/json');
-            echo "[".json_encode($data)."]";
-            exit;
-        }
-        $this->set('data',$data);
-    }
-
-    }
-
+}

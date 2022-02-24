@@ -35,7 +35,7 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = ['Publication','Files','Dataseries','Dataset','Data'];
+	public $uses = ['Condition','Data','Dataset','Keyword','Reference','Quantity','Substance','System'];
 
     function beforeFilter()
     {
@@ -72,22 +72,31 @@ class PagesController extends AppController {
 		/**
          * requests total counts.
          */
-        $pubcount=$this->Publication->find('count');
-        $this->set('pubcount',$pubcount);
+		$setcount=$this->Dataset->find('count',['recursive'=>-1]);
+		$this->set('setcount',$setcount);
 
-        $filecount=$this->Files->find('count');
-        $this->set('filecount',$filecount);
+		$keycount=$this->Keyword->find('count',['conditions'=>['check'=>0],'recursive'=>-1]);
+		$this->set('keycount',$keycount);
 
-        $dataseriescount=$this->Dataseries->find('count');
-        $this->set('dataseriescount',$dataseriescount);
+		$qntcount=$this->Quantity->find('count',['recursive'=>-1]);
+		$this->set('qntcount',$qntcount);
 
-        $datasetcount=$this->Dataset->find('count');
-        $this->set('datasetcount',$datasetcount);
+		$refcount=$this->Reference->find('count',['recursive'=>-1]);
+        $this->set('refcount',$refcount);
 
-        $datacount=$this->Data->find('count');
-        $this->set('datacount',$datacount);
+        $subcount=$this->Substance->find('count',['recursive'=>-1]);
+        $this->set('subcount',$subcount);
 
-        try {
+		$syscount=$this->System->find('count',['recursive'=>-1]);
+        $this->set('syscount',$syscount);
+
+		$concount=$this->Condition->find('count',['recursive'=>-1]);
+		$this->set('concount',$concount);
+
+		$datcount=$this->Data->find('count',['recursive'=>-1]);
+		$this->set('datcount',$datcount);
+
+		try {
 			$this->render(implode('/', $path));
 		} catch (MissingViewException $e) {
 			if (Configure::read('debug')) {

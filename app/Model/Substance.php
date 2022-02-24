@@ -2,33 +2,49 @@
 
 /**
  * Class Substance
- * Substance Model
+ * model for the substances table
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
-class Substance extends AppModel {
-
-    public $hasMany=[
+class Substance extends AppModel
+{
+    // relationships to other tables
+	public $hasMany=[
         'Identifier'=> [
             'foreignKey' => 'substance_id',
             'dependent' => true
         ],
-		'Substances_system'=> [
+		'Chemical'=> [
 			'foreignKey' => 'substance_id',
 			'dependent' => true
 		]
     ];
-
-    public $hasOne=['Chemical'];
-
     public $hasAndBelongsToMany = ['System'];
 
-    public $virtualFields=['first' => 'UPPER(SUBSTR(Substance.name,1,1))'];
+	// create additional 'virtual' fields built from real fields
+	public $virtualFields=[
+    	'first' => 'UPPER(SUBSTR(Substance.name,1,1))',
+		'namekey'=>"CONCAT(Substance.name,'|',Substance.inchikey)",
+	];
 
-    /**
-     * Get the metadata for a new compound from PubChem/ChemSpider
-     * @param $c
+	/**
+	 * function to add a new substance if it does not already exist
+	 * @param array $data
+	 * @return int
+	 * @throws
+	 */
+	public function add(array $data): int
+	{
+		return $this->addentry('Substance',$data);
+	}
+
+	/**
+     * get the metadata for a new compound from PubChem/ChemSpider
+     * @param array $c
      * @param bool|false $show
+	 * @throws
      */
-    public function meta($c,$show=false)
+    public function meta(array $c, bool $show=false)
     {
         $Chemical=ClassRegistry::init('Pubchem.Compound'); //load the Pubchem model
         $Rdf=ClassRegistry::init('Chemspider.Rdf'); //load the Chemspider model
@@ -47,9 +63,9 @@ class Substance extends AppModel {
                 echo "<h3>".$s['name']." (PubChem)</h3>";
                 echo "<ul>";
             }
-            $ps=['pcformula'=>'MolecularFormula','iupacname'=>'IUPACName','inchi'=>'InChI','inchikey'=>'InChIKey','molweight'=>'MolecularWeight'];
+            $ps=['iupacname'=>'IUPACName','inchi'=>'InChI','inchikey'=>'InChIKey','mw'=>'MolecularWeight'];
             foreach($ps as $t=>$p) {
-                if($t=='pcformula'||$t=='molweight') {
+                if($t=='mw') {
                     // Check to see if the value is already in the DB
                     $test=$Substance->find('list',['fields'=>['id',$t],'conditions'=>['id'=>$s['id']]]);
                     if($test[$s['id']]==''||$test[$s['id']]==0||is_null($test[$s['id']])) {
@@ -87,21 +103,16 @@ class Substance extends AppModel {
                 echo "<h3>" . $s['name'] . " (ChemSpider)</h3>";
                 echo "<ul>";
             }
-            $ps=['chemspiderId'=>'id','pcformula'=>'formula','iupacname'=>'name','smiles'=>'smiles','inchi'=>'inchi','inchikey'=>'inchikey'];
+            $ps=['chemspiderId'=>'id','iupacname'=>'name','smiles'=>'smiles','inchi'=>'inchi','inchikey'=>'inchikey'];
             foreach($ps as $t=>$p) {
                 if(isset($meta[$p])) {
                     if($show) {
                         echo "<li>" . $p . ": " . $meta[$p] . "</li>";
                     }
-                    if($t=='pcformula') {
-                        $Substance->save(['id'=>$s['id'],$t=>$meta[$p]]);
-                        $Substance->clear();
-                    } else {
-                        $test=$Identifier->find('first',['conditions'=>['substance_id'=>$s['id'],'type'=>$t],'recursive'=>-1]);
-                        if(empty($test)) {
-                            $Identifier->add(['substance_id'=>$s['id'],'type'=>$t,'value'=>$meta[$p]]);
-                        }
-                    }
+                    $test=$Identifier->find('first',['conditions'=>['substance_id'=>$s['id'],'type'=>$t],'recursive'=>-1]);
+					if(empty($test)) {
+						$Identifier->add(['substance_id'=>$s['id'],'type'=>$t,'value'=>$meta[$p]]);
+					}
                 }
             }
             if($show) {
@@ -130,12 +141,12 @@ class Substance extends AppModel {
             echo "<li>CID: " . $cid . "</li>";
         }
         if(is_numeric($cid)) {
-            $mw=$Substance->find('list',['fields'=>['id','molweight'],'conditions'=>['id'=>$s['id']]]);
+            $mw=$Substance->find('list',['fields'=>['id','mw'],'conditions'=>['id'=>$s['id']]]);
             if($mw[$s['id']]=='') {
                 // Use inchikey from ChemSpider search to get molweight from PubChem
                 $mw=$Chemical->property('MolecularWeight',$cid);
                 if($mw) {
-                    $Substance->save(['id'=>$s['id'],'molweight'=>$mw['MolecularWeight']]);
+                    $Substance->save(['id'=>$s['id'],'mw'=>$mw['MolecularWeight']]);
                     $Substance->clear();
                 }
                 if($show) {
@@ -150,6 +161,23 @@ class Substance extends AppModel {
         if($show) {
             echo "</ul>";
         }
-        return;
+        exit;
     }
+
+	/**
+	 * molmass by Christoph Gohlke (https://www.lfd.uci.edu/~gohlke/molmass/)
+	 * scrapes the average mass from the webpage
+	 */
+	public function ucimw($formula=null)
+	{
+		if(!is_null($formula)) {
+			// https://www.lfd.uci.edu/~gohlke/molmass/?q=C6H6
+			$contents = file_get_contents("https://www.lfd.uci.edu/~gohlke/molmass/?q=".$formula);
+			preg_match('/Average mass<\/strong>: ([\d\.]*)<\/p>/',$contents,$match);
+			return $match[1];
+		} else {
+			return false;
+		}
+	}
+
 }

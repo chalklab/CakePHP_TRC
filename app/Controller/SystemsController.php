@@ -1,14 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: n00002621
- * Date: 5/28/15
- * Time: 9:59 AM
- */
 
+/**
+ * Class SystemsController
+ * Actions related to dealing with chemical systems
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
+ */
 class SystemsController extends AppController {
 
-    public $uses=['System','SubstancesSystem','File'];
+    public $uses=['System','Dataset','Journal'];
 
     /**
      * beforeFilter function
@@ -16,124 +16,107 @@ class SystemsController extends AppController {
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow();
+        $this->Auth->allow('index','view');
     }
 
     /**
-     * View a system
-     */
-    public function view($id)
-    {
-        $contain=[
-            'Substance'=>['Identifier'],
-            'Dataset'=>[
-                'Reference',
-                'Dataseries'=>[
-                    'Datapoint'=>[
-                        'Condition'=>['Unit'],'Data'=>['Unit'],'Setting'=>['Unit']]],
-                'Sampleprop'
-            ]
-        ];
-        $data=$this->System->find('first',['conditions'=>['System.id'=>$id],'contain'=>$contain]);
-        $this->set('data',$data);
-    }
-
-    /**
-     * View index of systems
-     */
+     * view a list of systems
+	 * @return void
+	 */
     public function index()
     {
-        $data=$this->System->find('list', ['fields'=>['id','name'],'order'=>['name']]);
+        $data=$this->System->find('list', ['fields'=>['id','namercnt','first'],'order'=>['name']]);
         $this->set('data',$data);
     }
 
-    /**
-     * Check for unique and duplicate systems
-     * @param int $offset
-     * @param int $limit
-     */
-    public function duplicates($offset=0,$limit=100)
-    {
-        $syss=$this->System->find('all',['order'=>['name'],'contain'=>['Substance'=>['order'=>'Substance.id','fields'=>['id','name']]],'limit'=>$limit,'offset'=>$offset,'recursive'=>-1]);
-        //debug($syss);exit;
-        $unique=[];
-        foreach($syss as $s) {
-            $sys=$s['System'];
-            $sub=$s['Substance'];
-            if(count($sub)==1) {
-                $unique[$sub[0]['id']][]=$sys['id'];
-            } elseif(count($sub)==2) {
-                $unique[$sub[0]['id'].':'.$sub[1]['id']][]=$sys['id'];
-            }
-        }
-        echo "Unique: ".count($unique)."<br />";
-        $probs=[];
-        foreach($unique as $ids=>$systems) {
-            if(count($systems)>1) {
-                $probs[$ids]=$systems;
-                foreach($systems as $system) {
-                    $this->System->id=$system;
-                    $this->System->saveField('identifier',$ids);
-                    $this->System->clear();
-                }
-            }
-        }
-        echo "Probs: ".count($probs)."<br />";
-        //foreach($probs as $prob) {
+	/**
+	 * view a system
+	 * @param int $id
+	 * @return void
+	 */
+	public function view(int $id)
+	{
+		$contain=[
+			'Substance'=>['fields'=>['id','name'],'Identifier'=>['type','value']],
+			'Dataset'=>['fields'=>['id','points'],
+				'Reference'=>['fields'=>['id','citation']],
+				'Dataseries'=>['id','points'],
+				'Sampleprop'=>['id','quantity_name']
+			]
+		];
+		$data=$this->System->find('first',['conditions'=>['System.id'=>$id],'contain'=>$contain,'recursive'=>-1]);
+		$jrnls = $this->Journal->find('list',['fields'=>['id','abbrev']]);
+		// reorganize data to make view code more efficient
+		$sets = $data['Dataset'];unset($data['Dataset']);
+		//debug($sets);exit;
+		$refs = [];$totalpnts=0;
+		foreach($sets as $set) {
+			$ref = $set['Reference'];
+			$sers = $set['Dataseries'];
+			$prps = $set['Sampleprop'];
+			if(!isset($refs[$ref['id']])) {
+				// replace journal code with abbreviation in citation (see virtualfields in Journal.php model)
+				preg_match('/\*(\d{3})\*/',$ref['citation'],$m);
+				if(!isset($m[1])) { debug($set);exit; }
+				$refs[$ref['id']] = ['cite'=>str_replace("*".$m[1]."*",$jrnls[$m[1]],$ref['citation']),'sets'=>[]];
+			}
+			$s=[];
+			$s['points']=$set['points'];
+			$totalpnts+=$set['points'];
+			$s['sers']=count($sers);
+			$s['props']="";
+			foreach($prps as $pidx=>$prp) {
+				if($pidx>0) { $s['props'].="; "; }
+				$s['props'].=$prp['quantity_name'];
+			}
+			$refs[$ref['id']]['sets'][$set['id']] = $s;
+		}
+		$data['System']['pntcnt'] = $totalpnts;
+		$data['Reference'] = $refs;
+		//debug($data);exit;
+		$this->set('data',$data);
+	}
 
-        //}
-        debug($probs);
-        exit;
-    }
+	// functions requiring login (not in Auth::allow)
 
-    public function clean($offset=0,$limit=100)
-    {
-        $syss=$this->System->find('all',['order'=>['System.id'],'contain'=>['Dataset'=>['fields'=>['Dataset.id']]],'limit'=>$limit,'offset'=>$offset,'recursive'=>-1]);
-        //debug($syss);exit;
-        $orphans=[];
-        foreach($syss as $s) {
-            $sys=$s['System'];
-            $set=$s['Dataset'];
-            if(empty($set)) {
-                //$orphans[]=$sys;
-                debug($s);
-                $this->System->delete($sys['id'],false);
-                $this->SubstancesSystem->deleteAll(['system_id'=>$sys['id']],false);
-            } else {
-                //debug($sys);
-            }
-        }
-        //echo count($orphans);
-        //debug($orphans);
-        exit;
-    }
+	/**
+	 * check that a system has the composition the name says...
+	 * @return void
+	 */
+	public function chksys()
+	{
+		$syss=$this->System->find('all',['contain'=>['Substance'],'recursive'=>-1]);
+		foreach($syss as $sys) {
+			//debug($sys);
+			$sysname=$sys['System']['name'];$bad=0;
+			$names=explode(" + ",$sysname);
+			$newname="";
+			foreach($sys['Substance'] as $sidx=>$sub) {
+				if(!in_array($sub['name'],$names)) { $bad=1; }
+				if($sidx>0) { $newname.=" - "; }
+				$newname.=$sub['name'];
+			}
+			if($bad) {
+				$sysid=$sys['System']['id'];
+				$sets=$this->Dataset->find('count',['conditions'=>['system_id'=>$sysid],'recursive'=>-1]);
+				echo "No match '".$sysname."' and '".$newname."' in system ".$sysid." (".$sets.")<br/>";
+			}
+		}
+		exit;
+	}
 
-    public function rename($offset=0,$limit=5)
-    {
-        $syss=$this->System->find('all',['order'=>['name'],'contain'=>['Substance'=>['fields'=>['id','name'],'order'=>['name']]],'limit'=>$limit,'offset'=>$offset,'recursive'=>-1]);
-        //debug($syss);exit;
-        foreach($syss as $s) {
-            $sys=$s['System'];
-            $sub=$s['Substance'];
-            if(count($sub)==1) {
-                $name=$sub[0]['name']." (pure)";
-                $this->System->id=$sys['id'];
-                $this->System->saveField('name',$name);
-                if($sys['description']=='')     { $this->System->saveField('description','Single substance'); }
-                if($sys['type']=='')            { $this->System->saveField('type','Single phase fluid'); }
-                $this->System->saveField('identifier',str_pad($sub[0]['id'],5,'0',STR_PAD_LEFT));
-                $this->System->clear();
-            } elseif(count($sub)==2) {
-                $name=$sub[0]['name']." and ".$sub[1]['name'];
-                $this->System->id=$sys['id'];
-                $this->System->saveField('name',$name);
-                if($sys['description']=='')     { $this->System->saveField('description','Mixture of two substances'); }
-                if($sys['type']=='')            { $this->System->saveField('type','Single phase fluid'); }
-                $this->System->saveField('identifier',str_pad($sub[0]['id'],5,'0',STR_PAD_LEFT).":".str_pad($sub[1]['id'],5,'0',STR_PAD_LEFT));
-                $this->System->clear();
-            }
-            echo $name."<br />";
-        }
-        exit;
-    }
+	/**
+	 * update refcnt field
+	 * @return void
+	 */
+	public function refcnt()
+	{
+		$sysids=$this->System->find('list',['fields'=>['id']]);
+		$refcnts=$this->Dataset->find('list',['fields'=>['reference_id','reference_id','system_id'],'group'=>['system_id','reference_id'],'recursive'=>-1]);
+		foreach($sysids as $sysid) {
+			$save=['id'=>$sysid,'refcnt'=>count($refcnts[$sysid])];
+			$this->System->save($save);
+		}
+		exit;
+	}
 }

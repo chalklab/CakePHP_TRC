@@ -1,4 +1,3 @@
-<?php //pr($data);exit; ?>
 <div class="row">
     <div class="col-sm-12">
         <div class="panel panel-primary">
@@ -8,10 +7,13 @@
             <div class="panel-body">
                 <ul class="list-unstyled">
                     <?php
-                    foreach ($data as $datum) {
-                        $p=$datum['Condition'];$c=$datum[0];
-                        echo "<li>".$this->Html->link($p['name'],'/conditions/view/'.$p['id'])." (".$c['pcount'].")</li>";
-                    }
+                    foreach ($conds as $quantity=>$values) {
+						echo "<li>".$quantity."<ul>";
+						foreach($values as $id=>$value) {
+							echo "<li>".$this->Html->link($value,'/conditions/view/'.$id)."</li>";
+						}
+                        echo "</ul></li>";
+					}
                     ?>
                 </ul>
             </div>

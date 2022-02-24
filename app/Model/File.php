@@ -2,40 +2,31 @@
 
 /**
  * Class File
- * File model
+ * model for the files table
+ * @author Stuart Chalk <schalk@unf.edu>
  */
 class File extends AppModel
 {
-
-    public $hasMany = [
+	// relationships to other tables
+	// chemicals and datasets tables marked as dependent, so they get deleted when a file does
+	public $hasMany = [
         'Chemical'=> [
             'foreignKey' => 'file_id',
             'dependent' => true],
-        'Error'=> [
-            'foreignKey' => 'file_id',
-            'dependent' => true],
-		'Dataset'=> [
+        'Dataset'=> [
 		    'foreignKey' => 'file_id',
-		    'dependent' => true],
-
+		    'dependent' => true]
     ];
-
-    public $belongsTo = ['Journal','Reference'];
-
-    //public $virtualFields=['titlecount'=>"concat(File.title,' (',File.datapoints,')'"];
+    public $belongsTo = ['Reference'];
 
 	/**
-	 * General function to add a new file
+	 * function to add a new file if it does not already exist
 	 * @param array $data
 	 * @return integer
 	 * @throws
 	 */
-	public function add($data)
+	public function add(array $data): int
 	{
-		$model='File';
-		$this->create();
-		$ret=$this->save([$model=>$data]);
-		$this->clear();
-		return $ret[$model];
+		return $this->addentry('File',$data);
 	}
 }

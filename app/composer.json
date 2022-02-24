@@ -1,9 +1,0 @@
-{
-  "config": {
-    "vendor-dir": "Vendor"
-  },
-  "require": {
-    "easyrdf/easyrdf": "1.1.1",
-	"ml/json-ld": "1.2.0"
-  }
-}

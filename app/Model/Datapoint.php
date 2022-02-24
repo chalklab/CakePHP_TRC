@@ -1,21 +1,16 @@
 <?php
 
 /**
- * Class Dataseries
- * Dataseries model
+ * Class Datapoint
+ * model for the datapoint table
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
 class Datapoint extends AppModel
 {
-
-    /**
-     * Link annotations, conditions, data, and setting as dependent so they get deleted when the datapoint does
-     * @var array
-     */
+	// relationships to other tables
+	// conditions and data tables marked as dependent, so they get deleted when a datapoint does
     public $hasMany = [
-        'Annotation'=> [
-            'foreignKey' => 'datapoint_id',
-            'dependent' => true,
-        ],
         'Condition'=> [
             'foreignKey' => 'datapoint_id',
             'dependent' => true,
@@ -23,12 +18,19 @@ class Datapoint extends AppModel
         'Data'=> [
             'foreignKey' => 'datapoint_id',
             'dependent' => true,
-        ],
-        'Setting'=> [
-            'foreignKey' => 'datapoint_id',
-            'dependent' => true,
-        ]];
-
+        ]
+	];
     public $belongsTo = ['Dataseries','Dataset'];
+
+	/**
+	 * function to add a new dataset if it does not already exist
+	 * @param array $data
+	 * @return int
+	 * @throws
+	 */
+	public function add(array $data): int
+	{
+		return $this->addentry('Datapoint',$data);
+	}
 
 }

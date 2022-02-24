@@ -1,60 +1,34 @@
-
-<?php
-$chars=[];
-foreach($data as $char=>$iarray) { $chars[]=$char; }
-?>
-
-<h3>Substances</h3>
-
+<!-- uses listsrc function in trc.js -->
 <div class="row">
-    <div class="col-sm-4">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">Search</h2>
-            </div>
-                <div class="panel-body">
-                    <?php
-                    echo '<p>' . '<input class="col-xs-12" type="text" id="letterSearch" placeholder="Search compounds...">' . '</p>';
-                    ?>
-                </div>
-        </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">Browse</h2>
-            </div>
-            <div class="panel-body">
-                <p>
-                    <?php
-
-                    echo '<p>' . 'Click on a letter/number below to show substances starting with that letter' . '</p>';
-                    
-                    foreach ($chars as $char) {
-                        echo "<button type='button' class='btn btn-default btn-md' onclick=\"showletter('" . $char . "')\"
-                                  style=\"display: inline;cursor: pointer; font-family:'Lucida Console', monospace\">";
-                        echo "$char";
-                        echo "</button>";
-                    }
-                    echo "</p>";
-                    ?>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-8">
-        <div class="panel panel-default">
-            <div class="panel-body" style="max-height: 476px;overflow-y: scroll;">
-                <?php
-                $chars = array_keys($data);
-                foreach ($data as $char => $iarray) {
-                    echo "<div id='" . $char . "' class='letter' style='display: none;'>";
-                    echo "<ul class='list-unstyled' style='font-size: 16px;'>";
-                foreach($iarray as $pid=>$substance) {
-                    echo '<li>'.html_entity_decode($this->Html->link($substance,'/substances/view/'.$pid)).'</li>';
-                }
-                echo "</ul></div>";
-                }
-                ?>
-            </div>
-        </div>
-
-    </div>
+	<div class="col-md-8 col-md-offset-1">
+		<h3>Substances</h3>
+	</div>
+	<div class="col-md-2" style="margin-top: 20px;">
+		<input id="listsrc" placeholder="Search substances" class="form-control pull-right" data-search-override="true" type="text"/>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="panel-group" id="accordion">
+			<?php
+			$i=1;$size=4;
+			foreach($data as $first=>$subs) { ?>
+				<div class="panel panel-default sections" style="margin: 0;">
+					<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-sort="<?= $first; ?>" href="#collapse<?= $i; ?>" style="cursor: pointer;padding: 5px 15px;">
+						<p style="margin: 0;font-weight: bold;"><?php $count=count($subs);echo $first." (".$count." papers)"; ?></p>
+					</div>
+					<div id="collapse<?php echo $i; ?>" class="panel-collapse collapse<?php if($i==1) { echo " in"; } ?>">
+						<div class="list-group" style="max-height: <?php echo ($size*40)+2; ?>px;overflow-y: scroll;font-size: 14px;">
+							<?php
+							foreach($subs as $subid=>$name) {
+								$opts = ["title"=>strtolower($name),'alt'=>$name,"class"=>"list-group-item list-group-item-small"];
+								echo "<li class='links'>".html_entity_decode($this->Html->link($name,'/substances/view/'.$subid,$opts))."</li>";
+							}
+							?>
+						</div>
+					</div>
+				</div>
+				<?php $i++; } ?>
+		</div>
+	</div>
 </div>

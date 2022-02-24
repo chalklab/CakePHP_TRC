@@ -2,12 +2,13 @@
 
 /**
  * Class JournalsController
- * Journals Controller
+ * controller actions for journal functions
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
 class JournalsController extends AppController {
 
-    public $uses=array('Journal','System','Identifier','SubstancesSystem','File','Report','Dataset','Dataseries',
-		'Datapoint','Condition','Data','Setting','Annotation');
+    public $uses = ['Journal','File'];
 
     /**
      * beforeFilter function
@@ -15,11 +16,13 @@ class JournalsController extends AppController {
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow();
+        $this->Auth->allow('index','view');
     }
+
     /**
-     * View a list of the Journals
-     */
+     * get a list of the journals
+	 * @return void
+	 */
     public function index()
     {
         $data=$this->Journal->find('list', ['fields'=>['id','name'],'order'=>['id']]);
@@ -27,40 +30,42 @@ class JournalsController extends AppController {
 
         $propCount=[];
         foreach ($data as $id => $prop) {
-            $propCount[$id] = $this->File->find('list', array('fields'=>['id']));
+            $propCount[$id] = $this->File->find('list', ['fields'=>['id']]);
         }
         $this->set('propCount',$propCount);
     }
-    /**
-     * Journal add function
-     */
-    public function add()
-    {
-        if($this->request->is('post')) {
-            $this->Journal->create();
-            if($this->Journal->save($this->request->data)) {
-                $this->Flash->set('The journal has been added');
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Flash->set('The journal could not be added.');
-            }
-        }
-    }
-    /**
-     * View a journal
-     * @param $id
-     * @param $type
-     */
-    public function view($id,$type=null)
-    {
 
+    /**
+     * view a journal
+     * @param int $id
+	 * @return void
+	 */
+    public function view(int $id)
+    {
         $data=$this->Journal->find('first',['conditions'=>['Journal.id'=>$id]]);
         if($this->request->is('ajax')) {
             header('Content-Type: application/json');
-            echo "[".json_encode($data)."]";
-            exit;
+            echo "[".json_encode($data)."]";exit;
         }
         $this->set('data',$data);
     }
-}
 
+	// functions requiring login (not in Auth::allow)
+
+	/**
+	 * add journal function
+	 * @return void
+	 */
+	public function add()
+	{
+		if($this->request->is('post')) {
+			if($this->Journal->add($this->request->data)) {
+				$this->Flash->set('The journal has been added');
+				$this->redirect(['action' => 'index']);
+			} else {
+				$this->Flash->set('The journal could not be added.');
+			}
+		}
+	}
+
+}

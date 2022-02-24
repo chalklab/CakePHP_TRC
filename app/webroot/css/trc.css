@@ -1,0 +1,55 @@
+mark {
+    background-color: lightgreen;
+    color: black;
+}
+
+.mark {
+    background-color: lightgreen;
+    color: black;
+}
+
+.bg-muted {
+    background-color: #dddddd;
+}
+
+.bg-lightblue {
+    background-color: #f7f7f9;
+}
+
+.MathJax {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.responsivediv200 {
+	max-height: calc(100vh - 200px);
+	overflow-y: scroll;
+}
+
+.responsivediv300 {
+	max-height: calc(100vh - 300px);
+	overflow-y: scroll;
+}
+
+.responsivediv400 {
+	max-height: calc(100vh - 400px);
+	overflow-y: scroll;
+}
+
+.responsivediv500 {
+	max-height: calc(100vh - 500px);
+	overflow-y: scroll;
+}
+
+.responsivediv600 {
+	max-height: calc(100vh - 600px);
+	overflow-y: scroll;
+}
+
+.list-group-item-small {
+	padding: 5px 15px;
+}
+
+.sameh {
+	display: flex;
+}

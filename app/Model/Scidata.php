@@ -2,60 +2,63 @@
 
 /**
  * Class Scidata
- * Scidata model
+ * Scidata model (not related to a database table)
+ * @author Chalk Research Group <schalk@unf.edu>
+ * @version 2/28/22
  */
 class Scidata extends AppModel
 {
 
 	public $useTable=false;
 
-	public $path=null;
-	public $contexts=["https://stuchalk.github.io/scidata/contexts/scidata.jsonld"];
-	public $nspaces=[
+	public ?string $path=null;
+	public array $contexts=["https://stuchalk.github.io/scidata/contexts/scidata.jsonld"];
+	public array $nspaces=[
 		'sdo'=>'https://stuchalk.github.io/scidata/ontology/scidata.owl#',
 		'dc'=>'http://purl.org/dc/terms/',
 		'qudt'=>'http://qudt.org/vocab/unit/',
-		'xsd'=>'http://www.w3.org/2001/XMLSchema#'];
+		'xsd'=>'http://www.w3.org/2001/XMLSchema#',
+		'ss'=>'https://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#'];
 	public $id=null;
-	public $generatedat=null;
-	public $version=null;
-	public $graphid=null;
-	public $uid=null;
-	public $base=null;
-	public $meta=null;
-	public $authors=null;
-	public $related=null;
-	public $keywords=null;
-	public $starttime=null;
-	public $permalink=null;
-	public $toc=null;
-	public $ids=null;
-	public $report=null;
-	public $discipline=null;
-	public $subdiscipline=null;
-	public $facets=null;
-	public $aspects=null;
+	public ?string $generatedat=null;
+	public ?string $version=null;
+	public ?string $graphid=null;
+	public ?string $uid=null;
+	public ?string $base=null;
+	public ?array $meta=null;
+	public ?array $creators=null;
+	public ?array $related=null;
+	public ?array $keywords=null;
+	public ?string $starttime=null;
+	public ?string $permalink=null;
+	public ?array $toc=null;
+	public ?array $ids=null;
+	public ?array $report=null;
+	public ?string $discipline=null;
+	public ?string $subdiscipline=null;
+	public ?array $facets=null;
+	public ?array $aspects=null;
 	public $data=null;
-	public $dataseries=null;
-	public $datagroup=null;
-	public $datapoint=null;
-	private $cpds=[];
-	private $syss=[];
-	private $chms=[];
-	private $sets=[];
-	private $sers=[];
-	private $pnts=[];
-	private $cnds=[];
-	private $rels=[];
-	private $scnds=[];
-	private $sttgs=[];
-	public $sources=null;
-	public $rights=null;
-	public $errors=null;
-	public $output=null;
-	public $ontlinks=null;
-	public $intlinks=null;
-	public $sysrows=null;
+	public ?array $dataseries=null;
+	public ?array $datagroup=null;
+	public ?array $datapoint=null;
+	private array $cpds=[];
+	private array $syss=[];
+	private array $chms=[];
+	private array $sets=[];
+	private array $sers=[];
+	private array $pnts=[];
+	private array $cnds=[];
+	private array $rels=[];
+	// private array $scnds=[];
+	private array $sttgs=[];
+	public array $sources=[];
+	public array $rights=[];
+	public array $errors=[];
+	public array $output=[];
+	public array $ontlinks=[];
+	public array $intlinks=[];
+	public array $sysrows=[];
 
 	/**
 	 * Class Constructor
@@ -73,7 +76,7 @@ class Scidata extends AppModel
 		$graph['@type']="sdo:scientificData";
 		$graph['uid']="";
 		$graph['title']="";
-		$graph['authors']=[];
+		$graph['creators']=[];
 		$graph['description']="";
 		$graph['publisher']="";
 		$graph['starttime']="";
@@ -94,100 +97,98 @@ class Scidata extends AppModel
 	// Getters
 
 	/**
-	 * Get path
-	 * @return mixed
+	 * get path
+	 * @return bool
 	 */
-	public function path() {
-		if(is_null($this->path)) {
-			return false;
-		} else {
+	public function path(): bool {
+		if(!is_null($this->path)) {
 			return $this->path;
+		} else {
+			return false;
 		}
 	}
 
 	/**
-	 * Get base
-	 * @return mixed
+	 * get base URL
+	 * @return bool
 	 */
-	public function base() {
-		if(is_null($this->base)) {
-			return false;
-		} else {
+	public function base(): bool {
+		if(!is_null($this->base)) {
 			return $this->base;
+		} else {
+			return false;
 		}
 	}
 
 	/**
-	 * Get meta
-	 * @return mixed
+	 * get general meta
+	 * @return bool|array
 	 */
-	public function meta() {
-		if(is_null($this->meta)) {
-			return false;
-		} else {
+	public function meta(): bool {
+		if(!is_null($this->meta)) {
 			return $this->meta;
+		} else {
+			return false;
 		}
 	}
 
 	/**
-	 * Get facets
-	 * @return mixed
+	 * get facet data
+	 * @return bool|array
 	 */
-	public function getfacets() {
-		if(is_null($this->facets)) {
-			return false;
-		} else {
+	public function getfacets(): bool {
+		if(!is_null($this->facets)) {
 			return $this->facets;
+		} else {
+			return false;
 		}
 	}
 
 	// Setters
 
 	/**
-	 * Set the contexts
+	 * set the links to the context files
 	 * @param $value
-	 * @return mixed
+	 * @return bool
 	 */
-	public function setcontexts($value=null) {
+	public function setcontexts($value=null): bool {
+		if(!is_null($value)) {
+			$this->setter("contexts","array",$value,'merge');
+		}
+		return false;
+	}
+
+	/**
+	 * set the namespaces
+	 * @param $value
+	 * @return bool
+	 */
+	public function setnspaces($value=null): bool {
+		if(!is_null($value)) {
+			$this->setter("nspaces","array",$value,'merge');
+		}
+		return false;
+	}
+
+	/**
+	 * set the id
+	 * @param $value
+	 * @return bool
+	 */
+	public function setuid($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
-			return $this->setter("contexts","array",$value,'merge');
+			return $this->setter("uid","string",$value);
 		}
 	}
 
 	/**
-	 * Set the nspaces
+	 * set graph id
 	 * @param $value
 	 * @return bool
 	 */
-	public function setnspaces($value=null) {
-		if($value==null) {
-			return false;
-		} else {
-			return $this->setter("nspaces","array",$value,'merge');
-		}
-	}
-
-	/**
-	 * Set the id
-	 * @param $value
-	 * @return bool
-	 */
-	public function setid($value=null) {
-		if($value==null) {
-			return false;
-		} else {
-			return $this->setter("id","string",$value);
-		}
-	}
-
-	/**
-	 * Set graph id
-	 * @param $value
-	 * @return bool
-	 */
-	public function setgraphid($value=null) {
+	public function setgraphid($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -196,11 +197,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set generatedAt date
+	 * set generatedAt date
 	 * @param $value
 	 * @return bool
 	 */
-	public function setgenat($value=null) {
+	public function setgenat($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -209,11 +210,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set version
+	 * set version
 	 * @param $value
 	 * @return bool
 	 */
-	public function setversion($value=null) {
+	public function setversion($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -222,11 +223,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the path
+	 * set the path
 	 * @param $value
 	 * @return bool
 	 */
-	public function setpath($value=null) {
+	public function setpath($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -235,11 +236,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the base
+	 * set the base
 	 * @param $value
 	 * @return bool
 	 */
-	public function setbase($value=null) {
+	public function setbase($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -252,11 +253,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the meta
+	 * set the meta
 	 * @param $value
 	 * @return bool
 	 */
-	public function setmeta($value=null) {
+	public function setmeta($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -265,24 +266,24 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the uid
+	 * set the uid
 	 * @param $value
 	 * @return bool
 	 */
-	public function setuid($value=null) {
+	public function setid($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
-			return $this->setter("uid","string",$value);
+			return $this->setter("id","string",$value);
 		}
 	}
 
 	/**
-	 * Set the title
+	 * set the title
 	 * @param $value
 	 * @return bool
 	 */
-	public function settitle($value=null) {
+	public function settitle($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -294,11 +295,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the publisher
+	 * set the publisher
 	 * @param $value
 	 * @return bool
 	 */
-	public function setpublisher($value=null) {
+	public function setpublisher($value=null): bool  {
 		if($value==null) {
 			return false;
 		} else {
@@ -310,11 +311,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the description
+	 * set the description
 	 * @param $value
 	 * @return bool
 	 */
-	public function setdescription($value=null) {
+	public function setdescription($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -326,11 +327,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the related array
+	 * set the related array
 	 * @param $value
 	 * @return bool
 	 */
-	public function setrelated($value=null) {
+	public function setrelated($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -339,11 +340,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the keywords array
+	 * set the keywords array
 	 * @param $value
 	 * @return bool
 	 */
-	public function setkeywords($value=null) {
+	public function setkeywords($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -352,24 +353,28 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the toc array
+	 * set the toc array
 	 * @param $value
 	 * @return bool
 	 */
-	public function settoc($value=null) {
+	public function settoc($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
+			$toc=$this->toc;
+			$toc=$toc+$value;
+			$toc=array_unique($toc);
+			sort($toc);
 			return $this->setter("toc","array",$value);
 		}
 	}
 
 	/**
-	 * Set the report array
+	 * set the report array
 	 * @param $value
 	 * @return bool
 	 */
-	public function setreport($value=null) {
+	public function setreport($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -378,37 +383,36 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set authors
+	 * set creators
 	 * @param null $value
 	 * @return bool
 	 */
-	public function setauthors($value=null)
-	{
+	public function setcreators($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
-			$authors=[];
+			$creators=[];
 			if(!is_array($value)) {
 				if(stristr($value,'{')) {
-					$authors=json_decode($value,true);
+					$creators=json_decode($value,true);
 				} elseif(stristr($value,', ')) {
-					$authors=explode(", ",$value);
+					$creators=explode(", ",$value);
 				} else {
-					$authors[0]=$value;
+					$creators[0]=$value;
 				}
 			} else {
-				$authors=$value;
+				$creators=$value;
 			}
-			return $this->setter("authors","array",$authors);
+			return $this->setter("creators","array",$creators);
 		}
 	}
 
 	/**
-	 * Set the starttime
+	 * set the starttime
 	 * @param $value
 	 * @return bool
 	 */
-	public function setstarttime($value=null) {
+	public function setstarttime($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -417,11 +421,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the permalink
+	 * set the permalink
 	 * @param $value
 	 * @return bool
 	 */
-	public function setpermalink($value=null) {
+	public function setpermalink($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -434,11 +438,28 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the discipline
+	 * set the ids array (array of semantic identifiers)
 	 * @param $value
 	 * @return bool
 	 */
-	public function setdiscipline($value=null) {
+	public function setids($value=null): bool {
+		if($value==null) {
+			return false;
+		} else {
+			$ids=$this->ids;
+			$ids=$ids+$value;
+			$ids=array_unique($ids);
+			sort($ids);
+			return $this->setter("ids","array",$ids);
+		}
+	}
+
+	/**
+	 * set the discipline
+	 * @param $value
+	 * @return bool
+	 */
+	public function setdiscipline($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -452,11 +473,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the subdiscipline
+	 * set the subdiscipline
 	 * @param $value
 	 * @return bool
 	 */
-	public function setsubdiscipline($value=null) {
+	public function setsubdiscipline($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -470,12 +491,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the aspects
+	 * set the aspects
 	 * @param null $value
 	 * @return bool
 	 */
-	public function setaspects($value=null)
-	{
+	public function setaspects($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -484,27 +504,24 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the facets
+	 * set the facets
 	 * @param null $value
 	 * @return bool
 	 */
-	public function setfacets($value=null)
-	{
+	public function setfacets($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
-
 			return $this->setter("facets","array",$value);
 		}
 	}
 
 	/**
-	 * Set the sysrows (for a document with multiple systems, the rows of data that are for each system)
+	 * set the sysrows (for a document with multiple systems, the rows of data that are for each system)
 	 * @param null $value
 	 * @return bool
 	 */
-	public function setsysrows($value=null)
-	{
+	public function setsysrows($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -513,12 +530,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the data
+	 * set the data
 	 * @param null $value
 	 * @return bool
 	 */
-	public function setdata($value=null)
-	{
+	public function setdata($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -527,12 +543,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set a dataseries
+	 * set a dataseries
 	 * @param null $value
 	 * @return bool
 	 */
-	public function setdataseries($value=null)
-	{
+	public function setdataseries($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -541,12 +556,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set a datagroup
+	 * set a datagroup
 	 * @param null $value
 	 * @return bool
 	 */
-	public function setdatagroup($value=null)
-	{
+	public function setdatagroup($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -555,13 +569,12 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set a datapoint
+	 * set a datapoint
 	 * @param null $value
 	 * @param string $mode (append|replace|clear)
 	 * @return bool
 	 */
-	public function setdatapoint($value=null,$mode='append')
-	{
+	public function setdatapoint($value=null,string $mode='append'): bool {
 		if($value==null||!is_array($value)) {
 			return false;
 		} else {
@@ -570,11 +583,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the sources
+	 * set the sources
 	 * @param $value
 	 * @return bool
 	 */
-	public function setsources($value=null) {
+	public function setsources($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -583,11 +596,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the rights
-	 * @param $value
+	 * set the rights
+	 * @param array|null $value
 	 * @return bool
 	 */
-	public function setrights($value=null) {
+	public function setrights(array $value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -596,11 +609,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the ontology links
+	 * set the ontology links
 	 * @param $value
 	 * @return bool
 	 */
-	public function setontlinks($value=null) {
+	public function setontlinks($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -609,11 +622,11 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Set the internal links
+	 * set the internal links
 	 * @param $value
 	 * @return bool
 	 */
-	public function setintlinks($value=null) : bool {
+	public function setintlinks($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
@@ -622,14 +635,14 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * Generic setter method
-	 * @param $prop
-	 * @param $type
-	 * @param $value
+	 * generic setter method
+	 * @param string $prop
+	 * @param string $type
+	 * @param string|array $value
 	 * @param string $mode (append|replace|clear)
 	 * @return bool
 	 */
-	private function setter($prop,$type,$value,$mode='replace') : bool {
+	private function setter(string $prop,string $type, $value,string $mode='replace'): bool {
 		// check datatype
 		if($type=="array") {
 			if(!is_array($value)) {
@@ -640,6 +653,7 @@ class Scidata extends AppModel
 				return false;
 			}
 		}
+
 		// set property
 		$current=$this->$prop;
 		if($mode=='append') {
@@ -682,9 +696,10 @@ class Scidata extends AppModel
 
 	/**
 	 * create output and return
+	 * @param bool $flat
 	 * @return mixed
 	 */
-	public function asarray() : array {
+	public function asarray(bool $flat=false): array {
 		$Set=ClassRegistry::init('Dataset');
 		$ppty=ClassRegistry::init('Property');
 		$olinks=$this->ontlinks;
@@ -767,13 +782,23 @@ class Scidata extends AppModel
 			unset($output["report"]);
 		}
 
-		// authors
-		if(!is_null($this->authors)) {
-			foreach ($this->authors as $idx=>$au) {
-				$graph['authors'][]=['@id'=>'author/'.($idx+1).'/','@type'=>'dc:creator','name'=>$au];
+		// creators
+		if(!is_null($this->creators)) {
+			foreach ($this->creators as $idx=>$au) {
+				if(is_string($au)) {
+					$graph['creators'][]=['@id'=>'creator/'.($idx+1).'/','@type'=>'dc:creator','name'=>$au];
+				} else {
+					// remove any metadata elements not defined in SciData
+					$allowed=['name','firstname','lastname','address','organization','email','orcid','role'];
+					foreach($au as $label=>$value) {
+						if (!in_array($label,$allowed)) { unset($au[$label]); }
+					}
+					$au = ['@id'=>'creator/'.($idx+1).'/','@type'=>'dc:creator'] + $au;
+					$graph['creators'][]=$au;
+				}
 			}
 		} else {
-			unset($output["authors"]);
+			unset($output["creators"]);
 		}
 
 		// starttime
@@ -855,21 +880,23 @@ class Scidata extends AppModel
 					$fac["@type"]=$ns.$type;
 					if($type=='condition') {
 						//debug($facet);
-						$facet=$this->makedata($facet,$type,$idx,$condrels,$graph);
+						$facet=$this->makedata($facet,$type,$idx,$condrels,$graph, $flat);
 						//debug($facet);exit;
 					} else {
 						foreach($facet as $label1=>$items1) {
+							// check for ontology ids
+							if(stristr($label1,'#')&&!is_array($items1)) {
+								$graph['ids'][]=$items1;
+							}
 							if(substr($label1,-1)=='s') {
 								$sublabel=substr($label1,0,-1);
 							} else {
 								$sublabel=$label1;
 							}
-							//debug($items1);
+
 							if(is_array($items1)) {
 								foreach($items1 as $idx1=>$item1) {
-									//debug($item1);
 									if(is_array($item1)) {
-										//debug($idx);debug($item);exit;
 										foreach($item1 as $label2=>$items2) {
 											if(substr($label2,-1)=='s') {
 												$sublabel2=substr($label2,0,-1);
@@ -888,6 +915,7 @@ class Scidata extends AppModel
 													} else {
 														$itype2=$item2["@type"];
 													}
+													//debug($item2);debug($idx2);debug($itype2);//exit;
 													$item2=["@id"=>$id2,"@type"=>$itype2]+$item2;
 													$items2[$idx2]=$item2;
 												}
@@ -948,22 +976,22 @@ class Scidata extends AppModel
 						} else {
 							$ckeys=$dkeys=$vkeys=$skeys=[];
 							if(!empty($group['cons'])) {
-								foreach($group['cons'] as $prop=>$pnts) {
+								foreach($group['cons'] as $pnts) {
 									$ckeys=array_merge($ckeys,array_keys($pnts));
 								}
 							}
 							if(!empty($group['data'])) {
-								foreach($group['data'] as $prop=>$pnts) {
+								foreach($group['data'] as $pnts) {
 									$dkeys = array_merge($dkeys, array_keys($pnts));
 								}
 							}
 							if(!empty($group['drvs'])) {
-								foreach($group['drvs'] as $prop=>$pnts) {
+								foreach($group['drvs'] as $pnts) {
 									$vkeys = array_merge($vkeys, array_keys($pnts));
 								}
 							}
 							if(!empty($group['sups'])) {
-								foreach($group['sups'] as $prop=>$pnts) {
+								foreach($group['sups'] as $pnts) {
 									$skeys = array_merge($skeys, array_keys($pnts));
 								}
 							}
@@ -977,9 +1005,6 @@ class Scidata extends AppModel
 						$ser['system']=$series['system'];
 					} else {
 						$ser['system']="no system?";
-					}
-					if(!empty($series['anns']['column'])) {
-						$ser['annotations']=$series['anns']['column'];
 					}
 					$ser['datapoints']=[];
 					foreach($points as $p) {
@@ -1010,16 +1035,13 @@ class Scidata extends AppModel
 										$val['property']=$pmeta['Property']['name'];
 									}
 									if(!empty($olinks[$dtype][$prop])) {
-										$val['propertyref']=$olinks[$dtype][$prop];
+										$val['quantity#']=$olinks[$dtype][$prop];
 									}
-									if(!empty($pnts[$p]['propertyref'])) {
-										$val['propertyref']=$pnts[$p]['propertyref'];
+									if(!empty($pnts[$p]['quantity#'])) {
+										$val['quantity#']=$pnts[$p]['quantity#'];
 									}
-									if(!empty($val['propertyref'])) {
-										$graph['ids'][]=$val['propertyref'];
-									}
-									if(!empty($series['anns']['rows'][$prop][$p])) {
-										$val['annotation']=$series['anns']['rows'][$prop][$p];
+									if(!empty($val['quantity#'])) {
+										$graph['ids'][]=$val['quantity#'];
 									}
 									if(!empty($pnts[$p]['equality'])) {
 										$val['equality']=$pnts[$p]['equality'];
@@ -1057,16 +1079,13 @@ class Scidata extends AppModel
 										$val['property']=$pmeta['Property']['name'];
 									}
 									if(!empty($olinks[$dtype][$prop])) {
-										$val['propertyref']=$olinks[$dtype][$prop];
+										$val['quantity#']=$olinks[$dtype][$prop];
 									}
-									if(!empty($pnts[$p]['propertyref'])) {
-										$val['propertyref']=$pnts[$p]['propertyref'];
+									if(!empty($pnts[$p]['quantity#'])) {
+										$val['quantity#']=$pnts[$p]['quantity#'];
 									}
-									if(!empty($val['propertyref'])) {
-										$graph['ids'][]=$val['propertyref'];
-									}
-									if(!empty($series['anns']['rows'][$prop][$p])) {
-										$val['annotation']=$series['anns']['rows'][$prop][$p];
+									if(!empty($val['quantity#'])) {
+										$graph['ids'][]=$val['quantity#'];
 									}
 									if(!empty($pnts[$p]['equality'])) {
 										$val['equality']=$pnts[$p]['equality'];
@@ -1107,16 +1126,13 @@ class Scidata extends AppModel
 										$val['property']=$pmeta['Property']['name'];
 									}
 									if(!empty($olinks[$dtype][$prop])) {
-										$val['propertyref']=$olinks[$dtype][$prop];
+										$val['quantity#']=$olinks[$dtype][$prop];
 									}
-									if(!empty($pnts[$p]['propertyref'])) {
-										$val['propertyref']=$pnts[$p]['propertyref'];
+									if(!empty($pnts[$p]['quantity#'])) {
+										$val['quantity#']=$pnts[$p]['quantity#'];
 									}
-									if(!empty($val['propertyref'])) {
-										$graph['ids'][]=$val['propertyref'];
-									}
-									if(!empty($series['anns']['rows'][$prop][$p])) {
-										$val['annotation']=$series['anns']['rows'][$prop][$p];
+									if(!empty($val['quantity#'])) {
+										$graph['ids'][]=$val['quantity#'];
 									}
 									if(!empty($pnts[$p]['equality'])) {
 										$val['equality']=$pnts[$p]['equality'];
@@ -1144,18 +1160,6 @@ class Scidata extends AppModel
 								}
 							}
 						}
-						if(!empty($series['anns']['general'])) {
-							foreach ($series['anns']['general'] as $field => $pnts) {
-								// add anns columns
-								$val=[];
-								$val['type']='annotation';
-								$val['text']=$pnts[$p];
-								if(!empty($pnts[$p]['note'])) {
-									$val['note']=$pnts[$p]['note'];
-								}
-								$dpnt['values'][]=$val;
-							}
-						}
 						$this->setdatapoint($dpnt);
 						$ser['datapoints'][]=$dpntid;
 					}
@@ -1167,7 +1171,6 @@ class Scidata extends AppModel
 			if(!empty($this->datagroup)) {
 				// add datagroup
 				foreach($this->datagroup as $grpidx=>$group) {
-					//debug($group);
 					$grptot++;$grprels[$grpidx]=[];
 					if(!isset($group['points'])) {
 						// generate an index of points
@@ -1176,22 +1179,22 @@ class Scidata extends AppModel
 						} else {
 							$ckeys=$dkeys=$vkeys=$skeys=[];
 							if(!empty($group['cons'])) {
-								foreach($group['cons'] as $prop=>$pnts) {
+								foreach($group['cons'] as $pnts) {
 									$ckeys=array_merge($ckeys,array_keys($pnts));
 								}
 							}
 							if(!empty($group['data'])) {
-								foreach($group['data'] as $prop=>$pnts) {
+								foreach($group['data'] as $pnts) {
 									$dkeys = array_merge($dkeys, array_keys($pnts));
 								}
 							}
 							if(!empty($group['drvs'])) {
-								foreach($group['drvs'] as $prop=>$pnts) {
+								foreach($group['drvs'] as $pnts) {
 									$vkeys = array_merge($vkeys, array_keys($pnts));
 								}
 							}
 							if(!empty($group['sups'])) {
-								foreach($group['sups'] as $prop=>$pnts) {
+								foreach($group['sups'] as $pnts) {
 									$skeys = array_merge($skeys, array_keys($pnts));
 								}
 							}
@@ -1207,11 +1210,8 @@ class Scidata extends AppModel
 					if(!empty($group['system'])) {
 						$grp['system']=$group['system'];
 					}
-					if(!empty($group['anns']['column'])) {
-						$grp['annotations']=$group['anns']['column'];
-					}
 					$grp['datapoints']=[];
-					//debug($condrels['condition']);
+					//debug($points);exit;
 					foreach($points as $p) {
 						//debug($p);
 						// array of datapoints
@@ -1231,15 +1231,14 @@ class Scidata extends AppModel
 								//debug($cond);debug($dpnt['conditions']);
 							}
 						}
-						$dpnt['values']=[];if(is_null($olinks)) { $olinks=[]; }
+						$dpnt['values']=[];
 						if(!empty($group['data'])) {
-							//debug($group['data']);
 							foreach($group['data'] as $prop=>$pnts) {
 								// add data columns
 								if(!empty($pnts[$p])) {
 									// passthough the value of the data as $val['number']
 									// expGen done datapoints section
-									$val=$this->passmeta($pnts[$p],'exptdata',$p,$prop,$olinks,$graph);
+									$val=$this->passmeta($pnts[$p],'exptdata',$prop,$olinks,$graph);
 									$dpnt['values'][]=$val;
 								}
 							}
@@ -1250,7 +1249,7 @@ class Scidata extends AppModel
 								if(!empty($pnts[$p])) {
 									// passthough the value of the data as $val['number']
 									// expGen done datapoints section
-									$val=$this->passmeta($pnts[$p],'suppdata',$p,$prop,$olinks,$graph);
+									$val=$this->passmeta($pnts[$p],'suppdata',$prop,$olinks,$graph);
 									$dpnt['values'][]=$val;
 								}
 							}
@@ -1261,17 +1260,9 @@ class Scidata extends AppModel
 								if(!empty($pnts[$p])) {
 									// passthough the value of the data as $val['number']
 									// expGen done datapoints section
-									$val=$this->passmeta($pnts[$p],'derived',$p,$prop,$olinks,$graph);
+									$val=$this->passmeta($pnts[$p],'derived',$prop,$olinks,$graph);
 									$dpnt['values'][]=$val;
 								}
-							}
-						}
-						if(!empty($group['anns']['general'])) {
-							foreach($group['anns']['general'] as $field => $pnts) {
-								// add anns columns
-								$val=['type'=>'annotation','text'=>$pnts[$p]];
-								if(!empty($pnts[$p]['note'])) { $val['note']=$pnts[$p]['note']; }
-								$dpnt['values'][]=$val;
 							}
 						}
 						$this->setdatapoint($dpnt);
@@ -1295,29 +1286,38 @@ class Scidata extends AppModel
 					if(isset($pnt['conditions'])) {
 						$dpnt['conditions']=$pnt['conditions'];
 					}
-					if(isset($sysrows)) {
+					if(!empty($sysrows)) {
 						$dpnt['system']=$sysrows[$pidx];
 					}
-					if(count($pnt['values'])==1) {
-						$pnt=$pnt['values'][0];
-						if(isset($pnt['quantity'])) { $dpnt['quantity']=$pnt['quantity']; }
-						if(isset($pnt['property'])) { $dpnt['property']=$pnt['property']; }
-						if(isset($pnt['propertyref'])) {
-							$dpnt['propertyref']=$pnt['propertyref'];
-							$graph['ids'][]=$pnt['propertyref'];
+					$dpnt['data']=[];
+					foreach($pnt['values'] as $didx=>$datum) {
+						$data=[];
+						$data["@id"]=$dpnt["@id"].'datum/'.($didx+1).'/';$data["@type"]="sdo:".$datum['type'];
+						if(isset($datum['quantitykind'])) { $data['quantitykind']=$datum['quantitykind']; }
+						if(isset($datum['quantitykind#'])) {
+							$data['quantitykind#']=$datum['quantitykind#'];
+							$graph['ids'][]=$datum['quantitykind#'];
 						}
-						if(isset($pnt['unit'])) { $dpnt['unit']=$pnt['unit']; }
-						if(isset($pnt['unitref'])) {
-							$dpnt['unitref']=$pnt['unitref'];
-							$graph['ids'][]=$pnt['unitref'];
+						if(isset($datum['quantity'])) { $data['quantity']=$datum['quantity']; }
+						if(isset($datum['quantity#'])) {
+							$data['quantity#']=$datum['quantity#'];
+							$graph['ids'][]=$datum['quantity#'];
 						}
-						if(isset($pnt['annotation'])) { $dpnt['annotation']=$pnt['annotation']; }
-						if(isset($pnt['number'])) {
-							$val=$Set->exponentialGen($pnt['number']);$nval=[];
-							$nval["@id"]=$dpnt["@id"].'value/';
-							$nval["@type"]="sdo:numericValue";
-							if(isset($pnt['equality'])) { $val['equality']=$pnt['equality']; }
-							if(!empty($pnt['max'])) {
+						if(isset($datum['phase'])) { $data['phase']=$datum['phase']; }
+						if(isset($datum['related'])) { $data['related']=$datum['related'];}
+						if(isset($datum['unit'])) { $data['unit']=$datum['unit']; }
+						if(isset($datum['unit#'])) {
+							$data['unit#']=$datum['unit#'];
+							$graph['ids'][]=$datum['unit#'];
+						}
+						if(isset($datum['number'])) {
+							$val=$Set->exponentialGen($datum['number']);$nval=[];
+							if($flat) {
+								$nval["@id"] = $data["@id"] . 'value/';
+								$nval["@type"] = "sdo:numericValue";
+							}
+							if(isset($datum['equality'])) { $nval['equality']=$datum['equality']; }
+							if(!empty($datum['max'])) {
 								if($val['isint']) {
 									$nval['datatype']='xsd:integer';
 									$nval['min']=(int) $val['scinot'];
@@ -1341,10 +1341,10 @@ class Scidata extends AppModel
 								}
 							}
 							if(!empty($val['sf'])) { $nval['sigfigs']=$val['sf']; }
-							if(!empty($pnt['error'])) {
-								$nval['error']=$pnt['error'];
-								if(!empty($pnt['errortype'])) {
-									$nval['errortype']=$pnt['errortype'];
+							if(!empty($datum['error'])) {
+								$nval['error']=$datum['error'];
+								if(!empty($datum['errortype'])) {
+									$nval['errortype']=$datum['errortype'];
 								} else {
 									$nval['errortype']='unknown';
 								}
@@ -1354,96 +1354,33 @@ class Scidata extends AppModel
 								$nval['errortype']='absolute';
 								$nval['errornote']='estimated from value';
 							}
-							if(!empty($pnt['note'])) { $nval['note']=$pnt['note']; }
-							$dpnt['numericvalue']=$nval;
-						} elseif(isset($pnt['text'])) {
-							$tval=[];
-							$tval["@id"]=$dpnt["@id"].'value/';
-							$tval["@type"]="sdo:textValue";
-							$tval['text']=$pnt['text'];
-							$data['textstring']=$tval;
-						} else {
-							echo "Missing/misassigned value!";
-							debug($pnt);
-							exit;
-						}
-					} else {
-						$dpnt['data']=[];
-						foreach($pnt['values'] as $didx=>$datum) {
-							$data["@id"]=$dpnt["@id"].'datum/'.($didx+1).'/';
-							$data["@type"]="sdo:".$datum['type'];
-							if(isset($datum['quantity'])) { $data['quantity']=$datum['quantity']; }
-							if(isset($datum['property'])) { $data['property']=$datum['property']; }
-							if(isset($datum['propertyref'])) {
-								$data['propertyref']=$datum['propertyref'];
-								$graph['ids'][]=$datum['propertyref'];
-							}
-							if(isset($datum['unit'])) { $data['unit']=$datum['unit']; }
-							if(isset($datum['unitref'])) {
-								$data['unitref']=$datum['unitref'];
-								$graph['ids'][]=$datum['unitref'];
-							}
-							if(isset($datum['annotation'])) { $data['annotation']=$datum['annotation']; }
-							if(isset($datum['number'])) {
-								$val=$Set->exponentialGen($datum['number']);$nval=[];
-								$nval["@id"]=$data["@id"].'value/';
-								$nval["@type"]="sdo:numericValue";
-								if(isset($datum['equality'])) { $nval['equality']=$datum['equality']; }
-								if(!empty($datum['max'])) {
-									if($val['isint']) {
-										$nval['datatype']='xsd:integer';
-										$nval['min']=(int) $val['scinot'];
-									} else {
-										$nval['datatype']='xsd:float';
-										$nval['min']=(float) $val['scinot'];
-									}
-									$max=$Set->exponentialGen($pnt['max']);
-									if($val['isint']) {
-										$nval['max']=(int) $max['scinot'];
-									} else {
-										$nval['max']=(float) $max['scinot'];
-									}
-								} else {
-									if($val['isint']) {
-										$nval['datatype']='xsd:integer';
-										$nval['number']=(int) $val['scinot'];
-									} else {
-										$nval['datatype']='xsd:float';
-										$nval['number']=(float) $val['scinot'];
-									}
-								}
-								if(!empty($val['sf'])) { $nval['sigfigs']=$val['sf']; }
-								if(!empty($datum['error'])) {
-									$nval['error']=$datum['error'];
-									if(!empty($datum['errortype'])) {
-										$nval['errortype']=$datum['errortype'];
-									} else {
-										$nval['errortype']='unknown';
-									}
-									$nval['errornote']='from source';
-								} else {
-									$nval['error']=$val['error'];
-									$nval['errortype']='absolute';
-									$nval['errornote']='estimated from value';
-								}
-								if(!empty($datum['note'])) { $nval['note']=$datum['note']; }
+							if(!empty($datum['note'])) { $nval['note']=$datum['note']; }
+							if($flat) {
+								$data=$data+$nval;
+							} else {
 								$data['numericvalue']=$nval;
-							} elseif(isset($datum['text'])) {
-								$tval=[];
-								$tval["@id"]=$data["@id"].'value/';
-								$tval["@type"]="sdo:textValue";
-								$tval['text']=$datum['text'];
-								if(!empty($datum['note'])) { $tval['note']=$datum['note']; }
+							}
+						} elseif(isset($datum['text'])) {
+							$tval=[];
+							$tval["@id"]=$data["@id"].'value/';
+							$tval["@type"]="sdo:textValue";
+							$tval['text']=$datum['text'];
+							if(!empty($datum['note'])) { $tval['note']=$datum['note']; }
+							if($flat) {
+								$data=$data+$tval;
+							} else {
 								$data['textstring']=$tval;
 							}
-							$dpnt['data'][]=$data;
+						} else {
+							echo "Missing/misassigned value!";
+							debug($pnt);exit;
 						}
+						$dpnt['data'][]=$data;
 					}
 					$set['datapoint'][]=$dpnt;
 				}
 			}
 		}
-		//debug($set);exit;
 
 		$sci['dataset']=$set;
 
@@ -1511,8 +1448,12 @@ class Scidata extends AppModel
 
 		// remove empty array elements
 		foreach($output as $key=>$part) {
-			if(empty($output[$key])) {
-				unset($output[$key]);
+			if($key!="@id") {
+				if(empty($part)) {
+					unset($output[$key]);
+				}
+			} else {
+				$output["@id"]="";
 			}
 			if($key=="@graph") {
 				foreach($output["@graph"] as $key2=>$part2) {
@@ -1527,17 +1468,19 @@ class Scidata extends AppModel
 
 	/**
 	 * create output and return as json
+	 * @param bool $flat
 	 * @return string
 	 */
-	public function asjsonld() {
-		$output=$this->asarray();
+	public function asjsonld(bool $flat=false): string {
+		$output=$this->asarray($flat);
 		return json_encode($output,JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION|JSON_NUMERIC_CHECK);
 	}
 
 	/**
 	 * export data from class variables to set format
+	 * @return array
 	 */
-	public function rawout()
+	public function rawout(): array
 	{
 		$this->asarray();
 		$output=[];
@@ -1549,7 +1492,7 @@ class Scidata extends AppModel
 		$output['base']=$this->base;
 		$output['context']=$this->contexts;
 		$output['meta']=$this->meta;
-		$output['authors']=$this->authors;
+		$output['creators']=$this->creators;
 		$output['related']=$this->related;
 		$output['keywords']=$this->keywords;
 		$output['starttime']=$this->starttime;
@@ -1589,46 +1532,80 @@ class Scidata extends AppModel
 	 * @param int $idx
 	 * @param array $condrels
 	 * @param array $graph
+	 * @param bool $flat
 	 * @return array
 	 */
-	private function makedata(array $facet, string $type,int $idx,array &$condrels,array &$graph) {
+	private function makedata(array $facet, string $type,int $idx,array &$condrels,array &$graph, bool $flat): array {
 		$Set = ClassRegistry::init('Dataset');
-		$prop=$facet['property'];
-		$unit=$facet['unit'];
-		$vals=$facet['value'];
-		$errs=null;
-		if(isset($facet['errors'])) {
-			$errs=$facet['errors'];
+		$quant='';
+		if(isset($facet['quantity'])) {
+			$quant=$facet['quantity'];
+		} elseif(isset($facet['quantity#'])) {
+			$quant=str_replace('#','',$facet['quantity#']);
 		}
+		if(!empty($facet['values'])) {
+			// 'values' valuearray used in dataset scidataold function
+			$vals=$facet['values'];
+		} elseif(!empty($facet['value'])||$facet['value']==0) {
+			// value used in newer dataset scidata function(flat)
+			$vals=$facet['value'];
+		} else {
+			echo "No values!";debug($facet);exit;
+		}
+		$errs=null;$unit=null;
+		if(!empty($facet['unit'])) { $unit=$facet['unit']; }
+		if(!empty($facet['errors'])) { $errs=$facet['errors']; }
 		$output=[];
 		if($type=='condition') {
-			$output['property']=$prop;
-			if(isset($facet['propertyref'])) {
-				$output['propertyref']=$facet['propertyref'];
-				$graph['ids'][]=$facet['propertyref'];
+			if(!empty($facet['phase'])) {
+				$output['phase']=$facet['phase'];
 			}
-			if(isset($facet['propid'])) {
-				$output['propertyref']=$facet['propid'];
-				$graph['ids'][]=$facet['propid'];
+			if(!empty($facet['phase#'])) {
+				$output['phase#']=$facet['phase#'];
+				$graph['ids'][]=$facet['phase#'];
 			}
-			if(isset($facet['unit'])) {
+			if(!empty($facet['quantitykind'])) {
+				$output['quantitykind']=$facet['quantitykind'];
+			}
+			if(!empty($facet['quantitykind#'])) {
+				$output['quantitykind#']=$facet['quantitykind#'];
+				$graph['ids'][]=$facet['quantitykind#'];
+			}
+			if(!empty($facet['quantity'])) {
+				$output['quantity']=$facet['quantity'];
+			}
+			if(!empty($facet['quantity#'])) {
+				$output['quantity#']=$facet['quantity#'];
+				if(stristr($facet['quantity#'],':')) {
+					$graph['ids'][]=$facet['quantity#'];
+				}
+			}
+			if(!empty($facet['source'])) {
+				$output['source']=$facet['source'];
+			}
+			if($unit) {
 				$output['unit'] = $unit;
 			}
-			if(!empty($facet['unitref'])) {
-				$output['unitref']=$facet['unitref'];
-				$graph['ids'][]=$facet['unitref'];
+			if(!empty($facet['unit#'])) {
+				$output['unit#']=$facet['unit#'];
+				$graph['ids'][]=$facet['unit#'];
 			}
 			if(is_array($vals)) {
-				$output['valuearray']=[];$vidx=1;
+				$output['valuearray']=[];
+				## TODO: implement 'flat' .... then deal with datapoint conditions
 				foreach($vals as $vidx=>$val) {
-					$serrows=$val['rows'];
+					if(!empty($val['rows'])) {
+						$serrows=$val['rows'];
+					} else {
+						echo "No rows for this condition value!";exit;
+					}
 					if(isset($val['meta'])) {
 						$val=$val['meta'];
 					} elseif(isset($val['value'])) {
 						$val=$Set->exponentialGen($val['value']);
 					}
 					$value=[];
-					$value['@id']='condition/'.$idx.'/value/'.$vidx.'/';
+					$value['@id']='condition/'.$idx.'/value/'.($vidx+1).'/';
 					$value['@type']='sdo:numericValue';
 					if($val['isint']) {
 						$value['datatype']='xsd:integer';
@@ -1655,48 +1632,94 @@ class Scidata extends AppModel
 						$value['errortype']='absolute';
 						$value['errornote']='estimated from data';
 					}
-					$output['valuearray'][]=$value;
+					if($flat) {
+						$output=$output+$value;
+					} else {
+						$output['valuearray'][]=$value;
+					}
 					foreach($serrows as $serrow) {
 						list($ser,$row)=explode(':',$serrow);
-						$condrels[$type][$ser][$prop][$row]=$value['@id'];
+						$condrels[$type][$ser][$quant][$row]=$value['@id'];
 					}
-					//debug($condrels);
-					$vidx++;
 				}
 			} else {
-				$output['value']=[];
-				$value=[];$val=$vals;
-				$value['@id']='condition/'.$idx.'/value/';
-				$value['@type']='sdo:numericValue';
-				if(isset($val['meta'])) {
-					$val=$val['meta'];
-				} elseif(isset($val['value'])) {
-					$val=$Set->exponentialGen($val['value']);
-				}
-				if($val['isint']) {
-					$value['datatype']='xsd:integer';
-					$value['number']=(int) $val['scinot'];
-				} else {
-					$value['datatype']='xsd:float';
-					$dp=$val['sf']-($val['exponent']+1);
-					$value['number']= number_format($val['scinot'],$dp,'.','');
-				}
-				if(!empty($errs)) {
-					$value['error']=$errs['val'];
-					if(!is_null($errs['errortype'])) {
-						$value['errortype']=$errs['errortype'];
+				$val=$vals;
+				if($flat) {
+					$serrows=$facet['rows'];
+					if(isset($val['meta'])) {
+						$val=$val['meta'];
+					} elseif(isset($val['value'])) {
+						$val=$Set->exponentialGen($val['value']);
 					} else {
-						$value['errortype']='unknown';
+						$val=$Set->exponentialGen($val);
 					}
-					if(!is_null($errs['note'])) { $value['errnote']=$errs['note']; }
-				} elseif($val['error']!='') {
-					$value['error']=$val['error'];
-					$value['errortype']='absolute';
-					$value['errornote']='estimated from data';
+					if($val['isint']) {
+						$output['datatype']='xsd:integer';
+						$output['number']=(int) $val['scinot'];
+					} else {
+						$output['datatype']='xsd:float';
+						$dp=$val['sf']-($val['exponent']+1);
+						$output['number'] = number_format($val['scinot'],$dp,'.','');
+					}
+					if(!empty($val['sf'])) {
+						$output['sigfigs'] = $val['sf'];
+					}
+					if(!empty($errs)) {
+						$output['error']=$errs['val'];
+						if(!is_null($errs['errortype'])) {
+							$output['errortype']=$errs['errortype'];
+						} else {
+							$output['errortype']='unknown';
+						}
+						if(!is_null($errs['note'])) { $output['errnote']=$errs['note']; }
+					} elseif($val['error']!='') {
+						$output['error']=$val['error'];
+						$output['errortype']='absolute';
+						$output['errornote']='estimated from data';
+					}
+					//$condrels[$type][$idx][$quant]=$output;
+					foreach($serrows as $serrow) {
+						list($ser,$row)=explode(':',$serrow);
+						$condrels[$type][$ser][$quant][$row]='condition/'.$idx.'/';
+					}
+				} else {
+					$output['value']=[];$value=[];
+					$value['@id']='condition/'.$idx.'/value/';
+					$value['@type']='sdo:numericValue';
+					if(isset($val['meta'])) {
+						$val=$val['meta'];
+					} elseif(isset($val['value'])) {
+						$val=$Set->exponentialGen($val['value']);
+					} else {
+						$val=$Set->exponentialGen($val);
+					}
+					if($val['isint']) {
+						$value['datatype']='xsd:integer';
+						$value['number']=(int) $val['scinot'];
+					} else {
+						$value['datatype']='xsd:float';
+						$dp=$val['sf']-($val['exponent']+1);
+						$value['number']= number_format($val['scinot'],$dp,'.','');
+					}
+					if(!empty($errs)) {
+						$value['error']=$errs['val'];
+						if(!is_null($errs['errortype'])) {
+							$value['errortype']=$errs['errortype'];
+						} else {
+							$value['errortype']='unknown';
+						}
+						if(!is_null($errs['note'])) { $value['errnote']=$errs['note']; }
+					} elseif($val['error']!='') {
+						$value['error']=$val['error'];
+						$value['errortype']='absolute';
+						$value['errornote']='estimated from data';
+					}
+					$output['value']=$value;
+					$condrels[$type][$idx][$quant]=[$value['@id']=>$val];
+					//debug($condrels);exit;
 				}
-				$output['value']=$value;
-				$condrels[$type][$idx][$prop]=[$value['@id']=>$val];
 			}
+			//debug($output);debug($condrels);exit;
 		}
 		return $output;
 	}
@@ -1705,32 +1728,36 @@ class Scidata extends AppModel
 	 * pass metadata through the group
 	 * @param array $pnt
 	 * @param string $dtype
-	 * @param int $p
 	 * @param string $prop
 	 * @param array|null $olinks
 	 * @param array $graph
 	 * @return array
 	 */
-	private function passmeta(array $pnt, string $dtype, int $p, string $prop, array $olinks, array &$graph): array
+	private function passmeta(array $pnt, string $dtype, string $prop, array $olinks, array &$graph): array
 	{
-		$Ppty=ClassRegistry::init('Property');
+		//debug($pnt);//exit;
+		$Qty=ClassRegistry::init('Quantity');
 		$val['type']=$dtype;
-		if(!empty($pnt['quantity'])) { $val['quantity']=$pnt['quantity']; }
-		if(!empty($pnt['property'])) {
-			$val['property']=$pnt['property'];
+		if(!empty($pnt['related'])) {
+			list($type,)=explode("/",$pnt['related']);
+			$val[$type]=$pnt['related'];
+		}
+		if(!empty($pnt['phase'])) { $val['phase']=$pnt['phase']; }
+		if(!empty($pnt['quantitykind'])) { $val['quantitykind']=$pnt['quantitykind']; }
+		if(!empty($pnt['quantitykind#'])) { $val['quantitykind#']=$pnt['quantitykind#']; }
+		if(!empty($pnt['quantity'])) {
+			$val['quantity']=$pnt['quantity'];
 		} else {
-			$conds=['datafield like'=>"%'".$prop."'%"];$cont=['Quantity'=>'Unit'];
-			$pmeta=$Ppty->find('first',['conditions'=>$conds,'contain'=>$cont,'recursive'=>-1]);
-			$val['property']=$pmeta['Property']['name'];
+			$conds=['field like'=>"%'".$prop."'%"];$cont=['Quantitykind'=>'Unit'];
+			$pmeta=$Qty->find('first',['conditions'=>$conds,'contain'=>$cont,'recursive'=>-1]);
+			debug($pmeta);
+			$val['quantity']=$pmeta['Quantity']['name'];
 		}
 		if(!empty($olinks[$dtype][$prop])) {
-			$val['propertyref']=$olinks[$dtype][$prop];
+			$val['quantity#']=$olinks[$dtype][$prop];
 		}
-		if(!empty($pnt['propertyref'])) { $val['propertyref']=$pnt['propertyref']; }
-		if(!empty($val['propertyref'])) { $graph['ids'][]=$val['propertyref']; }
-		if(!empty($series['anns']['rows'][$prop][$p])) {
-			$val['annotation']=$series['anns']['rows'][$prop][$p];
-		}
+		if(!empty($pnt['quantity#'])) { $val['quantity#']=$pnt['quantity#']; }
+		if(!empty($val['quantity#'])) { $graph['ids'][]=$val['quantity#']; }
 		if(!empty($pnt['equality'])) { $val['equality']=$pnt['equality']; }
 		if(isset($pnt['number'])) { $val['number']=$pnt['number']; }
 		if(!empty($pnt['scinot'])) { $val['scinot']=$pnt['scinot']; }
@@ -1738,10 +1765,10 @@ class Scidata extends AppModel
 		if(isset($pnt['isint'])) { $val['isint']=$pnt['isint']; }
 		if(isset($pnt['text'])) { $val['text']=$pnt['text']; }
 		if(!empty($pnt['max'])) { $val['max']=$pnt['max']; }
-		if(!empty($pnt['sf'])) { $val['sf'] = $pnt['sf']; }
+		if(!empty($pnt['sigfigs'])) { $val['sigfigs'] = $pnt['sigfigs']; }
 		if(!empty($pnt['dp'])) { $val['dp'] = $pnt['dp']; }
 		if(!empty($pnt['unit'])) { $val['unit']=$pnt['unit']; }
-		if(!empty($pnt['unitref'])) { $val['unitref']=$pnt['unitref']; }
+		if(!empty($pnt['unit#'])) { $val['unit#']=$pnt['unit#']; }
 		if(!empty($pnt['error'])) { $val['error']=$pnt['error']; }
 		if(!empty($pnt['errortype'])) { $val['errortype']=$pnt['errortype']; }
 		if(!empty($pnt['note'])) { $val['note']=$pnt['note']; }
