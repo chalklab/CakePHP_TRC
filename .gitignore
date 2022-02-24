@@ -3,16 +3,15 @@
 .idea
 app/.DS_Store
 app/Config/.DS_Store
+app/Config/database.php
 app/Console/.DS_Store
 app/Controller/.DS_Store
 app/Locale/.DS_Store
 app/Model/.DS_Store
 app/Plugin/.DS_Store
-app/Plugin/Crossref/Config/
 app/Test/.DS_Store
 app/Vendor/.DS_Store
 app/View/.DS_Store
-app/View/Admin/
 app/tmp/.DS_Store
 app/tmp/cache/.DS_Store
 app/tmp/cache/models/.DS_Store
@@ -22,9 +21,5 @@ app/webroot/.DS_Store
 app/webroot/exec/
 app/webroot/files/.DS_Store
 app/webroot/js/.DS_Store
-app/webroot/js/flot/.DS_Store
-app/webroot/js/flot/examples/.DS_Store
-app/webroot/js/flot/examples/gauge/
 lib/.DS_Store
 lib/Cake/.DS_Store
-tmp/
