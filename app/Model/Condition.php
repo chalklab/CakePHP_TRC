@@ -9,7 +9,9 @@
 class Condition extends AppModel
 {
 	// relationships to other tables
-	public $belongsTo = ['Compohnent','Datapoint','Dataseries','Dataset',
+	public $belongsTo = [
+		'Compohnent'=>['foreignKey' => 'component_id'],
+		'Datapoint','Dataseries','Dataset',
 		'Phase','Quantity','Quantitykind','System','Unit'
 	];
 
