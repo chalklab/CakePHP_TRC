@@ -8363,6 +8363,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction (var 3) data reported to four decimal places in Table S3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -8377,7 +8378,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>8.4e-05</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -8389,6 +8390,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction (var 3) data reported to four decimal places in Table S3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -8403,7 +8405,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>8.16e-05</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -8415,6 +8417,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction (var 3) data reported to four decimal places in Table S3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -8429,7 +8432,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>7.72e-05</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -10703,6 +10706,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction (var 3) data reported to four decimal places in Table S3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -10717,7 +10721,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0001492</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13375,6 +13379,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction (var 2) data reported to four decimal places in Table S3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13384,7 +13389,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>8.4e-05</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13396,6 +13401,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction (var 2) data reported to four decimal places in Table S3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13405,7 +13411,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>8.16e-05</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13417,6 +13423,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction (var 2) data reported to four decimal places in Table S3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13426,7 +13433,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>7.72e-05</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

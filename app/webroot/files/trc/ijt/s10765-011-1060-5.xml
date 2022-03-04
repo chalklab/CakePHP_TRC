@@ -2841,11 +2841,13 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
+    <!-- updated value/sig figs - aqueous concentration of L-alanine in Table 1 has three sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.01</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -2854,8 +2856,8 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
-        <nVarValue>0.024</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarValue>0.0239</nVarValue>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2867,11 +2869,13 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
+    <!-- updated value/sig figs - aqueous concentration of L-alanine in Table 1 has three sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.01</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -2881,7 +2885,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.032</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2893,11 +2897,13 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
+    <!-- updated value/sig figs - aqueous concentration of L-alanine in Table 1 has three sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.01</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -2907,7 +2913,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.056</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2919,11 +2925,13 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
+    <!-- updated value/sig figs - aqueous concentration of L-alanine in Table 1 has three sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
-        <nVarValue>0.01</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarValue>0.02</nVarValue>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -2933,7 +2941,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.072</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2945,11 +2953,13 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
+    <!-- updated value/sig figs - aqueous concentration of L-alanine in Table 1 has three sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.01</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -2959,7 +2969,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.088</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2971,11 +2981,13 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
+    <!-- updated value/sig figs - aqueous concentration of L-alanine in Table 1 has three sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.01</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -2984,8 +2996,8 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
-        <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarValue>0.0996</nVarValue>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3777,11 +3789,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.02</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -3803,11 +3816,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.02</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -3829,11 +3843,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.02</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -3855,11 +3870,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.02</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -3881,11 +3897,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.02</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -3907,11 +3924,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - aqueous concentration of Ag2SO4 in Table 1 has two sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>0.02</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>

@@ -510,11 +510,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 0.1 K in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>423.2</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

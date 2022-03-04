@@ -561,6 +561,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported to 0.00001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -570,7 +571,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.4993</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -624,6 +625,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported to 0.00001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -633,7 +635,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9969</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -834,6 +836,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported to 0.00001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -843,7 +846,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.4993</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -897,6 +900,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported to 0.00001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -906,7 +910,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9969</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1107,6 +1111,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported to 0.00001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1116,7 +1121,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.4993</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1170,6 +1175,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported to 0.00001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1179,7 +1185,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9969</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1380,6 +1386,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported to 0.00001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1389,7 +1396,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.4993</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1443,6 +1450,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported to 0.00001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1452,7 +1460,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9969</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

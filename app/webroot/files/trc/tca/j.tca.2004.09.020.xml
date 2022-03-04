@@ -762,6 +762,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other pressure data in Table 1 has one decimal place and three sig figs -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -771,7 +772,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>30</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

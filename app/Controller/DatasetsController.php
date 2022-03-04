@@ -8,8 +8,8 @@
  */
 class DatasetsController extends AppController
 {
-	public $uses = ['Chemical','ChemicalsDataset','Condition','Data','Dataset','Dataseries','File','Journal',
-		'Quantity','Reference','Report','Sampleprop','Scidata','Substance','System','Trc','Unit'];
+	public $uses = ['Chemical','ChemicalsDataset','Condition','Crosswalk','Data','Dataset','Dataseries','File',
+		'Journal','Quantity','Reference','Report','Sampleprop','Scidata','Substance','System','Unit'];
 
 	public array $sdmodel = [
 		'Chemical' => ['fields' => ['id', 'orgnum', 'sourcetype'],
@@ -105,7 +105,7 @@ class DatasetsController extends AppController
 	public function beforeFilter()
 	{
 		parent::beforeFilter();
-		$this->Auth->allow('index','view','scidata','recent');
+		$this->Auth->allow('index','view','scidata','recent','sddslist');
 	}
 
 	/**
@@ -286,7 +286,7 @@ class DatasetsController extends AppController
 	public function sddslist(int $jid=1,int $off=1)
 	{
 		$sets=$this->Dataset->find('list',['fields'=>['id','title'],'conditions'=>['Reference.journal_id'=>$jid],
-			'contain'=>['Reference'],'order'=>'id','offset'=>$off]);  // TODO: offset not working :(
+			'contain'=>['Reference'],'order'=>'id','offset'=>$off,'recursive'=>-1]);  // TODO: offset not working :(
 		$output=[];
 		foreach($sets as $setid=>$title) {
 			preg_match('/Dataset (\d+) in paper 10\.\d+\/(.+)$/',$title,$m);
@@ -300,6 +300,7 @@ class DatasetsController extends AppController
 
 	/**
 	 * export jsonld files
+	 * create a zip archive of all SciData JSON-LD files for a journal
 	 * @param int $jid
 	 * @param int $limit
 	 * @param int $offset
@@ -307,11 +308,7 @@ class DatasetsController extends AppController
 	 */
 	public function exportjld(int $jid=1, int $limit=150000, int $offset=0)
 	{
-		//$sets=[];
-		//$temp=$this->Dataset->query('SELECT id,title FROM `datasets` WHERE points < 6 and points > 1 and id in (select dataset_id from data where quantity_id=135); ');
-		//foreach($temp as $t) { $t=$t['datasets'];$sets[$t['id']]=$t['title']; }
-		//debug($sets);exit;
-		$sets=$this->Dataset->find('list',['fields'=>['id','title'],'conditions'=>['Reference.journal_id'=>$jid],'contain'=>['Reference'],'order'=>'points','offset'=>$offset,'limit'=>$limit]);
+		$sets=$this->Dataset->find('list',['fields'=>['id','title'],'conditions'=>['Reference.journal_id'=>$jid],'contain'=>['Reference'],'order'=>'points','offset'=>$offset,'limit'=>$limit,'recursive'=>-1]);
 		$setcnt=count($sets);//debug($sets);exit;
 		$start=str_pad($offset,5,'0',STR_PAD_LEFT);
 		$end=str_pad($setcnt,5,'0',STR_PAD_LEFT);
@@ -331,12 +328,14 @@ class DatasetsController extends AppController
 				}
 				preg_match('/^Dataset ([0-9]+) in paper 10\.\d+\/(.+)$/', $title, $m);
 				$filename = $m[2] . '_' . $m[1] . '.jsonld';
+				echo "File '".$filename."' processed<br/>";
 				$zip->addFromString($filename, $json);
-				//echo "Processed file '$filename'<br/>";
+			} else {
+				echo "Download not valid ".$setid."<br/>";exit; //detects code error
 			}
 		}
 		$zip->close();
-		sleep(5);
+		sleep(5);  # wait till the file is saved
 		chmod($folder.".zip", 0777);
 		exit;
 	}
@@ -348,18 +347,17 @@ class DatasetsController extends AppController
 	 */
 	public function jlderrors(int $jid=1)
 	{
-		$sets=$this->Dataset->find('list',['fields'=>['id'],'conditions'=>['Reference.journal_id'=>$jid],'contain'=>['Reference']]);
-		//debug($sets);exit;
+		$sets=$this->Dataset->find('list',['fields'=>['id'],'conditions'=>['Reference.journal_id'=>$jid],'contain'=>['Reference'],'order'=>'id','recursive'=>-1]);
 		foreach($sets as $setid) {
 			$url='https://sds.coas.unf.edu/trc/datasets/scidata/'.$setid;
 			$hdrs=get_headers($url,true);
+			echo "> Processing set ".$setid."<br/>";
 			if(stristr($hdrs[0],'200')) {
 				$json = file_get_contents($url);
 				if(stristr($json,'<span')) {
 					echo "<br/>Error in set ".$setid."<br/>";
 				}
 			}
-			echo ">";
 		}
 		exit;
 	}
@@ -368,6 +366,7 @@ class DatasetsController extends AppController
 	 * scidata function that uses the SciData class to create the file
 	 * @param string $id
 	 * @param string $down
+	 * @return void
 	 */
 	public function scidata(string $id,string $down="")
 	{
@@ -448,10 +447,9 @@ class DatasetsController extends AppController
 			$subs = $sys['Substance'];
 			foreach ($subs as $subidx => $sub) {
 				$s = [];
-				$opts = ['name', 'formula', 'mw'];
-				foreach ($opts as $opt) {
-					$s[$opt] = $sub[$opt];
-				}
+				$s['name']=$sub['name'];
+				$s['formula']=$sub['formula'];
+				$s['molweight']=$sub['mw'];
 				foreach ($sub['Identifier'] as $subid) {
 					$s[$subid['type']] = $subid['value'];
 				}
@@ -543,8 +541,11 @@ class DatasetsController extends AppController
 					$s['phase'][]=$phase['Phasetype']['type'];
 				}
 			}
-			if(empty($s['phase'])) { unset($s['phase']); }
-			$s['phase']=array_values(array_unique($s['phase']));
+			if(empty($s['phase'])) {
+				unset($s['phase']);
+			} else {
+				$s['phase']=array_values(array_unique($s['phase']));
+			}
 			// add mixture compohnents
 			foreach($mix['Compohnent'] as $cmp) {
 				$const=[];
@@ -840,11 +841,11 @@ class DatasetsController extends AppController
 		echo $json;exit;
 	}
 
-	/**
-	 * old version of scidata function
-	 * @param string $id
-	 * @param string $down
-	 */
+//	/**
+//	 * old version of scidata function
+//	 * @param string $id
+//	 * @param string $down
+//	 */
 //	public function scidataold(string $id,string $down="")
 //	{
 //		// Note: there is an issue with the retrival of substances under system if id is not requested as a field
@@ -1278,6 +1279,7 @@ class DatasetsController extends AppController
 	/**
 	 * test if jsonld files are valid
 	 * @param int $max
+	 * @return void
 	 */
 	public function test(int $max=100)
 	{
@@ -1306,7 +1308,9 @@ class DatasetsController extends AppController
 	}
 
 	/**
-	 * link chemcials and datasets
+	 * link chemicals and datasets
+	 * a convenience join table (not required for the data model)
+	 * @return void
 	 */
 	public function chemlinks()
 	{
@@ -1356,11 +1360,11 @@ class DatasetsController extends AppController
 	 * @param $fields
 	 * @param $nspaces
 	 * @param $ontlinks
+	 * @return void
 	 */
 	private function getcw($type,&$fields,&$nspaces,&$ontlinks) {
-		$c=['Ontterm'=>['Nspace']];$table="Trc";
+		$c=['Ontterm'=>['Nspace']];$table="Crosswalk";
 		$metas = $this->$table->find('all',['contain'=>$c,'recursive'=>-1]);
-		//debug($metas);
 		$fields[$type]=$ontlinks[$type]=[];
 		foreach ($metas as $meta) {
 			if($meta[$table]['sdsubsection']==$type) {

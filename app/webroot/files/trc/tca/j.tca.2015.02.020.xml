@@ -15749,6 +15749,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty in temperature (var 2) indicated as 0.2 K in Table 3 footnote in SI document -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -15758,7 +15759,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>264.5</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -15833,6 +15834,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty in temperature (var 2) indicated as 0.2 K in Table 3 footnote in SI document -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -15842,7 +15844,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>245.5</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

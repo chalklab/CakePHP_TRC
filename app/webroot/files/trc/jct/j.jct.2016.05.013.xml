@@ -4456,11 +4456,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -4586,11 +4587,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -4716,11 +4718,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -4846,11 +4849,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -4976,11 +4980,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -5106,11 +5111,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -5236,11 +5242,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -5366,11 +5373,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -5496,11 +5504,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -5626,11 +5635,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -5756,11 +5766,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for temperature (var 1) 16 mK in Table 6 of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>293.5</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>

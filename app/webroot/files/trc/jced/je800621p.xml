@@ -1395,6 +1395,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - termperature (var 2) reported to 0.01 K in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1404,7 +1405,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>333</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1416,6 +1417,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - termperature (var 2) reported to 0.01 K in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1425,7 +1427,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>338</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

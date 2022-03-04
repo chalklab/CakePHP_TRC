@@ -2,7 +2,7 @@
 
 Controllers are logic coordinators.  They receive a request from the webserver and direct execution of the PHP scripts
 to a particular (public) function in the file.  For instance in the `FilesController.php` file, the `public function most`
-is run when the URL sent to the server is `https://example.org/datasets/most`.
+is run when the URL sent to the server is `https://example.org/files/most`.
 
 If a function is not for general use, i.e., only for authorized users, then name of the function must be identified
 as such, which is implemented using the Auth (Authorization ) component. As shown below only functions named in the
@@ -18,3 +18,4 @@ public function beforeFilter()
 }
 ```
 
+## Controllers in CakePHP

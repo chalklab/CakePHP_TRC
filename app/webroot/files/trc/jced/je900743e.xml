@@ -11901,11 +11901,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>941.1</nPropValue>
@@ -11922,16 +11924,17 @@
         <nVarValue>322.85</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
-<!-- updated sig figs to 2 (from 1) per original paper -->
+      <!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -11955,11 +11958,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>945.7</nPropValue>
@@ -11982,11 +11987,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>958.1</nPropValue>
@@ -12009,11 +12016,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>942.4</nPropValue>
@@ -12036,11 +12045,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>986.9</nPropValue>
@@ -12063,11 +12074,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>971.3</nPropValue>
@@ -12090,11 +12103,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>950.3</nPropValue>
@@ -12117,11 +12132,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>924.8</nPropValue>
@@ -12144,11 +12161,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>997.4</nPropValue>
@@ -12171,11 +12190,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>982.2</nPropValue>
@@ -12198,11 +12219,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>966.1</nPropValue>
@@ -12225,11 +12248,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>923</nPropValue>
@@ -12252,11 +12277,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1007.1</nPropValue>
@@ -12279,11 +12306,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>991.3</nPropValue>
@@ -12306,11 +12335,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>975.4</nPropValue>
@@ -12333,11 +12364,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>960.4</nPropValue>
@@ -12360,11 +12393,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1016.9</nPropValue>
@@ -12387,11 +12422,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1008.1</nPropValue>
@@ -12414,11 +12451,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>950.1</nPropValue>
@@ -12441,11 +12480,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>916.8</nPropValue>
@@ -12468,11 +12509,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>989.1</nPropValue>
@@ -12495,11 +12538,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>893.6</nPropValue>
@@ -12522,11 +12567,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>912.6</nPropValue>
@@ -12549,11 +12596,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>979.9</nPropValue>
@@ -12576,11 +12625,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>956</nPropValue>
@@ -12603,11 +12654,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>968.5</nPropValue>
@@ -12630,11 +12683,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>979.6</nPropValue>
@@ -12657,11 +12712,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>963.8</nPropValue>
@@ -12684,11 +12741,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>987.9</nPropValue>
@@ -12711,11 +12770,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1004.7</nPropValue>
@@ -12738,11 +12799,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>891.5</nPropValue>
@@ -12765,11 +12828,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>910.7</nPropValue>
@@ -12792,11 +12857,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>919.6</nPropValue>
@@ -12819,11 +12886,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>937.5</nPropValue>
@@ -12846,11 +12915,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>921.3</nPropValue>
@@ -12873,11 +12944,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>978.9</nPropValue>
@@ -12900,11 +12973,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>939.2</nPropValue>
@@ -12927,11 +13002,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>984.3</nPropValue>
@@ -12954,11 +13031,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>947.7</nPropValue>
@@ -12981,11 +13060,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>994.4</nPropValue>
@@ -13008,11 +13089,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1003.8</nPropValue>
@@ -13035,11 +13118,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>971.4</nPropValue>
@@ -13062,11 +13147,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>957</nPropValue>
@@ -13089,11 +13176,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1014.6</nPropValue>
@@ -13116,11 +13205,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>985.9</nPropValue>
@@ -13143,11 +13234,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>969.7</nPropValue>
@@ -13170,11 +13263,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>946.6</nPropValue>
@@ -13197,11 +13292,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>914.5</nPropValue>
@@ -13224,11 +13321,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>942.4</nPropValue>
@@ -13251,11 +13350,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>934.5</nPropValue>
@@ -13278,11 +13379,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>916.1</nPropValue>
@@ -13305,11 +13408,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>888.3</nPropValue>
@@ -13332,11 +13437,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>906.2</nPropValue>
@@ -13359,11 +13466,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>966.1</nPropValue>
@@ -13386,11 +13495,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>961.2</nPropValue>
@@ -13413,11 +13524,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>943.1</nPropValue>
@@ -13440,11 +13553,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>936.6</nPropValue>
@@ -13467,11 +13582,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>911.8</nPropValue>
@@ -13494,11 +13611,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>981.4</nPropValue>
@@ -13521,11 +13640,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>965.1</nPropValue>
@@ -13548,11 +13669,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>945.4</nPropValue>
@@ -13575,11 +13698,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>917.3</nPropValue>
@@ -13602,11 +13727,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>991.5</nPropValue>
@@ -13629,11 +13756,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>977.4</nPropValue>
@@ -13656,11 +13785,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>939.3</nPropValue>
@@ -13683,11 +13814,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>999.9</nPropValue>
@@ -13710,11 +13843,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>983.6</nPropValue>
@@ -13737,11 +13872,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1012.6</nPropValue>
@@ -13764,11 +13901,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1001.8</nPropValue>
@@ -13791,11 +13930,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>968.1</nPropValue>
@@ -13818,11 +13959,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>954.2</nPropValue>
@@ -13845,11 +13988,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>983.3</nPropValue>
@@ -13872,11 +14017,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>976.8</nPropValue>
@@ -13899,11 +14046,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>952.6</nPropValue>
@@ -13926,11 +14075,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>931.7</nPropValue>
@@ -13953,11 +14104,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>883.4</nPropValue>
@@ -13980,11 +14133,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>903.3</nPropValue>
@@ -14007,11 +14162,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>965.9</nPropValue>
@@ -14034,11 +14191,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>939.3</nPropValue>
@@ -14061,11 +14220,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>958.4</nPropValue>
@@ -14088,11 +14249,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>908.4</nPropValue>
@@ -14115,11 +14278,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>962.9</nPropValue>
@@ -14142,11 +14307,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>952.2</nPropValue>
@@ -14169,11 +14336,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>932</nPropValue>
@@ -14196,11 +14365,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>979.4</nPropValue>
@@ -14223,11 +14394,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>961.8</nPropValue>
@@ -14250,11 +14423,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>942</nPropValue>
@@ -14277,11 +14452,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>912.6</nPropValue>
@@ -14304,11 +14481,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>988.3</nPropValue>
@@ -14331,11 +14510,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>975.1</nPropValue>
@@ -14358,11 +14539,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>911.5</nPropValue>
@@ -14385,11 +14568,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>996.6</nPropValue>
@@ -14412,11 +14597,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>979.5</nPropValue>
@@ -14439,11 +14626,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>951.1</nPropValue>
@@ -14466,11 +14655,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1010.8</nPropValue>
@@ -14493,11 +14684,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>998.7</nPropValue>
@@ -14520,11 +14713,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>980.6</nPropValue>
@@ -14547,11 +14742,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>935.7</nPropValue>
@@ -14574,11 +14771,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>975.4</nPropValue>
@@ -14601,11 +14800,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>927.9</nPropValue>
@@ -14628,11 +14829,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>936.4</nPropValue>
@@ -14655,11 +14858,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>880.7</nPropValue>
@@ -14682,11 +14887,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>900.4</nPropValue>
@@ -14709,11 +14916,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>948.4</nPropValue>
@@ -14736,11 +14945,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>949.6</nPropValue>
@@ -14763,11 +14974,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>929.8</nPropValue>
@@ -14790,11 +15003,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>977.1</nPropValue>
@@ -14817,11 +15032,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>959.2</nPropValue>
@@ -14844,11 +15061,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>940.3</nPropValue>
@@ -14871,11 +15090,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>986.1</nPropValue>
@@ -14898,11 +15119,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>973.2</nPropValue>
@@ -14925,11 +15148,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>956.8</nPropValue>
@@ -14952,11 +15177,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>907.6</nPropValue>
@@ -14979,11 +15206,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>993.7</nPropValue>
@@ -15006,11 +15235,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>975.1</nPropValue>
@@ -15033,11 +15264,13 @@
         <nVarValue>0.4</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>963.1</nPropValue>
@@ -15060,11 +15293,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>1009.1</nPropValue>
@@ -15087,11 +15322,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>996.4</nPropValue>
@@ -15114,11 +15351,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>959.1</nPropValue>
@@ -15141,11 +15380,13 @@
         <nVarValue>0.2</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>909.1</nPropValue>
@@ -15168,11 +15409,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>906.1</nPropValue>
@@ -15195,11 +15438,13 @@
         <nVarValue>0.5</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.3</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>977.8</nPropValue>
@@ -15222,11 +15467,13 @@
         <nVarValue>0.3</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.4</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>932.5</nPropValue>
@@ -15249,11 +15496,13 @@
         <nVarValue>0.1</nVarValue>
         <nVarDigits>2</nVarDigits>
       </VariableValue>
+<!-- updated sig figs to 2 (from 1) per original paper -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
+      
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
         <nPropValue>974.5</nPropValue>

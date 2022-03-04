@@ -1265,10 +1265,11 @@
         <nVarValue>288.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -2383,10 +2384,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -4619,10 +4621,11 @@
         <nVarValue>308.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -5737,10 +5740,11 @@
         <nVarValue>318.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -6977,10 +6981,11 @@
         <nVarValue>288.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -8095,10 +8100,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -10331,10 +10337,11 @@
         <nVarValue>308.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -11449,10 +11456,11 @@
         <nVarValue>318.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -12676,10 +12684,11 @@
         <nVarValue>288.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -13794,10 +13803,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -16030,10 +16040,11 @@
         <nVarValue>308.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -17148,10 +17159,11 @@
         <nVarValue>318.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty for molarity is 0.0002 mol kg−1 in Table 2 in paper-->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0619</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>

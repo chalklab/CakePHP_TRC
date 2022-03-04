@@ -23,7 +23,8 @@
     <yrPubYr>2011</yrPubYr>
     <dateCit>2020-09-29</dateCit>
     <sTitle>Thermodynamic and acoustic properties of binary mixtures of ethers.  III. Diisopropyl ether or oxolane with o- or m-toluidines  at 303.15, 313.15 and 323.15 K</sTitle>
-    <sAbstract>Densities poundsl and speeds of sound u, of binary mixtures formed by o-toluidine or m-toluidine  with diisopropyl ether (DIPE) or oxolane have been measured over the entire range of  composition at a temperature of (303.15, 313.15 and 323.15) K and atmospheric pressure.  The poundsl and u values were used to calculate isentropic compressibilities  US, Rao!|s molar sound  functions R, intermolecular free lengths Lf, specific acoustic impedances Z, excess molar  volumes  E  m V , excess isentropic compressibilities  E  S poundse , excess intermolecular free lengths  E  f L  and excess specific acoustic impedances ZE.. The results have been used to investigate  molecular interactions and structural effects in these mixtures. The speed of sound in present  mixtures has been estimated using several empirical and theoretical models to determine their  relative predicting ability in terms of pure component properties.</sAbstract>
+    <!-- cleaned abstract - SJC -->
+    <sAbstract>Densities ρ and speeds of sound u, of binary mixtures formed by o-toluidine or m-toluidine with diisopropyl ether (DIPE) or oxolane have been measured over the entire range of composition at a temperature of (303.15, 313.15 and 323.15) K and atmospheric pressure.  The ρ and u values were used to calculate isentropic compressibilities κS, Rao's molar sound functions R, intermolecular free lengths Lf, specific acoustic impedances Z, excess molar volumes VEm, excess isentropic compressibilities κES, excess intermolecular free lengths LEf and excess specific acoustic impedances ZE. The results have been used to investigate molecular interactions and structural effects in these mixtures. The speed of sound in present mixtures has been estimated using several empirical and theoretical models to determine their relative predicting ability in terms of pure component properties.</sAbstract>
     <sKeyword>Density</sKeyword>
     <sKeyword>Speed of sound</sKeyword>
     <sKeyword>Ether</sKeyword>
@@ -1391,6 +1392,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - next 9 points decreased sig figs by 1 for the mole fraction value based on original paper Table 2 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1400,7 +1402,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0717</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1416,7 +1418,7 @@
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>313.15</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -1442,7 +1444,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.2389</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1463,7 +1465,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.3255</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1484,7 +1486,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.4206</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1505,7 +1507,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5248</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1526,7 +1528,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.625</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1547,7 +1549,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.7415</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1568,7 +1570,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.866</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2165,6 +2167,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - next 9 points decreased sig figs by 1 for the mole fraction value based on original paper Table 2 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -2174,7 +2177,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0717</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2195,7 +2198,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.1513</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2216,7 +2219,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.2389</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2237,7 +2240,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.3255</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2258,7 +2261,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.4206</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2279,7 +2282,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5248</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2300,7 +2303,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.625</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2321,7 +2324,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.7415</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2342,7 +2345,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.866</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2939,6 +2942,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - next 9 points decreased sig figs by 1 for the mole fraction value based on original paper Table 3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -2948,7 +2952,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0743</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2969,7 +2973,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.1546</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2990,7 +2994,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.2421</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3011,7 +3015,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.3279</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3032,7 +3036,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.4275</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3053,7 +3057,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.53</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3074,7 +3078,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.6285</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3095,7 +3099,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.7424</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3116,7 +3120,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.8651</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3713,6 +3717,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - next 9 points decreased sig figs by 1 for the mole fraction value based on original paper Table 3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -3722,7 +3727,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.0743</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3743,7 +3748,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.1546</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3764,7 +3769,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.2421</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3785,7 +3790,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.3279</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3806,7 +3811,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.4275</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3827,7 +3832,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.53</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3848,7 +3853,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.6285</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3869,7 +3874,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.7424</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3890,7 +3895,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.8651</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

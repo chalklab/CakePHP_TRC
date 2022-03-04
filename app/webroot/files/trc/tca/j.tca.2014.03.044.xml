@@ -2268,6 +2268,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - other mole fraction (var 2) data measured to three sig figs Table 2 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -2277,7 +2278,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.02</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

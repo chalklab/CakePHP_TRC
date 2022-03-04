@@ -2182,6 +2182,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of temperature (var 2) data reported as 0.02 K in footnote of Table S2 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -2191,7 +2192,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>318.1</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3736,6 +3737,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of temperature (var 2) data reported as 0.02 K in footnote of Table S2 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -3745,7 +3747,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>283.1</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

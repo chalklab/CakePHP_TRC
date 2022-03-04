@@ -1226,6 +1226,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported as 0.10 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1235,7 +1236,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1289,6 +1290,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported as 0.10 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1298,7 +1300,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1352,6 +1354,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported as 0.10 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1361,7 +1364,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1501,6 +1504,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported as 0.10 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1510,7 +1514,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1627,6 +1631,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported as 0.10 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1636,7 +1641,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1868,6 +1873,7 @@
         <eVarPhase>Liquid</eVarPhase>
       </VarPhaseID>
     </Variable>
+    <!-- updated sig figs - molality (var 2) reported as 0.10 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1877,7 +1883,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.1</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>

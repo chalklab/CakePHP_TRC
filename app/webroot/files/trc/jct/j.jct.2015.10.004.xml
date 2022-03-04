@@ -8827,6 +8827,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -8841,7 +8842,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0037</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13849,6 +13850,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13863,7 +13865,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0087</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -15045,6 +15047,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -15059,7 +15062,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0062</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -15487,6 +15490,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -15501,7 +15505,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0062</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -16449,6 +16453,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -16463,7 +16468,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0062</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -40695,6 +40700,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -40709,7 +40715,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0087</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -51505,6 +51511,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -51519,7 +51526,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0073</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -52545,6 +52552,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -52559,7 +52567,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0037</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -52675,6 +52683,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -52689,7 +52698,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0073</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -52961,6 +52970,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -52975,7 +52985,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0037</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -53091,6 +53101,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 3) 0.0001 mol kg-1 in SI -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -53105,7 +53116,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.0073</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

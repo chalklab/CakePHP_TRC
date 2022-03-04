@@ -3859,6 +3859,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -3873,7 +3874,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.106</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3885,6 +3886,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -3899,7 +3901,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.108</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3911,6 +3913,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -3925,7 +3928,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.108</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3937,6 +3940,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -3951,7 +3955,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.115</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3963,6 +3967,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -3977,7 +3982,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.112</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3989,6 +3994,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4003,7 +4009,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.111</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4015,6 +4021,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4029,7 +4036,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.173</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4041,6 +4048,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4055,7 +4063,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.169</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4067,6 +4075,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4081,7 +4090,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.175</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4093,6 +4102,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4107,7 +4117,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.169</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4119,6 +4129,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4133,7 +4144,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.175</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4145,6 +4156,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4159,7 +4171,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.162</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4897,6 +4909,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4911,7 +4924,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.106</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4923,6 +4936,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4937,7 +4951,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.108</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4949,6 +4963,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4963,7 +4978,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.108</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4975,6 +4990,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4989,7 +5005,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.115</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -5001,6 +5017,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -5015,7 +5032,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.112</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -5027,6 +5044,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -5041,7 +5059,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.111</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -5053,6 +5071,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -5067,7 +5086,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.173</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -5079,6 +5098,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -5093,7 +5113,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.169</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -5105,6 +5125,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -5119,7 +5140,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.175</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -5131,6 +5152,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -5145,7 +5167,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.169</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -5157,6 +5179,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -5171,7 +5194,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.175</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -5183,6 +5206,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mass fraction (var 3) data reported as 0.001 in footnote of Table 4 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -5197,7 +5221,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.162</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

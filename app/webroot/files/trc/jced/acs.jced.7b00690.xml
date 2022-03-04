@@ -1000,6 +1000,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 2) 0.01 mol kg-1 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1303,6 +1304,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 2) 0.01 mol kg-1 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1312,7 +1314,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>1.02</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -1740,6 +1742,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 2) 0.01 mol kg-1 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1749,7 +1752,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>1.04</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1761,6 +1764,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 2) 0.01 mol kg-1 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1770,7 +1774,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>1.04</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2043,6 +2047,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 2) 0.01 mol kg-1 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -2052,7 +2057,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>1.04</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -2069,6 +2074,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for molality (var 2) 0.01 mol kg-1 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -2078,7 +2084,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>1.04</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>

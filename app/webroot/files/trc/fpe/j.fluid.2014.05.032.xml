@@ -3931,10 +3931,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -3962,10 +3963,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -3993,10 +3995,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4024,10 +4027,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4055,10 +4059,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4086,10 +4091,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4117,10 +4123,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4148,10 +4155,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4179,10 +4187,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4210,10 +4219,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4241,10 +4251,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4272,10 +4283,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4303,10 +4315,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4334,10 +4347,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4365,10 +4379,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4396,10 +4411,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4427,10 +4443,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4458,10 +4475,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4489,10 +4507,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4520,10 +4539,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4551,10 +4571,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4582,10 +4603,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4613,10 +4635,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4644,10 +4667,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4675,10 +4699,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4706,10 +4731,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4737,10 +4763,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4768,10 +4795,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4799,10 +4827,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4830,10 +4859,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.52</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4861,10 +4891,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4892,10 +4923,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4923,10 +4955,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4954,10 +4987,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -4985,10 +5019,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5016,10 +5051,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5047,10 +5083,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5078,10 +5115,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5109,10 +5147,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5140,10 +5179,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5171,10 +5211,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5202,10 +5243,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5233,10 +5275,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5264,10 +5307,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5295,10 +5339,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5326,10 +5371,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5357,10 +5403,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5388,10 +5435,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5419,10 +5467,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5450,10 +5499,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5481,10 +5531,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5512,10 +5563,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5543,10 +5595,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5574,10 +5627,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5605,10 +5659,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5636,10 +5691,11 @@
         <nVarValue>40000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5667,10 +5723,11 @@
         <nVarValue>30000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5698,10 +5755,11 @@
         <nVarValue>20000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5729,10 +5787,11 @@
         <nVarValue>10000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>
@@ -5760,10 +5819,11 @@
         <nVarValue>5000</nVarValue>
         <nVarDigits>1</nVarDigits>
       </VariableValue>
+      <!-- updated sig figs - uncertainty of molality (var 3) data reported as 5 x 10-4 in footnote of Table 4 -->
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.94</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>4</nVarNumber>

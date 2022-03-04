@@ -6078,6 +6078,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction values (var 2) have four sig figs in Table 2 in paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -6087,7 +6088,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.769</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -6330,6 +6331,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction values (var 2) have four sig figs in Table 2 in paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -6339,7 +6341,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.769</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -6582,6 +6584,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction values (var 2) have four sig figs in Table 2 in paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -6591,7 +6594,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.769</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

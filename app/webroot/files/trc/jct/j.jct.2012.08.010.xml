@@ -8586,6 +8586,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -8595,7 +8596,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9794</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -8985,6 +8986,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -8994,7 +8996,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9421</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -9006,6 +9008,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -9015,7 +9018,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9794</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -9405,6 +9408,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -9414,7 +9418,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9421</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -9426,6 +9430,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -9435,7 +9440,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9794</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -12948,6 +12953,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -12957,7 +12963,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9804</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13368,6 +13374,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13377,7 +13384,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9804</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13515,6 +13522,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13524,7 +13532,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.4867</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13536,6 +13544,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13545,7 +13554,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5519</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13662,6 +13671,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13671,7 +13681,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.8088</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13683,6 +13693,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13692,7 +13703,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.8406</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13704,6 +13715,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13713,7 +13725,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.8661</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13725,6 +13737,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13734,7 +13747,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.8942</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -13788,6 +13801,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for volume fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -13797,7 +13811,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.9804</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

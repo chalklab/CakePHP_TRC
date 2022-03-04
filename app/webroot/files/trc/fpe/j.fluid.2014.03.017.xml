@@ -963,11 +963,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - temperature (var 1) uncertainty reported as ± 5 mK in Table 4 in paper thus can be reported with five sig figs like other temperatures -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>264.3</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -1505,11 +1506,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - temperature (var 1) uncertainty reported as ± 5 mK in Table 5 in paper thus can be reported with five sig figs like other temperatures -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>254.4</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>
@@ -1757,10 +1759,11 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - temperature (var 1) uncertainty reported as ± 5 mK in Table 5 in paper thus can be reported with five sig figs like other temperatures -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
-        <nVarValue>254.4</nVarValue>
+        <nVarValue>254.5</nVarValue>
         <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>

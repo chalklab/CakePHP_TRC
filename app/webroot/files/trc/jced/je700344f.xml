@@ -5169,6 +5169,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for mole fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -5178,7 +5179,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.385</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -14764,8 +14765,8 @@
           <nCombExpandUncertValue>9.3e-05</nCombExpandUncertValue>
         </CombinedUncertainty>
       </PropertyValue>
-    </NumValues>
-    <NumValues>
+      <!-- updated sig figs - uncertainty for mole fraction (var 2) 0.0001 in original paper -->
+      <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>313.15</nVarValue>
@@ -14774,7 +14775,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.309</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -16325,7 +16326,8 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
-    <NumValues>
+      <!-- updated sig figs - uncertainty for mole fraction (var 2) 0.0001 in original paper -->
+      <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>323.15</nVarValue>
@@ -16334,7 +16336,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.309</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -19523,7 +19525,9 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
-    <NumValues>
+    <!-- updated sig figs - uncertainty for mole fraction (var 2) 0.0001 in original paper -->
+    <!-- updated sig figs - uncertainty for mole fraction (var 3) 0.0001 in original paper -->
+      <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>343.15</nVarValue>
@@ -19532,12 +19536,12 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.385</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.615</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -25656,6 +25660,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for mole fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -25665,7 +25670,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.309</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>
@@ -27216,6 +27221,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for mole fraction (var 2) 0.0001 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -27225,7 +27231,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.309</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>

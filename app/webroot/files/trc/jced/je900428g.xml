@@ -1051,6 +1051,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for pressure (var 2) 0.5 kPa in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1060,7 +1061,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>384.3</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -1156,6 +1157,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for pressure (var 2) 0.5 kPa in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -1165,7 +1167,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>860.2</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

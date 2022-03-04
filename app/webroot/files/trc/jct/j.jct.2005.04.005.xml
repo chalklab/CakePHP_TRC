@@ -550,11 +550,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - matching other values at this molality (var 1) -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>1.6435</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>6</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -3393,11 +3394,12 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - matching other values at this molality (var 1) -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
         <nVarValue>1.6435</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>6</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>2</nVarNumber>

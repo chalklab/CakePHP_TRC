@@ -720,6 +720,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molar concentration (var 2) reported to two decimal places in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -729,7 +730,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>2.5</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2493,6 +2494,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molar concentration (var 2) reported to two decimal places in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4266,6 +4268,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molar concentration (var 2) reported to two decimal places in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4275,7 +4278,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>2.5</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -6039,6 +6042,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molar concentration (var 2) reported to two decimal places in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -6048,7 +6052,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>2.5</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

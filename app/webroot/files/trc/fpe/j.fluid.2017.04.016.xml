@@ -4413,6 +4413,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of ionic strength (var 1 and 2) data reported as 0.0001 in footnote of Table 3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4427,7 +4428,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.1001</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -4439,6 +4440,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of ionic strength (var 1 and 2) data reported as 0.0001 in footnote of Table 3 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -4453,7 +4455,7 @@
       <VariableValue>
         <nVarNumber>3</nVarNumber>
         <nVarValue>0.2637</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

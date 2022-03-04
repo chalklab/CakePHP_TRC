@@ -778,6 +778,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - two sig figs for mole fraction (var 2) in this dataset -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -787,7 +788,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

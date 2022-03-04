@@ -11331,6 +11331,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of mole fraction (var 2) data reported as 0.001 in footnote of Table S7 -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -11340,7 +11341,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.663</nVarValue>
-        <nVarDigits>4</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

@@ -456,6 +456,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all other mole fraction of water in Table 2 of paper have three decimal places -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -465,7 +466,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>2</nVarDigits>
+        <nVarDigits>3</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

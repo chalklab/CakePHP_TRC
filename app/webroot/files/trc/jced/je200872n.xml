@@ -6470,6 +6470,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - molality (var 2) reported as 0.1110 in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -6479,7 +6480,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.111</nVarValue>
-        <nVarDigits>3</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

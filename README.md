@@ -14,7 +14,7 @@ locations (papers in the works):
 - [Dataset-NIST-TRC-MySQL](https://github.com/ChalkLab/Dataset-NIST-TRC-MySQL)
 - [Dataset-NIST-TRC-JSONLD](https://github.com/ChalkLab/Dataset-NIST-TRC-JSONLD)
 
-In addition, the intention is to make two additional versions of this repo based on updating the code
+In addition, the intention is to develop two new versions of this repo based on updating the code
 
 - A CakePHP v4 version (this site is built with CakePHP v2 which is now end of life)
 - A Python/Django version

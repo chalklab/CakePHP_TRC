@@ -2243,6 +2243,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty of molality (var 2) 0.00001 mol kg-1 in SI of original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -2252,7 +2253,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.004918</nVarValue>
-        <nVarDigits>5</nVarDigits>
+        <nVarDigits>4</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

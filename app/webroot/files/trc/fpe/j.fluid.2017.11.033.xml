@@ -93,6 +93,7 @@
       </purity>
     </Sample>
   </Compound>
+  <!-- error in uncertainty of mass fractions reported as 0.001 (three sig figs) in original paper  but only two decimal places throughout this file -->
   <PureOrMixtureData>
     <nPureOrMixtureDataNumber>1</nPureOrMixtureDataNumber>
     <Component>
@@ -2361,10 +2362,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- sig figs updated to 2 (from 1) based on missing zero in original paper -->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2382,10 +2384,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- sig figs updated to 2 (from 1) based on missing zero in original paper -->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2403,10 +2406,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- sig figs updated to 2 (from 1) based on missing zero in original paper -->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2424,10 +2428,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- sig figs updated to 2 (from 1) based on missing zero in original paper -->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2445,10 +2450,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- sig figs updated to 2 (from 1) based on missing zero in original paper -->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2460,6 +2466,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- sig figs updated to 2 (from 1) based on missing zero in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -2469,7 +2476,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2487,10 +2494,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- sig figs updated to 2 (from 1) based on missing zero in original paper -->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2508,10 +2516,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- sig figs updated to 2 (from 1) based on missing zero in original paper -->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>
@@ -2529,10 +2538,11 @@
         <nVarValue>293.15</nVarValue>
         <nVarDigits>5</nVarDigits>
       </VariableValue>
+      <!-- sig figs updated to 2 (from 1) based on missing zero in original paper -->
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>0.5</nVarValue>
-        <nVarDigits>1</nVarDigits>
+        <nVarDigits>2</nVarDigits>
       </VariableValue>
       <PropertyValue>
         <nPropNumber>1</nPropNumber>

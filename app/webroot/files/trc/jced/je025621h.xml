@@ -2519,6 +2519,7 @@
         <nPropDigits>4</nPropDigits>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - uncertainty for pressure (var 2) ±10 Pa but all data reported to thee decimal places in original paper -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
@@ -2528,7 +2529,7 @@
       <VariableValue>
         <nVarNumber>2</nVarNumber>
         <nVarValue>32.812</nVarValue>
-        <nVarDigits>6</nVarDigits>
+        <nVarDigits>5</nVarDigits>
       </VariableValue>
       <VariableValue>
         <nVarNumber>3</nVarNumber>

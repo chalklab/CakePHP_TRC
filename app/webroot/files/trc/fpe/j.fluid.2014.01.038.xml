@@ -9717,6 +9717,7 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
+    <!-- updated sig figs - all data in Table S2 has four significant figures except -->
     <NumValues>
       <VariableValue>
         <nVarNumber>1</nVarNumber>
