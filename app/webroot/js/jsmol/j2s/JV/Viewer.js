@@ -4639,7 +4639,9 @@ this.setPickingMode (null, value ? 32 : 1);
 this.g.modelKitMode = value;
 this.g.setB ("modelkitmode", value);
 this.highlight (null);
-if (value) {
+if (isChange && this.modelkit != null) {
+this.getModelkit (false).setProperty ("constraint", null);
+}if (value) {
 this.setNavigationMode (false);
 this.selectAll ();
 this.setStringProperty ("picking", "assignAtom_C");
@@ -5243,9 +5245,12 @@ if (deltaZ != -2147483648) ptScreenNew = JU.P3.new3 (ptScreen.x, ptScreen.y, ptS
  else ptScreenNew = JU.P3.new3 (ptScreen.x + deltaX * f + 0.5, ptScreen.y + deltaY * f + 0.5, ptScreen.z);
 var ptNew =  new JU.P3 ();
 this.tm.unTransformPoint (ptScreenNew, ptNew);
+if ( new Boolean ( new Boolean (this.g.modelKitMode & this.modelkit != null).valueOf () && this.modelkit.getProperty ("constraint") != null).valueOf ()) {
+this.getModelkit (false).constrain (bsSelected, ptNew);
+}if (!Float.isNaN (ptNew.x)) {
 ptNew.sub (ptCenter);
 this.setAtomCoordsRelative (ptNew, bsSelected);
-} else {
+}} else {
 this.tm.rotateXYBy (deltaX, deltaY, bsSelected);
 }}}this.refresh (2, "");
 this.movingSelected = false;
@@ -5992,7 +5997,7 @@ this.stopMinimization ();
 if (bsAtoms == null) {
 var atom = this.ms.at[atomIndex];
 bsAtoms = JU.BSUtil.newAndSetBit (atomIndex);
-var bonds = atom.bonds;
+var bonds = (!this.g.modelKitMode || this.modelkit == null || this.modelkit.getProperty ("constraint") == null ? atom.bonds : null);
 if (bonds != null) for (var i = 0; i < bonds.length; i++) {
 var atom2 = bonds[i].getOtherAtom (atom);
 if (atom2.getElementNumber () == 1) bsAtoms.set (atom2.i);
@@ -6265,7 +6270,7 @@ wasAppendNew = this.g.appendNew;
 if (pts.length > 0) {
 this.clearModelDependentObjects ();
 try {
-bsB = (isQuick ? this.ms.addHydrogens (vConnections, pts) : this.addHydrogensInline (bsAtoms, vConnections, pts));
+bsB = (isQuick ? this.ms.addHydrogens (vConnections, pts) : this.addHydrogensInline (bsAtoms, vConnections, pts, null));
 } catch (e) {
 if (Clazz.exceptionOf (e, Exception)) {
 System.out.println (e.toString ());
@@ -6278,10 +6283,10 @@ if (wasAppendNew) this.g.appendNew = true;
 return bsB;
 }, "JU.BS,~N");
 Clazz.defineMethod (c$, "addHydrogensInline", 
-function (bsAtoms, vConnections, pts) {
+function (bsAtoms, vConnections, pts, htParams) {
 if (this.getScriptManager () == null) return null;
-return this.scm.addHydrogensInline (bsAtoms, vConnections, pts);
-}, "JU.BS,JU.Lst,~A");
+return this.scm.addHydrogensInline (bsAtoms, vConnections, pts, htParams);
+}, "JU.BS,JU.Lst,~A,java.util.Map");
 Clazz.overrideMethod (c$, "evalFunctionFloat", 
 function (func, params, values) {
 return (this.getScriptManager () == null ? 0 : this.eval.evalFunctionFloat (func, params, values));
@@ -6742,6 +6747,18 @@ Clazz.defineMethod (c$, "getThisModelAtoms",
 function () {
 return this.getModelUndeletedAtomsBitSet (this.getVisibleFramesBitSet ().nextSetBit (0));
 });
+Clazz.defineMethod (c$, "getSymmetryEquivPoints", 
+function (pt, flags) {
+var uc = this.getCurrentUnitCell ();
+return (uc == null ?  new JU.Lst () : uc.getEquivPoints (null, pt, flags));
+}, "JU.P3,~S");
+Clazz.defineMethod (c$, "getSymmetryEquivPointList", 
+function (pts, flags) {
+var uc = this.getCurrentUnitCell ();
+if (uc == null) return  new JU.Lst ();
+uc.getEquivPointList (pts, 0, flags.toLowerCase ());
+return pts;
+}, "JU.Lst,~S");
 Clazz.pu$h(self.c$);
 c$ = Clazz.declareType (JV.Viewer, "ACCESS", Enum);
 Clazz.defineEnumConstant (c$, "NONE", 0, []);
@@ -6782,7 +6799,13 @@ Clazz.defineStatics (c$,
 "REFRESH_REPAINT_NO_MOTION_ONLY", 6,
 "REFRESH_SEND_WEBGL_NEW_ORIENTATION", 7,
 "SYNC_GRAPHICS_MESSAGE", "GET_GRAPHICS",
-"SYNC_NO_GRAPHICS_MESSAGE", "SET_GRAPHICS_OFF");
+"SYNC_NO_GRAPHICS_MESSAGE", "SET_GRAPHICS_OFF",
+"MODIFY_DELETE_ATOMS", 1,
+"MODIFY_DELETE_BONDS", 2,
+"MODIFY_SET_COORD", 3,
+"MODIFY_DELETE_ATOM", 4,
+"MODIFY_DELETE_MODEL", 5,
+"MODIFY_MAKE_BOND", 6);
 c$.staticFunctions = c$.prototype.staticFunctions =  new java.util.Hashtable ();
 Clazz.defineStatics (c$,
 "MIN_SILENT", 1,

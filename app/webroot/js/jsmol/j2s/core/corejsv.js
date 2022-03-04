@@ -64,9 +64,9 @@
 ){
 var $t$;
 //var c$;
-Jmol.___JmolDate="$Date: 2022-02-23 05:39:09 -0600 (Wed, 23 Feb 2022) $"
+Jmol.___JmolDate="$Date: 2022-03-03 12:10:18 -0600 (Thu, 03 Mar 2022) $"
 Jmol.___fullJmolProperties="src/org/jmol/viewer/Jmol.properties"
-Jmol.___JmolVersion="14.32.25" 
+Jmol.___JmolVersion="14.32.29" 
 // JSmolJavaExt.js
  
 

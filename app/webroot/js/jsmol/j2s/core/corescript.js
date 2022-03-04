@@ -3968,7 +3968,7 @@ var moData = this.vwr.ms.getInfo (i, "moData");
 if (moData == null || !moData.containsKey ("mos")) continue;
 sb.appendI ((moData.get ("mos")).size ()).append (" molecular orbitals in model ").append (this.vwr.getModelNumberDotted (i)).append ("\n");
 }
-if (sb.length () > 0) this.vwr.showString (sb.toString (), false);
+if (sb.length () > 0) this.showString (sb.toString ());
 }, "~S,~B");
 Clazz_overrideMethod (c$, "notifyResumeStatus", 
 function () {
@@ -6212,8 +6212,9 @@ if (isAppend && (appendNew || nFiles > 1)) {
 this.vwr.setAnimationRange (-1, -1);
 this.vwr.setCurrentModelIndex (modelCount0);
 }var msg;
-if (this.scriptLevel == 0 && !isAppend && (isConcat || nFiles < 2) && (msg = this.vwr.ms.getInfoM ("modelLoadNote")) != null) this.vwr.showString (msg, false);
-var centroid = this.vwr.ms.getInfoM ("centroidMinMax");
+if (this.scriptLevel == 0 && !isAppend && (isConcat || nFiles < 2) && (msg = this.vwr.ms.getInfoM ("modelLoadNote")) != null) {
+this.showString (msg);
+}var centroid = this.vwr.ms.getInfoM ("centroidMinMax");
 if (JU.AU.isAI (centroid) && this.vwr.ms.ac > 0) {
 var bs = JU.BSUtil.newBitSet2 (isAppend ? ac0 : 0, this.vwr.ms.ac);
 this.vwr.ms.setCentroid (bs, centroid);
@@ -7207,8 +7208,11 @@ this.vwr.stm.saveSelection (saveName, this.vwr.bsA ());
 this.vwr.stm.restoreSelection (saveName);
 }return;
 case 1073742158:
-if (!this.chk) this.vwr.stm.saveState (saveName);
-return;
+if (!this.chk && this.vwr.getBoolean (603979898)) {
+this.vwr.stm.saveState (saveName);
+if (saveName.length == 0) {
+this.showString (this.vwr.stm.getUndoInfo ());
+}}return;
 case 1639976963:
 if (!this.chk) this.vwr.stm.saveStructure (saveName);
 return;
@@ -7587,12 +7591,6 @@ return;
 case 1610612741:
 this.cmdSetLabel ("toggle");
 return;
-case 603984065:
-if (this.slen == 2) {
-if (!this.chk && this.vwr.getBoolean (603979898)) {
-this.vwr.stm.saveState ("");
-}return;
-}break;
 case 536870930:
 var v =  new JU.Lst ();
 for (var i = 2; i < this.slen; i++) {
@@ -9690,14 +9688,15 @@ switch (tok2) {
 case 1073742327:
 tok2 = 480;
 if (this.tokAt (this.iToken + 3) == 1073742336 && this.tokAt (this.iToken + 4) == 1275068420) tok2 = 224;
+case 1275068725:
 case 32:
 case 64:
 case 192:
 case 128:
 case 160:
 case 96:
-allowMathFunc = (isUserFunction || $var.intValue == 1275069443 || tok2 == 480 || tok2 == 224);
-$var.intValue |= tok2;
+allowMathFunc = (isUserFunction || $var.intValue == 1275069443 || tok2 == 480 || tok2 == 224 || tok2 == 1275068725);
+$var.intValue |= tok2 & 480;
 this.getToken (this.iToken + 2);
 }
 }var tokNext = this.tokAt (this.iToken + 1);
@@ -10464,6 +10463,7 @@ Clazz_defineMethod (c$, "getBitsetPropertySelector",
  function (i, xTok) {
 var tok = this.getToken (i).tok;
 switch (tok) {
+case 1275068725:
 case 32:
 case 64:
 case 96:
@@ -10488,6 +10488,8 @@ var haveIndex = (index != 2147483647);
 var isAtoms = haveIndex || !(Clazz_instanceOf (tokenValue, JM.BondSet)) && !(Clazz_instanceOf (bs, JM.BondSet));
 var minmaxtype = tok & 480;
 var selectedFloat = (minmaxtype == 224);
+var isPivot = (minmaxtype == 288);
+if (isPivot) minmaxtype = 480;
 var ac = this.vwr.ms.ac;
 var fout = (minmaxtype == 256 ?  Clazz_newFloatArray (ac, 0) : null);
 var isExplicitlyAll = (minmaxtype == 480 || selectedFloat);
@@ -10499,7 +10501,7 @@ var isHash = false;
 var isInt = false;
 var isString = false;
 switch (tok) {
-case 1275068449:
+case 1275068446:
 return (this.vwr.getAuxiliaryInfoForAtoms (bs)).get ("models");
 case 1145047050:
 case 1145047055:
@@ -10626,8 +10628,13 @@ i1 = ac;
 }if (this.chk) i1 = 0;
 for (var i = i0; i >= 0 && i < i1; i = (haveBitSet ? bs.nextSetBit (i + 1) : i + 1)) {
 n++;
-var atom = (pts == null ? modelSet.at[i] : null);
-switch (mode) {
+var atom;
+if (pts == null) {
+atom = modelSet.at[i];
+if (atom == null) continue;
+} else {
+atom = null;
+}switch (mode) {
 case 0:
 var fv = 3.4028235E38;
 switch (tok) {
@@ -10800,8 +10807,11 @@ this.errorStr (46, JS.T.nameOf (tok));
 }
 }if (minmaxtype == 256) return fout;
 if (minmaxtype == 1073742327) {
-if (asVectorIfAll) return vout;
-var len = vout.size ();
+if (asVectorIfAll) {
+if (isPivot) {
+return this.getMathExt ().getMinMax (vout, 1275068725, false);
+}return vout;
+}var len = vout.size ();
 if ((isString || isHash) && !isExplicitlyAll && len == 1) return vout.get (0);
 if (selectedFloat) {
 fout =  Clazz_newFloatArray (len, 0);
@@ -11957,10 +11967,13 @@ vwr.g.legacyHAddition = false;
 vwr.stateScriptVersionInt = 2147483647;
 }, "JV.Viewer,~S");
 Clazz_overrideMethod (c$, "addHydrogensInline", 
-function (bsAtoms, vConnections, pts) {
+function (bsAtoms, vConnections, pts, htParams) {
 var iatom = bsAtoms.nextSetBit (0);
+if (htParams == null) htParams =  new java.util.Hashtable ();
 var modelIndex = (iatom < 0 ? this.vwr.am.cmi : this.vwr.ms.at[iatom].mi);
 if (modelIndex < 0) modelIndex = this.vwr.ms.mc - 1;
+htParams.put ("appendToModelIndex", Integer.$valueOf (modelIndex));
+var siteFixed = (htParams.containsKey ("fixedSite"));
 var bsA = this.vwr.getModelUndeletedAtomsBitSet (modelIndex);
 var wasAppendNew = this.vwr.g.appendNew;
 this.vwr.g.appendNew = false;
@@ -11975,17 +11988,16 @@ var sb =  new JU.SB ();
 sb.appendI (pts.length).append ("\n").append ("Viewer.AddHydrogens").append ("#noautobond").append ("\n");
 for (var i = 0; i < pts.length; i++) sb.append ("H ").appendF (pts[i].x).append (" ").appendF (pts[i].y).append (" ").appendF (pts[i].z).append (" - - - - ").appendI (++atomno).appendC ('\n');
 
-var htParams =  new java.util.Hashtable ();
-htParams.put ("appendToModelIndex", Integer.$valueOf (modelIndex));
 this.vwr.openStringInlineParamsAppend (sb.toString (), htParams, true);
 this.eval.runScriptBuffer (sbConnect.toString (), null, false);
 var bsB = this.vwr.getModelUndeletedAtomsBitSet (modelIndex);
 bsB.andNot (bsA);
 this.vwr.g.appendNew = wasAppendNew;
+if (!siteFixed) {
 bsA = this.vwr.ms.am[modelIndex].bsAsymmetricUnit;
 if (bsA != null) bsA.or (bsB);
-return bsB;
-}, "JU.BS,JU.Lst,~A");
+}return bsB;
+}, "JU.BS,JU.Lst,~A,java.util.Map");
 Clazz_defineStatics (c$,
 "prevCovalentVersion", 1);
 });
@@ -12291,6 +12303,7 @@ break;
 case 268435616:
 if (!this.wasX) op = JS.SV.newV (268435648, "-");
 break;
+case 1275068725:
 case 32:
 case 64:
 case 96:
@@ -12662,7 +12675,9 @@ case 1140850706:
 var keys = x2.getKeys ((op.intValue & 480) == 480);
 return (keys == null ? this.addXStr ("") : this.addXAS (keys));
 case 1140850691:
-case 1275068425:
+if (x2.tok == 8) {
+return this.addXFloat ((x2.value).distance (JS.SV.pt0));
+}case 1275068425:
 case 1140850694:
 if (iv == 1140850691 && Clazz_instanceOf (x2.value, JM.BondSet)) break;
 return this.addXInt (JS.SV.sizeOf (x2));
@@ -12899,7 +12914,7 @@ case 4:
 return (this.isDecimal (x2) || this.isDecimal (x1) ? this.addXFloat (x1.asFloat () * x2.asFloat ()) : this.addXInt (x1.asInt () * x2.asInt ()));
 }
 pt = (x1.tok == 11 || x1.tok == 12 ? this.ptValue (x2, null) : x2.tok == 11 ? this.ptValue (x1, null) : null);
-pt4 = (x1.tok == 12 ? JS.ScriptMathProcessor.planeValue (x2) : x2.tok == 12 ? JS.ScriptMathProcessor.planeValue (x1) : null);
+pt4 = (x1.tok == 12 ? this.eval.planeValue (x2) : x2.tok == 12 ? this.eval.planeValue (x1) : null);
 switch (x2.tok) {
 case 11:
 if (pt != null) {
@@ -13141,45 +13156,6 @@ break;
 }
 return null;
 }, "JS.SV,JU.BS");
-c$.planeValue = Clazz_defineMethod (c$, "planeValue", 
-function (x) {
-var pt;
-switch (x.tok) {
-case 9:
-return x.value;
-case 7:
-break;
-case 4:
-var s = x.value;
-var isMinus = s.startsWith ("-");
-var f = (isMinus ? -1 : 1);
-if (isMinus) s = s.substring (1);
-var p4 = null;
-switch (s.length < 2 ? -1 : "xy yz xz x= y= z=".indexOf (s.substring (0, 2))) {
-case 0:
-return JU.P4.new4 (1, 1, 0, f);
-case 3:
-return JU.P4.new4 (0, 1, 1, f);
-case 6:
-return JU.P4.new4 (1, 0, 1, f);
-case 9:
-p4 = JU.P4.new4 (1, 0, 0, -f * JU.PT.parseFloat (s.substring (2)));
-break;
-case 12:
-p4 = JU.P4.new4 (0, 1, 0, -f * JU.PT.parseFloat (s.substring (2)));
-break;
-case 15:
-p4 = JU.P4.new4 (0, 0, 1, -f * JU.PT.parseFloat (s.substring (2)));
-break;
-}
-if (p4 != null && !Float.isNaN (p4.w)) return p4;
-break;
-default:
-return null;
-}
-pt = JU.Escape.uP (JS.SV.sValue (x));
-return (Clazz_instanceOf (pt, JU.P4) ? pt : null);
-}, "JS.T");
 c$.typeOf = Clazz_defineMethod (c$, "typeOf", 
  function (x) {
 var tok = (x == null ? 0 : x.tok);
@@ -13251,8 +13227,8 @@ case 96:
 case 192:
 case 128:
 case 160:
-case 1275068437:
-return this.addXObj (this.eval.getMathExt ().getMinMax (x2.getList (), op.intValue));
+case 1275068725:
+return this.addXObj (this.eval.getMathExt ().getMinMax (x2.getList (), op.intValue, true));
 case 1275334681:
 return this.addX (x2.pushPop (null, null));
 case 1275068444:
@@ -13334,7 +13310,7 @@ Clazz_defineStatics (c$,
 "qMods", " w:0 x:1 y:2 z:3 normal:4 eulerzxz:5 eulerzyz:6 vector:-1 theta:-2 axisx:-3 axisy:-4 axisz:-5 axisangle:-6 matrix:-9");
 });
 Clazz_declarePackage ("JS");
-Clazz_load (["JS.ScriptError"], "JS.ScriptParam", ["java.lang.Float", "java.util.Hashtable", "JU.BS", "$.CU", "$.Lst", "$.Measure", "$.P3", "$.P4", "$.PT", "$.Quat", "$.SB", "$.V3", "JM.TickInfo", "JS.SV", "$.ScriptMathProcessor", "$.T", "JU.BSUtil", "$.Edge", "$.Logger"], function () {
+Clazz_load (["JS.ScriptError"], "JS.ScriptParam", ["java.lang.Float", "java.util.Hashtable", "JU.BS", "$.CU", "$.Lst", "$.Measure", "$.P3", "$.P4", "$.PT", "$.Quat", "$.SB", "$.V3", "JM.TickInfo", "JS.SV", "$.T", "JU.BSUtil", "$.Edge", "$.Escape", "$.Logger"], function () {
 c$ = Clazz_decorateAsClass (function () {
 this.contextVariables = null;
 this.contextFunctions = null;
@@ -13556,7 +13532,7 @@ break;
 case 1073741824:
 case 4:
 case 9:
-plane = JS.ScriptMathProcessor.planeValue (this.theToken);
+plane = this.planeValue (this.theToken);
 break;
 case 1073742332:
 case 8:
@@ -13609,7 +13585,7 @@ var norm =  new JU.P3 ();
 var w = JU.Measure.getNormalThroughPoints (pt1, pt2, pt3, norm, vTemp);
 plane.set4 (norm.x, norm.y, norm.z, w);
 }if (!this.chk && JU.Logger.debugging) JU.Logger.debug (" defined plane: " + plane);
-}if (plane == null) this.errorMore (38, "{a b c d}", "\"xy\" \"xz\" \"yz\" \"x=...\" \"y=...\" \"z=...\"", "$xxxxx");
+}if (plane == null) this.errorMore (38, "{a b c d}", "\"xy\" \"xz\" \"yz\" \"x=...\" \"y=...\" \"z=...\" \"ab\" \"bc\" \"ac\" \"ab1\" \"bc1\" \"ac1\"", "$xxxxx");
 if (isNegated) {
 plane.scale4 (-1);
 }return plane;
@@ -14373,6 +14349,59 @@ function (pt) {
 if (Math.abs (pt.x) < 1 || Math.abs (pt.y) < 1 || Math.abs (pt.z) < 1 || pt.x != Clazz_floatToInt (pt.x) || pt.y != Clazz_floatToInt (pt.y) || pt.z != Clazz_floatToInt (pt.z)) this.invArg ();
 return pt;
 }, "JU.T3");
+Clazz_defineMethod (c$, "planeValue", 
+function (x) {
+var pt;
+switch (x.tok) {
+case 9:
+return x.value;
+case 7:
+break;
+case 4:
+case 1073741824:
+var s = x.value;
+var isMinus = s.startsWith ("-");
+var f = (isMinus ? -1 : 1);
+if (isMinus) s = s.substring (1);
+var p4 = null;
+var is1 = (s.length > 2 && s.charAt (2) == '1');
+var mode = (s.length < 2 ? -1 : "xy yz xz x= y= z= ab bc ac".indexOf (s.substring (0, 2)));
+if (mode >= 18 && this.vwr.getCurrentUnitCell () == null) {
+mode -= 18;
+}switch (mode) {
+case 0:
+return JU.P4.new4 (1, 1, 0, f);
+case 3:
+return JU.P4.new4 (0, 1, 1, f);
+case 6:
+return JU.P4.new4 (1, 0, 1, f);
+case 9:
+p4 = JU.P4.new4 (1, 0, 0, -f * JU.PT.parseFloat (s.substring (2)));
+break;
+case 12:
+p4 = JU.P4.new4 (0, 1, 0, -f * JU.PT.parseFloat (s.substring (2)));
+break;
+case 15:
+p4 = JU.P4.new4 (0, 0, 1, -f * JU.PT.parseFloat (s.substring (2)));
+break;
+case 18:
+p4 = this.getHklPlane (JU.P3.new3 (0, 0, 1), is1 ? this.vwr.getUnitCellInfo (2) : 0, null);
+break;
+case 21:
+p4 = this.getHklPlane (JU.P3.new3 (1, 0, 0), is1 ? -this.vwr.getUnitCellInfo (0) : 0, null);
+break;
+case 24:
+p4 = this.getHklPlane (JU.P3.new3 (0, 1, 0), is1 ? this.vwr.getUnitCellInfo (1) : 0, null);
+break;
+}
+if (p4 != null && !Float.isNaN (p4.w)) return p4;
+break;
+default:
+return null;
+}
+pt = JU.Escape.uP (JS.SV.sValue (x));
+return (Clazz_instanceOf (pt, JU.P4) ? pt : null);
+}, "JS.T");
 Clazz_defineStatics (c$,
 "MODE_P3", 3,
 "MODE_P4", 4,

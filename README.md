@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/85196514.svg)](https://zenodo.org/badge/latestdoi/85196514)
+
 ## CakePHP Website to Process NIST TRC ThermoML Data
 This CakePHP website was created to ingest thermophysical property data in the IUPAC ThermoML XML format from
 [https://trc.nist.gov/ThermoML.html](https://trc.nist.gov/ThermoML.html) into a relational database (MySQL).

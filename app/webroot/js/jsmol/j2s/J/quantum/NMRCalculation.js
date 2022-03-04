@@ -51,7 +51,7 @@ var models = this.vwr.ms.am;
 for (var i = bsA.nextSetBit (0); i >= 0; i = bsA.nextSetBit (i + 1)) {
 if (!bsA.get (i)) continue;
 var a = atoms[i];
-bs.set (models[a.mi].firstAtomIndex - 1 + a.atomSite);
+bs.set (models[a.mi].firstAtomIndex - 1 + a.getAtomSite ());
 }
 return bs;
 }, "JU.BS");
@@ -62,7 +62,7 @@ var atoms = this.vwr.ms.at;
 for (var mi = this.vwr.ms.mc; --mi >= 0; ) {
 var bsModelAtoms = this.vwr.restrictToModel (bsAtoms, mi);
 if (this.vwr.ms.getUnitCell (mi) == null) continue;
-for (var i = bsModelAtoms.nextSetBit (0); i >= 0; i = bsModelAtoms.nextSetBit (i + 1)) if (atoms[i].atomSite != atoms[i].i + 1) bsModelAtoms.clear (i);
+for (var i = bsModelAtoms.nextSetBit (0); i >= 0; i = bsModelAtoms.nextSetBit (i + 1)) if (atoms[i].getAtomSite () != atoms[i].i + 1) bsModelAtoms.clear (i);
 
 bs.or (bsModelAtoms);
 for (var i = bsModelAtoms.nextSetBit (0); i >= 0; i = bsModelAtoms.nextSetBit (i + 1)) {

@@ -300,6 +300,7 @@ break;
 case 268435616:
 if (!this.wasX) op = JS.SV.newV (268435648, "-");
 break;
+case 1275068725:
 case 32:
 case 64:
 case 96:
@@ -671,7 +672,9 @@ case 1140850706:
 var keys = x2.getKeys ((op.intValue & 480) == 480);
 return (keys == null ? this.addXStr ("") : this.addXAS (keys));
 case 1140850691:
-case 1275068425:
+if (x2.tok == 8) {
+return this.addXFloat ((x2.value).distance (JS.SV.pt0));
+}case 1275068425:
 case 1140850694:
 if (iv == 1140850691 && Clazz.instanceOf (x2.value, JM.BondSet)) break;
 return this.addXInt (JS.SV.sizeOf (x2));
@@ -908,7 +911,7 @@ case 4:
 return (this.isDecimal (x2) || this.isDecimal (x1) ? this.addXFloat (x1.asFloat () * x2.asFloat ()) : this.addXInt (x1.asInt () * x2.asInt ()));
 }
 pt = (x1.tok == 11 || x1.tok == 12 ? this.ptValue (x2, null) : x2.tok == 11 ? this.ptValue (x1, null) : null);
-pt4 = (x1.tok == 12 ? JS.ScriptMathProcessor.planeValue (x2) : x2.tok == 12 ? JS.ScriptMathProcessor.planeValue (x1) : null);
+pt4 = (x1.tok == 12 ? this.eval.planeValue (x2) : x2.tok == 12 ? this.eval.planeValue (x1) : null);
 switch (x2.tok) {
 case 11:
 if (pt != null) {
@@ -1150,45 +1153,6 @@ break;
 }
 return null;
 }, "JS.SV,JU.BS");
-c$.planeValue = Clazz.defineMethod (c$, "planeValue", 
-function (x) {
-var pt;
-switch (x.tok) {
-case 9:
-return x.value;
-case 7:
-break;
-case 4:
-var s = x.value;
-var isMinus = s.startsWith ("-");
-var f = (isMinus ? -1 : 1);
-if (isMinus) s = s.substring (1);
-var p4 = null;
-switch (s.length < 2 ? -1 : "xy yz xz x= y= z=".indexOf (s.substring (0, 2))) {
-case 0:
-return JU.P4.new4 (1, 1, 0, f);
-case 3:
-return JU.P4.new4 (0, 1, 1, f);
-case 6:
-return JU.P4.new4 (1, 0, 1, f);
-case 9:
-p4 = JU.P4.new4 (1, 0, 0, -f * JU.PT.parseFloat (s.substring (2)));
-break;
-case 12:
-p4 = JU.P4.new4 (0, 1, 0, -f * JU.PT.parseFloat (s.substring (2)));
-break;
-case 15:
-p4 = JU.P4.new4 (0, 0, 1, -f * JU.PT.parseFloat (s.substring (2)));
-break;
-}
-if (p4 != null && !Float.isNaN (p4.w)) return p4;
-break;
-default:
-return null;
-}
-pt = JU.Escape.uP (JS.SV.sValue (x));
-return (Clazz.instanceOf (pt, JU.P4) ? pt : null);
-}, "JS.T");
 c$.typeOf = Clazz.defineMethod (c$, "typeOf", 
  function (x) {
 var tok = (x == null ? 0 : x.tok);
@@ -1260,8 +1224,8 @@ case 96:
 case 192:
 case 128:
 case 160:
-case 1275068437:
-return this.addXObj (this.eval.getMathExt ().getMinMax (x2.getList (), op.intValue));
+case 1275068725:
+return this.addXObj (this.eval.getMathExt ().getMinMax (x2.getList (), op.intValue, true));
 case 1275334681:
 return this.addX (x2.pushPop (null, null));
 case 1275068444:

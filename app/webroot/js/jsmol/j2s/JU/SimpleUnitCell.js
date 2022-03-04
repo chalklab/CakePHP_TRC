@@ -366,6 +366,7 @@ c$.unitizeX = Clazz.defineMethod (c$, "unitizeX",
 function (x) {
 x = (x - Math.floor (x));
 if (x > 0.999 || x < 0.001) x = 0;
+if (x > 0.4999 && x < 0.5001) x = 0.5;
 return x;
 }, "~N");
 c$.checkPeriodic = Clazz.defineMethod (c$, "checkPeriodic", 

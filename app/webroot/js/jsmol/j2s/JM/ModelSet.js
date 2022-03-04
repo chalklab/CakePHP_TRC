@@ -607,10 +607,38 @@ this.bsSymmetry = this.getAtomBitsMaybeDeleted (1088421903, null);
 var bs = this.vwr.getModelUndeletedAtomsBitSet (mi);
 this.bsSymmetry.or (bs);
 this.bsSymmetry.andNot (basis);
-for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
+var isP1 = (basis.cardinality () == bs.cardinality ());
+for (var p = 0, i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
 this.at[i].setSymop (basis.get (i) ? 1 : 0, true);
+if (isP1) this.setSite (this.at[i], ++p, true);
 }
-this.setInfo (mi, "unitCellParams", sg.getUnitCellParams ());
+if (!isP1) {
+var haveOccupancies = (this.occupancies != null);
+var nops = sg.getSpaceGroupOperationCount ();
+var a;
+var b =  new JU.P3 ();
+var bb;
+for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
+var ba = this.at[i];
+a = JU.P3.newP (ba);
+sg.toFractional (a, true);
+sg.unitize (a);
+var type = this.at[i].atomicAndIsotopeNumber;
+var occ = (haveOccupancies ? this.occupancies[i] : 0);
+out : for (var j = basis.nextSetBit (0); j >= 0; j = basis.nextSetBit (j + 1)) {
+if ((bb = this.at[j]).atomicAndIsotopeNumber != type || haveOccupancies && this.occupancies[j] != occ) continue;
+for (var k = 0; k < nops; k++) {
+b.setT (bb);
+sg.toFractional (b, true);
+sg.getSpaceGroupOperation (k).rotTrans (b);
+sg.unitize (b);
+if (b.distanceSquared (a) < 1.96E-6) {
+this.setSite (ba, bb.getAtomSite (), true);
+break out;
+}}
+}
+}
+}this.setInfo (mi, "unitCellParams", sg.getUnitCellParams ());
 this.setInfo (mi, "spaceGroup", sg.getSpaceGroupName ());
 this.setInfo (mi, "spaceGroupInfo", null);
 this.setModelCage (mi, null);
@@ -2215,28 +2243,35 @@ for (var i = 0; i < this.mc; i++) if (!this.am[i].isModelKit) bs1.andNot (this.a
 return JU.BSUtil.deleteBits (bs, bs1);
 }, "JU.BS,JU.BS");
 Clazz.defineMethod (c$, "setAtomNamesAndNumbers", 
-function (iFirst, baseAtomIndex, mergeSet) {
-if (baseAtomIndex < 0) iFirst = this.am[this.at[iFirst].mi].firstAtomIndex;
-if (this.atomSerials == null) this.atomSerials =  Clazz.newIntArray (this.ac, 0);
+function (iFirst, baseAtomIndex, mergeSet, isModelKit) {
+var mi0 = -1;
+if (isModelKit) {
+mi0 = this.at[iFirst].mi;
+iFirst = this.am[mi0].firstAtomIndex;
+}if (this.atomSerials == null) this.atomSerials =  Clazz.newIntArray (this.ac, 0);
 if (this.atomNames == null) this.atomNames =  new Array (this.ac);
 var isZeroBased = this.isXYZ && this.vwr.getBoolean (603979978);
-var lastModelIndex = 2147483647;
+var thisModelIndex = 2147483647;
 var atomNo = 1;
 for (var i = iFirst; i < this.ac; ++i) {
 var atom = this.at[i];
 if (atom == null) continue;
-if (atom.mi != lastModelIndex) {
-lastModelIndex = atom.mi;
+if (atom.mi != thisModelIndex) {
+if (isModelKit && thisModelIndex != 2147483647 && atom.mi != mi0) continue;
+thisModelIndex = atom.mi;
 atomNo = (isZeroBased ? 0 : 1);
 }var ano = this.atomSerials[i];
 if (i >= -baseAtomIndex) {
-if (ano == 0 || baseAtomIndex < 0) this.atomSerials[i] = (i < baseAtomIndex ? mergeSet.atomSerials[i] : atomNo);
-if (this.atomNames[i] == null || baseAtomIndex < 0) this.atomNames[i] = (atom.getElementSymbol () + this.atomSerials[i]).intern ();
-} else if (ano > atomNo) {
+if (ano == 0 || isModelKit) this.atomSerials[i] = (i < baseAtomIndex ? mergeSet.atomSerials[i] : atomNo);
+if (this.atomNames[i] == null || isModelKit) this.atomNames[i] = (atom.getElementSymbol () + this.atomSerials[i]).intern ();
+} else {
+if (ano > atomNo) {
 atomNo = ano;
-}if (!this.am[lastModelIndex].isModelKit || atom.getElementNumber () > 0 && !atom.isDeleted ()) atomNo++;
+}if (isModelKit) {
+this.atomNames[i] = (atom.getElementSymbol () + ano).intern ();
+}}if (!this.am[thisModelIndex].isModelKit || atom.getElementNumber () > 0 && !atom.isDeleted ()) atomNo++;
 }
-}, "~N,~N,JM.AtomCollection");
+}, "~N,~N,JM.AtomCollection,~B");
 Clazz.defineMethod (c$, "setUnitCellOffset", 
 function (unitCell, pt, ijk) {
 if (unitCell == null) return;
@@ -2462,7 +2497,7 @@ dz = f;
 }, "~N,JU.BS");
 Clazz.defineMethod (c$, "getUnitCellForAtom", 
 function (index) {
-if (index < 0 || index > this.ac) return null;
+if (index < 0 || index > this.ac || this.at[index] == null) return null;
 if (this.bsModulated != null) {
 var ms = this.getModulation (index);
 var uc = (ms == null ? null : ms.getSubSystemUnitCell ());
@@ -2485,6 +2520,13 @@ for (var i = n; --i >= 0; ) ops[i] = unitcell.getSpaceGroupOperation (i);
 
 return ops;
 }, "~N");
+Clazz.defineMethod (c$, "getSymmetryInvariant", 
+function (bsAtoms) {
+var iatom = this.getSymmetryEquivAtoms (bsAtoms).nextSetBit (0);
+if (iatom < 0) return  Clazz.newIntArray (0, 0);
+var sg = this.getUnitCellForAtom (iatom);
+return sg.getSymmetryInvariant (this.at[iatom], null);
+}, "JU.BS");
 Clazz.defineMethod (c$, "getBsBranches", 
 function (dihedralList) {
 var n = Clazz.doubleToInt (dihedralList.length / 6);
@@ -2870,6 +2912,28 @@ if (this.isTrajectory (i >= 0 ? i : a.mi)) this.trajectory.getFractional (a, pTe
  else pTemp.setT (a);
 if (q != null) q.transform2 (pTemp, pTemp);
 }, "~N,JM.Atom,JU.Quat,JU.P3");
+Clazz.defineMethod (c$, "getSymmetryEquivAtoms", 
+function (bs) {
+var bsNew =  new JU.BS ();
+bsNew.or (bs);
+var iAtom = bs.nextSetBit (0);
+var uc = this.getUnitCellForAtom (iAtom);
+if (uc != null) {
+var bsAtoms = JU.BSUtil.copy (this.vwr.getModelUndeletedAtomsBitSet (this.at[iAtom].mi));
+for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
+var a = this.at[i];
+var site = a.getAtomSite ();
+if (site > 0) {
+for (var j = bsAtoms.nextSetBit (0); j >= 0; j = bsAtoms.nextSetBit (j + 1)) {
+if (this.at[j].getAtomSite () == site) {
+bsNew.set (j);
+bsAtoms.clear (j);
+bs.clear (j);
+}}
+} else {
+}}
+}return bsNew;
+}, "JU.BS");
 Clazz.defineStatics (c$,
 "hbondMinRasmol", 2.5);
 });

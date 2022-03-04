@@ -1,5 +1,5 @@
 Clazz.declarePackage ("JS");
-Clazz.load (["JS.ScriptError"], "JS.ScriptParam", ["java.lang.Float", "java.util.Hashtable", "JU.BS", "$.CU", "$.Lst", "$.Measure", "$.P3", "$.P4", "$.PT", "$.Quat", "$.SB", "$.V3", "JM.TickInfo", "JS.SV", "$.ScriptMathProcessor", "$.T", "JU.BSUtil", "$.Edge", "$.Logger"], function () {
+Clazz.load (["JS.ScriptError"], "JS.ScriptParam", ["java.lang.Float", "java.util.Hashtable", "JU.BS", "$.CU", "$.Lst", "$.Measure", "$.P3", "$.P4", "$.PT", "$.Quat", "$.SB", "$.V3", "JM.TickInfo", "JS.SV", "$.T", "JU.BSUtil", "$.Edge", "$.Escape", "$.Logger"], function () {
 c$ = Clazz.decorateAsClass (function () {
 this.contextVariables = null;
 this.contextFunctions = null;
@@ -221,7 +221,7 @@ break;
 case 1073741824:
 case 4:
 case 9:
-plane = JS.ScriptMathProcessor.planeValue (this.theToken);
+plane = this.planeValue (this.theToken);
 break;
 case 1073742332:
 case 8:
@@ -274,7 +274,7 @@ var norm =  new JU.P3 ();
 var w = JU.Measure.getNormalThroughPoints (pt1, pt2, pt3, norm, vTemp);
 plane.set4 (norm.x, norm.y, norm.z, w);
 }if (!this.chk && JU.Logger.debugging) JU.Logger.debug (" defined plane: " + plane);
-}if (plane == null) this.errorMore (38, "{a b c d}", "\"xy\" \"xz\" \"yz\" \"x=...\" \"y=...\" \"z=...\"", "$xxxxx");
+}if (plane == null) this.errorMore (38, "{a b c d}", "\"xy\" \"xz\" \"yz\" \"x=...\" \"y=...\" \"z=...\" \"ab\" \"bc\" \"ac\" \"ab1\" \"bc1\" \"ac1\"", "$xxxxx");
 if (isNegated) {
 plane.scale4 (-1);
 }return plane;
@@ -1038,6 +1038,59 @@ function (pt) {
 if (Math.abs (pt.x) < 1 || Math.abs (pt.y) < 1 || Math.abs (pt.z) < 1 || pt.x != Clazz.floatToInt (pt.x) || pt.y != Clazz.floatToInt (pt.y) || pt.z != Clazz.floatToInt (pt.z)) this.invArg ();
 return pt;
 }, "JU.T3");
+Clazz.defineMethod (c$, "planeValue", 
+function (x) {
+var pt;
+switch (x.tok) {
+case 9:
+return x.value;
+case 7:
+break;
+case 4:
+case 1073741824:
+var s = x.value;
+var isMinus = s.startsWith ("-");
+var f = (isMinus ? -1 : 1);
+if (isMinus) s = s.substring (1);
+var p4 = null;
+var is1 = (s.length > 2 && s.charAt (2) == '1');
+var mode = (s.length < 2 ? -1 : "xy yz xz x= y= z= ab bc ac".indexOf (s.substring (0, 2)));
+if (mode >= 18 && this.vwr.getCurrentUnitCell () == null) {
+mode -= 18;
+}switch (mode) {
+case 0:
+return JU.P4.new4 (1, 1, 0, f);
+case 3:
+return JU.P4.new4 (0, 1, 1, f);
+case 6:
+return JU.P4.new4 (1, 0, 1, f);
+case 9:
+p4 = JU.P4.new4 (1, 0, 0, -f * JU.PT.parseFloat (s.substring (2)));
+break;
+case 12:
+p4 = JU.P4.new4 (0, 1, 0, -f * JU.PT.parseFloat (s.substring (2)));
+break;
+case 15:
+p4 = JU.P4.new4 (0, 0, 1, -f * JU.PT.parseFloat (s.substring (2)));
+break;
+case 18:
+p4 = this.getHklPlane (JU.P3.new3 (0, 0, 1), is1 ? this.vwr.getUnitCellInfo (2) : 0, null);
+break;
+case 21:
+p4 = this.getHklPlane (JU.P3.new3 (1, 0, 0), is1 ? -this.vwr.getUnitCellInfo (0) : 0, null);
+break;
+case 24:
+p4 = this.getHklPlane (JU.P3.new3 (0, 1, 0), is1 ? this.vwr.getUnitCellInfo (1) : 0, null);
+break;
+}
+if (p4 != null && !Float.isNaN (p4.w)) return p4;
+break;
+default:
+return null;
+}
+pt = JU.Escape.uP (JS.SV.sValue (x));
+return (Clazz.instanceOf (pt, JU.P4) ? pt : null);
+}, "JS.T");
 Clazz.defineStatics (c$,
 "MODE_P3", 3,
 "MODE_P4", 4,

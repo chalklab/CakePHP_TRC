@@ -466,7 +466,7 @@ e.checkLast (e.iToken);
 if (!this.chk) e.getPartialCharges (bs1);
 return;
 case 1088421903:
-case 134217762:
+case 1275068447:
 if (!this.chk) {
 if (this.tokAt (2) == 1275203608) {
 var id = (this.tokAt (3) == 4 ? this.stringParameter (3) : null);
@@ -2894,7 +2894,7 @@ type = "INLINE";
 data = JS.SV.sValue (this.tokenAt (++pt, args));
 pt++;
 break;
-case 134217762:
+case 1275068447:
 type = "PGRP";
 pt++;
 type2 = JS.SV.sValue (this.tokenAt (pt, args)).toLowerCase ();
@@ -3134,9 +3134,11 @@ if (showOnly) data = this.vwr.getCurrentFileAsString ("script");
 } else if (JU.PT.isOneOf (data, ";CIF;CIFP1;SDF;MOL;MOL67;V2000;V3000;CD;JSON;XYZ;XYZRN;XYZVIB;CML;QCJSON;PWMAT;XSF;")) {
 var selected = this.vwr.bsA ();
 var bsModel;
-msg = " (" + selected.cardinality () + " atoms)";
-if (this.vwr.am.cmi >= 0 && !selected.equals (bsModel = this.vwr.getModelUndeletedAtomsBitSet (this.vwr.am.cmi))) msg += "\nNote! Selected atom set " + selected + " is not the same as the current model " + bsModel;
+this.vwr.setErrorMessage (null, " (" + selected.cardinality () + " atoms)");
 data = this.vwr.getModelExtract (selected, isCoord, false, data);
+msg = this.vwr.getErrorMessageUn ();
+this.vwr.setErrorMessage (null, null);
+if (this.vwr.am.cmi >= 0 && !selected.equals (bsModel = this.vwr.getModelUndeletedAtomsBitSet (this.vwr.am.cmi))) msg += "\nNote! Selected atom set " + selected + " is not the same as the current model " + bsModel;
 if (data.startsWith ("ERROR:")) bytes = data;
 } else if (data === "CFI") {
 data = this.vwr.getModelFileData ("selected", "cfi", false);
@@ -3761,7 +3763,7 @@ break;
 case 1073742088:
 if (!this.chk) msg = this.vwr.ms.getPDBHeader (this.vwr.am.cmi);
 break;
-case 134217762:
+case 1275068447:
 var typ = eval.optParameterAsString (2);
 if (typ.length == 0) typ = null;
 len = this.slen;
@@ -4058,7 +4060,12 @@ i = eval.iToken;
 break;
 case 1073742066:
 isOffset = true;
-case 1073742114:
+if (eval.isAtomExpression (i + 1)) {
+pt = eval.centerParameter (++i, null);
+this.vwr.toFractional (pt, false);
+i = eval.iToken;
+break;
+}case 1073742114:
 pt = eval.getFractionalPoint (++i);
 if (Clazz.instanceOf (pt, JU.P4)) {
 if (isOffset) this.invArg ();
@@ -4162,9 +4169,7 @@ var pt = cpts.get (i);
 d = pt.length ();
 var checkv1 = false;
 var isnew = false;
-var checkAngle = false;
 if (d < 0.01 || v != null && ((da = Math.abs (JU.Measure.computeTorsion (v, zero, plane, pt, true))) > -amin)) continue;
-System.out.println (d + " " + pt + da);
 if (v == null) {
 v = pt;
 dmin = d;
@@ -4178,7 +4183,6 @@ damin = 3.4028235E38;
 checkv1 = true;
 } else if (d < dmin2 + 0.01) {
 checkv1 = true;
-checkAngle = true;
 }if (checkv1) {
 var okAng = (da > 89);
 if (isnew || d < dmin + 0.1 && (pt.x >= -0.01 && pt.y <= 0.01) && okAng && (damin == 3.4028235E38 || damin < 89)) {
@@ -4191,8 +4195,7 @@ if (!isnew && da < damin) damin = da;
 v1 = pt;
 dmin2 = d;
 if (da < damin) damin = da;
-}System.out.println (v + " " + v1 + " " + d + " " + da + " " + dmin + " " + dmin2 + " " + damin);
-}}
+}}}
 if (v == null) this.invArg ();
 var u = null;
 if (v1 != null) {
@@ -4203,7 +4206,6 @@ v = v1;
 } else {
 u = v1;
 }} else {
-System.out.println (v + " " + v1 + " " + da);
 for (var i = cpts.size (); --i >= 0; ) {
 var pt = cpts.get (i);
 da = JU.Measure.computeTorsion (v, zero, plane, pt, true);
@@ -4264,6 +4266,9 @@ case 4098:
 ++this.e.iToken;
 case 134217764:
 case 4106:
+case 12291:
+case 1275069441:
+case 4129:
 this.assign ();
 return;
 case 4130:
@@ -4278,12 +4283,50 @@ var value = null;
 switch (tok) {
 case 1073742335:
 case 1073742334:
-if (!this.chk) this.vwr.setBooleanProperty ("modelkitmode", tok == 1073742335);
-continue;
+if (!this.chk) {
+this.vwr.setBooleanProperty ("modelkitmode", tok == 1073742335);
+this.vwr.setStringProperty ("picking", "identify");
+}continue;
 case 1610625028:
 case 12294:
 key = "hidden";
 value = Boolean.$valueOf (tok != 1610625028);
+break;
+case 12293:
+key = "constraint";
+value = "";
+var type = this.tokAt (++i);
+var v1 = null;
+var v2 = null;
+var plane = null;
+switch (type) {
+case 1073742334:
+case 1073742333:
+if (!this.chk) this.vwr.setBooleanProperty ("dragPicking", false);
+break;
+case 135198:
+v1 = this.e.getPoint3f (++i, true, true);
+i = this.e.iToken;
+v2 = this.e.getPoint3f (++i, true, true);
+value = null;
+break;
+case 134219265:
+plane = this.e.hklParameter (++i, null, true);
+value = null;
+break;
+case 134217750:
+plane = this.e.planeParameter (++i, false);
+value = null;
+break;
+default:
+this.invArg ();
+}
+if (value == null) {
+if ((v1 == null || v2 == null) == (plane == null)) this.invArg ();
+value =  Clazz.newArray (-1, [v1, v2, plane]);
+} else {
+value = null;
+}i = this.e.iToken;
 break;
 case 36867:
 key = this.paramAsStr (++i);
@@ -4362,8 +4405,11 @@ var index2 = -1;
 var isAtom = (mode == 1140850689);
 var isBond = (mode == 1677721602);
 var isConnect = (mode == 4106);
+var isDelete = (mode == 12291);
+var isAdd = (mode == 1275069441);
+var isMove = (mode == 4129);
 var isSpacegroup = (mode == 134217764);
-if (isAtom || isBond || isConnect || isSpacegroup) i++;
+if (isAtom || isBond || isConnect || isSpacegroup || isDelete || isMove || isAdd) i++;
  else mode = 1140850689;
 if (this.vwr.am.cmi < 0) this.invArg ();
 var bsAtoms = this.vwr.getThisModelAtoms ();
@@ -4395,7 +4441,7 @@ default:
 this.invArg ();
 }
 }i = ++this.e.iToken;
-} else if (mode == 1140850689 && this.tokAt (i) == 4) {
+} else if (mode == 1140850689 && this.tokAt (i) == 4 || mode == 1275069441) {
 } else if (!isSpacegroup || this.e.isAtomExpression (i)) {
 bs = this.expFor (i, bsAtoms);
 index = bs.nextSetBit (0);
@@ -4404,7 +4450,26 @@ return;
 }i = ++this.e.iToken;
 }var type = null;
 var pt = null;
-if (isSpacegroup) {
+var isPacked = false;
+if (isAdd) {
+if (this.e.isAtomExpression (i)) {
+bs = this.expFor (++this.e.iToken, bsAtoms);
+i = this.e.iToken;
+type = this.e.optParameterAsString (i + 1);
+i = this.e.iToken;
+if (type.toLowerCase ().equals ("packed")) {
+isPacked = true;
+type = "";
+}} else {
+type = this.e.optParameterAsString (i);
+pt = this.getPoint3f (++this.e.iToken, true);
+}if (type.length == 0) type = null;
+if (this.tokAt (i + 1) == 1073742080) {
+isPacked = true;
+i = ++this.e.iToken;
+}} else if (isMove) {
+pt = this.getPoint3f (++this.e.iToken, true);
+} else if (isSpacegroup || isDelete) {
 } else if (!isConnect) {
 type = this.e.optParameterAsString (i);
 if (isAtom) pt = (++this.e.iToken < (isClick ? this.slen - 1 : this.slen) ? this.centerParameter (this.e.iToken) : null);
@@ -4412,6 +4477,7 @@ if (isAtom) pt = (++this.e.iToken < (isClick ? this.slen - 1 : this.slen) ? this
 bs = this.expFor (i, bsAtoms);
 index2 = bs.nextSetBit (0);
 type = this.e.optParameterAsString (++this.e.iToken);
+i = this.e.iToken;
 }if (this.chk) return;
 this.vwr.pushState ();
 switch (mode) {
@@ -4425,8 +4491,21 @@ break;
 case 4106:
 this.vwr.getModelkit (false).cmdAssignConnect (index, index2, (type + "1").charAt (0), this.e.fullCommand);
 break;
+case 1275069441:
+var na = this.vwr.getModelkit (false).cmdAssignAddAtoms (type, pt, bs, (isPacked ? "packed" : ""), this.e.fullCommand);
+if (this.e.doReport ()) this.e.report (J.i18n.GT.i (J.i18n.GT.$ ("{0} atoms added"), na), false);
+break;
+case 12291:
+var nd = this.vwr.getModelkit (false).cmdAssignDeleteAtoms (bs);
+if (this.e.doReport ()) this.e.report (J.i18n.GT.i (J.i18n.GT.$ ("{0} atoms deleted"), nd), false);
+break;
+case 4129:
+var nm = this.vwr.getModelkit (false).cmdAssignMoveAtom (bs.nextSetBit (0), pt);
+if (this.e.doReport ()) this.e.report (J.i18n.GT.i (J.i18n.GT.$ ("{0} atoms moved"), nm), false);
+break;
 case 134217764:
-this.e.showString (this.vwr.getModelkit (false).cmdAssignSpaceGroup (bs));
+var isP1 = this.e.optParameterAsString (i).equalsIgnoreCase ("P1");
+this.e.showString (this.vwr.getModelkit (false).cmdAssignSpaceGroup (bs, isP1));
 break;
 }
 });

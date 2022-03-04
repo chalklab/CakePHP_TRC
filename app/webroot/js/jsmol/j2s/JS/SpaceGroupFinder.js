@@ -17,7 +17,7 @@ function () {
 });
 Clazz.defineMethod (c$, "findSpaceGroup", 
 function (vwr, atoms0, opXYZ0, uc, asString) {
-var oabc = uc.getUnitCellVectors ();
+var oabc = null;
 var cartesians = vwr.ms.at;
 var isg = 0;
 var bsGroups =  new JU.BS ();
@@ -36,13 +36,11 @@ try {
 if (JS.SpaceGroupFinder.bsOpGroups == null) JS.SpaceGroupFinder.loadData (vwr, this);
 if (opXYZ0 != null) {
 return this.getGroupsWithOp (opXYZ0);
-}uc = uc.getUnitCellMultiplied ();
+}oabc = uc.getUnitCellVectors ();
+uc = uc.getUnitCellMultiplied ();
 this.filterGroups (bsGroups, uc);
 withinCell = vwr.ms.getAtoms (1814695966, uc);
-var extraAtoms = JU.BSUtil.copy (bsAtoms);
-extraAtoms.andNot (withinCell);
 withinCell.and (bsAtoms);
-var nExtra = extraAtoms.cardinality ();
 this.atoms =  new Array (bsAtoms.cardinality ());
 System.out.println ("bsAtoms = " + bsAtoms);
 for (var p = 0, i = bsAtoms.nextSetBit (0); i >= 0; i = bsAtoms.nextSetBit (i + 1), p++) {
@@ -52,23 +50,14 @@ var type = a.getAtomicAndIsotopeNumber ();
 }
 var bsPoints = JU.BSUtil.newBitSet2 (0, this.nAtoms);
 var uc0 = uc;
-if (nExtra > 0) {
-var packedAtoms =  new JU.BS ();
-this.checkPackingAtoms (bsPoints, extraAtoms, 1, packedAtoms);
-this.checkPackingAtoms (bsPoints, extraAtoms, 2, packedAtoms);
-this.checkPackingAtoms (bsPoints, extraAtoms, 3, packedAtoms);
-if (packedAtoms.cardinality () == nExtra) {
-bsPoints.andNot (packedAtoms);
-} else {
-System.out.println ("Packing check failed! " + nExtra + " extra atoms " + extraAtoms + ", but " + packedAtoms.cardinality () + " found for " + packedAtoms);
-bsPoints.clearAll ();
-}}this.nAtoms = bsPoints.cardinality ();
+this.nAtoms = bsPoints.cardinality ();
 uc0 = uc;
 var isSupercell = false;
 if (this.nAtoms > 0) {
 for (var i = bsPoints.nextSetBit (0); i >= 0; i = bsPoints.nextSetBit (i + 1)) {
 JU.SimpleUnitCell.unitizeDim (3, this.atoms[i]);
 }
+this.removeDuplicates (bsPoints);
 uc = this.checkSupercell (vwr, uc, bsPoints, 1, scaling);
 uc = this.checkSupercell (vwr, uc, bsPoints, 2, scaling);
 uc = this.checkSupercell (vwr, uc, bsPoints, 3, scaling);
@@ -131,8 +120,6 @@ if (isOK) {
 System.out.println ("OK!");
 if (iop == 1) hasC1 = true;
 targets.or (targeted);
-System.out.println ("targeted=" + targeted);
-System.out.println ("targets=" + targets);
 bsGroups.and (myGroups);
 temp1.setBits (1, JS.SpaceGroupFinder.OP_COUNT);
 for (var i = bsGroups.nextSetBit (0); i >= 0; i = bsGroups.nextSetBit (i + 1)) {
@@ -159,7 +146,7 @@ opsChecked.clearAll ();
 targets.clearAll ();
 bsPoints.or (bsPoints0);
 }}isg = bsGroups.nextSetBit (0);
-if (n == 1 && !asString) {
+if (n == 1) {
 if (isg > 0) {
 opsChecked.and (JS.SpaceGroupFinder.bsGroupOps[isg]);
 uncheckedOps.and (JS.SpaceGroupFinder.bsGroupOps[isg]);
@@ -167,16 +154,10 @@ uncheckedOps.andNot (opsChecked);
 uncheckedOps.or (JS.SpaceGroupFinder.bsGroupOps[isg]);
 uncheckedOps.clear (0);
 bsPoints.or (bsPoints0);
-System.out.println ("test1 bspoints " + bsPoints.cardinality () + " " + bsPoints);
-System.out.println ("test2 targets " + targets.cardinality () + " " + targets);
-System.out.println ("test3 uchop= " + uncheckedOps.cardinality () + " " + uncheckedOps);
-System.out.println ("test4 opsc= " + opsChecked.cardinality () + " " + opsChecked);
 bsPoints.andNot (targets);
 if (!this.checkBasis (uncheckedOps, bsPoints, targets)) {
 isg = 0;
-}System.out.println ("test2b targets " + targets.cardinality () + " " + targets);
-System.out.println ("test1b points " + bsPoints.cardinality () + " " + bsPoints);
-}if (isg == 0) targets.clearAll ();
+}}if (isg == 0) targets.clearAll ();
 }} catch (e) {
 if (Clazz.exceptionOf (e, Exception)) {
 e.printStackTrace ();
@@ -193,13 +174,13 @@ if (n != 1) return null;
 var sg = JS.SpaceGroup.nameToGroup.get (JS.SpaceGroupFinder.groupNames[isg]);
 var name = sg.asString ();
 uc.setSpaceGroupName (name);
-System.out.println ("found " + name);
-if (asString) return name;
-var map = sg.dumpInfoObj ();
 var basis = JU.BSUtil.copy (isg == 0 ? withinCell : bsAtoms);
 for (var i = targets.nextSetBit (0); i >= 0; i = targets.nextSetBit (i + 1)) basis.clear (this.atoms[i].index);
 
 System.out.println ("basis is " + basis.cardinality () + ": " + basis);
+System.out.println ("found " + name + "; basis=" + basis);
+if (asString) return name + "; basis=" + basis;
+var map = sg.dumpInfoObj ();
 System.out.println ("unitcell is " + uc.getUnitCellInfo (true));
 var bs1 = JU.BS.copy (bsPoints0);
 bs1.andNot (targets);
@@ -213,6 +194,18 @@ oabc[3].scale (scaling.z);
 map.put ("unitcell", oabc);
 return map;
 }, "JV.Viewer,JU.BS,~S,J.api.SymmetryInterface,~B");
+Clazz.defineMethod (c$, "removeDuplicates", 
+ function (bs) {
+for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
+var a = this.atoms[i];
+for (var j = bs.nextSetBit (0); j < i; j = bs.nextSetBit (j + 1)) {
+var b = this.atoms[j];
+if (a.typeAndOcc == b.typeAndOcc && a.distanceSquared (b) < 1.96E-6) {
+bs.clear (i);
+break;
+}}
+}
+}, "JU.BS");
 Clazz.defineMethod (c$, "dumpBasis", 
  function (ops, bs1, bsPoints) {
 }, "JU.BS,JU.BS,JU.BS");
@@ -324,36 +317,6 @@ op.setMatrixFromXYZ (JS.SpaceGroupFinder.opXYZ[iop], 0, false);
 op.doFinalize ();
 }return op;
 }, "~N");
-Clazz.defineMethod (c$, "checkPackingAtoms", 
- function (bsPoints, extraAtoms, abc, packedAtoms) {
-var nextra = extraAtoms.cardinality ();
-if (nextra == 0) return;
-var nbase = 0;
-var npacked = 0;
-var f = 0;
-for (var i = bsPoints.nextSetBit (0); i >= 0; i = bsPoints.nextSetBit (i + 1)) {
-var a = this.atoms[i];
-switch (abc) {
-case 1:
-f = a.x;
-break;
-case 2:
-f = a.y;
-break;
-case 3:
-f = a.z;
-break;
-}
-if (this.approx01 (f)) {
-nbase++;
-} else if (this.approx01 (f - 1)) {
-npacked++;
-packedAtoms.set (i);
-}}
-if (nbase != npacked) {
-bsPoints.clearAll ();
-extraAtoms.clearAll ();
-}}, "JU.BS,JU.BS,~N,JU.BS");
 Clazz.defineMethod (c$, "checkSupercell", 
 function (vwr, uc, bsPoints, abc, scaling) {
 if (bsPoints.cardinality () == 0) return uc;
@@ -363,7 +326,6 @@ var counts =  Clazz.newIntArray (101, 0);
 for (var i = bsPoints.nextSetBit (0); i >= 0; i = bsPoints.nextSetBit (i + 1)) {
 var a = this.atoms[i];
 var type = a.typeAndOcc;
-var name = a.name;
 var b;
 var f;
 for (var j = bsPoints.nextSetBit (0); j >= 0; j = bsPoints.nextSetBit (j + 1)) {
@@ -439,11 +401,7 @@ return (Math.abs (f) < 1.0E-4);
 }, "~N");
 Clazz.defineMethod (c$, "approx0014", 
  function (f) {
-return (Math.abs (f) < 0.0014);
-}, "~N");
-Clazz.defineMethod (c$, "approx01", 
- function (f) {
-return (Math.abs (f) < 0.02);
+return (Math.abs (f) < JS.SpaceGroupFinder.SLOP0014);
 }, "~N");
 Clazz.defineMethod (c$, "approxInt", 
  function (finv) {
@@ -560,10 +518,9 @@ this.name = c;
 c$ = Clazz.p0p ();
 };
 Clazz.defineStatics (c$,
-"MAX_COUNT", 100,
-"SLOP0014", 0.0014,
-"MAX_DIST_2", 1.96E-6,
-"SLOP02", 0.02,
+"MAX_COUNT", 100);
+c$.SLOP0014 = c$.prototype.SLOP0014 = Math.sqrt (1.96E-6);
+Clazz.defineStatics (c$,
 "SLOP001", 0.001,
 "SLOP0001", 0.0001,
 "GROUP_COUNT", 0,

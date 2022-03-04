@@ -1,5 +1,5 @@
 Clazz.declarePackage ("J.modelkit");
-Clazz.load (["JU.BS", "$.P3", "J.i18n.GT"], "J.modelkit.ModelKit", ["java.lang.Boolean", "$.Float", "java.util.Hashtable", "JU.AU", "$.Lst", "$.Measure", "$.PT", "$.SB", "$.V3", "JM.Atom", "JS.SV", "JU.BSUtil", "$.Edge", "$.Elements", "$.Escape", "$.Logger", "$.SimpleUnitCell", "JV.Viewer"], function () {
+Clazz.load (["JU.BS", "$.P3", "J.i18n.GT"], "J.modelkit.ModelKit", ["java.lang.Boolean", "$.Float", "java.util.Hashtable", "JU.AU", "$.Lst", "$.Measure", "$.PT", "$.SB", "$.V3", "J.modelkit.Constraint", "JM.Atom", "JS.SV", "JU.BSUtil", "$.Edge", "$.Elements", "$.Escape", "$.Logger", "$.SimpleUnitCell", "JV.Viewer"], function () {
 c$ = Clazz.decorateAsClass (function () {
 this.vwr = null;
 this.menu = null;
@@ -45,6 +45,7 @@ this.lastCenter = "0 0 0";
 this.lastOffset = "0 0 0";
 this.a0 = null;
 this.a3 = null;
+this.constraint = null;
 Clazz.instantialize (this, arguments);
 }, J.modelkit, "ModelKit");
 Clazz.prepareFields (c$, function () {
@@ -110,7 +111,9 @@ return (this.getMKState () == 0 && this.isRotateBond ? this.bondIndex : -1);
 Clazz.defineMethod (c$, "getProperty", 
 function (name) {
 name = name.toLowerCase ().intern ();
-if (name === "ismolecular") {
+if (name === "constraint") {
+return this.constraint;
+}if (name === "ismolecular") {
 return Boolean.$valueOf (this.getMKState () == 0);
 }if (name === "alloperators") {
 return this.allOperators;
@@ -119,54 +122,67 @@ return this.getinfo ();
 }return this.setProperty (name, null);
 }, "~S");
 Clazz.defineMethod (c$, "setProperty", 
-function (name, value) {
+function (key, value) {
 try {
-name = name.toLowerCase ().intern ();
-if (name === "reset") {
+key = key.toLowerCase ().intern ();
+if (key === "constraint") {
+this.constraint = null;
+var o = value;
+if (o != null) {
+var v1 = o[0];
+var v2 = o[1];
+var plane = o[2];
+if (v1 != null && v2 != null) {
+this.constraint =  new J.modelkit.Constraint (4,  Clazz.newArray (-1, [v1, v2]));
+} else if (plane != null) {
+this.constraint =  new J.modelkit.Constraint (5,  Clazz.newArray (-1, [plane]));
+} else if (v1 != null) this.constraint =  new J.modelkit.Constraint (6, null);
+}return null;
+}if (key === "reset") {
 return null;
-}if (name === "addhydrogen" || name === "addhydrogens") {
+}if (key === "addhydrogen" || key === "addhydrogens") {
 if (value != null) this.addXtalHydrogens = J.modelkit.ModelKit.isTrue (value);
 return Boolean.$valueOf (this.addXtalHydrogens);
-}if (name === "autobond") {
+}if (key === "autobond") {
 if (value != null) this.autoBond = J.modelkit.ModelKit.isTrue (value);
 return Boolean.$valueOf (this.autoBond);
-}if (name === "clicktosetelement") {
+}if (key === "clicktosetelement") {
 if (value != null) this.clickToSetElement = J.modelkit.ModelKit.isTrue (value);
 return Boolean.$valueOf (this.clickToSetElement);
-}if (name === "hidden") {
+}if (key === "hidden") {
 if (value != null) this.menu.hidden = J.modelkit.ModelKit.isTrue (value);
 return Boolean.$valueOf (this.menu.hidden);
-}if (name === "showsymopinfo") {
+}if (key === "showsymopinfo") {
 if (value != null) this.showSymopInfo = J.modelkit.ModelKit.isTrue (value);
 return Boolean.$valueOf (this.showSymopInfo);
-}if (name === "symop") {
+}if (key === "symop") {
 this.setDefaultState (1);
 if (value != null) {
 this.symop = value;
 this.showSymop (this.symop);
 }return this.symop;
-}if (name === "atomtype") {
+}if (key === "atomtype") {
 if (value != null) {
 this.pickAtomAssignType = value;
 this.$isPickAtomAssignCharge = (this.pickAtomAssignType.equals ("pl") || this.pickAtomAssignType.equals ("mi"));
 if (!this.$isPickAtomAssignCharge && !"X".equals (this.pickAtomAssignType)) {
 this.lastElementType = this.pickAtomAssignType;
 }}return this.pickAtomAssignType;
-}if (name === "bondtype") {
+}if (key === "bondtype") {
 if (value != null) {
 var s = (value).substring (0, 1).toLowerCase ();
 if (" 012345pm".indexOf (s) > 0) this.pickBondAssignType = s.charAt (0);
 this.isRotateBond = false;
 }return "" + this.pickBondAssignType;
-}if (name === "bondindex") {
+}if (key === "bondindex") {
 if (value != null) {
 this.setBondIndex ((value).intValue (), false);
 }return (this.bondIndex < 0 ? null : Integer.$valueOf (this.bondIndex));
-}if (name === "rotatebondindex") {
+}if (key === "rotatebondindex") {
 if (value != null) {
 this.setBondIndex ((value).intValue (), true);
 }return (this.bondIndex < 0 ? null : Integer.$valueOf (this.bondIndex));
-}if (name === "offset") {
+}if (key === "offset") {
 if (value === "none") {
 this.viewOffset = null;
 } else if (value != null) {
@@ -174,36 +190,36 @@ this.viewOffset = (Clazz.instanceOf (value, JU.P3) ? value : J.modelkit.ModelKit
 if (this.viewOffset != null) this.setSymViewState (8);
 }this.showXtalSymmetry ();
 return this.viewOffset;
-}if (name === "screenxy") {
+}if (key === "screenxy") {
 if (value != null) {
 this.screenXY = value;
 }return this.screenXY;
-}if (name === "bondatomindex") {
+}if (key === "bondatomindex") {
 var i = (value).intValue ();
 if (i != this.bondAtomIndex2) this.bondAtomIndex1 = i;
 this.bsRotateBranch = null;
 return null;
-}if (name === "highlight") {
+}if (key === "highlight") {
 if (value == null) this.bsHighlight =  new JU.BS ();
  else this.bsHighlight = value;
 return null;
-}if (name === "mode") {
+}if (key === "mode") {
 var isEdit = ("edit".equals (value));
 this.setMKState ("view".equals (value) ? 1 : isEdit ? 2 : 0);
 if (isEdit) this.addXtalHydrogens = false;
 return null;
-}if (name === "symmetry") {
+}if (key === "symmetry") {
 this.setDefaultState (2);
-name = (value).toLowerCase ().intern ();
-this.setSymEdit (name === "applylocal" ? 32 : name === "retainlocal" ? 64 : name === "applyfull" ? 128 : 0);
+key = (value).toLowerCase ().intern ();
+this.setSymEdit (key === "applylocal" ? 32 : key === "retainlocal" ? 64 : key === "applyfull" ? 128 : 0);
 this.showXtalSymmetry ();
 return null;
-}if (name === "unitcell") {
+}if (key === "unitcell") {
 var isPacked = "packed".equals (value);
 this.setUnitCell (isPacked ? 0 : 256);
 this.viewOffset = (isPacked ? J.modelkit.ModelKit.Pt000 : null);
 return null;
-}if (name === "center") {
+}if (key === "center") {
 this.setDefaultState (1);
 this.centerPoint = value;
 this.lastCenter = this.centerPoint.x + " " + this.centerPoint.y + " " + this.centerPoint.z;
@@ -212,39 +228,39 @@ this.atomIndexSphere = -1;
 this.secondAtomIndex = -1;
 this.processAtomClick (this.centerAtomIndex);
 return null;
-}if (name === "scriptassignbond") {
+}if (key === "scriptassignbond") {
 this.appRunScript ("modelkit assign bond [{" + value + "}] \"" + this.pickBondAssignType + "\"");
 return null;
-}if (name === "hoverlabel") {
+}if (key === "hoverlabel") {
 return this.getHoverLabel ((value).intValue ());
-}if (name === "invariant") {
+}if (key === "invariant") {
 var iatom = (Clazz.instanceOf (value, JU.BS) ? (value).nextSetBit (0) : -1);
 var atom = this.vwr.ms.getAtom (iatom);
 return (atom == null ? null : this.vwr.getSymmetryInfo (iatom, null, -1, null, atom, atom, 1275068418, null, 0, 0, 0));
-}if (name === "distance") {
+}if (key === "distance") {
 this.setDefaultState (2);
 var d = (value == null ? NaN : Clazz.instanceOf (value, Float) ? (value).floatValue () : JU.PT.parseFloat (value));
 if (!Float.isNaN (d)) {
 J.modelkit.ModelKit.notImplemented ("setProperty: distance");
 this.centerDistance = d;
 }return Float.$valueOf (this.centerDistance);
-}if (name === "point") {
+}if (key === "point") {
 if (value != null) {
 J.modelkit.ModelKit.notImplemented ("setProperty: point");
 this.setDefaultState (2);
 this.spherePoint = value;
 this.atomIndexSphere = (Clazz.instanceOf (this.spherePoint, JM.Atom) ? (this.spherePoint).i : -1);
 }return this.spherePoint;
-}if (name === "addconstraint") {
+}if (key === "addconstraint") {
 J.modelkit.ModelKit.notImplemented ("setProperty: addConstraint");
 return null;
-}if (name === "removeconstraint") {
+}if (key === "removeconstraint") {
 J.modelkit.ModelKit.notImplemented ("setProperty: removeConstraint");
 return null;
-}if (name === "removeallconstraints") {
+}if (key === "removeallconstraints") {
 J.modelkit.ModelKit.notImplemented ("setProperty: removeAllConstraints");
 return null;
-}System.err.println ("ModelKitPopup.setProperty? " + name + " " + value);
+}System.err.println ("ModelKitPopup.setProperty? " + key + " " + value);
 } catch (e) {
 if (Clazz.exceptionOf (e, Exception)) {
 return "?";
@@ -356,104 +372,6 @@ this.vwr.tm.unTransformPoint (ptNew, ptNew);
 this.assignAtomClick (dragAtomIndex, atomType, ptNew);
 }}}return true;
 }, "JV.MouseState,JV.MouseState,JM.MeasurementPending,~N");
-Clazz.defineMethod (c$, "cmdAssignAtom", 
-function (atomIndex, pt, type, cmd, isClick) {
-if (isClick && type.equals ("X")) this.vwr.setModelKitRotateBondIndex (-1);
-var ac = this.vwr.ms.ac;
-var atom = (atomIndex < 0 ? null : this.vwr.ms.at[atomIndex]);
-if (pt == null) {
-if (atomIndex < 0 || atom == null) return;
-var mi = atom.mi;
-this.vwr.sm.setStatusStructureModified (atomIndex, mi, 1, cmd, 1, null);
-this.assignAtom (atomIndex, type, this.autoBond, true, true);
-if (!JU.PT.isOneOf (type, ";Mi;Pl;X;")) this.vwr.ms.setAtomNamesAndNumbers (0, -ac, null);
-this.vwr.sm.setStatusStructureModified (atomIndex, mi, -1, "OK", 1, null);
-this.vwr.refresh (3, "assignAtom");
-return;
-}var bs = (atomIndex < 0 ?  new JU.BS () : JU.BSUtil.newAndSetBit (atomIndex));
-var pts =  Clazz.newArray (-1, [pt]);
-var vConnections =  new JU.Lst ();
-var modelIndex = -1;
-if (atom != null) {
-vConnections.addLast (atom);
-modelIndex = atom.mi;
-this.vwr.sm.setStatusStructureModified (atomIndex, modelIndex, 3, cmd, 1, null);
-}try {
-var pickingMode = this.vwr.acm.getAtomPickingMode ();
-var wasHidden = this.menu.hidden;
-var isMK = this.vwr.getBoolean (603983903);
-if (!isMK) {
-this.vwr.setBooleanProperty ("modelkitmode", true);
-this.menu.hidden = true;
-this.menu.allowPopup = false;
-}bs = this.vwr.addHydrogensInline (bs, vConnections, pts);
-if (!isMK) {
-this.vwr.setBooleanProperty ("modelkitmode", false);
-this.menu.hidden = wasHidden;
-this.menu.allowPopup = true;
-this.vwr.acm.setPickingMode (pickingMode);
-this.menu.hidePopup ();
-}var atomIndex2 = bs.nextSetBit (0);
-var state = this.getMKState ();
-this.setMKState (0);
-this.assignAtom (atomIndex2, type, false, atomIndex >= 0, true);
-if (atomIndex >= 0) this.assignAtom (atomIndex, ".", false, true, isClick);
-this.setMKState (state);
-atomIndex = atomIndex2;
-} catch (ex) {
-if (Clazz.exceptionOf (ex, Exception)) {
-} else {
-throw ex;
-}
-}
-this.vwr.ms.setAtomNamesAndNumbers (0, -ac, null);
-this.vwr.sm.setStatusStructureModified (atomIndex, modelIndex, -3, "OK", 1, null);
-}, "~N,JU.P3,~S,~S,~B");
-Clazz.defineMethod (c$, "cmdAssignBond", 
-function (bondIndex, type, cmd) {
-var modelIndex = -1;
-try {
-if (type == '-') type = this.pickBondAssignType;
-modelIndex = this.vwr.ms.bo[bondIndex].atom1.mi;
-var ac = this.vwr.ms.ac;
-this.vwr.sm.setStatusStructureModified (bondIndex, modelIndex, 2, cmd, 1, null);
-var bsAtoms = this.assignBond (bondIndex, type);
-this.vwr.ms.setAtomNamesAndNumbers (0, -ac, null);
-if (bsAtoms == null || type == '0') this.vwr.refresh (3, "setBondOrder");
-this.vwr.sm.setStatusStructureModified (bondIndex, modelIndex, -2, "" + type, 1, null);
-} catch (ex) {
-if (Clazz.exceptionOf (ex, Exception)) {
-JU.Logger.error ("assignBond failed");
-this.vwr.sm.setStatusStructureModified (bondIndex, modelIndex, -2, "ERROR " + ex, 1, null);
-} else {
-throw ex;
-}
-}
-}, "~N,~S,~S");
-Clazz.defineMethod (c$, "cmdAssignConnect", 
-function (index, index2, type, cmd) {
-var connections = JU.AU.newFloat2 (1);
-connections[0] =  Clazz.newFloatArray (-1, [index, index2]);
-var modelIndex = this.vwr.ms.at[index].mi;
-this.vwr.sm.setStatusStructureModified (index, modelIndex, 2, cmd, 1, null);
-this.vwr.ms.connect (connections);
-var ac = this.vwr.ms.ac;
-this.assignAtom (index, ".", true, true, false);
-this.assignAtom (index2, ".", true, true, false);
-this.vwr.ms.setAtomNamesAndNumbers (0, -ac, null);
-this.vwr.sm.setStatusStructureModified (index, modelIndex, -2, "OK", 1, null);
-if (type != '1') {
-var bs = JU.BSUtil.newAndSetBit (index);
-bs.set (index2);
-bs = this.vwr.getBondsForSelectedAtoms (bs);
-var bondIndex = bs.nextSetBit (0);
-this.cmdAssignBond (bondIndex, type, cmd);
-}this.vwr.refresh (3, "assignConnect");
-}, "~N,~N,~S,~S");
-Clazz.defineMethod (c$, "assignAtomClick", 
-function (atomIndex, element, ptNew) {
-this.vwr.script ("modelkit assign atom ({" + atomIndex + "}) \"" + element + "\" " + (ptNew == null ? "" : JU.Escape.eP (ptNew)) + " true");
-}, "~N,~S,JU.P3");
 Clazz.defineMethod (c$, "isXtalState", 
 function () {
 return ((this.state & 3) != 0);
@@ -613,10 +531,10 @@ Clazz.defineMethod (c$, "assignAtom",
 if (isClick) {
 if (this.isVwrRotateBond ()) {
 this.bondAtomIndex1 = atomIndex;
-return;
-}if (this.processAtomClick (atomIndex) || !this.clickToSetElement && this.vwr.ms.getAtom (atomIndex).getElementNumber () != 1) return;
+return -1;
+}if (this.processAtomClick (atomIndex) || !this.clickToSetElement && this.vwr.ms.getAtom (atomIndex).getElementNumber () != 1) return -1;
 }var atom = this.vwr.ms.at[atomIndex];
-if (atom == null) return;
+if (atom == null) return -1;
 this.vwr.ms.clearDB (atomIndex);
 if (type == null) type = "C";
 var bs =  new JU.BS ();
@@ -637,8 +555,8 @@ atom.setFormalCharge (atom.getFormalCharge () - 1);
 } else if (type.equals ("X")) {
 isDelete = true;
 } else if (!type.equals (".") || !this.addXtalHydrogens) {
-return;
-}if (!addHsAndBond) return;
+return -1;
+}if (!addHsAndBond) return atomicNumber;
 this.vwr.ms.removeUnnecessaryBonds (atom, isDelete);
 var dx = 0;
 if (atom.getCovalentBondCount () == 1) if (wasH) {
@@ -663,6 +581,7 @@ bs = this.vwr.getModelUndeletedAtomsBitSet (atom.mi);
 bs.andNot (this.vwr.ms.getAtomBitsMDa (1612709900, null,  new JU.BS ()));
 this.vwr.ms.makeConnections2 (0.1, 1.8, 1, 1073741904, bsA, bs, null, false, false, 0);
 }if (this.addXtalHydrogens) this.vwr.addHydrogens (bsA, 1);
+return atomicNumber;
 }, "~N,~S,~B,~B,~B");
 Clazz.defineMethod (c$, "assignBond", 
  function (bondIndex, type) {
@@ -711,6 +630,65 @@ throw e;
 if (type != '0' && this.addXtalHydrogens) this.vwr.addHydrogens (bsAtoms, 1);
 return bsAtoms;
 }, "~N,~S");
+Clazz.defineMethod (c$, "cmdAssignSpaceGroup", 
+function (bs, isP1) {
+try {
+if (bs != null && bs.isEmpty ()) return "";
+var uc = this.vwr.getCurrentUnitCell ();
+if (uc == null) uc = this.vwr.getSymTemp ().setUnitCell ( Clazz.newFloatArray (-1, [10, 10, 10, 90, 90, 90]), false);
+var bsCell = JS.SV.getBitSet (this.vwr.evaluateExpressionAsVariable ("{within(unitcell)}"), true);
+var bsAtoms = this.vwr.getThisModelAtoms ();
+if (bs == null) {
+bs = (isP1 ? bsAtoms : bsCell);
+}if (bs != null) bsAtoms.and (bs);
+if (bs != null && !isP1) bsAtoms.and (bsCell);
+var noAtoms = bsAtoms.isEmpty ();
+var mi = (noAtoms ? 0 : this.vwr.ms.at[bsAtoms.nextSetBit (0)].getModelIndex ());
+var m = uc.getUnitCellMultiplier ();
+if (m != null && m.z == 1) {
+m.z = 0;
+}var supercell;
+var oabc;
+var name;
+var ita;
+var basis;
+var sg = (noAtoms || isP1 ? null : this.vwr.findSpaceGroup (bsAtoms, null, false));
+if (sg == null) {
+name = "P1";
+supercell = JU.P3.new3 (1, 1, 1);
+oabc = uc.getUnitCellVectors ();
+ita = "1";
+basis = null;
+} else {
+supercell = sg.get ("supercell");
+oabc = sg.get ("unitcell");
+name = sg.get ("name");
+ita = sg.get ("itaFull");
+basis = sg.get ("basis");
+}uc.getUnitCell (oabc, false, null);
+uc.setSpaceGroupTo (ita);
+uc.setSpaceGroupName (name);
+if (basis == null) basis = uc.removeDuplicates (this.vwr.ms, bsAtoms);
+this.vwr.ms.setSpaceGroup (mi, uc, basis);
+var pt = JU.SimpleUnitCell.ptToIJK (supercell, 1);
+this.vwr.ms.setUnitCellOffset (uc, pt, 0);
+return name + " basis=" + basis;
+} catch (e) {
+if (Clazz.exceptionOf (e, Exception)) {
+if (!JV.Viewer.isJS) e.printStackTrace ();
+return e.getMessage ();
+} else {
+throw e;
+}
+}
+}, "JU.BS,~B");
+Clazz.defineMethod (c$, "cmdAssignDeleteAtoms", 
+function (bs) {
+bs.and (this.vwr.getThisModelAtoms ());
+bs = this.vwr.ms.getSymmetryEquivAtoms (bs);
+if (!bs.isEmpty ()) this.vwr.deleteAtoms (bs, false);
+return bs.cardinality ();
+}, "JU.BS");
 Clazz.defineMethod (c$, "setBondIndex", 
  function (index, isRotate) {
 if (!isRotate && this.isVwrRotateBond ()) {
@@ -985,55 +963,280 @@ c$.notImplemented = Clazz.defineMethod (c$, "notImplemented",
  function (action) {
 System.err.println ("ModelKit.notImplemented(" + action + ")");
 }, "~S");
-Clazz.defineMethod (c$, "cmdAssignSpaceGroup", 
-function (bs) {
+Clazz.defineMethod (c$, "cmdAssignAtom", 
+function (atomIndex, pt, type, cmd, isClick) {
+this.assignAtoms (null, atomIndex, 0, 0, pt, type, cmd, null, isClick, null);
+}, "~N,JU.P3,~S,~S,~B");
+Clazz.defineMethod (c$, "assignAtoms", 
+ function (uc, atomIndex, atomicNo, site, pt, type, cmd, points, isClick, packing) {
+var nIgnored = 0;
+if (points != null) {
+nIgnored = points.size ();
+uc.toFractional (pt, true);
+points.addLast (pt);
+uc.getEquivPointList (points, nIgnored, packing);
+}var state = this.getMKState ();
 try {
-if (bs != null && bs.isEmpty ()) return "";
-var uc = this.vwr.getCurrentUnitCell ();
-if (uc == null) uc = this.vwr.getSymTemp ().setUnitCell ( Clazz.newFloatArray (-1, [10, 10, 10, 90, 90, 90]), false);
-var bsAtoms = this.vwr.getThisModelAtoms ();
-if (bs == null) {
-bs = JS.SV.getBitSet (this.vwr.evaluateExpressionAsVariable ("{within(unitcell)}"), true);
-}if (bs != null) bsAtoms.and (bs);
-var noAtoms = bsAtoms.isEmpty ();
-var mi = (noAtoms ? 0 : this.vwr.ms.at[bsAtoms.nextSetBit (0)].getModelIndex ());
-var m = uc.getUnitCellMultiplier ();
-if (m != null && m.z == 1) {
-m.z = 0;
-}var supercell;
-var oabc;
-var name;
-var ita;
-var basis;
-var sg = (noAtoms ? null : this.vwr.findSpaceGroup (bsAtoms, null, false));
-if (sg == null) {
-name = "P1";
-supercell = JU.P3.new3 (1, 1, 1);
-oabc = uc.getUnitCellVectors ();
-ita = "1";
-basis = null;
+if (isClick && type.equals ("X")) this.vwr.setModelKitRotateBondIndex (-1);
+var ac = this.vwr.ms.ac;
+var atom = (atomIndex < 0 ? null : this.vwr.ms.at[atomIndex]);
+if (pt == null && points == null) {
+if (atomIndex < 0 || atom == null) return;
+var mi = atom.mi;
+this.vwr.sm.setStatusStructureModified (atomIndex, mi, 1, cmd, 1, null);
+this.assignAtom (atomIndex, type, this.autoBond, true, true);
+if (!JU.PT.isOneOf (type, ";Mi;Pl;X;")) this.vwr.ms.setAtomNamesAndNumbers (atomIndex, -ac, null, true);
+this.vwr.sm.setStatusStructureModified (atomIndex, mi, -1, "OK", 1, null);
+this.vwr.refresh (3, "assignAtom");
+return;
+}this.setMKState (0);
+var bs = (atomIndex < 0 ?  new JU.BS () : JU.BSUtil.newAndSetBit (atomIndex));
+var pts;
+if (points == null) {
+pts =  Clazz.newArray (-1, [pt]);
 } else {
-supercell = sg.get ("supercell");
-oabc = sg.get ("unitcell");
-name = sg.get ("name");
-ita = sg.get ("itaFull");
-basis = sg.get ("basis");
-}uc.getUnitCell (oabc, false, null);
-uc.setSpaceGroupTo (ita);
-uc.setSpaceGroupName (name);
-this.vwr.ms.setSpaceGroup (mi, uc, basis);
-var pt = JU.SimpleUnitCell.ptToIJK (supercell, 1);
-this.vwr.ms.setUnitCellOffset (uc, pt, 0);
-return name + " basis=" + basis;
+pts =  new Array (points.size () - nIgnored);
+for (var i = pts.length; --i >= 0; ) {
+pts[i] = points.get (nIgnored + i);
+}
+}var vConnections =  new JU.Lst ();
+var modelIndex = this.vwr.am.cmi;
+if (site == 0) {
+if (atom != null) {
+vConnections.addLast (atom);
+modelIndex = atom.mi;
+this.vwr.sm.setStatusStructureModified (atomIndex, modelIndex, 3, cmd, 1, null);
+}if (points != null) {
+var bsM = this.vwr.getThisModelAtoms ();
+for (var i = bsM.nextSetBit (0); i >= 0; i = bsM.nextSetBit (i + 1)) {
+var as = this.vwr.ms.at[i].getAtomSite ();
+if (as > site) site = as;
+}
+site++;
+}}var pickingMode = this.vwr.acm.getAtomPickingMode ();
+var wasHidden = this.menu.hidden;
+var isMK = this.vwr.getBoolean (603983903);
+if (!isMK) {
+this.vwr.setBooleanProperty ("modelkitmode", true);
+this.menu.hidden = true;
+this.menu.allowPopup = false;
+}var htParams =  new java.util.Hashtable ();
+if (site > 0) htParams.put ("fixedSite", Integer.$valueOf (site));
+bs = this.vwr.addHydrogensInline (bs, vConnections, pts, htParams);
+if (!isMK) {
+this.vwr.setBooleanProperty ("modelkitmode", false);
+this.menu.hidden = wasHidden;
+this.menu.allowPopup = true;
+this.vwr.acm.setPickingMode (pickingMode);
+this.menu.hidePopup ();
+}var atomIndex2 = bs.nextSetBit (0);
+if (points == null) {
+this.assignAtom (atomIndex2, type, false, atomIndex >= 0, true);
+if (atomIndex >= 0) this.assignAtom (atomIndex, ".", false, true, isClick);
+this.vwr.ms.setAtomNamesAndNumbers (atomIndex2, -ac, null, true);
+this.vwr.sm.setStatusStructureModified (atomIndex2, modelIndex, -3, "OK", 1, bs);
+} else {
+if (atomIndex2 >= 0) {
+var asymm = this.vwr.getModelForAtomIndex (atomIndex2).bsAsymmetricUnit;
+for (var i = atomIndex2; i >= 0; i = bs.nextSetBit (i + 1)) {
+this.assignAtom (i, type, false, false, true);
+this.vwr.ms.setSite (this.vwr.ms.at[i], site, true);
+}
+asymm.clearBits (ac + 1, this.vwr.ms.ac);
+}var firstAtom = this.vwr.ms.am[modelIndex].firstAtomIndex;
+if (atomicNo >= 0) {
+atomicNo = JU.Elements.elementNumberFromSymbol (type, true);
+var bsM = this.vwr.getThisModelAtoms ();
+for (var i = bsM.nextSetBit (0); i >= 0; i = bsM.nextSetBit (i + 1)) {
+if (this.vwr.ms.at[i].getAtomSite () == site) this.vwr.ms.setElement (this.vwr.ms.at[i], atomicNo, true);
+}
+}this.vwr.ms.setAtomNamesAndNumbers (firstAtom, -ac, null, true);
+this.vwr.sm.setStatusStructureModified (-1, modelIndex, -3, "OK", 1, bs);
+}} catch (ex) {
+if (Clazz.exceptionOf (ex, Exception)) {
+} else {
+throw ex;
+}
+} finally {
+this.setMKState (state);
+}
+}, "J.api.SymmetryInterface,~N,~N,~N,JU.P3,~S,~S,JU.Lst,~B,~S");
+Clazz.defineMethod (c$, "cmdAssignBond", 
+function (bondIndex, type, cmd) {
+var modelIndex = -1;
+var state = this.getMKState ();
+try {
+this.setMKState (0);
+if (type == '-') type = this.pickBondAssignType;
+var a1 = this.vwr.ms.bo[bondIndex].atom1;
+modelIndex = a1.mi;
+var ac = this.vwr.ms.ac;
+this.vwr.sm.setStatusStructureModified (bondIndex, modelIndex, 6, cmd, 1, null);
+var bsAtoms = this.assignBond (bondIndex, type);
+this.vwr.ms.setAtomNamesAndNumbers (a1.i, -ac, null, true);
+if (bsAtoms == null || type == '0') this.vwr.refresh (3, "setBondOrder");
+this.vwr.sm.setStatusStructureModified (bondIndex, modelIndex, -6, "" + type, 1, null);
+} catch (ex) {
+if (Clazz.exceptionOf (ex, Exception)) {
+JU.Logger.error ("assignBond failed");
+this.vwr.sm.setStatusStructureModified (bondIndex, modelIndex, -2, "ERROR " + ex, 1, null);
+} else {
+throw ex;
+}
+} finally {
+this.setMKState (state);
+}
+}, "~N,~S,~S");
+Clazz.defineMethod (c$, "cmdAssignConnect", 
+function (index, index2, type, cmd) {
+var state = this.getMKState ();
+try {
+var connections = JU.AU.newFloat2 (1);
+connections[0] =  Clazz.newFloatArray (-1, [index, index2]);
+var modelIndex = this.vwr.ms.at[index].mi;
+this.vwr.sm.setStatusStructureModified (index, modelIndex, 6, cmd, 1, null);
+this.vwr.ms.connect (connections);
+var ac = this.vwr.ms.ac;
+this.assignAtom (index, ".", true, true, false);
+this.assignAtom (index2, ".", true, true, false);
+this.vwr.ms.setAtomNamesAndNumbers (index, -ac, null, true);
+this.vwr.sm.setStatusStructureModified (index, modelIndex, -6, "OK", 1, null);
+if (type != '1') {
+var bs = JU.BSUtil.newAndSetBit (index);
+bs.set (index2);
+bs = this.vwr.getBondsForSelectedAtoms (bs);
+var bondIndex = bs.nextSetBit (0);
+this.cmdAssignBond (bondIndex, type, cmd);
+}this.vwr.refresh (3, "assignConnect");
 } catch (e) {
 if (Clazz.exceptionOf (e, Exception)) {
-if (!JV.Viewer.isJS) e.printStackTrace ();
-return e.getMessage ();
 } else {
 throw e;
 }
+} finally {
+this.setMKState (state);
 }
-}, "JU.BS");
+}, "~N,~N,~S,~S");
+Clazz.defineMethod (c$, "assignAtomClick", 
+function (atomIndex, element, ptNew) {
+this.vwr.script ("modelkit assign atom ({" + atomIndex + "}) \"" + element + "\" " + (ptNew == null ? "" : JU.Escape.eP (ptNew)) + " true");
+}, "~N,~S,JU.P3");
+Clazz.defineMethod (c$, "cmdAssignAddAtoms", 
+function (type, pt, bsAtoms, packing, cmd) {
+try {
+this.vwr.pushHoldRepaintWhy ("modelkit");
+var isPoint = (bsAtoms == null);
+if (!isPoint && bsAtoms.isEmpty ()) return 0;
+var uc = this.vwr.getCurrentUnitCell ();
+if (uc == null) {
+if (isPoint) this.assignAtoms (null, -1, 1, -1, pt, type, cmd, null, false, "");
+return (isPoint ? 1 : 0);
+}var bsM = this.vwr.getThisModelAtoms ();
+var n = bsM.cardinality ();
+var stype = "" + type;
+var pf = null;
+if (isPoint) {
+pf = JU.P3.newP (pt);
+uc.toFractional (pf, true);
+}var list =  new JU.Lst ();
+var atomicNo = -1;
+var site = 0;
+for (var i = bsM.nextSetBit (0); i >= 0; i = bsM.nextSetBit (i + 1)) {
+if (bsAtoms == null || !bsAtoms.get (i)) {
+var p = JU.P3.newP (this.vwr.ms.at[i]);
+uc.toFractional (p, true);
+if (pf != null && pf.distanceSquared (p) < 1.96E-6) {
+site = this.vwr.ms.at[i].getAtomSite ();
+if (type == null) type = this.vwr.ms.at[i].getElementSymbolIso (true);
+} else {
+list.addLast (p);
+}}}
+var nIgnored = list.size ();
+packing = "fromfractional;tocartesian;" + packing;
+if (type != null) atomicNo = JU.Elements.elementNumberFromSymbol (type, true);
+if (isPoint) {
+this.assignAtoms (uc, -1, atomicNo, site, JU.P3.newP (pt), stype, null, list, false, packing);
+} else {
+var sites =  new JU.BS ();
+for (var i = bsAtoms.nextSetBit (0); i >= 0; i = bsAtoms.nextSetBit (i + 1)) {
+var a = this.vwr.ms.at[i];
+site = a.getAtomSite ();
+if (sites.get (site)) continue;
+sites.set (site);
+stype = (type == null ? a.getElementSymbolIso (true) : stype);
+this.assignAtoms (uc, -1, atomicNo, site, JU.P3.newP (a), stype, null, list, false, packing);
+for (var j = list.size (); --j >= nIgnored; ) list.removeItemAt (j);
+
+}
+}n = this.vwr.getThisModelAtoms ().cardinality () - n;
+return n;
+} catch (e) {
+if (Clazz.exceptionOf (e, Exception)) {
+e.printStackTrace ();
+return 0;
+} else {
+throw e;
+}
+} finally {
+this.vwr.popHoldRepaint ("modelkit");
+}
+}, "~S,JU.P3,JU.BS,~S,~S");
+Clazz.defineMethod (c$, "cmdAssignMoveAtom", 
+function (iatom, p) {
+var state = this.getMKState ();
+this.setMKState (0);
+try {
+if (iatom < 0) return 0;
+var bs = JU.BSUtil.newAndSetBit (iatom);
+bs.and (this.vwr.getThisModelAtoms ());
+if (bs.isEmpty ()) return 0;
+var bseq = this.vwr.ms.getSymmetryEquivAtoms (bs);
+if (bseq.cardinality () == 1) {
+this.vwr.ms.setAtomCoord (iatom, p.x, p.y, p.z);
+return 1;
+}var pa = JU.P3.newP (this.vwr.ms.at[iatom]);
+var pt = JU.P3.newP (p);
+var sg = this.vwr.getCurrentUnitCell ();
+var v0 = sg.getSymmetryInvariant (pa, null);
+var v1 = sg.getSymmetryInvariant (p, v0);
+if ((v1 == null) != (v0 == null)) return 0;
+sg.toFractional (pa, true);
+sg.toFractional (pt, true);
+var points =  new Array (bseq.cardinality ());
+var sym = this.vwr.getSymTemp ();
+for (var k = 0, ia = bseq.nextSetBit (0); ia >= 0; ia = bseq.nextSetBit (ia + 1)) {
+p = JU.P3.newP (this.vwr.ms.at[ia]);
+sg.toFractional (p, true);
+var m = sym.getTransform (this.vwr.ms, this.vwr.ms.at[iatom].mi, pa, p);
+if (m == null) {
+System.err.println ("ModelKit failed to find tranformation for atomIndex " + ia + " " + pa + " to " + p);
+return 0;
+}p.setT (pt);
+m.rotTrans (p);
+sg.toCartesian (p, true);
+points[k++] = p;
+}
+for (var k = 0, ia = bseq.nextSetBit (0); ia >= 0; ia = bseq.nextSetBit (ia + 1)) {
+p = points[k++];
+this.vwr.ms.setAtomCoord (ia, p.x, p.y, p.z);
+}
+return bseq.cardinality ();
+} finally {
+this.setMKState (state);
+}
+}, "~N,JU.P3");
+Clazz.defineMethod (c$, "constrain", 
+function (bsSelected, ptNew) {
+var iatom = bsSelected.nextSetBit (0);
+var sym = this.vwr.getCurrentUnitCell ();
+if (iatom < 0 || sym == null) return;
+if (this.constraint == null) {
+return;
+} else {
+this.constraint.constrain (this.vwr.ms.at[iatom], ptNew);
+if (!Float.isNaN (ptNew.x)) this.cmdAssignMoveAtom (iatom, ptNew);
+}ptNew.x = NaN;
+}, "JU.BS,JU.P3");
 Clazz.defineStatics (c$,
 "MODE_OPTIONS", ";view;edit;molecular;",
 "SYMMETRY_OPTIONS", ";none;applylocal;retainlocal;applyfull;",

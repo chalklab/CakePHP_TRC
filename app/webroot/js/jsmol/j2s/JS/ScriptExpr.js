@@ -296,14 +296,15 @@ switch (tok2) {
 case 1073742327:
 tok2 = 480;
 if (this.tokAt (this.iToken + 3) == 1073742336 && this.tokAt (this.iToken + 4) == 1275068420) tok2 = 224;
+case 1275068725:
 case 32:
 case 64:
 case 192:
 case 128:
 case 160:
 case 96:
-allowMathFunc = (isUserFunction || $var.intValue == 1275069443 || tok2 == 480 || tok2 == 224);
-$var.intValue |= tok2;
+allowMathFunc = (isUserFunction || $var.intValue == 1275069443 || tok2 == 480 || tok2 == 224 || tok2 == 1275068725);
+$var.intValue |= tok2 & 480;
 this.getToken (this.iToken + 2);
 }
 }var tokNext = this.tokAt (this.iToken + 1);
@@ -1070,6 +1071,7 @@ Clazz.defineMethod (c$, "getBitsetPropertySelector",
  function (i, xTok) {
 var tok = this.getToken (i).tok;
 switch (tok) {
+case 1275068725:
 case 32:
 case 64:
 case 96:
@@ -1094,6 +1096,8 @@ var haveIndex = (index != 2147483647);
 var isAtoms = haveIndex || !(Clazz.instanceOf (tokenValue, JM.BondSet)) && !(Clazz.instanceOf (bs, JM.BondSet));
 var minmaxtype = tok & 480;
 var selectedFloat = (minmaxtype == 224);
+var isPivot = (minmaxtype == 288);
+if (isPivot) minmaxtype = 480;
 var ac = this.vwr.ms.ac;
 var fout = (minmaxtype == 256 ?  Clazz.newFloatArray (ac, 0) : null);
 var isExplicitlyAll = (minmaxtype == 480 || selectedFloat);
@@ -1105,7 +1109,7 @@ var isHash = false;
 var isInt = false;
 var isString = false;
 switch (tok) {
-case 1275068449:
+case 1275068446:
 return (this.vwr.getAuxiliaryInfoForAtoms (bs)).get ("models");
 case 1145047050:
 case 1145047055:
@@ -1232,8 +1236,13 @@ i1 = ac;
 }if (this.chk) i1 = 0;
 for (var i = i0; i >= 0 && i < i1; i = (haveBitSet ? bs.nextSetBit (i + 1) : i + 1)) {
 n++;
-var atom = (pts == null ? modelSet.at[i] : null);
-switch (mode) {
+var atom;
+if (pts == null) {
+atom = modelSet.at[i];
+if (atom == null) continue;
+} else {
+atom = null;
+}switch (mode) {
 case 0:
 var fv = 3.4028235E38;
 switch (tok) {
@@ -1406,8 +1415,11 @@ this.errorStr (46, JS.T.nameOf (tok));
 }
 }if (minmaxtype == 256) return fout;
 if (minmaxtype == 1073742327) {
-if (asVectorIfAll) return vout;
-var len = vout.size ();
+if (asVectorIfAll) {
+if (isPivot) {
+return this.getMathExt ().getMinMax (vout, 1275068725, false);
+}return vout;
+}var len = vout.size ();
 if ((isString || isHash) && !isExplicitlyAll && len == 1) return vout.get (0);
 if (selectedFloat) {
 fout =  Clazz.newFloatArray (len, 0);

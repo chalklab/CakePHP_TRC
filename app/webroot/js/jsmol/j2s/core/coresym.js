@@ -1036,7 +1036,7 @@ Clazz_defineStatics (c$,
 Clazz_declarePackage ("J.api");
 Clazz_declareInterface (J.api, "SymmetryInterface");
 Clazz_declarePackage ("JS");
-Clazz_load (["J.api.SymmetryInterface"], "JS.Symmetry", ["JU.BS", "$.Lst", "$.P3", "J.api.Interface", "J.bspt.Bspt", "JS.PointGroup", "$.SpaceGroup", "$.SymmetryInfo", "$.SymmetryOperation", "$.UnitCell", "JU.Escape", "$.Logger", "$.SimpleUnitCell"], function () {
+Clazz_load (["J.api.SymmetryInterface"], "JS.Symmetry", ["JU.BS", "$.Lst", "$.P3", "J.api.Interface", "J.bspt.Bspt", "JS.PointGroup", "$.SpaceGroup", "$.SymmetryInfo", "$.SymmetryOperation", "$.UnitCell", "JU.BSUtil", "$.Escape", "$.Logger", "$.SimpleUnitCell"], function () {
 c$ = Clazz_decorateAsClass (function () {
 this.pointGroup = null;
 this.spaceGroup = null;
@@ -1173,7 +1173,7 @@ Clazz_overrideMethod (c$, "getSiteMultiplicity",
 function (pt) {
 return this.spaceGroup.getSiteMultiplicity (pt, this.unitCell);
 }, "JU.P3");
-Clazz_overrideMethod (c$, "addOp", 
+Clazz_overrideMethod (c$, "addSubSystemOp", 
 function (code, rs, vs, sigma) {
 this.spaceGroup.isSSG = true;
 var s = JS.SymmetryOperation.getXYZFromRsVs (rs, vs, false);
@@ -1376,6 +1376,7 @@ return this.unitCell.checkDistance (f1, f2, distance, dx, iRange, jRange, kRange
 }, "JU.P3,JU.P3,~N,~N,~N,~N,~N,JU.P3");
 Clazz_overrideMethod (c$, "getUnitCellVectors", 
 function () {
+if (this.unitCell == null) System.out.println ("Symmetry no unitCell!! ?? ");
 return this.unitCell.getUnitCellVectors ();
 });
 Clazz_overrideMethod (c$, "getUnitCell", 
@@ -1450,7 +1451,7 @@ if (info != null) sgName = info.get ("spaceGroup");
 }var cellInfo = null;
 if (cellParams != null) {
 cellInfo =  new JS.Symmetry ().setUnitCell (cellParams, false);
-}return this.getDesc (modelSet).getSpaceGroupInfo (this, modelIndex, sgName, 0, null, null, null, 0, -1, isFull, isForModel, 0, cellInfo);
+}return this.getDesc (modelSet).getSpaceGroupInfo (this, modelIndex, sgName, 0, null, null, null, 0, -1, isFull, isForModel, 0, cellInfo, null);
 }, "JM.ModelSet,~S,~N,~B,~A");
 Clazz_overrideMethod (c$, "fcoord", 
 function (p) {
@@ -1588,6 +1589,95 @@ this.spaceGroup = sg;
 } else {
 this.spaceGroup = JS.SpaceGroup.getSpaceGroupFromITAName (sg.toString ());
 }}, "~O");
+Clazz_overrideMethod (c$, "removeDuplicates", 
+function (ms, bs) {
+var uc = this.unitCell;
+var atoms = ms.at;
+var occs = ms.occupancies;
+var haveOccupancies = (occs != null);
+var pt =  new JU.P3 ();
+var pt2 =  new JU.P3 ();
+for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
+var a = atoms[i];
+pt.setT (a);
+uc.toFractional (pt, false);
+uc.unitize (pt);
+var type = a.getAtomicAndIsotopeNumber ();
+var occ = (haveOccupancies ? occs[i] : 0);
+for (var j = bs.nextSetBit (i + 1); j >= 0; j = bs.nextSetBit (j + 1)) {
+var b = atoms[j];
+if (type != b.getAtomicAndIsotopeNumber () || (haveOccupancies && occ != occs[j])) continue;
+pt2.setT (b);
+uc.toFractional (pt2, false);
+uc.unitize (pt2);
+if (pt.distanceSquared (pt2) < 1.96E-6) {
+bs.clear (j);
+}}
+}
+return bs;
+}, "JM.ModelSet,JU.BS");
+Clazz_overrideMethod (c$, "getEquivPoints", 
+function (pts, pt, flags) {
+var ops = this.getSymmetryOperations ();
+return (ops == null || this.unitCell == null ? null : this.unitCell.getEquivPoints (pt, flags, ops, pts == null ?  new JU.Lst () : pts, 0, -1));
+}, "JU.Lst,JU.P3,~S");
+Clazz_overrideMethod (c$, "getEquivPointList", 
+function (pts, nIgnored, flags) {
+var ops = this.getSymmetryOperations ();
+var n = pts.size ();
+var tofractional = (flags.indexOf ("tofractional") >= 0);
+if (flags.indexOf ("fromfractional") < 0) {
+for (var i = 0; i < pts.size (); i++) {
+this.toFractional (pts.get (i), true);
+}
+}flags += ",fromfractional,tofractional";
+var check0 = (nIgnored > 0 ? 0 : n);
+var n0 = (nIgnored > 0 ? nIgnored : n);
+var p0 = (nIgnored > 0 ? pts.get (nIgnored) : null);
+if (ops != null || this.unitCell != null) {
+for (var i = nIgnored; i < n; i++) {
+this.unitCell.getEquivPoints (pts.get (i), flags, ops, pts, check0, n0);
+}
+}if (pts.size () == nIgnored || pts.get (nIgnored) !== p0) n--;
+for (var i = n - nIgnored; --i >= 0; ) pts.removeItemAt (nIgnored);
+
+if (!tofractional) {
+for (var i = pts.size (); --i >= nIgnored; ) this.toCartesian (pts.get (i), true);
+
+}}, "JU.Lst,~N,~S");
+Clazz_overrideMethod (c$, "getSymmetryInvariant", 
+function (pt, v0) {
+var ops = this.getSymmetryOperations ();
+if (ops == null) return  Clazz_newIntArray (0, 0);
+var bs =  new JU.BS ();
+var p =  new JU.P3 ();
+var p0 =  new JU.P3 ();
+var nops = ops.length;
+for (var i = 1; i < nops; i++) {
+p.setT (pt);
+this.toFractional (p, true);
+this.unitize (p);
+p0.setT (p);
+ops[i].rotTrans (p);
+this.unitize (p);
+if (p0.distanceSquared (p) < 1.96E-6) bs.set (i);
+}
+var ret =  Clazz_newIntArray (bs.cardinality (), 0);
+if (v0 != null && ret.length != v0.length) return null;
+for (var k = 0, i = 1; i < nops; i++) {
+var isOK = bs.get (i);
+if (isOK) {
+if (v0 != null && v0[k] != i) return null;
+ret[k++] = i + 1;
+}}
+return ret;
+}, "JU.P3,~A");
+Clazz_overrideMethod (c$, "getTransform", 
+function (ms, modelIndex, pa, pb) {
+var o = this.getDesc (ms).getSymopInfoForPoints (this, modelIndex, 0, null, pa, pb, null, null, 0, 1, 0, JU.BSUtil.newAndSetBit (22));
+o = o[0];
+return o[o.length - 1];
+}, "JM.ModelSet,~N,JU.P3,JU.P3");
 });
 Clazz_declarePackage ("JS");
 Clazz_load (["JU.M3", "$.V3"], "JS.PointGroup", ["java.lang.Float", "java.util.Hashtable", "JU.Lst", "$.P3", "$.PT", "$.Quat", "$.SB", "J.bspt.Bspt", "JU.BSUtil", "$.Escape", "$.Logger", "$.Node", "$.Point3fi"], function () {
@@ -3144,6 +3234,7 @@ this.rotationTerms =  new Array (16);
 Clazz_makeConstructor (c$, 
 function (hallSymbol) {
 try {
+if (hallSymbol.startsWith ("Hall:")) hallSymbol = hallSymbol.substring (5).trim ();
 var str = this.hallSymbol = hallSymbol.trim ();
 str = this.extractLatticeInfo (str);
 if (JS.HallTranslation.getLatticeIndex (this.latticeCode) == 0) return;
@@ -4227,7 +4318,7 @@ return unitCellParams;
 }, "java.util.Map,~A,JS.SpaceGroup");
 });
 Clazz_declarePackage ("JS");
-Clazz_load (["JU.SimpleUnitCell", "JU.P3", "JV.JC"], "JS.UnitCell", ["java.lang.Double", "$.Float", "java.util.Hashtable", "JU.M3", "$.M4", "$.P4", "$.PT", "$.Quat", "$.T4", "$.V3", "J.api.Interface", "JS.Symmetry", "JU.BoxInfo", "$.Escape"], function () {
+Clazz_load (["JU.SimpleUnitCell", "JU.P3", "JV.JC"], "JS.UnitCell", ["java.lang.Double", "$.Float", "java.util.Hashtable", "JU.Lst", "$.M3", "$.M4", "$.P4", "$.PT", "$.Quat", "$.T4", "$.V3", "J.api.Interface", "JS.Symmetry", "JU.BoxInfo", "$.Escape"], function () {
 c$ = Clazz_decorateAsClass (function () {
 this.vertices = null;
 this.fractionalOffset = null;
@@ -4510,43 +4601,60 @@ var x =  new JU.V3 ();
 var v =  new JU.V3 ();
 var mul = (abc.charAt (0) == '-' ? -1 : 1);
 if (mul < 0) abc = abc.substring (1);
-var quadrant = 0;
+var abc0 = abc;
+abc = JU.PT.rep (JU.PT.rep (JU.PT.rep (JU.PT.rep (JU.PT.rep (JU.PT.rep (abc, "ab", "A"), "bc", "B"), "ca", "C"), "ba", "D"), "cb", "E"), "ac", "F");
+var isFace = !abc0.equals (abc);
+var quadrant = (isFace ? 1 : 0);
 if (abc.length == 2) {
 quadrant = abc.charCodeAt (1) - 48;
 abc = abc.substring (0, 1);
 }var isEven = (quadrant % 2 == 0);
-var axis = "abc".indexOf (abc);
+var axis = "abcABCDEF".indexOf (abc);
 var v1;
 var v2;
+var v3;
 switch (axis) {
+case 7:
+mul = -mul;
+case 4:
+a.cross (c, b);
+quadrant = ((5 - quadrant) % 4) + 1;
 case 0:
 default:
 v1 = a;
 v2 = c;
-if (quadrant > 0) {
-if (mul > 0 == isEven) {
-v2 = b;
-v1.scale (-1);
-}}break;
+v3 = b;
+break;
+case 8:
+mul = -mul;
+case 5:
+mul = -mul;
+b.cross (c, a);
+quadrant = ((2 + quadrant) % 4) + 1;
 case 1:
 v1 = b;
 v2 = a;
-if (quadrant > 0) {
-if (mul > 0 == isEven) {
-v2 = c;
-v1.scale (-1);
-}}break;
+v3 = c;
+mul = -mul;
+break;
+case 3:
+mul = -mul;
+case 6:
+c.cross (a, b);
+if (isEven) quadrant = 6 - quadrant;
 case 2:
 v1 = c;
 v2 = a;
-if (quadrant > 0) {
+v3 = b;
+if (!isFace && quadrant > 0) {
 quadrant = 5 - quadrant;
-if (mul > 0 != isEven) {
-v2 = b;
-v1.scale (-1);
-}}break;
+}break;
 }
-switch (quadrant) {
+if (quadrant > 0) {
+if (mul > 0 != isEven) {
+v2 = v3;
+v1.scale (-1);
+}}switch (quadrant) {
 case 0:
 default:
 case 1:
@@ -4702,6 +4810,59 @@ throw e;
 }
 return ucnew;
 }, "JS.UnitCell");
+Clazz_defineMethod (c$, "getEquivPoints", 
+function (pt, flags, ops, list, i0, n0) {
+var fromfractional = (flags.indexOf ("fromfractional") >= 0);
+var tofractional = (flags.indexOf ("tofractional") >= 0);
+var packed = (flags.indexOf ("packed") >= 0);
+if (list == null) list =  new JU.Lst ();
+var pf = JU.P3.newP (pt);
+if (!fromfractional) this.toFractional (pf, true);
+var n = list.size ();
+for (var i = 0, nops = ops.length; i < nops; i++) {
+var p = JU.P3.newP (pf);
+ops[i].rotTrans (p);
+this.unitize (p);
+list.addLast (p);
+n++;
+}
+if (packed) {
+for (var i = n0; i < n; i++) {
+var p = list.get (i);
+if (p.x == 0) {
+list.addLast (JU.P3.new3 (1, p.y, p.z));
+if (p.y == 0) {
+list.addLast (JU.P3.new3 (1, 1, p.z));
+if (p.z == 0) {
+list.addLast (JU.P3.new3 (1, 1, 1));
+}}}if (p.y == 0) {
+list.addLast (JU.P3.new3 (p.x, 1, p.z));
+if (p.z == 0) {
+list.addLast (JU.P3.new3 (p.x, 1, 1));
+}}if (p.z == 0) {
+list.addLast (JU.P3.new3 (p.x, p.y, 1));
+if (p.x == 0) {
+list.addLast (JU.P3.new3 (1, p.y, 1));
+}}}
+}this.checkDuplicate (list, i0, n0);
+if (!tofractional) {
+for (var i = n0; i < n; i++) this.toCartesian (list.get (i), true);
+
+}return list;
+}, "JU.P3,~S,~A,JU.Lst,~N,~N");
+Clazz_defineMethod (c$, "checkDuplicate", 
+ function (list, i0, n0) {
+var n = list.size ();
+out : for (var i = i0; i < n; i++) {
+var p = list.get (i);
+for (var j = Math.max (i + 1, n0); j < n; j++) {
+if (list.get (j).distanceSquared (p) < 1.96E-6) {
+list.removeItemAt (j);
+n--;
+j--;
+}}
+}
+}, "JU.Lst,~N,~N");
 Clazz_defineStatics (c$,
 "twoP2", 19.739208802178716);
 c$.unitVectors = c$.prototype.unitVectors =  Clazz_newArray (-1, [JV.JC.axisX, JV.JC.axisY, JV.JC.axisZ]);

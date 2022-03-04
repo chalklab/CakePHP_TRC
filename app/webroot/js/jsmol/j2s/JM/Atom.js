@@ -382,6 +382,10 @@ Clazz.overrideMethod (c$, "getAtomSite",
 function () {
 return this.atomSite;
 });
+Clazz.defineMethod (c$, "setAtomSite", 
+function (site) {
+this.atomSite = site;
+}, "~N");
 Clazz.overrideMethod (c$, "getGroupBits", 
 function (bs) {
 this.group.setAtomBits (bs);

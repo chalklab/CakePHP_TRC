@@ -64,9 +64,9 @@
 ){
 var $t$;
 //var c$;
-Jmol.___JmolDate="$Date: 2022-02-23 05:39:09 -0600 (Wed, 23 Feb 2022) $"
+Jmol.___JmolDate="$Date: 2022-03-03 12:10:18 -0600 (Thu, 03 Mar 2022) $"
 Jmol.___fullJmolProperties="src/org/jmol/viewer/Jmol.properties"
-Jmol.___JmolVersion="14.32.25" 
+Jmol.___JmolVersion="14.32.29" 
 // JSmolJavaExt.js
  
 
@@ -16603,6 +16603,7 @@ this.doFixPeriodic = false;
 this.allowMultiple = false;
 this.readerList = null;
 this.atomMapAnyCase = false;
+this.fixedSite = 0;
 this.bsStructuredModels = null;
 this.haveAnisou = false;
 this.baseSymmetryAtomCount = 0;
@@ -16652,9 +16653,12 @@ var p =  new java.util.Properties ();
 p.put ("PATH_KEY", ".PATH");
 p.put ("PATH_SEPARATOR", J.adapter.smarter.SmarterJmolAdapter.PATH_SEPARATOR);
 this.setInfo ("properties", p);
-var modelIndex = (reader == null ? null : reader.htParams.get ("appendToModelIndex"));
-if (modelIndex != null) this.setInfo ("appendToModelIndex", modelIndex);
-if (array != null) {
+if (reader != null) {
+var ii = reader.htParams.get ("appendToModelIndex");
+if (ii != null) this.setInfo ("appendToModelIndex", ii);
+ii = reader.htParams.get ("fixedSite");
+if (ii != null) this.fixedSite = ii.intValue ();
+}if (array != null) {
 var n = 0;
 this.readerList =  new JU.Lst ();
 for (var i = 0; i < array.length; i++) if (array[i] != null && (array[i].ac > 0 || array[i].reader != null && array[i].reader.mustFinalizeModelSet)) this.appendAtomSetCollection (n++, array[i]);
@@ -16967,7 +16971,7 @@ if (this.ac > 200000) this.atoms = JU.AU.ensureLength (this.atoms, this.ac + 500
 atom.index = this.ac;
 this.atoms[this.ac++] = atom;
 atom.atomSetIndex = this.iSet;
-atom.atomSite = this.atomSetAtomCounts[this.iSet]++;
+atom.atomSite = (this.fixedSite > 0 ? this.fixedSite - 1 : this.atomSetAtomCounts[this.iSet]++);
 return atom;
 }, "J.adapter.smarter.Atom");
 Clazz_defineMethod (c$, "addAtomWithMappedName", 
@@ -17199,7 +17203,6 @@ this.atomMapAnyCase = false;
 }, "~B");
 Clazz_defineMethod (c$, "getAtomSetAtomIndex", 
 function (i) {
-if (i < 0) System.out.println ("??");
 return this.atomSetAtomIndexes[i];
 }, "~N");
 Clazz_defineMethod (c$, "getAtomSetAtomCount", 
@@ -26277,6 +26280,16 @@ function (x) {
 switch (x == null ? 0 : x.tok) {
 case 10:
 return JS.SV.bsSelectToken (x).cardinality ();
+case 15:
+return (x.value).data.length;
+case 4:
+return (x.value).length;
+case 7:
+return x.intValue == 2147483647 ? (x).getList ().size () : JS.SV.sizeOf (JS.SV.selectItemTok (x, -2147483648));
+case 6:
+return (x.value).size ();
+case 14:
+return (x.value).getFullMap ().size ();
 case 1073742335:
 case 1073742334:
 return -1;
@@ -26292,16 +26305,6 @@ case 11:
 return -32;
 case 12:
 return -64;
-case 15:
-return (x.value).data.length;
-case 4:
-return (x.value).length;
-case 7:
-return x.intValue == 2147483647 ? (x).getList ().size () : JS.SV.sizeOf (JS.SV.selectItemTok (x, -2147483648));
-case 6:
-return (x.value).size ();
-case 14:
-return (x.value).getFullMap ().size ();
 default:
 return 0;
 }
@@ -27421,8 +27424,6 @@ c$.isScalar = Clazz_defineMethod (c$, "isScalar",
 function (x) {
 switch (x.tok) {
 case 7:
-case 11:
-case 12:
 return false;
 case 4:
 return ((x.value).indexOf ("\n") < 0);
@@ -28026,6 +28027,7 @@ JS.T.astrType = "nada identifier integer decimal string inscode hash array point
 "stddev", 192,
 "selectedfloat", 224,
 "allfloat", 256,
+"apivot", 288,
 "settable", 2048,
 "atoms", 1140850689,
 "bonds", 1677721602,
@@ -28171,7 +28173,7 @@ JS.T.astrType = "nada identifier integer decimal string inscode hash array point
 "label", 1825200146,
 "measure", 1745489939,
 "modulation", 1275072532,
-"pivot", 1275068437,
+"pivot", 1275068725,
 "plane", 134217750,
 "point", 134217751,
 "polyhedra", 1275203608,
@@ -28181,10 +28183,10 @@ JS.T.astrType = "nada identifier integer decimal string inscode hash array point
 "sort", 1275068444,
 "tensor", 1275068445,
 "unitcell", 1814695966,
+"__", 1275068446,
 "within", 134217759,
+"pointgroup", 1275068447,
 "write", 134221856,
-"__", 1275068449,
-"pointgroup", 134217762,
 "intersection", 134217763,
 "spacegroup", 134217764,
 "_args", 134217765,
@@ -28859,7 +28861,7 @@ tokenLast = tokenThis;
 }
 arrayPairs = null;
 var sTokens =  Clazz_newArray (-1, ["+=", "-=", "*=", "/=", "\\=", "&=", "|=", "not", "!", "xor", "tog", "<", "<=", ">=", ">", "!=", "<>", "LIKE", "within", ".", "..", "[", "]", "{", "}", "$", "%", ";", "++", "--", "**", "\\", "animation", "anim", "assign", "axes", "backbone", "background", "bind", "bondorder", "boundbox", "boundingBox", "break", "calculate", "capture", "cartoon", "cartoons", "case", "catch", "cd", "center", "centre", "centerat", "cgo", "color", "colour", "compare", "configuration", "conformation", "config", "connect", "console", "contact", "contacts", "continue", "data", "default", "define", "@", "delay", "delete", "density", "depth", "dipole", "dipoles", "display", "dot", "dots", "draw", "echo", "ellipsoid", "ellipsoids", "else", "elseif", "end", "endif", "exit", "eval", "file", "files", "font", "for", "format", "frame", "frames", "frank", "function", "functions", "geosurface", "getProperty", "goto", "halo", "halos", "helix", "helixalpha", "helix310", "helixpi", "hbond", "hbonds", "help", "hide", "history", "hover", "if", "in", "initialize", "invertSelected", "isosurface", "javascript", "label", "labels", "lcaoCartoon", "lcaoCartoons", "load", "log", "loop", "measure", "measures", "monitor", "monitors", "meshribbon", "meshribbons", "message", "minimize", "minimization", "mo", "model", "models", "modulation", "move", "moveTo", "mutate", "navigate", "navigation", "nbo", "origin", "out", "parallel", "pause", "wait", "plot", "private", "plot3d", "pmesh", "polygon", "polyhedra", "polyhedron", "print", "process", "prompt", "quaternion", "quaternions", "quit", "ramachandran", "rama", "refresh", "reset", "unset", "restore", "restrict", "return", "ribbon", "ribbons", "rocket", "rockets", "rotate", "rotateSelected", "save", "select", "selectionHalos", "selectionHalo", "showSelections", "sheet", "show", "slab", "spacefill", "cpk", "spin", "ssbond", "ssbonds", "star", "stars", "step", "steps", "stereo", "strand", "strands", "structure", "_structure", "strucNo", "struts", "strut", "subset", "subsystem", "synchronize", "sync", "trace", "translate", "translateSelected", "try", "unbind", "unitcell", "var", "vector", "vectors", "vibration", "while", "wireframe", "write", "zap", "zoom", "zoomTo", "atom", "atoms", "axisangle", "basepair", "basepairs", "orientation", "orientations", "pdbheader", "polymer", "polymers", "residue", "residues", "rotation", "row", "sequence", "seqcode", "shape", "state", "symbol", "symmetry", "spaceGroup", "transform", "translation", "url", "_", "abs", "absolute", "_args", "acos", "add", "adpmax", "adpmin", "align", "altloc", "altlocs", "ambientOcclusion", "amino", "angle", "array", "as", "atomID", "_atomID", "_a", "atomIndex", "atomName", "atomno", "atomType", "atomX", "atomY", "atomZ", "average", "babel", "babel21", "back", "backlit", "backshell", "balls", "baseModel", "best", "beta", "bin", "bondCount", "bonded", "bottom", "branch", "brillouin", "bzone", "wignerSeitz", "cache", "carbohydrate", "cell", "chain", "chains", "chainNo", "chemicalShift", "cs", "clash", "clear", "clickable", "clipboard", "connected", "context", "constraint", "contourLines", "coord", "coordinates", "coords", "cos", "cross", "covalentRadius", "covalent", "direction", "displacement", "displayed", "distance", "div", "DNA", "domains", "dotted", "DSSP", "DSSR", "element", "elemno", "_e", "error", "exportScale", "fill", "find", "fixedTemperature", "forcefield", "formalCharge", "charge", "eta", "front", "frontlit", "frontOnly", "fullylit", "fx", "fy", "fz", "fxyz", "fux", "fuy", "fuz", "fuxyz", "group", "groups", "group1", "groupID", "_groupID", "_g", "groupIndex", "hidden", "highlight", "hkl", "hydrophobicity", "hydrophobic", "hydro", "id", "identify", "ident", "image", "info", "infoFontSize", "inline", "insertion", "insertions", "intramolecular", "intra", "intermolecular", "inter", "bondingRadius", "ionicRadius", "ionic", "isAromatic", "Jmol", "JSON", "join", "keys", "last", "left", "length", "lines", "list", "magneticShielding", "ms", "mass", "max", "mep", "mesh", "middle", "min", "mlp", "mode", "modify", "modifyOrCreate", "modt", "modt1", "modt2", "modt3", "modx", "mody", "modz", "modo", "modxyz", "molecule", "molecules", "modelIndex", "monomer", "morph", "movie", "mouse", "mul", "mul3", "nboCharges", "nci", "next", "noDelay", "noDots", "noFill", "noMesh", "none", "null", "inherit", "normal", "noBackshell", "noContourLines", "notFrontOnly", "noTriangles", "now", "nucleic", "occupancy", "omega", "only", "opaque", "options", "partialCharge", "phi", "pivot", "plane", "planar", "play", "playRev", "point", "points", "pointGroup", "polymerLength", "pop", "previous", "prev", "probe", "property", "properties", "protein", "psi", "purine", "push", "PyMOL", "pyrimidine", "random", "range", "rasmol", "replace", "resno", "resume", "rewind", "reverse", "right", "rmsd", "RNA", "rna3d", "rock", "rubberband", "saSurface", "saved", "scale", "scene", "search", "smarts", "selected", "seqid", "shapely", "sidechain", "sin", "site", "size", "smiles", "substructure", "solid", "sort", "specialPosition", "sqrt", "split", "starWidth", "starScale", "stddev", "straightness", "structureId", "supercell", "sub", "sum", "sum2", "surface", "surfaceDistance", "symop", "sx", "sy", "sz", "sxyz", "temperature", "relativeTemperature", "tensor", "theta", "thisModel", "ticks", "top", "torsion", "trajectory", "trajectories", "translucent", "transparent", "triangles", "trim", "type", "ux", "uy", "uz", "uxyz", "user", "valence", "vanderWaals", "vdw", "vdwRadius", "visible", "volume", "vx", "vy", "vz", "vxyz", "xyz", "w", "x", "y", "z", "addHydrogens", "allConnected", "angstroms", "anisotropy", "append", "arc", "area", "aromatic", "arrow", "async", "audio", "auto", "axis", "barb", "binary", "blockData", "cancel", "cap", "cavity", "centroid", "check", "checkCIR", "chemical", "circle", "collapsed", "col", "colorScheme", "command", "commands", "contour", "contours", "corners", "count", "criterion", "create", "crossed", "curve", "cutoff", "cylinder", "diameter", "discrete", "distanceFactor", "downsample", "drawing", "dynamicMeasurements", "eccentricity", "ed", "edges", "edgesOnly", "energy", "exitJmol", "faceCenterOffset", "filter", "first", "fixed", "fix", "flat", "fps", "from", "frontEdges", "full", "fullPlane", "functionXY", "functionXYZ", "gridPoints", "hiddenLinesDashed", "homo", "ignore", "InChI", "InChIKey", "increment", "insideout", "interior", "intersection", "intersect", "internal", "lattice", "line", "lineData", "link", "lobe", "lonePair", "lp", "lumo", "macro", "manifest", "mapProperty", "maxSet", "menu", "minSet", "modelBased", "molecular", "mrc", "msms", "name", "nmr", "noCross", "noDebug", "noEdges", "noHead", "noLoad", "noPlane", "object", "obj", "offset", "offsetSide", "once", "orbital", "atomicOrbital", "packed", "palindrome", "parameters", "path", "pdb", "period", "periodic", "perpendicular", "perp", "phase", "planarParam", "pocket", "pointsPerAngstrom", "radical", "rad", "reference", "remove", "resolution", "reverseColor", "rotate45", "selection", "sigma", "sign", "silent", "sphere", "squared", "stdInChI", "stdInChIKey", "stop", "title", "titleFormat", "to", "validation", "value", "variable", "variables", "vertices", "width", "wigner", "backgroundModel", "celShading", "celShadingPower", "debug", "debugHigh", "defaultLattice", "measurements", "measurement", "scale3D", "toggleLabel", "userColorScheme", "throw", "timeout", "timeouts", "window", "animationMode", "appletProxy", "atomTypes", "axesColor", "axis1Color", "axis2Color", "axis3Color", "backgroundColor", "bondmode", "boundBoxColor", "boundingBoxColor", "chirality", "cipRule", "currentLocalPath", "dataSeparator", "defaultAngleLabel", "defaultColorScheme", "defaultColors", "defaultDirectory", "defaultDistanceLabel", "defaultDropScript", "defaultLabelPDB", "defaultLabelXYZ", "defaultLoadFilter", "defaultLoadScript", "defaults", "defaultTorsionLabel", "defaultVDW", "drawFontSize", "eds", "edsDiff", "energyUnits", "fileCacheDirectory", "fontsize", "helpPath", "hoverLabel", "language", "loadFormat", "loadLigandFormat", "logFile", "measurementUnits", "nihResolverFormat", "nmrPredictFormat", "nmrUrlFormat", "pathForAllFiles", "picking", "pickingStyle", "pickLabel", "platformSpeed", "propertyColorScheme", "quaternionFrame", "smilesUrlFormat", "smiles2dImageFormat", "unitCellColor", "axesOffset", "axisOffset", "axesScale", "axisScale", "bondTolerance", "cameraDepth", "defaultDrawArrowScale", "defaultTranslucent", "dipoleScale", "ellipsoidAxisDiameter", "gestureSwipeFactor", "hbondsAngleMinimum", "hbondHXDistanceMaximum", "hbondsDistanceMaximum", "hbondNODistanceMaximum", "hoverDelay", "loadAtomDataTolerance", "minBondDistance", "minimizationCriterion", "minimizationMaxAtoms", "modulationScale", "mouseDragFactor", "mouseWheelFactor", "navFPS", "navigationDepth", "navigationSlab", "navigationSpeed", "navX", "navY", "navZ", "particleRadius", "pointGroupDistanceTolerance", "pointGroupLinearTolerance", "radius", "rotationRadius", "scaleAngstromsPerInch", "sheetSmoothing", "slabRange", "solventProbeRadius", "spinFPS", "spinX", "spinY", "spinZ", "stereoDegrees", "strutDefaultRadius", "strutLengthMaximum", "vectorScale", "vectorsCentered", "vectorSymmetry", "vectorTrail", "vibrationPeriod", "vibrationScale", "visualRange", "ambientPercent", "ambient", "animationFps", "axesMode", "bondRadiusMilliAngstroms", "bondingVersion", "delayMaximumMs", "diffusePercent", "diffuse", "dotDensity", "dotScale", "ellipsoidDotCount", "helixStep", "hermiteLevel", "historyLevel", "labelpointerwidth", "lighting", "logLevel", "meshScale", "minimizationSteps", "minPixelSelRadius", "percentVdwAtom", "perspectiveModel", "phongExponent", "pickingSpinRate", "propertyAtomNumberField", "propertyAtomNumberColumnCount", "propertyDataColumnCount", "propertyDataField", "repaintWaitMs", "ribbonAspectRatio", "contextDepthMax", "scriptReportingLevel", "showScript", "smallMoleculeMaxAtoms", "specular", "specularExponent", "specularPercent", "specPercent", "specularPower", "specpower", "strandCount", "strandCountForMeshRibbon", "strandCountForStrands", "strutSpacing", "zDepth", "zSlab", "zshadePower", "allowEmbeddedScripts", "allowGestures", "allowKeyStrokes", "allowModelKit", "allowMoveAtoms", "allowMultiTouch", "allowRotateSelected", "antialiasDisplay", "antialiasImages", "antialiasTranslucent", "appendNew", "applySymmetryToBonds", "atomPicking", "allowAudio", "autobond", "autoFPS", "autoplayMovie", "axesMolecular", "axesOrientationRasmol", "axesUnitCell", "axesWindow", "bondModeOr", "bondPicking", "bonds", "bond", "cartoonBaseEdges", "cartoonBlocks", "cartoonBlockHeight", "cartoonsFancy", "cartoonFancy", "cartoonLadders", "cartoonRibose", "cartoonRockets", "cartoonSteps", "chainCaseSensitive", "cipRule6Full", "colorRasmol", "debugScript", "defaultStructureDssp", "disablePopupMenu", "displayCellParameters", "showUnitcellInfo", "dotsSelectedOnly", "dotSurface", "dragSelected", "drawHover", "drawPicking", "dsspCalculateHydrogenAlways", "ellipsoidArcs", "ellipsoidArrows", "ellipsoidAxes", "ellipsoidBall", "ellipsoidDots", "ellipsoidFill", "fileCaching", "fontCaching", "fontScaling", "forceAutoBond", "fractionalRelative", "greyscaleRendering", "hbondsBackbone", "hbondsRasmol", "hbondsSolid", "hetero", "hideNameInPopup", "hideNavigationPoint", "hideNotSelected", "highResolution", "hydrogen", "hydrogens", "imageState", "isKiosk", "isosurfaceKey", "isosurfacePropertySmoothing", "isosurfacePropertySmoothingPower", "jmolInJSpecView", "justifyMeasurements", "languageTranslation", "leadAtom", "leadAtoms", "legacyAutoBonding", "legacyHAddition", "legacyJavaFloat", "logCommands", "logGestures", "macroDirectory", "measureAllModels", "measurementLabels", "measurementNumbers", "messageStyleChime", "minimizationRefresh", "minimizationSilent", "modelkitMode", "modelkit", "modulateOccupancy", "monitorEnergy", "multiplebondbananas", "multipleBondRadiusFactor", "multipleBondSpacing", "multiProcessor", "navigateSurface", "navigationMode", "navigationPeriodic", "partialDots", "pdbAddHydrogens", "pdbGetHeader", "pdbSequential", "perspectiveDepth", "preserveState", "rangeSelected", "redo", "redoMove", "refreshing", "ribbonBorder", "rocketBarrels", "saveProteinStructureState", "scriptQueue", "selectAllModels", "selectHetero", "selectHydrogen", "showAxes", "showBoundBox", "showBoundingBox", "showFrank", "showHiddenSelectionHalos", "showHydrogens", "showKeyStrokes", "showMeasurements", "showModulationVectors", "showMultipleBonds", "showNavigationPointAlways", "showTiming", "showUnitcell", "showUnitcellDetails", "slabByAtom", "slabByMolecule", "slabEnabled", "smartAromatic", "solvent", "solventProbe", "ssBondsBackbone", "statusReporting", "strutsMultiple", "syncMouse", "syncScript", "testFlag1", "testFlag2", "testFlag3", "testFlag4", "traceAlpha", "twistedSheets", "undoAuto", "undo", "undoMax", "undoMove", "useMinimizationThread", "useNumberLocalization", "waitForMoveTo", "windowCentered", "wireframeRotation", "zeroBasedXyzRasmol", "zoomEnabled", "zoomHeight", "zoomLarge", "zShade"]);
-var iTokens =  Clazz_newIntArray (-1, [268435666, -1, -1, -1, -1, -1, -1, 268435568, -1, 268435537, 268435538, 268435859, 268435858, 268435857, 268435856, 268435861, -1, 268435862, 134217759, 1073742336, 1073742337, 268435520, 268435521, 1073742332, 1073742338, 1073742330, 268435634, 1073742339, 268435650, 268435649, 268435651, 268435635, 4097, -1, 4098, 1611272194, 1114249217, 1610616835, 4100, 4101, 1678381065, -1, 102407, 4102, 4103, 1112152066, -1, 102411, 102412, 20488, 12289, -1, 4105, 135174, 1765808134, -1, 134221831, 1094717448, -1, -1, 4106, 528395, 134353926, -1, 102408, 134221834, 102413, 12290, -1, 528397, 12291, 1073741914, 554176526, 135175, -1, 1610625028, 1275069444, 1112150019, 135176, 537022465, 1112150020, -1, 364547, 102402, 102409, 364548, 266255, 134218759, 1228935687, -1, 4114, 134320648, 1287653388, 4115, -1, 1611272202, 134320141, -1, 1112150021, 1275072526, 20500, 1112152070, -1, 136314895, 2097159, 2097160, 2097162, 1613238294, -1, 20482, 12294, 1610616855, 544771, 134320649, 1275068432, 4121, 4122, 135180, 134238732, 1825200146, -1, 135182, -1, 134222849, 36869, 528411, 1745489939, -1, -1, -1, 1112152071, -1, 20485, 4126, -1, 1073877010, 1094717454, -1, 1275072532, 4128, 4129, 4130, 4131, -1, 1073877011, 1073742078, 1073742079, 102436, 20487, -1, 4133, 4134, 135190, 135188, 1073742106, 1275203608, -1, 36865, 102439, 134256131, 134221850, -1, 266281, 4138, -1, 266284, 4141, -1, 4142, 12295, 36866, 1112152073, -1, 1112152074, -1, 528432, 4145, 4146, 1275082245, 1611141171, -1, -1, 2097184, 134222350, 554176565, 1112152075, -1, 1611141175, 1611141176, -1, 1112152076, -1, 266298, -1, 528443, 1649022989, -1, 1639976963, -1, 1094713367, 659482, -1, 2109448, 1094713368, 4156, -1, 1112152078, 4160, 4162, 364558, 4163, 1814695966, 36868, 135198, -1, 4166, 102406, 659488, 134221856, 12297, 4168, 4170, 1140850689, -1, 134217731, 1073741863, -1, 1073742077, -1, 1073742088, 1094713362, -1, 1073742120, -1, 1073742132, 1275068935, 1086324744, 1086324747, 1086324748, 1073742158, 1086326798, 1088421903, 134217764, 1073742176, 1073742178, 1073742184, 1275068449, 134218250, 1073741826, 134217765, 134218242, 1275069441, 1111490561, 1111490562, 1073741832, 1086324739, -1, 553648129, 2097154, 134217729, 1275068418, 1073741848, 1094713346, -1, -1, 1094713347, 1086326786, 1094715393, 1086326785, 1111492609, 1111492610, 1111492611, 96, 1073741856, 1073741857, 1073741858, 1073741861, 1073741862, 1073741859, 2097200, 1073741864, 1073741865, 1275068420, 1228931587, 2097155, 1073741871, 1073742328, 1073741872, -1, -1, 134221829, 2097188, 1094713349, 1086326788, -1, 1094713351, 1111490563, -1, 1073741881, 1073741882, 2097190, 1073741884, 134217736, 14, 1073741894, 1073741898, 1073742329, -1, -1, 134218245, 1275069442, 1111490564, -1, 1073741918, 1073741922, 2097192, 1275069443, 1275068928, 2097156, 1073741925, 1073741926, 1073741915, 1111490587, 1086326789, 1094715402, 1094713353, 1073741936, 570425357, 1073741938, 1275068427, 1073741946, 545259560, 1631586315, -1, 1111490565, 1073741954, 1073741958, 1073741960, 1073741964, 1111492612, 1111492613, 1111492614, 1145047051, 1111492615, 1111492616, 1111492617, 1145047053, 1086324742, -1, 1086324743, 1094713356, -1, -1, 1094713357, 2097194, 536870920, 134219265, 1113589786, -1, -1, 1073741974, 1086324745, -1, 4120, 1073741982, 553648145, 1073741984, 1086324746, -1, 1073741989, -1, 1073741990, -1, 1111492618, -1, -1, 1073742331, 1073741991, 1073741992, 1275069446, 1140850706, 1073741993, 1073741996, 1140850691, 1140850692, 1073742001, 1111490566, -1, 1111490567, 64, 1073742016, 1073742018, 1073742019, 32, 1073742022, 1073742024, 1073742025, 1073742026, 1111490580, -1, 1111490581, 1111490582, 1111490583, 1111490584, 1111490585, 1111490586, 1145045008, 1094713360, -1, 1094713359, 1094713361, 1073742029, 1073742031, 1073742030, 1275068929, 1275068930, 603979891, 1073742036, 1073742037, 603979892, 1073742042, 1073742046, 1073742052, 1073742333, -1, -1, 1073742056, 1073742057, 1073742039, 1073742058, 1073742060, 134218760, 2097166, 1128269825, 1111490568, 1073742072, 1073742074, 1073742075, 1111492619, 1111490569, 1275068437, 134217750, -1, 1073742096, 1073742098, 134217751, -1, 134217762, 1094713363, 1275334681, 1073742108, -1, 1073742109, 1715472409, -1, 2097168, 1111490570, 2097170, 1275335685, 1073742110, 2097172, 134219268, 1073742114, 1073742116, 1275068443, 1094715412, 4143, 1073742125, 1140850693, 1073742126, 1073742127, 2097174, 1073742128, 1073742129, 1073742134, 1073742135, 1073742136, 1073742138, 1073742139, 134218756, -1, 1113589787, 1094713365, 1073742144, 2097178, 134218244, 1094713366, 1140850694, 134218757, 1237320707, 1073742150, 1275068444, 2097196, 134218246, 1275069447, 570425403, -1, 192, 1111490574, 1086324749, 1073742163, 1275068931, 128, 160, 2097180, 1111490575, 1296041986, 1111490571, 1111490572, 1111490573, 1145047052, 1111492620, -1, 1275068445, 1111490576, 2097182, 1073742164, 1073742172, 1073742174, 536870926, -1, 603979967, -1, 1073742182, 1275068932, 1140850696, 1111490577, 1111490578, 1111490579, 1145045006, 1073742186, 1094715418, 1648363544, -1, -1, 2097198, 1312817669, 1111492626, 1111492627, 1111492628, 1145047055, 1145047050, 1140850705, 1111492629, 1111492630, 1111492631, 1073741828, 1073741834, 1073741836, 1073741837, 1073741839, 1073741840, 1073741842, 1075838996, 1073741846, 1073741849, 1073741851, 1073741852, 1073741854, 1073741860, 1073741866, 1073741868, 1073741874, 1073741875, 1073741876, 1094713350, 1073741877, 603979821, 1073741879, 1073741880, 1073741886, 1275068934, 1073741888, 1073741890, 1073741892, 1073741896, 1073741900, 1073741902, 1275068425, 1073741905, 1073741904, 1073741906, 1073741908, 1073741910, 1073741912, 1073741917, 1073741920, 1073741924, 1073741928, 1073741929, 603979835, 1073741931, 1073741932, 1073741933, 1073741934, 1073741935, 266256, 1073741937, 1073741940, 1073741942, 12293, -1, 1073741948, 1073741950, 1073741952, 1073741956, 1073741961, 1073741962, 1073741966, 1073741968, 1073741970, 603979856, 1073741973, 1073741976, 1275068433, 1073741978, 1073741981, 1073741985, 1073741986, 134217763, -1, 1073741988, 1073741994, 1073741998, 1073742000, 1073741999, 1073742002, 1073742004, 1073742006, 1073742008, 4124, 1073742010, 4125, 1073742014, 1073742015, 1073742020, 1073742027, 1073742028, 1073742032, 1073742033, 1073742034, 1073742038, 1073742040, 1073742041, 1073742044, 1073742048, 1073742050, 1073742054, 1073742064, 1073742062, 1073742066, 1073742068, 1073742070, 1073742076, 1073741850, 1073742080, 1073742082, 1073742083, 1073742084, 1073742086, 1073742090, -1, 1073742092, -1, 1073742094, 1073742099, 1073742100, 1073742104, 1073742112, 1073742111, 1073742118, 1073742119, 1073742122, 1073742124, 1073742130, 1073742140, 1073742146, 1073742147, 1073742148, 1073742154, 1073742156, 1073742159, 1073742160, 1073742162, 1073742166, 1073742168, 1073742170, 1073742189, 1073742188, 1073742190, 1073742192, 1073742194, 1073742196, 1073742197, 536870914, 603979820, 553648135, 536870916, 536870917, 536870918, 537006096, -1, 1610612740, 1610612741, 536870930, 36870, 536875070, -1, 536870932, 545259521, 545259522, 545259524, 545259526, 545259528, 545259530, 545259532, 545259534, 1610612737, 545259536, -1, 1086324752, 1086324753, 545259538, 545259540, 545259542, 545259545, -1, 545259546, 545259547, 545259548, 545259543, 545259544, 545259549, 545259550, 545259552, 545259554, 545259555, 570425355, 545259556, 545259557, 545259558, 545259559, 1610612738, 545259561, 545259562, 545259563, 545259564, 545259565, 545259566, 545259568, 545259570, 545259569, 545259571, 545259572, 545259573, 545259574, 545259576, 553648158, 545259578, 545259580, 545259582, 545259584, 545259586, 570425345, -1, 570425346, -1, 570425348, 570425350, 570425352, 570425353, 570425354, 570425356, 570425358, 570425359, 570425361, 570425360, -1, 570425362, 570425363, 570425364, 570425365, 553648152, 570425366, 570425367, 570425368, 570425371, 570425372, 570425373, 570425374, 570425376, 570425378, 570425380, 570425381, 570425382, 570425384, 1665140738, 570425388, 570425390, 570425392, 570425393, 570425394, 570425396, 570425398, 570425400, 570425402, 570425404, 570425406, 570425408, 1648361473, 603979972, 603979973, 553648185, 570425412, 570425414, 570425416, 553648130, -1, 553648132, 553648133, 553648134, 553648136, 553648137, 553648138, -1, 553648139, 553648140, 553648141, 553648142, 553648143, 553648144, 553648147, 1073741995, 553648149, 553648150, 553648151, 553648153, 553648154, 553648155, 553648156, 553648157, 553648159, 553648160, 553648162, 553648164, 553648165, 553648166, 553648167, 553648168, 536870922, 553648170, 536870924, 553648172, 553648174, -1, 553648176, -1, 553648178, 553648180, 553648182, 553648183, 553648186, 553648188, 553648190, 603979778, 603979780, 603979781, 603979782, 603979783, 603979784, 603979785, 603979786, 603979788, 603979790, 603979792, 603979794, 603979796, 603979797, 603979798, 603979800, 603979802, 603979804, 603979806, 603979808, 603979809, 603979812, 603979814, 1677721602, -1, 603979815, 603979810, 570425347, 603979816, -1, 603979817, 603979818, 603979819, 603979811, 603979822, 603979823, 603979824, 603979825, 603979826, 603979827, 603979828, -1, 603979829, 603979830, 603979831, 603979832, 603979833, 603979834, 603979836, 603979837, 603979838, 603979839, 603979840, 603979841, 603979842, 603979844, 603979845, 603979846, 603979848, 603979850, 603979852, 603979853, 603979854, 1612709894, 603979858, 603979860, 603979862, 603979864, 1612709900, -1, 603979865, 603979866, 603979867, 603979868, 553648146, 603979869, 603979870, 603979871, 2097165, -1, 603979872, 603979873, 603979874, 603979875, 603979876, 545259567, 603979877, 603979878, 1610612739, 603979879, 603979880, 603979881, 603983903, -1, 603979884, 603979885, 603979886, 570425369, 570425370, 603979887, 603979888, 603979889, 603979890, 603979893, 603979894, 603979895, 603979896, 603979897, 603979898, 603979899, 4139, 4140, 603979900, 603979901, 603979902, 603979903, 603979904, 603979906, 603979908, 603979910, 603979914, 603979916, -1, 603979918, 603979920, 603979922, 603979924, 603979926, 603979927, 603979928, 603979930, 603979934, 603979936, 603979937, 603979939, 603979940, 603979942, 603979944, 1612709912, 603979948, 603979952, 603979954, 603979955, 603979956, 603979958, 603979960, 603979962, 603979964, 603979965, 603979966, 603979968, 603979969, 603984065, 553648184, 4165, 603979970, 603979971, 603979975, 603979976, 603979977, 603979978, 603979980, 603979982, 603979983, 603979984]);
+var iTokens =  Clazz_newIntArray (-1, [268435666, -1, -1, -1, -1, -1, -1, 268435568, -1, 268435537, 268435538, 268435859, 268435858, 268435857, 268435856, 268435861, -1, 268435862, 134217759, 1073742336, 1073742337, 268435520, 268435521, 1073742332, 1073742338, 1073742330, 268435634, 1073742339, 268435650, 268435649, 268435651, 268435635, 4097, -1, 4098, 1611272194, 1114249217, 1610616835, 4100, 4101, 1678381065, -1, 102407, 4102, 4103, 1112152066, -1, 102411, 102412, 20488, 12289, -1, 4105, 135174, 1765808134, -1, 134221831, 1094717448, -1, -1, 4106, 528395, 134353926, -1, 102408, 134221834, 102413, 12290, -1, 528397, 12291, 1073741914, 554176526, 135175, -1, 1610625028, 1275069444, 1112150019, 135176, 537022465, 1112150020, -1, 364547, 102402, 102409, 364548, 266255, 134218759, 1228935687, -1, 4114, 134320648, 1287653388, 4115, -1, 1611272202, 134320141, -1, 1112150021, 1275072526, 20500, 1112152070, -1, 136314895, 2097159, 2097160, 2097162, 1613238294, -1, 20482, 12294, 1610616855, 544771, 134320649, 1275068432, 4121, 4122, 135180, 134238732, 1825200146, -1, 135182, -1, 134222849, 36869, 528411, 1745489939, -1, -1, -1, 1112152071, -1, 20485, 4126, -1, 1073877010, 1094717454, -1, 1275072532, 4128, 4129, 4130, 4131, -1, 1073877011, 1073742078, 1073742079, 102436, 20487, -1, 4133, 4134, 135190, 135188, 1073742106, 1275203608, -1, 36865, 102439, 134256131, 134221850, -1, 266281, 4138, -1, 266284, 4141, -1, 4142, 12295, 36866, 1112152073, -1, 1112152074, -1, 528432, 4145, 4146, 1275082245, 1611141171, -1, -1, 2097184, 134222350, 554176565, 1112152075, -1, 1611141175, 1611141176, -1, 1112152076, -1, 266298, -1, 528443, 1649022989, -1, 1639976963, -1, 1094713367, 659482, -1, 2109448, 1094713368, 4156, -1, 1112152078, 4160, 4162, 364558, 4163, 1814695966, 36868, 135198, -1, 4166, 102406, 659488, 134221856, 12297, 4168, 4170, 1140850689, -1, 134217731, 1073741863, -1, 1073742077, -1, 1073742088, 1094713362, -1, 1073742120, -1, 1073742132, 1275068935, 1086324744, 1086324747, 1086324748, 1073742158, 1086326798, 1088421903, 134217764, 1073742176, 1073742178, 1073742184, 1275068446, 134218250, 1073741826, 134217765, 134218242, 1275069441, 1111490561, 1111490562, 1073741832, 1086324739, -1, 553648129, 2097154, 134217729, 1275068418, 1073741848, 1094713346, -1, -1, 1094713347, 1086326786, 1094715393, 1086326785, 1111492609, 1111492610, 1111492611, 96, 1073741856, 1073741857, 1073741858, 1073741861, 1073741862, 1073741859, 2097200, 1073741864, 1073741865, 1275068420, 1228931587, 2097155, 1073741871, 1073742328, 1073741872, -1, -1, 134221829, 2097188, 1094713349, 1086326788, -1, 1094713351, 1111490563, -1, 1073741881, 1073741882, 2097190, 1073741884, 134217736, 14, 1073741894, 1073741898, 1073742329, -1, -1, 134218245, 1275069442, 1111490564, -1, 1073741918, 1073741922, 2097192, 1275069443, 1275068928, 2097156, 1073741925, 1073741926, 1073741915, 1111490587, 1086326789, 1094715402, 1094713353, 1073741936, 570425357, 1073741938, 1275068427, 1073741946, 545259560, 1631586315, -1, 1111490565, 1073741954, 1073741958, 1073741960, 1073741964, 1111492612, 1111492613, 1111492614, 1145047051, 1111492615, 1111492616, 1111492617, 1145047053, 1086324742, -1, 1086324743, 1094713356, -1, -1, 1094713357, 2097194, 536870920, 134219265, 1113589786, -1, -1, 1073741974, 1086324745, -1, 4120, 1073741982, 553648145, 1073741984, 1086324746, -1, 1073741989, -1, 1073741990, -1, 1111492618, -1, -1, 1073742331, 1073741991, 1073741992, 1275069446, 1140850706, 1073741993, 1073741996, 1140850691, 1140850692, 1073742001, 1111490566, -1, 1111490567, 64, 1073742016, 1073742018, 1073742019, 32, 1073742022, 1073742024, 1073742025, 1073742026, 1111490580, -1, 1111490581, 1111490582, 1111490583, 1111490584, 1111490585, 1111490586, 1145045008, 1094713360, -1, 1094713359, 1094713361, 1073742029, 1073742031, 1073742030, 1275068929, 1275068930, 603979891, 1073742036, 1073742037, 603979892, 1073742042, 1073742046, 1073742052, 1073742333, -1, -1, 1073742056, 1073742057, 1073742039, 1073742058, 1073742060, 134218760, 2097166, 1128269825, 1111490568, 1073742072, 1073742074, 1073742075, 1111492619, 1111490569, 1275068725, 134217750, -1, 1073742096, 1073742098, 134217751, -1, 1275068447, 1094713363, 1275334681, 1073742108, -1, 1073742109, 1715472409, -1, 2097168, 1111490570, 2097170, 1275335685, 1073742110, 2097172, 134219268, 1073742114, 1073742116, 1275068443, 1094715412, 4143, 1073742125, 1140850693, 1073742126, 1073742127, 2097174, 1073742128, 1073742129, 1073742134, 1073742135, 1073742136, 1073742138, 1073742139, 134218756, -1, 1113589787, 1094713365, 1073742144, 2097178, 134218244, 1094713366, 1140850694, 134218757, 1237320707, 1073742150, 1275068444, 2097196, 134218246, 1275069447, 570425403, -1, 192, 1111490574, 1086324749, 1073742163, 1275068931, 128, 160, 2097180, 1111490575, 1296041986, 1111490571, 1111490572, 1111490573, 1145047052, 1111492620, -1, 1275068445, 1111490576, 2097182, 1073742164, 1073742172, 1073742174, 536870926, -1, 603979967, -1, 1073742182, 1275068932, 1140850696, 1111490577, 1111490578, 1111490579, 1145045006, 1073742186, 1094715418, 1648363544, -1, -1, 2097198, 1312817669, 1111492626, 1111492627, 1111492628, 1145047055, 1145047050, 1140850705, 1111492629, 1111492630, 1111492631, 1073741828, 1073741834, 1073741836, 1073741837, 1073741839, 1073741840, 1073741842, 1075838996, 1073741846, 1073741849, 1073741851, 1073741852, 1073741854, 1073741860, 1073741866, 1073741868, 1073741874, 1073741875, 1073741876, 1094713350, 1073741877, 603979821, 1073741879, 1073741880, 1073741886, 1275068934, 1073741888, 1073741890, 1073741892, 1073741896, 1073741900, 1073741902, 1275068425, 1073741905, 1073741904, 1073741906, 1073741908, 1073741910, 1073741912, 1073741917, 1073741920, 1073741924, 1073741928, 1073741929, 603979835, 1073741931, 1073741932, 1073741933, 1073741934, 1073741935, 266256, 1073741937, 1073741940, 1073741942, 12293, -1, 1073741948, 1073741950, 1073741952, 1073741956, 1073741961, 1073741962, 1073741966, 1073741968, 1073741970, 603979856, 1073741973, 1073741976, 1275068433, 1073741978, 1073741981, 1073741985, 1073741986, 134217763, -1, 1073741988, 1073741994, 1073741998, 1073742000, 1073741999, 1073742002, 1073742004, 1073742006, 1073742008, 4124, 1073742010, 4125, 1073742014, 1073742015, 1073742020, 1073742027, 1073742028, 1073742032, 1073742033, 1073742034, 1073742038, 1073742040, 1073742041, 1073742044, 1073742048, 1073742050, 1073742054, 1073742064, 1073742062, 1073742066, 1073742068, 1073742070, 1073742076, 1073741850, 1073742080, 1073742082, 1073742083, 1073742084, 1073742086, 1073742090, -1, 1073742092, -1, 1073742094, 1073742099, 1073742100, 1073742104, 1073742112, 1073742111, 1073742118, 1073742119, 1073742122, 1073742124, 1073742130, 1073742140, 1073742146, 1073742147, 1073742148, 1073742154, 1073742156, 1073742159, 1073742160, 1073742162, 1073742166, 1073742168, 1073742170, 1073742189, 1073742188, 1073742190, 1073742192, 1073742194, 1073742196, 1073742197, 536870914, 603979820, 553648135, 536870916, 536870917, 536870918, 537006096, -1, 1610612740, 1610612741, 536870930, 36870, 536875070, -1, 536870932, 545259521, 545259522, 545259524, 545259526, 545259528, 545259530, 545259532, 545259534, 1610612737, 545259536, -1, 1086324752, 1086324753, 545259538, 545259540, 545259542, 545259545, -1, 545259546, 545259547, 545259548, 545259543, 545259544, 545259549, 545259550, 545259552, 545259554, 545259555, 570425355, 545259556, 545259557, 545259558, 545259559, 1610612738, 545259561, 545259562, 545259563, 545259564, 545259565, 545259566, 545259568, 545259570, 545259569, 545259571, 545259572, 545259573, 545259574, 545259576, 553648158, 545259578, 545259580, 545259582, 545259584, 545259586, 570425345, -1, 570425346, -1, 570425348, 570425350, 570425352, 570425353, 570425354, 570425356, 570425358, 570425359, 570425361, 570425360, -1, 570425362, 570425363, 570425364, 570425365, 553648152, 570425366, 570425367, 570425368, 570425371, 570425372, 570425373, 570425374, 570425376, 570425378, 570425380, 570425381, 570425382, 570425384, 1665140738, 570425388, 570425390, 570425392, 570425393, 570425394, 570425396, 570425398, 570425400, 570425402, 570425404, 570425406, 570425408, 1648361473, 603979972, 603979973, 553648185, 570425412, 570425414, 570425416, 553648130, -1, 553648132, 553648133, 553648134, 553648136, 553648137, 553648138, -1, 553648139, 553648140, 553648141, 553648142, 553648143, 553648144, 553648147, 1073741995, 553648149, 553648150, 553648151, 553648153, 553648154, 553648155, 553648156, 553648157, 553648159, 553648160, 553648162, 553648164, 553648165, 553648166, 553648167, 553648168, 536870922, 553648170, 536870924, 553648172, 553648174, -1, 553648176, -1, 553648178, 553648180, 553648182, 553648183, 553648186, 553648188, 553648190, 603979778, 603979780, 603979781, 603979782, 603979783, 603979784, 603979785, 603979786, 603979788, 603979790, 603979792, 603979794, 603979796, 603979797, 603979798, 603979800, 603979802, 603979804, 603979806, 603979808, 603979809, 603979812, 603979814, 1677721602, -1, 603979815, 603979810, 570425347, 603979816, -1, 603979817, 603979818, 603979819, 603979811, 603979822, 603979823, 603979824, 603979825, 603979826, 603979827, 603979828, -1, 603979829, 603979830, 603979831, 603979832, 603979833, 603979834, 603979836, 603979837, 603979838, 603979839, 603979840, 603979841, 603979842, 603979844, 603979845, 603979846, 603979848, 603979850, 603979852, 603979853, 603979854, 1612709894, 603979858, 603979860, 603979862, 603979864, 1612709900, -1, 603979865, 603979866, 603979867, 603979868, 553648146, 603979869, 603979870, 603979871, 2097165, -1, 603979872, 603979873, 603979874, 603979875, 603979876, 545259567, 603979877, 603979878, 1610612739, 603979879, 603979880, 603979881, 603983903, -1, 603979884, 603979885, 603979886, 570425369, 570425370, 603979887, 603979888, 603979889, 603979890, 603979893, 603979894, 603979895, 603979896, 603979897, 603979898, 603979899, 4139, 4140, 603979900, 603979901, 603979902, 603979903, 603979904, 603979906, 603979908, 603979910, 603979914, 603979916, -1, 603979918, 603979920, 603979922, 603979924, 603979926, 603979927, 603979928, 603979930, 603979934, 603979936, 603979937, 603979939, 603979940, 603979942, 603979944, 1612709912, 603979948, 603979952, 603979954, 603979955, 603979956, 603979958, 603979960, 603979962, 603979964, 603979965, 603979966, 603979968, 603979969, 603984065, 553648184, 4165, 603979970, 603979971, 603979975, 603979976, 603979977, 603979978, 603979980, 603979982, 603979983, 603979984]);
 if (sTokens.length != iTokens.length) {
 JU.Logger.error ("sTokens.length (" + sTokens.length + ") != iTokens.length! (" + iTokens.length + ")");
 System.exit (1);
@@ -30219,6 +30221,10 @@ Clazz_overrideMethod (c$, "getAtomSite",
 function () {
 return this.atomSite;
 });
+Clazz_defineMethod (c$, "setAtomSite", 
+function (site) {
+this.atomSite = site;
+}, "~N");
 Clazz_overrideMethod (c$, "getGroupBits", 
 function (bs) {
 this.group.setAtomBits (bs);
@@ -31018,7 +31024,7 @@ function () {
 this.bsHidden =  new JU.BS ();
 this.bsVisible =  new JU.BS ();
 this.bsClickable =  new JU.BS ();
-if (JM.AtomCollection.userSettableValues == null) JM.AtomCollection.userSettableValues = ("atomName atomType coord element formalCharge hydrophobicity ionic occupancy partialCharge temperature valence vanderWaals vibrationVector atomNo seqID resNo chain").$plit (" ");
+if (JM.AtomCollection.userSettableValues == null) JM.AtomCollection.userSettableValues = ("atomName atomType coord element formalCharge hydrophobicity ionic occupancy partialCharge temperature valence vanderWaals vibrationVector atomNo seqID resNo chain site").$plit (" ");
 });
 Clazz_defineMethod (c$, "releaseModelSetAC", 
 function () {
@@ -31575,6 +31581,12 @@ atom.colixAtom = this.vwr.cm.getColixAtomPalette (atom, J.c.PAL.CPK.id);
 this.resetPartialCharges ();
 if (doTaint) this.taintAtom (atom.i, 3);
 }, "JM.Atom,~N,~B");
+Clazz_defineMethod (c$, "setSite", 
+function (atom, site, doTaint) {
+if (site > 2) System.out.println ("???");
+if (atom.atomSite == site) return;
+if (doTaint) this.taintAtom (atom.i, 17);
+}, "JM.Atom,~N,~B");
 Clazz_defineMethod (c$, "resetPartialCharges", 
  function () {
 this.partialCharges = null;
@@ -31657,7 +31669,7 @@ return;
 case 12:
 this.loadCoordinates (dataString, true, true);
 return;
-case 17:
+case 18:
 fData =  Clazz_newFloatArray (this.ac, 0);
 bs = JU.BS.newN (this.ac);
 break;
@@ -31675,7 +31687,7 @@ n++;
 var pt = tokens.length - 1;
 var x = JU.PT.parseFloat (tokens[pt]);
 switch (type) {
-case 17:
+case 18:
 fData[atomIndex] = x;
 bs.set (atomIndex);
 continue;
@@ -31696,6 +31708,9 @@ this.setAtomType (atomIndex, tokens[pt]);
 break;
 case 16:
 this.setChainID (atomIndex, tokens[pt]);
+break;
+case 17:
+atom.atomSite = Clazz_floatToInt (x);
 break;
 case 3:
 atom.setAtomicAndIsotopeNumber (Clazz_floatToInt (x));
@@ -31726,7 +31741,7 @@ break;
 }
 this.taintAtom (atomIndex, type);
 }
-if (type == 17 && n > 0) this.vwr.setData (name,  Clazz_newArray (-1, [name, fData, bs, Integer.$valueOf (1)]), 0, 0, 0, 0, 0);
+if (type == 18 && n > 0) this.vwr.setData (name,  Clazz_newArray (-1, [name, fData, bs, Integer.$valueOf (1)]), 0, 0, 0, 0, 0);
 } catch (e) {
 if (Clazz_exceptionOf (e, Exception)) {
 JU.Logger.error ("AtomCollection.loadData error: " + e);
@@ -31778,9 +31793,9 @@ c$.getUserSettableType = Clazz_defineMethod (c$, "getUserSettableType",
 function (dataType) {
 var isExplicit = (dataType.indexOf ("property_") == 0);
 var check = (isExplicit ? dataType.substring (9) : dataType);
-for (var i = 0; i < 17; i++) if (JM.AtomCollection.userSettableValues[i].equalsIgnoreCase (check)) return i;
+for (var i = 0; i < 18; i++) if (JM.AtomCollection.userSettableValues[i].equalsIgnoreCase (check)) return i;
 
-return (isExplicit ? 17 : -1);
+return (isExplicit ? 18 : -1);
 }, "~S");
 Clazz_defineMethod (c$, "getTaintedAtoms", 
 function (type) {
@@ -31796,7 +31811,7 @@ for (var i = bsAtoms.nextSetBit (0); i >= 0; i = bsAtoms.nextSetBit (i + 1)) thi
 Clazz_defineMethod (c$, "taintAtom", 
 function (atomIndex, type) {
 if (this.preserveState) {
-if (this.tainted == null) this.tainted =  new Array (17);
+if (this.tainted == null) this.tainted =  new Array (18);
 if (this.tainted[type] == null) this.tainted[type] = JU.BS.newN (this.ac);
 this.tainted[type].set (atomIndex);
 }if (type == 2) this.taintModelCoord (atomIndex);
@@ -31821,7 +31836,7 @@ if (bs == null) {
 if (this.tainted == null) return;
 this.tainted[type] = null;
 return;
-}if (this.tainted == null) this.tainted =  new Array (17);
+}if (this.tainted == null) this.tainted =  new Array (18);
 if (this.tainted[type] == null) this.tainted[type] = JU.BS.newN (this.ac);
 JU.BSUtil.copy2 (bs, this.tainted[type]);
 }if (type == 2) {
@@ -32851,7 +32866,7 @@ this.vibrations = JU.AU.deleteElements (this.vibrations, firstAtomIndex, nAtoms)
 this.nSurfaceAtoms = 0;
 this.bsSurface = null;
 this.surfaceDistance100s = null;
-if (this.tainted != null) for (var i = 0; i < 17; i++) JU.BSUtil.deleteBits (this.tainted[i], bsAtoms);
+if (this.tainted != null) for (var i = 0; i < 18; i++) JU.BSUtil.deleteBits (this.tainted[i], bsAtoms);
 
 }, "~N,~N,JU.BS");
 Clazz_defineMethod (c$, "getAtomIdentityInfo", 
@@ -33032,7 +33047,8 @@ Clazz_defineStatics (c$,
 "TAINT_SEQID", 14,
 "TAINT_RESNO", 15,
 "TAINT_CHAIN", 16,
-"TAINT_MAX", 17,
+"TAINT_SITE", 17,
+"TAINT_MAX", 18,
 "CALC_H_DOALL", 0x100,
 "CALC_H_JUSTC", 0x200,
 "CALC_H_HAVEH", 0x400,
@@ -36342,7 +36358,7 @@ var bondsCache = this.ms.freeBonds[i];
 for (var j = bondsCache.length; --j >= 0; ) bondsCache[j] = null;
 
 }
-this.ms.setAtomNamesAndNumbers (0, this.baseAtomIndex, this.modelSet0);
+this.ms.setAtomNamesAndNumbers (0, this.baseAtomIndex, this.modelSet0, false);
 this.findElementsPresent ();
 this.ms.resetMolecules ();
 this.model = null;
@@ -37168,10 +37184,38 @@ this.bsSymmetry = this.getAtomBitsMaybeDeleted (1088421903, null);
 var bs = this.vwr.getModelUndeletedAtomsBitSet (mi);
 this.bsSymmetry.or (bs);
 this.bsSymmetry.andNot (basis);
-for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
+var isP1 = (basis.cardinality () == bs.cardinality ());
+for (var p = 0, i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
 this.at[i].setSymop (basis.get (i) ? 1 : 0, true);
+if (isP1) this.setSite (this.at[i], ++p, true);
 }
-this.setInfo (mi, "unitCellParams", sg.getUnitCellParams ());
+if (!isP1) {
+var haveOccupancies = (this.occupancies != null);
+var nops = sg.getSpaceGroupOperationCount ();
+var a;
+var b =  new JU.P3 ();
+var bb;
+for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
+var ba = this.at[i];
+a = JU.P3.newP (ba);
+sg.toFractional (a, true);
+sg.unitize (a);
+var type = this.at[i].atomicAndIsotopeNumber;
+var occ = (haveOccupancies ? this.occupancies[i] : 0);
+out : for (var j = basis.nextSetBit (0); j >= 0; j = basis.nextSetBit (j + 1)) {
+if ((bb = this.at[j]).atomicAndIsotopeNumber != type || haveOccupancies && this.occupancies[j] != occ) continue;
+for (var k = 0; k < nops; k++) {
+b.setT (bb);
+sg.toFractional (b, true);
+sg.getSpaceGroupOperation (k).rotTrans (b);
+sg.unitize (b);
+if (b.distanceSquared (a) < 1.96E-6) {
+this.setSite (ba, bb.getAtomSite (), true);
+break out;
+}}
+}
+}
+}this.setInfo (mi, "unitCellParams", sg.getUnitCellParams ());
 this.setInfo (mi, "spaceGroup", sg.getSpaceGroupName ());
 this.setInfo (mi, "spaceGroupInfo", null);
 this.setModelCage (mi, null);
@@ -38776,28 +38820,35 @@ for (var i = 0; i < this.mc; i++) if (!this.am[i].isModelKit) bs1.andNot (this.a
 return JU.BSUtil.deleteBits (bs, bs1);
 }, "JU.BS,JU.BS");
 Clazz_defineMethod (c$, "setAtomNamesAndNumbers", 
-function (iFirst, baseAtomIndex, mergeSet) {
-if (baseAtomIndex < 0) iFirst = this.am[this.at[iFirst].mi].firstAtomIndex;
-if (this.atomSerials == null) this.atomSerials =  Clazz_newIntArray (this.ac, 0);
+function (iFirst, baseAtomIndex, mergeSet, isModelKit) {
+var mi0 = -1;
+if (isModelKit) {
+mi0 = this.at[iFirst].mi;
+iFirst = this.am[mi0].firstAtomIndex;
+}if (this.atomSerials == null) this.atomSerials =  Clazz_newIntArray (this.ac, 0);
 if (this.atomNames == null) this.atomNames =  new Array (this.ac);
 var isZeroBased = this.isXYZ && this.vwr.getBoolean (603979978);
-var lastModelIndex = 2147483647;
+var thisModelIndex = 2147483647;
 var atomNo = 1;
 for (var i = iFirst; i < this.ac; ++i) {
 var atom = this.at[i];
 if (atom == null) continue;
-if (atom.mi != lastModelIndex) {
-lastModelIndex = atom.mi;
+if (atom.mi != thisModelIndex) {
+if (isModelKit && thisModelIndex != 2147483647 && atom.mi != mi0) continue;
+thisModelIndex = atom.mi;
 atomNo = (isZeroBased ? 0 : 1);
 }var ano = this.atomSerials[i];
 if (i >= -baseAtomIndex) {
-if (ano == 0 || baseAtomIndex < 0) this.atomSerials[i] = (i < baseAtomIndex ? mergeSet.atomSerials[i] : atomNo);
-if (this.atomNames[i] == null || baseAtomIndex < 0) this.atomNames[i] = (atom.getElementSymbol () + this.atomSerials[i]).intern ();
-} else if (ano > atomNo) {
+if (ano == 0 || isModelKit) this.atomSerials[i] = (i < baseAtomIndex ? mergeSet.atomSerials[i] : atomNo);
+if (this.atomNames[i] == null || isModelKit) this.atomNames[i] = (atom.getElementSymbol () + this.atomSerials[i]).intern ();
+} else {
+if (ano > atomNo) {
 atomNo = ano;
-}if (!this.am[lastModelIndex].isModelKit || atom.getElementNumber () > 0 && !atom.isDeleted ()) atomNo++;
+}if (isModelKit) {
+this.atomNames[i] = (atom.getElementSymbol () + ano).intern ();
+}}if (!this.am[thisModelIndex].isModelKit || atom.getElementNumber () > 0 && !atom.isDeleted ()) atomNo++;
 }
-}, "~N,~N,JM.AtomCollection");
+}, "~N,~N,JM.AtomCollection,~B");
 Clazz_defineMethod (c$, "setUnitCellOffset", 
 function (unitCell, pt, ijk) {
 if (unitCell == null) return;
@@ -39023,7 +39074,7 @@ dz = f;
 }, "~N,JU.BS");
 Clazz_defineMethod (c$, "getUnitCellForAtom", 
 function (index) {
-if (index < 0 || index > this.ac) return null;
+if (index < 0 || index > this.ac || this.at[index] == null) return null;
 if (this.bsModulated != null) {
 var ms = this.getModulation (index);
 var uc = (ms == null ? null : ms.getSubSystemUnitCell ());
@@ -39046,6 +39097,13 @@ for (var i = n; --i >= 0; ) ops[i] = unitcell.getSpaceGroupOperation (i);
 
 return ops;
 }, "~N");
+Clazz_defineMethod (c$, "getSymmetryInvariant", 
+function (bsAtoms) {
+var iatom = this.getSymmetryEquivAtoms (bsAtoms).nextSetBit (0);
+if (iatom < 0) return  Clazz_newIntArray (0, 0);
+var sg = this.getUnitCellForAtom (iatom);
+return sg.getSymmetryInvariant (this.at[iatom], null);
+}, "JU.BS");
 Clazz_defineMethod (c$, "getBsBranches", 
 function (dihedralList) {
 var n = Clazz_doubleToInt (dihedralList.length / 6);
@@ -39431,6 +39489,28 @@ if (this.isTrajectory (i >= 0 ? i : a.mi)) this.trajectory.getFractional (a, pTe
  else pTemp.setT (a);
 if (q != null) q.transform2 (pTemp, pTemp);
 }, "~N,JM.Atom,JU.Quat,JU.P3");
+Clazz_defineMethod (c$, "getSymmetryEquivAtoms", 
+function (bs) {
+var bsNew =  new JU.BS ();
+bsNew.or (bs);
+var iAtom = bs.nextSetBit (0);
+var uc = this.getUnitCellForAtom (iAtom);
+if (uc != null) {
+var bsAtoms = JU.BSUtil.copy (this.vwr.getModelUndeletedAtomsBitSet (this.at[iAtom].mi));
+for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) {
+var a = this.at[i];
+var site = a.getAtomSite ();
+if (site > 0) {
+for (var j = bsAtoms.nextSetBit (0); j >= 0; j = bsAtoms.nextSetBit (j + 1)) {
+if (this.at[j].getAtomSite () == site) {
+bsNew.set (j);
+bsAtoms.clear (j);
+bs.clear (j);
+}}
+} else {
+}}
+}return bsNew;
+}, "JU.BS");
 Clazz_defineStatics (c$,
 "hbondMinRasmol", 2.5);
 });
@@ -45713,6 +45793,7 @@ c$.unitizeX = Clazz_defineMethod (c$, "unitizeX",
 function (x) {
 x = (x - Math.floor (x));
 if (x > 0.999 || x < 0.001) x = 0;
+if (x > 0.4999 && x < 0.5001) x = 0.5;
 return x;
 }, "~N");
 c$.checkPeriodic = Clazz_defineMethod (c$, "checkPeriodic", 
@@ -50909,7 +50990,8 @@ c$.IMAGE_OR_SCENE = c$.prototype.IMAGE_OR_SCENE = ";jpg;jpeg;jpg64;jpeg64;gif;gi
 "UNITID_ATOM", 4,
 "UNITID_INSCODE", 8,
 "UNITID_TRIM", 16,
-"DEFAULT_DRAG_DROP_SCRIPT", "zap; load SYNC \"%FILE\";if (%ALLOWCARTOONS && _loadScript == '' && defaultLoadScript == '' && _filetype == 'Pdb') {if ({(protein or nucleic)&*/1.1} && {*/1.1}[1].groupindex != {*/1.1}[0].groupindex){select protein or nucleic;cartoons only;}if ({visible && cartoons > 0}){color structure}else{wireframe -0.1};if (!{visible}){spacefill 23%};select *}");
+"DEFAULT_DRAG_DROP_SCRIPT", "zap; load SYNC \"%FILE\";if (%ALLOWCARTOONS && _loadScript == '' && defaultLoadScript == '' && _filetype == 'Pdb') {if ({(protein or nucleic)&*/1.1} && {*/1.1}[1].groupindex != {*/1.1}[0].groupindex){select protein or nucleic;cartoons only;}if ({visible && cartoons > 0}){color structure}else{wireframe -0.1};if (!{visible}){spacefill 23%};select *}",
+"UC_TOLERANCE2", 1.96E-6);
 });
 Clazz_declarePackage ("JV");
 Clazz_load (["java.io.IOException"], "JV.JmolAsyncException", null, function () {
@@ -51836,7 +51918,6 @@ Clazz_defineMethod (c$, "popStack",
 function (type) {
 var stack = this.getStack (type);
 var state = (stack.size () > 0 ? stack.remove (stack.size () - 1) : null);
-System.out.println ("STM pop " + stack.size () + " " + (state != null) + " " + (type == 603984065));
 if (state != null) {
 this.appendState (this.getStack (type == 603984065 ? 4139 : 603984065));
 }this.checkStack (this.getStack (603984065));
@@ -51846,7 +51927,6 @@ Clazz_defineMethod (c$, "appendState",
  function (stack) {
 this.checkStack (stack);
 if (this.maxUndo > 0) stack.addLast (this.vwr.getStateInfo ());
-System.out.println ("STM append " + stack.size () + (stack === this.undoStateStack));
 }, "JU.Lst");
 Clazz_defineMethod (c$, "checkStack", 
  function (stack) {
@@ -51858,8 +51938,7 @@ Clazz_defineMethod (c$, "getStack",
 if (this.undoStateStack == null) {
 this.undoStateStack =  new JU.Lst ();
 this.redoStateStack =  new JU.Lst ();
-}System.out.println ("StateManager getStack " + this.undoStateStack.size () + " " + this.redoStateStack.size () + " " + (type == 603984065));
-return (type == 603984065 ? this.undoStateStack : this.redoStateStack);
+}return (type == 603984065 ? this.undoStateStack : this.redoStateStack);
 }, "~N");
 Clazz_defineMethod (c$, "clearStateStack", 
  function () {
@@ -51993,12 +52072,12 @@ return this.popStack (tok);
 }, "~N");
 Clazz_defineMethod (c$, "canDo", 
 function (type) {
-return (this.maxUndo > 0 && this.vwr.getBooleanProperty ("preserveState") && !this.getStack (type).isEmpty ());
+return (this.maxUndo > 0 && this.vwr.getBoolean (603979898) && !this.getStack (type).isEmpty ());
 }, "~N");
 Clazz_defineMethod (c$, "getUndoInfo", 
 function () {
 var auto = this.vwr.getBooleanProperty ("undoAuto");
-return (this.vwr.getBooleanProperty ("preserveState") ? "undoAuto=" + auto + (!auto ? "; user stack sizes: UNDO=" + this.getStack (603984065).size () + ", REDO=" + this.getStack (4139).size () : "") : "SET preserveState = FALSE -- undo/redo is disabled");
+return (this.vwr.getBoolean (603979898) ? "undoAuto=" + auto + (!auto ? "; user stack sizes: UNDO=" + this.getStack (603984065).size () + ", REDO=" + this.getStack (4139).size () : "") : "SET preserveState = FALSE -- undo/redo is disabled");
 });
 Clazz_defineStatics (c$,
 "OBJ_BACKGROUND", 0,
@@ -59080,7 +59159,9 @@ this.setPickingMode (null, value ? 32 : 1);
 this.g.modelKitMode = value;
 this.g.setB ("modelkitmode", value);
 this.highlight (null);
-if (value) {
+if (isChange && this.modelkit != null) {
+this.getModelkit (false).setProperty ("constraint", null);
+}if (value) {
 this.setNavigationMode (false);
 this.selectAll ();
 this.setStringProperty ("picking", "assignAtom_C");
@@ -59684,9 +59765,12 @@ if (deltaZ != -2147483648) ptScreenNew = JU.P3.new3 (ptScreen.x, ptScreen.y, ptS
  else ptScreenNew = JU.P3.new3 (ptScreen.x + deltaX * f + 0.5, ptScreen.y + deltaY * f + 0.5, ptScreen.z);
 var ptNew =  new JU.P3 ();
 this.tm.unTransformPoint (ptScreenNew, ptNew);
+if ( new Boolean ( new Boolean (this.g.modelKitMode & this.modelkit != null).valueOf () && this.modelkit.getProperty ("constraint") != null).valueOf ()) {
+this.getModelkit (false).constrain (bsSelected, ptNew);
+}if (!Float.isNaN (ptNew.x)) {
 ptNew.sub (ptCenter);
 this.setAtomCoordsRelative (ptNew, bsSelected);
-} else {
+}} else {
 this.tm.rotateXYBy (deltaX, deltaY, bsSelected);
 }}}this.refresh (2, "");
 this.movingSelected = false;
@@ -60433,7 +60517,7 @@ this.stopMinimization ();
 if (bsAtoms == null) {
 var atom = this.ms.at[atomIndex];
 bsAtoms = JU.BSUtil.newAndSetBit (atomIndex);
-var bonds = atom.bonds;
+var bonds = (!this.g.modelKitMode || this.modelkit == null || this.modelkit.getProperty ("constraint") == null ? atom.bonds : null);
 if (bonds != null) for (var i = 0; i < bonds.length; i++) {
 var atom2 = bonds[i].getOtherAtom (atom);
 if (atom2.getElementNumber () == 1) bsAtoms.set (atom2.i);
@@ -60706,7 +60790,7 @@ wasAppendNew = this.g.appendNew;
 if (pts.length > 0) {
 this.clearModelDependentObjects ();
 try {
-bsB = (isQuick ? this.ms.addHydrogens (vConnections, pts) : this.addHydrogensInline (bsAtoms, vConnections, pts));
+bsB = (isQuick ? this.ms.addHydrogens (vConnections, pts) : this.addHydrogensInline (bsAtoms, vConnections, pts, null));
 } catch (e) {
 if (Clazz_exceptionOf (e, Exception)) {
 System.out.println (e.toString ());
@@ -60719,10 +60803,10 @@ if (wasAppendNew) this.g.appendNew = true;
 return bsB;
 }, "JU.BS,~N");
 Clazz_defineMethod (c$, "addHydrogensInline", 
-function (bsAtoms, vConnections, pts) {
+function (bsAtoms, vConnections, pts, htParams) {
 if (this.getScriptManager () == null) return null;
-return this.scm.addHydrogensInline (bsAtoms, vConnections, pts);
-}, "JU.BS,JU.Lst,~A");
+return this.scm.addHydrogensInline (bsAtoms, vConnections, pts, htParams);
+}, "JU.BS,JU.Lst,~A,java.util.Map");
 Clazz_overrideMethod (c$, "evalFunctionFloat", 
 function (func, params, values) {
 return (this.getScriptManager () == null ? 0 : this.eval.evalFunctionFloat (func, params, values));
@@ -61183,6 +61267,18 @@ Clazz_defineMethod (c$, "getThisModelAtoms",
 function () {
 return this.getModelUndeletedAtomsBitSet (this.getVisibleFramesBitSet ().nextSetBit (0));
 });
+Clazz_defineMethod (c$, "getSymmetryEquivPoints", 
+function (pt, flags) {
+var uc = this.getCurrentUnitCell ();
+return (uc == null ?  new JU.Lst () : uc.getEquivPoints (null, pt, flags));
+}, "JU.P3,~S");
+Clazz_defineMethod (c$, "getSymmetryEquivPointList", 
+function (pts, flags) {
+var uc = this.getCurrentUnitCell ();
+if (uc == null) return  new JU.Lst ();
+uc.getEquivPointList (pts, 0, flags.toLowerCase ());
+return pts;
+}, "JU.Lst,~S");
 Clazz_pu$h(self.c$);
 c$ = Clazz_declareType (JV.Viewer, "ACCESS", Enum);
 Clazz_defineEnumConstant (c$, "NONE", 0, []);
@@ -61223,7 +61319,13 @@ Clazz_defineStatics (c$,
 "REFRESH_REPAINT_NO_MOTION_ONLY", 6,
 "REFRESH_SEND_WEBGL_NEW_ORIENTATION", 7,
 "SYNC_GRAPHICS_MESSAGE", "GET_GRAPHICS",
-"SYNC_NO_GRAPHICS_MESSAGE", "SET_GRAPHICS_OFF");
+"SYNC_NO_GRAPHICS_MESSAGE", "SET_GRAPHICS_OFF",
+"MODIFY_DELETE_ATOMS", 1,
+"MODIFY_DELETE_BONDS", 2,
+"MODIFY_SET_COORD", 3,
+"MODIFY_DELETE_ATOM", 4,
+"MODIFY_DELETE_MODEL", 5,
+"MODIFY_MAKE_BOND", 6);
 c$.staticFunctions = c$.prototype.staticFunctions =  new java.util.Hashtable ();
 Clazz_defineStatics (c$,
 "MIN_SILENT", 1,

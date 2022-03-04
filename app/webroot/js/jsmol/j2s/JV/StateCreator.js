@@ -760,7 +760,8 @@ var colixes = balls.colixes;
 var pids = balls.paletteIDs;
 var r = 0;
 for (var i = 0; i < ac; i++) {
-if (atoms[i] != null && shape.bsSizeSet != null && shape.bsSizeSet.get (i)) {
+if (atoms[i] == null) continue;
+if (shape.bsSizeSet != null && shape.bsSizeSet.get (i)) {
 if ((r = atoms[i].madAtom) < 0) JU.BSUtil.setMapBitSet (this.temp, i, i, "Spacefill on");
  else JU.BSUtil.setMapBitSet (this.temp, i, i, "Spacefill " + JU.PT.escF (r / 2000));
 }if (shape.bsColixSet != null && shape.bsColixSet.get (i)) {
@@ -946,7 +947,7 @@ Clazz.overrideMethod (c$, "getAtomicPropertyState",
 function (taintWhat, bsSelected) {
 var bs;
 var commands =  new JU.SB ();
-for (var type = 0; type < 17; type++) if (taintWhat < 0 || type == taintWhat) if ((bs = (bsSelected != null ? bsSelected : this.vwr.ms.getTaintedAtoms (type))) != null) this.getAtomicPropertyStateBuffer (commands, type, bs, null, null);
+for (var type = 0; type < 18; type++) if (taintWhat < 0 || type == taintWhat) if ((bs = (bsSelected != null ? bsSelected : this.vwr.ms.getTaintedAtoms (type))) != null) this.getAtomicPropertyStateBuffer (commands, type, bs, null, null);
 
 return commands.toString ();
 }, "~N,JU.BS");
@@ -963,7 +964,7 @@ if (bs != null) for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1
 if (atoms[i] == null || atoms[i].isDeleted ()) continue;
 s.appendI (i + 1).append (" ").append (atoms[i].getElementSymbol ()).append (" ").append (atoms[i].getInfo ().$replace (' ', '_')).append (" ");
 switch (type) {
-case 17:
+case 18:
 if (i < fData.length) s.appendF (fData[i]);
 break;
 case 13:
@@ -993,6 +994,9 @@ var v = atoms[i].getVibrationVector ();
 if (v == null) s.append ("0 0 0");
  else if (Float.isNaN (v.modScale)) s.appendF (v.x).append (" ").appendF (v.y).append (" ").appendF (v.z);
  else s.appendF (1.4E-45).append (" ").appendF (1.4E-45).append (" ").appendF (v.modScale);
+break;
+case 17:
+s.appendI (atoms[i].getAtomSite ());
 break;
 case 3:
 s.appendI (atoms[i].getAtomicAndIsotopeNumber ());

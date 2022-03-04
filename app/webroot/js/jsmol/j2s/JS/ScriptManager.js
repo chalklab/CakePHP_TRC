@@ -439,10 +439,13 @@ vwr.g.legacyHAddition = false;
 vwr.stateScriptVersionInt = 2147483647;
 }, "JV.Viewer,~S");
 Clazz.overrideMethod (c$, "addHydrogensInline", 
-function (bsAtoms, vConnections, pts) {
+function (bsAtoms, vConnections, pts, htParams) {
 var iatom = bsAtoms.nextSetBit (0);
+if (htParams == null) htParams =  new java.util.Hashtable ();
 var modelIndex = (iatom < 0 ? this.vwr.am.cmi : this.vwr.ms.at[iatom].mi);
 if (modelIndex < 0) modelIndex = this.vwr.ms.mc - 1;
+htParams.put ("appendToModelIndex", Integer.$valueOf (modelIndex));
+var siteFixed = (htParams.containsKey ("fixedSite"));
 var bsA = this.vwr.getModelUndeletedAtomsBitSet (modelIndex);
 var wasAppendNew = this.vwr.g.appendNew;
 this.vwr.g.appendNew = false;
@@ -457,17 +460,16 @@ var sb =  new JU.SB ();
 sb.appendI (pts.length).append ("\n").append ("Viewer.AddHydrogens").append ("#noautobond").append ("\n");
 for (var i = 0; i < pts.length; i++) sb.append ("H ").appendF (pts[i].x).append (" ").appendF (pts[i].y).append (" ").appendF (pts[i].z).append (" - - - - ").appendI (++atomno).appendC ('\n');
 
-var htParams =  new java.util.Hashtable ();
-htParams.put ("appendToModelIndex", Integer.$valueOf (modelIndex));
 this.vwr.openStringInlineParamsAppend (sb.toString (), htParams, true);
 this.eval.runScriptBuffer (sbConnect.toString (), null, false);
 var bsB = this.vwr.getModelUndeletedAtomsBitSet (modelIndex);
 bsB.andNot (bsA);
 this.vwr.g.appendNew = wasAppendNew;
+if (!siteFixed) {
 bsA = this.vwr.ms.am[modelIndex].bsAsymmetricUnit;
 if (bsA != null) bsA.or (bsB);
-return bsB;
-}, "JU.BS,JU.Lst,~A");
+}return bsB;
+}, "JU.BS,JU.Lst,~A,java.util.Map");
 Clazz.defineStatics (c$,
 "prevCovalentVersion", 1);
 });

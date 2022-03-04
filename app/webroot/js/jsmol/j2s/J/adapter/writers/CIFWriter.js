@@ -1,5 +1,5 @@
 Clazz.declarePackage ("J.adapter.writers");
-Clazz.load (["J.api.JmolWriter", "JU.P3"], "J.adapter.writers.CIFWriter", ["JU.BS", "$.PT", "$.SB", "JU.SimpleUnitCell", "JV.Viewer"], function () {
+Clazz.load (["J.api.JmolWriter", "JU.P3"], "J.adapter.writers.CIFWriter", ["JU.BS", "$.PT", "$.SB", "JV.Viewer"], function () {
 c$ = Clazz.decorateAsClass (function () {
 this.vwr = null;
 this.oc = null;
@@ -31,7 +31,7 @@ var haveCustom = (fractionalOffset || (fset = uc.getUnitCellMultiplier ()) != nu
 var ucm = uc.getUnitCellMultiplied ();
 this.isP1 = new Boolean (this.isP1 | (ucm !== uc || fractionalOffset)).valueOf ();
 uc = ucm;
-var modelAU = (this.isP1 ? null : this.vwr.ms.am[mi].bsAsymmetricUnit);
+var modelAU = (!this.haveUnitCell ? bs : this.isP1 ? uc.removeDuplicates (this.vwr.ms, bs) : this.vwr.ms.am[mi].bsAsymmetricUnit);
 var bsOut;
 if (modelAU == null) {
 bsOut = bs;
@@ -39,7 +39,8 @@ bsOut = bs;
 bsOut =  new JU.BS ();
 bsOut.or (modelAU);
 bsOut.and (bs);
-}if (bsOut.cardinality () == 0) return "";
+}this.vwr.setErrorMessage (null, " (" + bsOut.cardinality () + " atoms)");
+if (bsOut.cardinality () == 0) return "";
 var sb =  new JU.SB ();
 sb.append ("## CIF file created by Jmol " + JV.Viewer.getJmolVersion ());
 if (haveCustom) {
@@ -93,8 +94,7 @@ var a = atoms[i];
 p.setT (a);
 if (this.haveUnitCell) {
 uc.toFractional (p, !this.isP1);
-}if (this.isP1 && !JU.SimpleUnitCell.checkPeriodic (p)) continue;
-nAtoms++;
+}nAtoms++;
 var name = a.getAtomName ();
 var sym = a.getElementSymbol ();
 var key = sym + "\n";
@@ -125,7 +125,7 @@ return this.toString ();
 }, "JU.BS");
 Clazz.defineMethod (c$, "writeChecked", 
  function (output, val) {
-if (val == null || val.isEmpty ()) {
+if (val == null || val.length == 0) {
 output.append (". ");
 return false;
 }var escape = val.charAt (0) == '_';
@@ -182,13 +182,13 @@ output.append ("\n;").append (val).append ("\n;\n");
 Clazz.defineMethod (c$, "clean", 
  function (f) {
 var t;
-return (!this.haveUnitCell || (t = Math.abs (J.adapter.writers.CIFWriter.twelfthsOf (f))) < 0 ? JU.PT.formatF (f, 18, 12, false, false) : (f < 0 ? "   -" : "    ") + J.adapter.writers.CIFWriter.twelfths[t]);
+return (!this.haveUnitCell || (t = J.adapter.writers.CIFWriter.twelfthsOf (f)) < 0 ? JU.PT.formatF (f, 18, 12, false, false) : (f < 0 ? "   -" : "    ") + J.adapter.writers.CIFWriter.twelfths[t]);
 }, "~N");
 c$.twelfthsOf = Clazz.defineMethod (c$, "twelfthsOf", 
  function (f) {
 f = Math.abs (f * 12);
 var i = Math.round (f);
-return (i <= 12 && Math.abs (f - i) < 0.00015 ? i : -2147483648);
+return (i <= 12 && Math.abs (f - i) < 0.00015 ? i : -1);
 }, "~N");
 Clazz.defineMethod (c$, "appendKey", 
  function (sb, key) {

@@ -186,7 +186,6 @@ Clazz.defineMethod (c$, "popStack",
 function (type) {
 var stack = this.getStack (type);
 var state = (stack.size () > 0 ? stack.remove (stack.size () - 1) : null);
-System.out.println ("STM pop " + stack.size () + " " + (state != null) + " " + (type == 603984065));
 if (state != null) {
 this.appendState (this.getStack (type == 603984065 ? 4139 : 603984065));
 }this.checkStack (this.getStack (603984065));
@@ -196,7 +195,6 @@ Clazz.defineMethod (c$, "appendState",
  function (stack) {
 this.checkStack (stack);
 if (this.maxUndo > 0) stack.addLast (this.vwr.getStateInfo ());
-System.out.println ("STM append " + stack.size () + (stack === this.undoStateStack));
 }, "JU.Lst");
 Clazz.defineMethod (c$, "checkStack", 
  function (stack) {
@@ -208,8 +206,7 @@ Clazz.defineMethod (c$, "getStack",
 if (this.undoStateStack == null) {
 this.undoStateStack =  new JU.Lst ();
 this.redoStateStack =  new JU.Lst ();
-}System.out.println ("StateManager getStack " + this.undoStateStack.size () + " " + this.redoStateStack.size () + " " + (type == 603984065));
-return (type == 603984065 ? this.undoStateStack : this.redoStateStack);
+}return (type == 603984065 ? this.undoStateStack : this.redoStateStack);
 }, "~N");
 Clazz.defineMethod (c$, "clearStateStack", 
  function () {
@@ -343,12 +340,12 @@ return this.popStack (tok);
 }, "~N");
 Clazz.defineMethod (c$, "canDo", 
 function (type) {
-return (this.maxUndo > 0 && this.vwr.getBooleanProperty ("preserveState") && !this.getStack (type).isEmpty ());
+return (this.maxUndo > 0 && this.vwr.getBoolean (603979898) && !this.getStack (type).isEmpty ());
 }, "~N");
 Clazz.defineMethod (c$, "getUndoInfo", 
 function () {
 var auto = this.vwr.getBooleanProperty ("undoAuto");
-return (this.vwr.getBooleanProperty ("preserveState") ? "undoAuto=" + auto + (!auto ? "; user stack sizes: UNDO=" + this.getStack (603984065).size () + ", REDO=" + this.getStack (4139).size () : "") : "SET preserveState = FALSE -- undo/redo is disabled");
+return (this.vwr.getBoolean (603979898) ? "undoAuto=" + auto + (!auto ? "; user stack sizes: UNDO=" + this.getStack (603984065).size () + ", REDO=" + this.getStack (4139).size () : "") : "SET preserveState = FALSE -- undo/redo is disabled");
 });
 Clazz.defineStatics (c$,
 "OBJ_BACKGROUND", 0,

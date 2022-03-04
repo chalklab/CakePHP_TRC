@@ -631,7 +631,7 @@ propertyName = "polygon";
 propertyValue = this.vwr.getTriangulator ().intersectPlane (plane, pts, isProjection ? -1 : 0);
 intScale = 0;
 }break;
-case 134217762:
+case 1275068447:
 pts = (eval.isArrayParameter (++i) ? eval.getPointArray (i, -1, false) : null);
 if (pts != null) {
 i = eval.iToken + 1;

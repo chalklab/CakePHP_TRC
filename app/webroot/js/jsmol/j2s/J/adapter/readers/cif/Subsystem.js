@@ -86,7 +86,7 @@ v = ss.w.mul (v0);
 code = ss.code;
 break;
 }}
-}var jf = this.symmetry.addOp (code, r, v, sigma_nu);
+}var jf = this.symmetry.addSubSystemOp (code, r, v, sigma_nu);
 JU.Logger.info (this.code + "." + (iop + 1) + (this.code.equals (code) ? "   " : ">" + code + " ") + jf);
 }
 }, "~B");

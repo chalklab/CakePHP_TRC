@@ -803,7 +803,7 @@ var bondsCache = this.ms.freeBonds[i];
 for (var j = bondsCache.length; --j >= 0; ) bondsCache[j] = null;
 
 }
-this.ms.setAtomNamesAndNumbers (0, this.baseAtomIndex, this.modelSet0);
+this.ms.setAtomNamesAndNumbers (0, this.baseAtomIndex, this.modelSet0, false);
 this.findElementsPresent ();
 this.ms.resetMolecules ();
 this.model = null;

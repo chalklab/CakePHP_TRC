@@ -30,6 +30,7 @@ this.doFixPeriodic = false;
 this.allowMultiple = false;
 this.readerList = null;
 this.atomMapAnyCase = false;
+this.fixedSite = 0;
 this.bsStructuredModels = null;
 this.haveAnisou = false;
 this.baseSymmetryAtomCount = 0;
@@ -79,9 +80,12 @@ var p =  new java.util.Properties ();
 p.put ("PATH_KEY", ".PATH");
 p.put ("PATH_SEPARATOR", J.adapter.smarter.SmarterJmolAdapter.PATH_SEPARATOR);
 this.setInfo ("properties", p);
-var modelIndex = (reader == null ? null : reader.htParams.get ("appendToModelIndex"));
-if (modelIndex != null) this.setInfo ("appendToModelIndex", modelIndex);
-if (array != null) {
+if (reader != null) {
+var ii = reader.htParams.get ("appendToModelIndex");
+if (ii != null) this.setInfo ("appendToModelIndex", ii);
+ii = reader.htParams.get ("fixedSite");
+if (ii != null) this.fixedSite = ii.intValue ();
+}if (array != null) {
 var n = 0;
 this.readerList =  new JU.Lst ();
 for (var i = 0; i < array.length; i++) if (array[i] != null && (array[i].ac > 0 || array[i].reader != null && array[i].reader.mustFinalizeModelSet)) this.appendAtomSetCollection (n++, array[i]);
@@ -394,7 +398,7 @@ if (this.ac > 200000) this.atoms = JU.AU.ensureLength (this.atoms, this.ac + 500
 atom.index = this.ac;
 this.atoms[this.ac++] = atom;
 atom.atomSetIndex = this.iSet;
-atom.atomSite = this.atomSetAtomCounts[this.iSet]++;
+atom.atomSite = (this.fixedSite > 0 ? this.fixedSite - 1 : this.atomSetAtomCounts[this.iSet]++);
 return atom;
 }, "J.adapter.smarter.Atom");
 Clazz.defineMethod (c$, "addAtomWithMappedName", 
@@ -626,7 +630,6 @@ this.atomMapAnyCase = false;
 }, "~B");
 Clazz.defineMethod (c$, "getAtomSetAtomIndex", 
 function (i) {
-if (i < 0) System.out.println ("??");
 return this.atomSetAtomIndexes[i];
 }, "~N");
 Clazz.defineMethod (c$, "getAtomSetAtomCount", 

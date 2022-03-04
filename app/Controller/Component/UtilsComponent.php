@@ -44,30 +44,4 @@ class UtilsComponent extends Component {
         return $oarray;
     }
 
-    /**
-     * Export SQL
-     * @param $class
-     * @param $id
-     * @param $output
-     * @return mixed;
-     */
-    public function sql($class,$id,&$output)
-    {
-        $tablearray=[];
-        $table=Inflector::tableize($class);
-
-        if(is_array($id)) {
-            $idstr=implode(",",$id);
-            $cmd='/usr/local/bin/mysqldump --opt --compact --user=springer --password=springer trc '.$table.'  --where="id in ('.$idstr.')"';
-        } else {
-            $cmd='/usr/local/bin/mysqldump --opt --compact --user=springer --password=springer trc '.$table.'  --where="id='.$id.'"';
-        }
-        exec($cmd,$output,$return);
-        if($return==0) {
-            return true;
-        } else {
-            return $return;
-        }
-    }
-
 }

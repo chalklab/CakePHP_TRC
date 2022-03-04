@@ -1294,7 +1294,7 @@ var moData = this.vwr.ms.getInfo (i, "moData");
 if (moData == null || !moData.containsKey ("mos")) continue;
 sb.appendI ((moData.get ("mos")).size ()).append (" molecular orbitals in model ").append (this.vwr.getModelNumberDotted (i)).append ("\n");
 }
-if (sb.length () > 0) this.vwr.showString (sb.toString (), false);
+if (sb.length () > 0) this.showString (sb.toString ());
 }, "~S,~B");
 Clazz.overrideMethod (c$, "notifyResumeStatus", 
 function () {
@@ -3538,8 +3538,9 @@ if (isAppend && (appendNew || nFiles > 1)) {
 this.vwr.setAnimationRange (-1, -1);
 this.vwr.setCurrentModelIndex (modelCount0);
 }var msg;
-if (this.scriptLevel == 0 && !isAppend && (isConcat || nFiles < 2) && (msg = this.vwr.ms.getInfoM ("modelLoadNote")) != null) this.vwr.showString (msg, false);
-var centroid = this.vwr.ms.getInfoM ("centroidMinMax");
+if (this.scriptLevel == 0 && !isAppend && (isConcat || nFiles < 2) && (msg = this.vwr.ms.getInfoM ("modelLoadNote")) != null) {
+this.showString (msg);
+}var centroid = this.vwr.ms.getInfoM ("centroidMinMax");
 if (JU.AU.isAI (centroid) && this.vwr.ms.ac > 0) {
 var bs = JU.BSUtil.newBitSet2 (isAppend ? ac0 : 0, this.vwr.ms.ac);
 this.vwr.ms.setCentroid (bs, centroid);
@@ -4533,8 +4534,11 @@ this.vwr.stm.saveSelection (saveName, this.vwr.bsA ());
 this.vwr.stm.restoreSelection (saveName);
 }return;
 case 1073742158:
-if (!this.chk) this.vwr.stm.saveState (saveName);
-return;
+if (!this.chk && this.vwr.getBoolean (603979898)) {
+this.vwr.stm.saveState (saveName);
+if (saveName.length == 0) {
+this.showString (this.vwr.stm.getUndoInfo ());
+}}return;
 case 1639976963:
 if (!this.chk) this.vwr.stm.saveStructure (saveName);
 return;
@@ -4913,12 +4917,6 @@ return;
 case 1610612741:
 this.cmdSetLabel ("toggle");
 return;
-case 603984065:
-if (this.slen == 2) {
-if (!this.chk && this.vwr.getBoolean (603979898)) {
-this.vwr.stm.saveState ("");
-}return;
-}break;
 case 536870930:
 var v =  new JU.Lst ();
 for (var i = 2; i < this.slen; i++) {
