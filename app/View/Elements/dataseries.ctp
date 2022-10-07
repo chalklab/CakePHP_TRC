@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <h2 class="panel-title">Data</h2>
     </div>
-    <div class="panel-body responsivediv600">
+    <div class="panel-body responsivediv400">
         <table class="table table-condensed table-striped">
             <thead>
             <?php
