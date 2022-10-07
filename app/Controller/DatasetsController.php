@@ -52,7 +52,7 @@ class DatasetsController extends AppController
 		'Sampleprop',
 		'System' => [
 			'Substance' => ['fields' => ['name', 'formula', 'mw', 'type'],
-				'Identifier' => ['fields' => ['type', 'value'], 'conditions' => ['type' => ['inchi', 'inchikey', 'iupacname']]],
+				'Identifier' => ['fields' => ['type', 'value'], 'conditions' => ['type' => ['inchi', 'inchikey', 'iupacname','casrn']]],
 			]
 		],
 	];
@@ -105,7 +105,7 @@ class DatasetsController extends AppController
 	public function beforeFilter()
 	{
 		parent::beforeFilter();
-		$this->Auth->allow('index','view','scidata','recent','sddslist');
+		$this->Auth->allow('index','view','scidata','recent','sddslist','exportjld');
 	}
 
 	/**
@@ -285,13 +285,11 @@ class DatasetsController extends AppController
 	 */
 	public function sddslist(int $jid=1,int $off=1)
 	{
-		$sets=$this->Dataset->find('list',['fields'=>['id','title'],'conditions'=>['Reference.journal_id'=>$jid],
+		$sets=$this->Dataset->find('list',['fields'=>['id','trcidset_id'],'conditions'=>['Reference.journal_id'=>$jid],
 			'contain'=>['Reference'],'order'=>'id','offset'=>$off,'recursive'=>-1]);  // TODO: offset not working :(
 		$output=[];
-		foreach($sets as $setid=>$title) {
-			preg_match('/Dataset (\d+) in paper 10\.\d+\/(.+)$/',$title,$m);
-			$filename=$m[2]."_".$m[1];
-			$output[$filename]='https://sds.coas.unf.edu/trc/datasets/scidata/'.$setid;
+		foreach($sets as $setid=>$trcid) {
+			$output[$trcid]='https://sds.coas.unf.edu/trc/datasets/scidata/'.$setid;
 		}
 		$json=json_encode($output);
 		header("Content-Type: application/json");
@@ -308,14 +306,17 @@ class DatasetsController extends AppController
 	 */
 	public function exportjld(int $jid=1, int $limit=150000, int $offset=0)
 	{
-		$sets=$this->Dataset->find('list',['fields'=>['id','title'],'conditions'=>['Reference.journal_id'=>$jid],'contain'=>['Reference'],'order'=>'points','offset'=>$offset,'limit'=>$limit,'recursive'=>-1]);
+		$sets=$this->Dataset->find('list',['fields'=>['id','titletrcid'],
+			'conditions'=>['Reference.journal_id'=>$jid],'contain'=>['Reference'],
+			'order'=>'points','offset'=>$offset,'limit'=>$limit,'recursive'=>-1]);
 		$setcnt=count($sets);//debug($sets);exit;
 		$start=str_pad($offset,5,'0',STR_PAD_LEFT);
 		$end=str_pad($setcnt,5,'0',STR_PAD_LEFT);
 		$folder='files_'.$jid.'_'.$start.'_'.$end;
 		$zip = new ZipArchive;
 		$zip->open($folder.'.zip', ZipArchive::CREATE);
-		foreach($sets as $setid=>$title) {
+		foreach($sets as $setid=>$titletrcid) {
+			list($title,$trcid)=explode(':', $titletrcid);
 			$url='https://sds.coas.unf.edu/trc/datasets/scidata/'.$setid;
 			$hdrs=get_headers($url,true);
 			if(stristr($hdrs[0],'200')) {
@@ -326,10 +327,8 @@ class DatasetsController extends AppController
 					chmod($folder.".zip", 0777);
 					echo "Error in set ".$setid."<br/>";exit; //detects code error
 				}
-				preg_match('/^Dataset ([0-9]+) in paper 10\.\d+\/(.+)$/', $title, $m);
-				$filename = $m[2] . '_' . $m[1] . '.jsonld';
-				echo "File '".$filename."' processed<br/>";
-				$zip->addFromString($filename, $json);
+				echo "File '".$trcid."' processed<br/>";
+				$zip->addFromString($trcid.".jsonld", $json);
 			} else {
 				echo "Download not valid ".$setid."<br/>";exit; //detects code error
 			}
@@ -402,7 +401,8 @@ class DatasetsController extends AppController
 
 		// create an instance of the Scidata class
 		$sdpath = "https://scidata.unf.edu/";
-		$setuid = "trc_".$jnl['set']."_".$data['Dataset']['trcidset_id'];
+		$trcid = $data['Dataset']['trcidset_id'];
+		$setuid = "trc_".$jnl['set']."_".$trcid;
 		$upath = $sdpath.$setuid."/";
 		$trc = new $this->Scidata;
 		$trc->setcontexts([
@@ -424,8 +424,8 @@ class DatasetsController extends AppController
 			['name'=>'Montana Sloan','orcid'=>'0000-0003-2127-9752','role'=>'developer','gender'=>'female'],
 			['name'=>'Stuart J. Chalk','orcid'=>'0000-0002-0703-7776','organization'=>'University of North Florida','role'=>'developer','email'=>'schalk@unf.edu']];
 		$trc->setcreators($aus);
-		$trc->setstarttime($file['date']);
-		$trc->setpermalink("https://scidata.unf.edu/tranche/trc/jced/".$setuid);
+		//$trc->setstarttime($file['date']);  // removed by SJC in favor of adding created date to source file below
+		$trc->setpermalink($sdpath."tranche/trc/".$ref['Journal']['set']."/".$trcid);
 		$trc->setdiscipline("w3i:Chemistry");
 		$trc->setsubdiscipline("w3i:PhysicalChemistry");
 
@@ -433,7 +433,7 @@ class DatasetsController extends AppController
 		$cnds = ['system_id' => $sys['id'], 'file_id' => $file['id'], 'NOT' => ['Dataset.id' => $id]];
 		$reldata = $this->Dataset->find('list', ['fields' => ['trcidset_id'], 'conditions' => $cnds]);
 		$related=[];
-		foreach($reldata as $relset) { $related[]=$sdpath."tranche/trc/jced/".$relset; }
+		foreach($reldata as $relset) { $related[]=$sdpath."tranche/trc/".$ref['Journal']['set']."/".$relset; }
 		$trc->setrelated($related);
 
 		// nothing in the XML about the methodology so not methodology section
@@ -550,18 +550,7 @@ class DatasetsController extends AppController
 			foreach($mix['Compohnent'] as $cmp) {
 				$const=[];
 				$const['source']="chemical/".$cmp['compnum'].'/';
-				// TODO: Fix code in Scidata model for adding phases under constituents
-				//	$const['phase']=[];
-				//	$orgnum=$cmp2org[$cmp['chemical_id']]['orgnum'];
-				//	foreach($phases as $phase) {
-				//		if($phase['orgnum']==$orgnum) {
-				//			$const['phase'][]=lcfirst($phase['Phasetype']['name']);
-				//			$const['phase'][]=$phase['Phasetype']['type'];
-				//		}
-				//	}
-				//	//$const['temp']=['temp1','temp2'];
-				//	//if(empty($const['phase'])) { unset($const['phase']); }
-				//	//$const['phase']=array_values(array_unique($const['phase']));
+				$const['constituentNumber']=$cmp['compnum'];
 				$s['constituents'][]=$const;
 			}
 			$systems[1] = $s;
@@ -639,7 +628,7 @@ class DatasetsController extends AppController
 					$props[$idxprop]['quantity']=$scond['Quantity']['name'];
 					$props[$idxprop]['phase']=$scphase;
 					if(($scond['component_id'])===NULL) {
-						$props[$idxprop]['quantity'] = $scond['Quantity']['name'].'('.$scphase.')';
+						$props[$idxprop]['quantity'] = $scond['Quantity']['name'].' ('.$scphase.')';
 					} else {
 						$sccomp=$scond['Compohnent']['compnum'];
 						$props[$idxprop]['quantity'] = $scond['Quantity']['name']." of Component ".$sccomp." (".$scphase.")";
@@ -737,9 +726,9 @@ class DatasetsController extends AppController
 			$group=[];$sernum=$seridx+1;
 			$group['title']='Series '.$sernum;
 			if(count($sys['Substance'])==1) {
-				$group['system']="compound/1/";
+				$group['chemical']="chemical/1/";
 			} else {
-				$group['system']="system/1/";
+				$group['mixture']="mixture/1/";
 			}
 			$group['data']=[];
 			foreach ($ser['Datapoint'] as $pntidx => $pnt) {
@@ -752,8 +741,9 @@ class DatasetsController extends AppController
 					} else {
 						$datphase='';
 					}
-					$quantphase=$datum['Quantity']['name']." (".$datphase.")";
-					if(!isset($group['data'][$quantphase])) { $group['data'][$quantphase]=[]; }
+					// TODO: add constituent link
+					// TODO: fix issue with same component in multiple phases
+
 					// phase
 					$val['phase']=$datphase;
 					// quantitykind
@@ -765,12 +755,14 @@ class DatasetsController extends AppController
 					}
 					// quantity
 					if(($datum['component_id'])===NULL) {
-						$val['quantity'] = $quantphase;
+						$val['quantity'] = $datum['Quantity']['name']." (".$datphase.")";
 					} else {
 						$dpcomp=$datum['Compohnent']['compnum'];
 						$val['quantity'] = $datum['Quantity']['name']." of component ". $dpcomp. " (".$datphase.")" ;
 						$val['related'] = "constituent/".$dpcomp."/";
 					}
+					$quantphase=$val['quantity'];
+
 					// number (and sigfigs if set)
 					if(!empty($datum['accuracy'])) {
 						// check that the number is correctly represented based on accuracy
@@ -793,6 +785,7 @@ class DatasetsController extends AppController
 						$val['error']=(float) $datum['error'];
 						$val['errortype']=$datum['error_type'];
 					}
+					if(!isset($group['data'][$quantphase])) { $group['data'][$quantphase]=[]; }
 					$group['data'][$quantphase][$pntnum]=$val;
 				}
 			}
@@ -816,6 +809,7 @@ class DatasetsController extends AppController
 		$src['citation']="NIST TRC ThermoML Archive";
 		$src['url']="https://trc.nist.gov/ThermoML/".$ref['doi'].".xml";
 		$src['type']="dataset";
+		$src['created']=$file['date'];
 		$sources[]=$src;
 		$trc->setsources($sources);
 		//debug($src);exit;
@@ -823,7 +817,6 @@ class DatasetsController extends AppController
 		// Rights
 		$right=['@id'=>'rights/1/','@type'=>'dc:rights'];
 		$right['holder']='NIST Thermodynamics Research Center (Boulder, CO)';
-		//$right['license']='https://creativecommons.org/licenses/by-nc/4.0/';
 		$right['license']='https://www.nist.gov/open/license';
 		$rights[]=$right;
 		$trc->setrights($rights);
@@ -837,7 +830,7 @@ class DatasetsController extends AppController
 		out:
 		$json=$trc->asjsonld(true);
 		header("Content-Type: application/json");
-		if($down=="download") { header('Content-Disposition: attachment; filename="'.$id.'.json"'); }
+		if($down=="download") { header('Content-Disposition: attachment; filename="'.$trcid.'.json"'); }
 		echo $json;exit;
 	}
 

@@ -7,7 +7,7 @@ App::uses('File', 'Utility');
 App::uses('PhpReader', 'Configure');
 
 Configure::config('default', new PhpReader());
-Configure::load('trc','default');
+Configure::load('trc');
 
 /**
  * Application Controller
@@ -41,6 +41,6 @@ class AppController extends Controller {
 
     public $helpers = ['Form','Html','Session','Time','Flash'];
 
-	public $actsAs = ['Containable'];
+	public array $actsAs = ['Containable'];
 
 }

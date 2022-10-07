@@ -1207,9 +1207,10 @@ class Scidata extends AppModel
 					$grp["@id"]='datagroup/'.$grpidx.'/';
 					$grp["@type"]="sdo:datagroup";
 					$grp['title']=$group['title'];
-					if(!empty($group['system'])) {
-						$grp['system']=$group['system'];
-					}
+					# the next two lines replace the generic 'system' (i.e. chemicalsystem)
+					# as "system" can be a mixture or pure compound (chemical)
+					if(!empty($group['chemical'])) { $grp['chemical']=$group['chemical']; }
+					if(!empty($group['mixture'])) { $grp['mixture']=$group['mixture']; }
 					$grp['datapoints']=[];
 					//debug($points);exit;
 					foreach($points as $p) {
@@ -1349,7 +1350,7 @@ class Scidata extends AppModel
 									$nval['errortype']='unknown';
 								}
 								$nval['errornote']='from source';
-							} else {
+							} elseif($val['error']!='') {
 								$nval['error']=$val['error'];
 								$nval['errortype']='absolute';
 								$nval['errornote']='estimated from value';
@@ -1404,6 +1405,7 @@ class Scidata extends AppModel
 				if(!empty($src['doi'])) 		{ $source["doi"]=$src['doi']; }
 				if(!empty($src['url'])) 		{ $source["url"]=$src['url']; }
 				if(!empty($src['type'])) 		{ $source["type"]=$src['type']; }
+				if(!empty($src['created'])) 	{ $source["created"]=$src['created']; }
 				$graph["sources"][]=$source;
 			}
 		} else {
@@ -1490,7 +1492,6 @@ class Scidata extends AppModel
 		$output['id']=$this->id;
 		$output['uid']=$this->uid;
 		$output['base']=$this->base;
-		$output['context']=$this->contexts;
 		$output['meta']=$this->meta;
 		$output['creators']=$this->creators;
 		$output['related']=$this->related;
@@ -1683,7 +1684,7 @@ class Scidata extends AppModel
 						$condrels[$type][$ser][$quant][$row]='condition/'.$idx.'/';
 					}
 				} else {
-					$output['value']=[];$value=[];
+					$value=[];
 					$value['@id']='condition/'.$idx.'/value/';
 					$value['@type']='sdo:numericValue';
 					if(isset($val['meta'])) {

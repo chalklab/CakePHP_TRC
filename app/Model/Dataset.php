@@ -33,6 +33,7 @@ class Dataset extends AppModel
 		'fileset'=>"CONCAT(Dataset.file_id,':',Dataset.setnum)",
 		'filesys'=>"CONCAT(Dataset.file_id,':',Dataset.system_id)",
 		'refsetnum'=>"CONCAT(Dataset.reference_id,':',Dataset.setnum)",
+		'titletrcid'=>"CONCAT(Dataset.title,':',Dataset.trcidset_id)",
 	];
 
 	/**
