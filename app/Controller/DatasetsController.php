@@ -458,7 +458,7 @@ class DatasetsController extends AppController
 			// get chemicals
 			foreach ($chmf as $chmidx => $chm) {
 				$c = [];
-				$c['source'] = 'substance/' . ($chmidx + 1) . '/';
+				$c['substance#'] = 'substance/' . ($chmidx + 1) . '/';
 				$c['name'] = $chm['Substance']['name'];
 				$c['sourcetype'] = $chm['sourcetype'];
 				//debug($chm);exit;
@@ -549,7 +549,7 @@ class DatasetsController extends AppController
 			// add mixture compohnents
 			foreach($mix['Compohnent'] as $cmp) {
 				$const=[];
-				$const['source']="chemical/".$cmp['compnum'].'/';
+				$const['chemical#']="chemical/".$cmp['compnum'].'/';
 				$const['constituentNumber']=$cmp['compnum'];
 				$s['constituents'][]=$const;
 			}
@@ -726,9 +726,9 @@ class DatasetsController extends AppController
 			$group=[];$sernum=$seridx+1;
 			$group['title']='Series '.$sernum;
 			if(count($sys['Substance'])==1) {
-				$group['chemical']="chemical/1/";
+				$group['chemical#']="chemical/1/";
 			} else {
-				$group['mixture']="mixture/1/";
+				$group['mixture#']="mixture/1/";
 			}
 			$group['data']=[];
 			foreach ($ser['Datapoint'] as $pntidx => $pnt) {

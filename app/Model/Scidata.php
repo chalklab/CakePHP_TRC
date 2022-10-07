@@ -1006,7 +1006,7 @@ class Scidata extends AppModel
 					} else {
 						$ser['system']="no system?";
 					}
-					$ser['datapoints']=[];
+					$ser['datapoints#']=[];
 					foreach($points as $p) {
 						$pnttot++;
 						// array of datapoints
@@ -1161,7 +1161,7 @@ class Scidata extends AppModel
 							}
 						}
 						$this->setdatapoint($dpnt);
-						$ser['datapoints'][]=$dpntid;
+						$ser['datapoints#'][]=$dpntid;
 					}
 					$set['dataseries'][]=$ser;
 				}
@@ -1211,7 +1211,7 @@ class Scidata extends AppModel
 					# as "system" can be a mixture or pure compound (chemical)
 					if(!empty($group['chemical'])) { $grp['chemical']=$group['chemical']; }
 					if(!empty($group['mixture'])) { $grp['mixture']=$group['mixture']; }
-					$grp['datapoints']=[];
+					$grp['datapoints#']=[];
 					//debug($points);exit;
 					foreach($points as $p) {
 						//debug($p);
@@ -1267,7 +1267,7 @@ class Scidata extends AppModel
 							}
 						}
 						$this->setdatapoint($dpnt);
-						$grp['datapoints'][]=$dpntid;
+						$grp['datapoints#'][]=$dpntid;
 					}
 					$set['datagroup'][]=$grp;
 				}
