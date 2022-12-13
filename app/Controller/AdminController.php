@@ -8,8 +8,8 @@
  */
 class AdminController extends AppController
 {
-	public $uses=['Chemical','Compohnent','Condition','Data','Datapoint','Dataseries','Dataset',
-		'File','Phase','Phasetype','Quantity','Reference','Sampleprop','Stat'];
+	public $uses=['Chemical','Compohnent','Condition','Data','Datapoint','Dataseries','Dataset','File','Identifier'
+		,'Journal','Phase','Phasetype','Quantity','Reference','Sampleprop','Substance','SubstancesSystem','Stat'];
 
     /**
      * function beforeFilter
@@ -17,10 +17,169 @@ class AdminController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow();
+        $this->Auth->allow('keylist','jldlist');
     }
 
+	/**
+	 * spit out a json encoded list of inchikeys in the substances table
+	 */
+	public function keylist()
+	{
+		$keys = $this->Substance->find('list',['fields'=>['inchikey'],'recursive'=>-1]);
+		$keystr= "[";
+		foreach($keys as $kidx=>$key) {
+			if($kidx > 1) { $keystr.=","; }
+			$keystr.='"'.$key.'"';
+		}
+		$keystr.="]";
+		header('Content-Type: application/json');
+		echo $keystr;exit;
+
+	}
+
+	public function jldlist($code)
+	{
+		$refs = $this->Reference->find('list',['fields'=>['id'],'conditions'=>['Journal.set'=>$code],'contain'=>['Journal'],'recursive'=>-1]);
+		$sets = $this->Dataset->find('list',['fields'=>['setnum','title','reference_id'],'conditions'=>['reference_id'=>$refs],'recursive'=>-1]);
+		foreach($sets as $setlist) {
+			foreach($setlist as $setnum=>$title) {
+				$parts=explode("/", $title);
+				$path='https://scidata.unf.edu/tranche/trc/'.$code.'/'.$parts[1].'_'.$setnum.'.jsonld';
+				$chk = get_headers($path, true);
+
+				debug($chk);
+				exit;
+			}
+		}
+		debug($sets);
+		exit;
+	}
+
 	// functions requiring login (not in Auth::allow)
+
+	/**
+	 * make index files for tranche dir on https://scidata.unf.edu
+	 */
+	public function trcidx()
+	{
+		// for each journal based dataset create an index file to search the TRC DB and present files that match
+		// also create an overall index file over all the TRC datasets
+		$jurnls = $this->Journal->find('list',['fields'=>['id','name'],'conditions'=>['id'=>1],'recursive'=>-1]);
+		foreach($jurnls as $jid=>$name) {
+			$j=$this->Journal->find('first',['conditions'=>['id'=>$jid],'recursive'=>-1]);$j=$j['Journal'];
+			$refs=$this->Reference->find('list',['fields'=>['id','title'],'conditions'=>['id'=>$jid],'recursive'=>-1]);
+			$refids=$this->Reference->find('list',['fields'=>['id'],'conditions'=>['journal_id'=>$jid],'recursive'=>-1]);
+			$sets=$this->Dataset->find('list',['fields'=>['id','title'],'conditions'=>['reference_id'=>$refids],'recursive'=>-1]);
+			$dois=$this->Dataset->find('list',['fields'=>['id','Reference.doi'],'conditions'=>['reference_id'=>$refids],'contain'=>['Reference'],'recursive'=>-1]);
+			$syss=$this->Dataset->find('list',['fields'=>['System.id','System.name','id'],'conditions'=>['reference_id'=>$refids],'contain'=>['System'],'recursive'=>-1]);
+			$sysids=$this->Dataset->find('list',['fields'=>['id','System.id'],'conditions'=>['reference_id'=>$refids],'contain'=>['System'],'recursive'=>-1]);
+			$setids=$this->Dataset->find('list',['fields'=>['id'],'conditions'=>['reference_id'=>$refids],'recursive'=>-1]);
+			$props=$this->Sampleprop->find('list',['fields'=>['id','quantity_name','dataset_id'],'conditions'=>['dataset_id'=>$setids],'recursive'=>-1]);
+			$meths=$this->Sampleprop->find('list',['fields'=>['dataset_id','method_name'],'conditions'=>['dataset_id'=>$setids],'recursive'=>-1]);
+			$conds=$this->Condition->find('list',['fields'=>['Quantity.id','Quantity.name','dataset_id'],'conditions'=>['dataset_id'=>$setids],'contain'=>['Quantity'],'recursive'=>-1]);
+			// create the Google Datasets JSON-LD header
+			$gdsld=['@context'=>'http://schema.org/','@type'=>'Dataset'];
+			$gdsld['name']='SciData Framework JSON-LD Conversion of the set of '.$j['name'].' files in the NIST TRC ThermoML Dataset at https://trc.nist.gov/ThermoML/';
+			$gdsld['description']='This JSON-LD documents were created using code in the GitHub repository at https://github.com/ChalkLab/scidata_trc';
+			$gdsld['url']='https://scidata.unf.edu/tranche/trc/'.$j['set'];
+			$gdsld['license']='https://www.nist.gov/open/license';
+			$gdsld['creator']=[
+				'@type'=>'Organization',
+				'name'=>'Department of Chemistry',
+				'contactPoint'=>[
+					'@type'=>'Contactpoint',
+					'name'=>'Stuart Chalk',
+					'email'=>'schalk@unf.edu'
+					],
+				'parentOrganization'=>[
+					'@type'=>'Organization',
+					'name'=>'University of North Florida',
+					'alternateName'=>'UNF'
+				]
+			];
+			$gdsld['hasPart']=[];
+			$data=[];
+			// generate variable to send to page and populate the list of files
+			foreach($sets as $setid=>$title) {
+				//debug($setid);
+				$d=$this->Dataset->find('first',['conditions'=>['id'=>$setid],'recursive'=>-1]);$d=$d['Dataset'];
+				$r=$this->Reference->find('first',['conditions'=>['id'=>$d['reference_id']],'recursive'=>-1]);$r=$r['Reference'];
+				// populate the data for the list of files
+				$set=[];
+				$set['title']=$title;
+				$set['paper']=$r['title'];
+				$set['doi']=$dois[$setid];
+				$set['pnts']=$d['points'];
+				$parts=explode('/',$dois[$setid]);
+				$set['path']='https://scidata.unf.edu/tranche/trc/'.$j['set'].'/'.$parts[1].'_'.$d['setnum'].'.jsonld';
+				$set['trc']='https://trc.nist.gov/ThermoML/'.$set['doi'].'.html';
+				if(empty($conds[$setid])) {
+					$set['conds']='';
+				} else {
+					$set['conds']=implode(',',$conds[$setid]);
+				}
+				$set['props']=implode(',',$props[$setid]);
+				$set['subs']=implode(',',$syss[$setid]);
+				$data[]=$set;
+				// get substance information from sysid
+				$sysid=$sysids[$setid];
+				$subids=$this->SubstancesSystem->find('list',['fields'=>['substance_id'],'conditions'=>['system_id'=>$sysid],'recursive'=>-1]);
+				$subs=[];
+				$forms=$this->Substance->find('list',['fields'=>['id','formula'],'conditions'=>['id'=>$subids],'recursive'=>-1]);
+				$names=$this->Substance->find('list',['fields'=>['id','name'],'conditions'=>['id'=>$subids],'recursive'=>-1]);
+				$sids=$this->Identifier->find('list',['fields'=>['type','value','substance_id'],'conditions'=>['substance_id'=>$subids],'recursive'=>-1]);
+				foreach($subids as $subid) {
+					$sub=[];
+					if(!empty($sids[$subid]['iupacname'])) {
+						$sub['iupacname']=$sids[$subid]['iupacname'];
+					} else {
+						$sub['name']=$names[$subid];
+					}
+					$sub['formula']=$forms[$subid];
+					$sub['inchikey']=$sids[$subid]['inchikey'];
+					$subs[]=implode(" ",$sub);
+				}
+				// populate the JSON-LD for Google Dataset Search for this set
+				if(!isset($gdsld['hasPart'][$dois[$setid]])) {
+					$paper=[];
+					$paper=['@type'=>'Dataset'];
+					$paper['name']='Datasets from paper doi:'.$r['doi'].' as SciData JSON-LD, converted from NIST ThermoML file \''.$set['trc'].'\'';
+					$paper['description']='SciData Framework JSON-LD conversion of the PureOrMixtureData datasets from file \''.$set['trc'].'\', derived from paper doi:'.$r['doi'].'.';
+					$paper['license']='https://www.nist.gov/open/license';
+					$paper['creator']=['@type'=>'Person','name'=>'Stuart Chalk'];
+					$paper['citation']=$set['doi'];
+					$paper['contentUrl']=[];
+					$paper['material']=[];
+					$paper['variableMeasured']=[];
+					$paper['measurementTechnique']=[];
+					$gdsld['hasPart'][$r['doi']]=$paper;
+				}
+				// path to file
+				$gdsld['hasPart'][$dois[$setid]]['contentUrl'][]=$set['path'];
+				// add substances (materials)
+				foreach($subs as $sub) { $gdsld['hasPart'][$dois[$setid]]['material'][]=$sub; }
+				$tmpmat=array_values(array_unique($gdsld['hasPart'][$dois[$setid]]['material']));
+				$gdsld['hasPart'][$dois[$setid]]['material']=$tmpmat;
+				// add props (not adding the condition props here)
+				foreach($props[$setid] as $prop) { $gdsld['hasPart'][$dois[$setid]]['variableMeasured'][]=$prop; }
+				$tmpvar=array_values(array_unique($gdsld['hasPart'][$dois[$setid]]['variableMeasured']));
+				$gdsld['hasPart'][$dois[$setid]]['variableMeasured']=$tmpvar;
+				$gdsld['hasPart'][$dois[$setid]]['measurementTechnique'][]=$meths[$setid];
+				$tmptec=array_values(array_unique($gdsld['hasPart'][$dois[$setid]]['measurementTechnique']));
+				$gdsld['hasPart'][$dois[$setid]]['measurementTechnique']=$tmptec;
+			}
+			// remove doi's from the hasPart section
+			$tmpsets=array_values($gdsld['hasPart']);
+			$gdsld['hasPart']=$tmpsets;
+			// header('Content-Type: application/json');
+			// header('Content-Disposition: attachment; filename="'.$j['set'].'.json"');
+			// echo "[".json_encode($gdsld)."]";exit;
+			$this->set('jld',json_encode($gdsld));
+			$this->set('journal',$j);
+			$this->set('data',$data);
+			$this->layout = 'ajax';
+		}
+	}
 
 	/**
 	 * update entries in the data_systems join table

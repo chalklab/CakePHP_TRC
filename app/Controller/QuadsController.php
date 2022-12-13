@@ -20,7 +20,7 @@ class QuadsController extends AppController
 	}
 
 	/**
-	 * list the current keywords grouped together
+	 * check the counts for datasets
 	 * @return void
 	 */
 	public function index()
@@ -42,7 +42,7 @@ class QuadsController extends AppController
 			}
 			echo $m[1]." data count is correct<br/>";
 		}
-		debug($counts);exit;
+		exit;
 	}
 
 }

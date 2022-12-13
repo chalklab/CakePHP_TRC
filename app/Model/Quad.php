@@ -10,6 +10,6 @@ class Quad extends AppModel
 {
 	// create additional 'virtual' fields built from real fields
 	public $useDbConfig = 'sciflow';
-	public $useTable = 'quads_005';
+	public $useTable = 'quads_001';
 
 }

@@ -15,10 +15,9 @@ class Scidata extends AppModel
 	public array $contexts=["https://stuchalk.github.io/scidata/contexts/scidata.jsonld"];
 	public array $nspaces=[
 		'sdo'=>'https://stuchalk.github.io/scidata/ontology/scidata.owl#',
-		'dc'=>'http://purl.org/dc/terms/',
-		'qudt'=>'http://qudt.org/vocab/unit/',
-		'xsd'=>'http://www.w3.org/2001/XMLSchema#',
-		'ss'=>'https://semanticchemistry.github.io/semanticchemistry/ontology/cheminf.owl#'];
+		'dct'=>'http://purl.org/dc/terms/',
+		'qudt'=>'https://qudt.org/vocab/unit/',
+		'xsd'=>'http://www.w3.org/2001/XMLSchema#'];
 	public $id=null;
 	public ?string $generatedat=null;
 	public ?string $version=null;
