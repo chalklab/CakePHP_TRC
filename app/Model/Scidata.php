@@ -18,6 +18,7 @@ class Scidata extends AppModel
 		'dct'=>'http://purl.org/dc/terms/',
 		'qudt'=>'https://qudt.org/vocab/unit/',
 		'xsd'=>'http://www.w3.org/2001/XMLSchema#'];
+
 	public $id=null;
 	public ?string $generatedat=null;
 	public ?string $version=null;
@@ -273,7 +274,7 @@ class Scidata extends AppModel
 		if($value==null) {
 			return false;
 		} else {
-			return $this->setter("id","string",$value);
+			return $this->setter("id","string", $value);
 		}
 	}
 
@@ -289,7 +290,7 @@ class Scidata extends AppModel
 			$meta=$this->meta;
 			$meta['title']=$value;
 			$this->setmeta($meta);
-			return $this->setter("title","string",$value);
+			return $this->setter("title","string", $value);
 		}
 	}
 
@@ -641,7 +642,7 @@ class Scidata extends AppModel
 	 * @param string $mode (append|replace|clear)
 	 * @return bool
 	 */
-	private function setter(string $prop,string $type, $value,string $mode='replace'): bool {
+	private function setter(string $prop, string $type, $value, string $mode='replace'): bool {
 		// check datatype
 		if($type=="array") {
 			if(!is_array($value)) {
@@ -689,6 +690,7 @@ class Scidata extends AppModel
 		} else {
 			return false;
 		}
+
 	}
 
 	// Methods
@@ -710,7 +712,7 @@ class Scidata extends AppModel
 			['@base'=>$this->base]]);
 
 		// id
-		if(!is_null($this->id)) {
+		if(!empty($this->id)) {
 			$output["@id"]=$this->id;
 		} else {
 			unset($output["@id"]);
@@ -1453,9 +1455,8 @@ class Scidata extends AppModel
 				if(empty($part)) {
 					unset($output[$key]);
 				}
-			} else {
-				$output["@id"]="";
 			}
+
 			if($key=="@graph") {
 				foreach($output["@graph"] as $key2=>$part2) {
 					if(empty($output["@graph"][$key2])) {
