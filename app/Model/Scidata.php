@@ -26,7 +26,7 @@ class Scidata extends AppModel
 	public ?string $uid=null;
 	public ?string $base=null;
 	public ?array $meta=null;
-	public ?array $creators=null;
+	public ?array $authors=null;
 	public ?array $related=null;
 	public ?array $keywords=null;
 	public ?string $starttime=null;
@@ -76,7 +76,7 @@ class Scidata extends AppModel
 		$graph['@type']="sdo:scientificData";
 		$graph['uid']="";
 		$graph['title']="";
-		$graph['creators']=[];
+		$graph['authors']=[];
 		$graph['description']="";
 		$graph['publisher']="";
 		$graph['starttime']="";
@@ -383,27 +383,27 @@ class Scidata extends AppModel
 	}
 
 	/**
-	 * set creators
+	 * set authors
 	 * @param null $value
 	 * @return bool
 	 */
-	public function setcreators($value=null): bool {
+	public function setauthors($value=null): bool {
 		if($value==null) {
 			return false;
 		} else {
-			$creators=[];
+			$authors=[];
 			if(!is_array($value)) {
 				if(stristr($value,'{')) {
-					$creators=json_decode($value,true);
+					$authors=json_decode($value,true);
 				} elseif(stristr($value,', ')) {
-					$creators=explode(", ",$value);
+					$authors=explode(", ",$value);
 				} else {
-					$creators[0]=$value;
+					$authors[0]=$value;
 				}
 			} else {
-				$creators=$value;
+				$authors=$value;
 			}
-			return $this->setter("creators","array",$creators);
+			return $this->setter("authors","array",$authors);
 		}
 	}
 
@@ -783,23 +783,23 @@ class Scidata extends AppModel
 			unset($output["report"]);
 		}
 
-		// creators
-		if(!is_null($this->creators)) {
-			foreach ($this->creators as $idx=>$au) {
+		// authors
+		if(!is_null($this->authors)) {
+			foreach ($this->authors as $idx=>$au) {
 				if(is_string($au)) {
-					$graph['creators'][]=['@id'=>'creator/'.($idx+1).'/','@type'=>'dc:creator','name'=>$au];
+					$graph['authors'][]=['@id'=>'author/'.($idx+1).'/','@type'=>'dc:creator','name'=>$au];
 				} else {
 					// remove any metadata elements not defined in SciData
 					$allowed=['name','firstname','lastname','address','organization','email','orcid','role'];
 					foreach($au as $label=>$value) {
 						if (!in_array($label,$allowed)) { unset($au[$label]); }
 					}
-					$au = ['@id'=>'creator/'.($idx+1).'/','@type'=>'dc:creator'] + $au;
-					$graph['creators'][]=$au;
+					$au = ['@id'=>'author/'.($idx+1).'/','@type'=>'dc:creator'] + $au;
+					$graph['authors'][]=$au;
 				}
 			}
 		} else {
-			unset($output["creators"]);
+			unset($output["authors"]);
 		}
 
 		// starttime
@@ -1493,7 +1493,7 @@ class Scidata extends AppModel
 		$output['uid']=$this->uid;
 		$output['base']=$this->base;
 		$output['meta']=$this->meta;
-		$output['creators']=$this->creators;
+		$output['authors']=$this->authors;
 		$output['related']=$this->related;
 		$output['keywords']=$this->keywords;
 		$output['starttime']=$this->starttime;
