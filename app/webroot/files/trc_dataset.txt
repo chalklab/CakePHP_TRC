@@ -1,0 +1,3 @@
+When code is run to ingest the ThermoML files, a folder 'trc' is expeceted here with sub folders for each of the
+XML file sets for the five different journals.  This version of CakePHP website does not include the ThermoML files
+here as users should get them from the source at https://doi.org/10.18434/mds2-2422.
