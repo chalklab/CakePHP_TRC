@@ -407,7 +407,7 @@ class DatasetsController extends AppController
 		$doi = explode("/",$ref['doi']);
 		$filid = $doi[1].'_'.$data['Dataset']['setnum'];
 		$setuid = "trc_".$jnl['set']."_".$filid;
-		$upath = $sdpath."tranche/trc/".$filid."/";
+		$upath = $sdpath."tranche/trc/".$jnl['set'].'/'.$filid."/";
 		$trc = new $this->Scidata;
 		$trc->setcontexts([
 			"https://stuchalk.github.io/scidata/contexts/crg_mixture.jsonld",
@@ -427,9 +427,9 @@ class DatasetsController extends AppController
 		$aus = [
 			['name'=>'Montana Sloan','orcid'=>'0000-0003-2127-9752','role'=>'developer','gender'=>'female'],
 			['name'=>'Stuart J. Chalk','orcid'=>'0000-0002-0703-7776','organization'=>'University of North Florida','role'=>'developer','email'=>'schalk@unf.edu']];
-		$trc->setcreators($aus);
+		$trc->setauthors($aus);
 		//$trc->setstarttime($file['date']);  // removed by SJC in favor of adding created date to source file below
-		$trc->setpermalink($sdpath."tranche/trc/".$ref['Journal']['set']."/".$filid.'.jsonld');
+		$trc->setpermalink($sdpath."tranche/trc/".$jnl['set']."/".$filid.'.jsonld');
 		$trc->setdiscipline("w3i:Chemistry");
 		$trc->setsubdiscipline("w3i:PhysicalChemistry");
 
