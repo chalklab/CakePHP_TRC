@@ -41,18 +41,21 @@ class AdminController extends AppController
 	{
 		$refs = $this->Reference->find('list',['fields'=>['id'],'conditions'=>['Journal.set'=>$code],'contain'=>['Journal'],'recursive'=>-1]);
 		$sets = $this->Dataset->find('list',['fields'=>['setnum','title','reference_id'],'conditions'=>['reference_id'=>$refs],'recursive'=>-1]);
+		$json = ['files'=>[],'errors'=>[]];
 		foreach($sets as $setlist) {
 			foreach($setlist as $setnum=>$title) {
 				$parts=explode("/", $title);
 				$path='https://scidata.unf.edu/tranche/trc/'.$code.'/'.$parts[1].'_'.$setnum.'.jsonld';
 				$chk = get_headers($path, true);
-
-				debug($chk);
-				exit;
+				if(!stristr($chk[0],'200 OK')) {
+					$json['errors'][] = "problem with ".$path;
+				} else {
+					$json['files'][] = $path;
+				}
 			}
 		}
-		debug($sets);
-		exit;
+		header('Content-Type: application/json');
+		echo json_encode($json);exit;
 	}
 
 	// functions requiring login (not in Auth::allow)
