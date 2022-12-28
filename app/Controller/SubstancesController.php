@@ -37,7 +37,9 @@ class SubstancesController extends AppController
 	 */
     public function view(string $id)
     {
-        $contain=['Identifier','System'=>['order'=>['name'],'Dataset']];
+        $contain=['Identifier'=>['fields'=>['type','value']],
+					'System'=>['fields'=>['name'],'order'=>['name'],
+					'Dataset'=>['fields'=>['title']]]];
         if(is_numeric($id)) {
 			$data=$this->Substance->find('first',['conditions'=>['Substance.id'=>$id],'contain'=>$contain]);
 		} else {

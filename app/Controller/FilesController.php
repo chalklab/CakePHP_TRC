@@ -4,7 +4,7 @@
  * Class FilesController
  * actions related to working with the files table
  * @author Chalk Research Group <schalk@unf.edu>
- * @version 2/28/22
+ * @version 12/28/22
  */
 class FilesController extends AppController
 {
@@ -99,11 +99,11 @@ class FilesController extends AppController
 	 */
 	public function ingest(int $maxfiles=10)
 	{
-		// updated for change of tables to properties to quantities
-		// and quantities to quantitykinds... SJC 11/08/21
-		$path = WWW_ROOT.'files'.DS.'trc'.DS.'jct'.DS;
+		// updated for change of tables: properties -> quantities and quantities -> quantitykinds... SJC 11/08/21
+		$code = 'ijt';  // change code to process files from different journals
+		$path = WWW_ROOT.'files'.DS.'trc'.DS.$code.DS;  // from path webroot/files/<code>
 		$maindir = new Folder($path);
-		$files = $maindir->find('^.*\.xml$',true);
+		$files = $maindir->find('^.*\.xml$',true); // find all files ending with the '.xml' extension
 
 		$count=0;
 		$done = $this->File->find('list', ['fields' => ['id','filename'],'recursive'=>-1]);
@@ -112,17 +112,19 @@ class FilesController extends AppController
 			$filepath = $path.$filename;
 
 			$xml = simplexml_load_file($filepath);$count++;$errors = [];
-			$trc = json_decode(json_encode($xml), true);
+			$trc = json_decode(json_encode($xml), true);  // convert from XML to PHP array
 
+			# check for the presence of data (not processing reaction data)
 			if(!isset($trc['PureOrMixtureData'])) { echo "No data in '".$filename."'<br/>";continue; }
 
-			// Get doi
+			// get DOI
 			$doi = $title = null;
 			if (isset($trc['Citation']['sDOI'])) {
+				// DOI in ThermoML file
 				$doi = $trc['Citation']['sDOI'];
 				$title = $trc['Citation']['sTitle'];
 			} else {
-				// Get DOI from crossref
+				// get DOI from crossref using citation metadata
 				$pages = str_replace('  ', ' ', $trc['Citation']['sPage']);
 				$journal =  $trc['Citation']['sPubName'];
 				if($journal=='J.Chem.Eng.Data') { $journal='J. Chem. Eng. Data'; }
@@ -131,8 +133,8 @@ class FilesController extends AppController
 				$year = $trc['Citation']['yrPubYr'];
                 $volume = $trc['Citation']['sVol'];
                 $filter = ['issn' => $issn, 'date' => $year];
-				$found = $this->Api->works($pages, $filter);
-
+				// search crossref API (http://api.crossref.org/works/<DOI>)
+				$found = $this->Api->works($pages, $filter);  // in Plugins/Crossref/Model/Api.php
 				if ($found) {
 					if (count($found['items']) == 1) {
 						$doi = $found['items'][0]['DOI'];
@@ -298,7 +300,7 @@ class FilesController extends AppController
 				$chems[$chem['orgnum']] = $chem;
 			}
 
-			// add reference if not already present
+			// add reference if not already present in the 'references' database table
 			$refs = $this->Reference->find('list', ['fields' => ['doi', 'id']]);
 			$refid = null;
 			if (!isset($refs[$doi])) {
@@ -312,7 +314,7 @@ class FilesController extends AppController
 				$refid = $refs[$doi];
 			}
 
-			// add file if not already present
+			// add file if not already present in the 'files' database table
 			$meta = [];$cite = $trc['Citation'];
 			if(isset($cite['TRCRefID'])) {
 				$meta['trcid'] = $this->Reference->trcid($cite['TRCRefID']);
@@ -331,7 +333,8 @@ class FilesController extends AppController
 			$meta['journal_id'] = $this->Journal->getfield('id', $journal);
 			$fid = $this->File->add($meta);
 
-			// add substances and/or get substance ids ($subs var updated by reference)
+			// add substances and/or get substance ids ($subs variable updated by reference)
+			// https://www.php.net/manual/en/language.references.pass.php
 			$subids = $names = [];
 			foreach ($subs as $orgnum => $sub) {
 				$found=$this->Substance->find('first',['conditions'=>['inchikey'=>$sub['inchikey']]]);
@@ -377,7 +380,7 @@ class FilesController extends AppController
 				$names[$orgnum] = $sub['name'];
 			}
 
-			// add chemicals if not present
+			// add chemicals (samples of substances) if not present
 			$chmids = [];
 			foreach($chems as $orgnum => $chem) {
 				$chem['file_id'] = $fid;
@@ -393,7 +396,7 @@ class FilesController extends AppController
 				$chmids[$orgnum]=$chmid;
 			}
 
-			// add report
+			// add report to the 'reports' database table
 			$compcnt=count($chems);$props=[];$trcdatacnt=0;
 			$psetcnt=count($trc['PureOrMixtureData']);
 			if(!isset($trc['PureOrMixtureData'][0])) {
@@ -418,6 +421,7 @@ class FilesController extends AppController
 				}
 			}
 			$props=array_unique($props);
+			// use the array below to identify that the data is a solubility measurement
 			$solprops=['molality','mass concentration','ratio of amount of solute to mass of solution',
 				'mass ratio of solute to solvent','amount concentration (molarity)','mole fraction',
 				'Amount ratio of solute to solvent','Henry\'s Law constant (mole fraction scale)',
@@ -444,7 +448,7 @@ class FilesController extends AppController
 			$conds=['title'=>'Report on paper "'.$ref[$refid].'"','description'=>$desc,'file_id'=>$fid,'reference_id'=>$refid];
 			$repid=$this->Report->add($conds);
 
-			// add property data
+			// add experimental data (from the <PureOrMixtureData> XML elements)
 			$repdatacnt=0;
 			$sets = $trc['PureOrMixtureData'];
 			if (!isset($sets[0])) { $sets = [0 => $sets]; }
@@ -487,7 +491,7 @@ class FilesController extends AppController
 					'file_id'=>$fid,'report_id'=>$repid, 'system_id'=>$sysid, 'reference_id'=>$refid,'trcidset_id'=>$meta['trcid'].'-'.$setnum];
 				$setcnt=null;
 				$setid=$this->Dataset->add($cnds,$setcnt); // updated by the function and returned by reference
-				// assume dataset is complete if point count >0
+				// assume that the dataset is complete if point count > 0
 				if($setcnt>0) {
 					echo 'Dataset '.$setnum.' already complete<br/>';
 					$trcdatacnt += $setcnt;
@@ -854,7 +858,6 @@ class FilesController extends AppController
 			// indicate that the file is done
 			$this->File->id=$fid;
 			$this->File->saveField('comments','done');
-
 
 			// check for problems
 			$conperr=$this->Condition->find('list',['fields'=>['id','datapoint_id'],'conditions'=>['quantity_id'=>null]]);

@@ -4,7 +4,7 @@
  * Class ChemicalsController
  * controller actions for chemical functions
  * @author Chalk Research Group <schalk@unf.edu>
- * @version 2/28/22
+ * @version 2/24/22
  */
 class ChemicalsController extends AppController {
 

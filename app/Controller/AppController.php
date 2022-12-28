@@ -21,7 +21,7 @@ Configure::load('trc');
 class AppController extends Controller {
 
     public $components = [
-    	'Utils', 'Email', 'RequestHandler', 'Session', 'Flash',
+    	'Email', 'RequestHandler', 'Session', 'Flash',
 		'Auth' => [
 			'loginRedirect' => [
 				'controller' => 'pages',
