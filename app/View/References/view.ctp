@@ -3,6 +3,7 @@ $sets=$data['Dataset'];
 $ref=$data['Reference'];
 $jnl=$data['Journal'];
 $file=$data['File'];
+$path=Configure::read('path');
 ?>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -12,7 +13,8 @@ $file=$data['File'];
                     <?php
 					echo "File ".$file['filename']." ";
 					echo $this->Html->link("(View on the NIST TRC Website)","https://trc.nist.gov/ThermoML/".$ref['doi'].".html",['target'=>'_blank']);
-                    ?>
+                    echo " (".$path.")";
+					?>
                 </h2>
             </div>
             <div class="panel-body" style="font-size: 16px;">
@@ -43,7 +45,7 @@ $file=$data['File'];
             <div class="panel-heading">
                 <h2 class="panel-title">Data
                     <?php if(!empty($related)) {
-                        $js='window.location.replace("/trc/datasets/view/"+this.options[this.selectedIndex].value)';
+                        $js='window.location.replace('.$path.'"datasets/view/"+this.options[this.selectedIndex].value)';
                         echo $this->Form->input('related',['type'=>'select', 'style'=>'width: 163px;margin-top: -3px;','dir'=>'rtl','options'=>$related,'class'=>'pull-right','label'=>false,'div'=>false,'empty'=>'Related Datasets','onchange'=>$js]);
                     }
                     ?>
@@ -54,7 +56,7 @@ $file=$data['File'];
 				foreach($sets as $idx=>$set) {
 					if($idx % 2 == 0){ $col='EEEEEE'; } else { $col='FFFFFF'; }
 					$desc='<b>Dataset '.$set['setnum'].':</b> '.$set['points'].' datapoints in '.$set['sercnt'].' series, <b>quantities:</b> '.$set['dprps'].', <b>system:</b> '.$set['System']['name'];
-					echo '<a href="/trc/datasets/view/'.$set['id'].'" class="list-group-item list-group-item-small" style="background-color: #'.$col.';">'.$desc."</a>";
+					echo '<a href="'.$path.'datasets/view/'.$set['id'].'" class="list-group-item list-group-item-small" style="background-color: #'.$col.';">'.$desc."</a>";
 				}
 				?>
 			</div>

@@ -1,4 +1,7 @@
 <!-- uses listsrc function in trc.js -->
+<?php
+$path=Configure::read('path');
+?>
 <div class="row">
 	<div class="col-md-8 col-md-offset-1">
 		<h3>References by Year</h3>
@@ -22,7 +25,7 @@
 							<?php
 							foreach($refs as $refid=>$title) {
 								$opts = ["title"=>strtolower($title),'alt'=>$title,"class"=>"list-group-item list-group-item-small"];
-								echo "<li class='links'>".$this->Html->link($title,'/references/view/'.$refid,$opts)."</li>";
+								echo "<li class='links'>".$this->Html->link($title,$path.'references/view/'.$refid,$opts)."</li>";
 							}
 							?>
 						</div>

@@ -33,3 +33,4 @@ lib/.DS_Store
 lib/Cake/.DS_Store
 Icon?
 app/webroot/files/trc
+.env

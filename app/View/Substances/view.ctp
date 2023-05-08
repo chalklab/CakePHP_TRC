@@ -1,6 +1,5 @@
 <script type="application/javascript">
 	$(document).ready(function() {
-
 		// search and show/hide systems in substances/index.ctp
 		$("#syssrc").on('keyup',function(){
 			let val=$(this).val().toLowerCase().trim();
@@ -13,7 +12,6 @@
 				syss.find("h2").text('Systems (' + cnt + ')');
 			}
 		});
-
 		$(".showReports").click(function(e){
 			e.preventDefault();
 			if($(this).parents("li").find(".systemReports").css("display")!=="block") {
