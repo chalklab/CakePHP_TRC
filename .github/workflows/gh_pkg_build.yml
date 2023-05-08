@@ -4,6 +4,10 @@ on:
   push:
     branches: main
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: cakephp_trc
+
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
@@ -14,7 +18,7 @@ jobs:
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v2
       with:
-        registry: ghcr.io
+        registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
@@ -22,8 +26,8 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Build and push Docker image
-      uses: docker/build-push-action@v4
+      uses: docker/build-push-action@v2
       with:
         context: .
         push: true
-        tags: ChalkLab/cakephp_trc:latest
+        tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
