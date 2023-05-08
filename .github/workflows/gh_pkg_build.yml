@@ -26,4 +26,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: chalklab/cakephp_trc:latest
+        tags: ChalkLab/CakePHP_TRC:latest
