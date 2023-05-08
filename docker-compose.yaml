@@ -1,0 +1,49 @@
+version: "3.8"
+networks:
+    prod-shared:
+volumes:
+    mysql_data:
+services:
+    pma:
+        container_name: ${CONTAINER}
+        hostname: ${HOSTNAME}    #nginx uses hostname to proxy
+        image: ${IMAGEURL}:${IMAGETAG}
+        pull_policy: always
+        restart: always
+        depends_on:
+            - mysql
+        logging:
+            driver: "local"
+            options: {}
+        working_dir: /app
+        ports:
+            - '8080:80'
+        networks:
+            - prod-shared
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_DATABASE_HOST: ${MYSQL_DATABASE_HOST}
+            MYSQL_DATABASE_PORT: ${MYSQL_DATABASE_PORT}
+    mysql:
+        container_name: ${MYSQL_CONTAINER_NAME}
+        hostname: ${MYSQL_HOSTNAME}
+        image: mysql:8.0.32
+        pull_policy: always
+        restart: always
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}         #user granted access to database on import
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE_PORT: ${MYSQL_DATABASE_PORT}
+        volumes:
+            - ./trc.sql:/docker-entrypoint-initdb.d/trc.sql #automagically imports any sql files in this folder
+        logging:
+            driver: "local"
+            options: {}
+        networks:
+            - prod-shared
+        ports:
+            - 3306:${MYSQL_DATABASE_PORT}
