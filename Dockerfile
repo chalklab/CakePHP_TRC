@@ -15,8 +15,13 @@ COPY docker_dbconfig.php app/Config/database.php
 RUN chmod -R 777 app/tmp
 # enable mod_rewrite (apache)
 RUN a2enmod rewrite
-RUN apt-get -y update && apt-get -y upgrade && apt-get -y install zlib1g libsodium-dev
+# add needed packages
+RUN apt-get -y update && apt-get -y upgrade \
+    apt-get -y install zlib1g libsodium-dev alpine-pico zsh zsh-autosuggestions \
+# install PHP extensions
 RUN docker-php-ext-install mysqli pdo_mysql sockets sodium
+# required to allow https wrapper
+RUN echo "allow_url_fopen=on" > /usr/local/etc/php/conf.d/url_fopen.ini
 
 EXPOSE 80
 EXPOSE 8080

@@ -4,7 +4,7 @@ networks:
 volumes:
     mysql_data:
 services:
-    pma:
+    trc:
         container_name: ${CONTAINER}
         hostname: ${HOSTNAME}    #nginx uses hostname to proxy
         image: ${IMAGEURL}:${IMAGETAG}

@@ -8,6 +8,9 @@ if($host=="trc.stuchalk.domains.unf.edu") {
 } elseif($host=="sds.coas.unf.edu") {
 	$config['server']="https://sds.coas.unf.edu";
 	$config['path']="/trc/";
+} elseif($host=="localhost") {
+	$config['server']="https://localhost:8080";
+	$config['path']="/";
 } else {
 	$config['server']="https://unknown.com";
 	$config['path']=$host;

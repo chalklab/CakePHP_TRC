@@ -10,6 +10,7 @@ $mix=$dump['Mixture'];
 $comps=$mix['Compohnent'];
 $dpts=[];
 foreach($sers as $ser) { if(!empty($ser['Datapoint'])) { $dpts[]=$ser; } }
+$path = Configure::read('path');
 //debug($dump);exit;
 ?>
 <!-- metadata -->
@@ -58,7 +59,7 @@ foreach($sers as $ser) { if(!empty($ser['Datapoint'])) { $dpts[]=$ser; } }
 				<div class="col-xs-12 col-sm-1 col-sm-offset-1" style="padding-right: 0;margin-top: 5px;">
 					<?php
 					if(!empty($related)) {
-						$js='window.location.replace("/trc/datasets/view/"+this.options[this.selectedIndex].value)';
+						$js='window.location.replace("'.$path.'datasets/view/"+this.options[this.selectedIndex].value)';
 						echo $this->Form->input('related',['type'=>'select','class'=>'form-control','style'=>'color: black;width: 140px;','dir'=>'rtl','options'=>$related,'class'=>'pull-right','label'=>false,'div'=>false,'empty'=>'Related Datasets','onchange'=>$js]);
 					}
 					?>
