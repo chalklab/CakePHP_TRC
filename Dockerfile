@@ -16,7 +16,7 @@ RUN chmod -R 777 app/tmp
 # enable mod_rewrite (apache)
 RUN a2enmod rewrite
 RUN apt update && apt upgrade && apt install zlib1g
-RUN docker-php-ext-install gd iconv intl mbstring mysqli opcache pdo_mysql sockets sodium tidy zip
+RUN docker-php-ext-install mysqli pdo_mysql sockets sodium
 
 EXPOSE 80
 EXPOSE 8080
