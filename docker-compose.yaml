@@ -21,11 +21,10 @@ services:
         networks:
             - prod-shared
         environment:
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            PMA_HOST: ${MYSQL_HOSTNAME}
+            PMA_PORT: ${MYSQL_DATABASE_PORT}
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-            MYSQL_DATABASE_HOST: ${MYSQL_DATABASE_HOST}
-            MYSQL_DATABASE_PORT: ${MYSQL_DATABASE_PORT}
     mysql:
         container_name: ${MYSQL_CONTAINER_NAME}
         hostname: ${MYSQL_HOSTNAME}
@@ -45,5 +44,3 @@ services:
             options: {}
         networks:
             - prod-shared
-        ports:
-            - 3306:${MYSQL_DATABASE_PORT}
