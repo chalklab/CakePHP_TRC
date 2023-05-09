@@ -15,7 +15,7 @@ COPY docker_dbconfig.php app/Config/database.php
 RUN chmod -R 777 app/tmp
 # enable mod_rewrite (apache)
 RUN a2enmod rewrite
-RUN apt update && apt upgrade && apt install zlib1g
+RUN apt update && apt upgrade && apt install zlib1g libsodium-dev
 RUN docker-php-ext-install mysqli pdo_mysql sockets sodium
 
 EXPOSE 80
