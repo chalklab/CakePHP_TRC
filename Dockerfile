@@ -16,8 +16,7 @@ RUN chmod -R 777 app/tmp
 # enable mod_rewrite (apache)
 RUN a2enmod rewrite
 # add needed packages
-RUN apt-get -y update && apt-get -y upgrade \
-    apt-get -y install zlib1g libsodium-dev alpine-pico zsh zsh-autosuggestions \
+RUN apt-get -y update && apt-get -y install zlib1g libsodium-dev alpine-pico zsh zsh-autosuggestions
 # install PHP extensions
 RUN docker-php-ext-install mysqli pdo_mysql sockets sodium
 # required to allow https wrapper
