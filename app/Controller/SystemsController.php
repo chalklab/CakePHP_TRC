@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 /**
  * Class SystemsController
  * Actions related to dealing with chemical systems
@@ -13,8 +15,8 @@ class SystemsController extends AppController {
     /**
      * beforeFilter function
      */
-    public function beforeFilter()
-    {
+    public function beforeFilter(): void
+	{
         parent::beforeFilter();
         $this->Auth->allow('index','view');
     }
@@ -23,8 +25,8 @@ class SystemsController extends AppController {
      * view a list of systems
 	 * @return void
 	 */
-    public function index()
-    {
+    public function index(): void
+	{
         $data=$this->System->find('list', ['fields'=>['id','namercnt','first'],'order'=>['name']]);
         $this->set('data',$data);
     }
@@ -34,7 +36,7 @@ class SystemsController extends AppController {
 	 * @param int $id
 	 * @return void
 	 */
-	public function view(int $id)
+	public function view(int $id): void
 	{
 		$contain=[
 			'Substance'=>['fields'=>['id','name'],'Identifier'=>['type','value']],
@@ -83,7 +85,8 @@ class SystemsController extends AppController {
 	 * check that a system has the composition the name says...
 	 * @return void
 	 */
-	public function chksys()
+	#[NoReturn]
+	public function chksys(): void
 	{
 		$syss=$this->System->find('all',['contain'=>['Substance'],'recursive'=>-1]);
 		foreach($syss as $sys) {
@@ -109,7 +112,8 @@ class SystemsController extends AppController {
 	 * update refcnt field
 	 * @return void
 	 */
-	public function refcnt()
+	#[NoReturn]
+	public function refcnt(): void
 	{
 		$sysids=$this->System->find('list',['fields'=>['id']]);
 		$refcnts=$this->Dataset->find('list',['fields'=>['reference_id','reference_id','system_id'],'group'=>['system_id','reference_id'],'recursive'=>-1]);

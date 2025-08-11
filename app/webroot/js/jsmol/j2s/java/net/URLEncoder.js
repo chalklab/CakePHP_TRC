@@ -1,12 +1,9 @@
 Clazz.declarePackage("java.net");
-c$=Clazz.declareType(java.net,"URLEncoder");
-c$.encode=Clazz.defineMethod(c$,"encode",
+(function(){
+var c$ = Clazz.declareType(java.net, "URLEncoder", null);
+c$.encode = Clazz.defineMethod(c$, "encode", 
 function(s){
-return encodeURIComponent(arguments[0]);
-},"~S");
-c$.encode=Clazz.defineMethod(c$,"encode",
-function(s,enc){
-return encodeURIComponent(arguments[0]);
-},"~S,~S");
-Clazz.defineStatics(c$,
-"digits","0123456789ABCDEF");
+return encodeURIComponent(s);
+}, "~S");
+})();
+;//5.0.1-v7 Mon May 12 23:42:45 CDT 2025

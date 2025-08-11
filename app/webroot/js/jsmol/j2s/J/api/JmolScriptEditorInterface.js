@@ -1,4 +1,3 @@
-Clazz.declarePackage ("J.api");
-Clazz.load (["J.api.JmolDropEditor"], "J.api.JmolScriptEditorInterface", null, function () {
-Clazz.declareInterface (J.api, "JmolScriptEditorInterface", J.api.JmolDropEditor);
-});
+Clazz.declarePackage("J.api");
+Clazz.declareInterface(J.api, "JmolScriptEditorInterface", J.api.JmolDropEditor);
+;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025

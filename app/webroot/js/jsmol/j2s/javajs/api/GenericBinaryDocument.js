@@ -1,4 +1,3 @@
-Clazz.declarePackage ("javajs.api");
-Clazz.load (["javajs.api.GenericBinaryDocumentReader"], "javajs.api.GenericBinaryDocument", null, function () {
-Clazz.declareInterface (javajs.api, "GenericBinaryDocument", javajs.api.GenericBinaryDocumentReader);
-});
+Clazz.declarePackage("javajs.api");
+Clazz.declareInterface(javajs.api, "GenericBinaryDocument", javajs.api.GenericBinaryDocumentReader);
+;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025

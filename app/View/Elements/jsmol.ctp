@@ -52,7 +52,7 @@ $j2spath=Configure::read('jmol.j2spath');
         debug: false,
         color: "<?php echo $color; ?>",
         addSelectionOptions: false,
-        serverURL: "https://sds.coas.unf.edu/trc/js/jsmol/php/jsmol.php",
+        serverURL: "https://trc.stuchalk.domains.unf.edu/js/jsmol/php/jsmol.php",
         use: "HTML5",
         coverImage: "",
         coverScript: "",

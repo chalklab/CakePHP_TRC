@@ -1,4 +1,3 @@
-Clazz.declarePackage ("J.api.js");
-Clazz.load (["javajs.api.js.J2SObjectInterface"], "J.api.js.JmolToJSmolInterface", null, function () {
-Clazz.declareInterface (J.api.js, "JmolToJSmolInterface", javajs.api.js.J2SObjectInterface);
-});
+Clazz.declarePackage("J.api.js");
+Clazz.declareInterface(J.api.js, "JmolToJSmolInterface", javajs.api.js.J2SObjectInterface);
+;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025

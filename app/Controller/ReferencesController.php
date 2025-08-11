@@ -16,7 +16,7 @@ class ReferencesController extends AppController
 	/**
 	 * beforeFilter function
 	 */
-	public function beforeFilter()
+	public function beforeFilter(): void
 	{
 		parent::beforeFilter();
 		$this->Auth->allow('index','view');
@@ -27,7 +27,7 @@ class ReferencesController extends AppController
 	 * filter/search option in the page
 	 * @return void
 	 */
-	public function index()
+	public function index(): void
 	{
 		$f = ['id','title','year']; $o =['year'=>'desc','title'];
 		$data = $this->Reference->find('list',['fields'=>$f, 'order'=>$o, 'recursive'=>-1]);
@@ -39,8 +39,8 @@ class ReferencesController extends AppController
      * @param int $id
 	 * @return void
 	 */
-	public function view(int $id)
-    {
+	public function view(int $id): void
+	{
     	$c = ['File','Journal','Dataset'=>['System','Dataseries'=>['Datapoint'=>['Condition'=>['Quantity'],'Data'=>['Quantity']]]]];
         $data = $this->Reference->find('first', ['conditions'=>['Reference.id'=>$id], 'contain'=>$c, 'recursive'=>-1]);
         foreach($data['Dataset'] as $sidx=>$set) {

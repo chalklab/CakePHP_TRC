@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 /**
  * Class SubstancesController
  * Actions related to dealing with chemical substances
@@ -14,8 +16,8 @@ class SubstancesController extends AppController
     /**
      * beforeFilter function
      */
-    public function beforeFilter()
-    {
+    public function beforeFilter(): void
+	{
         parent::beforeFilter();
         $this->Auth->allow('index','view');
     }
@@ -24,7 +26,7 @@ class SubstancesController extends AppController
 	 * view a list of substances
 	 * @return void
 	 */
-	public function index()
+	public function index(): void
 	{
 		$data=$this->Substance->find('list',['fields'=>['id','name','first'],'order'=>['first','name']]);
 		$this->set('data',$data);
@@ -35,8 +37,8 @@ class SubstancesController extends AppController
      * @param string|int $id
 	 * @return void
 	 */
-    public function view(string $id)
-    {
+    public function view(string|int $id): void
+	{
         $contain=['Identifier'=>['fields'=>['type','value']],
 					'System'=>['fields'=>['name'],'order'=>['name'],
 					'Dataset'=>['fields'=>['title']]]];
@@ -55,7 +57,7 @@ class SubstancesController extends AppController
 	 * (view file not formatted using BootStrap)
 	 * @return void
 	 */
-	public function add()
+	public function add(): void
 	{
 		if($this->request->is('post')) {
 			$this->Substance->create();
@@ -69,12 +71,13 @@ class SubstancesController extends AppController
 	}
 
 	/**
-     * update a substance
+	 * update a substance
 	 * (view file not formatted using BootStrap)
+	 * @param $id
 	 * @return void
 	 */
-    public function update($id)
-    {
+    public function update($id): void
+	{
         if($this->request->is('post')) {
             $data=['id'=>$id]+$this->request->data;
 			if ($this->Substance->save($data)) {
@@ -90,12 +93,13 @@ class SubstancesController extends AppController
         }
     }
 
-    /**
-     * delete a substance
+	/**
+	 * delete a substance
+	 * @param $id
 	 * @return void
 	 */
-    public function delete($id)
-    {
+    public function delete($id): void
+	{
         $this->Substance->delete($id);
         $this->redirect(['action' => 'index']);
     }
@@ -107,8 +111,9 @@ class SubstancesController extends AppController
      * @param $id
 	 * @return void
 	 */
-    public function meta($id=null)
-    {
+    #[NoReturn]
+	public function meta($id=null): void
+	{
         if(is_null($id)) {
 			// all substances
             $cs=$this->Substance->find('all',['recursive'=>1,'order'=>['name'],'contain'=>['Identifier'=>['conditions'=>['type'=>'casrn']]]]);
@@ -125,8 +130,9 @@ class SubstancesController extends AppController
      * clean up the names of substances
 	 * @return void
 	 */
-    public function cleanname()
-    {
+    #[NoReturn]
+	public function cleanname(): void
+	{
         // does not handle non-capitlaization of these prefixes ['cis','trans','alpha','beta','gamma']
         $subs=$this->Substance->find('list',['fields'=>['id','name'],'order'=>'name']);
         foreach($subs as $id=>$name) {
@@ -142,8 +148,9 @@ class SubstancesController extends AppController
      * get meta for chemicals using inchi string
 	 * @return void
 	 */
-    public function inchi()
-    {
+    #[NoReturn]
+	public function inchi(): void
+	{
         $cs=$this->Substance->find('all',['recursive'=>1,'order'=>['name'],'contain'=>['Identifier'=>['conditions'=>['type'=>'inchi']]]]);
         foreach($cs as $c) {
             $i=$c['Identifier'];$s=$c['Substance'];
@@ -240,8 +247,9 @@ class SubstancesController extends AppController
 	 * http://opsin.ch.cam.ac.uk/opsin/
 	 * @return void
 	 */
-    public function opsin()
-    {
+    #[NoReturn]
+	public function opsin(): void
+	{
         $cs = $this->Substance->find('all', ['recursive' => 1, 'fields' => ['id', 'name'],'contain'=>['Identifier'=>['conditions'=>['type'=>'inchi']]]]);
         foreach ($cs as $c) {
             $name=$c['Substance']['name'];$id=$c['Substance']['id'];
@@ -249,7 +257,7 @@ class SubstancesController extends AppController
                 $path = "http://opsin.ch.cam.ac.uk/opsin/";
                 $json = file_get_contents($path . rawurlencode($name) . ".json");
                 echo "<h3>".$name." (OPSIN)</h3>";
-                if(substr($json,0,1)=="{") {
+                if(str_starts_with($json, "{")) {
                     $meta=json_decode($json,true);
                     $ps=['inchi'=>'stdinchi','inchikey'=>'stdinchikey','smiles'=>'smiles'];
                     foreach($ps as $t=>$p) {
@@ -271,8 +279,9 @@ class SubstancesController extends AppController
 	 * generate substance stats
 	 * @return void
 	 */
-    public function stats()
-    {
+    #[NoReturn]
+	public function stats(): void
+	{
         $cs = $this->Substance->find('all',['contain' => ['Identifier'=>['fields'=>['type','value']]],'recursive'=>1]);
         $data=[];$stats=[];
         $stats['total']=count($cs);
@@ -295,12 +304,13 @@ class SubstancesController extends AppController
 	 * @param int $limit
 	 * @return void
 	 */
-    public function chkcc(int $limit=10000)
+    #[NoReturn]
+	public function chkcc(int $limit=10000): void
 	{
 		// initially CC API was allowing search based on InChIKeys, now it's not :( - so using casrn, then name
 		$cnks=$this->Substance->find('list',['fields'=>['id','casnamekey'],'conditions'=>['incc'=>null],'order'=>'id','limit'=>$limit]);
 		foreach($cnks as $subid=>$cnk) {
-			list($cas,$name,)=explode("|",$cnk);$term=null;$hit=null;
+			list($cas,$name,)=explode("|",$cnk);$hit=null;
 			if($cas=='NULL') {
 				$hit=$this->Cas->search($name);$term=$name;
 			} else {
@@ -338,12 +348,13 @@ class SubstancesController extends AppController
 	 * @param int $limit
 	 * @return void
 	 */
-	public function chkpc(int $limit=4000)
+	#[NoReturn]
+	public function chkpc(int $limit=4000): void
 	{
 		$f=['id','casnamekey'];$c=['NOT'=>['casrn'=>null],'cassrc'=>null];
 		$cnks=$this->Substance->find('list',['fields'=>$f,'conditions'=>$c,'order'=>'id','limit'=>$limit]);
 		foreach($cnks as $subid=>$cnk) {
-			list($cas,$name,$key) = explode("|", $cnk);$term = null;$cid=null;$inpc='no';
+			list($cas,$name,$key) = explode("|", $cnk);$cid=null;$inpc='no';
 			// get pubchem cid for compound
 			if(is_null($cid)) {
 				$cid=$this->Compound->cid('name',$name);$term=$name;
@@ -382,7 +393,8 @@ class SubstancesController extends AppController
 	 * get molecular weights from pubchem or calculate average mass at https://www.lfd.uci.edu/~gohlke/molmass/
 	 * @return void
 	 */
-	public function getmw()
+	#[NoReturn]
+	public function getmw(): void
 	{
 		$formulae=$this->Substance->find('list',['fields'=>['id','name','formula'],'order'=>'formula','conditions'=>['mw'=>null]]);
 		foreach($formulae as $formula=>$subids) {
@@ -411,7 +423,8 @@ class SubstancesController extends AppController
 	 * added january 2021 as part of commonchemistry.cas.org website testing
 	 * @return void
 	 */
-	public function chkcaskey()
+	#[NoReturn]
+	public function chkcaskey(): void
 	{
 		// information in 'incc' field in the substances table
 		$diffs=$this->Substance->find('list',['fields'=>['id','caskey'],'conditions'=>['incc'=>'no']]);
@@ -438,7 +451,8 @@ class SubstancesController extends AppController
 	 * check substances and systems
 	 * @return void
 	 */
-	public function chksyss()
+	#[NoReturn]
+	public function chksyss(): void
 	{
 		$syss=$this->System->find('list',['fields'=>['id','identifier'],'conditions'=>['syschk'=>null],'order'=>'id']);
 		$sets=$this->Dataset->find('list',['fields'=>['id','system_id']]);
@@ -490,7 +504,8 @@ class SubstancesController extends AppController
 	 * then recheck each prop dataset for system
 	 * @return void
 	 */
-	public function chksyss2()
+	#[NoReturn]
+	public function chksyss2(): void
 	{
 		// Change
 		$path = WWW_ROOT.'files'.DS.'trc'.DS.'jced'.DS;
@@ -498,7 +513,7 @@ class SubstancesController extends AppController
 		$files = $maindir->find('.\*\.xml',true);
 		$done = $this->File->find('list', ['fields' => ['id','filename'],'conditions'=>['syschk'=>'yes'],'order'=>'id']);
 		foreach ($files as $filename) {
-			if (in_array($filename, $done)) { continue; }  // echo $filename." already processed<br/>";
+			if (in_array($filename, $done)) { continue; }  //  echo $filename."already processed<br/>";
 
 			// import XML file
 			$note = "";
@@ -577,7 +592,8 @@ class SubstancesController extends AppController
 	 * confirm that the identifiers table has the correct casrn from the substances table
 	 * @return void
 	 */
-	public function aligncasrns()
+	#[NoReturn]
+	public function aligncasrns(): void
 	{
 		$cass=$this->Substance->find('list',['fields'=>['id','casrn'],'conditions'=>['NOT'=>['casrn'=>null]]]);
 		foreach($cass as $subid=>$cas) {
@@ -606,7 +622,8 @@ class SubstancesController extends AppController
 	 * confirm that the identifiers table has the correct inchikeys from the substances table
 	 * @return void
 	 */
-	public function alignkeys()
+	#[NoReturn]
+	public function alignkeys(): void
 	{
 		$keys=$this->Substance->find('list',['fields'=>['id','inchikey']]);
 		foreach($keys as $subid=>$key) {
@@ -635,7 +652,8 @@ class SubstancesController extends AppController
 	 * update type and subtype from classyfire
 	 * @return void
 	 */
-	public function updtypes()
+	#[NoReturn]
+	public function updtypes(): void
 	{
 		$keys=$this->Substance->find('list',['fields'=>['id','inchikey'],'order'=>'id','conditions'=>['type'=>null],'limit'=>7000]);
 		foreach($keys as $subid=>$key) {
@@ -661,7 +679,8 @@ class SubstancesController extends AppController
 	 * (verification of the consistency has not yet been done
 	 * @return void
 	 */
-	public function getpcidents()
+	#[NoReturn]
+	public function getpcidents(): void
 	{
 		$subids=$this->Identifier->find('list',['fields'=>['substance_id'],'conditions'=>['source'=>null,'type'=>'pubchemId']]);
 		$keys=$this->Substance->find('list',['fields'=>['id','inchikey'],'conditions'=>['id'=>$subids]]);
@@ -706,7 +725,8 @@ class SubstancesController extends AppController
 	 * @param int $max
 	 * @return void
 	 */
-	public function wikimeta(int $max=10000)
+	#[NoReturn]
+	public function wikimeta(int $max=10000): void
 	{
 		$count=0;
 		$keys=$this->Substance->find('list',['fields'=>['id','inchikey'],'order'=>'id']);

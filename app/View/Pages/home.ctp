@@ -52,7 +52,7 @@
 				<h3 class="panel-title">Browse Extracted Data</h3>
 			</div>
 			<div class="list-group">
-				<?php echo $this->Html->link('Datasets ('.$datcount.')','/datasets/index',['class'=>'list-group-item']); ?>
+				<?php echo $this->Html->link('Datasets ('.$setcount.')','/datasets/index',['class'=>'list-group-item']); ?>
 				<?php echo $this->Html->link('Keywords ('.$keycount.')','/keywords/index',['class'=>'list-group-item']); ?>
 				<?php echo $this->Html->link('References ('.$refcount.')','/references/index',['class'=>'list-group-item']); ?>
 				<?php echo $this->Html->link('Substances ('.$subcount.')','/substances/index',['class'=>'list-group-item']); ?>
@@ -62,7 +62,6 @@
 		<?php
 			echo $this->element('most');
 		?>
-
 	</div>
 </div>
 <?php } ?>

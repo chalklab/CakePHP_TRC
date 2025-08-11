@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 /**
  * Class DatasetsController
  * controller of actions for the datasets table
@@ -102,7 +104,7 @@ class DatasetsController extends AppController
 	/**
 	 * beforeFilter function
 	 */
-	public function beforeFilter()
+	public function beforeFilter(): void
 	{
 		parent::beforeFilter();
 		$this->Auth->allow('index','view','scidata','recent','sddslist','exportjld');
@@ -112,7 +114,7 @@ class DatasetsController extends AppController
 	 * view list of datasets
 	 * @return void
 	 */
-	public function index()
+	public function index(): void
 	{
 		//$data = $this->Reference->find('list', ['fields' => ['Reference.id','Reference.title','Journal.name'], 'contain' => ['Journal'],'order'=>['Journal.name','Reference.title']]);
 		//$data = $this->Reference->find('list', ['fields' => ['Reference.id','Reference.title','Quantity.name'], 'contain' => ['Dataset'=>['Data'=>['Quantity']]],'order'=>['Quantity.name','Reference.title']]);
@@ -129,12 +131,12 @@ class DatasetsController extends AppController
 
 	/**
 	 * view a dataset
-	 * @param string|int $id
+	 * @param int|string $id
 	 * @param int|null $serid
 	 * @param string|null $layout
 	 * @return void
 	 */
-	public function view($id, int $serid=null, string $layout=null)
+	public function view(int|string $id, int $serid=null, string $layout=null): void
 	{
 		$ref =['id','authors','year','volume','issue','startpage','endpage','title','doi'];
 		$con =['id','datapoint_id','system_id','number','significand','exponent','unit_id','accuracy'];
@@ -184,7 +186,7 @@ class DatasetsController extends AppController
 		// loop through the dataseries to get data to plot
 		$sers = $dump['Dataseries'];
 		$xy[0] = $xs = $ys = [];
-		$num=$minx=$miny=$maxx=$maxy=$errormin=$errormax=0;
+		$minx=$miny=$maxx=$maxy=$errormin=$errormax=0;
 		foreach ($sers as $idx => $ser) {
 			$count = 1;
 			$xy[0][] = ["label" => $xlabel, "role" => "domain", "type" => "number"];
@@ -192,7 +194,6 @@ class DatasetsController extends AppController
 			$xy[0][] = ["label" => "Min Error", "type" => "number", "role" => "interval"];
 			$xy[0][] = ["label" => "Max Error", "type" => "number", "role" => "interval"];
 			$points = $ser['Datapoint'];
-			$num++;
 			foreach ($points as $pnt) {
 				if (isset($pnt['Condition'][0])) {
 					$x = $pnt['Condition'][0]['number'] + 0;
@@ -252,9 +253,9 @@ class DatasetsController extends AppController
 	 * function to find the most recent datasets
 	 * normally accessed via a requestAction for insertion into a page
 	 * no view file
-	 * @return void
+	 * @return mixed
 	 */
-	public function recent()
+	public function recent(): mixed
 	{
 		$data = $this->Dataset->find('list', ['order' => ['updated' => 'desc'], 'limit' => 6]);
 		if ($this->request->params['requested']) { return $data; }
@@ -267,7 +268,7 @@ class DatasetsController extends AppController
 	 * delete a dataset (and all data underneath)
 	 * @param $id
 	 */
-	public function delete($id)
+	public function delete($id): void
 	{
 		if ($this->Dataset->delete($id)) {
 			$this->Flash->set('Dataset ' . $id . ' deleted!');
@@ -283,7 +284,8 @@ class DatasetsController extends AppController
 	 * @param int $jid
 	 * @param int $off
 	 */
-	public function sddslist(int $jid=1,int $off=1)
+	#[NoReturn]
+	public function sddslist(int $jid=1, int $off=1): void
 	{
 		$sets=$this->Dataset->find('list',['fields'=>['id','trcidset_id'],'conditions'=>['Reference.journal_id'=>$jid],
 			'contain'=>['Reference'],'order'=>'id','offset'=>$off,'recursive'=>-1]);  // TODO: offset not working :(
@@ -304,7 +306,8 @@ class DatasetsController extends AppController
 	 * @param int $offset
 	 * @throws
 	 */
-	public function exportjld(int $jid=1, int $limit=150000, int $offset=0)
+	#[NoReturn]
+	public function exportjld(int $jid=1, int $limit=150000, int $offset=0): void
 	{
 		$sets=$this->Dataset->find('list',['fields'=>['id','refsetnum'],
 			'conditions'=>['Reference.journal_id'=>$jid],'contain'=>['Reference'],
@@ -347,7 +350,8 @@ class DatasetsController extends AppController
 	 * @param int $jid
 	 * @return void
 	 */
-	public function jlderrors(int $jid=1)
+	#[NoReturn]
+	public function jlderrors(int $jid=1): void
 	{
 		$sets=$this->Dataset->find('list',['fields'=>['id'],'conditions'=>['Reference.journal_id'=>$jid],'contain'=>['Reference'],'order'=>'id','recursive'=>-1]);
 		foreach($sets as $setid) {
@@ -370,7 +374,8 @@ class DatasetsController extends AppController
 	 * @param string $down
 	 * @return void
 	 */
-	public function scidata(string $id, string $down="")
+	#[NoReturn]
+	public function scidata(string $id, string $down=""): void
 	{
 		// Note: there is an issue with the retrival of substances under system if id is not requested as a field
 		// This is a bug in CakePHP as it works without id if it's at the top level...
@@ -843,7 +848,8 @@ class DatasetsController extends AppController
 	 * @param int $max
 	 * @return void
 	 */
-	public function test(int $max=100)
+	#[NoReturn]
+	public function test(int $max=100): void
 	{
 		$grps=$this->Dataset->find('list',['fields'=>['id','title','points'],'order'=>'points','conditions'=>['points >'=>$max]]);
 		// data group by number of points in dataset first then list of id:title
@@ -874,7 +880,8 @@ class DatasetsController extends AppController
 	 * a convenience join table (not required for the data model)
 	 * @return void
 	 */
-	public function chemlinks()
+	#[NoReturn]
+	public function chemlinks(): void
 	{
 		$dsids=$this->Dataset->find('list',['fields'=>['id']]);
 		$c=['System','Mixture'=>['Compohnent'],'File'=>['Chemical']];
@@ -924,7 +931,8 @@ class DatasetsController extends AppController
 	 * @param $ontlinks
 	 * @return void
 	 */
-	private function getcw($type,&$fields,&$nspaces,&$ontlinks) {
+	private function getcw($type,&$fields,&$nspaces,&$ontlinks): void
+	{
 		$c=['Ontterm'=>['Nspace']];$table="Crosswalk";
 		$metas = $this->$table->find('all',['contain'=>$c,'recursive'=>-1]);
 		$fields[$type]=$ontlinks[$type]=[];
