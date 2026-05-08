@@ -117,4 +117,4 @@ vd[(havePoints ? 0 : iz)] += (cxxx + cyyy + czzz + cxyy + cxxy + cxxz + cxzz + c
 return true;
 }, "J.quantum.MOCalculation,~B");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

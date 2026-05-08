@@ -184,4 +184,4 @@ if (this.standardVector) this.g3d.fillCylinderBits(2, this.diameter, this.pTemp3
 }if (this.drawCap) this.g3d.fillConeScreen3f(2, this.headWidthPixels, this.screenArrowHead, this.screenVectorEnd, false);
 }, "JM.Atom,JU.Vibration");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

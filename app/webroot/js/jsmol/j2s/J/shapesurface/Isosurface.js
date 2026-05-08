@@ -1315,4 +1315,4 @@ function(mesh){
 return (mesh == null ? null : (mesh).getValidVertices(null));
 }, "J.shape.Mesh");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Fri Aug 08 04:26:39 CDT 2025

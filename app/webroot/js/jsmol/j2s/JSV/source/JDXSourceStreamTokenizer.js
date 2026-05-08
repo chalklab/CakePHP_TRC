@@ -59,6 +59,7 @@ return JSV.source.JDXSourceStreamTokenizer.cleanLabel(this.rawLabel);
 c$.cleanLabel = Clazz.defineMethod(c$, "cleanLabel", 
 function(label){
 if (label == null) return null;
+if (!label.startsWith("#")) return label;
 var i;
 var str =  new JU.SB();
 for (i = 0; i < label.length; i++) {
@@ -169,4 +170,4 @@ while (--pt >= 0 && (v.charAt(pt) == ' ' || v.charAt(pt) == '\t')) {
 return pt;
 }, "JU.SB,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:54:06 CDT 2025

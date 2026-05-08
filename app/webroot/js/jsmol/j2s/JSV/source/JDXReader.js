@@ -1,6 +1,7 @@
 Clazz.declarePackage("JSV.source");
-Clazz.load(["J.api.JmolJDXMOLReader"], "JSV.source.JDXReader", ["java.io.BufferedReader", "$.StringReader", "java.util.Hashtable", "$.LinkedHashMap", "$.StringTokenizer", "javajs.api.Interface", "JU.AU", "$.Lst", "$.PT", "$.Rdr", "$.SB", "JSV.common.Coordinate", "$.JSVFileManager", "$.JSViewer", "$.PeakInfo", "$.Spectrum", "JSV.exception.JSVException", "JSV.source.JDXDecompressor", "$.JDXSource", "$.JDXSourceStreamTokenizer", "JU.Logger"], function(){
+Clazz.load(["J.api.JmolJDXMOLReader"], "JSV.source.JDXReader", ["java.io.BufferedReader", "$.StringReader", "java.util.Hashtable", "$.LinkedHashMap", "$.StringTokenizer", "javajs.api.Interface", "JU.AU", "$.Lst", "$.PT", "$.Rdr", "$.SB", "JSV.common.Coordinate", "$.JSVFileManager", "$.JSViewer", "$.PeakInfo", "$.Spectrum", "JSV.exception.JSVException", "JSV.source.JDXDecompressor", "$.JDXHeader", "$.JDXSource", "$.JDXSourceStreamTokenizer", "JU.Logger"], function(){
 var c$ = Clazz.decorateAsClass(function(){
+this.mnovaParamValue = null;
 this.nmrMaxY = NaN;
 this.source = null;
 this.t = null;
@@ -49,18 +50,19 @@ return JSV.source.JDXReader.createJDXSource(null, $in, "stream", obscure, loadIm
 }, "java.io.InputStream,~B,~B,~N");
 c$.getHeaderMap = Clazz.defineMethod(c$, "getHeaderMap", 
 function($in, map){
-return JSV.source.JDXReader.getHeaderMapS($in, map, null);
+return JSV.source.JDXReader.getHeaderMapS($in, map, -1, null);
 }, "java.io.InputStream,java.util.Map");
 c$.getHeaderMapS = Clazz.defineMethod(c$, "getHeaderMapS", 
-function($in, map, suffix){
+function($in, map, index, suffix){
+var source = JSV.source.JDXReader.createJDXSource(null, $in, null, false, false, 0, -1, 0).getJDXSpectrum(index);
+var hlist = source.headerTable;
 if (map == null) map =  new java.util.LinkedHashMap();
-var hlist = JSV.source.JDXReader.createJDXSource(null, $in, null, false, false, 0, -1, 0).getJDXSpectrum(0).headerTable;
 for (var i = 0, n = hlist.size(); i < n; i++) {
 var h = hlist.get(i);
 map.put((suffix == null ? h[2] : h[2] + suffix), h[1]);
 }
 return map;
-}, "java.io.InputStream,java.util.Map,~S");
+}, "java.io.InputStream,java.util.Map,~N,~S");
 c$.createJDXSource = Clazz.defineMethod(c$, "createJDXSource", 
 function(file, $in, filePath, obscure, loadImaginary, iSpecFirst, iSpecLast, nmrMaxY){
 var isHeaderOnly = (iSpecLast < iSpecFirst);
@@ -145,18 +147,18 @@ while (!this.done && "##TITLE".equals(this.t.peakLabel())) {
 isOK = true;
 if (label != null && !this.isZipFile) this.logError("Warning - file is a concatenation without LINK record -- does not conform to JCAMP-DX standard 6.1.3!");
 var spectrum =  new JSV.common.Spectrum();
-var dataLDRTable =  new JU.Lst();
-if (isHeaderOnly) spectrum.setHeaderTable(dataLDRTable);
+var dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
+if (isHeaderOnly) spectrum.setHeaderTable(dataLDRTable.table);
 while (!this.done && (label = this.t.getLabel()) != null && (value = this.getValue(label)) != null) {
 if (this.isTabularData) {
-this.processTabularData(spectrum, dataLDRTable, label, isHeaderOnly);
+if (isHeaderOnly) {
+dataLDRTable.addHeader(this.t.rawLabel, "<data>");
+break;
+}this.processTabularData(spectrum, dataLDRTable, label, isHeaderOnly);
 this.addSpectrum(spectrum, false);
 if (this.isSimulation && spectrum.getXUnits().equals("PPM")) spectrum.setHZtoPPM(true);
 spectrum = null;
-if (isHeaderOnly) {
-JSV.source.JDXReader.addHeader(dataLDRTable, this.t.rawLabel, "<data>");
-break;
-}continue;
+continue;
 }if (!isHeaderOnly) {
 if (label.equals("##DATATYPE") && value.toUpperCase().equals("LINK")) {
 this.getBlockSpectra(dataLDRTable);
@@ -180,9 +182,19 @@ return this.source;
 Clazz.defineMethod(c$, "processLabel", 
 function(spectrum, dataLDRTable, label, value, isHeaderOnly){
 if (!this.readDataLabel(spectrum, label, value, this.errorLog, this.obscure, isHeaderOnly) && !isHeaderOnly) return;
-JSV.source.JDXReader.addHeader(dataLDRTable, this.t.rawLabel, value);
-if (!isHeaderOnly) this.checkCustomTags(spectrum, label, value);
-}, "JSV.common.Spectrum,JU.Lst,~S,~S,~B");
+if (this.mnovaParamValue != null) {
+var pt;
+if (value.startsWith("(") && (pt = value.indexOf(',')) >= 0) {
+var key = value.substring(1, pt).trim();
+pt = value.indexOf(')', pt + 1);
+if (pt > 0) {
+value = value.substring(pt + 1).trim();
+}dataLDRTable.addHeader(key, value);
+}this.mnovaParamValue = null;
+} else {
+dataLDRTable.addHeader(this.t.rawLabel, value);
+}if (!isHeaderOnly) this.checkCustomTags(spectrum, label, value);
+}, "JSV.common.Spectrum,JSV.source.JDXHeader.DataLDRTable,~S,~S,~B");
 Clazz.defineMethod(c$, "logError", 
 function(err){
 this.errorLog.append(this.filePath == null || this.filePath.equals(this.lastErrPath) ? "" : this.filePath).append("\n").append(err).append("\n");
@@ -244,19 +256,18 @@ var isNew = (this.source.type == 0);
 var forceSub = false;
 while ((label = this.t.getLabel()) != null && !label.equals("##TITLE")) {
 value = this.getValue(label);
-if (isNew && !JSV.source.JDXReader.readHeaderLabel(this.source, label, value, this.errorLog, this.obscure)) JSV.source.JDXReader.addHeader(sourceLDRTable, this.t.rawLabel, value);
+if (isNew && !this.readHeaderLabel(this.source, label, value, this.errorLog, this.obscure)) sourceLDRTable.addHeader(this.t.rawLabel, value);
 if (label.equals("##BLOCKS")) {
 var nBlocks = JU.PT.parseInt(value);
 if (nBlocks > 100 && this.firstSpec <= 0) forceSub = true;
 }}
 value = this.getValue(label);
 if (!"##TITLE".equals(label)) throw  new JSV.exception.JSVException("Unable to read block source");
-if (isNew) this.source.setHeaderTable(sourceLDRTable);
+if (isNew) this.source.setHeaderTable(sourceLDRTable.table);
 this.source.type = 1;
 this.source.isCompoundSource = true;
-var dataLDRTable;
 var spectrum =  new JSV.common.Spectrum();
-dataLDRTable =  new JU.Lst();
+var dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
 this.readDataLabel(spectrum, label, value, this.errorLog, this.obscure, false);
 try {
 var tmp;
@@ -284,7 +295,7 @@ label = "";
 }if (this.done) break;
 if (spectrum == null) {
 spectrum =  new JSV.common.Spectrum();
-dataLDRTable =  new JU.Lst();
+dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
 if (label === "") continue;
 if (label == null) {
 label = "##END";
@@ -292,7 +303,7 @@ continue;
 }}if (value == null) {
 if (spectrum.getXYCoords().length > 0 && !this.addSpectrum(spectrum, forceSub)) return this.source;
 spectrum =  new JSV.common.Spectrum();
-dataLDRTable =  new JU.Lst();
+dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
 continue;
 }this.processLabel(spectrum, dataLDRTable, label, value, false);
 }
@@ -308,7 +319,7 @@ this.addErrorLogSeparator();
 this.source.setErrorLog(this.errorLog.toString());
 JU.Logger.debug("--JDX block end--");
 return this.source;
-}, "JU.Lst");
+}, "JSV.source.JDXHeader.DataLDRTable");
 Clazz.defineMethod(c$, "addErrorLogSeparator", 
 function(){
 if (this.errorLog.length() > 0 && this.errorLog.lastIndexOf("=====================\n") != this.errorLog.length() - "=====================\n".length) this.logError("=====================\n");
@@ -328,7 +339,7 @@ var isNew = (this.source.type == 0);
 if (isNew) {
 this.source.type = 2;
 this.source.isCompoundSource = true;
-this.source.setHeaderTable(sourceLDRTable);
+this.source.setHeaderTable(sourceLDRTable.table);
 }while (!(label = (isVARNAME ? label : this.t.getLabel())).equals("##PAGE")) {
 isVARNAME = false;
 var st =  new java.util.StringTokenizer(this.t.getValue(), ",");
@@ -366,10 +377,10 @@ if (Clazz.exceptionOf(e, Exception)){
 throw e;
 }
 }
-}}var dataLDRTable =  new JU.Lst();
-spectrum.setHeaderTable(dataLDRTable);
+}}var dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
+spectrum.setHeaderTable(dataLDRTable.table);
 while (!label.equals("##DATATABLE")) {
-JSV.source.JDXReader.addHeader(dataLDRTable, this.t.rawLabel, this.t.getValue());
+dataLDRTable.addHeader(this.t.rawLabel, this.t.getValue());
 label = this.t.getLabel();
 }
 var continuous = true;
@@ -393,10 +404,10 @@ spectrum0.nucleusY = spectrum.nucleusY;
 spectrum0.freq2dX = spectrum.freq2dX;
 spectrum0.freq2dY = spectrum.freq2dY;
 spectrum0.y2DUnits = spectrum.y2DUnits;
-for (var i = 0; i < sourceLDRTable.size(); i++) {
-var entry = sourceLDRTable.get(i);
+for (var i = 0, n = sourceLDRTable.table.size(); i < n; i++) {
+var entry = sourceLDRTable.table.get(i);
 var key = JSV.source.JDXSourceStreamTokenizer.cleanLabel(entry[0]);
-if (!key.equals("##TITLE") && !key.equals("##DATACLASS") && !key.equals("##NTUPLES")) dataLDRTable.addLast(entry);
+if (!key.equals("##TITLE") && !key.equals("##DATACLASS") && !key.equals("##NTUPLES")) dataLDRTable.table.addLast(entry);
 }
 if (isOK) this.addSpectrum(spectrum, !isFirst);
 isFirst = false;
@@ -406,10 +417,10 @@ this.addErrorLogSeparator();
 this.source.setErrorLog(this.errorLog.toString());
 JU.Logger.info("NTUPLE MIN/MAX Y = " + minMaxY[0] + " " + minMaxY[1]);
 return this.source;
-}, "JU.Lst,JSV.source.JDXDataObject,~S");
+}, "JSV.source.JDXHeader.DataLDRTable,JSV.source.JDXDataObject,~S");
 Clazz.defineMethod(c$, "readDataLabel", 
 function(spectrum, label, value, errorLog, obscure, isHeaderOnly){
-if (!JSV.source.JDXReader.readHeaderLabel(spectrum, label, value, errorLog, obscure)) return false;
+if (!this.readHeaderLabel(spectrum, label, value, errorLog, obscure)) return false;
 label += " ";
 if (("##MINX ##MINY ##MAXX ##MAXY ##FIRSTY ##DELTAX ##DATACLASS ").indexOf(label) >= 0) return false;
 switch (("##FIRSTX  ##LASTX   ##NPOINTS ##XFACTOR ##YFACTOR ##XUNITS  ##YUNITS  ##XLABEL  ##YLABEL  ##NUMDIM  ##OFFSET  ").indexOf(label)) {
@@ -481,35 +492,38 @@ return false;
 }return true;
 }
 }, "JSV.source.JDXDataObject,~S,~S,JU.SB,~B,~B");
-c$.readHeaderLabel = Clazz.defineMethod(c$, "readHeaderLabel", 
+Clazz.defineMethod(c$, "readHeaderLabel", 
 function(jdxHeader, label, value, errorLog, obscure){
-switch (("##TITLE#####JCAMPDX###ORIGIN####OWNER#####DATATYPE##LONGDATE##DATE######TIME####").indexOf(label + "#")) {
-case 0:
+switch (label) {
+case "##TITLE":
 jdxHeader.setTitle(obscure || value == null || value.equals("") ? "Unknown" : value);
 return false;
-case 10:
+case "##JCAMPDX":
 jdxHeader.jcampdx = value;
 var version = JU.PT.parseFloat(value);
 if (version >= 6 || Float.isNaN(version)) {
-if (errorLog != null) errorLog.append("Warning: JCAMP-DX version may not be fully supported: " + value);
+if (errorLog != null) errorLog.append("Warning: JCAMP-DX version may not be fully supported: " + value + "\n");
 }return false;
-case 20:
+case "##ORIGIN":
 jdxHeader.origin = (value != null && !value.equals("") ? value : "Unknown");
 return false;
-case 30:
+case "##OWNER":
 jdxHeader.owner = (value != null && !value.equals("") ? value : "Unknown");
 return false;
-case 40:
+case "##DATATYPE":
 jdxHeader.dataType = value;
 return false;
-case 50:
+case "##LONGDATE":
 jdxHeader.longDate = value;
 return false;
-case 60:
+case "##DATE":
 jdxHeader.date = value;
 return false;
-case 70:
+case "##TIME":
 jdxHeader.time = value;
+return false;
+case "##$PARAMETERFILE":
+this.mnovaParamValue = value;
 return false;
 }
 return true;
@@ -524,7 +538,7 @@ if (label.equals("##PEAKASSIGNMENTS")) spectrum.setDataClass("PEAKASSIGNMENTS");
 Clazz.defineMethod(c$, "processTabularData", 
 function(spec, table, label, isHeaderOnly){
 this.setTabularDataType(spec, label);
-spec.setHeaderTable(table);
+spec.setHeaderTable(table.table);
 if (spec.dataClass.equals("XYDATA")) {
 spec.checkJDXRequiredTokens();
 if (!isHeaderOnly) this.decompressData(spec, null);
@@ -550,7 +564,7 @@ var fileDeltaX = JSV.common.Coordinate.deltaX(xyCoords[xyCoords.length - 1].getX
 spec.setIncreasing(fileDeltaX > 0);
 return;
 }throw  new JSV.exception.JSVException("Unable to read JDX file tabular data for line " + this.t.labelLineNo);
-}, "JSV.source.JDXDataObject,JU.Lst,~S,~B");
+}, "JSV.source.JDXDataObject,JSV.source.JDXHeader.DataLDRTable,~S,~B");
 Clazz.defineMethod(c$, "readNTUPLECoords", 
 function(spec, nTupleTable, plotSymbols, minMaxY){
 var list;
@@ -639,15 +653,6 @@ this.logError("Number of points in Header " + spec.fileNPoints + " Found " + dec
 }if (JU.Logger.debugging) {
 System.err.println(this.errorLog.toString());
 }}, "JSV.source.JDXDataObject,~A");
-c$.addHeader = Clazz.defineMethod(c$, "addHeader", 
-function(table, label, value){
-var entry = null;
-for (var i = 0; i < table.size(); i++) if ((entry = table.get(i))[0].equals(label)) {
-entry[1] = value;
-return;
-}
-table.addLast( Clazz.newArray(-1, [label, value, JSV.source.JDXSourceStreamTokenizer.cleanLabel(label)]));
-}, "JU.Lst,~S,~S");
 Clazz.defineMethod(c$, "checkCustomTags", 
 function(spectrum, label, value){
 if (label.length > 10) label = label.substring(0, 10);
@@ -732,4 +737,4 @@ return line;
 });
 c$.VAR_LIST_TABLE =  Clazz.newArray(-1, ["PEAKTABLE   XYDATA      XYPOINTS", " (XY..XY)    (X++(Y..Y)) (XY..XY)    "]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:51:19 CDT 2025

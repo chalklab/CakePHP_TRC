@@ -496,4 +496,4 @@ J.shape.Shape.appendCmd(s, J.shape.Shape.getColorCommandUnk("dipole", dipole.col
 return s.toString();
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

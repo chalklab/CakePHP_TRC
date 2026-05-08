@@ -221,4 +221,4 @@ for (var j = b.length; --j >= 0; ) if ((h = b[j].getOtherAtom(a)).getElementNumb
 }, "JU.BS,JM.Atom,~B");
 c$.interestingAminoAtomIDs =  Clazz.newByteArray(-1, [2, -5, 1, 3, -65]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

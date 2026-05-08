@@ -931,7 +931,7 @@ return JU.PT.sprintf(strFormat, "IFDspq", of);
 }, "~S,JS.SV,~A,~A,~A,~A,~B,~B,~B");
 c$.getFormatType = Clazz.defineMethod(c$, "getFormatType", 
 function(format){
-return (format.indexOf(";") >= 0 ? -1 : ";json;base64;bytearray;array;xyz;abc;uvw;".indexOf(";" + format.toLowerCase() + ";"));
+return (format.indexOf(";") >= 0 ? -1 : ";json;base64;bytearray;array;xyz;abc;uvw;string;".indexOf(";" + format.toLowerCase() + ";"));
 }, "~S");
 c$.format = Clazz.defineMethod(c$, "format", 
 function(args, pt){
@@ -971,6 +971,7 @@ return o;
 case 5:
 case 12:
 case 22:
+case 40:
 var bytes;
 switch (sv.tok) {
 case 15:
@@ -1002,6 +1003,8 @@ case 5:
 return JV.JC.BASE64_TAG + JU.Base64.getBase64(bytes).toString();
 case 22:
 return JS.SV.getVariable(bytes);
+case 40:
+return  String.instantialize(bytes);
 }
 }
 return null;
@@ -1466,4 +1469,4 @@ c$.vF = JS.SV.newSV(1073742334, 0, "false");
 c$.vNaN = JS.SV.newSV(3, 2147483647, Float.$valueOf(NaN));
 c$.pt0 =  new JU.P3();
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Mon Jul 28 06:27:30 CDT 2025

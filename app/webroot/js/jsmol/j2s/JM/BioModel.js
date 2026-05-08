@@ -298,4 +298,4 @@ function(dssrData, dataType){
 if (this.auxiliaryInfo.containsKey("dssr")) this.vwr.getAnnotationParser(true).getAtomicDSSRData(this.ms, this.modelIndex, dssrData, dataType);
 }, "~A,~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Mon Jul 28 06:27:19 CDT 2025

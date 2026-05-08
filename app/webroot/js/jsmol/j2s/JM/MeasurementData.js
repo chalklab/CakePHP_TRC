@@ -154,4 +154,4 @@ this.nextMeasure(thispt + 1, ptLastAtom, m, thisModel);
 if (!haveNext) this.nextMeasure(thispt + 1, ptLastAtom, m, thisModel);
 }, "~N,~N,JM.Measurement,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

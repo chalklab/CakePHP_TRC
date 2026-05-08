@@ -26,6 +26,7 @@ this.jdxSpectra = null;
 });
 Clazz.defineMethod(c$, "getJDXSpectrum", 
 function(index){
+if (index < 0) index += this.jdxSpectra.size();
 return (this.jdxSpectra.size() <= index ? null : this.jdxSpectra.get(index));
 }, "~N");
 Clazz.defineMethod(c$, "addJDXSpectrum", 
@@ -95,4 +96,4 @@ if (this.jdxSpectra != null) for (var i = this.jdxSpectra.size(); --i >= 0; ) th
 
 }, "~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:52:56 CDT 2025

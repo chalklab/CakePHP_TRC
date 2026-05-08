@@ -47,4 +47,4 @@ function(){
 return  new JU.SB().append("Rgb16(").appendI(this.r).appendC(',').appendI(this.g).appendC(',').appendI(this.b).append(" -> ").appendI((this.r >> 8) & 0xFF).appendC(',').appendI((this.g >> 8) & 0xFF).appendC(',').appendI((this.b >> 8) & 0xFF).appendC(')').toString();
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

@@ -19,4 +19,4 @@ this.finalizeReaderPDB();
 if (!this.useAltNames) this.asc.setCurrentModelInfo("altName", this.altNames.toArray( new Array(this.altNames.size())));
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

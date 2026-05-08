@@ -61,9 +61,9 @@
 ){
 var $t$;
 //var c$;
-Jmol.___JmolDate="$Date: 2025-07-21 09:29:06 -0500 (Mon, 21 Jul 2025) $"
+Jmol.___JmolDate="$Date: 2025-08-08 04:46:51 -0500 (Fri, 08 Aug 2025) $"
 Jmol.___fullJmolProperties="src/org/jmol/viewer/Jmol.properties"
-Jmol.___JmolVersion="16.3.31" // (legacy) also 16.3.32 (swingJS) 
+Jmol.___JmolVersion="16.3.33" // (legacy) also 16.3.34 (swingJS) 
 // JSmolJavaExt.js
  
 // contains class declarations for 
@@ -9393,45 +9393,45 @@ return this.string.substring(i);
 ;//5.0.1-v7 Mon May 12 23:42:45 CDT 2025
 Clazz_declarePackage("javajs.api");
 Clazz_declareInterface(javajs.api, "BytePoster");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("javajs.api");
 Clazz_declareInterface(javajs.api, "GenericColor");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.api");
 Clazz_declareInterface(J.api, "GenericFileInterface");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("javajs.api");
 Clazz_declareInterface(javajs.api, "GenericOutputChannel");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("javajs.api");
 Clazz_declareInterface(javajs.api, "JSInterface");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("javajs.api");
 Clazz_declareInterface(javajs.api, "JSONEncodable");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("javajs.api");
 Clazz_declareInterface(javajs.api, "ZInputStream");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("javajs.api.js");
 Clazz_declareInterface(javajs.api.js, "J2SObjectInterface");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.api");
 Clazz_declareInterface(J.api, "GenericMouseInterface");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.api");
 Clazz_load(["J.api.FontManager"], "J.api.GenericPlatform", null, function(){
 var c$ = Clazz_declareInterface(J.api, "GenericPlatform", J.api.FontManager);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.api");
 Clazz_declareInterface(J.api, "PlatformViewer");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.api");
 Clazz_declareInterface(J.api, "EventManager");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.api");
 Clazz_declareInterface(J.api, "FontManager");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(null, "JU.Font", ["JU.AU"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -9536,7 +9536,7 @@ c$.font3ds =  new Array(8);
 c$.fontFaces =  Clazz_newArray(-1, ["SansSerif", "Serif", "Monospaced", ""]);
 c$.fontStyles =  Clazz_newArray(-1, ["Plain", "Bold", "Italic", "BoldItalic"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JS");
 Clazz_load(["javajs.api.GenericColor"], "JS.Color", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -9579,7 +9579,7 @@ var s = ("00000000" + Integer.toHexString(this.argb));
 return "[0x" + s.substring(s.length - 8, s.length) + "]";
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JS");
 (function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -9597,15 +9597,15 @@ this.height = h;
 return this;
 }, "~N,~N");
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.awtjs");
 (function(){
 var c$ = Clazz_declareType(J.awtjs, "Event", null);
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.api");
 Clazz_declareInterface(J.api, "GenericMenuInterface");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["JU.P3"], "JU.A4", ["JU.T3"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -9692,7 +9692,7 @@ function(){
 return "[" + this.x + "," + this.y + "," + this.z + "," + (this.angle * 180.0 / 3.141592653589793) + "]";
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["java.net.URLConnection"], "JU.AjaxURLConnection", ["JU.AU", "$.Rdr"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -9731,7 +9731,7 @@ function(){
 return this.doAjax();
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["java.net.URLStreamHandler"], "JU.AjaxURLStreamHandler", ["JU.AjaxURLConnection", "$.SB"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -9765,7 +9765,7 @@ result.append(u.getRef());
 }return result.toString();
 }, "java.net.URL");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["java.net.URLStreamHandlerFactory", "java.util.Hashtable"], "JU.AjaxURLStreamHandlerFactory", ["JU.AjaxURLStreamHandler"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -9781,7 +9781,7 @@ if (fac == null) this.htFactories.put(protocol, fac =  new JU.AjaxURLStreamHandl
 return (fac.protocol == null ? null : fac);
 }, "~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(null, "JU.AU", ["java.lang.reflect.Array", "java.util.Arrays", "JU.Lst"], function(){
 var c$ = Clazz_declareType(JU, "AU", null);
@@ -10145,7 +10145,7 @@ for (var i = b.length; --i >= 0;) { var j = b[i] & 0xFF; if
 }}return b;
 }, "~A");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(null, "JU.Base64", ["JU.SB"], function(){
 var c$ = Clazz_declareType(JU, "Base64", null);
@@ -10199,7 +10199,7 @@ return bytes;
 c$.base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 c$.decode64 =  Clazz_newIntArray(-1, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 62, 0, 62, 0, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 0, 0, 0, 0, 63, 0, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 0, 0, 0, 0, 0]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["javajs.api.JSONEncodable"], "JU.BS", ["JU.PT", "$.SB"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -10558,7 +10558,7 @@ return (iPrev >= 0 ? null : bs);
 }, "~S");
 c$.emptyBitmap =  Clazz_newIntArray (0, 0);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["java.util.Hashtable"], "JU.CU", ["JU.P3", "$.PT"], function(){
 var c$ = Clazz_declareType(JU, "CU", null);
@@ -10694,7 +10694,7 @@ c$.mapJavaScriptColors =  new java.util.Hashtable();
 for (var i = JU.CU.colorNames.length; --i >= 0; ) JU.CU.mapJavaScriptColors.put(JU.CU.colorNames[i], Integer.$valueOf(JU.CU.colorArgbs[i]));
 
 }});
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(null, "JU.DF", ["JU.PT", "$.SB"], function(){
 var c$ = Clazz_declareType(JU, "DF", null);
@@ -10790,7 +10790,7 @@ c$.formattingStrings =  Clazz_newArray(-1, ["0", "0.0", "0.00", "0.000", "0.0000
 c$.formatAdds =  Clazz_newDoubleArray(-1, [0.5, 0.05, 0.005, 0.0005, 0.00005, 0.000005, 0.0000005, 0.00000005, 0.000000005, 0.0000000005, 0.00000000005, 0.000000000005, 0.0000000000005]);
 c$.useNumberLocalization =  Clazz_newArray(-1, [Boolean.TRUE]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["java.lang.Enum"], "JU.Encoding", null, function(){
 var c$ = Clazz_declareType(JU, "Encoding", Enum);
@@ -10801,7 +10801,7 @@ Clazz_defineEnumConstant(c$, "UTF_16LE", 3, []);
 Clazz_defineEnumConstant(c$, "UTF_32BE", 4, []);
 Clazz_defineEnumConstant(c$, "UTF_32LE", 5, []);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["java.util.ArrayList"], "JU.Lst", null, function(){
 var c$ = Clazz_declareType(JU, "Lst", java.util.ArrayList);
@@ -10826,7 +10826,7 @@ function(v){
 return this._removeObject(v);
 }}, "~O");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 (function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -11162,7 +11162,7 @@ function(){
 throw  new ArrayIndexOutOfBoundsException("matrix column/row out of bounds");
 });
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["JU.M34"], "JU.M3", ["JU.T3"], function(){
 var c$ = Clazz_declareType(JU, "M3", JU.M34, java.io.Serializable);
@@ -11461,7 +11461,7 @@ function(){
 return (Math.abs(this.determinant3() - 1) < 0.001);
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["JU.M34"], "JU.M4", ["JU.T3"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -11953,7 +11953,7 @@ function(n, f){
 return (Math.abs(n) < f ? 0 : n);
 }, "~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["java.io.OutputStream", "javajs.api.GenericOutputChannel"], "JU.OC", ["java.io.BufferedWriter", "$.ByteArrayOutputStream", "$.OutputStreamWriter", "JU.Base64", "$.SB"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -12249,7 +12249,7 @@ this.writeInt(x == 0 ? 0 : Float.floatToIntBits(x));
 }, "~N");
 c$.urlPrefixes =  Clazz_newArray(-1, ["http:", "https:", "sftp:", "ftp:", "file:", "cache:"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["JU.T3"], "JU.P3", null, function(){
 var c$ = Clazz_declareType(JU, "P3", JU.T3);
@@ -12279,7 +12279,7 @@ return JU.P3.new3(a[0], a[1], a[2]);
 }, "~A");
 c$.unlikely = null;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["JU.T3i"], "JU.P3i", null, function(){
 var c$ = Clazz_declareType(JU, "P3i", JU.T3i);
@@ -12292,7 +12292,7 @@ pt.z = z;
 return pt;
 }, "~N,~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["JU.T4"], "JU.P4", null, function(){
 var c$ = Clazz_declareType(JU, "P4", JU.T4);
@@ -12317,7 +12317,7 @@ var dw = this.w - p1.w;
 return Math.sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
 }, "JU.P4");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(null, "JU.PT", ["java.util.Arrays", "JU.AU", "$.DF", "$.SB"], function(){
 var c$ = Clazz_declareType(JU, "PT", null);
@@ -13296,7 +13296,7 @@ return (pt < 0 ? JU.PT.parseFloat(s) : JU.PT.parseFloat(s.substring(0, pt)) / JU
 c$.tensScale =  Clazz_newFloatArray(-1, [10, 100, 1000, 10000, 100000, 1000000]);
 c$.decimalScale =  Clazz_newFloatArray(-1, [0.1, 0.01, 0.001, 0.0001, 0.00001, 0.000001, 0.0000001, 0.00000001, 0.000000001, 0.0000000001, 0.00000000001, 0.000000000001, 0.0000000000001, 0.00000000000001, 0.000000000000001]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 (function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -13448,7 +13448,7 @@ function(offset, str){
 this.replace(offset, offset, str);
 }, "~N,~S");
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["javajs.api.JSONEncodable"], "JU.T3", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -13599,7 +13599,7 @@ t.set(this.x, this.y, this.z);
 return t;
 }, "JU.T3");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 (function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -13650,7 +13650,7 @@ function(){
 return this.asString();
 });
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["JU.T3"], "JU.T4", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -13687,7 +13687,7 @@ function(){
 return "[" + this.x + ", " + this.y + ", " + this.z + ", " + this.w + "]";
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["JU.T3"], "JU.V3", null, function(){
 var c$ = Clazz_declareType(JU, "V3", JU.T3);
@@ -13716,7 +13716,7 @@ var cross = Math.sqrt(xx * xx + yy * yy + zz * zz);
 return Math.abs(Math.atan2(cross, this.dot(v1)));
 }, "JU.V3");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["JU.LoggerInterface"], "JU.DefaultLogger", ["JU.Logger"], function(){
 var c$ = Clazz_declareType(JU, "DefaultLogger", null, JU.LoggerInterface);
@@ -13769,7 +13769,7 @@ function(txt, e){
 this.log(System.err, 1, txt, e);
 }, "~S,Throwable");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(["java.util.Hashtable", "JU.DefaultLogger"], "JU.Logger", null, function(){
 var c$ = Clazz_declareType(JU, "Logger", null);
@@ -13952,16 +13952,16 @@ JU.Logger.debugging = (JU.Logger._logger != null && (JU.Logger._activeLevels[5] 
 JU.Logger.debuggingHigh = (JU.Logger.debugging && JU.Logger._activeLevels[6]);
 }c$.htTiming =  new java.util.Hashtable();
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_declareInterface(JU, "LoggerInterface");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.api");
 Clazz_declareInterface(J.api, "JmolJDXMOLParser");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.api");
 Clazz_declareInterface(J.api, "JmolJDXMOLReader");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.jsv");
 Clazz_load(["J.api.JmolJDXMOLParser"], "J.jsv.JDXMOLParser", ["java.util.Hashtable", "JU.BS", "$.Lst", "$.PT", "$.SB", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -14254,49 +14254,49 @@ function(s){
 this.line = s;
 }, "~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "AnnotationData");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "AppletFrame");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVAppInterface", JSV.api.JSVAppletInterface);
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVAppletInterface");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVFileHelper");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVMainPanel", JSV.api.JSVViewPanel);
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVPanel", JSV.api.JSVViewPanel);
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVTree");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVTreeNode");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVTreePath");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVViewPanel");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "JSVZipReader");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "PanelListener");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.api");
 Clazz_declareInterface(JSV.api, "ScriptInterface");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.app");
 Clazz_load(["JSV.api.JSVAppInterface", "$.PanelListener", "$.ScriptInterface"], "JSV.app.JSVApp", ["JU.Lst", "$.PT", "JSV.common.Coordinate", "$.JSVFileManager", "$.JSVersion", "$.JSViewer", "$.ScriptToken", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -14671,7 +14671,7 @@ function(){
 return "JSpecView Applet " + JSV.common.JSVersion.VERSION + "\n\n" + "Authors:\nProf. Robert M. Hanson,\nD. Facey, K. Bryan, C. Walters, Prof. Robert J. Lancashire and\nvolunteer developers through sourceforge.";
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.app");
 Clazz_load(["J.api.GenericMouseInterface"], "JSV.app.GenericMouse", ["JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -14851,7 +14851,7 @@ this.jsvp = null;
 this.disposed = true;
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.appletjs");
 Clazz_load(["javajs.api.JSInterface", "JSV.api.AppletFrame", "$.JSVAppletInterface"], "JSV.appletjs.JSVApplet", ["java.net.URL", "java.util.Hashtable", "JU.PT", "JSV.app.JSVApp", "JSV.js2d.JsMainPanel", "$.JsPanel", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -15146,7 +15146,7 @@ Clazz_overrideMethod(c$, "processKeyEvent",
 function(event){
 }, "~O");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["java.lang.Enum", "JSV.common.Coordinate"], "JSV.common.Annotation", ["JU.CU"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -15263,7 +15263,7 @@ Clazz_defineEnumConstant(c$, "Views", 4, []);
 Clazz_defineEnumConstant(c$, "NONE", 5, []);
 /*eoif2*/})();
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.Annotation"], "JSV.common.ColoredAnnotation", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -15284,7 +15284,7 @@ this.color = color;
 return this;
 }, "~N,~N,JSV.common.Spectrum,~S,javajs.api.GenericColor,~B,~B,~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.Parameters"], "JSV.common.ColorParameters", ["java.util.Hashtable", "$.StringTokenizer", "JU.CU", "$.Lst", "JSV.common.ScriptToken"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -15427,7 +15427,7 @@ c$.WHITE = null;
 c$.defaultPlotColors =  new Array(8);
 c$.defaultPlotColorNames =  Clazz_newArray(-1, ["black", "darkGreen", "darkred", "orange", "magenta", "cyan", "maroon", "darkGray"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 (function(){
 var c$ = Clazz_declareType(JSV.common, "CoordComparator", null, java.util.Comparator);
@@ -15436,7 +15436,7 @@ function(c1, c2){
 return (c1.getXVal() > c2.getXVal() ? 1 : c1.getXVal() < c2.getXVal() ? -1 : 0);
 }, "JSV.common.Coordinate,JSV.common.Coordinate");
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.CoordComparator"], "JSV.common.Coordinate", ["java.util.Arrays", "$.StringTokenizer", "JU.Lst"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -15693,7 +15693,7 @@ return JSV.common.Coordinate.findXForPeakNearest(xyCoords, xyCoords[pt].getXVal(
 }, "~A,~N,~N,~B,~B");
 c$.c =  new JSV.common.CoordComparator();
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["java.lang.Enum"], "JSV.common.ExportType", null, function(){
 var c$ = Clazz_declareType(JSV.common, "ExportType", Enum);
@@ -15726,7 +15726,7 @@ Clazz_defineEnumConstant(c$, "CML", 12, []);
 Clazz_defineEnumConstant(c$, "AML", 13, []);
 Clazz_defineEnumConstant(c$, "PDF", 14, []);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.XYScaleConverter", "java.util.Hashtable", "JU.BS", "$.Lst", "JSV.common.Coordinate"], "JSV.common.GraphSet", ["JU.DF", "$.PT", "JSV.common.Annotation", "$.ColorParameters", "$.ColoredAnnotation", "$.ImageView", "$.IntegralData", "$.Measurement", "$.MeasurementData", "$.PanelData", "$.Parameters", "$.PeakData", "$.PeakPickEvent", "$.PlotWidget", "$.ScaleData", "$.ScriptToken", "$.Spectrum", "$.ViewData", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -18737,7 +18737,7 @@ return ((hl.x1 == this.x1) && (hl.x2 == this.x2));
 c$.RT2 = Math.sqrt(2.0);
 c$.veryLightGrey = null;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:44:39 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.XYScaleConverter"], "JSV.common.ImageView", ["JSV.common.Coordinate", "$.ScaleData"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -18989,7 +18989,7 @@ function(){
 return this.xPixel0;
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.Measurement"], "JSV.common.Integral", null, function(){
 var c$ = Clazz_declareType(JSV.common, "Integral", JSV.common.Measurement);
@@ -19001,7 +19001,7 @@ this.setValue(value);
 return this;
 }, "~N,~N,JSV.common.Spectrum,~N,~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 (function(){
 var c$ = Clazz_declareType(JSV.common, "IntegralComparator", null, java.util.Comparator);
@@ -19010,7 +19010,7 @@ function(m1, m2){
 return (m1.getXVal() < m2.getXVal() ? -1 : m1.getXVal() > m2.getXVal() ? 1 : 0);
 }, "JSV.common.Measurement,JSV.common.Measurement");
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["java.lang.Enum", "JSV.common.MeasurementData", "$.IntegralComparator"], "JSV.common.IntegralData", ["java.util.Collections", "$.StringTokenizer", "JU.AU", "$.BS", "$.DF", "$.Lst", "$.PT", "JSV.common.Annotation", "$.Coordinate", "$.Integral", "$.ScriptToken"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -19351,7 +19351,7 @@ Clazz_defineEnumConstant(c$, "NA", 9, []);
 c$.c =  new JSV.common.IntegralComparator();
 c$.$HEADER =  Clazz_newArray(-1, ["peak", "start/ppm", "end/ppm", "value"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["java.lang.Enum", "JSV.source.JDXDataObject", "JU.Lst"], "JSV.common.Spectrum", ["java.util.Hashtable", "JU.PT", "JSV.common.Coordinate", "$.Parameters", "$.PeakInfo", "JSV.source.JDXSourceStreamTokenizer", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -19829,7 +19829,7 @@ Clazz_defineEnumConstant(c$, "TO_ABS", 2, []);
 Clazz_defineEnumConstant(c$, "TOGGLE", 3, []);
 /*eoif2*/})();
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:44:39 CDT 2025
 Clazz_declarePackage("JSV.common");
 (function(){
 var c$ = Clazz_declareType(JSV.common, "JSVersion", null);
@@ -19879,7 +19879,7 @@ throw e;
 JSV.common.JSVersion.majorVersion = mv;
 JSV.common.JSVersion.versionInt = v;
 }})();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["java.util.Hashtable"], "JSV.common.JSVFileManager", ["java.io.BufferedInputStream", "$.BufferedReader", "$.InputStreamReader", "$.StringReader", "java.net.URL", "JU.AU", "$.BS", "$.Encoding", "$.JSJSONParser", "$.P3", "$.PT", "$.SB", "JSV.common.JSVersion", "$.JSViewer", "JSV.exception.JSVException", "JU.Logger"], function(){
 var c$ = Clazz_declareType(JSV.common, "JSVFileManager", null);
@@ -20411,7 +20411,7 @@ c$.nmrdbServerH1 = "https://www.nmrdb.org/tools/jmol/predict.php?POST?molfile=";
 c$.nmrdbServerC13 = "https://www.nmrdb.org/service/jsmol13c?POST?molfile=";
 c$.stringCount = 0;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["javajs.api.BytePoster", "J.api.PlatformViewer", "JSV.common.Spectrum"], "JSV.common.JSViewer", ["java.io.File", "java.net.URL", "java.util.Arrays", "$.Hashtable", "JU.CU", "$.Lst", "$.OC", "$.PT", "$.SB", "JSV.common.Annotation", "$.ExportType", "$.JSVFileManager", "$.PanelData", "$.PanelNode", "$.Parameters", "$.PeakInfo", "$.PrintLayout", "$.RepaintManager", "$.ScriptToken", "$.ScriptTokenizer", "JSV.source.JDXReader", "$.JDXSource", "JSV.tree.SimpleTree", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -22108,7 +22108,7 @@ c$.isJS = false;
 c$.isSwingJS = false;
 c$.jmolObject = null;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:51:19 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.Annotation", "$.Coordinate"], "JSV.common.Measurement", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -22183,7 +22183,7 @@ function(){
 return "[" + this.getXVal() + "," + this.pt2.getXVal() + "]";
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JU.Lst", "JSV.api.AnnotationData"], "JSV.common.MeasurementData", ["JU.AU", "$.DF", "JSV.common.Annotation", "$.Parameters"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -22325,7 +22325,7 @@ return false;
 });
 c$.HEADER =  Clazz_newArray(-1, ["", "start", "end", "value"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["java.lang.Enum", "J.api.EventManager", "java.util.Hashtable", "JU.Lst"], "JSV.common.PanelData", ["JU.CU", "JSV.common.Annotation", "$.Coordinate", "$.GraphSet", "$.JSVFileManager", "$.JSVersion", "$.JSViewer", "$.MeasurementData", "$.Parameters", "$.PeakPickEvent", "$.ScriptToken", "$.Spectrum", "$.SubSpecChangeEvent", "$.ZoomEvent", "JU.Font", "$.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -23542,7 +23542,7 @@ Clazz_defineEnumConstant(c$, "UP", 0, []);
 Clazz_defineEnumConstant(c$, "DOWN", 1, []);
 /*eoif2*/})();
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:44:39 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(null, "JSV.common.PanelNode", ["JU.SB", "JSV.common.Parameters"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -23666,7 +23666,7 @@ JSV.common.Parameters.putInfo(key, info, "panelSource", this.source.getFilePath(
 return info;
 }, "~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(null, "JSV.common.Parameters", ["java.util.Hashtable", "JSV.common.ScriptToken"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -23774,7 +23774,7 @@ function(match, info, key, value){
 if (value != null && JSV.common.Parameters.isMatch(match, key)) info.put(match == null ? key : match, value);
 }, "~S,java.util.Map,~S,~O");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.MeasurementData"], "JSV.common.PeakData", ["JU.DF", "JSV.common.Coordinate", "$.PeakPick"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -23859,7 +23859,7 @@ if (++n == 100) break;
 }, "JSV.common.Parameters,~N,JSV.common.ScaleData");
 c$.HNMR_HEADER =  Clazz_newArray(-1, ["peak", "shift/ppm", "intens", "shift/hz", "diff/hz", "2-diff", "3-diff"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(null, "JSV.common.PeakInfo", ["JU.PT"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24019,7 +24019,7 @@ return Clazz_doubleToInt((this.px0 + this.px1) / 2);
 });
 c$.nullPeakInfo = null;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.Measurement"], "JSV.common.PeakPick", null, function(){
 var c$ = Clazz_declareType(JSV.common, "PeakPick", JSV.common.Measurement);
@@ -24035,7 +24035,7 @@ this.setPt2(this.getXVal(), this.getYVal());
 }return this;
 }, "~N,~N,JSV.common.Spectrum,~S,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["java.util.EventObject"], "JSV.common.PeakPickEvent", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24061,7 +24061,7 @@ function(){
 return (this.peakInfo == null ? null : this.peakInfo.toString());
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["JSV.common.Coordinate", "$.ScriptToken"], "JSV.common.PlotWidget", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24119,7 +24119,7 @@ function(enabled){
 this.isEnabled = enabled;
 }, "~B");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 (function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24154,7 +24154,7 @@ this.asPDF = true;
 pd.setDefaultPrintOptions(this);
 }}, "JSV.common.PanelData");
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(null, "JSV.common.RepaintManager", ["JSV.common.JSViewer"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24185,7 +24185,7 @@ this.repaintPending = false;
 this.notify();
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(null, "JSV.common.ScaleData", ["JSV.common.Coordinate"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24497,7 +24497,7 @@ this.spectrumScaleFactor *= f;
 c$.NTICKS =  Clazz_newIntArray(-1, [2, 5, 10, 10]);
 c$.LOGTICKS =  Clazz_newDoubleArray(-1, [Math.log10(2), Math.log10(5), 0, 1]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(["java.lang.Enum"], "JSV.common.ScriptToken", ["java.util.Hashtable", "JU.Lst", "$.PT", "$.SB", "JSV.common.ScriptTokenizer"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24707,7 +24707,7 @@ Clazz_defineEnumConstant(c$, "ZOOM", 94, ["OUT or PREVIOUS or NEXT or x1,x2 or x
 Clazz_defineEnumConstant(c$, "ZOOMBOXCOLOR", 95, []);
 Clazz_defineEnumConstant(c$, "ZOOMBOXCOLOR2", 96, []);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(null, "JSV.common.ScriptTokenizer", ["JU.PT"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24778,7 +24778,7 @@ function(){
 return this.str.substring(this.pt);
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 (function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24803,7 +24803,7 @@ function(){
 return this.title;
 });
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_load(null, "JSV.common.ViewData", ["JSV.common.Coordinate", "$.ScaleData"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -24946,15 +24946,15 @@ sd[i].maxYOnScale = this.scaleData[i].minYOnScale * (1 - f2) + f2 * this.scaleDa
 return sd;
 }, "~N,~B,~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 Clazz_declareInterface(JSV.common, "XYScaleConverter");
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.common");
 (function(){
 var c$ = Clazz_declareType(JSV.common, "ZoomEvent", null);
 /*LV!1824 unnec constructor*/})();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.dialog");
 Clazz_load(["JSV.api.AnnotationData", "JSV.common.Annotation"], "JSV.dialog.JSVDialog", ["JU.DF", "$.PT", "JSV.common.IntegralData", "$.PeakData", "JSV.dialog.DialogManager"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -25618,12 +25618,12 @@ var pt = url.indexOf(key);
 return (pt < 0 ? null : url.substring(pt + key.length, url.indexOf("&", pt + 1)));
 }, "~S,~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.exception");
 Clazz_load(["java.lang.Exception"], "JSV.exception.JSVException", null, function(){
 var c$ = Clazz_declareType(JSV.exception, "JSVException", Exception);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 (function(){
 var c$ = Clazz_declareType(JSV.js2d, "Display", null);
@@ -25664,7 +25664,7 @@ c$.convertPointFromScreen = Clazz_defineMethod(c$, "convertPointFromScreen",
 function(canvas, ptTemp){
 }, "~O,JU.P3");
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 (function(){
 var c$ = Clazz_declareType(JSV.js2d, "Image", null);
@@ -25738,7 +25738,7 @@ this.fromIntARGB(canvas.buf32, canvas.buf8);
 context.putImageData(canvas.imgdata,x,y);
 }}, "~O,~O,~N,~N,~N,~N");
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 Clazz_load(["J.api.GenericFileInterface"], "JSV.js2d.JsFile", ["JU.PT", "JSV.common.JSVFileManager"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -25794,7 +25794,7 @@ throw e;
 }
 }, "java.net.URL,~A,~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 Clazz_load(["JSV.api.JSVFileHelper"], "JSV.js2d.JsFileHelper", ["JU.PT", "JSV.common.JSViewer", "JSV.js2d.JsFile"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -25845,7 +25845,7 @@ function(info, msg){
 return prompt(info, msg);
 }}, "~S,~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 (function(){
 var c$ = Clazz_declareType(JSV.js2d, "JsFont", null);
@@ -25884,7 +25884,7 @@ font.fontMetrics.font = font.font;
 return Math.ceil(font.fontMetrics.measureText(text).width);
 }}, "JU.Font,~S");
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 Clazz_load(["J.api.GenericGraphics"], "JSV.js2d.JsG2D", ["JU.CU", "JSV.common.JSViewer", "JS.Color"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -26064,7 +26064,7 @@ function(g, x2, y2){
 g.lineTo(x2, y2);
 }}, "~O,~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 Clazz_load(["JSV.api.JSVPanel"], "JSV.js2d.JsPanel", ["JSV.common.JSViewer", "$.PanelData", "JU.Font", "$.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -26261,7 +26261,7 @@ function(x, y){
 this.vwr.showMenu(x, y);
 }, "~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 Clazz_load(["JSV.common.ColorParameters"], "JSV.js2d.JsParameters", ["JS.Color"], function(){
 var c$ = Clazz_declareType(JSV.js2d, "JsParameters", JSV.common.ColorParameters);
@@ -26286,7 +26286,7 @@ function(newName){
 return ( new JSV.js2d.JsParameters().setName(newName)).setElementColors(this);
 }, "~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 Clazz_load(["J.api.GenericPlatform"], "JSV.js2d.JsPlatform", ["java.net.URL", "JU.AjaxURLStreamHandlerFactory", "$.Rdr", "JSV.app.GenericMouse", "JSV.js2d.Display", "$.Image", "$.JsFile", "$.JsFont"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -26526,7 +26526,7 @@ if (msgNo != null) ok = false;
 return (ok ? 1 : 2);
 }, "~S,~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.js2d");
 Clazz_load(["JSV.api.JSVMainPanel"], "JSV.js2d.JsMainPanel", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -26588,7 +26588,7 @@ function(b){
 this.focusable = b;
 }, "~B");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.source");
 Clazz_load(["JSV.source.JDXHeader", "java.util.Hashtable"], "JSV.source.JDXDataObject", ["JU.DF", "$.PT", "JSV.common.Annotation", "$.Coordinate", "JSV.exception.JSVException", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -27143,7 +27143,7 @@ c$.gyroMap =  new java.util.Hashtable();
 for (var i = 0, n = JSV.source.JDXDataObject.gyroData.length - 1; i < n; i += 2) JSV.source.JDXDataObject.gyroMap.put("" + Clazz_doubleToInt(JSV.source.JDXDataObject.gyroData[i]), Double.$valueOf(JSV.source.JDXDataObject.gyroData[i + 1]));
 
 }});
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:44:39 CDT 2025
 Clazz_declarePackage("JSV.source");
 Clazz_load(["java.util.Iterator"], "JSV.source.JDXDecompressor", ["JSV.common.Coordinate", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -27471,9 +27471,9 @@ break;
 }
 }
 }});
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.source");
-Clazz_load(["JU.Lst"], "JSV.source.JDXHeader", null, function(){
+Clazz_load(["JU.Lst"], "JSV.source.JDXHeader", ["java.util.Hashtable", "JSV.source.JDXSourceStreamTokenizer"], function(){
 var c$ = Clazz_decorateAsClass(function(){
 this.title = "";
 this.jcampdx = "5.01";
@@ -27602,12 +27602,35 @@ var s = this.headerTable.get(j);
 {
 return [s[0], JU.PT.rep(s[1], "<", "&lt;")];
 }}, "~N");
+/*if3*/;(function(){
+var c$ = Clazz_decorateAsClass(function(){
+this.table = null;
+this.map = null;
+Clazz_instantialize(this, arguments);}, JSV.source.JDXHeader, "DataLDRTable", null);
+Clazz_makeConstructor(c$, 
+function(){
+this.table =  new JU.Lst();
+this.map =  new java.util.Hashtable();
+});
+Clazz_defineMethod(c$, "addHeader", 
+function(label, value){
+var pt = this.map.get(label);
+if (pt == null) {
+pt = Integer.$valueOf(this.table.size());
+this.table.addLast( Clazz_newArray(-1, [label, value, JSV.source.JDXSourceStreamTokenizer.cleanLabel(label)]));
+this.map.put(label, pt);
+} else {
+var entry = this.table.get(pt.intValue());
+entry[1] = value;
+}}, "~S,~S");
+/*eoif3*/})();
 c$.typeNames =  Clazz_newArray(-1, ["ND NMR SPECTRUM   NMR", "NMR SPECTRUM      NMR", "INFRARED SPECTRUM IR", "MASS SPECTRUM     MS", "RAMAN SPECTRUM    RAMAN", "GAS CHROMATOGRAM  GC", "UV/VIS SPECTRUM   UV/VIS"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:44:39 CDT 2025
 Clazz_declarePackage("JSV.source");
-Clazz_load(["J.api.JmolJDXMOLReader"], "JSV.source.JDXReader", ["java.io.BufferedReader", "$.StringReader", "java.util.Hashtable", "$.LinkedHashMap", "$.StringTokenizer", "javajs.api.Interface", "JU.AU", "$.Lst", "$.PT", "$.Rdr", "$.SB", "JSV.common.Coordinate", "$.JSVFileManager", "$.JSViewer", "$.PeakInfo", "$.Spectrum", "JSV.exception.JSVException", "JSV.source.JDXDecompressor", "$.JDXSource", "$.JDXSourceStreamTokenizer", "JU.Logger"], function(){
+Clazz_load(["J.api.JmolJDXMOLReader"], "JSV.source.JDXReader", ["java.io.BufferedReader", "$.StringReader", "java.util.Hashtable", "$.LinkedHashMap", "$.StringTokenizer", "javajs.api.Interface", "JU.AU", "$.Lst", "$.PT", "$.Rdr", "$.SB", "JSV.common.Coordinate", "$.JSVFileManager", "$.JSViewer", "$.PeakInfo", "$.Spectrum", "JSV.exception.JSVException", "JSV.source.JDXDecompressor", "$.JDXHeader", "$.JDXSource", "$.JDXSourceStreamTokenizer", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
+this.mnovaParamValue = null;
 this.nmrMaxY = NaN;
 this.source = null;
 this.t = null;
@@ -27656,18 +27679,19 @@ return JSV.source.JDXReader.createJDXSource(null, $in, "stream", obscure, loadIm
 }, "java.io.InputStream,~B,~B,~N");
 c$.getHeaderMap = Clazz_defineMethod(c$, "getHeaderMap", 
 function($in, map){
-return JSV.source.JDXReader.getHeaderMapS($in, map, null);
+return JSV.source.JDXReader.getHeaderMapS($in, map, -1, null);
 }, "java.io.InputStream,java.util.Map");
 c$.getHeaderMapS = Clazz_defineMethod(c$, "getHeaderMapS", 
-function($in, map, suffix){
+function($in, map, index, suffix){
+var source = JSV.source.JDXReader.createJDXSource(null, $in, null, false, false, 0, -1, 0).getJDXSpectrum(index);
+var hlist = source.headerTable;
 if (map == null) map =  new java.util.LinkedHashMap();
-var hlist = JSV.source.JDXReader.createJDXSource(null, $in, null, false, false, 0, -1, 0).getJDXSpectrum(0).headerTable;
 for (var i = 0, n = hlist.size(); i < n; i++) {
 var h = hlist.get(i);
 map.put((suffix == null ? h[2] : h[2] + suffix), h[1]);
 }
 return map;
-}, "java.io.InputStream,java.util.Map,~S");
+}, "java.io.InputStream,java.util.Map,~N,~S");
 c$.createJDXSource = Clazz_defineMethod(c$, "createJDXSource", 
 function(file, $in, filePath, obscure, loadImaginary, iSpecFirst, iSpecLast, nmrMaxY){
 var isHeaderOnly = (iSpecLast < iSpecFirst);
@@ -27752,18 +27776,18 @@ while (!this.done && "##TITLE".equals(this.t.peakLabel())) {
 isOK = true;
 if (label != null && !this.isZipFile) this.logError("Warning - file is a concatenation without LINK record -- does not conform to JCAMP-DX standard 6.1.3!");
 var spectrum =  new JSV.common.Spectrum();
-var dataLDRTable =  new JU.Lst();
-if (isHeaderOnly) spectrum.setHeaderTable(dataLDRTable);
+var dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
+if (isHeaderOnly) spectrum.setHeaderTable(dataLDRTable.table);
 while (!this.done && (label = this.t.getLabel()) != null && (value = this.getValue(label)) != null) {
 if (this.isTabularData) {
-this.processTabularData(spectrum, dataLDRTable, label, isHeaderOnly);
+if (isHeaderOnly) {
+dataLDRTable.addHeader(this.t.rawLabel, "<data>");
+break;
+}this.processTabularData(spectrum, dataLDRTable, label, isHeaderOnly);
 this.addSpectrum(spectrum, false);
 if (this.isSimulation && spectrum.getXUnits().equals("PPM")) spectrum.setHZtoPPM(true);
 spectrum = null;
-if (isHeaderOnly) {
-JSV.source.JDXReader.addHeader(dataLDRTable, this.t.rawLabel, "<data>");
-break;
-}continue;
+continue;
 }if (!isHeaderOnly) {
 if (label.equals("##DATATYPE") && value.toUpperCase().equals("LINK")) {
 this.getBlockSpectra(dataLDRTable);
@@ -27787,9 +27811,19 @@ return this.source;
 Clazz_defineMethod(c$, "processLabel", 
 function(spectrum, dataLDRTable, label, value, isHeaderOnly){
 if (!this.readDataLabel(spectrum, label, value, this.errorLog, this.obscure, isHeaderOnly) && !isHeaderOnly) return;
-JSV.source.JDXReader.addHeader(dataLDRTable, this.t.rawLabel, value);
-if (!isHeaderOnly) this.checkCustomTags(spectrum, label, value);
-}, "JSV.common.Spectrum,JU.Lst,~S,~S,~B");
+if (this.mnovaParamValue != null) {
+var pt;
+if (value.startsWith("(") && (pt = value.indexOf(',')) >= 0) {
+var key = value.substring(1, pt).trim();
+pt = value.indexOf(')', pt + 1);
+if (pt > 0) {
+value = value.substring(pt + 1).trim();
+}dataLDRTable.addHeader(key, value);
+}this.mnovaParamValue = null;
+} else {
+dataLDRTable.addHeader(this.t.rawLabel, value);
+}if (!isHeaderOnly) this.checkCustomTags(spectrum, label, value);
+}, "JSV.common.Spectrum,JSV.source.JDXHeader.DataLDRTable,~S,~S,~B");
 Clazz_defineMethod(c$, "logError", 
 function(err){
 this.errorLog.append(this.filePath == null || this.filePath.equals(this.lastErrPath) ? "" : this.filePath).append("\n").append(err).append("\n");
@@ -27851,19 +27885,18 @@ var isNew = (this.source.type == 0);
 var forceSub = false;
 while ((label = this.t.getLabel()) != null && !label.equals("##TITLE")) {
 value = this.getValue(label);
-if (isNew && !JSV.source.JDXReader.readHeaderLabel(this.source, label, value, this.errorLog, this.obscure)) JSV.source.JDXReader.addHeader(sourceLDRTable, this.t.rawLabel, value);
+if (isNew && !this.readHeaderLabel(this.source, label, value, this.errorLog, this.obscure)) sourceLDRTable.addHeader(this.t.rawLabel, value);
 if (label.equals("##BLOCKS")) {
 var nBlocks = JU.PT.parseInt(value);
 if (nBlocks > 100 && this.firstSpec <= 0) forceSub = true;
 }}
 value = this.getValue(label);
 if (!"##TITLE".equals(label)) throw  new JSV.exception.JSVException("Unable to read block source");
-if (isNew) this.source.setHeaderTable(sourceLDRTable);
+if (isNew) this.source.setHeaderTable(sourceLDRTable.table);
 this.source.type = 1;
 this.source.isCompoundSource = true;
-var dataLDRTable;
 var spectrum =  new JSV.common.Spectrum();
-dataLDRTable =  new JU.Lst();
+var dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
 this.readDataLabel(spectrum, label, value, this.errorLog, this.obscure, false);
 try {
 var tmp;
@@ -27891,7 +27924,7 @@ label = "";
 }if (this.done) break;
 if (spectrum == null) {
 spectrum =  new JSV.common.Spectrum();
-dataLDRTable =  new JU.Lst();
+dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
 if (label === "") continue;
 if (label == null) {
 label = "##END";
@@ -27899,7 +27932,7 @@ continue;
 }}if (value == null) {
 if (spectrum.getXYCoords().length > 0 && !this.addSpectrum(spectrum, forceSub)) return this.source;
 spectrum =  new JSV.common.Spectrum();
-dataLDRTable =  new JU.Lst();
+dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
 continue;
 }this.processLabel(spectrum, dataLDRTable, label, value, false);
 }
@@ -27915,7 +27948,7 @@ this.addErrorLogSeparator();
 this.source.setErrorLog(this.errorLog.toString());
 JU.Logger.debug("--JDX block end--");
 return this.source;
-}, "JU.Lst");
+}, "JSV.source.JDXHeader.DataLDRTable");
 Clazz_defineMethod(c$, "addErrorLogSeparator", 
 function(){
 if (this.errorLog.length() > 0 && this.errorLog.lastIndexOf("=====================\n") != this.errorLog.length() - "=====================\n".length) this.logError("=====================\n");
@@ -27935,7 +27968,7 @@ var isNew = (this.source.type == 0);
 if (isNew) {
 this.source.type = 2;
 this.source.isCompoundSource = true;
-this.source.setHeaderTable(sourceLDRTable);
+this.source.setHeaderTable(sourceLDRTable.table);
 }while (!(label = (isVARNAME ? label : this.t.getLabel())).equals("##PAGE")) {
 isVARNAME = false;
 var st =  new java.util.StringTokenizer(this.t.getValue(), ",");
@@ -27973,10 +28006,10 @@ if (Clazz_exceptionOf(e, Exception)){
 throw e;
 }
 }
-}}var dataLDRTable =  new JU.Lst();
-spectrum.setHeaderTable(dataLDRTable);
+}}var dataLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
+spectrum.setHeaderTable(dataLDRTable.table);
 while (!label.equals("##DATATABLE")) {
-JSV.source.JDXReader.addHeader(dataLDRTable, this.t.rawLabel, this.t.getValue());
+dataLDRTable.addHeader(this.t.rawLabel, this.t.getValue());
 label = this.t.getLabel();
 }
 var continuous = true;
@@ -28000,10 +28033,10 @@ spectrum0.nucleusY = spectrum.nucleusY;
 spectrum0.freq2dX = spectrum.freq2dX;
 spectrum0.freq2dY = spectrum.freq2dY;
 spectrum0.y2DUnits = spectrum.y2DUnits;
-for (var i = 0; i < sourceLDRTable.size(); i++) {
-var entry = sourceLDRTable.get(i);
+for (var i = 0, n = sourceLDRTable.table.size(); i < n; i++) {
+var entry = sourceLDRTable.table.get(i);
 var key = JSV.source.JDXSourceStreamTokenizer.cleanLabel(entry[0]);
-if (!key.equals("##TITLE") && !key.equals("##DATACLASS") && !key.equals("##NTUPLES")) dataLDRTable.addLast(entry);
+if (!key.equals("##TITLE") && !key.equals("##DATACLASS") && !key.equals("##NTUPLES")) dataLDRTable.table.addLast(entry);
 }
 if (isOK) this.addSpectrum(spectrum, !isFirst);
 isFirst = false;
@@ -28013,10 +28046,10 @@ this.addErrorLogSeparator();
 this.source.setErrorLog(this.errorLog.toString());
 JU.Logger.info("NTUPLE MIN/MAX Y = " + minMaxY[0] + " " + minMaxY[1]);
 return this.source;
-}, "JU.Lst,JSV.source.JDXDataObject,~S");
+}, "JSV.source.JDXHeader.DataLDRTable,JSV.source.JDXDataObject,~S");
 Clazz_defineMethod(c$, "readDataLabel", 
 function(spectrum, label, value, errorLog, obscure, isHeaderOnly){
-if (!JSV.source.JDXReader.readHeaderLabel(spectrum, label, value, errorLog, obscure)) return false;
+if (!this.readHeaderLabel(spectrum, label, value, errorLog, obscure)) return false;
 label += " ";
 if (("##MINX ##MINY ##MAXX ##MAXY ##FIRSTY ##DELTAX ##DATACLASS ").indexOf(label) >= 0) return false;
 switch (("##FIRSTX  ##LASTX   ##NPOINTS ##XFACTOR ##YFACTOR ##XUNITS  ##YUNITS  ##XLABEL  ##YLABEL  ##NUMDIM  ##OFFSET  ").indexOf(label)) {
@@ -28088,35 +28121,38 @@ return false;
 }return true;
 }
 }, "JSV.source.JDXDataObject,~S,~S,JU.SB,~B,~B");
-c$.readHeaderLabel = Clazz_defineMethod(c$, "readHeaderLabel", 
+Clazz_defineMethod(c$, "readHeaderLabel", 
 function(jdxHeader, label, value, errorLog, obscure){
-switch (("##TITLE#####JCAMPDX###ORIGIN####OWNER#####DATATYPE##LONGDATE##DATE######TIME####").indexOf(label + "#")) {
-case 0:
+switch (label) {
+case "##TITLE":
 jdxHeader.setTitle(obscure || value == null || value.equals("") ? "Unknown" : value);
 return false;
-case 10:
+case "##JCAMPDX":
 jdxHeader.jcampdx = value;
 var version = JU.PT.parseFloat(value);
 if (version >= 6 || Float.isNaN(version)) {
-if (errorLog != null) errorLog.append("Warning: JCAMP-DX version may not be fully supported: " + value);
+if (errorLog != null) errorLog.append("Warning: JCAMP-DX version may not be fully supported: " + value + "\n");
 }return false;
-case 20:
+case "##ORIGIN":
 jdxHeader.origin = (value != null && !value.equals("") ? value : "Unknown");
 return false;
-case 30:
+case "##OWNER":
 jdxHeader.owner = (value != null && !value.equals("") ? value : "Unknown");
 return false;
-case 40:
+case "##DATATYPE":
 jdxHeader.dataType = value;
 return false;
-case 50:
+case "##LONGDATE":
 jdxHeader.longDate = value;
 return false;
-case 60:
+case "##DATE":
 jdxHeader.date = value;
 return false;
-case 70:
+case "##TIME":
 jdxHeader.time = value;
+return false;
+case "##$PARAMETERFILE":
+this.mnovaParamValue = value;
 return false;
 }
 return true;
@@ -28131,7 +28167,7 @@ if (label.equals("##PEAKASSIGNMENTS")) spectrum.setDataClass("PEAKASSIGNMENTS");
 Clazz_defineMethod(c$, "processTabularData", 
 function(spec, table, label, isHeaderOnly){
 this.setTabularDataType(spec, label);
-spec.setHeaderTable(table);
+spec.setHeaderTable(table.table);
 if (spec.dataClass.equals("XYDATA")) {
 spec.checkJDXRequiredTokens();
 if (!isHeaderOnly) this.decompressData(spec, null);
@@ -28157,7 +28193,7 @@ var fileDeltaX = JSV.common.Coordinate.deltaX(xyCoords[xyCoords.length - 1].getX
 spec.setIncreasing(fileDeltaX > 0);
 return;
 }throw  new JSV.exception.JSVException("Unable to read JDX file tabular data for line " + this.t.labelLineNo);
-}, "JSV.source.JDXDataObject,JU.Lst,~S,~B");
+}, "JSV.source.JDXDataObject,JSV.source.JDXHeader.DataLDRTable,~S,~B");
 Clazz_defineMethod(c$, "readNTUPLECoords", 
 function(spec, nTupleTable, plotSymbols, minMaxY){
 var list;
@@ -28246,15 +28282,6 @@ this.logError("Number of points in Header " + spec.fileNPoints + " Found " + dec
 }if (JU.Logger.debugging) {
 System.err.println(this.errorLog.toString());
 }}, "JSV.source.JDXDataObject,~A");
-c$.addHeader = Clazz_defineMethod(c$, "addHeader", 
-function(table, label, value){
-var entry = null;
-for (var i = 0; i < table.size(); i++) if ((entry = table.get(i))[0].equals(label)) {
-entry[1] = value;
-return;
-}
-table.addLast( Clazz_newArray(-1, [label, value, JSV.source.JDXSourceStreamTokenizer.cleanLabel(label)]));
-}, "JU.Lst,~S,~S");
 Clazz_defineMethod(c$, "checkCustomTags", 
 function(spectrum, label, value){
 if (label.length > 10) label = label.substring(0, 10);
@@ -28339,7 +28366,7 @@ return line;
 });
 c$.VAR_LIST_TABLE =  Clazz_newArray(-1, ["PEAKTABLE   XYDATA      XYPOINTS", " (XY..XY)    (X++(Y..Y)) (XY..XY)    "]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:51:19 CDT 2025
 Clazz_declarePackage("JSV.source");
 Clazz_load(["JSV.source.JDXHeader"], "JSV.source.JDXSource", ["JU.Lst"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -28368,6 +28395,7 @@ this.jdxSpectra = null;
 });
 Clazz_defineMethod(c$, "getJDXSpectrum", 
 function(index){
+if (index < 0) index += this.jdxSpectra.size();
 return (this.jdxSpectra.size() <= index ? null : this.jdxSpectra.get(index));
 }, "~N");
 Clazz_defineMethod(c$, "addJDXSpectrum", 
@@ -28437,7 +28465,7 @@ if (this.jdxSpectra != null) for (var i = this.jdxSpectra.size(); --i >= 0; ) th
 
 }, "~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:52:56 CDT 2025
 Clazz_declarePackage("JSV.source");
 Clazz_load(null, "JSV.source.JDXSourceStreamTokenizer", ["JU.SB", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -28499,6 +28527,7 @@ return JSV.source.JDXSourceStreamTokenizer.cleanLabel(this.rawLabel);
 c$.cleanLabel = Clazz_defineMethod(c$, "cleanLabel", 
 function(label){
 if (label == null) return null;
+if (!label.startsWith("#")) return label;
 var i;
 var str =  new JU.SB();
 for (i = 0; i < label.length; i++) {
@@ -28609,7 +28638,7 @@ while (--pt >= 0 && (v.charAt(pt) == ' ' || v.charAt(pt) == '\t')) {
 return pt;
 }, "JU.SB,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:54:06 CDT 2025
 Clazz_declarePackage("JSV.tree");
 Clazz_load(["JSV.api.JSVTree"], "JSV.tree.SimpleTree", ["JSV.common.JSVFileManager", "$.PanelNode", "JSV.tree.SimpleTreeModel", "$.SimpleTreeNode", "$.SimpleTreePath"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -28685,7 +28714,7 @@ this.spectraTreeModel.removeNodeFromParent(toDelete.get(i));
 }
 }, "JU.Lst");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.tree");
 Clazz_load(["java.util.Enumeration"], "JSV.tree.SimpleTreeEnumeration", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -28705,7 +28734,7 @@ function(){
 return this.node.$children.get(this.pt++);
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.tree");
 (function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -28726,7 +28755,7 @@ function(node){
 (node).prevNode.$children.removeObj(node);
 }, "JSV.api.JSVTreeNode");
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.tree");
 Clazz_load(["JSV.api.JSVTreeNode"], "JSV.tree.SimpleTreeNode", ["JU.Lst", "JSV.tree.SimpleTreeEnumeration"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -28780,7 +28809,7 @@ function(){
 return this.text;
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JSV.tree");
 Clazz_load(["JSV.api.JSVTreePath"], "JSV.tree.SimpleTreePath", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -28795,7 +28824,7 @@ function(){
 return (this.path == null || this.path.length == 0 ? null : this.path[this.path.length - 1]);
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 
 })();
 

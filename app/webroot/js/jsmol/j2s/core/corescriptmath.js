@@ -1827,7 +1827,10 @@ case 2:
 if (args[0].tok == 4) {
 format = JS.SV.sValue(args[0]);
 x = args[1];
-} else {
+if (x.tok == 4 && !"string".equals(format)) {
+x = args[0];
+format = "string";
+}} else {
 x = args[0];
 format = JS.SV.sValue(args[1]);
 }pt = JS.SV.getFormatType(format);
@@ -3724,7 +3727,7 @@ if (bs.equals(bsA)) bsB.andNot(bsA);
 c$.nan = Float.$valueOf(NaN);
 c$.t0 = System.currentTimeMillis();
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Mon Jul 28 06:27:19 CDT 2025
 Clazz_declarePackage("J.bspt");
 Clazz_load(null, "J.bspt.PointIterator", ["JU.BS", "$.Lst", "$.P3", "J.bspt.Bspt", "JU.BSUtil", "$.Point3fi"], function(){
 var c$ = Clazz_declareType(J.bspt, "PointIterator", null);
@@ -3820,7 +3823,7 @@ ret[0] = pts;
 return 1073742001;
 }, "~N,JU.P3,~A,~A,JU.BS,~A");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JU");
 Clazz_load(null, "JU.PatternMatcher", ["JV.Viewer"], function(){
 var c$ = Clazz_declareType(JU, "PatternMatcher", null);
@@ -3878,7 +3881,7 @@ return this;
 }, "~S");
 /*eoif3*/})();
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 })(Clazz
 ,Clazz.getClassName
 ,Clazz.newLongArray

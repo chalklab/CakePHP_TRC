@@ -5,9 +5,9 @@ volumes:
     mysql_data:
 services:
     trc:
-        container_name: ${CONTAINER}
-        hostname: ${HOSTNAME}    #nginx uses hostname to proxy
-        image: ${IMAGEURL}:${IMAGETAG}
+        container_name: trc_cake
+        hostname: trccake    #nginx uses hostname to proxy
+        image: ghcr.io/chalklab/cakephp_trc:latest
         pull_policy: always
         restart: always
         depends_on:
@@ -26,9 +26,9 @@ services:
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     mysql:
-        container_name: ${MYSQL_CONTAINER_NAME}
-        hostname: ${MYSQL_HOSTNAME}
-        image: mysql:8.0.32
+        container_name: trc_mysql
+        hostname: trcmysql
+        image: ghcr.io/chalklab/trc_mysql:v1.1
         pull_policy: always
         restart: always
         environment:
@@ -36,9 +36,6 @@ services:
             MYSQL_USER: ${MYSQL_USER}         #user granted access to database on import
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            MYSQL_DATABASE_PORT: ${MYSQL_DATABASE_PORT}
-        volumes:
-            - ./trc.sql:/docker-entrypoint-initdb.d/trc.sql #automagically imports any sql files in this folder
         logging:
             driver: "local"
             options: {}

@@ -386,4 +386,4 @@ c$.READER_NOT_FOUND = "File reader was not found:";
 c$.BASE64_TAG = ";base64,";
 c$.globalBooleans =  Clazz.newArray(-1, ["someModelsHaveFractionalCoordinates", "someModelsHaveSymmetry", "someModelsHaveUnitcells", "someModelsHaveCONECT", "isPDB", "someModelsHaveDomains", "someModelsHaveValidations", "isSupercell", "someModelsHaveAromaticBonds", "someModelsAreModulated"]);
 });
-;//5.0.1-v7 Mon Jul 21 09:29:18 CDT 2025
+;//5.0.1-v7 Fri Aug 08 04:16:18 CDT 2025

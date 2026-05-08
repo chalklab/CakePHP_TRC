@@ -1565,4 +1565,4 @@ c$.citationFields =  Clazz.newArray(-1, ["_citation_title"]);
 c$.symmetryOperationsFields =  Clazz.newArray(-1, ["*_operation_xyz", "*_magn_operation_xyz", "*_ssg_operation_algebraic", "*_magn_ssg_operation_algebraic", "_symmetry_equiv_pos_as_xyz", "_symmetry_ssg_equiv_pos_as_xyz", "*_magn_operation_timereversal", "*_magn_ssg_operation_timereversal", "*_operation_timereversal", "*_magn_centering_xyz", "*_magn_ssg_centering_algebraic", "*_magn_ssg_centering_xyz", "*_spin_lattice_xyzt", "*_spin_lattice_uvw", "*_spin_lattice_uvw_id", "*_spin_operation_xyzt", "*_spin_operation_uvw", "*_spin_operation_uvw_id", "*_spin_upart_id", "*_spin_upart_uvw"]);
 c$.geomBondFields =  Clazz.newArray(-1, ["_geom_bond_atom_site_label_1", "_geom_bond_atom_site_label_2", "_geom_bond_distance", "_ccdc_geom_bond_type"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

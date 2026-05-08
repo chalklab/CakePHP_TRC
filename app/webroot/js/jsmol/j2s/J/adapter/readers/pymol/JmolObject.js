@@ -142,7 +142,7 @@ break;
 switch (this.shape) {
 case 23:
 var map =  new java.util.Hashtable();
-map.put("mesh_width", Double.$valueOf(pymolScene.getDefaultFloat(90)));
+map.put("mesh_width", Double.$valueOf(pymolScene.getDefaultDouble(90)));
 map.put("info", this.info);
 sm.vwr.setCGO(map);
 break;
@@ -271,4 +271,4 @@ function(){
 return "[JmolObject " + this.shape + " " + (this.bsAtoms == null ? "" : this.bsAtoms.cardinality() + " atoms") + "]";
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Fri Aug 08 04:30:51 CDT 2025

@@ -245,7 +245,7 @@ for (var i = bs.nextSetBit(0), pt = 0; i >= 0; i = bs.nextSetBit(i + 1)) p[pt++]
 return p;
 }, "JU.BS");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Mon Jul 28 06:27:19 CDT 2025
 Clazz_declarePackage("JS");
 Clazz_load(["JS.ScriptExt"], "JS.CmdExt", ["java.util.Hashtable", "JU.AU", "$.BS", "$.Base64", "$.Lst", "$.M3", "$.M4", "$.Measure", "$.P3", "$.P4", "$.PT", "$.Quat", "$.SB", "$.V3", "J.api.Interface", "J.atomdata.RadiusData", "J.c.STER", "$.VDW", "J.i18n.GT", "JM.AtomCollection", "$.LabelToken", "$.Measurement", "$.Text", "JS.SV", "$.ScriptCompiler", "$.ScriptError", "$.ScriptEval", "$.ScriptInterruption", "$.ScriptMathProcessor", "$.ScriptParam", "$.T", "JU.BSUtil", "$.BoxInfo", "$.C", "$.Edge", "$.Elements", "$.Escape", "$.Logger", "$.Parser", "$.Point3fi", "$.SimpleUnitCell", "JV.FileManager", "$.JC", "$.StateManager", "$.Viewer"], function(){
 var c$ = Clazz_declareType(JS, "CmdExt", JS.ScriptExt);
@@ -5414,7 +5414,7 @@ return data;
 }, "JU.BS,~N,~S,~N,~N");
 c$.labeler = null;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Mon Jul 28 06:27:19 CDT 2025
 })(Clazz
 ,Clazz.getClassName
 ,Clazz.newLongArray

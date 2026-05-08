@@ -196,4 +196,4 @@ var yStrBaseline = Math.floor(y + strAscent / 2);
 this.g3d.drawString(str, this.font3d, Clazz.doubleToInt(xStrBaseline), Clazz.doubleToInt(yStrBaseline), Clazz.floatToInt(z), Clazz.floatToInt(z), 0);
 }, "~S,~N,~N,~N,~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

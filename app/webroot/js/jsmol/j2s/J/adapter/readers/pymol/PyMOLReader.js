@@ -789,7 +789,7 @@ flags = J.adapter.readers.pymol.PyMOLReader.intAt(a, 24);
 bonded = (J.adapter.readers.pymol.PyMOLReader.intAt(a, 25) != 0);
 if (uniqueID == -1) uniqueID = (a.size() > 40 && J.adapter.readers.pymol.PyMOLReader.intAt(a, 40) == 1 ? J.adapter.readers.pymol.PyMOLReader.intAt(a, 32) : -1);
 if (a.size() > 46) anisou = J.adapter.readers.pymol.PyMOLReader.floatsAt(a, 41,  Clazz.newFloatArray (8, 0), 6);
-}var v = this.pymolScene.getUniqueFloatDef(uniqueID, 64);
+}var v = this.pymolScene.getUniqueDoubleDef(uniqueID, 64);
 if (this.forceValence || v == 1) {
 this.bsValence.set(apt);
 }if (insCode == null) {
@@ -834,7 +834,7 @@ atom.partialCharge = partialCharge;
 atom.vib = JU.V3.new3(uniqueID, cartoonType, NaN);
 if (anisou != null && anisou[0] != 0) this.asc.setAnisoBorU(atom, anisou, 12);
 this.pymolScene.setAtomColor(atomColor);
-if (this.pymolScene.getUniqueFloatDef(uniqueID, 64) == 1) {
+if (this.pymolScene.getUniqueDoubleDef(uniqueID, 64) == 1) {
 this.bsValence.set(apt);
 }this.processAtom2(atom, serNo, x, y, z, formalCharge);
 if (!bonded) {
@@ -1151,4 +1151,4 @@ return this.atoms[iPrev].chainID != this.atoms[i].chainID;
 }, "~N,~N");
 c$.nucleic = " A C G T U ADE THY CYT GUA URI DA DC DG DT DU ";
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Fri Aug 08 04:30:51 CDT 2025

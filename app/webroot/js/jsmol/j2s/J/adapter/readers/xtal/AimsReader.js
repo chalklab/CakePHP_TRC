@@ -67,4 +67,4 @@ return;
 this.addAtomXYZSymName(tokens, 1, null, null).partialCharge = this.parseFloatStr(tokens[5]);
 }, "~A");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

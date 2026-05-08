@@ -1694,4 +1694,4 @@ c$.isJS = false;
 c$.isSwingJS = false;
 c$.jmolObject = null;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:51:19 CDT 2025

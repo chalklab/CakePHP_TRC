@@ -404,4 +404,4 @@ this.vwr.selectStatus(bsSelected, false, 0, true, false);
 c$.hoverable =  Clazz.newIntArray(-1, [31, 20, 25, 24, 22, 36]);
 c$.clickableMax = JV.ShapeManager.hoverable.length - 1;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

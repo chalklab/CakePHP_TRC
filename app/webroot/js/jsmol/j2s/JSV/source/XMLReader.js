@@ -1,5 +1,5 @@
 Clazz.declarePackage("JSV.source");
-Clazz.load(["JSV.api.SourceReader", "JU.SB"], "JSV.source.XMLReader", ["JU.Lst", "JSV.common.Coordinate", "$.Spectrum", "JSV.source.JDXReader", "$.XMLParser", "JU.Logger"], function(){
+Clazz.load(["JSV.api.SourceReader", "JU.SB"], "JSV.source.XMLReader", ["JSV.common.Coordinate", "$.Spectrum", "JSV.source.JDXHeader", "$.XMLParser", "JU.Logger"], function(){
 var c$ = Clazz.decorateAsClass(function(){
 this.source = null;
 this.filePath = "";
@@ -73,7 +73,7 @@ throw  new java.io.IOException(errMsg);
 });
 Clazz.defineMethod(c$, "populateVariables", 
 function(){
-var LDRTable =  new JU.Lst();
+var myLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
 var spectrum =  new JSV.common.Spectrum();
 spectrum.setTitle(this.title);
 spectrum.setJcampdx("5.01");
@@ -87,15 +87,15 @@ spectrum.setLongDate(this.LongDate);
 spectrum.setOrigin(this.origin);
 spectrum.setOwner(this.owner);
 spectrum.setNucleusAndFreq(this.obNucleus, true);
-JSV.source.JDXReader.addHeader(LDRTable, "##PATHLENGTH", this.pathlength);
-JSV.source.JDXReader.addHeader(LDRTable, "##RESOLUTION", this.resolution);
-if (!this.strObFreq.equals("")) JSV.source.JDXReader.addHeader(LDRTable, "##.OBSERVEFREQUENCY", this.strObFreq);
-if (!this.obNucleus.equals("")) JSV.source.JDXReader.addHeader(LDRTable, "##.OBSERVENUCLEUS", this.obNucleus);
-JSV.source.JDXReader.addHeader(LDRTable, "##$MANUFACTURER", this.vendor);
-if (!this.casRN.equals("")) JSV.source.JDXReader.addHeader(LDRTable, "##CASREGISTRYNO", this.casRN);
-if (!this.molForm.equals("")) JSV.source.JDXReader.addHeader(LDRTable, "##MOLFORM", this.molForm);
-if (!this.modelType.equals("")) JSV.source.JDXReader.addHeader(LDRTable, "##SPECTROMETER/DATA SYSTEM", this.modelType);
-spectrum.setHeaderTable(LDRTable);
+myLDRTable.addHeader("##PATHLENGTH", this.pathlength);
+myLDRTable.addHeader("##RESOLUTION", this.resolution);
+if (!this.strObFreq.equals("")) myLDRTable.addHeader("##.OBSERVEFREQUENCY", this.strObFreq);
+if (!this.obNucleus.equals("")) myLDRTable.addHeader("##.OBSERVENUCLEUS", this.obNucleus);
+myLDRTable.addHeader("##$MANUFACTURER", this.vendor);
+if (!this.casRN.equals("")) myLDRTable.addHeader("##CASREGISTRYNO", this.casRN);
+if (!this.molForm.equals("")) myLDRTable.addHeader("##MOLFORM", this.molForm);
+if (!this.modelType.equals("")) myLDRTable.addHeader("##SPECTROMETER/DATA SYSTEM", this.modelType);
+spectrum.setHeaderTable(myLDRTable.table);
 var xScale = 1;
 if (this.obFreq != 1.7976931348623157E308) {
 spectrum.setObservedFreq(this.obFreq);
@@ -178,4 +178,4 @@ throw e;
 }, "~N,~B");
 c$.tagNames =  Clazz.newArray(-1, ["audittrail", "experimentstepset", "sampleset", "xx result", "spectrum", "metadatalist", "conditionlist", "parameterlist", "sample", "spectrumdata", "peaklist", "author", "peaklist", "acquisitionnucleus", "effectiveexcitationfield", "spectrum1d", "spectrumAnnotationList", "chemicalcompound", "identifier", "npmrd_id", "structure", "atomlist", "atom", "bondlist", "bond", "atomassignmentlist", "multiplet", "atoms", "multiplicity", "peakList", "peak", "acquisition", "spectrumdataarray", "spectrumlist"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:56:39 CDT 2025

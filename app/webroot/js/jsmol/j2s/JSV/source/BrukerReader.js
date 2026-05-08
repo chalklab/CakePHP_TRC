@@ -1,5 +1,5 @@
 Clazz.declarePackage("JSV.source");
-Clazz.load(null, "JSV.source.BrukerReader", ["java.io.BufferedInputStream", "$.ByteArrayInputStream", "$.File", "java.util.Hashtable", "java.util.zip.ZipInputStream", "JU.BinaryDocument", "$.Lst", "$.Rdr", "JSV.common.Coordinate", "$.Spectrum", "JSV.source.JDXReader", "$.JDXSource"], function(){
+Clazz.load(null, "JSV.source.BrukerReader", ["java.io.BufferedInputStream", "$.ByteArrayInputStream", "$.File", "java.util.Hashtable", "java.util.zip.ZipInputStream", "JU.BinaryDocument", "$.Rdr", "JSV.common.Coordinate", "$.Spectrum", "JSV.source.JDXHeader", "$.JDXReader", "$.JDXSource"], function(){
 var c$ = Clazz.decorateAsClass(function(){
 this.allowPhasing = false;
 Clazz.instantialize(this, arguments);}, JSV.source, "BrukerReader", null);
@@ -16,7 +16,6 @@ var root = null;
 var title = null;
 out : while ((ze = zis.getNextEntry()) != null) {
 var zeName = ze.getName();
-System.out.println(zeName);
 var pt = zeName.lastIndexOf('/');
 var zeShortName = zeName.substring(pt + 1);
 if (root == null) {
@@ -35,7 +34,7 @@ if (this.allowPhasing) data1i = this.getBytes(zis, ze.getSize(), false);
 } else if (zeShortName.equals("2rr")) {
 data2rr = this.getBytes(zis, ze.getSize(), false);
 } else if (zeShortName.equals("proc2s") || zeShortName.equals("acqu2s")) {
-JSV.source.JDXReader.getHeaderMapS( new java.io.ByteArrayInputStream(this.getBytes(zis, ze.getSize(), false)), map, "_2");
+JSV.source.JDXReader.getHeaderMapS( new java.io.ByteArrayInputStream(this.getBytes(zis, ze.getSize(), false)), map, 0, "_2");
 } else if (zeShortName.equals("procs") || (isacq = zeShortName.equals("acqus"))) {
 if (isacq) {
 root = zeName.substring(0, pt + 1);
@@ -77,7 +76,7 @@ function(dir, fname, map, suffix){
 var f =  new java.io.File(dir, fname);
 if (!f.exists()) return;
 var is =  new java.io.FileInputStream(f);
-JSV.source.JDXReader.getHeaderMapS(is, map, suffix);
+JSV.source.JDXReader.getHeaderMapS(is, map, 0, suffix);
 is.close();
 }, "java.io.File,~S,java.util.Map,~S");
 Clazz.defineMethod(c$, "getSource", 
@@ -96,7 +95,7 @@ this.setSource(this.getData(data2rr, dtypp, byteorp), null, map, source, true);
 }, "~S,java.util.Map,~A,~A,~A");
 Clazz.defineMethod(c$, "setSource", 
 function(datar, datai, map, source, is2D){
-var LDRTable =  new JU.Lst();
+var myLDRTable =  new JSV.source.JDXHeader.DataLDRTable();
 var spectrum0 =  new JSV.common.Spectrum();
 spectrum0.setTitle(map.get("##TITLE"));
 spectrum0.setJcampdx(is2D ? "6.0" : "5.1");
@@ -119,11 +118,11 @@ var sw = sw_hz / freq;
 var shift = ref - sw;
 var solvent = this.cleanJDXValue(map.get("##$SOLVENT"));
 var shiftType = "INTERNAL";
-JSV.source.JDXReader.addHeader(LDRTable, "##.SHIFTREFERENCE", shiftType + ", " + solvent + ", 1, " + ref);
-JSV.source.JDXReader.addHeader(LDRTable, "##.OBSERVEFREQUENCY", "" + freq);
-JSV.source.JDXReader.addHeader(LDRTable, "##.OBSERVENUCLEUS", nuc1);
-JSV.source.JDXReader.addHeader(LDRTable, "##SPECTROMETER/DATA SYSTEM", this.cleanJDXValue(map.get("##$INSTRUM")));
-spectrum0.setHeaderTable(LDRTable);
+myLDRTable.addHeader("##.SHIFTREFERENCE", shiftType + ", " + solvent + ", 1, " + ref);
+myLDRTable.addHeader("##.OBSERVEFREQUENCY", "" + freq);
+myLDRTable.addHeader("##.OBSERVENUCLEUS", nuc1);
+myLDRTable.addHeader("##SPECTROMETER/DATA SYSTEM", this.cleanJDXValue(map.get("##$INSTRUM")));
+spectrum0.setHeaderTable(myLDRTable.table);
 spectrum0.setObservedNucleus(nuc1);
 spectrum0.setObservedFreq(freq);
 spectrum0.setHZtoPPM(true);
@@ -232,7 +231,9 @@ return this.getBytes( new java.io.FileInputStream(file), len, true);
 Clazz.defineMethod(c$, "getBytes", 
 function($in, len, andClose){
 try {
-return JU.Rdr.getLimitedStreamBytes($in, len);
+var bytes = JU.Rdr.getLimitedStreamBytes($in, len);
+if (andClose) $in.close();
+return bytes;
 } catch (e) {
 if (Clazz.exceptionOf(e, Exception)){
 } else {
@@ -242,4 +243,4 @@ throw e;
 return  Clazz.newByteArray (0, 0);
 }, "java.io.InputStream,~N,~B");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Wed Jul 30 21:51:19 CDT 2025

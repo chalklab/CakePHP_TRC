@@ -1249,7 +1249,7 @@ this.connectNextAtomSet = index + 1;
 this.connectNextAtomIndex = firstAtom;
 }, "~N,~B");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.adapter.smarter");
 Clazz_load(null, "J.adapter.smarter.Structure", ["J.c.STR"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -1323,7 +1323,7 @@ throw e;
 return s;
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.Group"], "JM.Monomer", ["JU.Measure", "$.P3", "$.Quat", "J.c.STR", "JM.BioResolver", "JU.Escape", "$.Logger", "JV.JC"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -1686,7 +1686,7 @@ function(){
 return "[" + this.getGroup3() + "-" + this.getSeqcodeString() + " " + this.getStructure() + "]";
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.Monomer"], "JM.AlphaMonomer", ["JU.Quat", "$.V3", "J.c.STR", "JM.Helix", "$.Sheet", "$.Turn"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -1841,7 +1841,7 @@ return JU.Quat.getQuaternionFrameV(vA, vB, vC, false);
 }, "~S");
 c$.alphaOffsets =  Clazz_newByteArray(-1, [0]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.Structure"], "JM.ProteinStructure", ["java.util.Hashtable", "JU.P3", "$.V3", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -1998,7 +1998,7 @@ return "[" + this.id + " " + this.type + (this.subtype == null ? "" : " " + this
 c$.ids = 0;
 c$.globalStrucNo = 1000;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.ProteinStructure"], "JM.Helix", ["JU.Measure", "$.P3", "$.V3", "J.c.STR"], function(){
 var c$ = Clazz_declareType(JM, "Helix", JM.ProteinStructure);
@@ -2021,7 +2021,7 @@ this.axisB = JU.P3.newP(points[this.nRes]);
 JU.Measure.projectOntoAxis(this.axisB, this.axisA, this.axisUnitVector, this.vectorProjection);
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.ProteinStructure"], "JM.Sheet", ["JU.Measure", "$.P3", "$.V3", "J.c.STR"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -2093,7 +2093,7 @@ ptC.ave(vW, vH);
 ptC.sub2(pt, ptC);
 }, "~N,~N,JU.P3,JU.V3,JU.V3,JU.P3,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.ProteinStructure"], "JM.Turn", ["J.c.STR"], function(){
 var c$ = Clazz_declareType(JM, "Turn", JM.ProteinStructure);
@@ -2104,7 +2104,7 @@ this.setupPS(apolymer, J.c.STR.TURN, monomerIndex, monomerCount);
 this.subtype = J.c.STR.TURN;
 }, "JM.AlphaPolymer,~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.Structure", "JU.V3"], "JM.BioPolymer", ["JU.BS", "$.P3"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -2439,7 +2439,7 @@ function(){
 return "[Polymer type " + this.type + " n=" + this.monomerCount + " " + (this.monomerCount > 0 ? this.monomers[0] + " " + this.monomers[this.monomerCount - 1] : "") + "]";
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["java.lang.Enum", "JM.BioPolymer"], "JM.AlphaPolymer", ["JU.Measure", "$.P3", "J.c.STR", "JM.Helix", "$.Sheet", "$.Turn", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -2622,7 +2622,7 @@ Clazz_defineEnumConstant(c$, "RIGHT_TURN", 5, []);
 /*eoif2*/})();
 c$.dsspTypes =  Clazz_newArray(-1, ["H", null, "H", "S", "H", null, "T"]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.AlphaMonomer"], "JM.AminoMonomer", ["JU.A4", "$.BS", "$.M3", "$.P3", "$.PT", "$.Quat", "$.V3", "J.c.STR", "JU.Escape", "$.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -2846,7 +2846,7 @@ for (var j = b.length; --j >= 0; ) if ((h = b[j].getOtherAtom(a)).getElementNumb
 }, "JU.BS,JM.Atom,~B");
 c$.interestingAminoAtomIDs =  Clazz_newByteArray(-1, [2, -5, 1, 3, -65]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.AlphaPolymer"], "JM.AminoPolymer", ["JU.Measure", "$.P3", "$.V3", "J.c.STR", "JM.HBond", "JU.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -3091,7 +3091,7 @@ function(structureList){
 this.structureList = structureList;
 }, "java.util.Map");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(null, "JM.BioModelSet", ["java.util.Hashtable", "JU.AU", "$.BS", "$.Lst", "$.PT", "$.SB", "J.api.Interface", "J.c.STR", "JM.Group", "JM.BioResolver", "JS.T", "JU.BSUtil", "$.Escape", "$.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -3751,7 +3751,7 @@ function(s, atomName, aaRet){
 return this.getBioExt().getAminoAcidValenceAndCharge(s, atomName, aaRet);
 }, "~S,~S,~A");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.Model"], "JM.BioModel", ["java.util.Hashtable", "JU.AU", "$.BS", "$.Lst", "$.SB", "J.api.Interface", "JU.Escape"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -4052,7 +4052,7 @@ function(dssrData, dataType){
 if (this.auxiliaryInfo.containsKey("dssr")) this.vwr.getAnnotationParser(true).getAtomicDSSRData(this.ms, this.modelIndex, dssrData, dataType);
 }, "~A,~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Mon Jul 28 06:27:19 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["java.util.Hashtable", "J.c.STR"], "JM.BioResolver", ["java.util.Arrays", "JU.AU", "$.BS", "$.Measure", "$.P3", "$.P4", "$.PT", "$.SB", "$.V3", "JM.Group", "JM.AlphaMonomer", "$.AlphaPolymer", "$.AminoMonomer", "$.AminoPolymer", "$.BioModel", "$.BioModelSet", "$.CarbohydrateMonomer", "$.CarbohydratePolymer", "$.NucleicMonomer", "$.NucleicPolymer", "$.PhosphorusMonomer", "$.PhosphorusPolymer", "JU.BSUtil", "$.Logger", "JV.JC"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -4748,7 +4748,7 @@ c$.argbsShapely =  Clazz_newIntArray(-1, [0xFFFF00FF, 0xFF00007C, 0xFFFF7C70, 0x
 {
 {
 }}});
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Mon Jul 28 06:27:19 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.Monomer"], "JM.CarbohydrateMonomer", ["J.c.STR"], function(){
 var c$ = Clazz_declareType(JM, "CarbohydrateMonomer", JM.Monomer);
@@ -4798,7 +4798,7 @@ return false;
 });
 c$.alphaOffsets =  Clazz_newByteArray(-1, [0]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.BioPolymer"], "JM.CarbohydratePolymer", null, function(){
 var c$ = Clazz_declareType(JM, "CarbohydratePolymer", JM.BioPolymer);
@@ -4808,7 +4808,7 @@ Clazz_superConstructor(this, JM.CarbohydratePolymer, [monomers, false]);
 this.type = 3;
 }, "~A");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.Monomer"], "JM.PhosphorusMonomer", ["JU.Quat", "$.V3", "J.c.STR"], function(){
 var c$ = Clazz_declareType(JM, "PhosphorusMonomer", JM.Monomer);
@@ -4888,7 +4888,7 @@ return this.getHelixData2(tokType, qType, mStep);
 c$.phosphorusOffsets =  Clazz_newByteArray(-1, [0]);
 c$.MAX_ADJACENT_PHOSPHORUS_DISTANCE = 8.0;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 (function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -4914,7 +4914,7 @@ function(){
 return this.info.toString();
 });
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.PhosphorusMonomer"], "JM.NucleicMonomer", ["JU.A4", "$.Lst", "$.M3", "$.P3", "$.Quat", "$.V3", "J.c.STR", "JM.Group", "JM.NucleicPolymer"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -5315,7 +5315,7 @@ c$.ring5OffsetIndexes =  Clazz_newByteArray(-1, [3, 9, 10, 11, 7]);
 c$.riboseOffsetIndexes =  Clazz_newByteArray(-1, [25, 26, 22, 27, 28, 21, 29, 19, 0]);
 c$.heavyAtomIndexes =  Clazz_newByteArray(-1, [3, 1, 4, 5, 6, 7, 11, 10, 9, 16, 14, 8, 12, 17, 13]);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.PhosphorusPolymer"], "JM.NucleicPolymer", ["JU.Measure", "$.P4", "$.V3", "JM.HBond"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -5403,7 +5403,7 @@ return 1;
 }, "JU.Lst,JM.Atom,JM.Atom");
 c$.htGroup1 = null;
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 (function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -5429,7 +5429,7 @@ function(){
 return this.info.toString();
 });
 })();
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("JM");
 Clazz_load(["JM.BioPolymer"], "JM.PhosphorusPolymer", null, function(){
 var c$ = Clazz_declareType(JM, "PhosphorusPolymer", JM.BioPolymer);
@@ -5438,7 +5438,7 @@ function(monomers){
 Clazz_superConstructor(this, JM.PhosphorusPolymer, [monomers, true]);
 }, "~A");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.dssx");
 Clazz_load(null, "J.dssx.Bridge", ["JU.Escape"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -5489,7 +5489,7 @@ function(){
 return (this.isAntiparallel ? "a " : "p ") + this.a + " - " + this.b + "\t" + JU.Escape.e(this.ladder);
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.dssx");
 Clazz_load(null, "J.dssx.DSSP", ["java.util.Hashtable", "JU.AU", "$.BS", "$.Lst", "$.PT", "$.SB", "J.c.STR", "J.dssx.Bridge", "J.i18n.GT", "JM.HBond", "JU.Escape", "$.Logger", "JV.Viewer"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -5855,7 +5855,7 @@ for (var i = bs.nextSetBit(0); i >= 0; i = bs.nextSetBit(i + 1)) tags[i] = ch;
 
 }, "~A,JU.BS,~S");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.g3d");
 Clazz_load(["J.g3d.G3DRenderer", "JU.P3", "$.V3"], "J.g3d.HermiteRenderer", ["JU.Lst", "$.P3i"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -6219,7 +6219,7 @@ for (var top = 0; top < numTopStrandPoints && (top + numTopStrandPoints) < size;
 c$.vAB =  new JU.V3();
 c$.vAC =  new JU.V3();
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.shapebio");
 Clazz_load(["J.shape.AtomShape"], "J.shapebio.BioShape", ["JU.AU", "$.BS", "$.PT", "J.c.PAL", "$.STR", "JU.BSUtil", "$.C", "$.Logger"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -6454,7 +6454,7 @@ function(){
 return null;
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Fri Aug 08 04:03:43 CDT 2025
 Clazz_declarePackage("J.shapebio");
 Clazz_load(["J.shape.Shape"], "J.shapebio.BioShapeCollection", ["java.util.Hashtable", "JU.AU", "J.c.PAL", "J.shapebio.BioShape", "JU.BSUtil", "$.C", "JV.JC"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -6622,7 +6622,7 @@ function(i){
 return this.bioShapes[i];
 }, "~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.shapebio");
 Clazz_load(["J.shapebio.BioShapeCollection"], "J.shapebio.Rockets", null, function(){
 var c$ = Clazz_declareType(J.shapebio, "Rockets", J.shapebio.BioShapeCollection);
@@ -6635,7 +6635,7 @@ function(){
 this.madTurnRandom = 500;
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.shapebio");
 Clazz_load(["J.shapebio.Rockets"], "J.shapebio.Cartoon", null, function(){
 var c$ = Clazz_declareType(J.shapebio, "Cartoon", J.shapebio.Rockets);
@@ -6645,7 +6645,7 @@ this.setTurn();
 this.madDnaRna = 1000;
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.shapebio");
 Clazz_load(["J.shapebio.BioShapeCollection"], "J.shapebio.Backbone", ["JU.BS"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -6723,19 +6723,19 @@ if (atom.nBackbonesDisplayed > 0 && !this.ms.isAtomHidden(atom.i)) atom.setClick
 }
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.shapebio");
 Clazz_load(["J.shapebio.BioShapeCollection"], "J.shapebio.Strands", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
 this.isMesh = false;
 Clazz_instantialize(this, arguments);}, J.shapebio, "Strands", J.shapebio.BioShapeCollection);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.shapebio");
 Clazz_load(["J.shapebio.BioShapeCollection"], "J.shapebio.Ribbons", null, function(){
 var c$ = Clazz_declareType(J.shapebio, "Ribbons", J.shapebio.BioShapeCollection);
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.shapebio");
 Clazz_load(["J.shapebio.Strands"], "J.shapebio.MeshRibbon", null, function(){
 var c$ = Clazz_declareType(J.shapebio, "MeshRibbon", J.shapebio.Strands);
@@ -6744,7 +6744,7 @@ function(){
 this.isMesh = true;
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.shapebio");
 Clazz_load(["J.shapebio.BioShapeCollection"], "J.shapebio.Trace", ["J.atomdata.RadiusData", "J.c.VDW"], function(){
 var c$ = Clazz_declareType(J.shapebio, "Trace", J.shapebio.BioShapeCollection);
@@ -6830,7 +6830,7 @@ var rd =  new J.atomdata.RadiusData(data, 0, J.atomdata.RadiusData.EnumType.ABSO
 this.setShapeSizeRD(0, rd, bsAtoms);
 }, "~A,JU.BS");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Fri Aug 08 04:08:16 CDT 2025
 Clazz_declarePackage("J.renderbio");
 Clazz_load(["J.render.ShapeRenderer", "JU.BS", "$.P3"], "J.renderbio.BioShapeRenderer", ["javajs.api.Interface", "J.c.STR", "JU.C", "$.Point3fi"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -7185,7 +7185,7 @@ p.sY = newPt.sY;
 p.sZ = newPt.sZ;
 }, "JM.Atom,JU.Point3fi");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.renderbio");
 Clazz_load(["J.renderbio.BioShapeRenderer"], "J.renderbio.StrandsRenderer", null, function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -7233,7 +7233,7 @@ for (var i = this.bsVisible.nextSetBit(0); i >= 0; i = this.bsVisible.nextSetBit
 
 }, "~A");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.renderbio");
 Clazz_load(["J.renderbio.MeshRibbonRenderer"], "J.renderbio.RibbonsRenderer", null, function(){
 var c$ = Clazz_declareType(J.renderbio, "RibbonsRenderer", J.renderbio.MeshRibbonRenderer);
@@ -7244,7 +7244,7 @@ if (this.wireframeOnly) this.renderStrands();
  else this.render2Strand(true, this.isNucleic ? 1 : 0.5, this.isNucleic ? 0 : 0.5);
 }, "J.shapebio.BioShape");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.renderbio");
 Clazz_load(["J.renderbio.StrandsRenderer"], "J.renderbio.MeshRibbonRenderer", null, function(){
 var c$ = Clazz_declareType(J.renderbio, "MeshRibbonRenderer", J.renderbio.StrandsRenderer);
@@ -7271,7 +7271,7 @@ this.vwr.freeTempPoints(this.ribbonTopScreens);
 this.vwr.freeTempPoints(this.ribbonBottomScreens);
 }, "~B,~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.renderbio");
 Clazz_load(null, "J.renderbio.NucleicRenderer", ["JU.P3", "JU.C"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -7538,7 +7538,7 @@ this.renderTriangle(this.rScr, this.rPt, 3, 4, 9, true);
 this.renderTriangle(this.rScr, this.rPt, 4, 0, 9, true);
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.renderbio");
 Clazz_load(["J.renderbio.StrandsRenderer"], "J.renderbio.RocketsRenderer", ["javajs.api.Interface", "JU.P3", "J.c.STR"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -7616,7 +7616,7 @@ pt.sX = 0;
 }}
 }, "~A,~N,~N,~N");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.renderbio");
 Clazz_load(["J.renderbio.RocketsRenderer"], "J.renderbio.CartoonRenderer", ["J.api.Interface", "J.c.STR"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -7673,7 +7673,7 @@ lastWasHelix = isHelix && !this.helixRockets;
 if (doRockets) this.renderRockets();
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.renderbio");
 Clazz_load(["J.renderbio.BioShapeRenderer"], "J.renderbio.BackboneRenderer", ["JU.C"], function(){
 var c$ = Clazz_decorateAsClass(function(){
@@ -7703,7 +7703,7 @@ this.setStrutPoint(atomB, null);
 }}}}
 }, "J.shapebio.BioShape");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 Clazz_declarePackage("J.renderbio");
 Clazz_load(["J.renderbio.StrandsRenderer"], "J.renderbio.TraceRenderer", null, function(){
 var c$ = Clazz_declareType(J.renderbio, "TraceRenderer", J.renderbio.StrandsRenderer);
@@ -7719,7 +7719,7 @@ for (var i = this.bsVisible.nextSetBit(0); i >= 0; i = this.bsVisible.nextSetBit
 
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025
 })(Clazz
 ,Clazz.getClassName
 ,Clazz.newLongArray

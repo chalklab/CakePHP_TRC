@@ -11,4 +11,4 @@ if (this.line != null && this.line.indexOf("MOLSTATE") >= 0) this.readTransform(
 this.continuing = false;
 });
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

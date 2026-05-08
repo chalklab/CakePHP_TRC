@@ -396,4 +396,4 @@ if (charge != 0) name += "<sup>" + Math.abs(charge) + (charge > 0 ? "+" : charge
 }return name;
 }, "JM.Atom");
 });
-;//5.0.1-v7 Mon Jul 21 08:59:16 CDT 2025
+;//5.0.1-v7 Tue Jul 22 18:14:29 CDT 2025

@@ -16,7 +16,6 @@
             titleTextStyle: { fontSize: 16 },
             hAxis: {title: '<?php echo ($xlabel);?>', minValue: <?php echo ($minx);?>, maxValue: <?php echo ($maxx);?>},
             vAxis: {title: '<?php echo ($ylabel);?>', minValue: <?php echo ($miny);?>, maxValue: <?php echo ($maxy);?>},
-            legend: { position: 'bottom', maxLines: 3, textStyle:{fontSize:15}},
             trendlines: {
             	0: { type: 'polynomial',visibleInLegend: true },
                 1: { type: 'polynomial',visibleInLegend: true },

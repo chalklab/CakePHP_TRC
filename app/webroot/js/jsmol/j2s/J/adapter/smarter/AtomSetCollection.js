@@ -877,4 +877,4 @@ this.bsAtoms.clear(b.atomIndex1);
 }}
 });
 });
-;//5.0.1-v7 Mon Jul 21 09:29:18 CDT 2025
+;//5.0.1-v7 Fri Aug 08 04:16:18 CDT 2025

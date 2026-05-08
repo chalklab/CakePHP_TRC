@@ -3304,4 +3304,4 @@ return (uc == null ? 0 : uc.getSpinIndex(op) + 1);
 }, "~N");
 c$.hbondMinRasmol = 2.5;
 });
-;//5.0.1-v7 Mon Jul 21 09:29:18 CDT 2025
+;//5.0.1-v7 Fri Aug 08 04:16:18 CDT 2025
